@@ -1,0 +1,9 @@
+{
+  "GetInvoiceList": 
+  {
+	"status" : "Error",
+	"message[0].error_code" : "UAN-GEN-00141",
+	"message[0].error_message" : "Date range must not be more than 90 days. Please check your entry and try again",
+	"transaction_id" : "0070006232-Invoice-*-*"
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "KickerFiles": 
+  [
+	"./testdata/WorkflowProcessing/TestKickers/Kicker.GetInvoiceDetails.PreCannedData.WithAuth.BadCustomer.TooLong.INT.json",
+	"./testdata/WorkflowProcessing/TestKickers/Kicker.GetInvoiceDetails.PreCannedData.WithAuth.BadInvoice.INT.json",
+	"./testdata/WorkflowProcessing/TestKickers/Kicker.GetInvoiceDetails.PreCannedData.WithAuth.BadInvoice.TooLong.INT.json",
+	"./testdata/WorkflowProcessing/TestKickers/Kicker.GetInvoiceDetails.PreCannedData.WithAuth.ByPurchaseOrderNumber.INT.json",
+	"./testdata/WorkflowProcessing/TestKickers/Kicker.GetInvoiceDetails.PreCannedData.WithAuth.BySalesOrderNumber.INT.json",
+	"./testdata/WorkflowProcessing/TestKickers/Kicker.GetInvoiceDetails.PreCannedData.WithAuth.BySalesOrderNumber.TooLong.INT.json",
+	"./testdata/WorkflowProcessing/TestKickers/Kicker.GetInvoiceDetails.PreCannedData.WithAuth.BySalesOrderNumber.TooShort.INT.json",
+	"./testdata/WorkflowProcessing/TestKickers/Kicker.GetInvoiceDetails.PreCannedData.WithAuth.CustomerNumberMissing.INT.json",
+	"./testdata/WorkflowProcessing/TestKickers/Kicker.GetInvoiceDetails.PreCannedData.WithAuth.INT.json",
+	"./testdata/WorkflowProcessing/TestKickers/Kicker.GetInvoiceDetails.PreCannedData.WithAuth.MissingPurchaseOrderNumber.INT.json",
+	"./testdata/WorkflowProcessing/TestKickers/Kicker.GetInvoiceList.PreCannedData.WithAuth.BadFromDate.INT.json",
+	"./testdata/WorkflowProcessing/TestKickers/Kicker.GetInvoiceList.PreCannedData.WithAuth.BadToDate.INT.json",
+	"./testdata/WorkflowProcessing/TestKickers/Kicker.GetInvoiceList.PreCannedData.WithAuth.CsnMissing.INT.json",
+	"./testdata/WorkflowProcessing/TestKickers/Kicker.GetInvoiceList.PreCannedData.WithAuth.CsnTooLong.INT.json",
+	"./testdata/WorkflowProcessing/TestKickers/Kicker.GetInvoiceList.PreCannedData.WithAuth.CutoffRangeCross.INT.json",
+	"./testdata/WorkflowProcessing/TestKickers/Kicker.GetInvoiceList.PreCannedData.WithAuth.FromDateMissing.INT.json",
+	"./testdata/WorkflowProcessing/TestKickers/Kicker.GetInvoiceList.PreCannedData.WithAuth.INT.json",
+	"./testdata/WorkflowProcessing/TestKickers/Kicker.GetInvoiceList.PreCannedData.WithAuth.SwappedDateRange.INT.json",
+	"./testdata/WorkflowProcessing/TestKickers/Kicker.GetInvoiceList.PreCannedData.WithAuth.ToDateMissing.INT.json"
+  ]
+}

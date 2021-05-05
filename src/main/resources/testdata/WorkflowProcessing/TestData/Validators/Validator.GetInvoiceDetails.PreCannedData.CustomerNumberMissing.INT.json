@@ -1,0 +1,9 @@
+{
+   "GetInvoiceDetails":
+   {
+      "status":"Error",
+      "transaction_id":"*-Invoice-*",
+      "message[0].error_code":"UAN-GEN-00108",
+      "message[0].error_message":"Please enter Customer Number"
+   }
+}

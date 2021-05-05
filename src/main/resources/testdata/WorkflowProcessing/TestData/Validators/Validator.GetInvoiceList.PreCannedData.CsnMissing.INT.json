@@ -1,0 +1,9 @@
+{
+  "GetInvoiceList": 
+  {
+	"status" : "Error",
+	"message[0].error_code" : "UAN-GEN-00108",
+	"message[0].error_message" : "Please enter Customer Number",
+	"transaction_id" : "*-Invoice-*-*"
+  }
+}

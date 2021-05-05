@@ -1,0 +1,9 @@
+{
+  "GetInvoiceList": 
+  {
+	"status" : "Error",
+	"message[0].error_code" : "UAN-INV-00002",
+	"message[0].error_message" : "Invoice From Date should be previous date than Invoice To Date",
+	"transaction_id" : "*-Invoice-*-*"
+  }
+}

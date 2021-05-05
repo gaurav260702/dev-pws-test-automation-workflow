@@ -1,0 +1,10 @@
+{
+  "baseUrl": "https://enterprise-api-int.autodesk.com",
+  "oAuthBaseUrl":  "https://enterprise-api-int.autodesk.com",
+  "baseFile": "./testdata/WorkflowProcessing/TestData/BaseData/GetInvoiceList.PreCannedData.BadToDate.INT.json",
+  "overridesFile": "./testdata/WorkflowProcessing/TestData/Overrides/Override.NONE.json",
+  "validationFile": "./testdata/WorkflowProcessing/TestData/Validators/Validator.GetInvoiceList.PreCannedData.ToDateMissing.INT.json",
+  "secretsFile": "./testdata/WorkflowProcessing/TestData/Configurations/Secrets.GetInvoiceServices.INT.json",
+  "workflow": "GetInvoiceListPreCannedWithAuth",
+  "GetInvoiceList.ResourcePath": "/v1/invoices?customer_number=$CUSTOMER_NUMBER$&invoice_date_from=$INVOICE_DATE_FROM$"
+}

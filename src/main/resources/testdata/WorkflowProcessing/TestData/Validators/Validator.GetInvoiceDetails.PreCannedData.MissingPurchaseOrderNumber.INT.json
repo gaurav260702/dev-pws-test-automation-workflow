@@ -1,0 +1,9 @@
+{
+  "GetInvoiceDetails": 
+  {
+	"status" : "Error",
+	"message[0].error_code" : "UAN-GEN-00108",
+	"message[0].error_message" : "Please enter one of Invoice Number, Purchase Order Number and Sales Order Number",
+	"transaction_id" : "*-Invoice-*-*"
+  }
+}

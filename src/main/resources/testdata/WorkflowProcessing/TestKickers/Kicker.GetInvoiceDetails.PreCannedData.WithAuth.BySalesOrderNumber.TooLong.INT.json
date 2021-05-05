@@ -1,0 +1,11 @@
+{
+  "baseUrl": "https://enterprise-api-int.autodesk.com",
+  "oAuthBaseUrl":  "https://enterprise-api-int.autodesk.com",
+  "baseFile": "./testdata/WorkflowProcessing/TestData/BaseData/GetInvoiceDetails.PreCannedData.BySalesOrderNumber.TooLong.INT.json",
+  "overridesFile": "./testdata/WorkflowProcessing/TestData/Overrides/Override.NONE.json",
+  "validationFile": "./testdata/WorkflowProcessing/TestData/Validators/Validator.GetInvoiceDetails.PreCannedData.BySalesNumber.TooLong.INT.json",
+  "secretsFile": "./testdata/WorkflowProcessing/TestData/Configurations/Secrets.GetInvoiceServices.INT.json",
+  "workflow": "GetInvoiceDetailsPreCannedWithAuth",
+  "GetInvoiceDetails.ResourcePath": "/v1/invoices?customer_number=$CUSTOMER_NUMBER$&sales_order_number=$SALES_ORDER_NUMBER$"
+}
+

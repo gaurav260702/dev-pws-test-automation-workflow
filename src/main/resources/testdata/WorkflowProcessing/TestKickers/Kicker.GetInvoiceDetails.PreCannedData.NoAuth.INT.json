@@ -1,0 +1,9 @@
+{
+  "baseUrl": "https://invoice.ddwsint.autodesk.com",
+  "oAuthBaseUrl":  "https://enterprise-api-int.autodesk.com",
+  "baseFile": "./testdata/WorkflowProcessing/TestData/BaseData/GetInvoiceDetails.PreCannedData.INT.json",
+  "overridesFile": "./testdata/WorkflowProcessing/TestData/Overrides/Override.NONE.json",
+  "validationFile": "./testdata/WorkflowProcessing/TestData/Validators/Validator.GetInvoiceDetails.PreCannedData.INT.json",
+  "secretsFile": "./testdata/WorkflowProcessing/TestData/Configurations/Secrets.GetInvoiceServices.INT.json",
+  "workflow": "GetInvoiceDetailsPreCannedNoAuth"
+}

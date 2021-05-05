@@ -1,0 +1,9 @@
+{
+  "GetInvoiceList": 
+  {
+	"status" : "Error",
+	"message[0].error_code" : "UAN-GEN-00108",
+	"message[0].error_message" : "Field cannot be left blank. Please enter the invoice date from",
+	"transaction_id" : "0070006232-Invoice-*-*"
+  }
+}

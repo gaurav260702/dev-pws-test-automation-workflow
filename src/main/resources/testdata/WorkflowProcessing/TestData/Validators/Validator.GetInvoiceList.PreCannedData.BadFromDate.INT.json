@@ -1,0 +1,9 @@
+{
+  "GetInvoiceList": 
+  {
+	"status" : "Error",
+	"message[0].error_code" : "UAN-GEN-00119",
+	"message[0].error_message" : "Please enter valid From Date in YYYY-MM-DD format",
+	"transaction_id" : "0070006232-Invoice-*-*"
+  }
+}
