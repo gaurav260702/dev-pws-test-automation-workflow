@@ -1,6 +1,7 @@
-package com.autodesk.pws.test.processor;
+package com.autodesk.pws.test.steps.base;
 
-import com.autodesk.pws.test.engine.StepBase;
+import com.autodesk.pws.test.steps.base.*;
+
 import java.io.IOException;
 import java.util.Date;
 import java.util.HashMap;
@@ -23,7 +24,6 @@ import okhttp3.Request;
 import okhttp3.Request.Builder;
 import okhttp3.RequestBody;
 import okhttp3.Response;
-
 
 public class RestActionBase extends StepBase
 {

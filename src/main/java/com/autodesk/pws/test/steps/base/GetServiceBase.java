@@ -1,7 +1,7 @@
-package com.autodesk.pws.test.service;
+package com.autodesk.pws.test.steps.base;
 
 import com.autodesk.pws.test.processor.DynamicData;
-import com.autodesk.pws.test.processor.RestActionBase;
+import com.autodesk.pws.test.steps.base.*;
 import java.io.IOException;
 import okhttp3.Response;
 

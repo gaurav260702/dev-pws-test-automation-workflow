@@ -1,6 +1,6 @@
-package com.autodesk.pws.test.service.price;
+package com.autodesk.pws.test.steps.price;
 
-import com.autodesk.pws.test.service.GetServiceBase;
+import com.autodesk.pws.test.steps.base.*;
 
 public class GetSkuPrice extends GetServiceBase
 {

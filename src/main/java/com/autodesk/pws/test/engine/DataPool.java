@@ -1,6 +1,8 @@
 package com.autodesk.pws.test.engine;
 
 import com.autodesk.pws.test.processor.DynamicData;
+import com.autodesk.pws.test.steps.base.StepBase;
+
 import io.restassured.path.json.JsonPath;
 
 import java.io.File;

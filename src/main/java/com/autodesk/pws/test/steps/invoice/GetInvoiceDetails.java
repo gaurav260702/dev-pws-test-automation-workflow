@@ -1,6 +1,6 @@
-package com.autodesk.pws.test.service.invoice;
+package com.autodesk.pws.test.steps.invoice;
 
-import com.autodesk.pws.test.service.GetServiceBase;
+import com.autodesk.pws.test.steps.base.*;
 
 public class GetInvoiceDetails extends GetServiceBase
 {

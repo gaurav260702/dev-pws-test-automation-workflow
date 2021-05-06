@@ -1,7 +1,6 @@
-package com.autodesk.pws.test.engine;
+package com.autodesk.pws.test.steps.base;
 
 import org.slf4j.Logger;
-
 
 public class StepBase
 {
