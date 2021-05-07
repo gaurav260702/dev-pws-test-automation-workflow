@@ -1,7 +1,5 @@
 package com.autodesk.pws.test.steps.base;
 
-import com.autodesk.pws.test.steps.base.*;
-
 import java.io.IOException;
 import java.util.Date;
 import java.util.HashMap;
