@@ -1,17 +1,16 @@
 package com.autodesk.pws.test.steps.utility;
 
 import java.util.Map;
-
 import com.autodesk.pws.test.processor.DynamicData;
-import com.autodesk.pws.test.steps.base.*;
+import com.autodesk.pws.test.steps.base.RestActionBase;
 
 public class LoadBaseFiles extends RestActionBase
 {
-    public String RequestFileLabel;
-    public String OverridesFileLabel;
-    public String DataPoolLabelOrderInfoRaw;
-    public String DataPoolLabelOrderInfoOverrides;
-    public String DataPoolLabelOrderInfoFinal;
+  private String requestFileLabel;
+  private String overridesFileLabel;
+  private String dataPoolLabelOrderInfoRaw;
+  private String dataPoolLabelOrderInfoOverrides;
+  private String dataPoolLabelOrderInfoFinal;
 
     public LoadBaseFiles()
     {
@@ -20,11 +19,11 @@ public class LoadBaseFiles extends RestActionBase
 
     public void setConstructorDefaults()
     {
-        RequestFileLabel = "baseFile";
-        OverridesFileLabel = "overridesFile";
-        DataPoolLabelOrderInfoRaw = "rawBaseFile";
-        DataPoolLabelOrderInfoOverrides = "rawOverrideFile";
-        DataPoolLabelOrderInfoFinal = "OrderInfo";
+        requestFileLabel = "baseFile";
+        overridesFileLabel = "overridesFile";
+        dataPoolLabelOrderInfoRaw = "rawBaseFile";
+        dataPoolLabelOrderInfoOverrides = "rawOverrideFile";
+        dataPoolLabelOrderInfoFinal = "OrderInfo"; // TODO: check is this working (O)/(o)rderInfo?
     }
 
     @Override
@@ -35,7 +34,7 @@ public class LoadBaseFiles extends RestActionBase
 
     private void initVariables()
     {
-    	this.ClassName = this.getClass().getName();
+    	this.className = this.getClass().getName();
     	pullDataPoolVariables();
 	}
 
@@ -50,12 +49,12 @@ public class LoadBaseFiles extends RestActionBase
     {
         //  Load in default test data, relevant overrides,
         //  and merge into order info object...
-    	String baseFilePath = (String)this.DataPool.get(RequestFileLabel.toString());
+    	String baseFilePath = (String)this.dataPool.get(requestFileLabel.toString());
         String baseFileRaw = DynamicData.loadJsonFile(baseFilePath);
-        DataPool.add(DataPoolLabelOrderInfoRaw, baseFileRaw);
+        dataPool.add(dataPoolLabelOrderInfoRaw, baseFileRaw);
 
-        String overrideInfoRaw = DynamicData.loadJsonFile((String)DataPool.get(OverridesFileLabel));
-        DataPool.add(DataPoolLabelOrderInfoOverrides, overrideInfoRaw);
+        String overrideInfoRaw = DynamicData.loadJsonFile((String)dataPool.get(overridesFileLabel));
+        dataPool.add(dataPoolLabelOrderInfoOverrides, overrideInfoRaw);
 
         //  Copy the raw order info to prep for merging...
         //  Union array values together to avoid duplicates...
@@ -65,7 +64,7 @@ public class LoadBaseFiles extends RestActionBase
     	orderInfoFinal = removeAllNullValuesFromJson(orderInfoFinal);
 
         //  Pop the final result into the DataPool...
-        DataPool.add(DataPoolLabelOrderInfoFinal, orderInfoFinal);
+        dataPool.add(dataPoolLabelOrderInfoFinal, orderInfoFinal);
     }
 }
 

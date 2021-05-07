@@ -1,10 +1,5 @@
 package com.autodesk.pws.test.engine;
 
-import com.autodesk.pws.test.processor.DynamicData;
-import com.autodesk.pws.test.steps.base.StepBase;
-
-import io.restassured.path.json.JsonPath;
-
 import java.io.File;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
@@ -12,24 +7,26 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-import okhttp3.Response;
-
 import org.apache.commons.io.FileUtils;
 import org.slf4j.Logger;
-
+import org.slf4j.LoggerFactory;
+import com.autodesk.pws.test.processor.DynamicData;
+import com.autodesk.pws.test.steps.base.StepBase;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import io.restassured.path.json.JsonPath;
+import okhttp3.Response;
 
 public class DataPool extends HashMap<String, Object>
 {
 	private static final long serialVersionUID = -7447329407872389743L;
 
+    protected final Logger logger = LoggerFactory.getLogger(DataPool.class);
+
 	//  Declare JsonPath container to use during validation..
-	public JsonPath jsonPath;
-	public Logger logger;
-    public StepBase StepLogger;
-    public final String NewLine = System.getProperty("line.separator");
+    private JsonPath jsonPath;
+    private StepBase stepLogger;
+    private String newLine = System.getProperty("line.separator");
 
 	@SuppressWarnings("unchecked")
 	public void addToValidationChain(String validationLabel, Object dataToValidate)
@@ -133,10 +130,10 @@ public class DataPool extends HashMap<String, Object>
 
         this.put(key, value);
 
-        if (StepLogger != null)
+        if (stepLogger != null)
         {
         	String msg = actionType + " [" + key + "]: " + padRight(value.toString(), 30, ' ').substring(0, 30).trim() + "...";
-            StepLogger.log(msg);
+            stepLogger.log(msg);
         }
     }
 
@@ -170,8 +167,8 @@ public class DataPool extends HashMap<String, Object>
         this.forEach(
 		    			(key, value) ->
 				        {
-				            retVal.append("    " + key + " : " + value.toString() +  NewLine);
-				            retVal.append("    -------------------------------------" + NewLine);
+              retVal.append("    " + key + " : " + value.toString() + newLine);
+              retVal.append("    -------------------------------------" + newLine);
 				        }
 				     );
 

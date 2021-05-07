@@ -1,22 +1,17 @@
 package com.autodesk.pws.test.steps.base;
 
-import com.autodesk.pws.test.steps.base.*;
-
 import java.io.IOException;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
-
 import javax.crypto.Mac;
 import javax.crypto.spec.SecretKeySpec;
-
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.gson.Gson;
-
 import io.restassured.path.json.JsonPath;
 import okhttp3.MediaType;
 import okhttp3.OkHttpClient;
@@ -27,24 +22,26 @@ import okhttp3.Response;
 
 public class RestActionBase extends StepBase
 {
-	public String clientId;
-	public String clientSecret;
-	public String callBackUrl;
-    public String BaseUrl;
+  // Note: Regarding Instance fields always keep it private, if a class extends and if they are
+  // required in other class(s) keep them as protected
+  private String clientId;
+  private String clientSecret;
+  private String callBackUrl;
+  protected String baseUrl;
 
-    public HashMap<String, String> RequestHeaders = new HashMap<String, String>();
+    public HashMap<String, String> requestHeaders = new HashMap<String, String>();
 
     public void initBaseVariables()
     {
-		clientId = DataPool.get("clientId").toString();
-		clientSecret = DataPool.get("clientSecret").toString();
-		callBackUrl = DataPool.get("callBackUrl").toString();
-		BaseUrl =  DataPool.get("oAuthBaseUrl").toString();
+		clientId = dataPool.get("clientId").toString();
+		clientSecret = dataPool.get("clientSecret").toString();
+		callBackUrl = dataPool.get("callBackUrl").toString();
+		baseUrl =  dataPool.get("oAuthBaseUrl").toString();
     }
 
     public void addCsnHeader()
     {
-    	if(DataPool.containsKey("$CSN_HEADER$"))
+    	if(dataPool.containsKey("$CSN_HEADER$"))
     	{
     		addHeaderFromDataPool("CSN", "$CSN_HEADER$");
     	}
@@ -56,20 +53,20 @@ public class RestActionBase extends StepBase
 
     public void addHeaderFromDataPool(String headerAndDataPoolLabel)
     {
-    	RequestHeaders.put(headerAndDataPoolLabel, DataPool.get(headerAndDataPoolLabel).toString());
+    	requestHeaders.put(headerAndDataPoolLabel, dataPool.get(headerAndDataPoolLabel).toString());
     }
 
     public void addHeaderFromDataPool(String headerLabel, String dataPoolLabel)
     {
-    	RequestHeaders.put(headerLabel, DataPool.get(dataPoolLabel).toString());
+    	requestHeaders.put(headerLabel, dataPool.get(dataPoolLabel).toString());
     }
 
     public void addValidationChainLink(String validationLabel, Object dataToValidate)
     {
-        if (!BypassValidationChainLogging)
+        if (!bypassValidationChainLogging)
         {
             log("       Adding '" + validationLabel + "' to validation chain...");
-            DataPool.addToValidationChain(validationLabel, dataToValidate);
+            dataPool.addToValidationChain(validationLabel, dataToValidate);
         }
     }
 
@@ -78,7 +75,7 @@ public class RestActionBase extends StepBase
     	String targetAsString = targetDataValue.toString();
         String displayValue = targetAsString.substring(0, Math.min(targetAsString.length(), 50));
         log("Extracting '" + targetDataLabel + "' with value of '" + displayValue + "' ...");
-        DataPool.add(targetDataLabel, targetDataValue);
+        dataPool.add(targetDataLabel, targetDataValue);
     }
 
 	public void extractDataFromJsonIntoDataPool(String rawJson, String... pathsAndLabels)
@@ -91,7 +88,7 @@ public class RestActionBase extends StepBase
 
 			String val = jsonPathObj.getString(pathAndLabel[0]).toString();
 
-			DataPool.add(pathAndLabel[1], val);
+			dataPool.add(pathAndLabel[1], val);
 		}
     }
 
@@ -122,9 +119,9 @@ public class RestActionBase extends StepBase
 		}
 
 		//  Add in any required customer headers...
-		for (String key : RequestHeaders.keySet())
+		for (String key : requestHeaders.keySet())
         {
-			String headerVal = RequestHeaders.get(key);
+			String headerVal = requestHeaders.get(key);
 			log(key + ": " + headerVal);
         	requestBuilder.addHeader(key, headerVal);
         }
@@ -176,8 +173,7 @@ public class RestActionBase extends StepBase
 		}
 		catch (JsonProcessingException e)
 		{
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+          logErr(e, this.className, "removeAllNullValuesFromJson");
 		}
 
 		//  https://stackoverflow.com/questions/2525042/how-to-convert-a-json-string-to-a-mapstring-string-with-jackson-json
@@ -191,11 +187,11 @@ public class RestActionBase extends StepBase
 		}
 		catch (JsonMappingException e)
 		{
-			logErr(e, this.ClassName, "removeAllNullValuesFromJson");
+			logErr(e, this.className, "removeAllNullValuesFromJson");
 		}
 		catch (JsonProcessingException e)
 		{
-			logErr(e, this.ClassName, "removeAllNullValuesFromJson");
+			logErr(e, this.className, "removeAllNullValuesFromJson");
 		}
 
     	return jsonMap;
@@ -205,14 +201,14 @@ public class RestActionBase extends StepBase
     {
         HashMap<String, String> authHeaders = this.generateAccessTokenHeadersWithCurrentToken();
 
-        RequestHeaders.putAll(authHeaders);
+        requestHeaders.putAll(authHeaders);
     }
 
     public HashMap<String, String> generateAccessTokenHeadersWithCurrentToken()
     {
 		HashMap<String, String> headers = new HashMap<String, String>();
 
-		String accessToken = DataPool.get("access_token").toString();
+		String accessToken = dataPool.get("access_token").toString();
 		String timeStamp = getTimeStamp();
 		String signature = getSignature(timeStamp, accessToken);
 
@@ -278,7 +274,7 @@ public class RestActionBase extends StepBase
 		}
 		catch (Exception e)
 		{
-			logger.error("Error in " + this.ClassName + ".getSha256Hash():", e);
+			logger.error("Error in " + this.className + ".getSha256Hash():", e);
 		}
 
 		return hashedStr;

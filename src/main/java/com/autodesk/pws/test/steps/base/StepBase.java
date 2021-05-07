@@ -1,15 +1,20 @@
 package com.autodesk.pws.test.steps.base;
 
 import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import com.autodesk.pws.test.engine.DataPool;
 
 public class StepBase
 {
-    public com.autodesk.pws.test.engine.DataPool DataPool;
-    public static Object ActionManager;
-    public boolean BypassValidationChainLogging;
-	public final String LineMark =  System.getProperty("line.separator");
-	public Logger logger;
-	public String ClassName;
+  protected final Logger logger = LoggerFactory.getLogger(StepBase.class);
+
+  // TODO: <Kurt> make public DataPool dataPool; as protected earlier StepBase.java was in
+  // package com.autodesk.pws.test.engine;
+  public DataPool dataPool;
+  private static Object actionManager;
+  protected boolean bypassValidationChainLogging;
+  protected String lineMark = System.getProperty("line.separator");
+    protected String className;
 
     public void preparation()
     {
@@ -33,7 +38,7 @@ public class StepBase
 
     public void logErr(Exception ex, String className, String methodName) //throws Throwable
     {
-		String errMsg = "Error in " + className + "." + methodName + "():" + this.LineMark + ex.toString();
+		String errMsg = "Error in " + className + "." + methodName + "():" + this.lineMark + ex.toString();
 		log(errMsg);
 		//throw ex;
     }
@@ -48,11 +53,11 @@ public class StepBase
     {
         StringBuilder retVal = new StringBuilder();
 
-        DataPool.forEach(
+        dataPool.forEach(
 		        			(k, v) ->
 					        {
-				                retVal.append(k + " : " + v + LineMark);
-				                retVal.append("-------------------------------------" + LineMark);
+				                retVal.append(k + " : " + v + lineMark);
+				                retVal.append("-------------------------------------" + lineMark);
 					        }
 				        );
 

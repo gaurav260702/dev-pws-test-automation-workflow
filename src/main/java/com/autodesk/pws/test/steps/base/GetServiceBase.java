@@ -1,15 +1,14 @@
 package com.autodesk.pws.test.steps.base;
 
-import com.autodesk.pws.test.processor.DynamicData;
-import com.autodesk.pws.test.steps.base.*;
 import java.io.IOException;
+import com.autodesk.pws.test.processor.DynamicData;
 import okhttp3.Response;
 
 public class GetServiceBase extends RestActionBase
 {
-    public String TargetUrl;
-    public String ResourcePath;
-    public String JsonResponseBody;
+  private String targetUrl;
+  protected String resourcePath;
+  private String jsonResponseBody;
 
     @Override
     public void preparation()
@@ -38,22 +37,23 @@ public class GetServiceBase extends RestActionBase
     {
     	//  Set variables that are extracted
 		//  from the DataPool Here...
-		String baseFileData = DataPool.get("rawBaseFile").toString();
-		DataPool.loadJsonDataAsDataPoolData(baseFileData);
-		this.BaseUrl = DataPool.get("baseUrl").toString();
+		String baseFileData = dataPool.get("rawBaseFile").toString();
+		dataPool.loadJsonDataAsDataPoolData(baseFileData);
+		this.baseUrl = dataPool.get("baseUrl").toString();
 	}
 
 	private void setTargetUrl()
     {
 		//  Set the resourceURL for the REST service...
 		// https://invoice.ddwsint.autodesk.com
-        String targetUrl = this.BaseUrl + ResourcePath;
+        String localtargetUrl = this.baseUrl + resourcePath;
 
         //  Detokenize any necessary runtime values...
-        targetUrl = DynamicData.detokenizeRuntimeValuesAndCustomDictionary(targetUrl, this.DataPool);
+        localtargetUrl =
+            DynamicData.detokenizeRuntimeValuesAndCustomDictionary(localtargetUrl, this.dataPool);
 
         //  Set the Class.TargetUrl to the now detokenized value...
-        TargetUrl = targetUrl;
+        targetUrl = localtargetUrl; // Why this ?
 	}
 
 	@Override
@@ -71,16 +71,16 @@ public class GetServiceBase extends RestActionBase
 		}
 		catch (IOException e)
 		{
-			logErr(e, this.ClassName, "action");
+			logErr(e, this.className, "action");
 			//  TODO: Copy this pattern into similar occasions...
 			throw new RuntimeException(e);
 		}
 
 		//  Stick that response body in the ValidationChain...
-		this.addValidationChainLink(this.ClassName, rawJson);
+		this.addValidationChainLink(this.className, rawJson);
 
 		//  Make the json response body available for data extraction...
-		this.JsonResponseBody = rawJson;
+		this.jsonResponseBody = rawJson;
     }
 
 
@@ -96,12 +96,12 @@ public class GetServiceBase extends RestActionBase
         //  Try and get the request...
 		try
 		{
-			retVal = getRestResponse("GET", TargetUrl);
+			retVal = getRestResponse("GET", targetUrl);
 		}
 		//  And vomit if it doesn't work...
 		catch (IOException e)
 		{
-			logErr(e, this.ClassName, "getInfo");
+			logErr(e, this.className, "getInfo");
 		}
 
         return retVal;

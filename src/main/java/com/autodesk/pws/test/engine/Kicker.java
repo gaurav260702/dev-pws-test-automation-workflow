@@ -1,11 +1,5 @@
 package com.autodesk.pws.test.engine;
 
-import com.autodesk.pws.test.processor.DynamicData;
-import com.autodesk.pws.test.steps.base.StepBase;
-import com.autodesk.pws.test.workflow.Workflows;
-
-import io.restassured.path.json.JsonPath;
-
 import java.io.File;
 import java.lang.reflect.InvocationTargetException;
 import java.nio.file.Path;
@@ -15,13 +9,15 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
 import org.apache.commons.io.FilenameUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
+import com.autodesk.pws.test.processor.DynamicData;
+import com.autodesk.pws.test.steps.base.StepBase;
+import com.autodesk.pws.test.workflow.Workflows;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import io.restassured.path.json.JsonPath;
 
 ////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////
@@ -49,7 +45,7 @@ public class Kicker
     //  Prep test result reporting container...
     private HashMap<String, String> allTests = new HashMap<String, String>();
     //  Get the system NewLine value...
-    public final String NewLine =  System.getProperty("line.separator");
+    private final String newLine = System.getProperty("line.separator");
     //  Create a logger container...
 	protected final Logger logger = LoggerFactory.getLogger(Kicker.class);
 
@@ -248,7 +244,7 @@ public class Kicker
         //  Log the test start time...
         logIt("====================================================");
         logIt("Test start time: " + LocalDateTime.now().toString());
-        logIt("====================================================" + NewLine);
+        logIt("====================================================" + newLine);
 
         //  Setup the default return exit code value...
         int exitCode = 0;
@@ -288,9 +284,9 @@ public class Kicker
         try
         {
             //  Execute the workflow steps...
-            workflowProcEngine.Execute(workflow, dataPool, logger);
+            workflowProcEngine.execute(workflow, dataPool);
 
-            logIt(NewLine);
+            logIt(newLine);
             logIt("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
             logIt("Beginning validations...");
 
@@ -341,7 +337,7 @@ public class Kicker
         //  Log the test end time...
         logIt("====================================================");
         logIt("Test end time: " + LocalDateTime.now().toString());
-        logIt("====================================================" + NewLine);
+        logIt("====================================================" + newLine);
 
         return exitCode;
     }
@@ -375,7 +371,7 @@ public class Kicker
 					(k, v) ->
 					{
 					    {
-					    	logIt("=================================================" + NewLine);
+					    	logIt("=================================================" + newLine);
 					    	logIt("Validation section: " + k);
 					    	HashMap<String, Object> validationItemsList = (HashMap<String, Object>) v;
 					    	dumpValidationItem(validationItemsList.get("ValidationList"));
@@ -401,7 +397,7 @@ public class Kicker
 
 					    	if(testResult != "PASS")
 					    	{
-						    	logIt("-----------" + NewLine);
+						    	logIt("-----------" + newLine);
 						    	logIt("Test Path:      " + k);
 						    	logIt("Expected value: " + validationItemDetails.get("ExpectedValue"));
 						    	logIt("Actual value:   " + validationItemDetails.get("ActualValue"));
@@ -455,8 +451,8 @@ public class Kicker
 						{
 						    //foreach (var validationItem in (dataPool["ValidationChain"] as Dictionary<string, object>))
 						    {
-						        sb.append("=========================================" + NewLine);
-						        sb.append("  -- " + chainName + " --  " + NewLine);
+						        sb.append("=========================================" + newLine);
+						        sb.append("  -- " + chainName + " --  " + newLine);
 						        //  sb.AppendLine(JsonConvert.SerializeObject(validationItem.Value, Formatting.Indented));
 						    }
 						}
