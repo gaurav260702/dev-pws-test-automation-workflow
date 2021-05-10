@@ -1,6 +1,5 @@
 package com.autodesk.pws.test;
 
-import com.autodesk.pws.test.engine.Kicker;
 import java.util.Arrays;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -9,13 +8,24 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
+import com.autodesk.pws.test.engine.Kicker;
 
 @SpringBootApplication
 public class WpeTestAutomationApplication {
-  Logger logger = LoggerFactory.getLogger(WpeTestAutomationApplication.class);
+    static Logger logger = LoggerFactory.getLogger(WpeTestAutomationApplication.class);
 
-  public static void main(String[] args) {
+    public static void main(String[] args) {
 		SpringApplication.run(WpeTestAutomationApplication.class, args);
+        // logger.info("Info level log message");
+        // logger.debug("Debug level log message");
+        // logger.error("Error level log message");
+
+        // ApplicationContext ctx = SpringApplication.run(WpeTestAutomationApplication.class, args);
+        // String[] beanNames = ctx.getBeanDefinitionNames();
+        // Arrays.sort(beanNames);
+        // for (String beanName : beanNames) {
+        // logger.info(beanName);
+        // }
 	}
 
   /**

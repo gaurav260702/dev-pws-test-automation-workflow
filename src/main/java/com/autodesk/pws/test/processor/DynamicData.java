@@ -8,47 +8,44 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Random;
 import java.util.UUID;
-
 import org.apache.commons.io.FileUtils;
-
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonParser;
-
 import io.restassured.path.json.JsonPath;
-
-import org.slf4j.Logger;
 
 public class DynamicData
 {
-    private static HashMap<String, Object> RuntimeValues;
-    public static Logger logger;
+    protected static final Logger logger = LoggerFactory.getLogger(DynamicData.class);
+    private static HashMap<String, Object> runtimeValues;
 
     public static void initRuntimeValues()
     {
-        RuntimeValues = new HashMap<String, Object>();
+        runtimeValues = new HashMap<String, Object>();
 
         generateNewRuntimeValues();
     }
 
     public static void generateNewRuntimeValues()
     {
-    	if(RuntimeValues == null)
+    	if(runtimeValues == null)
     	{
-    		RuntimeValues = new HashMap<String, Object>();
+    		runtimeValues = new HashMap<String, Object>();
     	}
 
-        RuntimeValues.put("po_number", getTicksAsString());
-        RuntimeValues.put("cust_po_number", getTicksAsString());
-        RuntimeValues.put("random_first_name", "fName-" + generateRandomLengthAlphaString(5));
-        RuntimeValues.put("random_last_name", "lName-" + generateRandomLengthAlphaString(5));
-        RuntimeValues.put("random_email_domain", "email-" + generateRandomLengthAlphaString(5));
-        RuntimeValues.put("net_price", "$NetPrice$");
-        RuntimeValues.put("uuid1", UUID.randomUUID().toString());
-        RuntimeValues.put("uuid2", UUID.randomUUID().toString());
-        RuntimeValues.put("uuid3", UUID.randomUUID().toString());
-        RuntimeValues.put("uuid4", UUID.randomUUID().toString());
+        runtimeValues.put("po_number", getTicksAsString());
+        runtimeValues.put("cust_po_number", getTicksAsString());
+        runtimeValues.put("random_first_name", "fName-" + generateRandomLengthAlphaString(5));
+        runtimeValues.put("random_last_name", "lName-" + generateRandomLengthAlphaString(5));
+        runtimeValues.put("random_email_domain", "email-" + generateRandomLengthAlphaString(5));
+        runtimeValues.put("net_price", "$NetPrice$");
+        runtimeValues.put("uuid1", UUID.randomUUID().toString());
+        runtimeValues.put("uuid2", UUID.randomUUID().toString());
+        runtimeValues.put("uuid3", UUID.randomUUID().toString());
+        runtimeValues.put("uuid4", UUID.randomUUID().toString());
     }
 
     public static String generateRandomLengthAlphaString(int length)
@@ -89,9 +86,9 @@ public class DynamicData
     {
         String retVal = ">> UNKNOWN RUNTIME VALUE! <<";
 
-        if(RuntimeValues.containsKey(key))
+        if(runtimeValues.containsKey(key))
         {
-            retVal = RuntimeValues.get(key).toString();
+            retVal = runtimeValues.get(key).toString();
         }
 
         return retVal;
@@ -148,16 +145,16 @@ public class DynamicData
 
     public static String detokenizeRuntimeValues(String tokenizedString)
     {
-    	tokenizedString = detokenizeString(tokenizedString, "{{", "}}", RuntimeValues);
-    	tokenizedString = detokenizeString(tokenizedString, "$", "$", RuntimeValues);
+    	tokenizedString = detokenizeString(tokenizedString, "{{", "}}", runtimeValues);
+    	tokenizedString = detokenizeString(tokenizedString, "$", "$", runtimeValues);
 
     	return tokenizedString;
     }
 
     public static String detokenizeRuntimeValuesAndCustomDictionary(String tokenizedString, HashMap<String, Object> tokenDictionary)
     {
-    	tokenizedString = detokenizeString(tokenizedString, "{{", "}}", RuntimeValues);
-    	tokenizedString = detokenizeString(tokenizedString, "$", "$", RuntimeValues);
+    	tokenizedString = detokenizeString(tokenizedString, "{{", "}}", runtimeValues);
+    	tokenizedString = detokenizeString(tokenizedString, "$", "$", runtimeValues);
     	tokenizedString = detokenizeString(tokenizedString, "{{", "}}", tokenDictionary);
     	tokenizedString = detokenizeString(tokenizedString, "$", "$", tokenDictionary);
 

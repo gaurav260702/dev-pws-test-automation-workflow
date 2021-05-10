@@ -3,6 +3,12 @@ target/
 !.mvn/wrapper/maven-wrapper.jar
 !**/src/main/**/target/
 !**/src/test/**/target/
+test-output
+#logs
+*logs*
+.mvn/
+mvnw
+mvnw.cmd
 
 ### STS ###
 .apt_generated
@@ -31,3 +37,12 @@ build/
 
 ### VS Code ###
 .vscode/
+
+.settings/
+.DS_Store
+/.apt_generated/
+/.apt_generated_tests/
+
+### Ignore .bak files ###
+*.bak
+.*.bak

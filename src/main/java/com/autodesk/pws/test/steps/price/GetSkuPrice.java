@@ -1,6 +1,6 @@
 package com.autodesk.pws.test.steps.price;
 
-import com.autodesk.pws.test.steps.base.*;
+import com.autodesk.pws.test.steps.base.GetServiceBase;
 
 public class GetSkuPrice extends GetServiceBase
 {
@@ -10,9 +10,8 @@ public class GetSkuPrice extends GetServiceBase
 		//  Do some basic variable preparation...
 
     	//  Need to set the ClassName here as this will be
-    	//  used by the super/base classes ".preparation()"
-    	//  method.
-		this.ClassName = this.getClass().getSimpleName();
+        // used by the super/base classes ".preparation()" method.
+		this.className = this.getClass().getSimpleName();
 		//  Set the Resource path BEFORE the base/super class
 		//  sets the targetUrl..
 		setResourcePath();
@@ -25,13 +24,13 @@ public class GetSkuPrice extends GetServiceBase
 		//  Setting up a special case here for modified GetInvoiceDetails paths.
 		//  This allows negative testing (dropping "invoice_number" or "customer_number")
 		//  or modifying the ResourcePath to allow for "sales_order_number"...
-		if(DataPool.containsKey(ClassName + ".ResourcePath"))
+		if(dataPool.containsKey(className + ".ResourcePath"))
 		{
-			ResourcePath = DataPool.get(ClassName + ".ResourcePath").toString();
+			resourcePath = dataPool.get(className + ".ResourcePath").toString();
 		}
 		else
 		{
-			ResourcePath = "/v1/sku/prices?customer_number=$CUSTOMER_NUMBER$&part_number=$SKU_OR_PART_NUMBER$";
+			resourcePath = "/v1/sku/prices?customer_number=$CUSTOMER_NUMBER$&part_number=$SKU_OR_PART_NUMBER$";
 		}
     }
 

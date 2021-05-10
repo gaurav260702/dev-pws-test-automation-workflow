@@ -1,7 +1,7 @@
 package com.autodesk.pws.test.steps.authentication;
 
-import com.autodesk.pws.test.steps.base.*;
 import java.io.IOException;
+import com.autodesk.pws.test.steps.base.RestActionBase;
 import okhttp3.Response;
 
 public class GetOAuthCredentials extends RestActionBase
@@ -11,7 +11,7 @@ public class GetOAuthCredentials extends RestActionBase
 	//
 	public GetOAuthCredentials()
 	{
-		// TODO Auto-generated constructor stub
+
 	}
 
     @Override
@@ -22,7 +22,7 @@ public class GetOAuthCredentials extends RestActionBase
 
     private void initVariables()
     {
-    	this.ClassName = this.getClass().getSimpleName();
+    	this.className = this.getClass().getSimpleName();
     	pullDataPoolVariables();
 	}
 
@@ -47,11 +47,11 @@ public class GetOAuthCredentials extends RestActionBase
 		}
 		catch (IOException e)
 		{
-			this.logErr(e, this.ClassName, "action");
+			this.logErr(e, this.className, "action");
 		}
 
 		//  Stick that response body in the ValidationChain...
-		this.addValidationChainLink(this.ClassName, rawJson);
+		this.addValidationChainLink(this.className, rawJson);
 
 		//  Here we would extract any data that needs
 		//  to be promoted in the DataPool...
@@ -63,7 +63,7 @@ public class GetOAuthCredentials extends RestActionBase
     	//  String rawJsonBody = "";
 
     	//  Get the appropriate headers for a token request...
-    	this.RequestHeaders = generateAccessTokenHeaders();
+    	this.requestHeaders = generateAccessTokenHeaders();
 
     	//  Ready a reponse container...
     	Response oAuthResponse = null;
@@ -71,12 +71,12 @@ public class GetOAuthCredentials extends RestActionBase
     	try
     	{
     		//  Make the call to the oAuth service...
-			oAuthResponse = getRestResponse("POST", BaseUrl + "/v2/oauth/generateaccesstoken?grant_type=client_credentials", "{}");
+			oAuthResponse = getRestResponse("POST", baseUrl + "/v2/oauth/generateaccesstoken?grant_type=client_credentials", "{}");
     	}
     	catch (IOException e)
     	{
     		//  Uh-oh.  Now what happened?
-    		logErr(e, this.ClassName, "getInfo");
+    		logErr(e, this.className, "getInfo");
 		}
 
     	return oAuthResponse;
