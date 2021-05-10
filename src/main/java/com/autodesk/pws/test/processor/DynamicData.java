@@ -19,9 +19,8 @@ import io.restassured.path.json.JsonPath;
 
 public class DynamicData
 {
-    private static HashMap<String, Object> runtimeValues;
-    // public static Logger logger;
     protected static final Logger logger = LoggerFactory.getLogger(DynamicData.class);
+    private static HashMap<String, Object> runtimeValues;
 
     public static void initRuntimeValues()
     {

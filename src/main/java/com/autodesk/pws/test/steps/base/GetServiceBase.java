@@ -6,9 +6,9 @@ import okhttp3.Response;
 
 public class GetServiceBase extends RestActionBase
 {
-  private String targetUrl;
-  protected String resourcePath;
-  private String jsonResponseBody;
+    private String targetUrl;
+    protected String resourcePath;
+    private String jsonResponseBody;
 
     @Override
     public void preparation()

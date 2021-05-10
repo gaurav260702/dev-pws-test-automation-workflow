@@ -11,10 +11,10 @@ import org.springframework.context.annotation.Bean;
 import com.autodesk.pws.test.engine.Kicker;
 
 @SpringBootApplication
-public class WpeTestAutomationApplication implements CommandLineRunner {
-  static Logger logger = LoggerFactory.getLogger(WpeTestAutomationApplication.class);
+public class WpeTestAutomationApplication {
+    static Logger logger = LoggerFactory.getLogger(WpeTestAutomationApplication.class);
 
-  public static void main(String[] args) {
+    public static void main(String[] args) {
 		SpringApplication.run(WpeTestAutomationApplication.class, args);
         // logger.info("Info level log message");
         // logger.debug("Debug level log message");
@@ -41,9 +41,6 @@ public class WpeTestAutomationApplication implements CommandLineRunner {
       kicker.kickIt(args);
     };
   }
-
-  @Override
-  public void run(String... args) throws Exception {}
 
   /* Example command line runner
    * shows how to load a property file and also list out all the beans that are loaded

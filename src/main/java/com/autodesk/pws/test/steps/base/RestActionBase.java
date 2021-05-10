@@ -22,12 +22,12 @@ import okhttp3.Response;
 
 public class RestActionBase extends StepBase
 {
-  // Note: Regarding Instance fields always keep it private, if a class extends and if they are
-  // required in other class(s) keep them as protected
-  private String clientId;
-  private String clientSecret;
-  private String callBackUrl;
-  protected String baseUrl;
+    // Note: Regarding Instance fields always keep it private, if a class extends and if they are
+    // required in other class(s) keep them as protected
+    private String clientId;
+    private String clientSecret;
+    private String callBackUrl;
+    protected String baseUrl;
 
     public HashMap<String, String> requestHeaders = new HashMap<String, String>();
 

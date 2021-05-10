@@ -6,11 +6,11 @@ import com.autodesk.pws.test.steps.base.RestActionBase;
 
 public class LoadBaseFiles extends RestActionBase
 {
-  private String requestFileLabel;
-  private String overridesFileLabel;
-  private String dataPoolLabelOrderInfoRaw;
-  private String dataPoolLabelOrderInfoOverrides;
-  private String dataPoolLabelOrderInfoFinal;
+    private String requestFileLabel;
+    private String overridesFileLabel;
+    private String dataPoolLabelOrderInfoRaw;
+    private String dataPoolLabelOrderInfoOverrides;
+    private String dataPoolLabelOrderInfoFinal;
 
     public LoadBaseFiles()
     {

@@ -10,10 +10,10 @@ public class StepBase
 
   // TODO: <Kurt> make public DataPool dataPool; as protected earlier StepBase.java was in
   // package com.autodesk.pws.test.engine;
-  public DataPool dataPool;
-  private static Object actionManager;
-  protected boolean bypassValidationChainLogging;
-  protected String lineMark = System.getProperty("line.separator");
+    public DataPool dataPool;
+    private static Object actionManager;
+    protected boolean bypassValidationChainLogging;
+    protected String lineMark = System.getProperty("line.separator");
     protected String className;
 
     public void preparation()
