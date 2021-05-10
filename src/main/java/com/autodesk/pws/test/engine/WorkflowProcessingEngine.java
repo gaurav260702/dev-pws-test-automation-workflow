@@ -6,7 +6,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.TimeZone;
 import org.apache.commons.lang3.time.StopWatch;
-import com.autodesk.pws.test.steps.base.StepBase;
+import com.autodesk.pws.test.steps.base.*;
 
 public class WorkflowProcessingEngine {
     // Note: Class name always starts with CapitalLetter(e.g:DataPool) and Object name starts with
@@ -41,13 +41,15 @@ public class WorkflowProcessingEngine {
     Boolean firstReportMade = false;
 
     // Report out intended step execution...
-    for (int i = 0; i < workflowToExecute.size(); i++) {
+    for (int i = 0; i < workflowToExecute.size(); i++) 
+	{
       step = workflowToExecute.get(i);
       // step.logger = logger;
 
       stepCount += 1;
 
-      if (!firstReportMade) {
+      if (!firstReportMade) 
+	  {
         step.log("  ");
         step.log("Step execution outline:");
         firstReportMade = true;
@@ -60,7 +62,8 @@ public class WorkflowProcessingEngine {
     stepCount = 0;
 
     // Loop through and execute each step in order...
-    for (int i = 0; i < workflowToExecute.size(); i++) {
+    for (int i = 0; i < workflowToExecute.size(); i++) 
+	{
       // Grab the next step...
       step = workflowToExecute.get(i);
 
@@ -71,9 +74,10 @@ public class WorkflowProcessingEngine {
       StopWatch totalStepTime = new StopWatch();
       totalStepTime.start();
 
-      try {
+      try 
+	  {
         // Set the DataPool reference for the next step...
-        step.dataPool = dataPool;
+        step.DataPool = dataPool;
         // step.DataPool.StepLogger = step;
 
         // Grab the step name...
@@ -98,27 +102,28 @@ public class WorkflowProcessingEngine {
         step.log("  -->  Substep: " + currentStep + ".Cleanup()");
         step.cleanup();
 
-        step.log("'" + currentStep + "' execution time: " + (totalStepTime.getTime() / 1000)
-            + " seconds.");
+        step.log("'" + currentStep + "' execution time: " + (totalStepTime.getTime() / 1000) + " seconds.");
         step.log("-------------------------------------------------------------");
         lastStep = step;
-      } catch (Exception ex) {
+      } 
+	  catch (Exception ex) 
+	  {
         // Bad things have happened....
-        step.log("'" + currentStep + "' execution time: " + (totalStepTime.getTime() / 1000)
-            + " seconds.");
+        step.log("'" + currentStep + "' execution time: " + (totalStepTime.getTime() / 1000) + " seconds.");
         String errMsg = "FAILURE DURING '" + currentStep + "'!";
         step.log(errMsg);
         step.log(ex.toString());
         throw new Exception(errMsg, ex);
-      } finally {
+      } 
+	  finally 
+	  {
         String subStepTestTime = "TODO!"; // convertLongToTimeString(totalStepTime.getSplitTime());
         dataPool.add(currentStep + "TestTime", subStepTestTime);
       }
     }
 
     // Log the total test time...
-    lastStep
-        .log("Total workflow execution time: " + (totalTestTime.getTime() / 1000) + " seconds.");
+    lastStep.log("Total workflow execution time: " + (totalTestTime.getTime() / 1000) + " seconds.");
   }
 
   // When this is fixed, it will solve the issue above of

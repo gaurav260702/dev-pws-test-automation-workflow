@@ -1,15 +1,19 @@
 package com.autodesk.pws.test.steps.base;
 
 import java.io.IOException;
+
 import com.autodesk.pws.test.processor.*;
+
 import okhttp3.Response;
 
-public class GetServiceBase extends RestActionBase
+public class PwsServiceBase extends RestActionBase
 {
-    private String targetUrl;
-    protected String resourcePath;
+    public String TargetUrl;
+    public String ResourcePath;
     public String JsonResponseBody;
-
+    private String ServiceVerb = "GET";
+    private String JsonRequestBody = "";
+    
     @Override
     public void preparation()
     {
@@ -39,37 +43,63 @@ public class GetServiceBase extends RestActionBase
 		//  from the DataPool Here...
 		String baseFileData = DataPool.get("rawBaseFile").toString();
 		DataPool.loadJsonDataAsDataPoolData(baseFileData);
-		this.BaseUrl = DataPool.get("BaseUrl").toString();
+		this.BaseUrl = DataPool.get("baseUrl").toString();
 	}
 
 	private void setTargetUrl()
     {
 		//  Set the resourceURL for the REST service...
 		// https://invoice.ddwsint.autodesk.com
-        String localtargetUrl = this.BaseUrl + resourcePath;
+        String targetUrl = this.BaseUrl + ResourcePath;
 
         //  Detokenize any necessary runtime values...
-        localtargetUrl =
-            DynamicData.detokenizeRuntimeValuesAndCustomDictionary(localtargetUrl, this.DataPool);
+        targetUrl = DynamicData.detokenizeRuntimeValuesAndCustomDictionary(targetUrl, this.DataPool);
 
         //  Set the Class.TargetUrl to the now detokenized value...
-        targetUrl = localtargetUrl; // Why this ?
+        TargetUrl = targetUrl;
 	}
 
+	public void setServiceVerb(String serviceVerb)
+	{
+		ServiceVerb = serviceVerb;
+	}
+	
+	public void setAsPostService()
+	{
+		setServiceVerb("POST");
+	}
+	
+	public void setAsGetService()
+	{
+		setServiceVerb("GET");
+	}
+	
+	public void setJsonRequestBody(String jsonRequestBody)
+	{
+		JsonRequestBody = jsonRequestBody;
+	}
+	
+	public void loadJosnRequestBody(String jsonRequestBodyFilePath)
+	{
+		String rawJsonRequest = DynamicData.loadJsonFile(jsonRequestBodyFilePath, true);
+		
+		setJsonRequestBody(rawJsonRequest);	
+	}
+	
 	@Override
     public void action()
     {
 		//  Call the method that does the meat of the work...
 		Response actionResult = getInfo();
-
+	    
 		//  Grab the body of the response (if any)...
 		String rawJson = "";
-
-		try
+		
+		try 
 		{
 			rawJson = actionResult.body().string();
-		}
-		catch (IOException e)
+		} 
+		catch (IOException e) 
 		{
 			logErr(e, this.ClassName, "action");
 			//  TODO: Copy this pattern into similar occasions...
@@ -83,19 +113,20 @@ public class GetServiceBase extends RestActionBase
 		this.JsonResponseBody = rawJson;
     }
 
+
     public Response getInfo()
     {
     	//  Prep a response container...
         Response retVal = null;
-
+        
         generateAndAppendCurrentTokenHeaders();
-
+        
         addCsnHeader();
-
+        
         //  Try and get the request...
 		try
 		{
-			retVal = getRestResponse("GET", targetUrl);
+			retVal = getRestResponse(ServiceVerb, TargetUrl, JsonRequestBody);
 		}
 		//  And vomit if it doesn't work...
 		catch (IOException e)
@@ -105,4 +136,5 @@ public class GetServiceBase extends RestActionBase
 
         return retVal;
     }
+
 }

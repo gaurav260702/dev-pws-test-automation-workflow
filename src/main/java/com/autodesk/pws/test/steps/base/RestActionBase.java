@@ -27,21 +27,21 @@ public class RestActionBase extends StepBase
     private String clientId;
     private String clientSecret;
     private String callBackUrl;
-    protected String baseUrl;
+    public String BaseUrl;
 
-    public HashMap<String, String> requestHeaders = new HashMap<String, String>();
+    public HashMap<String, String> RequestHeaders = new HashMap<String, String>();
 
     public void initBaseVariables()
     {
-		clientId = dataPool.get("clientId").toString();
-		clientSecret = dataPool.get("clientSecret").toString();
-		callBackUrl = dataPool.get("callBackUrl").toString();
-		baseUrl =  dataPool.get("oAuthBaseUrl").toString();
+		clientId = DataPool.get("clientId").toString();
+		clientSecret = DataPool.get("clientSecret").toString();
+		callBackUrl = DataPool.get("callBackUrl").toString();
+		BaseUrl =  DataPool.get("oAuthBaseUrl").toString();
     }
 
     public void addCsnHeader()
     {
-    	if(dataPool.containsKey("$CSN_HEADER$"))
+    	if(DataPool.containsKey("$CSN_HEADER$"))
     	{
     		addHeaderFromDataPool("CSN", "$CSN_HEADER$");
     	}
@@ -53,20 +53,20 @@ public class RestActionBase extends StepBase
 
     public void addHeaderFromDataPool(String headerAndDataPoolLabel)
     {
-    	requestHeaders.put(headerAndDataPoolLabel, dataPool.get(headerAndDataPoolLabel).toString());
+    	RequestHeaders.put(headerAndDataPoolLabel, DataPool.get(headerAndDataPoolLabel).toString());
     }
 
-    public void addHeaderFromDataPool(String headerLabel, String dataPoolLabel)
+    public void addHeaderFromDataPool(String headerLabel, String DataPoolLabel)
     {
-    	requestHeaders.put(headerLabel, dataPool.get(dataPoolLabel).toString());
+    	RequestHeaders.put(headerLabel, DataPool.get(DataPoolLabel).toString());
     }
 
     public void addValidationChainLink(String validationLabel, Object dataToValidate)
     {
-        if (!bypassValidationChainLogging)
+        if (!BypassValidationChainLogging)
         {
             log("       Adding '" + validationLabel + "' to validation chain...");
-            dataPool.addToValidationChain(validationLabel, dataToValidate);
+            DataPool.addToValidationChain(validationLabel, dataToValidate);
         }
     }
 
@@ -75,7 +75,7 @@ public class RestActionBase extends StepBase
     	String targetAsString = targetDataValue.toString();
         String displayValue = targetAsString.substring(0, Math.min(targetAsString.length(), 50));
         log("Extracting '" + targetDataLabel + "' with value of '" + displayValue + "' ...");
-        dataPool.add(targetDataLabel, targetDataValue);
+        DataPool.add(targetDataLabel, targetDataValue);
     }
 
 	public void extractDataFromJsonIntoDataPool(String rawJson, String... pathsAndLabels)
@@ -88,7 +88,7 @@ public class RestActionBase extends StepBase
 
 			String val = jsonPathObj.getString(pathAndLabel[0]).toString();
 
-			dataPool.add(pathAndLabel[1], val);
+			DataPool.add(pathAndLabel[1], val);
 		}
     }
 
@@ -119,9 +119,9 @@ public class RestActionBase extends StepBase
 		}
 
 		//  Add in any required customer headers...
-		for (String key : requestHeaders.keySet())
+		for (String key : RequestHeaders.keySet())
         {
-			String headerVal = requestHeaders.get(key);
+			String headerVal = RequestHeaders.get(key);
 			log(key + ": " + headerVal);
         	requestBuilder.addHeader(key, headerVal);
         }
@@ -173,7 +173,7 @@ public class RestActionBase extends StepBase
 		}
 		catch (JsonProcessingException e)
 		{
-          logErr(e, this.className, "removeAllNullValuesFromJson");
+          logErr(e, this.ClassName, "removeAllNullValuesFromJson");
 		}
 
 		//  https://stackoverflow.com/questions/2525042/how-to-convert-a-json-string-to-a-mapstring-string-with-jackson-json
@@ -187,11 +187,11 @@ public class RestActionBase extends StepBase
 		}
 		catch (JsonMappingException e)
 		{
-			logErr(e, this.className, "removeAllNullValuesFromJson");
+			logErr(e, this.ClassName, "removeAllNullValuesFromJson");
 		}
 		catch (JsonProcessingException e)
 		{
-			logErr(e, this.className, "removeAllNullValuesFromJson");
+			logErr(e, this.ClassName, "removeAllNullValuesFromJson");
 		}
 
     	return jsonMap;
@@ -201,14 +201,14 @@ public class RestActionBase extends StepBase
     {
         HashMap<String, String> authHeaders = this.generateAccessTokenHeadersWithCurrentToken();
 
-        requestHeaders.putAll(authHeaders);
+        RequestHeaders.putAll(authHeaders);
     }
 
     public HashMap<String, String> generateAccessTokenHeadersWithCurrentToken()
     {
 		HashMap<String, String> headers = new HashMap<String, String>();
 
-		String accessToken = dataPool.get("access_token").toString();
+		String accessToken = DataPool.get("access_token").toString();
 		String timeStamp = getTimeStamp();
 		String signature = getSignature(timeStamp, accessToken);
 
@@ -274,7 +274,7 @@ public class RestActionBase extends StepBase
 		}
 		catch (Exception e)
 		{
-			logger.error("Error in " + this.className + ".getSha256Hash():", e);
+			logger.error("Error in " + this.ClassName + ".getSha256Hash():", e);
 		}
 
 		return hashedStr;

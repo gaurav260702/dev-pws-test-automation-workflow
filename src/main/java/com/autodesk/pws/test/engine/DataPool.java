@@ -10,8 +10,8 @@ import java.util.Map;
 import org.apache.commons.io.FileUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import com.autodesk.pws.test.processor.DynamicData;
-import com.autodesk.pws.test.steps.base.StepBase;
+import com.autodesk.pws.test.processor.*;
+import com.autodesk.pws.test.steps.base.*;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import io.restassured.path.json.JsonPath;
@@ -24,9 +24,10 @@ public class DataPool extends HashMap<String, Object>
     protected final Logger logger = LoggerFactory.getLogger(DataPool.class);
 
 	//  Declare JsonPath container to use during validation..
-    private JsonPath jsonPath;
-    private StepBase stepLogger;
-    private String newLine = System.getProperty("line.separator");
+	public JsonPath jsonPath;
+	//public Logger logger;
+    public StepBase StepLogger;
+    public final String NewLine = System.getProperty("line.separator");
 
 	@SuppressWarnings("unchecked")
 	public void addToValidationChain(String validationLabel, Object dataToValidate)
@@ -130,10 +131,10 @@ public class DataPool extends HashMap<String, Object>
 
         this.put(key, value);
 
-        if (stepLogger != null)
+        if (StepLogger != null)
         {
         	String msg = actionType + " [" + key + "]: " + padRight(value.toString(), 30, ' ').substring(0, 30).trim() + "...";
-            stepLogger.log(msg);
+            StepLogger.log(msg);
         }
     }
 
@@ -167,8 +168,8 @@ public class DataPool extends HashMap<String, Object>
         this.forEach(
 		    			(key, value) ->
 				        {
-              retVal.append("    " + key + " : " + value.toString() + newLine);
-              retVal.append("    -------------------------------------" + newLine);
+              retVal.append("    " + key + " : " + value.toString() + NewLine);
+              retVal.append("    -------------------------------------" + NewLine);
 				        }
 				     );
 

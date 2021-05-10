@@ -12,9 +12,9 @@ import java.util.Map;
 import org.apache.commons.io.FilenameUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import com.autodesk.pws.test.processor.DynamicData;
-import com.autodesk.pws.test.steps.base.StepBase;
-import com.autodesk.pws.test.workflow.Workflows;
+import com.autodesk.pws.test.processor.*;
+import com.autodesk.pws.test.steps.base.*;
+import com.autodesk.pws.test.workflow.*;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import io.restassured.path.json.JsonPath;
@@ -76,11 +76,16 @@ public class Kicker
         {
         	String fileArg = args[i];
 
-            //  Grab the test execution result...
-            int testExitCode = executeFileArguments(fileArg);
-
-            //  Add it to the failure count...
-            failureCount += Math.abs(testExitCode);
+        	//  Check to make sure this isn't some wacky "springboot" 
+        	//  argument being passed just to mess with your head...
+        	if(!fileArg.startsWith("--"))
+        	{
+	            //  Grab the test execution result...
+	            int testExitCode = executeFileArguments(fileArg);
+	
+	            //  Add it to the failure count...
+	            failureCount += Math.abs(testExitCode);
+        	}
         }
 
         //  Print out the name of the failed tests to make
