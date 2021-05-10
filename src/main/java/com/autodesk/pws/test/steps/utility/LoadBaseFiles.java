@@ -24,6 +24,12 @@ public class LoadBaseFiles extends RestActionBase
         DataPoolLabelOrderInfoRaw = "rawBaseFile";
         DataPoolLabelOrderInfoOverrides = "rawOverrideFile";
         DataPoolLabelOrderInfoFinal = "OrderInfo"; // TODO: check is this working (O)/(o)rderInfo?
+        										   // ^^^^ NOTE: No, this does not work and is
+        										   //            intended to function in a case
+        										   //            sensitve manner.  These string
+        										   //            values are Keys into the DataPool
+        										   //            HashMap and therefore must be
+        										   //            case sensitive by definition.
     }
 
     @Override
@@ -49,7 +55,7 @@ public class LoadBaseFiles extends RestActionBase
     {
         //  Load in default test data, relevant overrides,
         //  and merge into order info object...
-    	String baseFilePath = (String)this.DataPool.get(RequestFileLabel.toString());
+    	String baseFilePath = (String)DataPool.get(RequestFileLabel.toString());
         String baseFileRaw = DynamicData.loadJsonFile(baseFilePath);
         DataPool.add(DataPoolLabelOrderInfoRaw, baseFileRaw);
 
