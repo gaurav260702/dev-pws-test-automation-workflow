@@ -4,6 +4,7 @@ import java.io.IOException;
 
 import com.autodesk.pws.test.processor.*;
 
+import io.restassured.path.json.JsonPath;
 import okhttp3.Response;
 
 public class PwsServiceBase extends RestActionBase
@@ -76,10 +77,10 @@ public class PwsServiceBase extends RestActionBase
 	
 	public void setJsonRequestBody(String jsonRequestBody)
 	{
-		JsonRequestBody = jsonRequestBody;
+		JsonRequestBody =  DynamicData.detokenizeRuntimeValuesAndCustomDictionary(jsonRequestBody, DataPool);
 	}
 	
-	public void loadJosnRequestBody(String jsonRequestBodyFilePath)
+	public void loadJsonRequestBody(String jsonRequestBodyFilePath)
 	{
 		String rawJsonRequest = DynamicData.loadJsonFile(jsonRequestBodyFilePath, true);
 		
@@ -105,9 +106,6 @@ public class PwsServiceBase extends RestActionBase
 			//  TODO: Copy this pattern into similar occasions...
 			throw new RuntimeException(e);
 		}
-
-		//  Stick that response body in the ValidationChain...
-		this.addValidationChainLink(this.ClassName, rawJson);
 
 		//  Make the json response body available for data extraction...
 		this.JsonResponseBody = rawJson;
@@ -137,4 +135,20 @@ public class PwsServiceBase extends RestActionBase
         return retVal;
     }
 
+    @Override
+    public void validation()
+    {
+		//  Stick that response body in the ValidationChain,
+		//  but let's go ahead and make it puuuurrrdy first.
+    	//
+    	//  Also, we're doing this here on the off chance that
+    	//  the class is part of a "WaitFor*Change" style loop.
+    	//
+    	//  If we were to include it as part of the "action()"
+    	//  method, it would be called 'n' number of times, 
+    	//  which is of course a bit excessive...
+		JsonPath jsonPath = JsonPath.from(JsonResponseBody);
+		String prettyJson = jsonPath.prettify();
+		this.addValidationChainLink(this.ClassName, prettyJson);
+    }
 }

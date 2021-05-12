@@ -1,0 +1,31 @@
+﻿{
+  "endCustomer": {
+    "account": {
+      "csn": "5070016993"
+    },
+    "contractManager": {
+      "firstName": "{{random_first_name}}",
+      "lastName": "{{random_last_name}}",
+      "email": "email@{{random_email_domain}}.com",
+      "language": "EN",
+      "countryCode": "US"
+    }
+  },
+  "shipTo": {
+    "csn": "5070016993"
+  },
+  "reseller": {
+    "csn": "5070016993"
+  },
+  "soldTo": {
+    "csn": "5070016993"
+  },
+  "lineItems": [
+    {
+      "partNumber": "02KI1-WW2061-L105",
+      "partnerSubscriptionId": "psi-{{uuid1}}",
+      "quantity": 1,
+      "netPrice": "{{net_price}}"
+    }
+  ]
+}
