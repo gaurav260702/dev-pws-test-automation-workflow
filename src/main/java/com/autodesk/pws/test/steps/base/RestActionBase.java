@@ -129,7 +129,7 @@ public class RestActionBase extends StepBase
 			    ObjectMapper objectMapper = new ObjectMapper();
 			    JsonNode jsonNode = objectMapper.readValue(jsonPayload, JsonNode.class);
 
-			    log("     Payload: " + jsonNode.toString());
+			    log("       Payload: " + jsonNode.toString());
 		    }
 		    
 		    RequestBody body = RequestBody.create(mediaType, jsonPayload);
@@ -144,7 +144,7 @@ public class RestActionBase extends StepBase
 		for (String key : RequestHeaders.keySet())
         {
 			String headerVal = RequestHeaders.get(key);
-			log(key + ": " + headerVal);
+			//log(key + ": " + headerVal);
         	requestBuilder.addHeader(key, headerVal);
         }
 

@@ -28,6 +28,8 @@ public class StepBase
 	//public Logger logger;
 	public String ClassName;
 	public Boolean SuppressLogging = false;
+	public String ExceptionMessage = "";
+	public Boolean ExceptionAbortStatus = false;
 	
     public void preparation()
     {

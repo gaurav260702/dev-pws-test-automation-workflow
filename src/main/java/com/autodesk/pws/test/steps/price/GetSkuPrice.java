@@ -31,17 +31,7 @@ public class GetSkuPrice extends PwsServiceBase
 
     private void setResourcePath()
     {
-		//  Setting up a special case here for modified GetInvoiceDetails paths.
-		//  This allows negative testing (dropping "invoice_number" or "customer_number")
-		//  or modifying the ResourcePath to allow for "sales_order_number"...
-		if(DataPool.containsKey(ClassName + ".ResourcePath"))
-		{
-			ResourcePath = DataPool.get(ClassName + ".ResourcePath").toString();
-		}
-		else
-		{
-			ResourcePath = "/v1/sku/prices?customer_number=$CUSTOMER_NUMBER$&part_number=$SKU_OR_PART_NUMBER$&price_date=$PRICE_DATE$&quantity=$QUANTITY$";
-		}
+		super.setResourcePath("/v1/sku/prices?customer_number=$CUSTOMER_NUMBER$&part_number=$SKU_OR_PART_NUMBER$&price_date=$PRICE_DATE$&quantity=$QUANTITY$");
     }
     
     public void initVariables()
