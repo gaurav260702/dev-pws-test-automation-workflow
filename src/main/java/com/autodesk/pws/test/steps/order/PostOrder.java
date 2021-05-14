@@ -1,8 +1,8 @@
-package com.autodesk.pws.test.steps.invoice;
+package com.autodesk.pws.test.steps.order;
 
 import com.autodesk.pws.test.steps.base.*;
 
-public class PostInvoiceOrder extends PwsServiceBase
+public class PostOrder extends PwsServiceBase
 {    
     @Override
     public void preparation()
