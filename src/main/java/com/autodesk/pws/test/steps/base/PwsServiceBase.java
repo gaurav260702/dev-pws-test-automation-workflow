@@ -144,7 +144,7 @@ public class PwsServiceBase extends RestActionBase
 		//  And vomit if it doesn't work...
 		catch (IOException e)
 		{
-			logErr(e, this.ClassName, "getInfo");
+			logErr(e, ClassName, "getInfo");
 		}
 
         return retVal;
@@ -164,12 +164,23 @@ public class PwsServiceBase extends RestActionBase
     	//  which is of course a bit excessive...
 		JsonPath jsonPath = JsonPath.from(JsonResponseBody);
 		String prettyJson = jsonPath.prettify();
-		this.addValidationChainLink(this.ClassName, prettyJson);
+		addValidationChainLink(ClassName, prettyJson);
     }
     
     public void extractDataFromJsonAndAddToDataPool(String dataPoolLabel, String jsonPath)
     {
-		JsonPath pathFinder = JsonPath.from(this.JsonResponseBody);
+		JsonPath pathFinder = JsonPath.from(JsonResponseBody);
     	super.extractDataFromJsonAndAddToDataPool(dataPoolLabel, jsonPath, pathFinder);
     }
+
+	public void setExecutionAbortFlagOnError() 
+	{
+		JsonPath pathFinder = JsonPath.from(JsonResponseBody);
+		
+		if(pathFinder.get("status").toString().toLowerCase().matches("error"))
+		{
+			ExceptionAbortStatus = true;
+			ExceptionMessage = ClassName + ": " + this.LineMark + pathFinder.prettify();
+		}
+	}
 }

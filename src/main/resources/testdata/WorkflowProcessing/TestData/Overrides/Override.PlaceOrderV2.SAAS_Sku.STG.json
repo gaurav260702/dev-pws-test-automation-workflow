@@ -1,0 +1,31 @@
+{
+  "endCustomer": {
+    "account": {
+      "csn": "0070006232"
+    },
+    "contractManager": {
+      "firstName": "{{random_first_name}}",
+      "lastName": "{{random_last_name}}",
+      "email": "email@{{random_email_domain}}.com",
+      "language": "EN",
+      "countryCode": "US"
+    }
+  },
+  "shipTo": {
+    "csn": "0070006232"
+  },
+  "reseller": {
+    "csn": "0070006232"
+  },
+  "soldTo": {
+    "csn": "0070006232"
+  },
+  "lineItems": [
+    {
+      "partNumber": "001I1-00N109-V329",
+      "partnerSubscriptionId": "psi-{{uuid1}}",
+      "quantity": 1,
+      "netPrice": "{{net_price}}"
+    }
+  ]
+}
