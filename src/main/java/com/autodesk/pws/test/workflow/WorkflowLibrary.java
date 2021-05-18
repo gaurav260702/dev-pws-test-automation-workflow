@@ -53,7 +53,7 @@ public class WorkflowLibrary
         workflow.add(new PostOrder());
         workflow.add(new WaitForOrderStatusChange());
         workflow.add(new GetOrderDetailsV1());
-        workflow.add(new GetTibcoSyncStatus());
+        workflow.add(new WaitForGetAgreementInfo());
 //        workflow.add(new TibcoExtactPwsOrderData());
 //        workflow.add(new TibcoExtactSapData());
 //        workflow.add(new TibcoExtactServiceLayerData());

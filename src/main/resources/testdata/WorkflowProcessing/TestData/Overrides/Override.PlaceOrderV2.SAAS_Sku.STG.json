@@ -1,7 +1,7 @@
 {
   "endCustomer": {
     "account": {
-      "csn": "0070006232"
+      "csn": "0070000010"
     },
     "contractManager": {
       "firstName": "{{random_first_name}}",
@@ -12,17 +12,17 @@
     }
   },
   "shipTo": {
-    "csn": "0070006232"
+    "csn": "0070000010"
   },
   "reseller": {
-    "csn": "0070006232"
+    "csn": "0070000010"
   },
   "soldTo": {
-    "csn": "0070006232"
+    "csn": "0070000010"
   },
   "lineItems": [
     {
-      "partNumber": "001I1-00N109-V329",
+      "partNumber": "C40M1-NS1868-V746",
       "partnerSubscriptionId": "psi-{{uuid1}}",
       "quantity": 1,
       "netPrice": "{{net_price}}"

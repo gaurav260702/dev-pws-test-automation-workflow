@@ -2,7 +2,7 @@ package com.autodesk.pws.test.steps.order;
 
 import com.autodesk.pws.test.steps.base.*;
 
-public class GetTibcoSyncStatus extends PwsServiceBase
+public class GetAgreementInfo extends PwsServiceBase
 {
    @Override
     public void preparation()
