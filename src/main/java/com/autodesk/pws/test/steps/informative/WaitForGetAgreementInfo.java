@@ -1,4 +1,4 @@
-package com.autodesk.pws.test.steps.order;
+package com.autodesk.pws.test.steps.informative;
 
 import com.autodesk.pws.test.steps.base.*;
 
