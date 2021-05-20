@@ -24,7 +24,6 @@ public class GetSkuPrice extends PwsServiceBase
 		setResourcePath();
     	//  Do stuff that the Action depends on to execute...
     	super.preparation();
-
     }
 
     private void setResourcePath()

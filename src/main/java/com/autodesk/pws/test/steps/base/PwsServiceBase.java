@@ -172,7 +172,12 @@ public class PwsServiceBase extends RestActionBase
 		JsonPath pathFinder = JsonPath.from(JsonResponseBody);
     	super.extractDataFromJsonAndAddToDataPool(dataPoolLabel, jsonPath, pathFinder);
     }
-
+    
+    //  The following method allows the WPE to detect any JSON formatted REST response
+    //  that contains an "error" node as a child of the "status" node.
+    //  If one is found, it then converts the JSON to a prettified string string and
+    //  shoves it into a container and sets an abort status flag, which is checked by
+    //  the WPE between each sub-step and acted upon if it is set to 'true'...
 	public void setExecutionAbortFlagOnError() 
 	{
 		JsonPath pathFinder = JsonPath.from(JsonResponseBody);
