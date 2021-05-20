@@ -5,6 +5,7 @@ import java.lang.reflect.InvocationTargetException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -247,11 +248,23 @@ public class Kicker
 		return prefix;
     }
 
+    private String getCurrentTime()
+    {
+        //Get current date time
+        LocalDateTime now = LocalDateTime.now();
+
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+
+        String formatDateTime = now.format(formatter);
+
+        return formatDateTime;
+    }
+    
     private int executeKickerFile(String kickerFilePath)
     {
         //  Log the test start time...
         logIt("====================================================");
-        logIt("Test start time: " + LocalDateTime.now().toString());
+        logIt("Test start time: " + getCurrentTime());
         logIt("====================================================");
         logIt("  ");
 
@@ -347,7 +360,7 @@ public class Kicker
 
         //  Log the test end time...
         logIt("====================================================");
-        logIt("Test end time: " + LocalDateTime.now().toString());
+        logIt("Test end time: " + getCurrentTime());
         logIt("===================================================="); // + newLine);
         logIt("  ");
 
