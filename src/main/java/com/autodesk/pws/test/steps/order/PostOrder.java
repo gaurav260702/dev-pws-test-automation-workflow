@@ -1,6 +1,9 @@
 package com.autodesk.pws.test.steps.order;
 
 import com.autodesk.pws.test.steps.base.*;
+import com.google.gson.Gson;
+
+import io.restassured.path.json.JsonPath;
 
 public class PostOrder extends PwsServiceBase
 {    
@@ -29,8 +32,10 @@ public class PostOrder extends PwsServiceBase
     	//  Do stuff that the Action depends on to execute...
     	super.preparation();
     	
-    	//  TODO:  Need to get the 'JsonRequestBody'...
-    	this.setJsonRequestBody(DataPool.get("OrderInfo").toString());
+    	//  Grab the JsonRequestBody...
+    	Gson gson = new Gson();
+    	String jsonBody = gson.toJson(DataPool.get("OrderInfo"));
+    	this.setJsonRequestBody(jsonBody);
     }
 
     private void setResourcePath()
@@ -53,4 +58,15 @@ public class PostOrder extends PwsServiceBase
     {
 		super.action();
     }
+	
+	@Override
+	public void validation()
+	{
+		//  Here we would extract any data that needs to be promoted to 
+		//  the DataPool and may be needed by other steps later on...
+    	JsonPath pathFinder = JsonPath.with(JsonResponseBody);
+
+    	//  Extact data that 	
+    	extractDataFromJsonAndAddToDataPool("$TRANSACTION_ID$", "transactionId", pathFinder); 
+	}	
 }

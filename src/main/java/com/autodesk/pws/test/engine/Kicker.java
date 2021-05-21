@@ -49,17 +49,20 @@ public class Kicker
     //  Create a logger container...
 	protected final Logger logger = LoggerFactory.getLogger(Kicker.class);
 
-    private Map<String, String> getCommandLineArgsFromEnvironment()
-    {
-        Map<String, String> env = System.getenv();
-
-        for (String envName : env.keySet())
-        {
-            System.out.format("%s=%s%n", envName, env.get(envName));
-        }
-
-        return env;
-    }
+	//  TODO: Figure out if we're actually going to need this kind of functionality
+	//        or not.  Pretty sure we won't, but leaving it for now until a final
+	//        confirmation has been made...
+//    private Map<String, String> getCommandLineArgsFromEnvironment()
+//    {
+//        Map<String, String> env = System.getenv();
+//
+//        for (String envName : env.keySet())
+//        {
+//            System.out.format("%s=%s%n", envName, env.get(envName));
+//        }
+//
+//        return env;
+//    }
 
     public int kickIt(String[] args)
     {
@@ -533,7 +536,7 @@ public class Kicker
 
             if(validatorRawLength > 8)
             {
-	            Map<String, Object> validatorKeyVals = validator.getMap("$");
+	            Map<String, Object> validatorKeyVals = validator.getMap(".");
 
 	            //  Start looping through the various validation sections...
 	            Object[] validatorKeys = validatorKeyVals.keySet().toArray();

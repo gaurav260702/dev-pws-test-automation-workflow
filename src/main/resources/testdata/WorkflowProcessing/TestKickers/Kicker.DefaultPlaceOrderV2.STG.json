@@ -1,0 +1,12 @@
+﻿{
+  "baseUrl": "https://enterprise-api-STG.autodesk.com",
+  "oAuthBaseUrl":  "https://enterprise-api-STG.autodesk.com",
+  "baseFile": "./testdata/WorkflowProcessing/TestData/BaseData/DefaultPlaceOrderV2.json",
+  "overridesFile": "./testdata/WorkflowProcessing/TestData/Overrides/Override.NONE.json",
+  "validationFile": "./testdata/WorkflowProcessing/TestData/Validators/Validator.DefaultPlaceOrderV2.json",
+  "secretsFile": "./testdata/WorkflowProcessing/TestData/Configurations/Secrets.GetInvoiceServices.INT.json",
+  "workflow": "PlaceOrder",
+  "getOrderStatusV2Url": "https://osapi.ddwsint.autodesk.com",
+  "tibcoEnvironmentId": "QA",
+  "tibcoUrl": "https://ifdb.autodesk.com"
+}

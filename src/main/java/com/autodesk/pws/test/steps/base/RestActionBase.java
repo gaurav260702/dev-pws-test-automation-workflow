@@ -6,10 +6,13 @@ import java.util.HashMap;
 import java.util.Map;
 import javax.crypto.Mac;
 import javax.crypto.spec.SecretKeySpec;
+
+import com.autodesk.pws.test.processor.DynamicData;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.JsonMappingException;
+import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.gson.Gson;
 import io.restassured.path.json.JsonPath;
@@ -102,17 +105,36 @@ public class RestActionBase extends StepBase
 		//  Build the first portions of the REST request...
 		Builder requestBuilder = new Request.Builder().url(restResourcePath);
 
-		logger.info("       Target URL: " + restResourcePath);
+		log("       Target URL: " + restResourcePath);
 
 		//  If a JSON payload is included,
 		//  append it to the Request Builder...
 		if(jsonPayload != "")
 		{
 		    MediaType mediaType = MediaType.parse("application/json");
+		    
+		    if(jsonPayload != "{}")
+		    {
+			    //  Nasty bit of hackery to ensure that the "quanity" value is set to
+				//  an integer instead of a float.  There's an issue with this when the
+				//  file is loaded from disk and fiddled about with by the Jackson
+				//  JSON library...
+			    jsonPayload = hack_CleanQuantityFloatType(jsonPayload);
+			    
+			    jsonPayload = DynamicData.detokenizeRuntimeValues(jsonPayload);
+			    
+			    //  All this floofery is so we can convert the raw JSON payload into a 
+			    //  single line version so it's easier to read in the log, but still 
+			    //  useful if we need to pop it into PostMan or something...
+			    ObjectMapper objectMapper = new ObjectMapper();
+			    JsonNode jsonNode = objectMapper.readValue(jsonPayload, JsonNode.class);
+
+			    log("     Payload: " + jsonNode.toString());
+		    }
+		    
 		    RequestBody body = RequestBody.create(mediaType, jsonPayload);
 			requestBuilder.method(restMethod, body);
-			logger.info("     PayloadL: " + jsonPayload);
-		}
+			}
 		else
 		{
 			requestBuilder.method(restMethod, null);;
@@ -138,9 +160,40 @@ public class RestActionBase extends StepBase
 		//  Call the REST service...
 		response = client.newCall(request).execute();
 
+		this.log("Service response: " + response.code() + " -- " + response.message());		
+		
 		//  Hand back to the caller whatever we received from the REST service...
 		return response;
 	}
+	
+    private String hack_CleanQuantityFloatType(String rawJson)
+    {	    	
+		JsonPath jsonPath = JsonPath.from(rawJson);
+		
+		String prettyJson = jsonPath.prettify();
+		
+		String lines[] = prettyJson.split(this.LineMark);
+		
+		for(String line : lines)
+		{
+			String tmp = line.trim();
+			
+			if(tmp.toLowerCase().startsWith("\"quantity\""))
+			{
+				String keyVal[] = tmp.split(":");
+				String val = keyVal[1].replace(',',' ').trim();
+				float f = Float.parseFloat(val);
+				Integer i = Math.round(f);
+				String newQuantity = "\"quantity\": " + i.toString() + ",";
+				prettyJson = prettyJson.replaceFirst("(.*)" + tmp + "(.*)", newQuantity);
+			}
+		}
+		
+		jsonPath = JsonPath.from(prettyJson);
+		prettyJson = jsonPath.prettify();
+		
+		return prettyJson;
+    }
 
     @SuppressWarnings("unchecked")
 	public Map<String, Object> mergeJsonFromStrings(String rawJsonOriginal, String rawJsonOverride)
@@ -158,13 +211,49 @@ public class RestActionBase extends StepBase
 
     	return combined;
     }
+    
+    public HashMap<String, Object> jsonStringToHashMap(String json)
+    {
+    	//  https://stackoverflow.com/questions/37019059/remove-null-values-from-json-using-jackson
+    	ObjectMapper mapper = new ObjectMapper();
+    	mapper.setSerializationInclusion(Include.NON_NULL);
+    	
+		try
+		{
+			json = mapper.writeValueAsString(json);
+		}
+		catch (JsonProcessingException e)
+		{
+          logErr(e, this.ClassName, "removeAllNullValuesFromJson");
+		}
 
+		//  https://stackoverflow.com/questions/2525042/how-to-convert-a-json-string-to-a-mapstring-string-with-jackson-json
+	    TypeReference<HashMap<String,Object>> typeRef = new TypeReference<HashMap<String,Object>>() {};
+
+	    HashMap<String, Object> jsonMap = new HashMap<String, Object>();
+
+		try
+		{
+			jsonMap = mapper.readValue(json, typeRef);
+		}
+		catch (JsonMappingException e)
+		{
+			logErr(e, this.ClassName, "removeAllNullValuesFromJson");
+		}
+		catch (JsonProcessingException e)
+		{
+			logErr(e, this.ClassName, "removeAllNullValuesFromJson");
+		}
+
+    	return jsonMap;
+    }
+    
     public HashMap<String,Object> removeAllNullValuesFromJson(Map<String, Object> orderInfo)// throws JsonProcessingException
     {
     	//  https://stackoverflow.com/questions/37019059/remove-null-values-from-json-using-jackson
     	ObjectMapper mapper = new ObjectMapper();
     	mapper.setSerializationInclusion(Include.NON_NULL);
-
+    	
     	String json = "{}";
 
 		try

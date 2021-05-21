@@ -68,7 +68,7 @@ public class LoadBaseFiles extends RestActionBase
 
         //  Strip out any elements with "null" values...
     	orderInfoFinal = removeAllNullValuesFromJson(orderInfoFinal);
-
+    	
         //  Pop the final result into the DataPool...
         DataPool.add(DataPoolLabelOrderInfoFinal, orderInfoFinal);
     }

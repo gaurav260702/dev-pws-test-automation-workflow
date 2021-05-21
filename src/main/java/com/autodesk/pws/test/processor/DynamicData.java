@@ -36,16 +36,16 @@ public class DynamicData
     		runtimeValues = new HashMap<String, Object>();
     	}
 
-        runtimeValues.put("po_number", getTicksAsString());
-        runtimeValues.put("cust_po_number", getTicksAsString());
-        runtimeValues.put("random_first_name", "fName-" + generateRandomLengthAlphaString(5));
-        runtimeValues.put("random_last_name", "lName-" + generateRandomLengthAlphaString(5));
-        runtimeValues.put("random_email_domain", "email-" + generateRandomLengthAlphaString(5));
-        runtimeValues.put("net_price", "$NetPrice$");
-        runtimeValues.put("uuid1", UUID.randomUUID().toString());
-        runtimeValues.put("uuid2", UUID.randomUUID().toString());
-        runtimeValues.put("uuid3", UUID.randomUUID().toString());
-        runtimeValues.put("uuid4", UUID.randomUUID().toString());
+        runtimeValues.put("{{po_number}}", getTicksAsString());
+        runtimeValues.put("{{cust_po_number}}", getTicksAsString());
+        runtimeValues.put("{{random_first_name}}", "fName-" + generateRandomLengthAlphaString(5));
+        runtimeValues.put("{{random_last_name}}", "lName-" + generateRandomLengthAlphaString(5));
+        runtimeValues.put("{{random_email_domain}}", "email-" + generateRandomLengthAlphaString(5));
+        runtimeValues.put("{{net_price}}", "$NET_PRICE$");
+        runtimeValues.put("{{uuid1}}", UUID.randomUUID().toString());
+        runtimeValues.put("{{uuid2}}", UUID.randomUUID().toString());
+        runtimeValues.put("{{uuid3}}", UUID.randomUUID().toString());
+        runtimeValues.put("{{uuid4}}", UUID.randomUUID().toString());
     }
 
     public static String generateRandomLengthAlphaString(int length)

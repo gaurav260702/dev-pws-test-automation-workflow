@@ -1,6 +1,0 @@
-customer_number=0070006232&sales_order_number=7061803337
-
-
-customer_number=$CUSTOMER_NUMBER$&sales_order_number=$SALES_ORDER_NUMBER$
-
-customer_number=$CUSTOMER_NUMBER$&purchase_order_number=$PURCHASE_ORDER_NUMBER$
