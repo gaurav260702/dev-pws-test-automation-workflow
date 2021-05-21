@@ -31,6 +31,7 @@ public class GetOrderDetailsV1 extends PwsServiceBase
 	@Override
     public void action()
     {
+		this.sleep(10000);
 		super.action();
     }
 	

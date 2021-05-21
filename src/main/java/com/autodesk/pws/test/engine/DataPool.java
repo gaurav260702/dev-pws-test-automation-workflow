@@ -123,17 +123,19 @@ public class DataPool extends HashMap<String, Object>
     public void add(String key, Object value)
     {
         String actionType = "Adding";
-
+        String previousValue = "";
+        
         if(this.containsKey(key))
         {
             actionType = "Setting";
+            previousValue = this.get(key).toString();
         }
 
         this.put(key, value);
 
         if (StepLogger != null)
         {
-        	String msg = actionType + " [" + key + "]: " + padRight(value.toString(), 30, ' ').substring(0, 30).trim() + "...";
+        	String msg = "       " + actionType + " [" + key + "]: " + padRight(value.toString(), 80, ' ').substring(0, 80).trim();
             StepLogger.log(msg);
         }
     }

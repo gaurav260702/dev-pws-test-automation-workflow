@@ -8,16 +8,16 @@ import io.restassured.path.json.JsonPath;
 
 public class StepBase
 {
-  protected final Logger logger = LoggerFactory.getLogger(StepBase.class);
+    protected final Logger logger = LoggerFactory.getLogger(StepBase.class);
 
-  // TODO: <Kurt> make public DataPool dataPool; as protected earlier StepBase.java was in
-  // package com.autodesk.pws.test.engine;
-  // ^^^^ NOTE: DataPool is a public property and according my understanding of the Java casing guidelines
-  //            should have be a capitalized name.  DataPool is passed around frequently between classes
-  //            and is deliberately intended to be interrogated and modified by other classes.  Getters
-  //            and Setters *SHOULD* *NOT* be used when working with DataPool as it adds fragility and 
-  //            excess code and thereby creates a large potential for introducing needless coding errors
-  //		    into the codebase.  It's best to conceptualize DataPool as a global, runtime database.
+    // TODO: <Kurt> make public DataPool dataPool; as protected earlier StepBase.java was in
+    // package com.autodesk.pws.test.engine;
+    // ^^^^ NOTE: DataPool is a public property and according my understanding of the Java casing guidelines
+    //            should have be a capitalized name.  DataPool is passed around frequently between classes
+    //            and is deliberately intended to be interrogated and modified by other classes.  Getters
+    //            and Setters *SHOULD* *NOT* be used when working with DataPool as it adds fragility and 
+    //            excess code and thereby creates a large potential for introducing needless coding errors
+    //		    into the codebase.  It's best to conceptualize DataPool as a global, runtime database.
     public DataPool DataPool;
     public static Object ActionManager;
     public boolean BypassValidationChainLogging;
@@ -75,7 +75,12 @@ public class StepBase
     {
     	if(!SuppressLogging)
     	{
-    		logger.info(msgToLog);
+    		String lines[] = msgToLog.split("\\r?\\n");
+    		
+    		for(String line : lines)
+    		{
+    			logger.info(line);
+    		}
     	}
     }
 

@@ -26,7 +26,8 @@ public class PostOrder extends PwsServiceBase
 		this.setAsPostService();
 		
 		//  Set the Resource path BEFORE the base/super class
-		//  sets the targetUrl..
+		//  sets the targetUrl during the super class's
+		//  "preparation()" method..
 		setResourcePath();
 		
     	//  Do stuff that the Action depends on to execute...

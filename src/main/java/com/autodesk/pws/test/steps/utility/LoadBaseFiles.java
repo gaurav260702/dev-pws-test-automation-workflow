@@ -8,9 +8,9 @@ public class LoadBaseFiles extends RestActionBase
 {
     public String RequestFileLabel;
     public String OverridesFileLabel;
-    public String DataPoolLabelOrderInfoRaw;
-    public String DataPoolLabelOrderInfoOverrides;
-    public String DataPoolLabelOrderInfoFinal;
+    public String DataPoolLabelOrderInfoRawJson;
+    public String DataPoolLabelOrderInfoOverridesJson;
+    public String DataPoolLabelOrderInfoFinalJson;
 
     public LoadBaseFiles()
     {
@@ -21,15 +21,16 @@ public class LoadBaseFiles extends RestActionBase
     {
         RequestFileLabel = "baseFile";
         OverridesFileLabel = "overridesFile";
-        DataPoolLabelOrderInfoRaw = "rawBaseFile";
-        DataPoolLabelOrderInfoOverrides = "rawOverrideFile";
-        DataPoolLabelOrderInfoFinal = "OrderInfo"; // TODO: check is this working (O)/(o)rderInfo?
-        										   // ^^^^ NOTE: No, this does not work and is
-        										   //            intended to function in a case
-        										   //            sensitve manner.  These string
-        										   //            values are Keys into the DataPool
-        										   //            HashMap and therefore must be
-        										   //            case sensitive by definition.
+        DataPoolLabelOrderInfoRawJson = "rawBaseFile";
+        DataPoolLabelOrderInfoOverridesJson = "rawOverrideFile";
+        DataPoolLabelOrderInfoFinalJson = "OrderInfo"; // TODO: check is this working (O)/(o)rderInfo?
+        											   // 
+        									    	   // ^^^^ RESPOSNE: No, this does not work and is
+        										       //                intended to function in a case
+        										       //                sensitve manner.  These string
+        										       //                values are Keys into the DataPool
+        										       //                HashMap and therefore must be
+        										       //                case sensitive by definition.
     }
 
     @Override
@@ -57,10 +58,10 @@ public class LoadBaseFiles extends RestActionBase
         //  and merge into order info object...
     	String baseFilePath = (String)DataPool.get(RequestFileLabel.toString());
         String baseFileRaw = DynamicData.loadJsonFile(baseFilePath);
-        DataPool.add(DataPoolLabelOrderInfoRaw, baseFileRaw);
+        DataPool.add(DataPoolLabelOrderInfoRawJson, baseFileRaw);
 
         String overrideInfoRaw = DynamicData.loadJsonFile((String)DataPool.get(OverridesFileLabel));
-        DataPool.add(DataPoolLabelOrderInfoOverrides, overrideInfoRaw);
+        DataPool.add(DataPoolLabelOrderInfoOverridesJson, overrideInfoRaw);
 
         //  Copy the raw order info to prep for merging...
         //  Union array values together to avoid duplicates...
@@ -70,7 +71,7 @@ public class LoadBaseFiles extends RestActionBase
     	orderInfoFinal = removeAllNullValuesFromJson(orderInfoFinal);
     	
         //  Pop the final result into the DataPool...
-        DataPool.add(DataPoolLabelOrderInfoFinal, orderInfoFinal);
+        DataPool.add(DataPoolLabelOrderInfoFinalJson, orderInfoFinal);
     }
 }
 

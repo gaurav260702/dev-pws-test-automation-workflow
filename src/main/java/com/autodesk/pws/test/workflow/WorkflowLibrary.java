@@ -58,4 +58,19 @@ public class WorkflowLibrary
 
         return workflow;
     }
+    
+    public static List<StepBase> GenericPlaceOrderWithAddOn()
+    {
+    	 List<StepBase> workflow = PlaceOrder();
+    	 
+         workflow.add(new LoadAddOnFilesAndExtractAddOnInfoData());
+         workflow.add(new GetOAuthCredentials());
+         workflow.add(new GetSkuPrice());
+         workflow.add(new PostOrder());
+         workflow.add(new WaitForOrderStatusChange());
+         workflow.add(new GetOrderDetailsV1());
+         workflow.add(new WaitForGetAgreementInfo());
+    	 
+    	 return workflow;
+    }
 }
