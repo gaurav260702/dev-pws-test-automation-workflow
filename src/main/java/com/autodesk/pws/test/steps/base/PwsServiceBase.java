@@ -144,7 +144,7 @@ public class PwsServiceBase extends RestActionBase
 		//  And vomit if it doesn't work...
 		catch (IOException e)
 		{
-			logErr(e, this.ClassName, "getInfo");
+			logErr(e, ClassName, "getInfo");
 		}
 
         return retVal;
@@ -164,12 +164,28 @@ public class PwsServiceBase extends RestActionBase
     	//  which is of course a bit excessive...
 		JsonPath jsonPath = JsonPath.from(JsonResponseBody);
 		String prettyJson = jsonPath.prettify();
-		this.addValidationChainLink(this.ClassName, prettyJson);
+		addValidationChainLink(ClassName, prettyJson);
     }
     
     public void extractDataFromJsonAndAddToDataPool(String dataPoolLabel, String jsonPath)
     {
-		JsonPath pathFinder = JsonPath.from(this.JsonResponseBody);
+		JsonPath pathFinder = JsonPath.from(JsonResponseBody);
     	super.extractDataFromJsonAndAddToDataPool(dataPoolLabel, jsonPath, pathFinder);
     }
+    
+    //  The following method allows the WPE to detect any JSON formatted REST response
+    //  that contains an "error" node as a child of the "status" node.
+    //  If one is found, it then converts the JSON to a prettified string string and
+    //  shoves it into a container and sets an abort status flag, which is checked by
+    //  the WPE between each sub-step and acted upon if it is set to 'true'...
+	public void setExecutionAbortFlagOnError() 
+	{
+		JsonPath pathFinder = JsonPath.from(JsonResponseBody);
+		
+		if(pathFinder.get("status").toString().toLowerCase().matches("error"))
+		{
+			ExceptionAbortStatus = true;
+			ExceptionMessage = ClassName + ": " + this.LineMark + pathFinder.prettify();
+		}
+	}
 }

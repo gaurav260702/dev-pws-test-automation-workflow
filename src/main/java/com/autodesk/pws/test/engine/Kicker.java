@@ -5,6 +5,7 @@ import java.lang.reflect.InvocationTargetException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -247,11 +248,23 @@ public class Kicker
 		return prefix;
     }
 
+    private String getCurrentTime()
+    {
+        //Get current date time
+        LocalDateTime now = LocalDateTime.now();
+
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+
+        String formatDateTime = now.format(formatter);
+
+        return formatDateTime;
+    }
+    
     private int executeKickerFile(String kickerFilePath)
     {
         //  Log the test start time...
         logIt("====================================================");
-        logIt("Test start time: " + LocalDateTime.now().toString());
+        logIt("Test start time: " + getCurrentTime());
         logIt("====================================================");
         logIt("  ");
 
@@ -347,7 +360,7 @@ public class Kicker
 
         //  Log the test end time...
         logIt("====================================================");
-        logIt("Test end time: " + LocalDateTime.now().toString());
+        logIt("Test end time: " + getCurrentTime());
         logIt("===================================================="); // + newLine);
         logIt("  ");
 
@@ -549,29 +562,41 @@ public class Kicker
 
             //  Grab all the validator commands from the validator file...
             String validatorRawJson = dataPool.loadJsonFile(validationFilePath);
-            int validatorRawLength = validatorRawJson.length();
         	JsonPath validator = JsonPath.from(validatorRawJson);
+        	
+            //  Get the length, which we'll test to make sure it's long
+            //  enough to actually contain a validator... 
+            int validatorRawLength = validatorRawJson.length();
 
+            //  If the validator is long enough, then...
             if(validatorRawLength > 8)
             {
+            	//  Get the root of the json in the validator (it'll be an array)...
 	            Map<String, Object> validatorKeyVals = validator.getMap(".");
 
-	            //  Start looping through the various validation sections...
+	            //  Grab the list of all the validator sections/items...
 	            Object[] validatorKeys = validatorKeyVals.keySet().toArray();
 
+	            //  Start looping through the various validation sections...
 	            for(int i = 0; i < validatorKeys.length; i++)
 	            {
+	            	//  Grab the sectionKey/name we need to reference...
 	            	Object sectionKey = validatorKeys[i];
+	            	
+	            	//  Log it for manual post-analysis...
 	            	logIt("  -- " +sectionKey.toString());
+	            	
+	            	//  Grab the validatorKeyVal for the section...
 	            	Object section = validatorKeyVals.get(sectionKey);
 
-	                //  Grab a validation section and execute the
-	                //  validations against the appropriate part of the
-	                //  execution results...
+	                //  Execute the validations against the appropriate 
+	            	//  part of the execution results...
 	            	HashMap<String, Object> newValidationResult = executeValidator(sectionKey.toString(), section);
 
+	            	//  Stuff the results into a validationResults collection...
 	                validationResultCollection.put(sectionKey.toString(), newValidationResult);
 
+	                //  Increment the test total counters as necessary...
 	                totalTestCount += Integer.parseInt(newValidationResult.get("ValidationCount").toString());
 	                totalFailCount += Integer.parseInt(newValidationResult.get("FailCount").toString());
 	            }
@@ -621,10 +646,12 @@ public class Kicker
 
                 //  Grab the Json path that needs to be tested...
                 String pathToTest = validatorListKeys[i].toString();
+                //logIt("ValidationPath: " + pathToTest);                
                 
                 //  Grab the last *expected* value we want to compare it to...
                 String expectedValue = validationList.get(pathToTest).toString();
-                               
+                //logIt("ExpectedValue:  " + expectedValue);
+                
                 //  Set the default value of 'valueToTest' in case the;
                 //  path doesn't exist...
                 String actualValue = "--> The target path doesn't exist! <--";
@@ -679,9 +706,9 @@ public class Kicker
                 testResults.put("ActualValue", actualValue);
                 
                 //  Keep these lines, but uncomment when debugging validation items...
-//                logIt("ValidationPath: " + pathToTest);
-//                logIt("ExpectedValue:  " + expectedValue);
-//                logIt("ActualValue:    " + actualValue);
+                //logIt("ValidationPath: " + pathToTest);
+                //logIt("ExpectedValue:  " + expectedValue);
+                //logIt("ActualValue:    " + actualValue);
                 
                 validationList.put(validatorListKeys[i].toString(), testResults);
             }

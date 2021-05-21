@@ -97,15 +97,23 @@ public class WorkflowProcessingEngine
 				step.log("  -->  Substep: " + currentStep + ".Preparation()");
 				step.preparation();
 				
+				checkForExceptionAbort(step);
+				
 				step.log("  -->  Substep: " + currentStep + ".Action()");
 				step.action();
+
+				checkForExceptionAbort(step);
 				
 				step.log("  -->  Substep: " + currentStep + ".Validation()");
 				step.validation();
 				
+				checkForExceptionAbort(step);
+
 				step.log("  -->  Substep: " + currentStep + ".Cleanup()");
 				step.cleanup();
-				
+
+				checkForExceptionAbort(step);
+
 				step.log("'" + currentStep + "' execution time: " + (totalStepTime.getTime() / 1000) + " seconds.");
 				step.log("-------------------------------------------------------------");
 				lastStep = step;
@@ -116,7 +124,14 @@ public class WorkflowProcessingEngine
 				step.log("'" + currentStep + "' execution time: " + (totalStepTime.getTime() / 1000) + " seconds.");
 				String errMsg = "FAILURE DURING '" + currentStep + "'!";
 				step.log(errMsg);
-				step.log(ex.toString());
+				
+				String[] exceptionLines = ex.toString().split("\\r?\\n");
+				
+				for(String line: exceptionLines)
+				{
+					step.log(line);					
+				}
+
 				throw new Exception(errMsg, ex);
 			  } 
 			  finally 
@@ -130,7 +145,15 @@ public class WorkflowProcessingEngine
     lastStep.log("Total workflow execution time: " + (totalTestTime.getTime() / 1000) + " seconds.");
   }
 
-  // When this is fixed, it will solve the issue above of
+    private void checkForExceptionAbort(StepBase step) throws Exception 
+    {
+    	if(step.ExceptionAbortStatus)
+    	{
+			throw new Exception("CONTROLLED WORKFLOW EXECUTION ERROR! " + step.LineMark + step.ExceptionMessage);
+    	}
+    }
+
+// When this is fixed, it will solve the issue above of
   // converting the total test execution time to seconds...
   @SuppressWarnings("unused")
   private String convertLongToTimeString(Long timeToConvert) 

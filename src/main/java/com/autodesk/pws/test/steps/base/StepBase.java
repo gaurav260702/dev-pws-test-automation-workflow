@@ -50,6 +50,19 @@ public class StepBase
     {
 
     }
+    
+    public void sleep(int millisecondsToSleep)
+    {
+		try
+		{
+			log("Sleeping for " + (millisecondsToSleep / 1000) + " seconds...");
+			Thread.sleep(millisecondsToSleep);
+		} 
+		catch (InterruptedException e) 
+		{
+			//  This should fail like...never.
+		}
+    }
 
     public void logErr(Exception ex, String className, String methodName) //throws Throwable
     {

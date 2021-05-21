@@ -5,8 +5,6 @@ import java.util.Date;
 
 import com.autodesk.pws.test.steps.base.*;
 
-import io.restassured.path.json.JsonPath;
-
 public class GetSkuPrice extends PwsServiceBase
 {
     @Override
@@ -26,7 +24,6 @@ public class GetSkuPrice extends PwsServiceBase
 		setResourcePath();
     	//  Do stuff that the Action depends on to execute...
     	super.preparation();
-
     }
 
     private void setResourcePath()
@@ -52,13 +49,15 @@ public class GetSkuPrice extends PwsServiceBase
 	@Override
 	public void validation()
 	{
-		//  Here we would extract any data that needs
-		//  to be promoted in the DataPool.
-		//  We would extract stuff out of:
-		//           this.JsonResponseBody
-    	JsonPath pathFinder = JsonPath.with(JsonResponseBody);
-
+		//  Run the parent class validation first because that's when
+		//  the JSON response is extract into this.JsonresponseBody
+		//  and any operations which deoend on it must naturally occur
+		//  after it has been filled out...
+    	super.validation();
+    	
+    	super.setExecutionAbortFlagOnError();
+    	
     	//  Extact data that may be needed by other steps later on...	
-    	extractDataFromJsonAndAddToDataPool("$NET_PRICE$", "response.net_price", pathFinder); 
+    	extractDataFromJsonAndAddToDataPool("$NET_PRICE$", "response.net_price"); 
 	}
 }

@@ -26,15 +26,7 @@ public class WaitForOrderStatusChange extends StepBase
 		
 		while(continueTrying)
 		{
-			try 
-			{
-				log("Sleeping " + (msSleepBeforeStatus / 1000) + " seconds...");
-				Thread.sleep(msSleepBeforeStatus);
-			} 
-			catch (InterruptedException e) 
-			{
-				this.logErr(e, this.ClassName, "action");
-			}
+			sleep(msSleepBeforeStatus);
 			
 			retryCounter += 1;
 			
