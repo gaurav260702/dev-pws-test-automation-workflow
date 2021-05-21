@@ -7,14 +7,6 @@ import com.autodesk.pws.test.steps.base.*;
 
 public class GetOAuthCredentials extends RestActionBase
 {
-	//
-	//  Most of this is ripped and mildly modified from the old PwsUtil.java class...
-	//
-	public GetOAuthCredentials()
-	{
-
-	}
-
     @Override
     public void preparation()
     {

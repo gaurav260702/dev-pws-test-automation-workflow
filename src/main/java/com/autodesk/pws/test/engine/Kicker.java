@@ -252,7 +252,8 @@ public class Kicker
         //  Log the test start time...
         logIt("====================================================");
         logIt("Test start time: " + LocalDateTime.now().toString());
-        logIt("====================================================" + newLine);
+        logIt("====================================================");
+        logIt("  ");
 
         //  Setup the default return exit code value...
         int exitCode = 0;
@@ -294,7 +295,7 @@ public class Kicker
             //  Execute the workflow steps...
             workflowProcEngine.execute(workflow, dataPool);
 
-            logIt(newLine);
+            logIt("  ");
             logIt("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
             logIt("Beginning validations...");
 
@@ -316,12 +317,14 @@ public class Kicker
         int failCount = (int) validationResults.get("FailCount");
         int passCount =(int)  validationResults.get("PassCount");
 
-        if(failCount > 0)
-        {
-        	Exception ex = new Exception("Validation failure count of (" + failCount + ")!");
-        	doDataDump(ex);
-        }
+        //  Removing this for now as it creates some problematic logging...
+//        if(failCount > 0)
+//        {
+//        	Exception ex = new Exception("Validation failure count of (" + failCount + ")!");
+//        	doDataDump(ex);
+//        }
 
+        logIt("  ");
         logIt("-----------------------------------------------------------------------------------------------");
         logIt("-----------------------------------------------------------------------------------------------");
         logIt("-----------------------------------   VALIDATION RESULTS   ------------------------------------");
@@ -345,8 +348,14 @@ public class Kicker
         //  Log the test end time...
         logIt("====================================================");
         logIt("Test end time: " + LocalDateTime.now().toString());
-        logIt("====================================================" + newLine);
+        logIt("===================================================="); // + newLine);
+        logIt("  ");
 
+        if(failCount > 0)
+        {
+        	doDataDump();
+        }
+        
         return exitCode;
     }
 
@@ -362,9 +371,16 @@ public class Kicker
     		logIt(ex.toString());
     	}
         logIt("===  DATA POOL DUMP  ===");
-        logIt(dataPool.dumpDataPool());
-        logIt("=====  VALIDATION CHAIN DUMP  =====");
-        logIt(dumpValidationChain());
+        
+        String[] dataPoolDump = dataPool.dumpDataPool().split("\\r?\\n");
+        
+        for(String line: dataPoolDump)
+        {
+            logIt(line);        	
+        }
+
+//        logIt("=====  VALIDATION CHAIN DUMP  =====");
+//        logIt(dumpValidationChain());
         logIt("Test Failed!");
     }
 
@@ -379,7 +395,8 @@ public class Kicker
 					(k, v) ->
 					{
 					    {
-					    	logIt("=================================================" + newLine);
+					    	logIt("=================================================");
+					    	logIt("  ");
 					    	logIt("Validation section: " + k);
 					    	HashMap<String, Object> validationItemsList = (HashMap<String, Object>) v;
 					    	dumpValidationItem(validationItemsList.get("ValidationList"));
@@ -405,7 +422,8 @@ public class Kicker
 
 					    	if(testResult != "PASS")
 					    	{
-						    	logIt("-----------" + newLine);
+						    	logIt("-----------");
+						    	logIt("  ");
 						    	logIt("Test Path:      " + k);
 						    	logIt("Expected value: " + validationItemDetails.get("ExpectedValue"));
 						    	logIt("Actual value:   " + validationItemDetails.get("ActualValue"));
@@ -544,7 +562,7 @@ public class Kicker
 	            for(int i = 0; i < validatorKeys.length; i++)
 	            {
 	            	Object sectionKey = validatorKeys[i];
-
+	            	logIt("  -- " +sectionKey.toString());
 	            	Object section = validatorKeyVals.get(sectionKey);
 
 	                //  Grab a validation section and execute the
@@ -603,17 +621,35 @@ public class Kicker
 
                 //  Grab the Json path that needs to be tested...
                 String pathToTest = validatorListKeys[i].toString();
-
+                
                 //  Grab the last *expected* value we want to compare it to...
                 String expectedValue = validationList.get(pathToTest).toString();
-
+                               
                 //  Set the default value of 'valueToTest' in case the;
                 //  path doesn't exist...
                 String actualValue = "--> The target path doesn't exist! <--";
 
                 //  Grab the chain section version of the path as an object...
-                Object actualValueObj = chainSection.get(pathToTest);
-
+                //
+                //  NOTE: I think a library must have been updated, because
+                //        if you try to "chainSection.get()" section that doesn't
+                //        exist, Java throws a "null exception" or some such
+                //        craziness.  So we set the value null by default and then 
+                //        try to grab the value, but catch it if it errs out.
+                //        At some point this should be wrapped into an external
+                //        function rather than testing for that condition inline...
+                Object actualValueObj = null;
+                
+                try
+                {
+                	actualValueObj = chainSection.get(pathToTest);
+                }
+                catch (Exception e)
+                {
+                	//  do nothing as this means there was a null value referenced
+                	//  and the actualValue is therefore "missing"...
+                }
+                
                 //  Check to see if the path token actually exists...
                 if (actualValueObj != null)
                 {
@@ -626,8 +662,7 @@ public class Kicker
                 expectedValue = DynamicData.wildcardToRegex(expectedValue);
 
                 //  Do the actual validation and record the results...
-
-                if (actualValue.matches(expectedValue))
+                if (actualValue.matches(expectedValue) && !actualValue.matches("--> The target path doesn't exist! <--"))
                 {
                     testResults.put("TestResult", "PASS");
                 }
@@ -642,6 +677,12 @@ public class Kicker
                 testResults.put("ValidationPath", pathToTest);
                 testResults.put("ExpectedValue", expectedValue);
                 testResults.put("ActualValue", actualValue);
+                
+                //  Keep these lines, but uncomment when debugging validation items...
+//                logIt("ValidationPath: " + pathToTest);
+//                logIt("ExpectedValue:  " + expectedValue);
+//                logIt("ActualValue:    " + actualValue);
+                
                 validationList.put(validatorListKeys[i].toString(), testResults);
             }
 

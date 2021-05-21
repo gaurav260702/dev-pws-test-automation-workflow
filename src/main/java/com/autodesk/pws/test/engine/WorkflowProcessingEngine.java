@@ -13,6 +13,13 @@ public class WorkflowProcessingEngine
     // Psuedo-globally available data container for all test steps and validations...
     private DataPool dataPool; // { get; private set; }
 
+    //////////////////////////////////////////////////////////////////////////////
+    // TODO:  Implement routines to handle "ExceptionAbortStatus"!!
+    //        This should come between each substep (preparation, action, 
+    //        validation, cleanup) and should end execution immediately upon
+    //        detection (with options to report out states and messages)...
+    //////////////////////////////////////////////////////////////////////////////
+    
     public void execute(List<StepBase> workflowToExecute, DataPool localDataPool) throws Exception 
     {
 	    // Prep a container for the current step name...

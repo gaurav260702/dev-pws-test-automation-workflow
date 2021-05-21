@@ -47,6 +47,21 @@ public class PwsServiceBase extends RestActionBase
 		this.BaseUrl = DataPool.get("baseUrl").toString();
 	}
 
+    public void setResourcePath(String defaultPath)
+    {
+		//  Setting up a special case here for modified GetInvoiceDetails paths.
+		//  This allows negative testing (dropping "invoice_number" or "customer_number")
+		//  or modifying the ResourcePath to allow for "sales_order_number"...
+		if(DataPool.containsKey(ClassName + ".ResourcePath"))
+		{
+			ResourcePath = DataPool.get(ClassName + ".ResourcePath").toString();
+		}
+		else
+		{
+			ResourcePath = defaultPath;
+		}
+    }
+	
 	private void setTargetUrl()
     {
 		//  Set the resourceURL for the REST service...
@@ -150,5 +165,11 @@ public class PwsServiceBase extends RestActionBase
 		JsonPath jsonPath = JsonPath.from(JsonResponseBody);
 		String prettyJson = jsonPath.prettify();
 		this.addValidationChainLink(this.ClassName, prettyJson);
+    }
+    
+    public void extractDataFromJsonAndAddToDataPool(String dataPoolLabel, String jsonPath)
+    {
+		JsonPath pathFinder = JsonPath.from(this.JsonResponseBody);
+    	super.extractDataFromJsonAndAddToDataPool(dataPoolLabel, jsonPath, pathFinder);
     }
 }

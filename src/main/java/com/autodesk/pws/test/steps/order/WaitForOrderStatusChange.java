@@ -22,7 +22,6 @@ public class WaitForOrderStatusChange extends StepBase
 		Integer maxRetries = 30;
 		Integer msSleepBeforeStatus = 10000;
 		Integer retryCounter = 0;
-		boolean timeoutEncountered = false;
 		String finalStatus = "none";
 		
 		while(continueTrying)
@@ -42,7 +41,6 @@ public class WaitForOrderStatusChange extends StepBase
 			if(retryCounter >= maxRetries)
 			{
 				continueTrying = false;
-				timeoutEncountered = true;
 				finalStatus = "timeout";
 			}
 			else
@@ -57,6 +55,8 @@ public class WaitForOrderStatusChange extends StepBase
 				
 				String status = pathFinder.get("status");
 				
+				log("Current status: " + status);
+				
 				if(status.matches("accepted") || status.matches("error"))
 				{
 					continueTrying = false;
@@ -65,6 +65,14 @@ public class WaitForOrderStatusChange extends StepBase
 			}
 			
 			getOrderStatus.SuppressLogging = true;
+		}
+		
+		log("Final status: " + finalStatus);
+		
+		if(!finalStatus.matches("accepted"))
+		{
+			ExceptionAbortStatus = true;
+			ExceptionMessage = "Expected to reach 'accepted' state, but ended in '" + finalStatus + "' state!";
 		}
     }
 
