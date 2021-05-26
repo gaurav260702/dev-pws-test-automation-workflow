@@ -26,6 +26,15 @@ node('aws-centos') {
   try {
     currentBuild.result = SUCCESS
 
+    stage("cleanup") {
+      sh 'docker ps -a -q | xargs -r docker stop'
+      sh 'docker ps -a -q | xargs -r docker rm'
+      sh 'docker network ls --filter type=custom -q | xargs -r docker network rm'
+      sh 'git clean -fxd'
+      sh 'rm -f ~/.dockercfg || true'
+      sh 'rm -f ~/.docker/config.json || true'
+    }
+
     stage("checkout") {
       checkout scm
       sh "git clean -fxd"
