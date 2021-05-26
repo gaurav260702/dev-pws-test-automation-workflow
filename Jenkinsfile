@@ -10,7 +10,7 @@ properties([
 node('aws-centos') {
   def dockerReg = "autodesk-docker.art-bobcat.autodesk.com/team-pws"
   def imageName = "wpe-test-automation" // docker image name
-  def regUser = "local-svc_p_ors_art" // docker registry user ID
+  def regUser = "svc_d_pjpws" // docker registry user ID
 
   // Notifications
   def buildInfo = env.JOB_NAME + '-' + env.BUILD_NUMBER + "\n" + env.BUILD_URL
