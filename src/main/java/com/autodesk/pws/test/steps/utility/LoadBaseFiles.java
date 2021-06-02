@@ -23,14 +23,7 @@ public class LoadBaseFiles extends RestActionBase
         OverridesFileLabel = "overridesFile";
         DataPoolLabelOrderInfoRawJson = "rawBaseFile";
         DataPoolLabelOrderInfoOverridesJson = "rawOverrideFile";
-        DataPoolLabelOrderInfoFinalJson = "OrderInfo"; // TODO: check is this working (O)/(o)rderInfo?
-        											   // 
-        									    	   // ^^^^ RESPOSNE: No, this does not work and is
-        										       //                intended to function in a case
-        										       //                sensitve manner.  These string
-        										       //                values are Keys into the DataPool
-        										       //                HashMap and therefore must be
-        										       //                case sensitive by definition.
+        DataPoolLabelOrderInfoFinalJson = "OrderInfo";
     }
 
     @Override

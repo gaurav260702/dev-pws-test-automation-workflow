@@ -22,7 +22,7 @@
   },
   "lineItems": [
     {
-      "partNumber": "C40M1-NS1868-V746",
+      "partNumber": "057J1-WWN905-L490",
       "partnerSubscriptionId": "psi-{{uuid1}}",
       "quantity": 1,
       "netPrice": "{{net_price}}"

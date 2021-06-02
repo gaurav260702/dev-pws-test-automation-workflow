@@ -18,9 +18,10 @@ public class LoadAddOnFilesAndExtractAddOnInfoData extends LoadBaseFiles
     public void initBaseVariables()
     {
         OverridesFileLabel = "addOnOverridesFile";
-        DataPoolLabelOrderInfoRawJson = "rawAddOnFile";
-        DataPoolLabelOrderInfoOverridesJson = "rawAddOnOverrideFile";
-        DataPoolLabelOrderInfoFinalJson = "AddOnInfo";
+//        DataPoolLabelOrderInfoRawJson = "rawAddOnFile";
+//        DataPoolLabelOrderInfoOverridesJson = "rawAddOnOverrideFile";
+//        DataPoolLabelOrderInfoFinalJson = "AddOnInfo";
+//        OverridesFileLabel = "overridesFile";
     }
     
     private void initVariables()
@@ -30,23 +31,14 @@ public class LoadAddOnFilesAndExtractAddOnInfoData extends LoadBaseFiles
 
 	private void pullDataPoolVariables()
     {
-    	//  Set variables that are extracted
-		//  from the DataPool Here...
-		
+    	//  Set variables that are extracted from the DataPool Here...
+		//
         //  Grab the final OrderInfo json and pop it into a JsonPath object...
 		Gson gson = new Gson(); 
 		String json = gson.toJson(DataPool.get(this.DataPoolLabelOrderInfoFinalJson)); 
     	JsonPath pathFinder = JsonPath.with(json);
     	
     	//  Extact data that may be needed by other steps later on...	
-		//    	extractDataFromJsonAndAddToDataPool("$CUSTOMER_NUMBER$", "soldTo.csn", pathFinder); 
-		//    	extractDataFromJsonAndAddToDataPool("$RESELLER_NUMBER$", "reseller.csn", pathFinder); 
-		//    	extractDataFromJsonAndAddToDataPool("$PO_NUMBER$", "poNumber", pathFinder); 
-		//    	extractDataFromJsonAndAddToDataPool("$CUSTOMER_PO_NUMBER$", "customerPoNumber", pathFinder); 
-    	extractDataFromJsonAndAddToDataPool("$ADD_ON_QUANTITY$", "lineItems[0].quantity", pathFinder); 
-    	extractDataFromJsonAndAddToDataPool("$ADD_ON_NET_PRICE$", "lineItems[0].netPrice", pathFinder); 
-    	extractDataFromJsonAndAddToDataPool("$ADD_ON_SKU_OR_PART_NUMBER$", "lineItems[0].partNumber", pathFinder); 
-    	
     	extractDataFromJsonAndAddToDataPool("$QUANTITY$", "lineItems[0].quantity", pathFinder); 
     	extractDataFromJsonAndAddToDataPool("$NET_PRICE$", "lineItems[0].netPrice", pathFinder); 
     	extractDataFromJsonAndAddToDataPool("$SKU_OR_PART_NUMBER$", "lineItems[0].partNumber", pathFinder); 

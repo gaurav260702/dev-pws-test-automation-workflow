@@ -2,15 +2,17 @@ package com.autodesk.pws.test.steps.informative;
 
 import com.autodesk.pws.test.steps.base.*;
 
-public class WaitForGetAgreementInfo extends StepBase
+import io.restassured.path.json.JsonPath;
+
+public class WaitForGetAssetDetails extends StepBase
 {
-	private GetAgreementInfo getAgreementInfo = new GetAgreementInfo();
+	private GetAssetDetails getAssetDetails = new GetAssetDetails();
 	
 	@Override
     public void preparation()
     {
-		getAgreementInfo.DataPool = this.DataPool;
-		getAgreementInfo.preparation();
+		getAssetDetails.DataPool = this.DataPool;
+		getAssetDetails.preparation();
     }
 
 	@Override
@@ -38,18 +40,23 @@ public class WaitForGetAgreementInfo extends StepBase
 			{
 				log("Attempt (" + retryCounter + ") of (" + maxRetries + ")...");
 				
-				getAgreementInfo.action();
+				getAssetDetails.action();
 				
-				String json = getAgreementInfo.JsonResponseBody.trim();
-								
-				if(json.length() > 8)
+				//  Should these declarations be outside the loop to 
+				//  save CPU time and memory?  I really don't know if 
+				//  Java has under the hood optimizers in these cases...
+				String json = getAssetDetails.JsonResponseBody.trim();
+				JsonPath jsonPath = new JsonPath(json);
+				String searchResult = jsonPath.get("endpointStatus.postgres_assets.message").toString();
+				
+  				if(!searchResult.matches("not found"))
 				{
 					continueTrying = false;
 					status = json.length() + " character reply...";
 				}
 			}
 			
-			getAgreementInfo.SuppressLogging = true;
+			getAssetDetails.SuppressLogging = true;
 		}
 		
 		log("Final status: " + status);
@@ -60,10 +67,6 @@ public class WaitForGetAgreementInfo extends StepBase
     {
 		//  We call this here to be sure that the final JsonResponseBody
 		//  is added to the ValidationChain...
-		getAgreementInfo.validation();
-		
-		//  Depending on what we're doing, we may need the serialnumber...
-		getAgreementInfo.extractDataFromJsonAndAddToDataPool("$SUBSCRIPTION_REFERENCE_NUMBER$", "[0].ServiceContract[0].ServiceLevels[0].ContractLineItems[0].SerialNumber");
-		getAgreementInfo.extractDataFromJsonAndAddToDataPool("$SERIAL_NUMBER$", "[0].ServiceContract[0].ServiceLevels[0].ContractLineItems[0].SerialNumber");
+		getAssetDetails.validation();
     }
 }

@@ -60,16 +60,16 @@ public class WorkflowProcessingEngine
 	      }
 	
 	      step.log("   (" + stepCount + ") -- " + step.getClass().getSimpleName());
-	     }
+	    }
 	
-	     // Reset the step counter...
-	     stepCount = 0;
+	    // Reset the step counter...
+	    stepCount = 0;
 	
-		 // Loop through and execute each step in order...
-		 for (int i = 0; i < workflowToExecute.size(); i++) 
-		 {
-		 	// Grab the next step...
-		 	step = workflowToExecute.get(i);
+		// Loop through and execute each step in order...
+		for (int i = 0; i < workflowToExecute.size(); i++) 
+		{
+			// Grab the next step...
+			step = workflowToExecute.get(i);
 		 	
 		 	// Push up the counter...
 		   	stepCount += 1;
@@ -139,11 +139,11 @@ public class WorkflowProcessingEngine
 				String subStepTestTime = (totalTestTime.getTime() / 1000) + "";
 				dataPool.add(currentStep + "TestTime", subStepTestTime);
 			  }
-    }
+		}
 
-    // Log the total test time...
-    lastStep.log("Total workflow execution time: " + (totalTestTime.getTime() / 1000) + " seconds.");
-  }
+		// Log the total test time...
+		lastStep.log("Total workflow execution time: " + (totalTestTime.getTime() / 1000) + " seconds.");
+	}
 
     private void checkForExceptionAbort(StepBase step) throws Exception 
     {
