@@ -18,9 +18,12 @@ node('aws-centos') {
 
   def SUCCESS = "SUCCESS"
   def FAILURE = "FAILURE"
+  def isMasterBranch = false
+
 
   if (env.BRANCH_NAME != 'master'){
     imageName = imageName + "-" + env.BRANCH_NAME.toLowerCase()
+    isMasterBranch = true
   }
 
   try {
@@ -38,7 +41,7 @@ node('aws-centos') {
     stage("push images to artifactory") {
       if (env.BRANCH_NAME != 'master' && params.ForcePublish == 'No') {
         echo "Skipping 'docker push' because branch is not master"
-        return
+        //return
       }
 
       docker.withRegistry( "https://${dockerReg}/", regUser ) {
