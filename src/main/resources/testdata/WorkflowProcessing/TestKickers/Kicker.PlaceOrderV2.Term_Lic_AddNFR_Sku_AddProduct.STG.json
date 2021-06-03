@@ -1,0 +1,10 @@
+﻿{
+  "baseUrl": "https://enterprise-api-STG.autodesk.com",
+  "oAuthBaseUrl":  "https://enterprise-api-STG.autodesk.com",
+  "baseFile": "./testdata/WorkflowProcessing/TestData/BaseData/DefaultPlaceOrderV2.json",
+  "overridesFile": "./testdata/WorkflowProcessing/TestData/Overrides/Override.PlaceOrderV2.Term_Lic_AddNFR_Sku_AddProductPrep.STG.json",
+  "addOnOverridesFile": "./testdata/WorkflowProcessing/TestData/Overrides/Override.PlaceOrderV2.Term_Lic_AddNFR_Sku_AddProduct.STG.json",
+  "validationFile": "./testdata/WorkflowProcessing/TestData/Validators/Validator.PlaceOrderV2.Term_Lic_AddNFR_Sku_AddProduct.STG.json",
+  "secretsFile": "./testdata/WorkflowProcessing/TestData/Configurations/Secrets.GetInvoiceServices.INT.json",
+  "workflow": "GenericPlaceOrderWithAddOn"
+}
