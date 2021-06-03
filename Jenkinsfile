@@ -9,8 +9,8 @@ properties([
 
 node('aws-centos') {
   def dockerReg = "autodesk-docker.art-bobcat.autodesk.com/team-pws"
-  def imageName = "wpe-test-automation" // docker image name
-  def regUser = "svc_d_pjpws" // docker registry user ID
+  def imageName = "test-automation" 
+  def regUser = "local-svc_p_ors_art" 
 
   // Notifications
   def buildInfo = env.JOB_NAME + '-' + env.BUILD_NUMBER + "\n" + env.BUILD_URL
@@ -26,22 +26,13 @@ node('aws-centos') {
   try {
     currentBuild.result = SUCCESS
 
-    stage("cleanup") {
-      sh 'docker ps -a -q | xargs -r docker stop'
-      sh 'docker ps -a -q | xargs -r docker rm'
-      sh 'docker network ls --filter type=custom -q | xargs -r docker network rm'
-      sh 'git clean -fxd'
-      sh 'rm -f ~/.dockercfg || true'
-      sh 'rm -f ~/.docker/config.json || true'
-    }
-
     stage("checkout") {
       checkout scm
       sh "git clean -fxd"
     }
 
     stage("create docker image") {
-        sh "docker build --pull --no-cache -t team-pws/wpe-test-automation:latest ."
+        sh "docker build --pull --no-cache -t '${dockerReg}/${imageName}' ."
     }
 
     stage("push images to artifactory") {
@@ -51,10 +42,10 @@ node('aws-centos') {
       }
 
       docker.withRegistry( "https://${dockerReg}/", regUser ) {
-          sh "docker tag 'team-pws/wpe-test-automation:latest' 'team-pws/wpe-test-automation:latest'"
-          sh "docker push 'team-pws/wpe-test-automation:latest'"
+         sh "docker tag '${dockerReg}/${imageName}' '${dockerReg}/${imageName}:latest'"
+         sh "docker push '${dockerReg}/${imageName}:latest'"
       }
-      }
+    }
   } catch (err) {
     currentBuild.result = FAILURE
     throw err
@@ -69,9 +60,7 @@ node('aws-centos') {
     }
 
     stage("cleanup docker image") {
-      versions.each( { v ->
-        sh "docker rmi --force 'team-pws/wpe-test-automation:latest' >/dev/null 2>&1 || true"
-      })
+        sh "docker rmi --force '${imageName}' >/dev/null 2>&1 || true"
     }
   }
 }
