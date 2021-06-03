@@ -12,7 +12,6 @@ node('aws-centos') {
   def imageName = "test-automation" 
   def regUser = "local-svc_p_ors_art" 
 
-  // Notifications
   def buildInfo = env.JOB_NAME + '-' + env.BUILD_NUMBER + "\n" + env.BUILD_URL
   def slackChannel = "#dpe-dbp-pws-devops"
 
@@ -41,7 +40,7 @@ node('aws-centos') {
     stage("push images to artifactory") {
       if (env.BRANCH_NAME != 'master' && params.ForcePublish == 'No') {
         echo "Skipping 'docker push' because branch is not master"
-        //return
+        return
       }
 
       docker.withRegistry( "https://${dockerReg}/", regUser ) {
