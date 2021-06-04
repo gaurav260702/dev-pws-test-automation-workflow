@@ -1,3 +1,5 @@
+@Library('PSL@master') _
+
 properties([
     parameters([
         choice(name: 'ForcePublish',
@@ -33,6 +35,12 @@ node('aws-centos') {
       sh "git clean -fxd"
     }
 
+    stage("executeHarmonyScan") {
+      steps {
+         executeHarmonyScan()
+      }
+    }
+
     stage("create docker image") {
         sh "docker build --pull --no-cache -t '${dockerReg}/${imageName}' ."
     }
@@ -65,4 +73,12 @@ node('aws-centos') {
         sh "docker rmi --force '${imageName}' >/dev/null 2>&1 || true"
     }
   }
+}
+
+def executeHarmonyScan() {
+  echo "ExecuteHarmonyScan ..."
+  new ors.security.common_harmony(steps, env, Artifactory, scm).run_scan([
+    'repository':"pws/pws-test-automation-workflow",
+    'product_output':"${workspace}/node_modules",
+  ])
 }
