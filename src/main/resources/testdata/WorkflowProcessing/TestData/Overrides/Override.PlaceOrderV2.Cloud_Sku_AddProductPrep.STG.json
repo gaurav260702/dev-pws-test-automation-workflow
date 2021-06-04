@@ -22,7 +22,7 @@
   },
   "lineItems": [
     {
-      "partNumber": "835F1-NS5025-V662",
+      "partNumber": "128J1-WWN881-L782",
       "partnerSubscriptionId": "psi-{{uuid1}}",
       "quantity": 1,
       "netPrice": "{{net_price}}"
