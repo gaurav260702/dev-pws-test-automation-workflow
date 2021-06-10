@@ -1,8 +1,8 @@
-package com.autodesk.pws.test.steps.order;
+package com.autodesk.pws.test.steps.informative;
 
 import com.autodesk.pws.test.steps.base.*;
 
-public class GetOrderDetailsV1 extends PwsServiceBase
+public class GetAssetDetails extends PwsServiceBase
 {
    @Override
     public void preparation()
@@ -25,21 +25,12 @@ public class GetOrderDetailsV1 extends PwsServiceBase
 
     private void setResourcePath()
     {
-		super.setResourcePath("/v1/orders?partner_po=$PO_NUMBER$&customer_number=$CUSTOMER_NUMBER$");
+    	super.setResourcePath("/license/v2/assets?serialNumbers=$SERIAL_NUMBER$");
     }
 
 	@Override
     public void action()
     {
-		this.sleep(10000);
 		super.action();
     }
-	
-	@Override
-	public void validation()
-	{
-		this.extractDataFromJsonAndAddToDataPool("$CONTRACT_NUMBER$", "message.elements[0].order_header_array[0].contract_number");
-		this.extractDataFromJsonAndAddToDataPool("$AGREEMENT_NUMBER$", "message.elements[0].order_header_array[0].contract_number");
-		super.validation();
-	}
 }

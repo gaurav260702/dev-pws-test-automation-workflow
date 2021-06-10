@@ -27,7 +27,7 @@ public class WorkflowProcessingEngine
 	
 	    // Set the local DataPool to the passed reference...
 	    dataPool = localDataPool;
-	
+	    
 	    // Ready a stopwatch...
 	    StopWatch totalTestTime = new StopWatch();
 	    totalTestTime.start();
@@ -48,8 +48,8 @@ public class WorkflowProcessingEngine
 	    for (int i = 0; i < workflowToExecute.size(); i++) 
 		{
 	      step = workflowToExecute.get(i);
-	      // step.logger = logger;
-	
+	      dataPool.StepLogger = step;
+	      
 	      stepCount += 1;
 	
 	      if (!firstReportMade) 
@@ -60,17 +60,17 @@ public class WorkflowProcessingEngine
 	      }
 	
 	      step.log("   (" + stepCount + ") -- " + step.getClass().getSimpleName());
-	     }
+	    }
 	
-	     // Reset the step counter...
-	     stepCount = 0;
+	    // Reset the step counter...
+	    stepCount = 0;
 	
-		 // Loop through and execute each step in order...
-		 for (int i = 0; i < workflowToExecute.size(); i++) 
-		 {
-		 	// Grab the next step...
-		 	step = workflowToExecute.get(i);
-		   	
+		// Loop through and execute each step in order...
+		for (int i = 0; i < workflowToExecute.size(); i++) 
+		{
+			// Grab the next step...
+			step = workflowToExecute.get(i);
+		 	
 		 	// Push up the counter...
 		   	stepCount += 1;
 		
@@ -136,14 +136,14 @@ public class WorkflowProcessingEngine
 			  } 
 			  finally 
 			  {
-				String subStepTestTime = "TODO!"; // convertLongToTimeString(totalStepTime.getSplitTime());
+				String subStepTestTime = (totalTestTime.getTime() / 1000) + "";
 				dataPool.add(currentStep + "TestTime", subStepTestTime);
 			  }
-    }
+		}
 
-    // Log the total test time...
-    lastStep.log("Total workflow execution time: " + (totalTestTime.getTime() / 1000) + " seconds.");
-  }
+		// Log the total test time...
+		lastStep.log("Total workflow execution time: " + (totalTestTime.getTime() / 1000) + " seconds.");
+	}
 
     private void checkForExceptionAbort(StepBase step) throws Exception 
     {

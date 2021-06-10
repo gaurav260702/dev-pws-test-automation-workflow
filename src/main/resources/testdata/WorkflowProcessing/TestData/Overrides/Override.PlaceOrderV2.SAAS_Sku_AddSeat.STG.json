@@ -1,0 +1,34 @@
+
+{
+  "action": "Add-On",
+  "endCustomer": {
+    "account": {
+      "csn": "0070000010"
+    },
+    "contractManager": {
+      "firstName": "{{random_first_name}}",
+      "lastName": "{{random_last_name}}",
+      "email": "email@{{random_email_domain}}.com",
+      "language": "EN",
+      "countryCode": "US"
+    }
+  },
+  "shipTo": {
+    "csn": "0070000010"
+  },
+  "reseller": {
+    "csn": "0070000010"
+  },
+  "soldTo": {
+    "csn": "0070000010"
+  },
+  "contractNumber": "$CONTRACT_NUMBER$",
+  "lineItems": [
+    {
+      "partNumber": "C40M1-NS1868-V746",
+      "subscriptionReferenceNumber": "$SUBSCRIPTION_REFERENCE_NUMBER$",
+      "quantity": 1,
+      "netPrice": "$NET_PRICE$"
+    }
+  ]
+}

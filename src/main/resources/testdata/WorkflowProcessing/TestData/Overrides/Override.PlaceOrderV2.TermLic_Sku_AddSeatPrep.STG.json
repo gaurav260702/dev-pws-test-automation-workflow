@@ -22,7 +22,7 @@
   },
   "lineItems": [
     {
-      "partNumber": "C40M1-NS1868-V746",
+      "partNumber": "128H1-00N313-L881",
       "partnerSubscriptionId": "psi-{{uuid1}}",
       "quantity": 1,
       "netPrice": "{{net_price}}"

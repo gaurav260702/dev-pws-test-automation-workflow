@@ -49,7 +49,7 @@ public class WaitForOrderStatusChange extends StepBase
 				
 				log("Current status: " + status);
 				
-				if(status.matches("accepted") || status.matches("error"))
+				if(status.matches("accepted") || status.matches("error") || status.matches("failed"))
 				{
 					continueTrying = false;
 					finalStatus = status;
@@ -61,6 +61,9 @@ public class WaitForOrderStatusChange extends StepBase
 		
 		log("Final status: " + finalStatus);
 		
+		//  This check should probably be migrated into the 
+		//  "validation()" routine as the intention is to 
+		//  cause an alteration of the default workflow...
 		if(!finalStatus.matches("accepted"))
 		{
 			ExceptionAbortStatus = true;
