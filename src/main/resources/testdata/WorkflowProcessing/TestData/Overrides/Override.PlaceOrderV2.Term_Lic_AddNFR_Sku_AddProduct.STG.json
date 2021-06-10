@@ -1,0 +1,33 @@
+
+{
+  "action": "Add-On",
+  "endCustomer": {
+    "account": {
+      "csn": "0070176510"
+    },
+    "contractManager": {
+      "firstName": "{{random_first_name}}",
+      "lastName": "{{random_last_name}}",
+      "email": "email@{{random_email_domain}}.com",
+      "language": "EN",
+      "countryCode": "US"
+    }
+  },
+  "shipTo": {
+    "csn": "0070176510"
+  },
+  "reseller": {
+    "csn": "0070176510"
+  },
+  "soldTo": {
+    "csn": "0070176510"
+  },
+  "contractNumber": "$CONTRACT_NUMBER$",
+  "lineItems": [
+    {
+      "partNumber": "057J1-WWN905-L490",
+      "quantity": 1,
+      "netPrice": "$NET_PRICE$"
+    }
+  ]
+}
