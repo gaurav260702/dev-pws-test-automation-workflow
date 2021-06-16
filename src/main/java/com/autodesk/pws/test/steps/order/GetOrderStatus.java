@@ -4,32 +4,6 @@ import com.autodesk.pws.test.steps.base.*;
 
 public class GetOrderStatus extends PwsServiceBase
 {
-
-//	@Override
-//    public void Preparation()
-//    {
-//        // ExceptionOnRetriesExceededError = bool.Parse((string)DataPool.GetValue("GetOrderStatusV2.ExceptionOnRetriesExceededError", caseSensitive: false, defaultValue: true).ToString());
-//        
-//        SetExceptionOnRetriesExceededErrorFlag(GetType().Name);
-//
-//        super.preparation();
-//    }
-//
-//	@@Override
-//    public void Action()
-//    {
-//        var getOrderStatusV2Response = GetStatus();
-//
-//        AddValidationChainLink("GetOrderStatusV2", getOrderStatusV2Response);
-//    }
-//
-//    public dynamic GetStatus()
-//    {
-//        String targetUrl = $"{DataPool["getOrderStatusV2Url"]}/v2/status/{DataPool["TransactionId"]}?detailed=true";
-//        var retVal = DoTheRequest(targetUrl, Method.GET);
-//
-//        return retVal;
-//    }
    @Override
     public void preparation()
     {
