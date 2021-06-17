@@ -1,5 +1,7 @@
 # PWS Test Automation using Workflow Processing Engine
 
+![Workflow Processing Engine Execution Diagram](https://wiki.autodesk.com/download/attachments/867567388/WorkflowProcessingEngine.png?version=2&modificationDate=1607721171186&api=v2&effects=border-simple,shadow-kn)
+
 ### Overview
 This project creates the pws automation container based on the [workflow processing engine](https://wiki.autodesk.com/display/PWSEng/PWS+Tech+Info+-+Java+based+Workflow+Engine+for+Test+Framework).
 It uses spring-boot framework and is a commandline application.
