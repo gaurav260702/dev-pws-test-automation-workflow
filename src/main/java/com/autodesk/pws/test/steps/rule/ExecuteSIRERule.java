@@ -42,7 +42,6 @@ public class ExecuteSIRERule extends RestActionBase
 
     try
     {
-      //  Can somebody tell me why the ******** this has to be in a try-catch?!?!
       rawJson = actionResult.body().string();
     }
     catch (IOException e)
@@ -52,10 +51,6 @@ public class ExecuteSIRERule extends RestActionBase
 
     //  Stick that response body in the ValidationChain...
     this.addValidationChainLink(this.ClassName, rawJson);
-
-    //  Here we would extract any data that needs
-    //  to be promoted in the DataPool...
-    extractDataFromJsonIntoDataPool(rawJson, "result:sire_response");
   }
 
   public Response getInfo()
@@ -63,19 +58,19 @@ public class ExecuteSIRERule extends RestActionBase
     //  Get the appropriate headers for a token request...
     this.RequestHeaders = generateAccessTokenHeaders();
 
-    Response oAuthResponse = null;
+    Response executeRuleResponse = null;
 
     try
     {
-      //  Make the call to the oAuth service...
-      oAuthResponse = getRestResponse("POST", BaseUrl + "/sire/v1/execute/" + this.sireRule, this.requestPayload);
+      //  Make the call to the SIRE Rule service...
+      executeRuleResponse = getRestResponse("POST", BaseUrl + "/sire/v1/execute/" + this.sireRule, this.requestPayload);
     }
     catch (IOException e)
     {
       logErr(e, this.ClassName, "getInfo");
     }
 
-    return oAuthResponse;
+    return executeRuleResponse;
   }
 
   @Override

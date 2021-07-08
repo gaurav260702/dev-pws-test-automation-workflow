@@ -32,8 +32,6 @@ public class GetSIREOAuthCredentials extends GetOAuthCredentials
 
 	public Response getInfo()
 	{
-		//  String rawJsonBody = "";
-
 		//  Get the appropriate headers for a token request...
 		this.RequestHeaders = generateAccessTokenHeaders();
 
@@ -44,7 +42,6 @@ public class GetSIREOAuthCredentials extends GetOAuthCredentials
 		{
 			log("      creating request: ");
 			//  Make the call to the oAuth service...
-			//oAuthResponse = getRestResponseUrlEncoded("POST", BaseUrl + "/oauth2/token", "grant_type=client_credentials");
 			oAuthResponse = getRestResponse("POST", BaseUrl + "/oauth2/token", "grant_type=client_credentials", "application/x-www-form-urlencoded");
 		}
 		catch (IOException e)

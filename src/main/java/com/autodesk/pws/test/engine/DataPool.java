@@ -28,7 +28,7 @@ public class DataPool extends HashMap<String, Object>
 	//public Logger logger;
     public StepBase StepLogger;
     public final String NewLine = System.getProperty("line.separator");
-    
+
 	@SuppressWarnings("unchecked")
 	public void addToValidationChain(String validationLabel, Object dataToValidate)
 	{
