@@ -97,49 +97,102 @@ public class RestActionBase extends StepBase
 
 	public Response getRestResponse(String restMethod, String restResourcePath) throws IOException
 	{
-		return getRestResponse(restMethod, restResourcePath, "");
+		return getRestResponse(restMethod, restResourcePath, "", "");
 	}
 
 	public Response getRestResponse(String restMethod, String restResourcePath, String jsonPayload) throws IOException
 	{
+		return getRestResponse(restMethod, restResourcePath, jsonPayload, "application/json");
+	}
+	
+	public Response getRestResponse(String restMethod, String restResourcePath, String payload, String mediaTypeOverride) throws IOException
+	{		
+		//////////////////////////////////////////////////
+		/// **********************************************
+		///  THIS CODE NEEDS TO BE CLEANED UP!
+		///  It's functional for now, but there's
+		///  some serious potential for things to
+		///  get overly complicated fast.  I think
+		///  this could all be simplified to handle
+		///  the various media types in few lines 
+		///  of code, and with less if/then branching...
+		/// **********************************************
+		//////////////////////////////////////////////////
+		
 		//  Build the first portions of the REST request...
 		Builder requestBuilder = new Request.Builder().url(restResourcePath);
-
+		
+		//  Set the default mediaTypeValue...
+		String jsonDefaultMediaType = "application/json";
+		String mediaTypeValue = jsonDefaultMediaType;
+		
+		//  Check for a mediaType override...
+		if(mediaTypeOverride.length() > 0)
+		{
+			mediaTypeValue = mediaTypeOverride;
+		}
+		
+		//  Prepare a mediaType container in case it's needed...
+		MediaType mediaType = null;
+		
+		//  Prepare a body container in case it's needed...
+		RequestBody body = null;
+		
 		log("       Target URL: " + restResourcePath);
 
+		if(restMethod.toUpperCase() == "POST")
+		{
+			mediaType = MediaType.parse(mediaTypeValue);
+		}
+		else
+		{
+			mediaType = null;
+		}
+		
 		//  If a JSON payload is included,
 		//  append it to the Request Builder...
-		if(jsonPayload != "")
-		{
-		    MediaType mediaType = MediaType.parse("application/json");
-		    
-		    if(jsonPayload != "{}")
+		if (mediaTypeValue == jsonDefaultMediaType && mediaType != null)
+		{	
+		    if(payload != "{}")
 		    {
 			    //  Nasty bit of hackery to ensure that the "quanity" value is set to
 				//  an integer instead of a float.  There's an issue with this when the
 				//  file is loaded from disk and fiddled about with by the Jackson
 				//  JSON library...
-			    jsonPayload = hack_CleanQuantityFloatType(jsonPayload);
+		    	payload = hack_CleanQuantityFloatType(payload);
 			    
-			    jsonPayload = DynamicData.detokenizeRuntimeValues(jsonPayload);
+		    	payload = DynamicData.detokenizeRuntimeValues(payload);
 			    
 			    //  All this floofery is so we can convert the raw JSON payload into a 
 			    //  single line version so it's easier to read in the log, but still 
 			    //  useful if we need to pop it into PostMan or something...
 			    ObjectMapper objectMapper = new ObjectMapper();
-			    JsonNode jsonNode = objectMapper.readValue(jsonPayload, JsonNode.class);
+			    JsonNode jsonNode = objectMapper.readValue(payload, JsonNode.class);
 
 			    log("       Payload: " + jsonNode.toString());
 		    }
 		    
-		    RequestBody body = RequestBody.create(mediaType, jsonPayload);
+		    body = RequestBody.create(mediaType, payload);
 			requestBuilder.method(restMethod, body);
-			}
+		}
 		else
 		{
-			requestBuilder.method(restMethod, null);;
+			if(mediaType != null)
+			{
+				body = RequestBody.create(mediaType, payload);
+				requestBuilder.method(restMethod, body);
+			}
+			else
+			{
+				requestBuilder.method(restMethod, null);
+			}
 		}
-
+		
+	    if(mediaType != null)
+	    {
+	    	requestBuilder.addHeader("Content-Type", mediaTypeValue);
+	    }
+		
 		//  Add in any required customer headers...
 		for (String key : RequestHeaders.keySet())
         {

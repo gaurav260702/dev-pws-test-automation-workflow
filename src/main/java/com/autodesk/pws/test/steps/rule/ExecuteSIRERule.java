@@ -1,15 +1,11 @@
-package com.autodesk.pws.test.steps.authentication;
+package com.autodesk.pws.test.steps.rule;
 
 import java.io.IOException;
 import okhttp3.Response;
 
 import java.util.HashMap;
 
-import com.google.gson.Gson;
-
 import com.autodesk.pws.test.steps.base.*;
-
-import com.autodesk.pws.test.processor.*;
 
 public class ExecuteSIRERule extends RestActionBase
 {
@@ -26,14 +22,14 @@ public class ExecuteSIRERule extends RestActionBase
   {
     this.ClassName = this.getClass().getSimpleName();
     pullDataPoolVariables();
-	}
+  }
 
-	private void pullDataPoolVariables()
+  private void pullDataPoolVariables()
   {
-    this.sireRule = DataPool.get("sireRule").toString();
-    this.requestPayload = DataPool.get("rawOverrideFile").toString();
-    BaseUrl =  DataPool.get("SIREbaseUrl").toString();
-	}
+	  this.sireRule = DataPool.get("sireRule").toString();
+	  this.requestPayload = DataPool.get("rawOverrideFile").toString();
+	  BaseUrl =  DataPool.get("SIREbaseUrl").toString();
+  }
 
   @Override
   public void action()

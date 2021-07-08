@@ -7,6 +7,7 @@ import com.autodesk.pws.test.steps.invoice.*;
 import com.autodesk.pws.test.steps.order.*;
 import com.autodesk.pws.test.steps.price.*;
 import com.autodesk.pws.test.steps.utility.*;
+import com.autodesk.pws.test.steps.rule.*;
 
 import java.util.*;
 

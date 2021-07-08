@@ -7,12 +7,20 @@ import io.restassured.path.json.JsonPath;
 public class WaitForOrderStatusChange extends StepBase
 {
 	private GetOrderStatus getOrderStatus = new GetOrderStatus();
+	//  This state will be used to allow negative tests to be
+	//  successfully executed.  The default expected state is 
+	//  "accepted", however this state can be overriddent by
+	//  providing a new value in the Kicker file called
+	//  "WaitForOrderStatusChange.expectedEndStateStatus"...
+	protected String expectedEndStateStatus = "accepted";
 	
 	@Override
     public void preparation()
     {
 		getOrderStatus.DataPool = this.DataPool;
 		getOrderStatus.preparation();
+		expectedEndStateStatus = DataPool.getOrDefault("WaitForOrderStatusChange.expectedEndStateStatus", expectedEndStateStatus).toString(); 
+		log("Expected end state value: " + expectedEndStateStatus);
     }
 
 	@Override
@@ -64,11 +72,11 @@ public class WaitForOrderStatusChange extends StepBase
 		//  This check should probably be migrated into the 
 		//  "validation()" routine as the intention is to 
 		//  cause an alteration of the default workflow...
-		/*if(!finalStatus.matches("accepted"))
+		if(!finalStatus.matches(expectedEndStateStatus))
 		{
 			ExceptionAbortStatus = true;
-			ExceptionMessage = "Expected to reach 'accepted' state, but ended in '" + finalStatus + "' state!";
-		}*/
+			ExceptionMessage = "Expected to reach '" + expectedEndStateStatus + "' state, but ended in '" + finalStatus + "' state!";
+		}
     }
 
 	@Override
