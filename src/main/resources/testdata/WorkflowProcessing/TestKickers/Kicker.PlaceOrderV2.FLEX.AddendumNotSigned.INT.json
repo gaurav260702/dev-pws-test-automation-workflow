@@ -1,8 +1,8 @@
 {
   "baseUrl": "https://enterprise-api-int.autodesk.com",
   "oAuthBaseUrl":  "https://enterprise-api-int.autodesk.com",
-  "SIREbaseUrl": "https://api.sire-int.autodesk.com",
-  "SIREOAuthBaseUrl": "https://auth.sire-int.autodesk.com",
+  "sireBaseUrl": "https://api.sire-int.autodesk.com",
+  "sireOAuthBaseUrl": "https://auth.sire-int.autodesk.com",
   "baseFile": "./testdata/WorkflowProcessing/TestData/BaseData/PlaceOrderV2.FLEXAddendumNotSignedPayload.json",
   "overridesFile": "./testdata/WorkflowProcessing/TestData/Overrides/Override.PlaceOrderV2.FLEXAddendumNotSigned.SIREPayload.json",
   "validationFile": "./testdata/WorkflowProcessing/TestData/Validators/Validator.PlaceOrderV2.FLEXAddendumNotSignedPayload.json",

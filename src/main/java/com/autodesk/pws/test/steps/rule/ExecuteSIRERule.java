@@ -28,7 +28,7 @@ public class ExecuteSIRERule extends RestActionBase
   {
 	  this.sireRule = DataPool.get("sireRule").toString();
 	  this.requestPayload = DataPool.get("rawOverrideFile").toString();
-	  BaseUrl =  DataPool.get("SIREbaseUrl").toString();
+	  BaseUrl =  DataPool.get("sireBaseUrl").toString();
   }
 
   @Override
@@ -77,7 +77,7 @@ public class ExecuteSIRERule extends RestActionBase
   public HashMap<String, String> generateAccessTokenHeaders()
 	{
 		String accessToken = DataPool.get("sire_access_token").toString();
-		String xApiKey = DataPool.get("SIREx-api-key").toString();
+		String xApiKey = DataPool.get("sireXApiKey").toString();
 
 		HashMap<String, String> headers = new HashMap<String, String>();
 

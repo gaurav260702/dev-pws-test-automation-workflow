@@ -24,10 +24,10 @@ public class GetSIREOAuthCredentials extends GetOAuthCredentials
 
 	private void pullDataPoolVariables()
 	{
-		clientId = DataPool.get("SIREclientId").toString();
-		clientSecret = DataPool.get("SIREclientSecret").toString();
-		callBackUrl = DataPool.get("SIREcallBackUrl").toString();
-		BaseUrl = DataPool.get("SIREOAuthBaseUrl").toString();
+		clientId = DataPool.get("sireClientId").toString();
+		clientSecret = DataPool.get("sireClientSecret").toString();
+		callBackUrl = DataPool.get("sireCallBackUrl").toString();
+		BaseUrl = DataPool.get("sireOAuthBaseUrl").toString();
 	}
 
 	public Response getInfo()
