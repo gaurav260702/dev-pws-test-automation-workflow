@@ -144,62 +144,54 @@ public class RestActionBase extends StepBase
 		{
 			mediaType = MediaType.parse(mediaTypeValue);
 		}
-		else
-		{
-			mediaType = null;
-		}
 		
-		//  If a JSON payload is included,
-		//  append it to the Request Builder...
-		if (mediaTypeValue == jsonDefaultMediaType && mediaType != null)
-		{	
-		    if(payload != "{}")
-		    {
-			    //  Nasty bit of hackery to ensure that the "quanity" value is set to
-				//  an integer instead of a float.  There's an issue with this when the
-				//  file is loaded from disk and fiddled about with by the Jackson
-				//  JSON library...
-		    	payload = hack_CleanQuantityFloatType(payload);
-			    
-		    	payload = DynamicData.detokenizeRuntimeValues(payload);
-			    
-			    //  All this floofery is so we can convert the raw JSON payload into a 
-			    //  single line version so it's easier to read in the log, but still 
-			    //  useful if we need to pop it into PostMan or something...
-			    ObjectMapper objectMapper = new ObjectMapper();
-			    JsonNode jsonNode = objectMapper.readValue(payload, JsonNode.class);
-
-			    log("       Payload: " + jsonNode.toString());
-		    }
-		    
-		    body = RequestBody.create(mediaType, payload);
-			requestBuilder.method(restMethod, body);
+		if(mediaType == null)
+		{
+			requestBuilder.method(restMethod, null);
 		}
 		else
 		{
-			if(mediaType != null)
-			{
-				body = RequestBody.create(mediaType, payload);
-				requestBuilder.method(restMethod, body);
+			//  If a JSON payload is included,
+			//  append it to the Request Builder...
+			if (mediaTypeValue == jsonDefaultMediaType)
+			{	
+					if(payload != "{}")
+					{
+						//  Nasty bit of hackery to ensure that the "quanity" value is set to
+					//  an integer instead of a float.  There's an issue with this when the
+					//  file is loaded from disk and fiddled about with by the Jackson
+					//  JSON library...
+						payload = hack_CleanQuantityFloatType(payload);
+						
+						payload = DynamicData.detokenizeRuntimeValues(payload);
+						
+						//  All this floofery is so we can convert the raw JSON payload into a 
+						//  single line version so it's easier to read in the log, but still 
+						//  useful if we need to pop it into PostMan or something...
+						ObjectMapper objectMapper = new ObjectMapper();
+						JsonNode jsonNode = objectMapper.readValue(payload, JsonNode.class);
+
+						log("       Payload: " + jsonNode.toString());
+					}
+					
+					body = RequestBody.create(mediaType, payload);
+					requestBuilder.method(restMethod, body);
 			}
 			else
 			{
-				requestBuilder.method(restMethod, null);
+				  body = RequestBody.create(mediaType, payload);
+					requestBuilder.method(restMethod, body);
+					requestBuilder.addHeader("Content-Type", mediaTypeValue);
 			}
 		}
 		
-	    if(mediaType != null)
-	    {
-	    	requestBuilder.addHeader("Content-Type", mediaTypeValue);
-	    }
-		
 		//  Add in any required customer headers...
 		for (String key : RequestHeaders.keySet())
-        {
+		{
 			String headerVal = RequestHeaders.get(key);
 			//log(key + ": " + headerVal);
-        	requestBuilder.addHeader(key, headerVal);
-        }
+			requestBuilder.addHeader(key, headerVal);
+		}
 
         //  Build the final Request object...
 		Request request = requestBuilder.build();
@@ -219,42 +211,6 @@ public class RestActionBase extends StepBase
 		return response;
 	}
 
-	public Response getRestResponseUrlEncoded(String restMethod, String restResourcePath, String payload) throws IOException
-	{
-		//  Build the first portions of the REST request...
-		Builder requestBuilder = new Request.Builder().url(restResourcePath);
-
-		log("       Target URL: " + restResourcePath);
-
-		MediaType mediaType = MediaType.parse("application/x-www-form-urlencoded");
-		RequestBody body = RequestBody.create(mediaType, payload);
-
-		//  Add in any required customer headers...
-		for (String key : RequestHeaders.keySet())
-			{
-		String headerVal = RequestHeaders.get(key);
-		//log(key + ": " + headerVal);
-				requestBuilder.addHeader(key, headerVal);
-			}
-
-		requestBuilder.addHeader("Content-Type", "application/x-www-form-urlencoded");
-        //  Build the final Request object...
-		Request request = requestBuilder.post(body).build();
-
-		//  Ready the REST client...
-		OkHttpClient client = new OkHttpClient().newBuilder().build();
-
-		//  Declare the response container...
-		Response response = null;
-
-		//  Call the REST service...
-		response = client.newCall(request).execute();
-
-		this.log("Service response: " + response.code() + " -- " + response.message());		
-		//  Hand back to the caller whatever we received from the REST service...
-		return response;
-	}
-	
     private String hack_CleanQuantityFloatType(String rawJson)
     {	    	
 		JsonPath jsonPath = JsonPath.from(rawJson);
