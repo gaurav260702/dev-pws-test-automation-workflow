@@ -76,4 +76,19 @@ public class WorkflowLibrary
          
     	 return workflow;
     }
+
+    public static List<StepBase> PlaceFlexOrder()
+    {
+        List<StepBase> workflow = new ArrayList<StepBase>();
+
+        workflow.add(new LoadBaseFilesAndExtractOrderInfoData());
+        workflow.add(new GetSIREOAuthCredentials());
+        workflow.add(new ExecuteSIRERule());
+        workflow.add(new GetOAuthCredentials());
+        workflow.add(new GetSkuPrice());
+        workflow.add(new PostOrder());
+        workflow.add(new WaitForOrderStatusChange());
+
+        return workflow;
+    }
 }

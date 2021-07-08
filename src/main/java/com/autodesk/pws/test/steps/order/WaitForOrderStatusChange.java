@@ -64,11 +64,11 @@ public class WaitForOrderStatusChange extends StepBase
 		//  This check should probably be migrated into the 
 		//  "validation()" routine as the intention is to 
 		//  cause an alteration of the default workflow...
-		if(!finalStatus.matches("accepted"))
+		/*if(!finalStatus.matches("accepted"))
 		{
 			ExceptionAbortStatus = true;
 			ExceptionMessage = "Expected to reach 'accepted' state, but ended in '" + finalStatus + "' state!";
-		}
+		}*/
     }
 
 	@Override

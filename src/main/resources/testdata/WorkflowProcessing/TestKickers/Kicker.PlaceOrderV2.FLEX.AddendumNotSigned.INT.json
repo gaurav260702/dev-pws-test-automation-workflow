@@ -1,0 +1,13 @@
+{
+  "baseUrl": "https://enterprise-api-int.autodesk.com",
+  "oAuthBaseUrl":  "https://enterprise-api-int.autodesk.com",
+  "SIREbaseUrl": "https://api.sire-int.autodesk.com",
+  "SIREOAuthBaseUrl": "https://auth.sire-int.autodesk.com",
+  "baseFile": "./testdata/WorkflowProcessing/TestData/BaseData/PlaceOrderV2.FLEXAddendumNotSignedPayload.json",
+  "overridesFile": "./testdata/WorkflowProcessing/TestData/Overrides/Override.PlaceOrderV2.FLEXAddendumNotSigned.SIREPayload.json",
+  "validationFile": "./testdata/WorkflowProcessing/TestData/Validators/Validator.PlaceOrderV2.FLEXAddendumNotSignedPayload.json",
+  "secretsFile": "./testdata/WorkflowProcessing/TestData/Configurations/Secrets.GetInvoiceServices.INT.json",
+  "secretsFileSIRE": "./testdata/WorkflowProcessing/TestData/Configurations/Secrets.SIRE.INT.json",
+  "workflow": "PlaceFlexOrder",
+  "sireRule": "pws-validate-flex-order"
+}

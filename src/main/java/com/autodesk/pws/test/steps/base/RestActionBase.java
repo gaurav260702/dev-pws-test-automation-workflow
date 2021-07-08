@@ -27,9 +27,9 @@ public class RestActionBase extends StepBase
 {
     // Note: Regarding Instance fields always keep it private, if a class extends and if they are
     // required in other class(s) keep them as protected
-    private String clientId;
-    private String clientSecret;
-    private String callBackUrl;
+    protected String clientId;
+    protected String clientSecret;
+    protected String callBackUrl;
     public String BaseUrl;
 
     public HashMap<String, String> RequestHeaders = new HashMap<String, String>();
@@ -162,6 +162,42 @@ public class RestActionBase extends StepBase
 
 		this.log("Service response: " + response.code() + " -- " + response.message());		
 		
+		//  Hand back to the caller whatever we received from the REST service...
+		return response;
+	}
+
+	public Response getRestResponseUrlEncoded(String restMethod, String restResourcePath, String payload) throws IOException
+	{
+		//  Build the first portions of the REST request...
+		Builder requestBuilder = new Request.Builder().url(restResourcePath);
+
+		log("       Target URL: " + restResourcePath);
+
+		MediaType mediaType = MediaType.parse("application/x-www-form-urlencoded");
+		RequestBody body = RequestBody.create(mediaType, payload);
+
+		//  Add in any required customer headers...
+		for (String key : RequestHeaders.keySet())
+			{
+		String headerVal = RequestHeaders.get(key);
+		//log(key + ": " + headerVal);
+				requestBuilder.addHeader(key, headerVal);
+			}
+
+		requestBuilder.addHeader("Content-Type", "application/x-www-form-urlencoded");
+        //  Build the final Request object...
+		Request request = requestBuilder.post(body).build();
+
+		//  Ready the REST client...
+		OkHttpClient client = new OkHttpClient().newBuilder().build();
+
+		//  Declare the response container...
+		Response response = null;
+
+		//  Call the REST service...
+		response = client.newCall(request).execute();
+
+		this.log("Service response: " + response.code() + " -- " + response.message());		
 		//  Hand back to the caller whatever we received from the REST service...
 		return response;
 	}

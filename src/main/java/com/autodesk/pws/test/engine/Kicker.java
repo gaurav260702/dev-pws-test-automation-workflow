@@ -766,7 +766,7 @@ public class Kicker
 		                //  to be a "secretsFile" path, load it up and
 		                //  recursively enter this method again, treating it
 		                //  like it was any other "testKicker" file...
-		                if (keyName.compareTo("secretsFile") == 0)
+		                if (keyName.contains("secretsFile"))
 		                {
 		                    //  JsonPath secretsData = DynamicData.LoadJsonFile(paramItem.Value.toString());
 		                    loadTestKickerAsDataPoolData(value.toString(), false);
