@@ -27,6 +27,10 @@ public class ExecuteSIRERule extends RestActionBase
   private void pullDataPoolVariables()
   {
 	  this.sireRule = DataPool.get("sireRule").toString();
+    // 
+    // TODO -- CREATE A SECONDARY DATA FILE METHOD TO KEEP OVERRIDE 
+    // FILES DIFFERENT FROM ADDITIONAL PAYLOAD FILES
+    //
 	  this.requestPayload = DataPool.get("rawOverrideFile").toString();
 	  BaseUrl =  DataPool.get("sireBaseUrl").toString();
   }

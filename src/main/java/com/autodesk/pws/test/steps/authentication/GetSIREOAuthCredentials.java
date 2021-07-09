@@ -26,7 +26,6 @@ public class GetSIREOAuthCredentials extends GetOAuthCredentials
 	{
 		clientId = DataPool.get("sireClientId").toString();
 		clientSecret = DataPool.get("sireClientSecret").toString();
-		callBackUrl = DataPool.get("sireCallBackUrl").toString();
 		BaseUrl = DataPool.get("sireOAuthBaseUrl").toString();
 	}
 
@@ -54,16 +53,4 @@ public class GetSIREOAuthCredentials extends GetOAuthCredentials
 
 		return oAuthResponse;
   }
-
-	@Override
-	public HashMap<String, String> generateAccessTokenHeaders()
-	{
-		String baseAuth = getBaseAuth();
-
-		HashMap<String, String> headers = new HashMap<String, String>();
-
-		headers.put("Authorization", "Basic " + baseAuth);
-		
-		return headers;
-	}
 }
