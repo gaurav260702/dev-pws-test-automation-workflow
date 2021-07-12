@@ -83,8 +83,8 @@ public class WorkflowLibrary
         List<StepBase> workflow = new ArrayList<StepBase>();
 
         workflow.add(new LoadBaseFilesAndExtractOrderInfoData());
-        workflow.add(new GetSIREOAuthCredentials());
-        workflow.add(new ExecuteSIRERule());
+        workflow.add(new GetSireOAuthCredentials());
+        workflow.add(new ExecuteSireRule());
         workflow.add(new GetOAuthCredentials());
         workflow.add(new GetSkuPrice());
         workflow.add(new PostOrder());

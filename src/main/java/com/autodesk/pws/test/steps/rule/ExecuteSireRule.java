@@ -7,7 +7,7 @@ import java.util.HashMap;
 
 import com.autodesk.pws.test.steps.base.*;
 
-public class ExecuteSIRERule extends RestActionBase
+public class ExecuteSireRule extends RestActionBase
 {
   String sireRule;
   String requestPayload;

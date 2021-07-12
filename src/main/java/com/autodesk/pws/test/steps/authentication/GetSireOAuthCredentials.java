@@ -7,7 +7,7 @@ import okhttp3.Response;
 
 import com.autodesk.pws.test.steps.base.*;
 
-public class GetSIREOAuthCredentials extends GetOAuthCredentials
+public class GetSireOAuthCredentials extends GetOAuthCredentials
 {
 	@Override
 	public void preparation()
