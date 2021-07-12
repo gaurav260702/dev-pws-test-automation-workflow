@@ -20,6 +20,7 @@ public class ExecuteSireRule extends RestActionBase
 
   private void initVariables()
   {
+    super.initBaseVariables();
     this.ClassName = this.getClass().getSimpleName();
     pullDataPoolVariables();
   }
@@ -27,18 +28,12 @@ public class ExecuteSireRule extends RestActionBase
   private void pullDataPoolVariables()
   {
 	  this.sireRule = DataPool.get("sireRule").toString();
-    // 
+    //
     // TODO -- CREATE A SECONDARY DATA FILE METHOD TO KEEP OVERRIDE 
     // FILES DIFFERENT FROM ADDITIONAL PAYLOAD FILES
     //
+    this.requestPayload = DataPool.get("rawOverrideFile").toString();
 
-    /// 
-    // RestActionBase.getSha256Hash() needs to be reconfigured 
-    // to accept empty/missing client id and secret
-    ///
-    clientId = "abc";
-		clientSecret = "abc";
-		this.requestPayload = DataPool.get("rawOverrideFile").toString();
 	  BaseUrl =  DataPool.get("sireBaseUrl").toString();
   }
 
