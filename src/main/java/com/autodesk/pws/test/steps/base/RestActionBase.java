@@ -27,9 +27,9 @@ public class RestActionBase extends StepBase
 {
     // Note: Regarding Instance fields always keep it private, if a class extends and if they are
     // required in other class(s) keep them as protected
-    private String clientId;
-    private String clientSecret;
-    private String callBackUrl;
+    protected String clientId;
+    protected String clientSecret;
+    protected String callBackUrl;
     public String BaseUrl;
 
     public HashMap<String, String> RequestHeaders = new HashMap<String, String>();
@@ -97,56 +97,101 @@ public class RestActionBase extends StepBase
 
 	public Response getRestResponse(String restMethod, String restResourcePath) throws IOException
 	{
-		return getRestResponse(restMethod, restResourcePath, "");
+		return getRestResponse(restMethod, restResourcePath, "", "");
 	}
 
 	public Response getRestResponse(String restMethod, String restResourcePath, String jsonPayload) throws IOException
 	{
+		return getRestResponse(restMethod, restResourcePath, jsonPayload, "application/json");
+	}
+	
+	public Response getRestResponse(String restMethod, String restResourcePath, String payload, String mediaTypeOverride) throws IOException
+	{		
+		//////////////////////////////////////////////////
+		/// **********************************************
+		///  THIS CODE NEEDS TO BE CLEANED UP!
+		///  It's functional for now, but there's
+		///  some serious potential for things to
+		///  get overly complicated fast.  I think
+		///  this could all be simplified to handle
+		///  the various media types in few lines 
+		///  of code, and with less if/then branching...
+		/// **********************************************
+		//////////////////////////////////////////////////
+		
 		//  Build the first portions of the REST request...
 		Builder requestBuilder = new Request.Builder().url(restResourcePath);
-
+		
+		//  Set the default mediaTypeValue...
+		String jsonDefaultMediaType = "application/json";
+		String mediaTypeValue = jsonDefaultMediaType;
+		
+		//  Check for a mediaType override...
+		if(mediaTypeOverride.length() > 0)
+		{
+			mediaTypeValue = mediaTypeOverride;
+		}
+		
+		//  Prepare a mediaType container in case it's needed...
+		MediaType mediaType = null;
+		
+		//  Prepare a body container in case it's needed...
+		RequestBody body = null;
+		
 		log("       Target URL: " + restResourcePath);
 
-		//  If a JSON payload is included,
-		//  append it to the Request Builder...
-		if(jsonPayload != "")
+		if(restMethod.toUpperCase() == "POST")
 		{
-		    MediaType mediaType = MediaType.parse("application/json");
-		    
-		    if(jsonPayload != "{}")
-		    {
-			    //  Nasty bit of hackery to ensure that the "quanity" value is set to
-				//  an integer instead of a float.  There's an issue with this when the
-				//  file is loaded from disk and fiddled about with by the Jackson
-				//  JSON library...
-			    jsonPayload = hack_CleanQuantityFloatType(jsonPayload);
-			    
-			    jsonPayload = DynamicData.detokenizeRuntimeValues(jsonPayload);
-			    
-			    //  All this floofery is so we can convert the raw JSON payload into a 
-			    //  single line version so it's easier to read in the log, but still 
-			    //  useful if we need to pop it into PostMan or something...
-			    ObjectMapper objectMapper = new ObjectMapper();
-			    JsonNode jsonNode = objectMapper.readValue(jsonPayload, JsonNode.class);
-
-			    log("       Payload: " + jsonNode.toString());
-		    }
-		    
-		    RequestBody body = RequestBody.create(mediaType, jsonPayload);
-			requestBuilder.method(restMethod, body);
-			}
+			mediaType = MediaType.parse(mediaTypeValue);
+		}
+		
+		if(mediaType == null)
+		{
+			requestBuilder.method(restMethod, null);
+		}
 		else
 		{
-			requestBuilder.method(restMethod, null);;
-		}
+			//  If a JSON payload is included,
+			//  append it to the Request Builder...
+			if (mediaTypeValue == jsonDefaultMediaType)
+			{	
+					if(payload != "{}")
+					{
+						//  Nasty bit of hackery to ensure that the "quanity" value is set to
+					//  an integer instead of a float.  There's an issue with this when the
+					//  file is loaded from disk and fiddled about with by the Jackson
+					//  JSON library...
+						payload = hack_CleanQuantityFloatType(payload);
+						
+						payload = DynamicData.detokenizeRuntimeValues(payload);
+						
+						//  All this floofery is so we can convert the raw JSON payload into a 
+						//  single line version so it's easier to read in the log, but still 
+						//  useful if we need to pop it into PostMan or something...
+						ObjectMapper objectMapper = new ObjectMapper();
+						JsonNode jsonNode = objectMapper.readValue(payload, JsonNode.class);
 
+						log("       Payload: " + jsonNode.toString());
+					}
+					
+					body = RequestBody.create(mediaType, payload);
+					requestBuilder.method(restMethod, body);
+			}
+			else
+			{
+				  body = RequestBody.create(mediaType, payload);
+					requestBuilder.method(restMethod, body);
+					requestBuilder.addHeader("Content-Type", mediaTypeValue);
+			}
+		}
+		
 		//  Add in any required customer headers...
 		for (String key : RequestHeaders.keySet())
-        {
+		{
 			String headerVal = RequestHeaders.get(key);
 			//log(key + ": " + headerVal);
-        	requestBuilder.addHeader(key, headerVal);
-        }
+			requestBuilder.addHeader(key, headerVal);
+		}
 
         //  Build the final Request object...
 		Request request = requestBuilder.build();
@@ -165,7 +210,7 @@ public class RestActionBase extends StepBase
 		//  Hand back to the caller whatever we received from the REST service...
 		return response;
 	}
-	
+
     private String hack_CleanQuantityFloatType(String rawJson)
     {	    	
 		JsonPath jsonPath = JsonPath.from(rawJson);

@@ -7,6 +7,7 @@ import com.autodesk.pws.test.steps.invoice.*;
 import com.autodesk.pws.test.steps.order.*;
 import com.autodesk.pws.test.steps.price.*;
 import com.autodesk.pws.test.steps.utility.*;
+import com.autodesk.pws.test.steps.rule.*;
 
 import java.util.*;
 
@@ -75,5 +76,20 @@ public class WorkflowLibrary
          workflow.add(new WaitForGetAgreementInfo());
          
     	 return workflow;
+    }
+
+    public static List<StepBase> PlaceFlexOrder()
+    {
+        List<StepBase> workflow = new ArrayList<StepBase>();
+
+        workflow.add(new LoadBaseFilesAndExtractOrderInfoData());
+        workflow.add(new GetSireOAuthCredentials());
+        workflow.add(new ExecuteSireRule());
+        workflow.add(new GetOAuthCredentials());
+        workflow.add(new GetSkuPrice());
+        workflow.add(new PostOrder());
+        workflow.add(new WaitForOrderStatusChange());
+
+        return workflow;
     }
 }

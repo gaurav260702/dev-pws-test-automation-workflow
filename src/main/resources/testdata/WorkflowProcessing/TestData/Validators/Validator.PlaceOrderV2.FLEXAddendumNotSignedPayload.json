@@ -1,0 +1,26 @@
+{
+  "ExecuteSireRule": 
+  {
+    "result": {
+      "success": false,
+      "error": {
+        "code": "43121",
+        "message": "Flex addendum not signed"
+      }
+    }
+  },
+
+  "GetOrderStatus":
+  {
+    "transactionId": "*",
+    "status": "failed",
+    "statusV1": "FAILED",
+    "messageV1": "Not eligible to place Flex orders",
+    "lastUpdated": "*",
+    "soldToCsn": "0070012612",
+    "error": {
+      "code": "43121",
+      "message": "Not eligible to place Flex orders"
+    }
+  }
+}

@@ -7,6 +7,7 @@ import com.autodesk.pws.test.steps.base.*;
 
 public class GetOAuthCredentials extends RestActionBase
 {
+	protected String accessTokenToExtract = "access_token:access_token";
     @Override
     public void preparation()
     {
@@ -48,7 +49,7 @@ public class GetOAuthCredentials extends RestActionBase
 
 		//  Here we would extract any data that needs
 		//  to be promoted in the DataPool...
-		extractDataFromJsonIntoDataPool(rawJson, "access_token:access_token");
+		extractDataFromJsonIntoDataPool(rawJson, accessTokenToExtract);
     }
 
     public Response getInfo()
@@ -63,6 +64,7 @@ public class GetOAuthCredentials extends RestActionBase
 
     	try
     	{
+			log("      creating request: ");
     		//  Make the call to the oAuth service...
 			oAuthResponse = getRestResponse("POST", BaseUrl + "/v2/oauth/generateaccesstoken?grant_type=client_credentials", "{}");
     	}
@@ -72,6 +74,7 @@ public class GetOAuthCredentials extends RestActionBase
     		logErr(e, this.ClassName, "getInfo");
 		}
 
+		log("      oAuth Response: "+oAuthResponse);
     	return oAuthResponse;
     }
 }
