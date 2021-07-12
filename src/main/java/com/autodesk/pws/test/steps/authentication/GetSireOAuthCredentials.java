@@ -19,7 +19,6 @@ public class GetSireOAuthCredentials extends GetOAuthCredentials
 	{
 		this.ClassName = this.getClass().getSimpleName();
 		pullDataPoolVariables();
-		accessTokenToExtract = "access_token:sire_access_token";
 	}
 
 	private void pullDataPoolVariables()

@@ -31,7 +31,14 @@ public class ExecuteSireRule extends RestActionBase
     // TODO -- CREATE A SECONDARY DATA FILE METHOD TO KEEP OVERRIDE 
     // FILES DIFFERENT FROM ADDITIONAL PAYLOAD FILES
     //
-	  this.requestPayload = DataPool.get("rawOverrideFile").toString();
+
+    /// 
+    // RestActionBase.getSha256Hash() needs to be reconfigured 
+    // to accept empty/missing client id and secret
+    ///
+    clientId = "abc";
+		clientSecret = "abc";
+		this.requestPayload = DataPool.get("rawOverrideFile").toString();
 	  BaseUrl =  DataPool.get("sireBaseUrl").toString();
   }
 
@@ -60,7 +67,8 @@ public class ExecuteSireRule extends RestActionBase
   public Response getInfo()
   {
     //  Get the appropriate headers for a token request...
-    this.RequestHeaders = generateAccessTokenHeaders();
+    this.RequestHeaders = generateAccessTokenHeadersWithCurrentToken();
+    addHeaderFromDataPool("x-api-key", "sireXApiKey");
 
     Response executeRuleResponse = null;
 
@@ -76,18 +84,4 @@ public class ExecuteSireRule extends RestActionBase
 
     return executeRuleResponse;
   }
-
-  @Override
-  public HashMap<String, String> generateAccessTokenHeaders()
-	{
-		String accessToken = DataPool.get("sire_access_token").toString();
-		String xApiKey = DataPool.get("sireXApiKey").toString();
-
-		HashMap<String, String> headers = new HashMap<String, String>();
-
-		headers.put("Authorization", "Bearer " + accessToken);
-		headers.put("x-api-key", xApiKey);
-		
-		return headers;
-	}
 }

@@ -395,6 +395,11 @@ public class RestActionBase extends StepBase
 		return getSha256Hash(mixcode);
 	}
 
+
+	/// 
+	// RestActionBase.getSha256Hash() needs to be reconfigured 
+	// to accept empty/missing client id and secret
+	///
 	public String getSha256Hash(String mixcode)
 	{
 		String hashedStr = "";
