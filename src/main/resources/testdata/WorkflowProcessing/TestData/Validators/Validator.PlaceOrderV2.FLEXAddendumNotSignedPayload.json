@@ -19,6 +19,7 @@
     "lastUpdated": "*",
     "soldToCsn": "0070012612",
     "error": {
+      "code": "43121",
       "message": "Not eligible to place Flex orders"
     }
   }

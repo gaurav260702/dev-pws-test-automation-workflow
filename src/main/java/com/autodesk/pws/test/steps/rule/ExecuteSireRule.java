@@ -20,7 +20,7 @@ public class ExecuteSireRule extends RestActionBase
 
   private void initVariables()
   {
-    super.initBaseVariables();
+    initBaseVariables();
     this.ClassName = this.getClass().getSimpleName();
     pullDataPoolVariables();
   }
