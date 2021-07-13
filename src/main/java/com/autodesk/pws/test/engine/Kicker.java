@@ -684,6 +684,9 @@ public class Kicker
                 	actualValue = actualValueObj.toString();
                 }
 
+                expectedValue = dataPool.detokenizeDataPoolValues(expectedValue);
+                expectedValue = SimpleScripter.extractAndResolveSimpleScripts(expectedValue, "[[", "]]");
+                
                 //  Convert the wildcard/plainstring expected value
                 //  to a regular expression...
                 expectedValue = DynamicData.wildcardToRegex(expectedValue);
