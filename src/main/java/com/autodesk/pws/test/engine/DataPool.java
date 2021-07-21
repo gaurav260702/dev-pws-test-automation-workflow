@@ -180,27 +180,65 @@ public class DataPool extends HashMap<String, Object>
 
     public String detokenizeDataPoolValues(String tokenizedString)
     {
+    	//  ------ NOTE ----
+    	//  Even though this is memory intensive and not exactly optimal,
+    	//  we use a "swapping container" approach here since in JAVA we're
+    	//  not allowed to operate directly on strings while looping.
+    	//  We'll simply add in the "Latest Version" of our detokenized string
+    	//  to the last entry of the swapping container.  When we're all said
+    	//  and done, the very last entry should and will be a fully detokenzied
+    	//  version of the original string and we will have covered all possible
+    	//  tokens that might have existed in the string...
+    	//  ------ NOTE ----
+    	
+    	//  Setup a swapping container for the tokens in the tokenized string...
     	List<String> list = new ArrayList<String>();
+    	
+    	//  Add the current version of the tokenzied string to the swapping container...
     	list.add(tokenizedString);
-
+    	
+    	//  Loop through the list of tokens & values in the DataPool...
         this.forEach(
-		    			(k, v) ->
+		    			(key, value) ->
 				        {
-				            if (tokenizedString.contains(k))
+				        	//  If we actually **find** a key that exists in the
+				        	//  tokenized string...
+				            if (tokenizedString.contains(key))
 				            {
+				            	//  Then we get the most recent entry index of the 
+				            	//  swapping container...
 				            	int listIndex = list.size();
-				            	String tmp = list.get(listIndex).replace("$" + k + "$", v.toString());
+				            	
+				            	//  We create a **>>NEW<<** string that contains the
+				            	//  detokenized version of the string by swapping out "Key"
+				            	//  for value...
+				            	String tmp = list.get(listIndex).replace("$" + key + "$", value.toString());
+				            	
+				            	//  And we add this new string to the swapping container...
 				            	list.add(tmp);
 				        	}
 				        }
 				     );
 
+        //  Grab the last entry's index...
         int listIndex = list.size();
+        
+        //  This should be the fully detokenized string...
         String deTokenizedString = list.get(listIndex);
 
+        //  If we're still seeing what appears to be tokens in the detokenized string...
         if (deTokenizedString.matches(wildcardToRegex("*$*$*")))
         {
+        	//  We need to make a note of it in the log, as it's possible we have an
+        	//  unresolved token.
             logger.info("**** WARNING!  Detokenzied string appears to still contain tokenized values!");
+            
+            //  Recusively call this method to finish detokenizing the string...
+            //  ---- NOTE ----
+            //  Should we be doing this recursive call here to continue attempting
+            //  to detokenize the string?  Could that somehow possibly result in an
+            //  infinite loop?
+            deTokenizedString = detokenizeDataPoolValues(deTokenizedString);
         }
 
         return deTokenizedString;

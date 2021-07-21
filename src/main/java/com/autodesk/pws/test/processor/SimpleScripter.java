@@ -22,47 +22,67 @@ public class SimpleScripter
     
     public static String extractAndResolveSimpleScripts(String simpleScriptLine, String scriptMarkerStart, String scriptMarkerEnd)
 	{
-		String retVal = "";
+    	//  Settting the return value to the original input value
+    	//  in case there *are* no SimpleScript lines embedded 
+    	//  in the string.  That way, we'll return whatever the 
+    	//  original value was that we sent in.  This is appropriate
+    	//  since there will be no script items to resolve and the
+    	//  string is "pre-resolved"...
+		String retVal = simpleScriptLine;
 		
 		boolean keepResolving = true;
 		
 		while(keepResolving)
 		{
-		    int startPoint = simpleScriptLine.indexOf(scriptMarkerStart) + scriptMarkerStart.length();
+			//  Grab the indicies of the marker start and marker end...
+			int startPoint = simpleScriptLine.indexOf(scriptMarkerStart) + scriptMarkerStart.length();
 		    int endPoint = simpleScriptLine.indexOf(scriptMarkerEnd);
 		    
-            String simpleScriptExtract = simpleScriptLine.substring(startPoint, endPoint);
-            
-            debugLog(simpleScriptExtract);
-            debugLog("=====================");
-            
-		    String extractValue = resolve(simpleScriptExtract);
-		    
-		    debugLog(">>>> RESOLVED EXTRACTION VALUE <<<<");
-		    debugLog(extractValue);
-		    debugLog(">>>> --- <<<<");
-		    
-		    String targetToReplace = scriptMarkerStart + simpleScriptExtract + scriptMarkerEnd;
-		    
-		    debugLog(">>>> TARGET TO REPLACE <<<<");
-		    debugLog(targetToReplace);
-		    debugLog(">>>> --- <<<<");
-		   
-		    simpleScriptLine = simpleScriptLine.replace(targetToReplace , extractValue);
-		    
-		    debugLog(">>>> POST REPLACE SOURCE <<<<");
-		    debugLog(simpleScriptLine);
-		    debugLog(">>>> --- <<<<");
-		    
-		    if(simpleScriptLine.contains(scriptMarkerStart) && simpleScriptLine.contains(scriptMarkerEnd))
-		    {
-		        // Do nothing.  We need to keep resolving...
-		        //  keepResolving = false;
-		    }
-		    else
-		    {
-		        keepResolving = false;
-		    }
+		    //  Check to see if the stand/end points exist correctly...
+			if(startPoint > 0 && endPoint > startPoint)
+			{
+				//  If the above evaluations are true, then there is an embeded SimpleScript line somewhere
+				//  in the text fragment.   We will resolve the SimpleScript chunks so long as they are
+				//  detected in the text fragment...
+	            String simpleScriptExtract = simpleScriptLine.substring(startPoint, endPoint);
+	            
+	            debugLog(simpleScriptExtract);
+	            debugLog("=====================");
+	            
+			    String extractValue = resolve(simpleScriptExtract);
+			    
+			    debugLog(">>>> RESOLVED EXTRACTION VALUE <<<<");
+			    debugLog(extractValue);
+			    debugLog(">>>> --- <<<<");
+			    
+			    String targetToReplace = scriptMarkerStart + simpleScriptExtract + scriptMarkerEnd;
+			    
+			    debugLog(">>>> TARGET TO REPLACE <<<<");
+			    debugLog(targetToReplace);
+			    debugLog(">>>> --- <<<<");
+			   
+			    simpleScriptLine = simpleScriptLine.replace(targetToReplace , extractValue);
+			    
+			    debugLog(">>>> POST REPLACE SOURCE <<<<");
+			    debugLog(simpleScriptLine);
+			    debugLog(">>>> --- <<<<");
+			    
+			    //  Do I need to rewrite this to look more like the "if.startpoint/endpoint" check above?
+			    //  Will I run into scenarios where an endpoint occurs before a start point?
+			    if(simpleScriptLine.contains(scriptMarkerStart) && simpleScriptLine.contains(scriptMarkerEnd))
+			    {
+			        // Do nothing.  We need to keep resolving...
+			        //  keepResolving = false;
+			    }
+			    else
+			    {
+			        keepResolving = false;
+			    }
+			}
+			else
+			{
+				keepResolving = false;
+			}
 		}
 	
 		return retVal;
