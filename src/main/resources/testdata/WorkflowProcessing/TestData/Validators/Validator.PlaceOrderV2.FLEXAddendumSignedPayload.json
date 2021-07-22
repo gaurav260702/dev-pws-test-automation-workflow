@@ -1,0 +1,23 @@
+{
+  "ExecuteSireRule": 
+  {
+    "result": {
+      "success": true
+    }
+  },
+
+  "GetOrderStatus": 
+	{
+		"transactionId": "*",
+		"status": "accepted",
+		"message": "Order is accepted.",
+		"statusV1": "accepted",
+		"messageV1": "Order is accepted.",
+		"lastUpdated": "*",
+		"soldToCsn": "*",
+		"salesOrderNumber": "*",
+		"poNumber": "*",
+		"contractNumber": "*",
+		"poType": "ZDOE"
+	}
+}
