@@ -77,6 +77,45 @@ public class WorkflowLibrary
          
     	 return workflow;
     }
+    
+    public static List<StepBase> GenericPlaceOrderWithRenewal()
+    {
+  
+	   	 //  Initial PlaceOrder...
+	   	 List<StepBase> workflow = PlaceOrder();
+	   	 
+	   	 //	 Login to SalesForce and create a Renewal Opportunity
+	   	 workflow.addAll(CreateSalesForceRenewalOpportunity());
+	   	 
+    	 //  AddOn order...
+         workflow.add(new LoadAddOnFilesAndExtractAddOnInfoData());
+         workflow.add(new GetOAuthCredentials());
+         workflow.add(new WaitForGetAssetDetails());
+	   	 
+         //    	 Get the Price for the Renewal SKU
+         workflow.add(new GetSkuPrice());
+	   	 
+         //    	 Place a V2 Renewal Order
+         workflow.add(new PostOrder());
+
+         //    	 Wait for the Renewal OrderStatus to move to "order is under review"
+         workflow.add(new WaitForOrderStatusChange());
+	   	 
+    	 return workflow;
+    }
+    
+    public static List<StepBase> CreateSalesForceRenewalOpportunity()
+    {
+        List<StepBase> workflow = new ArrayList<StepBase>();
+        
+        workflow.add(new OpenSalesForce());
+        workflow.add(new SalesForceLogin());
+        workflow.add(new CreateRenewalOpportunityFromSalesForceId());
+        workflow.add(new CloseBrowser());
+    
+        return workflow;
+    }
+    
 
     public static List<StepBase> PlaceFlexOrder()
     {
