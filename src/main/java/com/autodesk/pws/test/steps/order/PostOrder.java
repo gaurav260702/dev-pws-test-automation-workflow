@@ -52,7 +52,9 @@ public class PostOrder extends PwsServiceBase
 	
 	@Override
 	public void validation()
-	{
+	{    	
+		super.validation();
+	
 		//  Here we would extract any data that needs to be promoted to 
 		//  the DataPool and may be needed by other steps later on...
     	JsonPath pathFinder = JsonPath.with(JsonResponseBody);

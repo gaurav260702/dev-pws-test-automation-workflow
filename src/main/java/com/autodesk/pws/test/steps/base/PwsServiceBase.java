@@ -153,6 +153,11 @@ public class PwsServiceBase extends RestActionBase
     @Override
     public void validation()
     {
+		addResponseToValidationChain();
+    }
+    
+    public void addResponseToValidationChain()
+    {
 		//  Stick that response body in the ValidationChain,
 		//  but let's go ahead and make it puuuurrrdy first.
     	//

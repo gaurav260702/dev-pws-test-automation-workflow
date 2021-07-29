@@ -54,10 +54,26 @@ public class WaitForOrderStatusChange extends StepBase
 				JsonPath pathFinder = JsonPath.from(json);
 				
 				String status = pathFinder.get("status");
+				String faultString = pathFinder.get("fault.faultstring");
+				String statusMsg = pathFinder.getString("message");
 				
-				log("Current status: " + status);
+				if(status == null && faultString != null)
+				{
+					status = "fault";
+				}
 				
-				if(status.matches("accepted") || status.matches("error") || status.matches("failed"))
+				if(statusMsg != null && statusMsg.length() > 0)
+				{
+					statusMsg = " - " + statusMsg;
+				}
+				else
+				{
+					statusMsg = "";
+				}
+				
+				log("Current status: " + status + statusMsg);
+				
+				if(status.matches("accepted") || status.matches("error") || status.matches("failed") || status.matches("fault"))
 				{
 					continueTrying = false;
 					finalStatus = status;
@@ -74,6 +90,7 @@ public class WaitForOrderStatusChange extends StepBase
 		//  cause an alteration of the default workflow...
 		if(!finalStatus.matches(expectedEndStateStatus))
 		{
+			getOrderStatus.addResponseToValidationChain();
 			ExceptionAbortStatus = true;
 			ExceptionMessage = "Expected to reach '" + expectedEndStateStatus + "' state, but ended in '" + finalStatus + "' state!";
 		}
@@ -82,6 +99,8 @@ public class WaitForOrderStatusChange extends StepBase
 	@Override
     public void validation()
     {
+		super.validation();
+		
 		//  We call this here to be sure that the final JsonResponseBody
 		//  is added to the ValidationChain...
 		getOrderStatus.validation();

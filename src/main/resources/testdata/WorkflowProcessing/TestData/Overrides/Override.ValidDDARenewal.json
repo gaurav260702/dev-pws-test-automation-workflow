@@ -1,0 +1,19 @@
+{
+  "action": "Renewal",
+  "opportunityNumber": "A-31603294",
+  "contractNumber": "$CONTRACTNUMBER$",
+  "orderDiscounts": [
+    {
+      "discountId": "A-1671618",
+      "discountType": "DDA"
+    }
+  ],
+  "lineItems": [
+    {
+      "partNumber": "02JI1-005995-L403",
+      "subscriptionReferenceNumber": "567-96369815",
+      "quantity": 1,
+      "netPrice": "{{net_price}}"
+    }
+  ]
+}

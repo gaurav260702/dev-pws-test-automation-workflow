@@ -2,6 +2,7 @@ package com.autodesk.pws.test.workflow;
 
 import com.autodesk.pws.test.steps.authentication.*;
 import com.autodesk.pws.test.steps.base.*;
+import com.autodesk.pws.test.steps.browser.*;
 import com.autodesk.pws.test.steps.informative.*;
 import com.autodesk.pws.test.steps.invoice.*;
 import com.autodesk.pws.test.steps.order.*;

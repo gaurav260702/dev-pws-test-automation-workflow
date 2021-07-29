@@ -1,0 +1,16 @@
+{
+  "baseUrl": "https://enterprise-api-stg.autodesk.com",
+  "oAuthBaseUrl":  "https://enterprise-api-stg.autodesk.com",
+  "baseFile": "./testdata/WorkflowProcessing/TestData/BaseData/IntialOrderV2.DDA.json",
+  "overridesFile": "./testdata/WorkflowProcessing/TestData/Overrides/Override.InitialOrderV2.DDA.json",
+  "renewalRequestFile": "./testdata/WorkflowProcessing/TestData/BaseData/IntialOrderV2.DDA.json",
+  "renewalOverridesFile": "./testdata/WorkflowProcessing/TestData/Overrides/Override.ValidDDARenewal.json",
+  "validationCriteriaFile": "./testdata/WorkflowProcessing/TestData/Validators/Validator.DefaultPlaceOrderV2_DDA_Renewal.NoOverrides.json",
+  "getOrderStatusV2Url": "https://api.ddwsstg.autodesk.com",
+  "salesForceUrl": "https://test.salesforce.com",
+  "salesForceRedirectedUrl": "https://autodesk--adsksfstg.my.salesforce.com/",
+  "secretsFile": "./testdata/WorkflowProcessing/TestData/Configurations/Secrets.GetInvoiceServices.INT.json",
+  "workflow": "GenericPlaceOrderWithRenewal",
+  "tibcoEnvironmentId": "STG",
+  "tibcoUrl": "https://ifdb.autodesk.com"
+}

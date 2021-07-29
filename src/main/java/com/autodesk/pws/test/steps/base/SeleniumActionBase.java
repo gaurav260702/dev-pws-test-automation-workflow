@@ -5,6 +5,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.interactions.Actions;
+//import io.github.bonigarcia.wdm.WebDriverManager
 
 public class SeleniumActionBase extends StepBase
 {
@@ -33,10 +34,21 @@ public class SeleniumActionBase extends StepBase
     
     public void StartChrome(String url, boolean minimizeOnStart)
     {
+    	// Set some Chromedriver  stuff...
+    	System.setProperty("webdriver.chrome.driver", "/usr/local/bin/chromedriver");
+        System.setProperty("webdriver.chrome.logfile", "chromedriver.log");
+        System.setProperty("webdriver.chrome.verboseLogging", "true");
+
+        io.github.bonigarcia.wdm.WebDriverManager.chromedriver().config().setAvoidAutoReset(true);
+        io.github.bonigarcia.wdm.WebDriverManager.chromedriver().clearResolutionCache().forceDownload().setup();
+		
         log("Starting Chrome browser at '" + url +"'...");
         
+        //  Initiate the ChromeDriver...
         BrowserManager = new ChromeDriver();
 
+    	logger.info("beforeTestInitializeChromeDriver() driver:" + BrowserManager);
+        
         if (minimizeOnStart)
         {
         	//  The following doesn't work in Java
@@ -47,6 +59,7 @@ public class SeleniumActionBase extends StepBase
             BrowserManager.manage().window().setPosition(new Point(-2000, 0));
         }
 
+        //  Get thee to an Url-ery!
         NavigateToPage(url);
     }
 
