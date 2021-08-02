@@ -3,7 +3,7 @@
 Documentation and other sundries: 
 * https://wiki.autodesk.com/pages/viewpage.action?spaceKey=PWSEng&title=PWS+-+Workflow+Processing+Engine+-+Documentation+and+Discussion
 
-![Workflow Processing Engine Execution Diagram](https://wiki.autodesk.com/download/attachments/867567388/WorkflowProcessingEngine.png?version=2&modificationDate=1607721171186&api=v2&effects=border-simple,shadow-kn)
+![Workflow Processing Engine Execution Diagram](https://git.autodesk.com/PWS/pws-test-automation-workflow/blob/master/WorkflowProcessingEngineExecutionDiagram.png?version=2&modificationDate=1607721171186&api=v2&effects=border-simple,shadow-kn)
 
 ### Overview
 This project creates the pws automation container based on the [workflow processing engine](https://wiki.autodesk.com/display/PWSEng/PWS+Tech+Info+-+Java+based+Workflow+Engine+for+Test+Framework).
