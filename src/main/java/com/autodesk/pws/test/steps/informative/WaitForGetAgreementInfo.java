@@ -17,10 +17,12 @@ public class WaitForGetAgreementInfo extends StepBase
     public void action()
     {
 		boolean continueTrying = true;
-		Integer maxRetries = 30;
+		Integer maxRetries = 45;
 		Integer msSleepBeforeStatus = 10000;
 		Integer retryCounter = 0;
+		Integer flagForDelaysAt = 25;
 		String status = "Waiting for service syncing and a non-zero length reply...";
+		
 		log("Current status: " + status);
 		
 		while(continueTrying)
@@ -50,6 +52,12 @@ public class WaitForGetAgreementInfo extends StepBase
 			}
 			
 			getAgreementInfo.SuppressLogging = true;
+			
+			if(retryCounter >= flagForDelaysAt)
+			{
+				//  TODO: Create some way of reporting when waiting for the 
+				//        OrderStatusToChange exceeds a reasonable amount of time...
+			}
 		}
 		
 		log("Final status: " + status);

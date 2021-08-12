@@ -1,5 +1,6 @@
 package com.autodesk.pws.test.steps.order;
 
+import com.autodesk.pws.test.processor.DynamicData;
 import com.autodesk.pws.test.steps.base.*;
 import com.google.gson.Gson;
 
@@ -7,6 +8,8 @@ import io.restassured.path.json.JsonPath;
 
 public class PostOrder extends PwsServiceBase
 {    
+	public String OrderInfoDataPoolLabel = "OrderInfo";
+	
     @Override
     public void preparation()
     {
@@ -35,7 +38,8 @@ public class PostOrder extends PwsServiceBase
     	
     	//  Grab the JsonRequestBody...
     	Gson gson = new Gson();
-    	String jsonBody = gson.toJson(DataPool.get("OrderInfo"));
+    	String jsonBody = gson.toJson(DataPool.get(OrderInfoDataPoolLabel));
+    	jsonBody = DynamicData.detokenizeRuntimeValues(jsonBody);
     	this.setJsonRequestBody(jsonBody);
     }
 

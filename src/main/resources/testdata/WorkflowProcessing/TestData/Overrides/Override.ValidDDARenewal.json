@@ -1,7 +1,7 @@
 {
   "action": "Renewal",
-  "opportunityNumber": "A-31603294",
-  "contractNumber": "$CONTRACTNUMBER$",
+  "opportunityNumber": "$OPPORTUNITY_NUMBER$",
+  "contractNumber": "$CONTRACT_NUMBER$",
   "orderDiscounts": [
     {
       "discountId": "A-1671618",
@@ -10,8 +10,8 @@
   ],
   "lineItems": [
     {
-      "partNumber": "02JI1-005995-L403",
-      "subscriptionReferenceNumber": "567-96369815",
+      "partNumber": "C1RK1-002900-L983",
+      "subscriptionReferenceNumber": "$SERIAL_NUMBER$",
       "quantity": 1,
       "netPrice": "{{net_price}}"
     }

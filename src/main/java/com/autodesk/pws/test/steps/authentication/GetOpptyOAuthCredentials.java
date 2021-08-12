@@ -2,7 +2,8 @@ package com.autodesk.pws.test.steps.authentication;
 
 import okhttp3.Response;
 
-public class GetSireOAuthCredentials extends GetOAuthCredentials
+
+public class GetOpptyOAuthCredentials extends GetOAuthCredentials 
 {
 	@Override
 	public void preparation()
@@ -18,9 +19,9 @@ public class GetSireOAuthCredentials extends GetOAuthCredentials
 
 	private void pullDataPoolVariables()
 	{
-		clientId = DataPool.get("sireClientId").toString();
-		clientSecret = DataPool.get("sireClientSecret").toString();
-		BaseUrl = DataPool.get("sireOAuthBaseUrl").toString();
+		clientId = DataPool.get("opptyClientId").toString();
+		clientSecret = DataPool.get("opptyClientSecret").toString();
+		BaseUrl = DataPool.get("opptyOAuthBaseUrl").toString();  //  https://api-sfdc-stg-autodesk.auth.us-east-1.amazoncognito.com
 	}
 
 	public Response getInfo()

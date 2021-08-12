@@ -2,9 +2,9 @@ package com.autodesk.pws.test.workflow;
 
 import com.autodesk.pws.test.steps.authentication.*;
 import com.autodesk.pws.test.steps.base.*;
-import com.autodesk.pws.test.steps.browser.*;
 import com.autodesk.pws.test.steps.informative.*;
 import com.autodesk.pws.test.steps.invoice.*;
+import com.autodesk.pws.test.steps.opportunity.*;
 import com.autodesk.pws.test.steps.order.*;
 import com.autodesk.pws.test.steps.price.*;
 import com.autodesk.pws.test.steps.utility.*;
@@ -89,7 +89,7 @@ public class WorkflowLibrary
 	   	 workflow.addAll(CreateSalesForceRenewalOpportunity());
 	   	 
     	 //  AddOn order...
-         workflow.add(new LoadAddOnFilesAndExtractAddOnInfoData());
+         workflow.add(new LoadRenewalFilesAndExtractData());
          workflow.add(new GetOAuthCredentials());
          workflow.add(new WaitForGetAssetDetails());
 	   	 
@@ -97,7 +97,7 @@ public class WorkflowLibrary
          workflow.add(new GetSkuPrice());
 	   	 
          //    	 Place a V2 Renewal Order
-         workflow.add(new PostOrder());
+         workflow.add(new PostOrderRenewal());
 
          //    	 Wait for the Renewal OrderStatus to move to "order is under review"
          workflow.add(new WaitForOrderStatusChange());
@@ -109,11 +109,15 @@ public class WorkflowLibrary
     {
         List<StepBase> workflow = new ArrayList<StepBase>();
         
-        workflow.add(new OpenSalesForce());
-        workflow.add(new SalesForceLogin());
-        workflow.add(new CreateRenewalOpportunityFromSalesForceId());
-        workflow.add(new CloseBrowser());
+//        workflow.add(new OpenSalesForce());
+//        workflow.add(new SalesForceLogin());
+//        workflow.add(new CreateRenewalOpportunityFromSalesForceId());
+//        workflow.add(new CloseBrowser());
     
+        workflow.add(new GetOpptyOAuthCredentials());
+        workflow.add(new CreateOpptyByAgreementId());
+        workflow.add(new GetOpptyStatusByOpportunityTransactionId());
+         
         return workflow;
     }
     

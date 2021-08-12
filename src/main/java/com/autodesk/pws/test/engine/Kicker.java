@@ -131,6 +131,11 @@ public class Kicker
                 failureCount = executeKickerSuite(filePathArgument);
                 break;
 
+            case "DIR":
+            case "D":
+            case "DIRECTORY":
+            	failureCount = executeKickersInDirectory(filePathArgument);
+            	
             default:
                 logIt("==================================================");
                 logIt("Unknown file type '" + execType + "' in '" + filePathArgument + "'!");
@@ -146,6 +151,43 @@ public class Kicker
 //    {
 //        logIt("KickPack file processing has not yet been implemented...");
 //    }
+    
+    private int executeKickersInDirectory(String kickerDirectory)
+    {
+    	//  Setup a failure count container...
+    	int failureCount = 0;
+    	
+        // Creates an array in which we will store the names of files and directories
+        String[] filePathNames;
+
+        // Creates a new File instance by converting the given pathname string
+        // into an abstract pathname
+        File f = new File(kickerDirectory);
+
+        // Populates the array with names of files and directories
+        filePathNames = f.list();
+
+        // Create an uppercase comparision container...
+        String filePathUpper = "";
+        
+        // For each pathname in the pathnames array
+        for (String filePath : filePathNames) 
+        {
+        	filePathUpper = filePath.toUpperCase();
+          
+        	//  If the file names STARTS WITH Kicker or KickerSuite AND ENDS WITH .json, then execute the kicker file...
+        	if(filePathUpper.startsWith("KICKER.") && filePathUpper.endsWith(".JSON"))
+        	{
+        		failureCount += executeKickerFile(filePath);
+        	}
+        	else if(filePathUpper.startsWith("KICKERSUITE.") && filePathUpper.endsWith(".JSON"))
+        	{
+        		failureCount += executeKickerSuite(filePath);
+        	}
+        }
+    	
+    	return failureCount;
+    }
 
     @SuppressWarnings("unchecked")
 	private int executeKickerSuite(String kickerSuiteFilePath)

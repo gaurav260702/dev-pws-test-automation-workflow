@@ -54,12 +54,12 @@ public class WorkflowProcessingEngine
 	
 	      if (!firstReportMade) 
 		  {
-	        step.log("  ");
-	        step.log("Step execution outline:");
+	        step.logNoPad("  ");
+	        step.logNoPad("Step execution outline:");
 	        firstReportMade = true;
 	      }
 	
-	      step.log("   (" + stepCount + ") -- " + step.getClass().getSimpleName());
+	      step.logNoPad("   (" + stepCount + ") -- " + step.getClass().getSimpleName());
 	    }
 	
 	    // Reset the step counter...
@@ -88,48 +88,48 @@ public class WorkflowProcessingEngine
 				currentStep = step.getClass().getSimpleName();
 				
 				// Log each substep in order...
-				step.log("");
-				step.log("");
-				step.log("Step #" + stepCount + " of " + workflowToExecute.size() + "...");
-				step.log("-------------------------------------------------------------");
-				step.log("EXECUTING STEP: '" + currentStep + "'");
+				step.logNoPad("");
+				step.logNoPad("");
+				step.logNoPad("Step #" + stepCount + " of " + workflowToExecute.size() + "...");
+				step.logNoPad("-------------------------------------------------------------");
+				step.logNoPad("EXECUTING STEP: '" + currentStep + "'");
 				
-				step.log("  -->  Substep: " + currentStep + ".Preparation()");
+				step.logNoPad("  -->  Substep: " + currentStep + ".Preparation()");
 				step.preparation();
 				
 				checkForExceptionAbort(step);
 				
-				step.log("  -->  Substep: " + currentStep + ".Action()");
+				step.logNoPad("  -->  Substep: " + currentStep + ".Action()");
 				step.action();
 
 				checkForExceptionAbort(step);
 				
-				step.log("  -->  Substep: " + currentStep + ".Validation()");
+				step.logNoPad("  -->  Substep: " + currentStep + ".Validation()");
 				step.validation();
 				
 				checkForExceptionAbort(step);
 
-				step.log("  -->  Substep: " + currentStep + ".Cleanup()");
+				step.logNoPad("  -->  Substep: " + currentStep + ".Cleanup()");
 				step.cleanup();
 
 				checkForExceptionAbort(step);
 
-				step.log("'" + currentStep + "' execution time: " + (totalStepTime.getTime() / 1000) + " seconds.");
-				step.log("-------------------------------------------------------------");
+				step.logNoPad("'" + currentStep + "' execution time: " + (totalStepTime.getTime() / 1000) + " seconds.");
+				step.logNoPad("-------------------------------------------------------------");
 				lastStep = step;
 			  } 
 			  catch (Exception ex) 
 			  {
 				// Bad things have happened....
-				step.log("'" + currentStep + "' execution time: " + (totalStepTime.getTime() / 1000) + " seconds.");
+				step.logNoPad("'" + currentStep + "' execution time: " + (totalStepTime.getTime() / 1000) + " seconds.");
 				String errMsg = "FAILURE DURING '" + currentStep + "'!";
-				step.log(errMsg);
+				step.logNoPad(errMsg);
 				
 				String[] exceptionLines = ex.toString().split("\\r?\\n");
 				
 				for(String line: exceptionLines)
 				{
-					step.log(line);					
+					step.logNoPad(line);					
 				}
 
 				throw new Exception(errMsg, ex);
@@ -142,7 +142,7 @@ public class WorkflowProcessingEngine
 		}
 
 		// Log the total test time...
-		lastStep.log("Total workflow execution time: " + (totalTestTime.getTime() / 1000) + " seconds.");
+		lastStep.logNoPad("Total workflow execution time: " + (totalTestTime.getTime() / 1000) + " seconds.");
 	}
 
     private void checkForExceptionAbort(StepBase step) throws Exception 

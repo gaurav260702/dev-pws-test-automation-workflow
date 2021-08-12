@@ -25,6 +25,11 @@ public class WaitForGetAssetDetails extends StepBase
 		String status = "Waiting for service syncing and a non-zero length reply...";
 		log("Current status: " + status);
 		
+		String searchResult = "";
+		String json = "";
+		Object messageObject = null;
+		JsonPath jsonPath = null;
+		
 		while(continueTrying)
 		{
 			sleep(msSleepBeforeStatus);
@@ -45,11 +50,16 @@ public class WaitForGetAssetDetails extends StepBase
 				//  Should these declarations be outside the loop to 
 				//  save CPU time and memory?  I really don't know if 
 				//  Java has under the hood optimizers in these cases...
-				String json = getAssetDetails.JsonResponseBody.trim();
-				JsonPath jsonPath = new JsonPath(json);
-				String searchResult = jsonPath.get("endpointStatus.postgres_assets.message").toString();
+				json = getAssetDetails.JsonResponseBody.trim();
+				jsonPath = new JsonPath(json);
+				messageObject = jsonPath.get("endpointStatus.postgres_assets.message");
 				
-  				if(!searchResult.matches("not found"))
+				if(messageObject != null)
+				{
+					searchResult = messageObject.toString();
+				}
+
+  				if(!searchResult.matches("not found") && searchResult.length() > 0)
 				{
 					continueTrying = false;
 					status = json.length() + " character reply...";

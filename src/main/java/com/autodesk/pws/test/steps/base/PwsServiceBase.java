@@ -11,9 +11,12 @@ public class PwsServiceBase extends RestActionBase
 {
     public String TargetUrl;
     public String ResourcePath;
-    public String JsonResponseBody;
-    private String ServiceVerb = "GET";
-    private String JsonRequestBody = "";
+    public String JsonRequestBody = "";
+    public String JsonResponseBody = "";
+    public String ServiceVerb = "GET";
+    public boolean EnableRetryOnNullResponse = true;
+    public int MaximumNullRetryCountBeforeError = 10;
+    public int MillisecondsBetweenNullResponseRetry = 1000;
     
     @Override
     public void preparation()
@@ -47,7 +50,12 @@ public class PwsServiceBase extends RestActionBase
 		this.BaseUrl = DataPool.get("baseUrl").toString();
 	}
 
-    public void setResourcePath(String defaultPath)
+	public void setResourcePath(String defaultPath)
+	{
+		setResourcePath(defaultPath, false);
+	}
+	
+    public void setResourcePath(String defaultPath, boolean includeDetokenization)
     {
 		//  Setting up a special case here for modified GetInvoiceDetails paths.
 		//  This allows negative testing (dropping "invoice_number" or "customer_number")
@@ -59,6 +67,12 @@ public class PwsServiceBase extends RestActionBase
 		else
 		{
 			ResourcePath = defaultPath;
+		}
+		
+		if(includeDetokenization)
+		{
+			ResourcePath = DataPool.detokenizeDataPoolValues(ResourcePath);
+			ResourcePath = DynamicData.detokenizeRuntimeValues(ResourcePath);
 		}
     }
 	
@@ -106,19 +120,71 @@ public class PwsServiceBase extends RestActionBase
     public void action()
     {
 		//  Call the method that does the meat of the work...
-		Response actionResult = getInfo();
-	    
+		Response actionResult = null;
+		int retryCount = 0;
+		
+		boolean keepTrying = true;
+		boolean retryExceeded = false;
+		
+		//  We're going to keep retrying the
+		//  call until this flag is set to false...
+		while(keepTrying)
+		{
+			//  Grab the info...
+			actionResult = getInfo();
+			
+			//  If actionResult contains something, 
+			//  then set the flag to break the loop...
+			if(actionResult != null)
+			{
+				keepTrying = false;
+			}
+			
+			//  If the Retry flag is set to TRUE and keepTrying is set to TRUE...
+			if(this.EnableRetryOnNullResponse && keepTrying == true)
+			{
+				//  Initiate a retry...
+				retryCount+=1;
+				this.log("Received (" + retryCount + ") of (" + this.MaximumNullRetryCountBeforeError + ") 'null' values for actionResponse.  Retry in '" + this.MillisecondsBetweenNullResponseRetry + "' milliseconds...");
+				this.sleep(this.MillisecondsBetweenNullResponseRetry);
+			}
+			else
+			{
+				//  Otherwise, this is just a single-shot attempt and we
+				//  need to exit the loop and deal with the consequences...
+				keepTrying = false;
+			}
+			
+			//  If the retryCount exceeds the Maximum, set the retryExceeded
+			//  flag to true and we'll deal with it down below...
+			if(retryCount >= this.MaximumNullRetryCountBeforeError)
+			{
+				retryExceeded = true;
+			}
+		}	
+		
 		//  Grab the body of the response (if any)...
 		String rawJson = "";
 		
 		try 
 		{
-			rawJson = actionResult.body().string();
+			//  If there was no retry exception, try and grab
+			//  the JSON body and get ready to return it...
+			if(!retryExceeded)
+			{
+				rawJson = actionResult.body().string();
+			}
+			else
+			{
+				//  Otherwise, throw an exception with a custom message...
+				Exception retryExceededError = new Exception("Exceeded maximum retry count of (" + this.MaximumNullRetryCountBeforeError + ")!");
+				throw retryExceededError;
+			}
 		} 
-		catch (IOException e) 
+		catch (Exception e) 
 		{
+			//  GET READY FOR THE BIG-BAD BEAUTIFUL BARF-O-RAMA, KIDDIES!
 			logErr(e, this.ClassName, "action");
-			//  TODO: Copy this pattern into similar occasions...
 			throw new RuntimeException(e);
 		}
 

@@ -10,6 +10,8 @@ public class StepBase
 {
     protected final Logger logger = LoggerFactory.getLogger(StepBase.class);
 
+    public static final int DEFAULT_LEFT_SPACE_PADDING = 7;
+    
     public DataPool DataPool;
     public static Object ActionManager;
     public boolean BypassValidationChainLogging;
@@ -63,17 +65,39 @@ public class StepBase
 		//throw ex;
     }
 
-    public void log(String msgToLog)
+    public void logNoPad(String msgToLog)
+    {
+    	log(msgToLog, 0);
+    }
+    
+    public void log(String msgToLog, int indentSpace)
     {
     	if(!SuppressLogging)
     	{
+    		String leftPad = "";
+    		
+    		if(indentSpace > 0)
+    		{
+    			leftPad = padLeft(" ", indentSpace);
+    		}
+    		
     		String lines[] = msgToLog.split("\\r?\\n");
     		
     		for(String line : lines)
     		{
-    			logger.info(line);
+    			logger.info(leftPad + line);
     		}
     	}
+    }
+    
+    private String padLeft(String s, int n) 
+    {
+        return String.format("%" + n + "s", s);  
+    }
+    
+    public void log(String msgToLog)
+    {
+    	log(msgToLog, DEFAULT_LEFT_SPACE_PADDING);
     }
 
     public String dumpDataPool()

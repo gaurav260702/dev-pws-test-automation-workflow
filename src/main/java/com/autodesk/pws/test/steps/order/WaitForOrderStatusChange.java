@@ -27,7 +27,8 @@ public class WaitForOrderStatusChange extends StepBase
     public void action()
     {
 		boolean continueTrying = true;
-		Integer maxRetries = 30;
+		Integer maxRetries = 60;
+		Integer flagForDelaysAt = 25;
 		Integer msSleepBeforeStatus = 10000;
 		Integer retryCounter = 0;
 		String finalStatus = "none";
@@ -71,12 +72,29 @@ public class WaitForOrderStatusChange extends StepBase
 					statusMsg = "";
 				}
 				
+				if(statusMsg.contains("Order is under review"))
+				{
+					status = "review";
+				}
+				
 				log("Current status: " + status + statusMsg);
 				
-				if(status.matches("accepted") || status.matches("error") || status.matches("failed") || status.matches("fault"))
+				if(
+					status.matches("accepted") || 
+					status.matches("error") || 
+					status.matches("failed") || 
+					status.matches("fault") ||
+			   		status.matches("review")
+				   )
 				{
 					continueTrying = false;
 					finalStatus = status;
+				}
+				
+				if(retryCounter >= flagForDelaysAt)
+				{
+					//  TODO: Create some way of reporting when waiting for the 
+					//        OrderStatusToChange exceeds a reasonable amount of time...
 				}
 			}
 			

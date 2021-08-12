@@ -68,7 +68,7 @@ public class RestActionBase extends StepBase
     {
         if (!BypassValidationChainLogging)
         {
-            log("       Adding '" + validationLabel + "' to validation chain...");
+            log("Adding '" + validationLabel + "' to validation chain...");
             DataPool.addToValidationChain(validationLabel, dataToValidate);
         }
     }
@@ -138,7 +138,7 @@ public class RestActionBase extends StepBase
 		//  Prepare a body container in case it's needed...
 		RequestBody body = null;
 		
-		log("       Target URL: " + restResourcePath);
+		log("Target URL: " + restResourcePath);
 
 		if(restMethod.toUpperCase() == "POST")
 		{
@@ -171,7 +171,7 @@ public class RestActionBase extends StepBase
 						ObjectMapper objectMapper = new ObjectMapper();
 						JsonNode jsonNode = objectMapper.readValue(payload, JsonNode.class);
 
-						log("       Payload: " + jsonNode.toString());
+						log("Payload: " + jsonNode.toString());
 					}
 					
 					body = RequestBody.create(mediaType, payload);
