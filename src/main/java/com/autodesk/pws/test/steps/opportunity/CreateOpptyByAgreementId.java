@@ -68,16 +68,52 @@ public class CreateOpptyByAgreementId extends PwsServiceBase
 		
 		Response response = null;
 
+		boolean keepTrying = true;
+		int retryCount = 0;
+		int maxRetries = 30;
+		int millisecondsSleepBetweenRetries = 10000;
+		boolean successful = false;
+		
 		try
 		{
 			String targetUrl = BaseUrl + this.ResourcePath;
-			response = getRestResponse("POST", targetUrl, JsonRequestBody);
+			
+			while(keepTrying)
+			{
+				log("Attempt (" + retryCount +1 + ") of " + maxRetries + "...");
+
+				response = getRestResponse("POST", targetUrl, JsonRequestBody);
+				
+				if(response.code() == 200)
+				{
+					successful = true;
+					keepTrying = false;
+				}
+				else
+				{
+					log("Status: " + response.code() + " -- " + response.message());
+					retryCount +=1;
+					sleep(millisecondsSleepBetweenRetries);
+					
+				}
+				
+				if(retryCount >= maxRetries)
+				{
+					keepTrying = false;
+				}
+			}
 		}
 		catch (Exception e)
 		{
 			logErr(e, this.ClassName, "getInfo");
 	    }
 
+		if(!successful)
+		{
+			this.ExceptionAbortStatus = true;
+			this.ExceptionMessage = "Unable to create new opportunity after (" + retryCount + ") attempts!";
+		}
+		
 		return response;
 	}
 		  

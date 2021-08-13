@@ -136,6 +136,12 @@ public class DataPool extends HashMap<String, Object>
         if (StepLogger != null)
         {
         	String msg = actionType + " [" + key + "]: " + padRight(value.toString(), 80, ' ').substring(0, 80).trim();
+        	
+        	if(previousValue.length() > 0)
+        	{
+        		msg = msg + " -- Previous: " + padRight(previousValue.toString(), 80, ' ').substring(0, 80).trim();
+        	}
+        	
             StepLogger.log(msg);
         }
     }

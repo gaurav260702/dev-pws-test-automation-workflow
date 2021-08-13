@@ -11,12 +11,16 @@ public class WaitForGetAgreementInfo extends StepBase
     {
 		getAgreementInfo.DataPool = this.DataPool;
 		getAgreementInfo.preparation();
+		//  We want to turn auto retry off because we'll
+		//  be managing the retries ourselves...
+		getAgreementInfo.EnableRetryOnNullResponse = false;
     }
 
 	@Override
     public void action()
     {
 		boolean continueTrying = true;
+		boolean retryTimeout = false;
 		Integer maxRetries = 45;
 		Integer msSleepBeforeStatus = 10000;
 		Integer retryCounter = 0;
@@ -34,12 +38,13 @@ public class WaitForGetAgreementInfo extends StepBase
 			if(retryCounter >= maxRetries)
 			{
 				continueTrying = false;
+				retryTimeout = true;
 				status =  "Timed out waiting for a non-zero length reply!";
 			}
 			else
 			{
 				log("Attempt (" + retryCounter + ") of (" + maxRetries + ")...");
-				
+			
 				getAgreementInfo.action();
 				
 				String json = getAgreementInfo.JsonResponseBody.trim();
@@ -58,6 +63,12 @@ public class WaitForGetAgreementInfo extends StepBase
 				//  TODO: Create some way of reporting when waiting for the 
 				//        OrderStatusToChange exceeds a reasonable amount of time...
 			}
+		}
+		
+		if(retryTimeout)
+		{
+			this.ExceptionAbortStatus = true;
+			this.ExceptionMessage = status;
 		}
 		
 		log("Final status: " + status);

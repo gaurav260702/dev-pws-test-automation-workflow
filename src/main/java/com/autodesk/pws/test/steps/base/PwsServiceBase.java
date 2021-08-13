@@ -141,7 +141,7 @@ public class PwsServiceBase extends RestActionBase
 			}
 			
 			//  If the Retry flag is set to TRUE and keepTrying is set to TRUE...
-			if(this.EnableRetryOnNullResponse && keepTrying == true)
+			if(EnableRetryOnNullResponse && keepTrying == true)
 			{
 				//  Initiate a retry...
 				retryCount+=1;
@@ -157,7 +157,7 @@ public class PwsServiceBase extends RestActionBase
 			
 			//  If the retryCount exceeds the Maximum, set the retryExceeded
 			//  flag to true and we'll deal with it down below...
-			if(retryCount >= this.MaximumNullRetryCountBeforeError)
+			if(EnableRetryOnNullResponse && retryCount >= this.MaximumNullRetryCountBeforeError)
 			{
 				retryExceeded = true;
 			}
