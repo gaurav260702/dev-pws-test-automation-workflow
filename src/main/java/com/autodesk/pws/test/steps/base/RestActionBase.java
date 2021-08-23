@@ -25,13 +25,17 @@ import okhttp3.Response;
 
 public class RestActionBase extends StepBase
 {
-    // Note: Regarding Instance fields always keep it private, if a class extends and if they are
-    // required in other class(s) keep them as protected
+	public String BaseUrl;
+	public String TargetUrl;
+    public String ResourcePath;
+    public String JsonRequestBody = "";
+    public String JsonResponseBody = "";
+    public String ServiceVerb = "GET";
+    
     protected String clientId;
     protected String clientSecret;
     protected String callBackUrl;
-    public String BaseUrl;
-
+    
     public HashMap<String, String> RequestHeaders = new HashMap<String, String>();
 
     public void initBaseVariables()
@@ -68,7 +72,7 @@ public class RestActionBase extends StepBase
     {
         if (!BypassValidationChainLogging)
         {
-            log("       Adding '" + validationLabel + "' to validation chain...");
+            log("Adding '" + validationLabel + "' to validation chain...");
             DataPool.addToValidationChain(validationLabel, dataToValidate);
         }
     }
@@ -138,7 +142,7 @@ public class RestActionBase extends StepBase
 		//  Prepare a body container in case it's needed...
 		RequestBody body = null;
 		
-		log("       Target URL: " + restResourcePath);
+		log("Target URL: " + restResourcePath);
 
 		if(restMethod.toUpperCase() == "POST")
 		{
@@ -171,7 +175,7 @@ public class RestActionBase extends StepBase
 						ObjectMapper objectMapper = new ObjectMapper();
 						JsonNode jsonNode = objectMapper.readValue(payload, JsonNode.class);
 
-						log("       Payload: " + jsonNode.toString());
+						log("Payload: " + jsonNode.toString());
 					}
 					
 					body = RequestBody.create(mediaType, payload);
@@ -210,6 +214,22 @@ public class RestActionBase extends StepBase
 		//  Hand back to the caller whatever we received from the REST service...
 		return response;
 	}
+	
+    public void addResponseToValidationChain()
+    {
+		//  Stick that response body in the ValidationChain,
+		//  but let's go ahead and make it puuuurrrdy first.
+    	//
+    	//  Also, we're doing this here on the off chance that
+    	//  the class is part of a "WaitFor*Change" style loop.
+    	//
+    	//  If we were to include it as part of the "action()"
+    	//  method, it would be called 'n' number of times, 
+    	//  which is of course a bit excessive...
+		JsonPath jsonPath = JsonPath.from(JsonResponseBody);
+		String prettyJson = jsonPath.prettify();
+		addValidationChainLink(ClassName, prettyJson);
+    }
 
     private String hack_CleanQuantityFloatType(String rawJson)
     {	    	
