@@ -91,16 +91,18 @@ public class WorkflowLibrary
     	 //  AddOn order...
          workflow.add(new LoadRenewalFilesAndExtractData());
          workflow.add(new GetOAuthCredentials());
+         workflow.add(new GetOpportunityInfoByOpptyId());
          workflow.add(new WaitForGetAssetDetails());
 	   	 
          //    	 Get the Price for the Renewal SKU
+         workflow.add(new GetOAuthCredentials());
          workflow.add(new GetSkuPrice());
 	   	 
          //    	 Place a V2 Renewal Order
          workflow.add(new PostOrderRenewal());
 
          //    	 Wait for the Renewal OrderStatus to move to "order is under review"
-         workflow.add(new WaitForOrderStatusChange());
+         workflow.add(new WaitForOrderStatusChange2ndPass());
 	   	 
     	 return workflow;
     }
@@ -117,7 +119,7 @@ public class WorkflowLibrary
         workflow.add(new GetOpptyOAuthCredentials());
         workflow.add(new CreateOpptyByAgreementId());
         workflow.add(new GetOpptyStatusByOpportunityTransactionId());
-         
+        
         return workflow;
     }
     

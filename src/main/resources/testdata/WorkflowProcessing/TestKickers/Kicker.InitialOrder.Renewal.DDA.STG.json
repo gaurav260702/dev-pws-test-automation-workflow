@@ -1,0 +1,22 @@
+{
+  "$ROOT$": "./testdata/WorkflowProcessing/TestData",
+  "$ENV$": "STG",
+
+  "baseUrl": "https://enterprise-api-$ENV$.autodesk.com",
+  "oAuthBaseUrl":  "https://enterprise-api-$ENV$.autodesk.com",
+
+  "baseFile": "$ROOT$/BaseData/IntialOrderV2.DDA.json",
+  "overridesFile": "$ROOT$/Overrides/Override.InitialOrderV2.DDA.json",
+
+  "renewalRequestFile": "$ROOT$/BaseData/IntialOrderV2.DDA.json",
+  "renewalOverridesFile": "$ROOT$/Overrides/Override.ValidDDARenewal.json",
+
+  "validationFile": "$ROOT$/Validators/Validator.InitialOrder.DDA_SecondSubmission.$ENV$.json",
+
+  "getOrderStatusV2Url": "https://api.ddws$ENV$.autodesk.com",
+  "secretsFile": "$ROOT$/Configurations/Secrets.GetInvoiceServices.INT.json",
+  "workflow": "GenericPlaceOrderWithRenewal",
+  "opptyServiceBaseUrl": "https://api.sfdc-$ENV$.autodesk.com",
+  "opptyOAuthBaseUrl": "https://api-sfdc-$ENV$-autodesk.auth.us-east-1.amazoncognito.com",
+  "WaitForOrderStatusChange2ndPass.expectedEndStateStatus": "review"
+}

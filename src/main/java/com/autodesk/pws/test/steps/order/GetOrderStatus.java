@@ -37,6 +37,8 @@ public class GetOrderStatus extends PwsServiceBase
 	@Override
 	public void validation()
 	{
+		addResponseToValidationChain();
+		
 		extractDataFromJsonAndAddToDataPool("$CONTRACT_NUMBER$", "contractNumber");
 		extractDataFromJsonAndAddToDataPool("$SALES_ORDER_NUMBER$", "salesOrderNumber");
 	}

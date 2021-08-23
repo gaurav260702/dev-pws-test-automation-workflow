@@ -9,11 +9,6 @@ import okhttp3.Response;
 
 public class PwsServiceBase extends RestActionBase
 {
-    public String TargetUrl;
-    public String ResourcePath;
-    public String JsonRequestBody = "";
-    public String JsonResponseBody = "";
-    public String ServiceVerb = "GET";
     public boolean EnableRetryOnNullResponse = true;
     public int MaximumNullRetryCountBeforeError = 10;
     public int MillisecondsBetweenNullResponseRetry = 1000;
@@ -76,7 +71,7 @@ public class PwsServiceBase extends RestActionBase
 		}
     }
 	
-	private void setTargetUrl()
+	public void setTargetUrl()
     {
 		//  Set the resourceURL for the REST service...
 		// https://invoice.ddwsint.autodesk.com
@@ -220,22 +215,6 @@ public class PwsServiceBase extends RestActionBase
     public void validation()
     {
 		addResponseToValidationChain();
-    }
-    
-    public void addResponseToValidationChain()
-    {
-		//  Stick that response body in the ValidationChain,
-		//  but let's go ahead and make it puuuurrrdy first.
-    	//
-    	//  Also, we're doing this here on the off chance that
-    	//  the class is part of a "WaitFor*Change" style loop.
-    	//
-    	//  If we were to include it as part of the "action()"
-    	//  method, it would be called 'n' number of times, 
-    	//  which is of course a bit excessive...
-		JsonPath jsonPath = JsonPath.from(JsonResponseBody);
-		String prettyJson = jsonPath.prettify();
-		addValidationChainLink(ClassName, prettyJson);
     }
     
     public void extractDataFromJsonAndAddToDataPool(String dataPoolLabel, String jsonPath)

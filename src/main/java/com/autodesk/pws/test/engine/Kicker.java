@@ -317,9 +317,17 @@ public class Kicker
         logIt("Full file path: " + kickerFilePath);
 
         //  Load in test params as DataPool data...
-        //JsonPath testKicker = loadTestKickerAsDataPoolData(kickerFilePath);
         loadTestKickerAsDataPoolData(kickerFilePath);
-
+        
+        //  Now detokenize any token references in the values of the DataPool...
+        detokenizeDataPool();
+        
+        //  Load any "secretsFile" references in the DataPool...
+        loadSecretsFilesFromDataPool();
+        
+        //  Now detokenize any token references that came in with the SecretsFile...
+        detokenizeDataPool();
+        
         //  Load the WorkflowProcessingEngine...
         WorkflowProcessingEngine workflowProcEngine = new WorkflowProcessingEngine();
 
@@ -330,81 +338,177 @@ public class Kicker
         //  Prepare a 'validationResults' container...
         HashMap<String, Object> validationResults = new HashMap<String, Object>();
 
+        //  Prep a flag to mark if the workflow succesfully completed...
+        Boolean workflowCompleted = false;
+        
+        //  Prep a flag to mark if the validations succesfully completed...
+        Boolean validationsCompleted = false;
+        
         try
         {
             //  Execute the workflow steps...
-            workflowProcEngine.execute(workflow, dataPool);
+            workflowCompleted = workflowProcEngine.execute(workflow, dataPool);
 
             logIt("  ");
             logIt("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
-            logIt("Beginning validations...");
-
-            //  Do the validations...
-            String validationFile = dataPool.get("validationFile").toString();
-            validationResults = doValidations(validationFile);
+            
+            if(workflowCompleted)
+            {
+	            logIt("Beginning validations...");
+	
+	            //  Get the validation relative file path from the data pool...
+	            String validationFile = dataPool.get("validationFile").toString();
+	            
+	            //  Check to see if the validation file exists, and...
+	            if(fileExists(validationFile))
+	            {
+		            //  If it exists, theb do the validations...
+	            	validationResults = doValidations(validationFile);
+	            	validationsCompleted = true;
+	            }
+	            else
+	            {
+	            	// If it doesn't, return a exitCode indicasting a failure...
+		            logIt("Validation file cannot be found.  Skipping validations.");
+		            exitCode = -1;
+	            }
+            }
+            else
+            {
+	            logIt("Workflow failed to complete.  Skipping validations.");
+	            exitCode = -1;
+            }
         }
         catch (Exception ex)
         {
         	//  Dump all the DataPool data...
-        	doDataDump(ex);
+        	dumpDataPool(ex);
 
-        	//  TODO:  Look into "throw ex" and reconfiguring what the method throws...
             //  Set the Exit Code..
             exitCode = -1;
         }
 
-        int validationCount = (int) validationResults.get("ValidationCount");
-        int failCount = (int) validationResults.get("FailCount");
-        int passCount =(int)  validationResults.get("PassCount");
-
-        //  Removing this for now as it creates some problematic logging...
-//        if(failCount > 0)
-//        {
-//        	Exception ex = new Exception("Validation failure count of (" + failCount + ")!");
-//        	doDataDump(ex);
-//        }
-
-        logIt("  ");
-        logIt("-----------------------------------------------------------------------------------------------");
-        logIt("-----------------------------------------------------------------------------------------------");
-        logIt("-----------------------------------   VALIDATION RESULTS   ------------------------------------");
-        logIt("Validation Total: " + validationCount);
-        logIt("Failure Count:    " + failCount);
-        logIt("Pass Count:       " + passCount);
-
-        if(failCount > 0)
+        //  Check to see if the workflow actually completed.
+        if(workflowCompleted && validationsCompleted)
         {
-        	dumpValidationList(validationResults.get("ValidationList"));
+            //  If the workflow did complete, we're going 
+        	//  to report out all the validation stuff...
+        	int validationCount = (int) validationResults.get("ValidationCount");
+	        int failCount = (int) validationResults.get("FailCount");
+	        int passCount =(int)  validationResults.get("PassCount");
+	
+	        logIt("  ");
+	        logIt("-----------------------------------------------------------------------------------------------");
+	        logIt("-----------------------------------------------------------------------------------------------");
+	        logIt("-----------------------------------   VALIDATION RESULTS   ------------------------------------");
+	        logIt("Validation Total: " + validationCount);
+	        logIt("Failure Count:    " + failCount);
+	        logIt("Pass Count:       " + passCount);
+	
+	        if(failCount > 0)
+	        {
+	        	dumpValidationList(validationResults.get("ValidationList"));
+	        }
+	
+	        logIt("-----------------------------------------------------------------------------------------------");
+	        logIt("-----------------------------------------------------------------------------------------------");
+	
+	        if ((validationResults.size() == 0 || ((int) validationResults.get("FailCount")) > 0))
+	        {
+	            exitCode = -1;
+	        }
+	
+	        logTestEndTime();
+	
+	        if(failCount > 0)
+	        {
+	        	dumpDataPool();
+	        }
         }
-
-        logIt("-----------------------------------------------------------------------------------------------");
-        logIt("-----------------------------------------------------------------------------------------------");
-
-        if ((validationResults.size() == 0 || ((int) validationResults.get("FailCount")) > 0))
+        else
         {
-            exitCode = -1;
-        }
-
-        //  Log the test end time...
-        logIt("====================================================");
-        logIt("Test end time: " + getCurrentTime());
-        logIt("===================================================="); // + newLine);
-        logIt("  ");
-
-        if(failCount > 0)
-        {
-        	doDataDump();
+        	logTestEndTime();
+        	//  Looks like the workflow didn't complete succesfully.
+        	//  Better do a data pool dump...
+        	dumpDataPool();
         }
         
         return exitCode;
     }
 
-    private void doDataDump()
+    private boolean fileExists(String relativeFilePath) 
     {
-    	doDataDump(null);
+    	relativeFilePath = DynamicData.convertRelativePathToFullPath(relativeFilePath);
+        File fileCheck = new File(relativeFilePath);
+        return fileCheck.exists();
+	}
+
+	private void logTestEndTime() 
+    {
+        //  Log the test end time...
+        logIt("====================================================");
+        logIt("Test end time: " + getCurrentTime());
+        logIt("===================================================="); // + newLine);
+        logIt("  ");
     }
 
-    private void doDataDump(Exception ex)
+	private void loadSecretsFilesFromDataPool() 
+    {
+    	//  Prep a container for the list of secretsFiles we may discover...
+    	ArrayList<String> secretsFilesToLoad = new ArrayList<String>();
+    	
+    	//  We'll have to add any secretsFiles we discover in the array
+    	//  above because Java will throw a concurrency error if we attempt
+    	//  to operate on the DataPool while it's being iterated over...
+        dataPool.
+			forEach(
+						(keyName, value) ->
+						{							
+							//  If we find a "secretsFile", add it to the list...
+					        if (keyName.contains("secretsFile"))
+					        {
+					        	secretsFilesToLoad.add(value.toString());
+					        }
+						}
+					);
+        
+        //  Iterate over the secrets files list...
+        secretsFilesToLoad
+        	.forEach(
+				        //  If we find a "secretsFile" key, load up the path
+				        //  like it was any other "testKicker" file.  This
+						//  will result in the contents of the secretsFile
+						//  simply being loaded into the DataPool as keyVals...
+        				secretsFile -> loadTestKickerAsDataPoolData(secretsFile, false)
+        			);
+	}
+
+	private void detokenizeDataPool() 
+    {
+        dataPool.
+			forEach(
+						(key, value) ->
+						{
+					        //  Grab the value in the pair...
+							String detokenizedValue = value.toString();
+							
+							//  Detokenize the value (this is forward only)...
+							detokenizedValue = dataPool.detokenizeDataPoolValues(detokenizedValue);
+							
+							if(detokenizedValue != value.toString())
+							{
+								dataPool.add(key, detokenizedValue);
+							}
+						}
+					);
+	}
+
+	private void dumpDataPool()
+    {
+    	dumpDataPool(null);
+    }
+
+    private void dumpDataPool(Exception ex)
     {
     	if(ex != null)
     	{
@@ -785,30 +889,21 @@ public class Kicker
     	//  Loop through all the items in the 'testKicker' object...
     	testKickerKeyVals.
     		forEach(
-    				(keyName, value) ->
-    				{
-		                //  Add each item to the DataPool as key-val...
-		                dataPool.put(keyName, value.toString());
-
-		                if(logValues)
-		                {
-		                	logIt("   --> " + keyName + ": " + value.toString());
-		                }
-		                else
-		                {
-		                	logIt("   --> " + keyName + ": *****************");
-		                }
-		                //  In the special case that the item key happens
-		                //  to be a "secretsFile" path, load it up and
-		                //  recursively enter this method again, treating it
-		                //  like it was any other "testKicker" file...
-		                if (keyName.contains("secretsFile"))
-		                {
-		                    //  JsonPath secretsData = DynamicData.LoadJsonFile(paramItem.Value.toString());
-		                    loadTestKickerAsDataPoolData(value.toString(), false);
-		                }
-	                }
-				   );
+	    				(keyName, value) ->
+		    				{
+				                //  Add each item to the DataPool as key-val...
+				                dataPool.put(keyName, value.toString());
+		
+				                if(logValues)
+				                {
+				                	logIt("   --> " + keyName + ": " + value.toString());
+				                }
+				                else
+				                {
+				                	logIt("   --> " + keyName + ": *****************");
+				                }
+			                }
+				    );
     }
 
     private void logIt(String msg)

@@ -19,10 +19,13 @@ public class WaitForGetAssetDetails extends StepBase
     public void action()
     {
 		boolean continueTrying = true;
-		Integer maxRetries = 30;
+		Integer maxRetries = 45;
 		Integer msSleepBeforeStatus = 10000;
 		Integer retryCounter = 0;
+		boolean retriesExceeded = false;
 		String status = "Waiting for service syncing and a non-zero length reply...";
+		String statusMsg = "";
+		
 		log("Current status: " + status);
 		
 		String searchResult = "";
@@ -39,10 +42,13 @@ public class WaitForGetAssetDetails extends StepBase
 			if(retryCounter >= maxRetries)
 			{
 				continueTrying = false;
-				status =  "Timed out waiting for a non-zero length reply!";
+				status =  "Timed out waiting for a non-zero length reply after (" + maxRetries + ") attempts!";
+				retriesExceeded = true;
 			}
 			else
 			{
+				statusMsg = "[none]";
+				
 				log("Attempt (" + retryCounter + ") of (" + maxRetries + ")...");
 				
 				getAssetDetails.action();
@@ -57,6 +63,7 @@ public class WaitForGetAssetDetails extends StepBase
 				if(messageObject != null)
 				{
 					searchResult = messageObject.toString();
+					statusMsg = searchResult;
 				}
 
   				if(!searchResult.matches("not found") && searchResult.length() > 0)
@@ -66,10 +73,18 @@ public class WaitForGetAssetDetails extends StepBase
 				}
 			}
 			
+			log("WaitForGetAssetDetails status: " + status + " --  " + statusMsg);
+			
 			getAssetDetails.SuppressLogging = true;
 		}
 		
 		log("Final status: " + status);
+		
+		if(retriesExceeded)
+		{
+			this.ExceptionAbortStatus = true;
+			this.ExceptionMessage = status;
+		}
     }
 
 	@Override

@@ -1,18 +1,22 @@
 package com.autodesk.pws.test.engine;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
-import java.util.TimeZone;
 import org.apache.commons.lang3.time.StopWatch;
 import com.autodesk.pws.test.steps.base.*;
 
 public class WorkflowProcessingEngine 
 {
     // Psuedo-globally available data container for all test steps and validations...
-    private DataPool dataPool; // { get; private set; }
-
+    private DataPool dataPool; 
+    
+    // Prep a flag to mark ExceptionAborts...
+    private Boolean isForcedExceptionAbort = false;
+    
+	//  Prep a "testCompleted" flag to return.
+	//  We're going to assume it did unless
+	//  something baaaaad happens...
+    private Boolean workflowCompleted = true;
+    
     //////////////////////////////////////////////////////////////////////////////
     // TODO:  Implement routines to handle "ExceptionAbortStatus"!!
     //        This should come between each substep (preparation, action, 
@@ -20,8 +24,8 @@ public class WorkflowProcessingEngine
     //        detection (with options to report out states and messages)...
     //////////////////////////////////////////////////////////////////////////////
     
-    public void execute(List<StepBase> workflowToExecute, DataPool localDataPool) throws Exception 
-    {
+    public boolean execute(List<StepBase> workflowToExecute, DataPool localDataPool) throws Exception 
+    {    	
 	    // Prep a container for the current step name...
 	    String currentStep = "";
 	
@@ -34,6 +38,7 @@ public class WorkflowProcessingEngine
 	
 	    // Prep a container for a lastStep reference...
 	    StepBase lastStep = null;
+	    
 	    // Prep a container for looping through..
 	    StepBase step = null;
 	
@@ -43,7 +48,7 @@ public class WorkflowProcessingEngine
 	    // We need this flag so we can properly utilize
 	    // the step.logger() method in the loop below...
 	    Boolean firstReportMade = false;
-	
+	    
 	    // Report out intended step execution...
 	    for (int i = 0; i < workflowToExecute.size(); i++) 
 		{
@@ -97,22 +102,34 @@ public class WorkflowProcessingEngine
 				step.logNoPad("  -->  Substep: " + currentStep + ".Preparation()");
 				step.preparation();
 				
-				checkForExceptionAbort(step);
+				if(checkForExceptionAbort(step))
+				{
+					break;
+				}
 				
 				step.logNoPad("  -->  Substep: " + currentStep + ".Action()");
 				step.action();
 
-				checkForExceptionAbort(step);
+				if(checkForExceptionAbort(step))
+				{
+					break;
+				}
 				
 				step.logNoPad("  -->  Substep: " + currentStep + ".Validation()");
 				step.validation();
 				
-				checkForExceptionAbort(step);
+				if(checkForExceptionAbort(step))
+				{
+					break;
+				}
 
 				step.logNoPad("  -->  Substep: " + currentStep + ".Cleanup()");
 				step.cleanup();
 
-				checkForExceptionAbort(step);
+				if(checkForExceptionAbort(step))
+				{
+					break;
+				}
 
 				step.logNoPad("'" + currentStep + "' execution time: " + (totalStepTime.getTime() / 1000) + " seconds.");
 				step.logNoPad("-------------------------------------------------------------");
@@ -120,50 +137,67 @@ public class WorkflowProcessingEngine
 			  } 
 			  catch (Exception ex) 
 			  {
-				// Bad things have happened....
-				step.logNoPad("'" + currentStep + "' execution time: " + (totalStepTime.getTime() / 1000) + " seconds.");
-				String errMsg = "FAILURE DURING '" + currentStep + "'!";
-				step.logNoPad(errMsg);
-				
-				String[] exceptionLines = ex.toString().split("\\r?\\n");
-				
-				for(String line: exceptionLines)
-				{
-					step.logNoPad(line);					
-				}
-
-				throw new Exception(errMsg, ex);
+				  // Bad things have happened....
+				  step.logNoPad("'" + currentStep + "' execution time: " + (totalStepTime.getTime() / 1000) + " seconds.");
+				  String errMsg = "FAILURE DURING '" + currentStep + "'!";
+				  step.logNoPad(errMsg);
+					
+				  String[] exceptionLines = ex.toString().split("\\r?\\n");
+					
+				  for(String line: exceptionLines)
+				  {
+					  step.logNoPad(line);					
+				  }
+					
+				  if(isForcedExceptionAbort == true)
+				  {
+					  //  Exit "gracefullly"... ;-)
+					  break;
+				  }
+				  else
+				  {
+					  throw new Exception(errMsg, ex);
+				  }
 			  } 
 			  finally 
 			  {
-				String subStepTestTime = (totalTestTime.getTime() / 1000) + "";
-				dataPool.add(currentStep + "TestTime", subStepTestTime);
+				  String subStepTestTime = (totalStepTime.getTime() / 1000) + "";
+				  dataPool.add(currentStep + "TestTime", subStepTestTime);
 			  }
 		}
 
 		// Log the total test time...
 		lastStep.logNoPad("Total workflow execution time: " + (totalTestTime.getTime() / 1000) + " seconds.");
+		
+		return workflowCompleted;
 	}
 
-    private void checkForExceptionAbort(StepBase step) throws Exception 
+    private Boolean checkForExceptionAbort(StepBase step) throws Exception 
     {
+    	Boolean retVal = false;
+    	
     	if(step.ExceptionAbortStatus)
     	{
-			throw new Exception("CONTROLLED WORKFLOW EXECUTION ERROR! " + step.LineMark + step.ExceptionMessage);
+    		retVal = true;
+    		isForcedExceptionAbort = true;
+    		workflowCompleted = false;
+    		step.logNoPad("CONTROLLED WORKFLOW EXCEPTION ABORT! " + step.LineMark + step.ExceptionMessage);
     	}
+    	
+    	return retVal;
     }
 
-// When this is fixed, it will solve the issue above of
-  // converting the total test execution time to seconds...
-  @SuppressWarnings("unused")
-  private String convertLongToTimeString(Long timeToConvert) 
-  {
-    Date date = new Date(timeToConvert);
-    DateFormat formatter = new SimpleDateFormat("HH:mm:ss.SSS");
-    formatter.setTimeZone(TimeZone.getTimeZone("UTC"));
-    String dateFormatted = formatter.format(date);
-
-    return dateFormatted;
-  }
+	// When this is fixed, it will solve the issue above of
+	// converting the total test execution time to seconds...
+	//	@SuppressWarnings("unused")
+	//	private String convertLongToTimeString(Long timeToConvert) 
+	//	{
+	//		Date date = new Date(timeToConvert);
+	//		DateFormat formatter = new SimpleDateFormat("HH:mm:ss.SSS");
+	//		formatter.setTimeZone(TimeZone.getTimeZone("UTC"));
+	//		String dateFormatted = formatter.format(date);
+	//		
+	//		return dateFormatted;
+	//	}
 }
 

@@ -58,12 +58,16 @@ public class StepBase
 		}
     }
 
+    public void logErr(String exceptionMsg, String className, String methodName)
+    {
+		String errMsg = "Error in " + className + "." + methodName + "():" + LineMark + exceptionMsg;
+    	log(errMsg);
+    }
+    
     public void logErr(Exception ex, String className, String methodName) //throws Throwable
     {
-		String errMsg = "Error in " + className + "." + methodName + "():" + LineMark + ex.toString();
-		log(errMsg);
-		//throw ex;
-    }
+		logErr(ex.toString(), className, methodName);
+	}
 
     public void logNoPad(String msgToLog)
     {

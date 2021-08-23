@@ -2,7 +2,7 @@ package com.autodesk.pws.test.steps.informative;
 
 import com.autodesk.pws.test.steps.base.*;
 
-public class WaitForGetAgreementInfo extends StepBase
+public class WaitForGetAgreementInfo extends RestActionBase
 {
 	private GetAgreementInfo getAgreementInfo = new GetAgreementInfo();
 	
@@ -21,7 +21,7 @@ public class WaitForGetAgreementInfo extends StepBase
     {
 		boolean continueTrying = true;
 		boolean retryTimeout = false;
-		Integer maxRetries = 45;
+		Integer maxRetries = 60;
 		Integer msSleepBeforeStatus = 10000;
 		Integer retryCounter = 0;
 		Integer flagForDelaysAt = 25;
@@ -54,6 +54,8 @@ public class WaitForGetAgreementInfo extends StepBase
 					continueTrying = false;
 					status = json.length() + " character reply...";
 				}
+				
+				log("WaitForGetAgreementInfo status: " + json.length() + " char reply...");
 			}
 			
 			getAgreementInfo.SuppressLogging = true;
@@ -69,6 +71,7 @@ public class WaitForGetAgreementInfo extends StepBase
 		{
 			this.ExceptionAbortStatus = true;
 			this.ExceptionMessage = status;
+			this.logErr(status, ClassName, "action");
 		}
 		
 		log("Final status: " + status);

@@ -2,12 +2,6 @@
   "action": "Renewal",
   "opportunityNumber": "$OPPORTUNITY_NUMBER$",
   "contractNumber": "$CONTRACT_NUMBER$",
-  "orderDiscounts": [
-    {
-      "discountId": "A-1658430",
-      "discountType": "DDA"
-    }
-  ],
   "lineItems": [
     {
       "partNumber": "C1RK1-002900-L983",

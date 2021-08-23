@@ -4,9 +4,9 @@ import com.autodesk.pws.test.steps.base.*;
 
 import io.restassured.path.json.JsonPath;
 
-public class WaitForOrderStatusChange extends StepBase
+public class WaitForOrderStatusChange extends RestActionBase
 {
-	private GetOrderStatus getOrderStatus = new GetOrderStatus();
+	protected GetOrderStatus getOrderStatus = new GetOrderStatus();
 	//  This state will be used to allow negative tests to be
 	//  successfully executed.  The default expected state is 
 	//  "accepted", however this state can be overriddent by
@@ -19,8 +19,7 @@ public class WaitForOrderStatusChange extends StepBase
     {
 		getOrderStatus.DataPool = this.DataPool;
 		getOrderStatus.preparation();
-		expectedEndStateStatus = DataPool.getOrDefault("WaitForOrderStatusChange.expectedEndStateStatus", expectedEndStateStatus).toString(); 
-		log("Expected end state value: " + expectedEndStateStatus);
+		expectedEndStateStatus = DataPool.getOrDefault(ClassName + ".expectedEndStateStatus", expectedEndStateStatus).toString(); 
     }
 
 	@Override
@@ -32,6 +31,8 @@ public class WaitForOrderStatusChange extends StepBase
 		Integer msSleepBeforeStatus = 10000;
 		Integer retryCounter = 0;
 		String finalStatus = "none";
+		
+		log("Expected end state value: " + expectedEndStateStatus);
 		
 		while(continueTrying)
 		{
@@ -57,6 +58,18 @@ public class WaitForOrderStatusChange extends StepBase
 				String status = pathFinder.get("status");
 				String faultString = pathFinder.get("fault.faultstring");
 				String statusMsg = pathFinder.getString("message");
+				
+				//  If the status message is blank, try another route...
+				if(statusMsg == null || statusMsg.length() == 0)
+				{
+					statusMsg = pathFinder.getString("error.message") + " [" + pathFinder.getString("error.code") + "]";
+				}
+				
+				//  If the status message is *still* blank, try yet *another* route...
+				if(statusMsg == null || statusMsg.length() == 0)
+				{
+					statusMsg = pathFinder.getString("messageV1");
+				}
 				
 				if(status == null && faultString != null)
 				{
@@ -118,7 +131,7 @@ public class WaitForOrderStatusChange extends StepBase
     public void validation()
     {
 		super.validation();
-		
+
 		//  We call this here to be sure that the final JsonResponseBody
 		//  is added to the ValidationChain...
 		getOrderStatus.validation();

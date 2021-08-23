@@ -1,5 +1,5 @@
 {
-  "action": "Renewal",
+  "action": "Add-On",
   "opportunityNumber": "$OPPORTUNITY_NUMBER$",
   "contractNumber": "$CONTRACT_NUMBER$",
   "orderDiscounts": [
