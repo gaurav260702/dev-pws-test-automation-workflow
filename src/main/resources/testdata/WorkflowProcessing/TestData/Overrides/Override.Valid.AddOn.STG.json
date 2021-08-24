@@ -2,12 +2,7 @@
   "action": "Add-On",
   "opportunityNumber": "$OPPORTUNITY_NUMBER$",
   "contractNumber": "$CONTRACT_NUMBER$",
-  "orderDiscounts": [
-    {
-      "discountId": "A-1658430",
-      "discountType": "DDA"
-    }
-  ],
+
   "lineItems": [
     {
       "partNumber": "C1RK1-WW1367-L168",

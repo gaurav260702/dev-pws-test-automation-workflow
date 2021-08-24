@@ -1,0 +1,10 @@
+{
+  "lineItems": [
+    {
+      "partNumber": "C1RK1-WW1367-L168",
+      "partnerSubscriptionId": "psi-{{uuid1}}",
+      "quantity": 1,
+      "netPrice": "{{net_price}}"
+    }
+  ]
+}
