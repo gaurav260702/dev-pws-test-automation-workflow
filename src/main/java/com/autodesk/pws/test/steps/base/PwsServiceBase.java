@@ -9,11 +9,9 @@ import okhttp3.Response;
 
 public class PwsServiceBase extends RestActionBase
 {
-    public String TargetUrl;
-    public String ResourcePath;
-    public String JsonResponseBody;
-    private String ServiceVerb = "GET";
-    private String JsonRequestBody = "";
+    public boolean EnableRetryOnNullResponse = true;
+    public int MaximumNullRetryCountBeforeError = 10;
+    public int MillisecondsBetweenNullResponseRetry = 1000;
     
     @Override
     public void preparation()
@@ -47,7 +45,12 @@ public class PwsServiceBase extends RestActionBase
 		this.BaseUrl = DataPool.get("baseUrl").toString();
 	}
 
-    public void setResourcePath(String defaultPath)
+	public void setResourcePath(String defaultPath)
+	{
+		setResourcePath(defaultPath, false);
+	}
+	
+    public void setResourcePath(String defaultPath, boolean includeDetokenization)
     {
 		//  Setting up a special case here for modified GetInvoiceDetails paths.
 		//  This allows negative testing (dropping "invoice_number" or "customer_number")
@@ -60,9 +63,15 @@ public class PwsServiceBase extends RestActionBase
 		{
 			ResourcePath = defaultPath;
 		}
+		
+		if(includeDetokenization)
+		{
+			ResourcePath = DataPool.detokenizeDataPoolValues(ResourcePath);
+			ResourcePath = DynamicData.detokenizeRuntimeValues(ResourcePath);
+		}
     }
 	
-	private void setTargetUrl()
+	public void setTargetUrl()
     {
 		//  Set the resourceURL for the REST service...
 		// https://invoice.ddwsint.autodesk.com
@@ -106,19 +115,71 @@ public class PwsServiceBase extends RestActionBase
     public void action()
     {
 		//  Call the method that does the meat of the work...
-		Response actionResult = getInfo();
-	    
+		Response actionResult = null;
+		int retryCount = 0;
+		
+		boolean keepTrying = true;
+		boolean retryExceeded = false;
+		
+		//  We're going to keep retrying the
+		//  call until this flag is set to false...
+		while(keepTrying)
+		{
+			//  Grab the info...
+			actionResult = getInfo();
+			
+			//  If actionResult contains something, 
+			//  then set the flag to break the loop...
+			if(actionResult != null)
+			{
+				keepTrying = false;
+			}
+			
+			//  If the Retry flag is set to TRUE and keepTrying is set to TRUE...
+			if(EnableRetryOnNullResponse && keepTrying == true)
+			{
+				//  Initiate a retry...
+				retryCount+=1;
+				this.log("Received (" + retryCount + ") of (" + this.MaximumNullRetryCountBeforeError + ") 'null' values for actionResponse.  Retry in '" + this.MillisecondsBetweenNullResponseRetry + "' milliseconds...");
+				this.sleep(this.MillisecondsBetweenNullResponseRetry);
+			}
+			else
+			{
+				//  Otherwise, this is just a single-shot attempt and we
+				//  need to exit the loop and deal with the consequences...
+				keepTrying = false;
+			}
+			
+			//  If the retryCount exceeds the Maximum, set the retryExceeded
+			//  flag to true and we'll deal with it down below...
+			if(EnableRetryOnNullResponse && retryCount >= this.MaximumNullRetryCountBeforeError)
+			{
+				retryExceeded = true;
+			}
+		}	
+		
 		//  Grab the body of the response (if any)...
 		String rawJson = "";
 		
 		try 
 		{
-			rawJson = actionResult.body().string();
+			//  If there was no retry exception, try and grab
+			//  the JSON body and get ready to return it...
+			if(!retryExceeded)
+			{
+				rawJson = actionResult.body().string();
+			}
+			else
+			{
+				//  Otherwise, throw an exception with a custom message...
+				Exception retryExceededError = new Exception("Exceeded maximum retry count of (" + this.MaximumNullRetryCountBeforeError + ")!");
+				throw retryExceededError;
+			}
 		} 
-		catch (IOException e) 
+		catch (Exception e) 
 		{
+			//  GET READY FOR THE BIG-BAD BEAUTIFUL BARF-O-RAMA, KIDDIES!
 			logErr(e, this.ClassName, "action");
-			//  TODO: Copy this pattern into similar occasions...
 			throw new RuntimeException(e);
 		}
 
@@ -153,18 +214,7 @@ public class PwsServiceBase extends RestActionBase
     @Override
     public void validation()
     {
-		//  Stick that response body in the ValidationChain,
-		//  but let's go ahead and make it puuuurrrdy first.
-    	//
-    	//  Also, we're doing this here on the off chance that
-    	//  the class is part of a "WaitFor*Change" style loop.
-    	//
-    	//  If we were to include it as part of the "action()"
-    	//  method, it would be called 'n' number of times, 
-    	//  which is of course a bit excessive...
-		JsonPath jsonPath = JsonPath.from(JsonResponseBody);
-		String prettyJson = jsonPath.prettify();
-		addValidationChainLink(ClassName, prettyJson);
+		addResponseToValidationChain();
     }
     
     public void extractDataFromJsonAndAddToDataPool(String dataPoolLabel, String jsonPath)

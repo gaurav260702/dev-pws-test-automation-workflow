@@ -135,7 +135,13 @@ public class DataPool extends HashMap<String, Object>
 
         if (StepLogger != null)
         {
-        	String msg = "       " + actionType + " [" + key + "]: " + padRight(value.toString(), 80, ' ').substring(0, 80).trim();
+        	String msg = actionType + " [" + key + "]: " + padRight(value.toString(), 80, ' ').substring(0, 80).trim();
+        	
+        	if(previousValue.length() > 0)
+        	{
+        		msg = msg + " -- Previous: " + padRight(previousValue.toString(), 80, ' ').substring(0, 80).trim();
+        	}
+        	
             StepLogger.log(msg);
         }
     }
@@ -207,12 +213,12 @@ public class DataPool extends HashMap<String, Object>
 				            {
 				            	//  Then we get the most recent entry index of the 
 				            	//  swapping container...
-				            	int listIndex = list.size();
+				            	int listIndex = list.size() - 1;
 				            	
 				            	//  We create a **>>NEW<<** string that contains the
 				            	//  detokenized version of the string by swapping out "Key"
 				            	//  for value...
-				            	String tmp = list.get(listIndex).replace("$" + key + "$", value.toString());
+				            	String tmp = list.get(listIndex).replace(key, value.toString());
 				            	
 				            	//  And we add this new string to the swapping container...
 				            	list.add(tmp);
@@ -221,7 +227,7 @@ public class DataPool extends HashMap<String, Object>
 				     );
 
         //  Grab the last entry's index...
-        int listIndex = list.size();
+        int listIndex = list.size() - 1;
         
         //  This should be the fully detokenized string...
         String deTokenizedString = list.get(listIndex);
