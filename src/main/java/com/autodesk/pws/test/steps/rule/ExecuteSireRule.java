@@ -50,7 +50,7 @@ public class ExecuteSireRule extends RestActionBase
     {
       rawJson = actionResult.body().string();
     }
-    catch (IOException e)
+    catch (Exception e)
     {
       this.logErr(e, this.ClassName, "action");
     }
@@ -72,7 +72,7 @@ public class ExecuteSireRule extends RestActionBase
       //  Make the call to the SIRE Rule service...
       executeRuleResponse = getRestResponse("POST", BaseUrl + "/sire/v1/execute/" + this.sireRule, this.requestPayload);
     }
-    catch (IOException e)
+    catch (Exception e)
     {
       logErr(e, this.ClassName, "getInfo");
     }

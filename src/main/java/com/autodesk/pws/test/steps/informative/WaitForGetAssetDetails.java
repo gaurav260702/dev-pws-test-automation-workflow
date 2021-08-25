@@ -19,11 +19,19 @@ public class WaitForGetAssetDetails extends StepBase
     public void action()
     {
 		boolean continueTrying = true;
-		Integer maxRetries = 30;
+		Integer maxRetries = 45;
 		Integer msSleepBeforeStatus = 10000;
 		Integer retryCounter = 0;
+		boolean retriesExceeded = false;
 		String status = "Waiting for service syncing and a non-zero length reply...";
+		String statusMsg = "";
+		
 		log("Current status: " + status);
+		
+		String searchResult = "";
+		String json = "";
+		Object messageObject = null;
+		JsonPath jsonPath = null;
 		
 		while(continueTrying)
 		{
@@ -34,10 +42,13 @@ public class WaitForGetAssetDetails extends StepBase
 			if(retryCounter >= maxRetries)
 			{
 				continueTrying = false;
-				status =  "Timed out waiting for a non-zero length reply!";
+				status =  "Timed out waiting for a non-zero length reply after (" + maxRetries + ") attempts!";
+				retriesExceeded = true;
 			}
 			else
 			{
+				statusMsg = "[none]";
+				
 				log("Attempt (" + retryCounter + ") of (" + maxRetries + ")...");
 				
 				getAssetDetails.action();
@@ -45,21 +56,35 @@ public class WaitForGetAssetDetails extends StepBase
 				//  Should these declarations be outside the loop to 
 				//  save CPU time and memory?  I really don't know if 
 				//  Java has under the hood optimizers in these cases...
-				String json = getAssetDetails.JsonResponseBody.trim();
-				JsonPath jsonPath = new JsonPath(json);
-				String searchResult = jsonPath.get("endpointStatus.postgres_assets.message").toString();
+				json = getAssetDetails.JsonResponseBody.trim();
+				jsonPath = new JsonPath(json);
+				messageObject = jsonPath.get("endpointStatus.postgres_assets.message");
 				
-  				if(!searchResult.matches("not found"))
+				if(messageObject != null)
+				{
+					searchResult = messageObject.toString();
+					statusMsg = searchResult;
+				}
+
+  				if(!searchResult.matches("not found") && searchResult.length() > 0)
 				{
 					continueTrying = false;
 					status = json.length() + " character reply...";
 				}
 			}
 			
+			log("WaitForGetAssetDetails status: " + status + " --  " + statusMsg);
+			
 			getAssetDetails.SuppressLogging = true;
 		}
 		
 		log("Final status: " + status);
+		
+		if(retriesExceeded)
+		{
+			this.ExceptionAbortStatus = true;
+			this.ExceptionMessage = status;
+		}
     }
 
 	@Override

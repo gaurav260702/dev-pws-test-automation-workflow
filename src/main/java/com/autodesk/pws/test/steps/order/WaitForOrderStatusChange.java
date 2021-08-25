@@ -4,9 +4,9 @@ import com.autodesk.pws.test.steps.base.*;
 
 import io.restassured.path.json.JsonPath;
 
-public class WaitForOrderStatusChange extends StepBase
+public class WaitForOrderStatusChange extends RestActionBase
 {
-	private GetOrderStatus getOrderStatus = new GetOrderStatus();
+	protected GetOrderStatus getOrderStatus = new GetOrderStatus();
 	//  This state will be used to allow negative tests to be
 	//  successfully executed.  The default expected state is 
 	//  "accepted", however this state can be overriddent by
@@ -19,18 +19,20 @@ public class WaitForOrderStatusChange extends StepBase
     {
 		getOrderStatus.DataPool = this.DataPool;
 		getOrderStatus.preparation();
-		expectedEndStateStatus = DataPool.getOrDefault("WaitForOrderStatusChange.expectedEndStateStatus", expectedEndStateStatus).toString(); 
-		log("Expected end state value: " + expectedEndStateStatus);
+		expectedEndStateStatus = DataPool.getOrDefault(ClassName + ".expectedEndStateStatus", expectedEndStateStatus).toString(); 
     }
 
 	@Override
     public void action()
     {
 		boolean continueTrying = true;
-		Integer maxRetries = 30;
+		Integer maxRetries = 60;
+		Integer flagForDelaysAt = 25;
 		Integer msSleepBeforeStatus = 10000;
 		Integer retryCounter = 0;
 		String finalStatus = "none";
+		
+		log("Expected end state value: " + expectedEndStateStatus);
 		
 		while(continueTrying)
 		{
@@ -54,13 +56,58 @@ public class WaitForOrderStatusChange extends StepBase
 				JsonPath pathFinder = JsonPath.from(json);
 				
 				String status = pathFinder.get("status");
+				String faultString = pathFinder.get("fault.faultstring");
+				String statusMsg = pathFinder.getString("message");
 				
-				log("Current status: " + status);
+				//  If the status message is blank, try another route...
+				if(statusMsg == null || statusMsg.length() == 0)
+				{
+					statusMsg = pathFinder.getString("error.message") + " [" + pathFinder.getString("error.code") + "]";
+				}
 				
-				if(status.matches("accepted") || status.matches("error") || status.matches("failed"))
+				//  If the status message is *still* blank, try yet *another* route...
+				if(statusMsg == null || statusMsg.length() == 0)
+				{
+					statusMsg = pathFinder.getString("messageV1");
+				}
+				
+				if(status == null && faultString != null)
+				{
+					status = "fault";
+				}
+				
+				if(statusMsg != null && statusMsg.length() > 0)
+				{
+					statusMsg = " - " + statusMsg;
+				}
+				else
+				{
+					statusMsg = "";
+				}
+				
+				if(statusMsg.contains("Order is under review"))
+				{
+					status = "review";
+				}
+				
+				log("Current status: " + status + statusMsg);
+				
+				if(
+					status.matches("accepted") || 
+					status.matches("error") || 
+					status.matches("failed") || 
+					status.matches("fault") ||
+			   		status.matches("review")
+				   )
 				{
 					continueTrying = false;
 					finalStatus = status;
+				}
+				
+				if(retryCounter >= flagForDelaysAt)
+				{
+					//  TODO: Create some way of reporting when waiting for the 
+					//        OrderStatusToChange exceeds a reasonable amount of time...
 				}
 			}
 			
@@ -74,6 +121,7 @@ public class WaitForOrderStatusChange extends StepBase
 		//  cause an alteration of the default workflow...
 		if(!finalStatus.matches(expectedEndStateStatus))
 		{
+			getOrderStatus.addResponseToValidationChain();
 			ExceptionAbortStatus = true;
 			ExceptionMessage = "Expected to reach '" + expectedEndStateStatus + "' state, but ended in '" + finalStatus + "' state!";
 		}
@@ -82,6 +130,8 @@ public class WaitForOrderStatusChange extends StepBase
 	@Override
     public void validation()
     {
+		super.validation();
+
 		//  We call this here to be sure that the final JsonResponseBody
 		//  is added to the ValidationChain...
 		getOrderStatus.validation();

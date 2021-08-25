@@ -1,0 +1,38 @@
+{
+	"action": "Initial",
+	"endCustomer": 
+	{
+		"contractManager": 
+		{
+			"firstName": "{{random_first_name}}",
+			"lastName": "{{random_last_name}}",
+			"email": "email@{{random_email_domain}}.com",
+			"language": "EN",
+			"countryCode": "US"
+		},
+		"account": 
+		{
+		      "csn": "5118761720"
+	    }
+	},
+	"shipTo": 
+	{
+		"csn": "0070176510"
+	},
+	"reseller": 
+	{
+		"csn": "0070176510"
+	},
+	"soldTo": 
+	{
+		"csn": "0070176510"
+	},
+	"poNumber": "PO_{{po_number}}",
+	"customerPoNumber": "CUST_PO_{{cust_po_number}}",
+	"lineItems": 
+	[
+		{
+
+		}
+	]
+}

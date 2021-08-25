@@ -1,0 +1,13 @@
+{
+  "action": "Renewal",
+  "opportunityNumber": "$OPPORTUNITY_NUMBER$",
+  "contractNumber": "$CONTRACT_NUMBER$",
+  "lineItems": [
+    {
+      "partNumber": "C1RK1-002900-L983",
+      "subscriptionReferenceNumber": "$SERIAL_NUMBER$",
+      "quantity": 1,
+      "netPrice": "{{net_price}}"
+    }
+  ]
+}
