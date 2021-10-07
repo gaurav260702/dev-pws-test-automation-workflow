@@ -19,5 +19,7 @@
 
   "secretsFile": "$ROOT$/Configurations/Secrets.GetInvoiceServices.INT.json",
 
-  "workflow": "GenericPlaceOrderWithRenewal"
+  "workflow": "GenericPlaceOrderWithRenewal",
+
+  "$PROCESS_MARKER$": "1234567899"
 }

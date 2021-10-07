@@ -1,0 +1,4 @@
+{
+  "LogToFile": "true",
+  "LogFileNameTemplate": "LOG.%FULL_DATE_TIME%.%TEST_NAME%.log"
+}

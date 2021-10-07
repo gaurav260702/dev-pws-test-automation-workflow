@@ -1,13 +1,15 @@
 package com.autodesk.pws.test.engine;
 
+import java.io.File;
 import java.util.List;
 import org.apache.commons.lang3.time.StopWatch;
+
 import com.autodesk.pws.test.steps.base.*;
 
 public class WorkflowProcessingEngine 
 {
     // Psuedo-globally available data container for all test steps and validations...
-    private DataPool dataPool; 
+    public DataPool DataPool; 
     
     // Prep a flag to mark ExceptionAborts...
     private Boolean isForcedExceptionAbort = false;
@@ -17,20 +19,22 @@ public class WorkflowProcessingEngine
 	//  something baaaaad happens...
     private Boolean workflowCompleted = true;
     
+    //  Flag to determine if logging is duplicated to a file...
+    public Boolean LogToFile = false;
+    
+    //  Container for the LogFilePath...
+    public String LogFileName = "";
+    
     //////////////////////////////////////////////////////////////////////////////
     // TODO:  Implement routines to handle "ExceptionAbortStatus"!!
     //        This should come between each substep (preparation, action, 
     //        validation, cleanup) and should end execution immediately upon
     //        detection (with options to report out states and messages)...
     //////////////////////////////////////////////////////////////////////////////
-    
-    public boolean execute(List<StepBase> workflowToExecute, DataPool localDataPool) throws Exception 
+    public boolean execute(List<StepBase> workflowToExecute) throws Exception 
     {    	
 	    // Prep a container for the current step name...
 	    String currentStep = "";
-	
-	    // Set the local DataPool to the passed reference...
-	    dataPool = localDataPool;
 	    
 	    // Ready a stopwatch...
 	    StopWatch totalTestTime = new StopWatch();
@@ -52,19 +56,19 @@ public class WorkflowProcessingEngine
 	    // Report out intended step execution...
 	    for (int i = 0; i < workflowToExecute.size(); i++) 
 		{
-	      step = workflowToExecute.get(i);
-	      dataPool.StepLogger = step;
+	    	step = workflowToExecute.get(i);
+	    	DataPool.StepLogger = step;
 	      
-	      stepCount += 1;
+	    	stepCount += 1;
 	
-	      if (!firstReportMade) 
-		  {
-	        step.logNoPad("  ");
-	        step.logNoPad("Step execution outline:");
-	        firstReportMade = true;
-	      }
+			if (!firstReportMade) 
+			{
+				step.logNoPad("  ");
+				step.logNoPad("Step execution outline:");
+				firstReportMade = true;
+			}
 	
-	      step.logNoPad("   (" + stepCount + ") -- " + step.getClass().getSimpleName());
+			step.logNoPad("   (" + stepCount + ") -- " + step.getClass().getSimpleName());
 	    }
 	
 	    // Reset the step counter...
@@ -86,8 +90,11 @@ public class WorkflowProcessingEngine
 			try 
 			{
 				// Set the DataPool reference for the next step...
-				step.DataPool = dataPool;
-				// step.DataPool.StepLogger = step;
+				step.DataPool = DataPool;
+				
+				// Set the logToFile flag and file path...
+				step.LogToFile = LogToFile;
+				step.LogFile = LogFileName;
 				
 				// Grab the step name...
 				currentStep = step.getClass().getSimpleName();
@@ -162,7 +169,7 @@ public class WorkflowProcessingEngine
 			  finally 
 			  {
 				  String subStepTestTime = (totalStepTime.getTime() / 1000) + "";
-				  dataPool.add(currentStep + "TestTime", subStepTestTime);
+				  DataPool.add(currentStep + "TestTime", subStepTestTime);
 			  }
 		}
 
@@ -187,17 +194,14 @@ public class WorkflowProcessingEngine
     	return retVal;
     }
 
-	// When this is fixed, it will solve the issue above of
-	// converting the total test execution time to seconds...
-	//	@SuppressWarnings("unused")
-	//	private String convertLongToTimeString(Long timeToConvert) 
-	//	{
-	//		Date date = new Date(timeToConvert);
-	//		DateFormat formatter = new SimpleDateFormat("HH:mm:ss.SSS");
-	//		formatter.setTimeZone(TimeZone.getTimeZone("UTC"));
-	//		String dateFormatted = formatter.format(date);
-	//		
-	//		return dateFormatted;
-	//	}
+	public void setLogToFile(Boolean logToFileFlag, String logFileName, String testFileName) 
+	{
+		this.LogToFile = logToFileFlag;
+		
+		if(LogToFile)
+		{
+			LogFileName = logFileName; // DataPool.detokenizeDataPoolValues(LogFileNameTemplate);
+		}
+	}
 }
 

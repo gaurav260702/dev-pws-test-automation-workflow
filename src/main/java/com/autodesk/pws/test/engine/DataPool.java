@@ -29,6 +29,11 @@ public class DataPool extends HashMap<String, Object>
     public StepBase StepLogger;
     public final String NewLine = System.getProperty("line.separator");
 
+    private static int detokenizationRecursionDepthCounter = 0;
+    private static int detokenizationRecursionDepthMax = 10;
+    private static boolean detokenizationRecursionDepthExceeded = false;
+    
+    
 	@SuppressWarnings("unchecked")
 	public void addToValidationChain(String validationLabel, Object dataToValidate)
 	{
@@ -244,7 +249,23 @@ public class DataPool extends HashMap<String, Object>
             //  Should we be doing this recursive call here to continue attempting
             //  to detokenize the string?  Could that somehow possibly result in an
             //  infinite loop?
-            deTokenizedString = detokenizeDataPoolValues(deTokenizedString);
+            detokenizationRecursionDepthCounter += 1;
+            
+            if(detokenizationRecursionDepthMax >= detokenizationRecursionDepthMax)
+            {
+            	detokenizationRecursionDepthExceeded = true;
+            }
+            else
+            {
+            	deTokenizedString = detokenizeDataPoolValues(deTokenizedString);
+            }
+            
+            detokenizationRecursionDepthCounter -= 1;
+            
+            if(detokenizationRecursionDepthExceeded == true && detokenizationRecursionDepthCounter == 0)
+            {
+            	detokenizationRecursionDepthExceeded = false;
+            }
         }
 
         return deTokenizedString;

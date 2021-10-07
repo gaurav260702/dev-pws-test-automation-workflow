@@ -1,0 +1,15 @@
+{
+  "$ROOT$": "./testdata/WorkflowProcessing/TestData",
+  "$ENV$": "STG",
+
+  "baseUrl": "https://enterprise-api-$ENV$.autodesk.com",
+  "oAuthBaseUrl":  "https://enterprise-api-$ENV$.autodesk.com",
+
+  "baseFile": "$ROOT$/BaseData/GetInvoiceList.BaseData.STG.json",
+  "overridesFile": "$ROOT$/Overrides/Override.NONE.json",
+  "validationFile": "$ROOT$/Validators/Validator.GetInvoiceList.ByDate.EccOnlyData.STG.json",
+  "secretsFile": "$ROOT$/Configurations/Secrets.GetInvoiceServices.INT.json",
+
+  "workflow": "GetInvoiceListPreCannedWithAuth",
+  "GetInvoiceList.ResourcePath": "/v1/invoices?customer_number=$CUSTOMER_NUMBER$&invoice_date_from=$INVOICE_DATE_FROM$&invoice_date_to=$INVOICE_DATE_TO$"
+}
