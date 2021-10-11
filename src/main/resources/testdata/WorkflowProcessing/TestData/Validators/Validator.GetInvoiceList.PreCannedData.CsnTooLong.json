@@ -1,0 +1,9 @@
+{
+  "GetInvoiceList": 
+  {
+	"status" : "Error",
+	"message[0].error_code" : "APG-DWS-INV-002",
+	"message[0].error_message" : "Provided customer number is invalid.",
+	"transaction_id" : "*-Invoice-*-*"
+  }
+}

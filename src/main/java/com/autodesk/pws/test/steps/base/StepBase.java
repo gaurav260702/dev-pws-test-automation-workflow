@@ -1,5 +1,8 @@
 package com.autodesk.pws.test.steps.base;
 
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import com.autodesk.pws.test.engine.*;
@@ -19,11 +22,13 @@ public class StepBase
     //  a global value that is set once at runtime and then either directly referenced when
     //  required or the value will be passed into the class at instantiation...
 	public final String LineMark =  System.getProperty("line.separator");
-	//public Logger logger;
+
 	public String ClassName;
 	public Boolean SuppressLogging = false;
 	public String ExceptionMessage = "";
 	public Boolean ExceptionAbortStatus = false;
+	public Boolean LogToFile = false;
+	public String LogFile = "";
 	
     public void preparation()
     {
@@ -89,12 +94,33 @@ public class StepBase
     		
     		for(String line : lines)
     		{
+    			if(this.LogToFile)
+    			{
+    				logToFile(line);
+    			}
+    			
     			logger.info(leftPad + line);
     		}
     	}
     }
     
-    private String padLeft(String s, int n) 
+    private void logToFile(String line) 
+    {
+    	try 
+    	{
+    	    FileWriter fw = new FileWriter(LogFile, true);
+    	    BufferedWriter bw = new BufferedWriter(fw);
+    	    bw.write(line + this.LineMark);
+    	    bw.close();
+	    } 
+    	catch (Exception e) 
+    	{
+			System.out.println("An error occurred in 'logToFile'!");
+			e.printStackTrace();
+		}
+	}
+
+	private String padLeft(String s, int n) 
     {
         return String.format("%" + n + "s", s);  
     }

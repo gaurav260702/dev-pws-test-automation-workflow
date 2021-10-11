@@ -1,0 +1,9 @@
+{
+   "GetInvoiceDetails":
+   {
+      "status":"Error",
+      "transaction_id":"*-Invoice-*",
+      "message[0].error_code":"UAN-GEN-00123",
+      "message[0].error_message":"Customer number may not exceed 10 characters. Please check your entry and try again"
+   }
+}

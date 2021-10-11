@@ -1,6 +1,8 @@
 package com.autodesk.pws.test.engine;
 
+import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileWriter;
 import java.lang.reflect.InvocationTargetException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -49,15 +51,18 @@ public class Kicker
     private final String newLine = System.getProperty("line.separator");
     //  Create a logger container...
 	protected final Logger logger = LoggerFactory.getLogger(Kicker.class);
-
+	//  Flag determining if logging should be duplicated to a file...
+	protected Boolean logToFile = false;
+	//  Container for the LogFileName template...
+	protected String logFileNameTemplate = "";
+	//  Container for the resolved LogFileName...
+	protected String logFileName = "";
+	
     public int kickIt(String[] args)
     {
-    	//  Because TestNg, that's why!
-        //args = (String[]) getCommandLineArgsFromEnvironment().keySet().toArray();
-
     	//  Ready the failure count, me maties!
         int failureCount = 0;
-
+        
         //  Grab each filename passed in and
         //  process it accordingly...
         // foreach (String fileArg in args)
@@ -111,7 +116,41 @@ public class Kicker
         return Math.abs(failureCount) * -1;
     }
 
-    private int executeFileArguments(String filePathArgument)
+    private void loadLocalConfig() 
+    {
+    	String configFilePath = "./testdata/WorkflowProcessing/TestData/Configurations/LocalConfig.json";
+    	
+    	String fullConfigPath = DynamicData.convertRelativePathToFullPath(configFilePath);
+    	
+    	File configFile = new File(fullConfigPath);
+    	
+    	if(configFile.exists())
+    	{
+    		loadFlatJsonAsDataPool(configFilePath);
+    		
+    		logToFile = Boolean.valueOf(dataPool.get("LogToFile").toString());
+    		
+    		logFileNameTemplate = dataPool.get("LogFileNameTemplate").toString();
+    		logFileNameTemplate = logFileNameTemplate.replace("%", "$");
+    		
+			logFileName = dataPool.detokenizeDataPoolValues(logFileNameTemplate);
+
+			logIt("LOG FILE PATH: " + reportOutLogFileInfo());
+    	}
+    }
+
+	private String reportOutLogFileInfo()
+	{
+		// Create a file object
+        File f = new File(logFileName);
+
+        // Get the absolute path of file f
+        String absolutePath = f.getAbsolutePath();
+        
+        return absolutePath;
+	}
+    
+	private int executeFileArguments(String filePathArgument)
     {
         int failureCount;
 
@@ -135,6 +174,7 @@ public class Kicker
             case "D":
             case "DIRECTORY":
             	failureCount = executeKickersInDirectory(filePathArgument);
+            
             	
             default:
                 logIt("==================================================");
@@ -289,33 +329,51 @@ public class Kicker
     
     private int executeKickerFile(String kickerFilePath)
     {
-        //  Log the test start time...
-        logIt("====================================================");
-        logIt("Test start time: " + getCurrentTime());
-        logIt("====================================================");
-        logIt("  ");
-
         //  Setup the default return exit code value...
         int exitCode = 0;
 
         //  Increment the testCountTotal tracker...
         testCountTotal += 1;
 
-        //  Reset the DataPool...
+        //  Force a reset to the DataPool in case it contains
+        //  data from a previous execution...
         dataPool = new DataPool();
 
         //  Initialize the DynamicData runtime values...
         DynamicData.initRuntimeValues();
 
-        //  Shove the execution path into the global DataPool
-        //  cuz it's likely we'll be needing for some reason later...
-        setExecutionPathVariable();
+        //  Initialize the DataPool runtime values...
+        initDataPoolRuntimeValues();
 
         //  Introduce yourself!
         File testFile = new File(kickerFilePath);
-        logIt("Test file name: '" + testFile.getName() + "':");
+        
+        String testName = testFile.getName();
+        dataPool.add("$TEST_NAME$", testName);
+        
+        //  Load in LocalConfig info, if it exists.
+        //  Because this method ALSO determines if log entries
+        //  are sent to a file, we need to run it before we 
+        //  do any extensive logging or we'll miss some of our
+        //  logging stuff...
+        loadLocalConfig();
+        
+        //  Shove the execution path into the global DataPool
+        //  cuz it's likely we'll be needing for some reason later...
+        setExecutionPathVariable();
+        
+        //  Log the test start time...
+        logIt("====================================================");
+        logIt("Test start time: " + getCurrentTime());
+        logIt("====================================================");
+        logIt("  ");
+        
+        logIt("Test file name: " + testName);
+        dataPool.add("TestFileName", testName);
+        
         logIt("Full file path: " + kickerFilePath);
-
+        dataPool.add("FullKickerFilePath", kickerFilePath);
+               
         //  Load in test params as DataPool data...
         loadTestKickerAsDataPoolData(kickerFilePath);
         
@@ -331,6 +389,10 @@ public class Kicker
         //  Load the WorkflowProcessingEngine...
         WorkflowProcessingEngine workflowProcEngine = new WorkflowProcessingEngine();
 
+        //  Set WPE DataPool reference...
+        
+        workflowProcEngine.DataPool = dataPool;
+        
         //  Load the workflow steps...
         //List<StepBase> workflow = loadWorkflow(testKicker.getString("workflow").toString());
         List<StepBase> workflow = loadWorkflow(dataPool.get("workflow").toString());
@@ -346,8 +408,11 @@ public class Kicker
         
         try
         {
+        	//  Set the logToFile flag on the WPE...
+        	workflowProcEngine.setLogToFile(logToFile, logFileName, testName);
+        	
             //  Execute the workflow steps...
-            workflowCompleted = workflowProcEngine.execute(workflow, dataPool);
+            workflowCompleted = workflowProcEngine.execute(workflow);
 
             logIt("  ");
             logIt("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
@@ -436,7 +501,13 @@ public class Kicker
         return exitCode;
     }
 
-    private boolean fileExists(String relativeFilePath) 
+    private void initDataPoolRuntimeValues() 
+    {
+		String strDate = DynamicData.getSimpleDatTimeFormat();
+        dataPool.add("$FULL_DATE_TIME$", strDate);
+	}
+
+	private boolean fileExists(String relativeFilePath) 
     {
     	relativeFilePath = DynamicData.convertRelativePathToFullPath(relativeFilePath);
         File fileCheck = new File(relativeFilePath);
@@ -715,7 +786,7 @@ public class Kicker
 	            	Object sectionKey = validatorKeys[i];
 	            	
 	            	//  Log it for manual post-analysis...
-	            	logIt("  -- " +sectionKey.toString());
+	            	logIt("  -- " + sectionKey.toString());
 	            	
 	            	//  Grab the validatorKeyVal for the section...
 	            	Object section = validatorKeyVals.get(sectionKey);
@@ -879,8 +950,18 @@ public class Kicker
 
     private void loadTestKickerAsDataPoolData(String testKickerFilePath, Boolean logValues)
     {
+    	loadFlatJsonAsDataPool(testKickerFilePath, logValues);
+    }
+    
+    private void loadFlatJsonAsDataPool(String jsonFilePath)
+    {
+    	loadFlatJsonAsDataPool(jsonFilePath, true);
+    }
+    
+    private void loadFlatJsonAsDataPool(String jsonFilePath, Boolean logValues)
+    {
     	//  Grab the raw JSON data from the file...
-    	String rawJson = DynamicData.loadJsonFile(testKickerFilePath);
+    	String rawJson = DynamicData.loadJsonFile(jsonFilePath);
 
     	//  Grab a dictionary of all the first-level elements...
     	Map<String, Object> testKickerKeyVals =
@@ -918,6 +999,31 @@ public class Kicker
         //System.out.println(msg);
         // Console.WriteLine(msg);
         logger.info(msg);
+        
+        if(logToFile)
+        {
+        	logToFile(msg);
+        }
     }
+    
+    //  This method is duplicated in the StepBase.java class and
+    //  needs to be put into a separate class (Global so that 
+    //  all components can access it as necessary?  Pass an 
+    //  instantiated class as an argument?  I dunno...)
+    private void logToFile(String line) 
+    {
+    	try 
+    	{
+    	    FileWriter fw = new FileWriter(logFileName, true);
+    	    BufferedWriter bw = new BufferedWriter(fw);
+    	    bw.write(line + newLine);
+    	    bw.close();
+	    } 
+    	catch (Exception e) 
+    	{
+			System.out.println("An error occurred in 'logToFile'!");
+			e.printStackTrace();
+		}
+	}
 }
 
