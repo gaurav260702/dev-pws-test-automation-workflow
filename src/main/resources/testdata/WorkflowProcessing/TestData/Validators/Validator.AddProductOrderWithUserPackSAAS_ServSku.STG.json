@@ -1,0 +1,53 @@
+{
+ 	"GetOrderStatus": 
+	{
+		"transactionId": "*",
+		"status": "accepted",
+		"message": "Order is accepted.",
+		"statusV1": "accepted",
+		"messageV1": "Order is accepted.",
+		"lastUpdated": "*",
+		"soldToCsn": "*",
+		"salesOrderNumber": "*",
+		"poNumber": "*",
+		"contractNumber": "*",
+		"poType": "ZDOE"
+	},
+	
+	"GetOrderDetailsV1":
+	{
+		"status" : "OK",
+		"message.elements[0].order_header_array[0].order_date" : "*",
+		"message.elements[0].order_header_array[0].sales_order_number" : "*",
+		"message.elements[0].order_header_array[0].purchase_order_number" : "PO_*",
+		"message.elements[0].order_header_array[0].customer_po_number" : "CUST_PO_*",
+		"message.elements[0].order_header_array[0].document_type" : "GG Standard Order",
+		"message.elements[0].order_header_array[0].customer_number" : "*",
+		"message.elements[0].order_header_array[0].order_status" : "*",
+		"message.elements[0].order_header_array[0].contract_start_date" : "*",
+		"message.elements[0].order_items_array[0].sales_order_number" : "*",
+		"message.elements[0].order_items_array[0].item_po_number" : "PO_*",
+		"message.elements[0].order_items_array[0].sku" : "875H1-NS3379-V624",
+		"message.elements[0].order_partners_array[0].sales_order_number" : "*",
+		"message.elements[0].order_partners_array[2].sales_order_number" : "*",
+		"message.elements[0].order_partners_array[4].sales_order_number" : "*",
+		"message.elements[0].order_partners_array[5].sales_order_number" : "*",
+		"message.elements[0].order_partners_array[6].sales_order_number" : "*"
+	},
+	
+	"GetAgreementInfo":
+	{
+		"[0].ServiceContract[0].Status" : "*",
+		"[0].ServiceContract[0].StartDate" : "*",
+		"[0].ServiceContract[0].ServiceLevels[0].ContractLineItems[0].Status" : "*",
+		"[0].ServiceContract[0].ServiceLevels[0].ContractLineItems[0].StartDate" : "*",
+		"[0].ServiceContract[0].ServiceLevels[0].ContractLineItems[0].SoldtoAccountCSN" : "0070176510",
+		"[0].ServiceContract[0].ServiceLevels[0].ContractLineItems[0].SerialNumber" : "*",
+		"[0].ServiceContract[0].ServiceLevels[0].ContractLineItems[0].ResellerAccountCSN" : "0070176510",
+		"[0].ServiceContract[0].ServiceLevels[0].ContractLineItems[0].AssetSeats" : 25,
+		"[0].ServiceContract[0].ServiceLevels[0].ContractLineItems[0].ActualEndDate" : "*",
+		"[0].ServiceContract[0].SeatQtyGold" : 25,
+		"[0].ServiceContract[0].EndDate" : "*",
+		"[0].ServiceContract[0].AccountCSN" : "0070176510"
+	}
+}
