@@ -19,7 +19,7 @@ public class WaitForGetAssetDetails extends StepBase
     public void action()
     {
 		boolean continueTrying = true;
-		Integer maxRetries = 45;
+		Integer maxRetries = 60;
 		Integer msSleepBeforeStatus = 10000;
 		Integer retryCounter = 0;
 		boolean retriesExceeded = false;
