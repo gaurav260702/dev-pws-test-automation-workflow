@@ -52,6 +52,10 @@ public class RestActionBase extends StepBase
     	{
     		addHeaderFromDataPool("CSN", "$CSN_HEADER$");
     	}
+    	else if(DataPool.containsKey("$CSN_PRIMARY$"))
+    	{
+    		addHeaderFromDataPool("CSN", "$CSN_PRIMARY$");    		
+    	}
     	else
     	{
     		addHeaderFromDataPool("CSN", "$CUSTOMER_NUMBER$");

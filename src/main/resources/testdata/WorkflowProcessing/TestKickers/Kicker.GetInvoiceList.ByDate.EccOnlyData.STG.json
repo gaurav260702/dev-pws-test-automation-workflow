@@ -7,7 +7,9 @@
 
   "baseFile": "$ROOT$/BaseData/GetInvoiceList.BaseData.STG.json",
   "overridesFile": "$ROOT$/Overrides/Override.NONE.json",
+
   "validationFile": "$ROOT$/Validators/Validator.GetInvoiceList.ByDate.EccOnlyData.STG.json",
+
   "secretsFile": "$ROOT$/Configurations/Secrets.GetInvoiceServices.INT.json",
 
   "workflow": "GetInvoiceListPreCannedWithAuth",

@@ -28,7 +28,7 @@ public class GetSkuPrice extends PwsServiceBase
 
     private void setResourcePath()
     {
-		super.setResourcePath("/v1/sku/prices?customer_number=$CUSTOMER_NUMBER$&part_number=$SKU_OR_PART_NUMBER$&price_date=$PRICE_DATE$&quantity=$QUANTITY$");
+		super.setResourcePath("/v1/sku/prices?customer_number=$CUSTOMER_NUMBER$&part_number=$SKU_OR_PART_NUMBER$&price_date=$PRICE_DATE$&quantity=$QUANTITY$", true);
     }
     
     public void initVariables()
