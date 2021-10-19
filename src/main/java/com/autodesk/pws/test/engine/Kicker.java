@@ -854,6 +854,11 @@ public class Kicker
                 String expectedValue = validationList.get(pathToTest).toString();
                 //logIt("ExpectedValue:  " + expectedValue);
                 
+                if(expectedValue == "null")
+                {
+                	expectedValue = null;
+                }
+                
                 //  Set the default value of 'valueToTest' in case the;
                 //  path doesn't exist...
                 String actualValue = "--> The target path doesn't exist! <--";
@@ -884,12 +889,15 @@ public class Kicker
                 {
                     //  Grab the value from the path token...
                 	actualValue = actualValueObj.toString();
+                	if(actualValue.startsWith("[") && actualValue.endsWith("]")) 
+                	{
+                		actualValue = actualValue.substring(1, actualValue.length() - 1);
+                	}
                 }
 
                 //  Here we'll detokenize and resolve any Runtime and DataPool
                 //  values that exist in the validation data...
                 expectedValue = DynamicData.detokenizeRuntimeValues(expectedValue);
-                
                 
                 //  Here we'll resolve any SimpleScript fragments that exist in 
                 //  the validation data...

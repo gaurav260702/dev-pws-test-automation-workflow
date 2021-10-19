@@ -26,7 +26,7 @@ public class WaitForOrderStatusChange extends RestActionBase
     public void action()
     {
 		boolean continueTrying = true;
-		Integer maxRetries = 60;
+		Integer maxRetries = 75;
 		Integer flagForDelaysAt = 25;
 		Integer msSleepBeforeStatus = 10000;
 		Integer retryCounter = 0;
