@@ -54,6 +54,7 @@ public class WorkflowLibrary
         workflow.add(new GetOAuthCredentials());
         workflow.add(new GetSkuPrice());
         workflow.add(new PostOrder());
+        workflow.add(new GetOAuthCredentials());
         workflow.add(new WaitForOrderStatusChange());
         workflow.add(new GetOrderDetailsV1());
         workflow.add(new WaitForGetAgreementInfo());
@@ -72,6 +73,7 @@ public class WorkflowLibrary
          workflow.add(new WaitForGetAssetDetails());
          workflow.add(new GetSkuPrice());
          workflow.add(new PostOrder());
+         workflow.add(new GetOAuthCredentials());
          workflow.add(new WaitForOrderStatusChange());
          workflow.add(new GetOrderDetailsV1());
          workflow.add(new WaitForGetAgreementInfo());
@@ -102,6 +104,7 @@ public class WorkflowLibrary
          workflow.add(new PostOrderRenewal());
 
          //    	 Wait for the Renewal OrderStatus to move to "order is under review"
+         workflow.add(new GetOAuthCredentials());
          workflow.add(new WaitForOrderStatusChange2ndPass());
 	   	 
     	 return workflow;

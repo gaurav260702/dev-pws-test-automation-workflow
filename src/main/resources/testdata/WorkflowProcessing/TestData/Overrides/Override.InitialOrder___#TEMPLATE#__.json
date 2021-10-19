@@ -1,0 +1,10 @@
+{
+  "lineItems": [
+    {
+      "partNumber": "$PRODUCT_SKU_PRIMARY$",
+      "partnerSubscriptionId": "psi-{{uuid1}}",
+      "quantity": 1,
+      "netPrice": "{{net_price}}"
+    }
+  ]
+}

@@ -1,0 +1,29 @@
+﻿{
+  "$ROOT$": "./testdata/WorkflowProcessing/TestData",
+  "$ENV$": "STG",
+  "$BASE_NAME$": "InitialOrderWithSAAS_ServSku",
+  "$VALIDATION$": "$ROOT$/Validators",
+  "$OVERRIDES$": "$ROOT$/Overrides",
+  "$BASE_DATA$": "$ROOT$/BaseData",
+  "$CONFIG$": "$ROOT$/Configurations",
+
+  "$CSN_PRIMARY$": "0070176510",
+  "$CSN_SECONDARY$": "0070176510",
+  "$PRODUCT_SKU_PRIMARY$": "835H1-NS1020-V194",
+  "$PRODUCT_SKU_SECONDARY$": "835H1-NS1020-V194",
+  "$PRODUCT_SKU_TERTIARY$": "835H1-NS1020-V194",
+  "$PRODUCT_SKU_QUATERNARY": "835H1-NS1020-V194",
+
+  "baseUrl": "https://enterprise-api-$ENV$.autodesk.com",
+  "oAuthBaseUrl":  "https://enterprise-api-$ENV$.autodesk.com",
+  "getOrderStatusV2Url": "https://osapi.ddwsint.autodesk.com",
+  "tibcoEnvironmentId": "QA",
+  "tibcoUrl": "https://ifdb.autodesk.com",
+
+  "baseFile": "$BASE_DATA$/BaseData.$BASE_NAME$.json",
+  "overridesFile": "$OVERRIDES$/Override.NONE.json",
+  "validationFile": "$VALIDATION$/Validator.$BASE_NAME$.$ENV$.json",
+  "secretsFile": "$CONFIG$/Secrets.GetInvoiceServices.INT.json",
+
+  "workflow": "PlaceOrder"
+}
