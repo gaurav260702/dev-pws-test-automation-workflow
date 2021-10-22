@@ -898,6 +898,7 @@ public class Kicker
                 //  Here we'll detokenize and resolve any Runtime and DataPool
                 //  values that exist in the validation data...
                 expectedValue = DynamicData.detokenizeRuntimeValues(expectedValue);
+                expectedValue = dataPool.detokenizeDataPoolValues(expectedValue);
                 
                 //  Here we'll resolve any SimpleScript fragments that exist in 
                 //  the validation data...
