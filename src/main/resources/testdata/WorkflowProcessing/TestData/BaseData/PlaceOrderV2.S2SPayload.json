@@ -1,0 +1,33 @@
+{
+  "action": "Initial",
+  "endCustomer": {
+      "account": {
+          "csn": "5152245157"
+      },
+      "contractManager": {
+          "firstName": "pwss",
+          "lastName": "monitorings",
+          "email": "pws_monitoring@pwstesttt5.net",
+          "language": "EN",
+          "countryCode": "US"
+      }
+  },
+  "shipTo": {
+      "csn": "0070012612"
+  },
+  "reseller": {
+      "csn": "0070012612"
+  },
+  "soldTo": {
+      "csn": "0070012612"
+  },
+  "poNumber": "pws_monitoring_test_{{po_number}}",
+  "customerPoNumber": "CUST-PO-{{cust_po_number}}",
+  "lineItems": [
+      {
+          "partNumber": "237N1-WW3740-L562",
+          "quantity": 1,
+          "netPrice": "{{net_price}}"
+      }
+  ]
+}
