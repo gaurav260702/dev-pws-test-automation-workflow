@@ -1,4 +1,5 @@
-@Library('PSL@master') _
+@Library('PSL@LKG') _
+
 
 def TEST_AUTOMATION_LOCAL_IMAGE="team-pws/wpe-test-automation:latest"
 
@@ -61,29 +62,6 @@ node('aws-centos') {
           }
        }
     }
-    stage('run test') {
-       steps {
-          script {
-              def dir_offset_to_trim = 'src/main/resources/'
-              def testcase_run_dir
-              def full_dir
-              for(int i=0; i < testfiles.size(); i++) {
-                 full_dir = "${testfiles[i].path}"
-                 testcase_run_dir = full_dir.replaceAll(/^${dir_offset_to_trim}/, "")
-                 stage(testfiles[i].name){
-                    echo "Test case full directory ${full_dir}"
-                    echo "Test case relative directory to run: ${testcase_run_dir}"
-                    echo "docker run -it  ${TEST_AUTOMATION_LOCAL_IMAGE}  mvn spring-boot:run -Dspring-boot.run.arguments=${testcase_run_dir}"
-                 }
-              }
-          }
-      }
-      post {
-         cleanup {
-            echo 'done'
-         }
-      }
-   }
     stage ('run test') {
         script {
             echo "docker run -it ${TEST_AUTOMATION_LOCAL_IMAGE}  mvn spring-boot:run -Dspring-boot.run.arguments='testdata/WorkflowProcessing/KickerSuites/KickerSuite.GetInvoiceServices.INT.json'"
