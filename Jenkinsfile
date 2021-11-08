@@ -8,6 +8,7 @@ properties([
 ])
 
 node('aws-centos') {
+  def TEST_AUTOMATION_LOCAL_IMAGE="team-pws/wpe-test-automation:latest"
   def dockerReg = "autodesk-docker.art-bobcat.autodesk.com/team-pws"
   def imageName = "test-automation" 
   def regUser = "local-svc_p_ors_art" 
@@ -31,6 +32,18 @@ node('aws-centos') {
     stage("checkout") {
       checkout scm
       sh "git clean -fxd"
+    }
+    stage('find cases') {
+       steps {
+          script {
+             testfiles = findFiles(glob: '**/*INT.json')
+          }
+       }
+       post {
+          cleanup {
+             echo 'completed listing of test cases'
+          }
+       }
     }
 
     stage("create docker image") {
