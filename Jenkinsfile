@@ -51,7 +51,6 @@ pipeline {
     isMasterBranch = true
   }
 
-  try {
     currentBuild.result = SUCCESS
 
     stage("checkout") {
@@ -87,22 +86,9 @@ pipeline {
          sh "docker push '${dockerReg}/${imageName}:latest'"
       }
     }
-  } catch (err) {
-    currentBuild.result = FAILURE
-    throw err
-
-  } finally {
-    withCredentials([[$class: 'StringBinding', credentialsId: 'pws_slack_token', variable: 'mytoken']]) {
-      build_succeeded = currentBuild.result == SUCCESS
-
-      slackSend(message: "Build ${build_succeeded ? "Succeeded" : "Failed"}: ${buildInfo}",
-        teamDomain: 'autodesk', token: env.mytoken, channel: "${slackChannel}",
-        color: "${build_succeeded ? "good" : "danger"}")
-    }
 
     stage("cleanup docker image") {
         sh "docker rmi --force '${imageName}' >/dev/null 2>&1 || true"
     }
   }
-}
 }
