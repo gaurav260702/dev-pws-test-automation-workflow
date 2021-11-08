@@ -1,8 +1,3 @@
-@Library('PSL@LKG') _
-
-
-def TEST_AUTOMATION_LOCAL_IMAGE="team-pws/wpe-test-automation:latest"
-
 properties([
     parameters([
         choice(name: 'ForcePublish',
@@ -33,45 +28,13 @@ node('aws-centos') {
   try {
     currentBuild.result = SUCCESS
 
-    stage("cleanup") {
-      sh 'docker ps -a -q | xargs -r docker stop'
-      sh 'docker ps -a -q | xargs -r docker rm'
-      sh 'docker network ls --filter type=custom -q | xargs -r docker network rm'
-      sh 'rm -f ~/.dockercfg || true'
-      sh 'rm -f ~/.docker/config.json || true'
-    }
-
     stage("checkout") {
       checkout scm
       sh "git clean -fxd"
     }
 
-
     stage("create docker image") {
         sh "docker build --pull --no-cache -t '${dockerReg}/${imageName}' ."
-    }
-    stage('find cases') {
-       steps {
-          script {
-             testfiles = findFiles(glob: '**/*INT.json')
-          }
-       }
-       post {
-          cleanup {
-             echo 'completed listing of test cases'
-          }
-       }
-    }
-    stage ('run test') {
-        script {
-            echo "docker run -it ${TEST_AUTOMATION_LOCAL_IMAGE}  mvn spring-boot:run -Dspring-boot.run.arguments='testdata/WorkflowProcessing/KickerSuites/KickerSuite.GetInvoiceServices.INT.json'"
-        }
-    }
-
-    stage("executeHarmonyScan") {
-      steps {
-         executeHarmonyScan()
-      }
     }
 
     stage("push images to artifactory") {
@@ -102,12 +65,4 @@ node('aws-centos') {
         sh "docker rmi --force '${imageName}' >/dev/null 2>&1 || true"
     }
   }
-}
-
-def executeHarmonyScan() {
-  echo "ExecuteHarmonyScan ..."
-  new ors.security.common_harmony(steps, env, Artifactory, scm).run_scan([
-    'repository':"pws/pws-test-automation-workflow",
-    'product_output':"${workspace}/node_modules",
-  ])
 }
