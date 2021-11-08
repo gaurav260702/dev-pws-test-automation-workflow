@@ -1,3 +1,4 @@
+def TEST_AUTOMATION_LOCAL_IMAGE="team-pws/wpe-test-automation:latest"
 @Library('PSL@master') _
 
 properties([
@@ -30,19 +31,69 @@ node('aws-centos') {
   try {
     currentBuild.result = SUCCESS
 
+    stage("cleanup") {
+      sh 'docker ps -a -q | xargs -r docker stop'
+      sh 'docker ps -a -q | xargs -r docker rm'
+      sh 'docker network ls --filter type=custom -q | xargs -r docker network rm'
+      sh 'rm -f ~/.dockercfg || true'
+      sh 'rm -f ~/.docker/config.json || true'
+    }
+
     stage("checkout") {
       checkout scm
       sh "git clean -fxd"
+    }
+
+
+    stage("create docker image") {
+        sh "docker build --pull --no-cache -t '${dockerReg}/${imageName}' ."
+    }
+    stage('find cases') {
+       steps {
+          script {
+             testfiles = findFiles(glob: '**/*INT.json')
+
+          }
+       }
+       post {
+          cleanup {
+             echo 'completed the anylisis of test cases'
+          }
+       }
+    }
+    stage('run test') {
+       steps {
+          script {
+              def dir_offset_to_trim = 'src/main/resources/'
+              def testcase_run_dir
+              def full_dir
+              for(int i=0; i < testfiles.size(); i++) {
+                 full_dir = "${testfiles[i].path}"
+                 testcase_run_dir = full_dir.replaceAll(/^${dir_offset_to_trim}/, "")
+                 stage(testfiles[i].name){
+                    echo "Test case full directory ${full_dir}"
+                    echo "Test case relative directory to run: ${testcase_run_dir}"
+                    echo "docker run -it  ${TEST_AUTOMATION_LOCAL_IMAGE}  mvn spring-boot:run -Dspring-boot.run.arguments=${testcase_run_dir}"
+                 }
+              }
+          }
+      }
+      post {
+         cleanup {
+            echo 'done'
+         }
+      }
+   }
+    stage ('run test') {
+        script {
+            docker run -it ${TEST_AUTOMATION_LOCAL_IMAGE}  mvn spring-boot:run -Dspring-boot.run.arguments='testdata/WorkflowProcessing/KickerSuites/KickerSuite.GetInvoiceServices.INT.json'
+        }
     }
 
     stage("executeHarmonyScan") {
       steps {
          executeHarmonyScan()
       }
-    }
-
-    stage("create docker image") {
-        sh "docker build --pull --no-cache -t '${dockerReg}/${imageName}' ."
     }
 
     stage("push images to artifactory") {
