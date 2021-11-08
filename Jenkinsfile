@@ -37,7 +37,8 @@ node('aws-centos') {
     stage('find cases') {
        steps {
           script {
-             testfiles = findFiles(glob: '**/*INT.json')
+            // testfiles = findFiles(glob: '**/*INT.json')
+            echo "finding files ..."
           }
        }
        post {
