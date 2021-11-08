@@ -1,5 +1,6 @@
-def TEST_AUTOMATION_LOCAL_IMAGE="team-pws/wpe-test-automation:latest"
 @Library('PSL@master') _
+
+def TEST_AUTOMATION_LOCAL_IMAGE="team-pws/wpe-test-automation:latest"
 
 properties([
     parameters([
@@ -52,12 +53,11 @@ node('aws-centos') {
        steps {
           script {
              testfiles = findFiles(glob: '**/*INT.json')
-
           }
        }
        post {
           cleanup {
-             echo 'completed the anylisis of test cases'
+             echo 'completed listing of test cases'
           }
        }
     }
