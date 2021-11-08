@@ -5,9 +5,9 @@
           "csn": "5152245157"
       },
       "contractManager": {
-          "firstName": "pwss",
-          "lastName": "monitorings",
-          "email": "pws_monitoring@pwstesttt5.net",
+          "firstName": "{{random_first_name}}",
+          "lastName": "{{random_last_name}}",
+          "email": "email@{{random_email_domain}}.com",
           "language": "EN",
           "countryCode": "US"
       }
@@ -21,8 +21,8 @@
   "soldTo": {
       "csn": "0070012612"
   },
-  "poNumber": "pws_monitoring_test_{{po_number}}",
-  "customerPoNumber": "CUST-PO-{{cust_po_number}}",
+  "poNumber": "pws_monitoring_test_{{po_number}",
+  "customerPoNumber": "CUST-PO-{{cust_po_number}",
   "lineItems": [
       {
           "partNumber": "237N1-WW3740-L562",

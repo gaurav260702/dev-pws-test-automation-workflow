@@ -151,7 +151,6 @@ public class WorkflowLibrary
     	 //  AddOn order...
          workflow.add(new LoadAddOnFilesAndExtractAddOnInfoData());
          workflow.add(new GetOAuthCredentials());
-         workflow.add(new WaitForGetAssetDetails());
          workflow.add(new GetSkuPrice());
          workflow.add(new PostOrder());
          workflow.add(new GetOAuthCredentials());
