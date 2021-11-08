@@ -1,14 +1,38 @@
-@Library('PSL@LKG') _
-properties([
-    parameters([
-        choice(name: 'ForcePublish',
+@Library("PSL@master") _
+def BEDROCK_BUILD_IMAGE = 'autodesk-docker.art-bobcat.autodesk.com/team-pws/bedrock-build-terraform:latest'
+def TEST_AUTOMATION_IMAGE = 'autodesk-docker.art-bobcat.autodesk.com/team-pws/bedrock-build-terraform:latest'
+
+def testfiles
+
+pipeline {
+    parameters {
+      string(name: 'AgentLabel',
+        defaultValue: "aws-centos",
+        description: 'Slave Label for the node to run the build on'
+      )
+      choice(name: 'ForcePublish',
             choices: 'No\nYes',
             description: 'Force publish to Artifactory (No/Yes). Default only publishes Master branches'
-        )
-    ])
-])
+      )
+    }
+    
+    agent {
+      label "${params.AgentLabel}"
+    }
+    stages {
+       stage('Prepare') {
+           steps {
+                script {
+                    testfiles = findFiles(glob: '**/*Tests.java')
+                }
+            }
+            post {
+                cleanup {
+                    echo 'completed the anylisis of test cases'
+                }
+            }
+        }
 
-node('aws-centos') {
   def TEST_AUTOMATION_LOCAL_IMAGE="team-pws/wpe-test-automation:latest"
   def dockerReg = "autodesk-docker.art-bobcat.autodesk.com/team-pws"
   def imageName = "test-automation" 
