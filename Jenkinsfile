@@ -4,6 +4,24 @@ def TEST_AUTOMATION_IMAGE = 'autodesk-docker.art-bobcat.autodesk.com/team-pws/be
 
 def testfiles
 
+  def TEST_AUTOMATION_LOCAL_IMAGE="team-pws/wpe-test-automation:latest"
+  def dockerReg = "autodesk-docker.art-bobcat.autodesk.com/team-pws"
+  def imageName = "test-automation" 
+  def regUser = "local-svc_p_ors_art" 
+
+  def buildInfo = env.JOB_NAME + '-' + env.BUILD_NUMBER + "\n" + env.BUILD_URL
+  def slackChannel = "#dpe-dbp-pws-devops"
+
+  def SUCCESS = "SUCCESS"
+  def FAILURE = "FAILURE"
+  def isMasterBranch = false
+
+  if (env.BRANCH_NAME != 'master'){
+    imageName = imageName + "-" + env.BRANCH_NAME.toLowerCase()
+    isMasterBranch = true
+  }
+    currentBuild.result = SUCCESS
+
 pipeline {
     parameters {
       string(name: 'AgentLabel',
@@ -33,25 +51,6 @@ pipeline {
             }
         }
 
-  def TEST_AUTOMATION_LOCAL_IMAGE="team-pws/wpe-test-automation:latest"
-  def dockerReg = "autodesk-docker.art-bobcat.autodesk.com/team-pws"
-  def imageName = "test-automation" 
-  def regUser = "local-svc_p_ors_art" 
-
-  def buildInfo = env.JOB_NAME + '-' + env.BUILD_NUMBER + "\n" + env.BUILD_URL
-  def slackChannel = "#dpe-dbp-pws-devops"
-
-  def SUCCESS = "SUCCESS"
-  def FAILURE = "FAILURE"
-  def isMasterBranch = false
-
-
-  if (env.BRANCH_NAME != 'master'){
-    imageName = imageName + "-" + env.BRANCH_NAME.toLowerCase()
-    isMasterBranch = true
-  }
-
-    currentBuild.result = SUCCESS
 
     stage("checkout") {
       checkout scm
