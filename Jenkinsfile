@@ -86,7 +86,7 @@ node('aws-centos') {
    }
     stage ('run test') {
         script {
-            docker run -it ${TEST_AUTOMATION_LOCAL_IMAGE}  mvn spring-boot:run -Dspring-boot.run.arguments='testdata/WorkflowProcessing/KickerSuites/KickerSuite.GetInvoiceServices.INT.json'
+            echo "docker run -it ${TEST_AUTOMATION_LOCAL_IMAGE}  mvn spring-boot:run -Dspring-boot.run.arguments='testdata/WorkflowProcessing/KickerSuites/KickerSuite.GetInvoiceServices.INT.json'"
         }
     }
 
