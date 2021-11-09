@@ -42,7 +42,7 @@ node('aws-centos') {
             steps {
                 sh 'echo ${workspace}'
                 sh 'cd ${workspace}/target/classes; find . -name "*.json" > /tmp/flist'
-                sh 'cd ${workspace}
+                sh 'cd ${workspace}'
                 sh 'cat /tmp/flist'
                 script {
                     def mylist = readFile("/tmp/flist").readLines()
