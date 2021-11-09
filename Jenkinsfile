@@ -24,14 +24,7 @@ properties([
 pipeline {
   options {buildDiscarder(logRotator(daysToKeepStr: '7', numToKeepStr: '1'))}
   stages {
-     agent {node 'aws-centos'}
-
-  try {
-    if (env.BRANCH_NAME != 'master'){
-      imageName = imageName + "-" + env.BRANCH_NAME.toLowerCase()
-      isMasterBranch = true
-    }
-    currentBuild.result = SUCCESS
+    agent {node 'aws-centos'}
 
     stage("checkout") {
       checkout scm
@@ -76,22 +69,5 @@ pipeline {
          sh "docker push '${dockerReg}/${imageName}:latest'"
       }
     }
-  } catch (err) {
-    currentBuild.result = FAILURE
-    throw err
-
-  } finally {
-    withCredentials([[$class: 'StringBinding', credentialsId: 'pws_slack_token', variable: 'mytoken']]) {
-      build_succeeded = currentBuild.result == SUCCESS
-
-      slackSend(message: "Build ${build_succeeded ? "Succeeded" : "Failed"}: ${buildInfo}",
-        teamDomain: 'autodesk', token: env.mytoken, channel: "${slackChannel}",
-        color: "${build_succeeded ? "good" : "danger"}")
-    }
-
-    stage("cleanup docker image") {
-        sh "docker rmi --force '${imageName}' >/dev/null 2>&1 || true"
-    }
-  }
 }
 }
