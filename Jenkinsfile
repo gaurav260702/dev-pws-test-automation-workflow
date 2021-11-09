@@ -22,17 +22,15 @@ properties([
 ])
 
 pipeline {
-  agent none
   options {buildDiscarder(logRotator(daysToKeepStr: '7', numToKeepStr: '1'))}
   stages {
      agent {node 'aws-centos'}
 
-  if (env.BRANCH_NAME != 'master'){
-    imageName = imageName + "-" + env.BRANCH_NAME.toLowerCase()
-    isMasterBranch = true
-  }
-
   try {
+    if (env.BRANCH_NAME != 'master'){
+      imageName = imageName + "-" + env.BRANCH_NAME.toLowerCase()
+      isMasterBranch = true
+    }
     currentBuild.result = SUCCESS
 
     stage("checkout") {
