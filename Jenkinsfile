@@ -38,7 +38,6 @@ node('aws-centos') {
         sh "docker build --pull --no-cache -t '${dockerReg}/${imageName}' ."
     }
     stage('Test Execution Stages') {
-            agent {node 'master'}
             steps {
                 sh 'echo ${workspace}'
                 sh 'cd ${workspace}/target/classes; find . -name "*.json" > /tmp/flist'
