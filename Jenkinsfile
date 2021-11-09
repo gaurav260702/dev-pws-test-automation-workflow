@@ -15,6 +15,7 @@ node('aws-centos') {
   def buildInfo = env.JOB_NAME + '-' + env.BUILD_NUMBER + "\n" + env.BUILD_URL
   def slackChannel = "#dpe-dbp-pws-devops"
 
+  def workspace = env.WORKSPACE
   def SUCCESS = "SUCCESS"
   def FAILURE = "FAILURE"
   def isMasterBranch = false
@@ -49,7 +50,7 @@ node('aws-centos') {
                         stage(mylist[i]){
                             sh '''
                                echo "Executing Test ==> $i"
-                               docker run -- team-pws/test-automation-workflow:latest mvn spring-boot:run -Dspring-boot.run.arguments='${i}'
+                               docker run -- team-pws/test-automation:latest mvn spring-boot:run -Dspring-boot.run.arguments='${i}'
                             '''
                         }
                     }
