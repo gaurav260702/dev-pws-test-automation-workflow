@@ -1,4 +1,18 @@
+#!/usr/bin/env groovy
+@Library("PSL@master") _
+
+def dockerReg = "autodesk-docker.art-bobcat.autodesk.com/team-pws"
+def imageName = "test-automation" 
+def regUser = "local-svc_p_ors_art" 
+def buildInfo = env.JOB_NAME + '-' + env.BUILD_NUMBER + "\n" + env.BUILD_URL
+def workspace = env.WORKSPACE
+def slackChannel = "#dpe-dbp-pws-devops"
+def SUCCESS = "SUCCESS"
+def FAILURE = "FAILURE"
+def isMasterBranch = false
+
 properties([
+
     parameters([
         choice(name: 'ForcePublish',
             choices: 'No\nYes',
@@ -7,19 +21,11 @@ properties([
     ])
 ])
 
-node('aws-centos') {
-  def dockerReg = "autodesk-docker.art-bobcat.autodesk.com/team-pws"
-  def imageName = "test-automation" 
-  def regUser = "local-svc_p_ors_art" 
-
-  def buildInfo = env.JOB_NAME + '-' + env.BUILD_NUMBER + "\n" + env.BUILD_URL
-  def slackChannel = "#dpe-dbp-pws-devops"
-
-  def workspace = env.WORKSPACE
-  def SUCCESS = "SUCCESS"
-  def FAILURE = "FAILURE"
-  def isMasterBranch = false
-
+pipeline {
+  agent none
+  options {buildDiscarder(logRotator(daysToKeepStr: '7', numToKeepStr: '1'))}
+  stages {
+     agent {node 'aws-centos'}
 
   if (env.BRANCH_NAME != 'master'){
     imageName = imageName + "-" + env.BRANCH_NAME.toLowerCase()
@@ -38,7 +44,7 @@ node('aws-centos') {
         sh "docker build --pull --no-cache -t '${dockerReg}/${imageName}' ."
     }
     stage('Test Execution Stages') {
-            steps {
+         steps {
                 sh 'echo ${workspace}'
                 sh 'cd ${workspace}/target/classes; find . -name "*.json" > /tmp/flist'
                 sh 'cd ${workspace}'
@@ -54,13 +60,13 @@ node('aws-centos') {
                         }
                     }
                 }
-            }
-            post {
+         }
+         post {
                 cleanup {
                    cleanWs()
                 }
-            }
-        }
+         }
+   }
     stage("push images to artifactory") {
       if (env.BRANCH_NAME != 'master' && params.ForcePublish == 'No') {
         echo "Skipping 'docker push' because branch is not master"
@@ -89,4 +95,5 @@ node('aws-centos') {
         sh "docker rmi --force '${imageName}' >/dev/null 2>&1 || true"
     }
   }
+}
 }
