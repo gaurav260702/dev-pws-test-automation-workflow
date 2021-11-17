@@ -13,6 +13,9 @@ import org.slf4j.LoggerFactory;
 import com.autodesk.pws.test.processor.*;
 import com.autodesk.pws.test.steps.base.*;
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonParser;
 import com.google.gson.reflect.TypeToken;
 import io.restassured.path.json.JsonPath;
 import okhttp3.Response;
@@ -33,6 +36,60 @@ public class DataPool extends HashMap<String, Object>
     private static int detokenizationRecursionDepthMax = 10;
     private static boolean detokenizationRecursionDepthExceeded = false;
     
+    public String toRawJson()
+    {
+	    	Gson gson = new GsonBuilder().setPrettyPrinting().create();
+	    	String json = gson.toJson(this); 
+	    	JsonElement je = JsonParser.parseString(json);
+	    	String prettyJsonString = gson.toJson(je);
+	    	
+	    	return prettyJsonString;
+    }
+    
+    @SuppressWarnings("unchecked")
+	public String validationChainToRawJson()
+    {
+	    	Gson gson = new GsonBuilder().setPrettyPrinting().create();
+	    	
+	    	HashMap<String, Object> reformattedValidChain = new 	HashMap<String, Object>();
+	    	
+	    	HashMap<String, Object> validChain = (HashMap<String, Object> )this.get("ValidationChain");
+	    	
+	    	validChain.
+	    		forEach(
+	    				(keyName, value) ->
+	    					{
+			                String rawJson = value.toString().trim();
+			                
+			                //  Odd little hack here.  
+			                //  For some reason we're occasionally getting the value back
+			                //  inside square brackets ("[...]") instead of pointy brackets ("{...}").
+			                //  For whateever reason, GSON can't handle parsing that, so we're 
+			                //  stripping off the external square brackets and hoping whatever 
+			                //  remains is valid JSON...
+			                if(rawJson.startsWith("[") && rawJson.endsWith("]"))
+			                	{
+			                		rawJson = rawJson.substring(1, rawJson.length() - 1);
+			                }
+			                
+	    						Object jsonObj = 
+				    						new Gson().
+						    	    				fromJson
+						    	    					(
+						    	    						rawJson,
+						    							new TypeToken<HashMap<String, Object>>(){}.getType()
+						    						);
+	    						
+	    						reformattedValidChain.put(keyName, jsonObj);
+		                }
+				   );
+	    	
+	    	String json = gson.toJson(reformattedValidChain); 
+	    	JsonElement je = JsonParser.parseString(json);
+	    	String prettyJsonString = gson.toJson(je);
+	    	
+	    	return prettyJsonString;
+    }
     
 	@SuppressWarnings("unchecked")
 	public void addToValidationChain(String validationLabel, Object dataToValidate)
@@ -41,7 +98,7 @@ public class DataPool extends HashMap<String, Object>
 
         if(!containsKey("ValidationChain"))
         {
-        	HashMap<String, Object> validationChainDictionary = new HashMap<String, Object>();
+        		HashMap<String, Object> validationChainDictionary = new HashMap<String, Object>();
             this.add("ValidationChain", validationChainDictionary);
         }
 
@@ -60,38 +117,38 @@ public class DataPool extends HashMap<String, Object>
 
 	public void loadJsonDataAsDataPoolData(String rawJasonData)
 	{
-    	//  Grab a dictionary of all the first-level elements...
-    	Map<String, Object> keyVals =
-    			new Gson().
-    				fromJson
-    					(
+	    	//  Grab a dictionary of all the first-level elements...
+	    	Map<String, Object> keyVals =
+	    			new Gson().
+	    				fromJson
+	    					(
 							rawJasonData,
 							new TypeToken<HashMap<String, Object>>(){}.getType()
 						);
-
-    	//  Loop through all the items in the 'testKicker' object...
-    	keyVals.
-    		forEach(
-    				(keyName, value) ->
-    				{
-		                //  Add each item to the DataPool as key-val...
-		                this.put(keyName, value.toString());
-	                }
-				   );
+	
+	    	//  Loop through all the items in the 'testKicker' object...
+	    	keyVals.
+	    		forEach(
+	    				(keyName, value) ->
+	    				{
+			                //  Add each item to the DataPool as key-val...
+			                this.put(keyName, value.toString());
+		                }
+					   );
 	}
 
     public JsonPath loadJsonFileAsDataPoolData(String jsonFilePath)
     {
-    	//  Prep a JsonPath object to hold the kickerFile contents...
-		jsonFilePath = DynamicData.convertRelativePathToFullPath(jsonFilePath);
-		JsonPath jsonObj = JsonPath.from(jsonFilePath);
-
-    	//  Grab the raw JSON data from the file...
-    	String rawJson = loadJsonFile(jsonFilePath);
-
-    	loadJsonDataAsDataPoolData(rawJson);
-
-    	return jsonObj;
+	    	//  Prep a JsonPath object to hold the kickerFile contents...
+			jsonFilePath = DynamicData.convertRelativePathToFullPath(jsonFilePath);
+			JsonPath jsonObj = JsonPath.from(jsonFilePath);
+	
+	    	//  Grab the raw JSON data from the file...
+	    	String rawJson = loadJsonFile(jsonFilePath);
+	
+	    	loadJsonDataAsDataPoolData(rawJson);
+	
+	    	return jsonObj;
     }
 
 	public void loadJsonPath(Response responseObject) throws IOException
@@ -140,13 +197,13 @@ public class DataPool extends HashMap<String, Object>
 
         if (StepLogger != null)
         {
-        	String msg = actionType + " [" + key + "]: " + padRight(value.toString(), 80, ' ').substring(0, 80).trim();
-        	
-        	if(previousValue.length() > 0)
-        	{
-        		msg = msg + " -- Previous: " + padRight(previousValue.toString(), 80, ' ').substring(0, 80).trim();
-        	}
-        	
+	        	String msg = actionType + " [" + key + "]: " + padRight(value.toString(), 80, ' ').substring(0, 80).trim();
+	        	
+	        	if(previousValue.length() > 0)
+	        	{
+	        		msg = msg + " -- Previous: " + padRight(previousValue.toString(), 80, ' ').substring(0, 80).trim();
+	        	}
+	        	
             StepLogger.log(msg);
         }
     }
@@ -179,11 +236,11 @@ public class DataPool extends HashMap<String, Object>
         StringBuilder retVal = new StringBuilder();
 
         this.forEach(
-		    			(key, value) ->
-				        {
-              retVal.append("    " + key + " : " + value.toString() + NewLine);
-              retVal.append("    -------------------------------------" + NewLine);
-				        }
+			    			(key, value) ->
+					        {
+				              retVal.append("    " + key + " : " + value.toString() + NewLine);
+				              retVal.append("    -------------------------------------" + NewLine);
+					        }
 				     );
 
         return retVal.toString();
@@ -191,44 +248,44 @@ public class DataPool extends HashMap<String, Object>
 
     public String detokenizeDataPoolValues(String tokenizedString)
     {
-    	//  ------ NOTE ----
-    	//  Even though this is memory intensive and not exactly optimal,
-    	//  we use a "swapping container" approach here since in JAVA we're
-    	//  not allowed to operate directly on strings while looping.
-    	//  We'll simply add in the "Latest Version" of our detokenized string
-    	//  to the last entry of the swapping container.  When we're all said
-    	//  and done, the very last entry should and will be a fully detokenzied
-    	//  version of the original string and we will have covered all possible
-    	//  tokens that might have existed in the string...
-    	//  ------ NOTE ----
-    	
-    	//  Setup a swapping container for the tokens in the tokenized string...
-    	List<String> list = new ArrayList<String>();
-    	
-    	//  Add the current version of the tokenzied string to the swapping container...
-    	list.add(tokenizedString);
-    	
-    	//  Loop through the list of tokens & values in the DataPool...
+	    	//  ------ NOTE ----
+	    	//  Even though this is memory intensive and not exactly optimal,
+	    	//  we use a "swapping container" approach here since in JAVA we're
+	    	//  not allowed to operate directly on strings while looping.
+	    	//  We'll simply add in the "Latest Version" of our detokenized string
+	    	//  to the last entry of the swapping container.  When we're all said
+	    	//  and done, the very last entry should and will be a fully detokenzied
+	    	//  version of the original string and we will have covered all possible
+	    	//  tokens that might have existed in the string...
+	    	//  ------ NOTE ----
+	    	
+	    	//  Setup a swapping container for the tokens in the tokenized string...
+	    	List<String> list = new ArrayList<String>();
+	    	
+	    	//  Add the current version of the tokenzied string to the swapping container...
+	    	list.add(tokenizedString);
+	    	
+	    	//  Loop through the list of tokens & values in the DataPool...
         this.forEach(
-		    			(key, value) ->
-				        {
-				        	//  If we actually **find** a key that exists in the
-				        	//  tokenized string...
-				            if (tokenizedString.contains(key))
-				            {
-				            	//  Then we get the most recent entry index of the 
-				            	//  swapping container...
-				            	int listIndex = list.size() - 1;
-				            	
-				            	//  We create a **>>NEW<<** string that contains the
-				            	//  detokenized version of the string by swapping out "Key"
-				            	//  for value...
-				            	String tmp = list.get(listIndex).replace(key, value.toString());
-				            	
-				            	//  And we add this new string to the swapping container...
-				            	list.add(tmp);
-				        	}
-				        }
+			    			(key, value) ->
+					        {
+						        	//  If we actually **find** a key that exists in the
+						        	//  tokenized string...
+					            if (tokenizedString.contains(key))
+					            {
+						            	//  Then we get the most recent entry index of the 
+						            	//  swapping container...
+						            	int listIndex = list.size() - 1;
+						            	
+						            	//  We create a **>>NEW<<** string that contains the
+						            	//  detokenized version of the string by swapping out "Key"
+						            	//  for value...
+						            	String tmp = list.get(listIndex).replace(key, value.toString());
+						            	
+						            	//  And we add this new string to the swapping container...
+						            	list.add(tmp);
+					        		}	
+					        }
 				     );
 
         //  Grab the last entry's index...
@@ -240,8 +297,8 @@ public class DataPool extends HashMap<String, Object>
         //  If we're still seeing what appears to be tokens in the detokenized string...
         if (deTokenizedString.matches(wildcardToRegex("*$*$*")))
         {
-        	//  We need to make a note of it in the log, as it's possible we have an
-        	//  unresolved token.
+	        	//  We need to make a note of it in the log, as it's possible we have an
+	        	//  unresolved token.
             logger.info("**** WARNING!  Detokenzied string appears to still contain tokenized values!");
             
             //  Recusively call this method to finish detokenizing the string...
@@ -253,25 +310,26 @@ public class DataPool extends HashMap<String, Object>
             
             if(detokenizationRecursionDepthMax >= detokenizationRecursionDepthMax)
             {
-            	detokenizationRecursionDepthExceeded = true;
+            		detokenizationRecursionDepthExceeded = true;
             }
             else
             {
-            	deTokenizedString = detokenizeDataPoolValues(deTokenizedString);
+            		deTokenizedString = detokenizeDataPoolValues(deTokenizedString);
             }
             
             detokenizationRecursionDepthCounter -= 1;
             
             if(detokenizationRecursionDepthExceeded == true && detokenizationRecursionDepthCounter == 0)
             {
-            	detokenizationRecursionDepthExceeded = false;
+            		detokenizationRecursionDepthExceeded = false;
             }
         }
 
         return deTokenizedString;
     }
 
-    public static String wildcardToRegex(String wildcard){
+    public static String wildcardToRegex(String wildcard)
+    {
         StringBuffer s = new StringBuffer(wildcard.length());
         s.append('^');
         for (int i = 0, is = wildcard.length(); i < is; i++) {

@@ -3,7 +3,9 @@ package com.autodesk.pws.test.engine;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
+import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
+import java.nio.charset.Charset;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.time.LocalDateTime;
@@ -12,6 +14,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.FilenameUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -453,6 +457,8 @@ public class Kicker
             exitCode = -1;
         }
 
+        exportDataPoolToJson(logToFile, logFileName);
+        
         //  Check to see if the workflow actually completed.
         if(workflowCompleted && validationsCompleted)
         {
@@ -501,7 +507,40 @@ public class Kicker
         return exitCode;
     }
 
-    private void initDataPoolRuntimeValues() 
+	private void exportDataPoolToJson(Boolean logToFile, String logFileName) 
+    {
+		var dataPoolDump = dataPool.toRawJson();
+		var validationChainDump = dataPool.validationChainToRawJson();
+		
+		if(logToFile)
+		{	
+			try 
+			{
+				FileUtils.writeStringToFile(new File(logFileName + ".DataPool.json"), dataPoolDump, Charset.defaultCharset());
+				FileUtils.writeStringToFile(new File(logFileName + ".ValidationChain.json"), validationChainDump, Charset.defaultCharset());
+			} 
+			catch (Exception e) 
+			{
+				logErr(e, "exportDataPoolToJson");
+			}
+		}
+	}
+
+	private void logErr(Exception e, String methodName)	
+	{
+		// TODO Auto-generated catch block
+		var x = e.getStackTrace();
+		
+		logIt("Error in method! -- " + methodName);
+		
+		for (int i=0; i<x.length; i++) 
+		{ 
+		    Object y = x[i];
+		    this.logIt(y.toString());
+		}
+	}
+		
+	private void initDataPoolRuntimeValues() 
     {
 		String strDate = DynamicData.getSimpleDatTimeFormat();
         dataPool.add("$FULL_DATE_TIME$", strDate);

@@ -49,3 +49,4 @@ build/
 .*.bak
 *.log
 *.class
+/*.json
