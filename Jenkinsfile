@@ -1,73 +1,62 @@
 #!/usr/bin/env groovy
 @Library("PSL@master") _
 
-def dockerReg = "autodesk-docker.art-bobcat.autodesk.com/team-pws"
-def imageName = "test-automation" 
-def regUser = "local-svc_p_ors_art" 
-def buildInfo = env.JOB_NAME + '-' + env.BUILD_NUMBER + "\n" + env.BUILD_URL
-def workspace = env.WORKSPACE
-def slackChannel = "#dpe-dbp-pws-devops"
-def SUCCESS = "SUCCESS"
-def FAILURE = "FAILURE"
-def isMasterBranch = false
+  def dockerReg = "autodesk-docker.art-bobcat.autodesk.com/team-pws"
+  //def dockerTestImage = "autodesk-docker.art-bobcat.autodesk.com/team-pws/test-automation:latest"
+  def dockerTestImage = "autodesk-docker.art-bobcat.autodesk.com/team-pws/test-automation:latest"
 
-properties([
+  def imageName = "test-automation" 
+  def regUser = "local-svc_p_ors_art" 
 
-    parameters([
-        choice(name: 'ForcePublish',
-            choices: 'No\nYes',
-            description: 'Force publish to Artifactory (No/Yes). Default only publishes Master branches'
-        )
-    ])
-])
+  def buildInfo = env.JOB_NAME + '-' + env.BUILD_NUMBER + "\n" + env.BUILD_URL
+  def slackChannel = "#dpe-dbp-pws-devops"
 
+  def SUCCESS = "SUCCESS"
+  def FAILURE = "FAILURE"
+  def isMasterBranch = false
+  
+  def testfiles
+  
 pipeline {
-  options {buildDiscarder(logRotator(daysToKeepStr: '7', numToKeepStr: '1'))}
-  stages {
-    agent {node 'aws-centos'}
-
-    stage("checkout") {
-      checkout scm
-      sh "git clean -fxd"
-    }
-
-    stage("create docker image") {
-        sh "docker build --pull --no-cache -t '${dockerReg}/${imageName}' ."
-    }
-    stage('Test Execution Stages') {
-         steps {
-                sh 'echo ${workspace}'
-                sh 'cd ${workspace}/target/classes; find . -name "*.json" > /tmp/flist'
-                sh 'cd ${workspace}'
-                sh 'cat /tmp/flist'
+   agent {
+       label "aws-centos"
+   }
+   stages {
+       stage('Fetch Test Image') {
+           steps {
+              retry(3) { sh "docker pull ${dockerTestImage}" }
+           }
+       }
+      stage('find test cases') {
+           agent {
+             label "aws-centos"
+           }
+            steps {
                 script {
-                    def mylist = readFile("/tmp/flist").readLines()
-                    for(int i=0; i < mylist.size(); i++) {
-                        stage(mylist[i]){
-                            sh '''
-                               echo "Executing Test ==> $i"
-                               docker run -- team-pws/test-automation:latest mvn spring-boot:run -Dspring-boot.run.arguments='${i}'
-                            '''
+                    testfiles = findFiles(glob: '**/*INT.json')
+                    echo """${testfiles[0].name} ${testfiles[0].path} ${testfiles[0].directory} ${testfiles[0].length} ${testfiles[0].lastModified}"""
+                }
+            }
+        }
+        stage('Running Cases') {
+            steps {
+                script {
+                    echo """${testfiles[0].name} ${testfiles[0].path} ${testfiles[0].directory} ${testfiles[0].length} ${testfiles[0].lastModified}"""
+                    def dir_offset_to_trim = 'src/main/resources/'
+                    def testcase_run_dir
+                    def full_dir
+                    for(int i=0; i < testfiles.size(); i++) {
+                        full_dir = "${testfiles[i].path}"
+                        testcase_run_dir = full_dir.replaceAll(/^${dir_offset_to_trim}/, "")
+                        stage(testfiles[i].name){
+                            echo "Test case full directory ${full_dir}"
+                            echo "Test case relative directory to run: ${testcase_run_dir}"
+                            sh "docker run autodesk-docker.art-bobcat.autodesk.com/team-pws/test-automation:latest mvn spring-boot:run -Dspring-boot.run.arguments='${testcase_run_dir}'"
                         }
                     }
                 }
-         }
-         post {
-                cleanup {
-                   cleanWs()
-                }
-         }
-   }
-    stage("push images to artifactory") {
-      if (env.BRANCH_NAME != 'master' && params.ForcePublish == 'No') {
-        echo "Skipping 'docker push' because branch is not master"
-        return
-      }
-
-      docker.withRegistry( "https://${dockerReg}/", regUser ) {
-         sh "docker tag '${dockerReg}/${imageName}' '${dockerReg}/${imageName}:latest'"
-         sh "docker push '${dockerReg}/${imageName}:latest'"
-      }
+            }
+        }
     }
 }
-}
+
