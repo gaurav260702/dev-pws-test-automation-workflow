@@ -1,20 +1,22 @@
 {
   "$ROOT$": "./testdata/WorkflowProcessing/TestData",
   "$ENV$": "STG",
-  "$BASE_NAME$": "InitialOrderAndRenewal",
-  
+  "$BASE_NAME$": "RenewalExtension",
+
   "$CSN_PRIMARY$": "0070176021",
-  "$CSN_SECONDARY$": "0070176021",
+  "$CSN_SECONDARY$": "5070016993",
 
   "$PRODUCT_SKU_PRIMARY$": "C1RK1-WW1367-L168",
   "$PRODUCT_SKU_SECONDARY$": "C1RK1-002900-L983",
+
+  "$EXTENSION_DATE$": "[[Date(455)]]",
 
   "baseUrl": "https://enterprise-api-$ENV$.autodesk.com",
   "oAuthBaseUrl":  "https://enterprise-api-$ENV$.autodesk.com",
 
   "baseFile": "$ROOT$/BaseData/BaseData.InitialOrder.$ENV$.json",
   "overridesFile": "$ROOT$/Overrides/Override.NONE.json",
-  "renewalRequestFile": "$ROOT$/BaseData/BaseData.Renewal.$ENV$.json",
+  "renewalRequestFile": "$ROOT$/BaseData/BaseData.ExtensionOrder.$ENV$.json",
   "renewalOverridesFile": "$ROOT$/Overrides/Override.NONE.json",
 
   "validationFile": "$ROOT$/Validators/Validator.InitialOrder.SecondSubmission.$ENV$.json",

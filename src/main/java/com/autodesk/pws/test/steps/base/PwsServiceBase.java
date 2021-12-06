@@ -3,6 +3,7 @@ package com.autodesk.pws.test.steps.base;
 import java.io.IOException;
 
 import com.autodesk.pws.test.processor.*;
+import com.autodesk.pws.test.steps.authentication.*;
 
 import io.restassured.path.json.JsonPath;
 import okhttp3.Response;
@@ -16,11 +17,16 @@ public class PwsServiceBase extends RestActionBase
     @Override
     public void preparation()
     {
-    	//  Do stuff that the Action depends on to execute...
+    	rootPreparation();
+    }
+
+    public void rootPreparation()
+    {
+    //  Do stuff that the Action depends on to execute...
     	initVariables();
     	prepareRequestHeaders();
     }
-
+    
     private void prepareRequestHeaders()
     {
     	//  Add in the headers required for this request type...
@@ -40,8 +46,8 @@ public class PwsServiceBase extends RestActionBase
     {
     	//  Set variables that are extracted
 		//  from the DataPool Here...
-		String baseFileData = DataPool.get("rawBaseFile").toString();
-		DataPool.loadJsonDataAsDataPoolData(baseFileData);
+		//String baseFileData = DataPool.get("rawBaseFile").toString();
+		//DataPool.loadJsonDataAsDataPoolData(baseFileData);
 		this.BaseUrl = DataPool.get("baseUrl").toString();
 	}
 
@@ -68,6 +74,7 @@ public class PwsServiceBase extends RestActionBase
 		{
 			ResourcePath = DataPool.detokenizeDataPoolValues(ResourcePath);
 			ResourcePath = DynamicData.detokenizeRuntimeValues(ResourcePath);
+			ResourcePath = DynamicData.simpleScriptEval(ResourcePath);
 		}
     }
 	
@@ -109,6 +116,20 @@ public class PwsServiceBase extends RestActionBase
 		String rawJsonRequest = DynamicData.loadJsonFile(jsonRequestBodyFilePath, true);
 		
 		setJsonRequestBody(rawJsonRequest);	
+	}
+	
+	public void refreshOauthToken()
+	{
+		log("Refreshing OAuth Token...");
+		
+		GetOAuthCredentials newOAuth = new GetOAuthCredentials();
+		
+		newOAuth.DataPool = this.DataPool;
+		
+		newOAuth.preparation();
+		newOAuth.action();
+		newOAuth.validation();
+		newOAuth.cleanup();
 	}
 	
 	@Override
@@ -187,8 +208,7 @@ public class PwsServiceBase extends RestActionBase
 		this.JsonResponseBody = rawJson;
     }
 
-
-    public Response getInfo()
+	public Response getInfo()
     {
     	//  Prep a response container...
         Response retVal = null;
@@ -197,6 +217,9 @@ public class PwsServiceBase extends RestActionBase
         
         addCsnHeader();
         
+		//  Do SimpleScript resolution...
+		JsonRequestBody = DynamicData.simpleScriptEval(JsonRequestBody);	
+		
         //  Try and get the request...
 		try
 		{

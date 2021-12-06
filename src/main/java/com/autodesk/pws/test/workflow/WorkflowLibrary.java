@@ -56,7 +56,7 @@ public class WorkflowLibrary
         workflow.add(new PostOrder());
         workflow.add(new GetOAuthCredentials());
         workflow.add(new WaitForOrderStatusChange());
-        workflow.add(new GetOrderDetailsV1());
+        workflow.add(new GetOrderDetails());
         workflow.add(new WaitForGetAgreementInfo());
 
         return workflow;
@@ -75,7 +75,7 @@ public class WorkflowLibrary
          workflow.add(new PostOrder());
          workflow.add(new GetOAuthCredentials());
          workflow.add(new WaitForOrderStatusChange());
-         workflow.add(new GetOrderDetailsV1());
+         workflow.add(new GetOrderDetails());
          workflow.add(new WaitForGetAgreementInfo());
          
     	 return workflow;
@@ -98,7 +98,7 @@ public class WorkflowLibrary
 	   	 
          //    	 Get the Price for the Renewal SKU
          workflow.add(new GetOAuthCredentials());
-         workflow.add(new GetSkuPrice());
+         workflow.add(new GetSkuRenewalPrice());
 	   	 
          //    	 Place a V2 Renewal Order
          workflow.add(new PostOrderRenewal());
@@ -106,6 +106,7 @@ public class WorkflowLibrary
          //    	 Wait for the Renewal OrderStatus to move to "order is under review"
          workflow.add(new GetOAuthCredentials());
          workflow.add(new WaitForOrderStatusChange2ndPass());
+	   	 workflow.add(new GetOrderDetails2ndPass());
 	   	 
     	 return workflow;
     }

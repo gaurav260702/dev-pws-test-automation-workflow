@@ -257,5 +257,11 @@ public class DynamicData
         
         return strDate;
 	}
+
+	public static String simpleScriptEval(String simpleScriptContainer) 
+	{
+		String retVal = SimpleScripter.extractAndResolveSimpleScripts(simpleScriptContainer, "[[", "]]");
+		return retVal;
+	}
 }
 

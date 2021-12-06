@@ -139,7 +139,10 @@ public class Kicker
     		
 			logFileName = dataPool.detokenizeDataPoolValues(logFileNameTemplate);
 
+			SimpleScripter.DebugLoggingEnabled = Boolean.valueOf(dataPool.get("SimpleScriptDebugLoggingEnabled").toString());
+			
 			logIt("LOG FILE PATH: " + reportOutLogFileInfo());
+			logIt("SIMPLESCRIPT DEBUG: " + SimpleScripter.DebugLoggingEnabled);
     	}
     }
 
@@ -605,6 +608,11 @@ public class Kicker
 							//  Detokenize the value (this is forward only)...
 							detokenizedValue = dataPool.detokenizeDataPoolValues(detokenizedValue);
 							
+							//  Resolve any embedded simple script items...
+							detokenizedValue = DynamicData.simpleScriptEval(detokenizedValue);
+							
+							//  If the value has changed after the above
+							//  treatments, reset the value for the key... 							
 							if(detokenizedValue != value.toString())
 							{
 								dataPool.add(key, detokenizedValue);
@@ -941,7 +949,8 @@ public class Kicker
                 
                 //  Here we'll resolve any SimpleScript fragments that exist in 
                 //  the validation data...
-                expectedValue = SimpleScripter.extractAndResolveSimpleScripts(expectedValue, "[[", "]]");
+                //expectedValue = SimpleScripter.extractAndResolveSimpleScripts(expectedValue, "[[", "]]");
+                expectedValue = DynamicData.simpleScriptEval(expectedValue);
                 
                 //  Convert the wildcard/plainstring expected value
                 //  to a regular expression...

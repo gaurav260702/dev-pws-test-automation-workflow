@@ -1,4 +1,5 @@
 {
   "LogToFile": "true",
-  "LogFileNameTemplate": "LOG.%FULL_DATE_TIME%.%TEST_NAME%.log"
+  "LogFileNameTemplate": "LOG.%FULL_DATE_TIME%.%TEST_NAME%.log",
+  "SimpleScriptDebugLoggingEnabled": "false"
 }

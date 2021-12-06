@@ -52,9 +52,9 @@ public class RestActionBase extends StepBase
     	{
     		addHeaderFromDataPool("CSN", "$CSN_HEADER$");
     	}
-    	else if(DataPool.containsKey("$CSN_PRIMARY$"))
+    	else if(DataPool.containsKey("$CSN_SECONDARY$"))
     	{
-    		addHeaderFromDataPool("CSN", "$CSN_PRIMARY$");    		
+    		addHeaderFromDataPool("CSN", "$CSN_SECONDARY$");    		
     	}
     	else
     	{
@@ -127,6 +127,9 @@ public class RestActionBase extends StepBase
 		/// **********************************************
 		//////////////////////////////////////////////////
 		
+		//  Ensure the resource path is fully detokenized...
+		restResourcePath = DataPool.detokenizeDataPoolValues(restResourcePath);
+		
 		//  Build the first portions of the REST request...
 		Builder requestBuilder = new Request.Builder().url(restResourcePath);
 		
@@ -171,7 +174,11 @@ public class RestActionBase extends StepBase
 					//  JSON library...
 						payload = hack_CleanQuantityFloatType(payload);
 						
+						//  Ensure that the payload is completely detokenized 
+						//  and all SimpleScript evals have been executed...
 						payload = DynamicData.detokenizeRuntimeValues(payload);
+						payload = DataPool.detokenizeDataPoolValues(payload);
+						payload = DynamicData.simpleScriptEval(payload);
 						
 						//  All this floofery is so we can convert the raw JSON payload into a 
 						//  single line version so it's easier to read in the log, but still 
