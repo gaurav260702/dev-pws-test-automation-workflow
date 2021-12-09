@@ -32,7 +32,7 @@ pipeline {
            }
             steps {
                 script {
-                    testfiles = findFiles(glob: '**/*INT.json')
+                    testfiles = findFiles(glob: '**/Kicker.*.json')
                     echo """${testfiles[0].name} ${testfiles[0].path} ${testfiles[0].directory} ${testfiles[0].length} ${testfiles[0].lastModified}"""
                 }
             }
