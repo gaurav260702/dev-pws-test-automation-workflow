@@ -56,15 +56,16 @@ public class GetSkuPrice extends PwsServiceBase
 		//  after it has been filled out...
     	super.validation();
     	
-    	super.setExecutionAbortFlagOnError();
-    	
-    	//  Extact data that may be needed by other steps later on...	
-    	extractDataFromJsonAndAddToDataPool("$NET_PRICE$", "response.net_price"); 
-    	
-    	//  This is a $NET_PRICE$ format hack...
-    	String netPrice = DataPool.get("$NET_PRICE$").toString();
-    	float value = Float.parseFloat(netPrice);
-    	netPrice = String.format("%.2f", value);
-    	DataPool.add("$NET_PRICE$", netPrice);
+    	if(!super.setExecutionAbortFlagOnError())
+    	{
+	    	//  Extact data that may be needed by other steps later on...	
+	    	extractDataFromJsonAndAddToDataPool("$NET_PRICE$", "response.net_price"); 
+	    	
+	    	//  This is a $NET_PRICE$ format hack...
+	    	String netPrice = DataPool.get("$NET_PRICE$").toString();
+	    	float value = Float.parseFloat(netPrice);
+	    	netPrice = String.format("%.2f", value);
+	    	DataPool.add("$NET_PRICE$", netPrice);
+    	}
 	}
 }

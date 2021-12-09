@@ -21,6 +21,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import com.autodesk.pws.test.processor.*;
 import com.autodesk.pws.test.steps.base.*;
+import com.autodesk.pws.test.utilities.StringUtils;
 import com.autodesk.pws.test.workflow.*;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -61,28 +62,40 @@ public class Kicker
 	protected String logFileNameTemplate = "";
 	//  Container for the resolved LogFileName...
 	protected String logFileName = "";
+	//  Container for command line override values...
+	private HashMap<String, String> cmdLineOverrides = new HashMap<String, String>();
 	
     public int kickIt(String[] args)
     {
     	//  Ready the failure count, me maties!
         int failureCount = 0;
         
-        //  Grab each filename passed in and
+        //  Grab each argument passed in and
         //  process it accordingly...
-        // foreach (String fileArg in args)
         for (int i = 0; i < args.length; i++)
         {
-        	String fileArg = args[i];
+        	String cmdArg = args[i];
 
         	//  Check to make sure this isn't some wacky "springboot" 
-        	//  argument being passed just to mess with your head...
-        	if(!fileArg.startsWith("--"))
+        	//  argument being passed just to mess with your head or
+        	//  if it's a CommandLineOverride value that needs to be
+        	//  stored for processing later...
+        	if(!cmdArg.startsWith("--"))
         	{
 	            //  Grab the test execution result...
-	            int testExitCode = executeFileArguments(fileArg);
+	            int testExitCode = executeFileArguments(cmdArg);
 	
 	            //  Add it to the failure count...
 	            failureCount += Math.abs(testExitCode);
+        	}
+        	else
+        	{
+        		cmdArg = cmdArg.substring(2);
+        		
+        		if(cmdArg.startsWith("{") && cmdArg.endsWith("}"))
+				{
+        			processsCmdLineOverrideArgs(cmdArg);
+				}
         	}
         }
 
@@ -120,7 +133,14 @@ public class Kicker
         return Math.abs(failureCount) * -1;
     }
 
-    private void loadLocalConfig() 
+    private void processsCmdLineOverrideArgs(String cmdArg) 
+    {	
+    	cmdArg = StringUtils.getBetween(cmdArg, "{", "}");
+		String[] chunk = cmdArg.split(":");
+		cmdLineOverrides.put(chunk[0], chunk[1]);
+	}
+
+	private void loadLocalConfig() 
     {
     	String configFilePath = "./testdata/WorkflowProcessing/TestData/Configurations/LocalConfig.json";
     	
@@ -384,6 +404,10 @@ public class Kicker
         //  Load in test params as DataPool data...
         loadTestKickerAsDataPoolData(kickerFilePath);
         
+        //  Set and/or add any command line override arguments into
+        //  the datapool that were passed in at the start of all this...
+        mergeCmdLineOverridesIntoDataPool();
+        
         //  Now detokenize any token references in the values of the DataPool...
         detokenizeDataPool();
         
@@ -509,6 +533,21 @@ public class Kicker
         
         return exitCode;
     }
+
+	private void mergeCmdLineOverridesIntoDataPool() 
+	{
+		//  Merges command line override  
+		//  values into DataPool...
+    	logIt("Merging command line override values...");
+    	
+		cmdLineOverrides.
+			forEach(
+						(keyName, value) ->
+						{							
+							dataPool.add(keyName, value);
+						}
+					);
+	}
 
 	private void exportDataPoolToJson(Boolean logToFile, String logFileName) 
     {

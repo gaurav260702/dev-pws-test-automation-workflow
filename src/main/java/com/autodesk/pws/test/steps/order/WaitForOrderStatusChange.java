@@ -1,7 +1,6 @@
 package com.autodesk.pws.test.steps.order;
 
 import com.autodesk.pws.test.steps.base.*;
-
 import io.restassured.path.json.JsonPath;
 
 public class WaitForOrderStatusChange extends RestActionBase

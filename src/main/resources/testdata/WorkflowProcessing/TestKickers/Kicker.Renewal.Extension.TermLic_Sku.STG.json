@@ -1,12 +1,12 @@
 {
   "$ROOT$": "./testdata/WorkflowProcessing/TestData",
   "$ENV$": "STG",
-  "$BASE_NAME$": "SaasRenewalExtension",
+  "$BASE_NAME$": "TermLicRenewalExtension",
 
   "$CSN_PRIMARY$": "0070176021",
   "$CSN_SECONDARY$": "5070016993",
 
-  "$PRODUCT_SKU_PRIMARY$": "C1RK1-WW1367-L168",
+  "$PRODUCT_SKU_PRIMARY$": "C1RK1-WW1762-L158",
   "$PRODUCT_SKU_SECONDARY$": "C1RK1-002900-L983",
 
   "$EXTENSION_DATE$": "[[Date(455)]]",
