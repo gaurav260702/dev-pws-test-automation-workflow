@@ -7,7 +7,8 @@ import io.restassured.path.json.JsonPath;
 public class GetOpportunityInfoByOpptyId extends PwsServiceBase
 {
 	public int MillisecondsBetweenGetOpptyInfoRetries = 10000;
-	public int MaxGetOpptyInfoRetries = 30;
+	public int MaxGetOpptyInfoRetries = 600;
+	public int OAuthTokenRefreshModulus = 75;
 	
 	private String finalStatus = "";
 	
@@ -60,82 +61,103 @@ public class GetOpportunityInfoByOpptyId extends PwsServiceBase
 		{	
 			while(keepTrying)
 			{	
-				response = getInfo();
+				retryCount += 1;
 				
-				JsonResponseBody = response.body().string();
-
-				pathFinder = JsonPath.from(JsonResponseBody);
-
-				statusMsg = "[NONE]";
-				
-				//{
-				//    "status": "Error",
-				//    "error": 
-				//    {
-				//        "code": "22001",
-				//        "message": "Invalid response from Server"
-				//    }
-				//}
-				if(JsonResponseBody.contains("error"))
+				if(retryCount % OAuthTokenRefreshModulus == 0)
 				{
-					status = pathFinder.get("error");
-					statusMsg = pathFinder.get("error.message");
+					this.refreshOauthToken();
 				}
-				else
+				
+				log("Attempt (" + (retryCount) + ") of (" + MaxGetOpptyInfoRetries + ")...");
+				
+				try
 				{
-					status = pathFinder.get("status");
+					response = getInfo();
 					
-					//"status": "OK",
-					//"message": [
+					JsonResponseBody = response.body().string();
+
+					pathFinder = JsonPath.from(JsonResponseBody);
+
+					statusMsg = "[NONE]";
+					
+					//{
+					//    "status": "Error",
+					//    "error": 
 					//    {
-					//        "opportunity_number": "A-15202879",
-					//        "opportunity_type": "Renewal",
-					//        "status": "Open",
-					//      ...
-					if(JsonResponseBody.contains("opportunity_type"))
+					//        "code": "22001",
+					//        "message": "Invalid response from Server"
+					//    }
+					//}
+					if(JsonResponseBody.contains("error"))
 					{
-						statusMsg = pathFinder.getString("message.status");
-						fullResponseFound = true;
+						status = pathFinder.get("error");
+						statusMsg = pathFinder.get("error.message");
 					}
 					else
 					{
-						statusMsg = pathFinder.getString("message");
+						status = pathFinder.get("status");
+						
+						//"status": "OK",
+						//"message": [
+						//    {
+						//        "opportunity_number": "A-15202879",
+						//        "opportunity_type": "Renewal",
+						//        "status": "Open",
+						//      ...
+						if(JsonResponseBody.contains("opportunity_type"))
+						{
+							statusMsg = pathFinder.getString("message.status");
+							fullResponseFound = true;
+						}
+						else
+						{
+							statusMsg = pathFinder.getString("message");
+						}
 					}
-				}
-		
-				log("GetOpptyInfo status: " + status + " -- " + statusMsg);
+			
+					log("GetOpptyInfo status: " + status + " -- " + statusMsg);
+					
+					switch(status.toUpperCase())
+					{					
+						case "ERROR":
+							keepTrying = false;
+							setError = true;
+							break;
+						
+						case "OK":
+							if(fullResponseFound)
+							{
+								keepTrying = false;
+							}
+							else
+							{
+								retryCount+=1;
+							}
+							break;
+							
+						default:
+							keepTrying = true;
+							retryCount+=1;
+							break;
+					}
 				
-				switch(status.toUpperCase())
-				{					
-					case "ERROR":
+					
+					if(retryCount >= this.MaxGetOpptyInfoRetries)
+					{
+						status = "==> TIMEOUT AFTER " + (retryCount * this.MillisecondsBetweenGetOpptyInfoRetries / 1000) + " SECONDS!  RECEIVED NO COMPLETE OPPORTUNITY RESPONSE.";
 						keepTrying = false;
 						setError = true;
-						break;
+					}
 					
-					case "OK":
-						if(fullResponseFound)
-						{
-							keepTrying = false;
-							retryCount+=1;
-						}
-						break;
-						
-					default:
-						keepTrying = true;
-						retryCount+=1;
-						break;
+					if(keepTrying) 
+					{
+						this.sleep(MillisecondsBetweenGetOpptyInfoRetries);
+					}	
 				}
-			
-				
-				if(retryCount >= this.MaxGetOpptyInfoRetries)
+				catch(Exception ex)
 				{
-					status = "Timeout";
-					keepTrying = false;
-				}
-				
-				if(keepTrying) 
-				{
-					this.sleep(MillisecondsBetweenGetOpptyInfoRetries);
+					log("Encountered an unexpected, non-abortive error: " + ex.getMessage());
+					log("Continuing...");
 				}
 			}
 			

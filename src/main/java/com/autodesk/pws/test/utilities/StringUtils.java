@@ -13,10 +13,11 @@ public class StringUtils
 
         try
         {
+        	int indexMarker = source.indexOf(match);
         	
-            if (source.indexOf(match) > 0)
+            if (indexMarker > -1)
             {
-                strLeft = source.substring(0, source.indexOf(match) - 1);
+                strLeft = source.substring(0, indexMarker);
             }
             else if (returnZeroLengthOnNomatch != true)
             {
@@ -42,7 +43,7 @@ public class StringUtils
     {
         String strRight = "";
 
-        if (source.indexOf(match) > 0)
+        if (source.indexOf(match) > -1)
         {
             strRight = source.substring(source.indexOf(match) + match.length());
         }

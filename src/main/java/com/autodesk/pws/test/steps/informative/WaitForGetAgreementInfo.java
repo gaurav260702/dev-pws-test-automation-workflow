@@ -5,6 +5,7 @@ import com.autodesk.pws.test.steps.base.*;
 public class WaitForGetAgreementInfo extends RestActionBase
 {
 	private GetAgreementInfo getAgreementInfo = new GetAgreementInfo();
+	public int OAuthTokenRefreshModulus = 75;
 	
 	@Override
     public void preparation()
@@ -21,7 +22,7 @@ public class WaitForGetAgreementInfo extends RestActionBase
     {
 		boolean continueTrying = true;
 		boolean retryTimeout = false;
-		Integer maxRetries = 60;
+		Integer maxRetries = 600;
 		Integer msSleepBeforeStatus = 10000;
 		Integer retryCounter = 0;
 		Integer flagForDelaysAt = 25;
@@ -34,6 +35,11 @@ public class WaitForGetAgreementInfo extends RestActionBase
 			sleep(msSleepBeforeStatus);
 			
 			retryCounter += 1;
+			
+			if(retryCounter % OAuthTokenRefreshModulus == 0)
+			{
+				getAgreementInfo.refreshOauthToken();
+			}
 			
 			if(retryCounter >= maxRetries)
 			{
@@ -52,7 +58,6 @@ public class WaitForGetAgreementInfo extends RestActionBase
 				if(json.length() > 8)
 				{
 					continueTrying = false;
-					status = json.length() + " character reply...";
 				}
 				
 				log("WaitForGetAgreementInfo status: " + json.length() + " char reply...");

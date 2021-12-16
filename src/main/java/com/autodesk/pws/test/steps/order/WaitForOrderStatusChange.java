@@ -1,7 +1,6 @@
 package com.autodesk.pws.test.steps.order;
 
 import com.autodesk.pws.test.steps.base.*;
-
 import io.restassured.path.json.JsonPath;
 
 public class WaitForOrderStatusChange extends RestActionBase
@@ -13,6 +12,7 @@ public class WaitForOrderStatusChange extends RestActionBase
 	//  providing a new value in the Kicker file called
 	//  "WaitForOrderStatusChange.expectedEndStateStatus"...
 	protected String expectedEndStateStatus = "accepted";
+	public int OAuthTokenRefreshModulus = 75;
 	
 	@Override
     public void preparation()
@@ -26,7 +26,7 @@ public class WaitForOrderStatusChange extends RestActionBase
     public void action()
     {
 		boolean continueTrying = true;
-		Integer maxRetries = 75;
+		Integer maxRetries = 600;
 		Integer flagForDelaysAt = 25;
 		Integer msSleepBeforeStatus = 10000;
 		Integer retryCounter = 0;
@@ -39,6 +39,11 @@ public class WaitForOrderStatusChange extends RestActionBase
 			sleep(msSleepBeforeStatus);
 			
 			retryCounter += 1;
+			
+			if(retryCounter % OAuthTokenRefreshModulus == 0)
+			{
+				getOrderStatus.refreshOauthToken();
+			}
 			
 			if(retryCounter >= maxRetries)
 			{

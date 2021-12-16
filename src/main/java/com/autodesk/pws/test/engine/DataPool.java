@@ -61,7 +61,7 @@ public class DataPool extends HashMap<String, Object>
 	    					{
 			                String rawJson = value.toString().trim();
 			                
-			                //  Odd little hack here.  
+			                //  Odd little hack here...
 			                //  For some reason we're occasionally getting the value back
 			                //  inside square brackets ("[...]") instead of pointy brackets ("{...}").
 			                //  For whateever reason, GSON can't handle parsing that, so we're 
@@ -195,17 +195,21 @@ public class DataPool extends HashMap<String, Object>
 
         this.put(key, value);
 
-        if (StepLogger != null)
-        {
-	        	String msg = actionType + " [" + key + "]: " + padRight(value.toString(), 80, ' ').substring(0, 80).trim();
-	        	
-	        	if(previousValue.length() > 0)
-	        	{
-	        		msg = msg + " -- Previous: " + padRight(previousValue.toString(), 80, ' ').substring(0, 80).trim();
-	        	}
-	        	
+    	String msg = actionType + " [" + key + "]: " + padRight(value.toString(), 80, ' ').substring(0, 80).trim();
+    	
+    	if(previousValue.length() > 0)
+    	{
+    		msg = msg + " -- Previous: " + padRight(previousValue.toString(), 80, ' ').substring(0, 80).trim();
+    	}
+
+		if (StepLogger != null)
+        {	
             StepLogger.log(msg);
         }
+		else
+		{
+			System.out.println(msg);
+		}
     }
 
 	public static String padRight(String original, int padToLength)
@@ -266,27 +270,27 @@ public class DataPool extends HashMap<String, Object>
 	    	list.add(tokenizedString);
 	    	
 	    	//  Loop through the list of tokens & values in the DataPool...
-        this.forEach(
+	    	this.forEach(
 			    			(key, value) ->
 					        {
-						        	//  If we actually **find** a key that exists in the
-						        	//  tokenized string...
+					        	//  If we actually **find** a key that exists in the
+					        	//  tokenized string...
 					            if (tokenizedString.contains(key))
 					            {
-						            	//  Then we get the most recent entry index of the 
-						            	//  swapping container...
-						            	int listIndex = list.size() - 1;
-						            	
-						            	//  We create a **>>NEW<<** string that contains the
-						            	//  detokenized version of the string by swapping out "Key"
-						            	//  for value...
-						            	String tmp = list.get(listIndex).replace(key, value.toString());
-						            	
-						            	//  And we add this new string to the swapping container...
-						            	list.add(tmp);
-					        		}	
+					            	//  Then we get the most recent entry index of the 
+					            	//  swapping container...
+					            	int listIndex = list.size() - 1;
+					            	
+					            	//  We create a **>>NEW<<** string that contains the
+					            	//  detokenized version of the string by swapping out "Key"
+					            	//  for value...
+					            	String tmp = list.get(listIndex).replace(key, value.toString());
+					            	
+					            	//  And we add this new string to the swapping container...
+					            	list.add(tmp);
+				        		 }	
 					        }
-				     );
+				        );
 
         //  Grab the last entry's index...
         int listIndex = list.size() - 1;
@@ -310,18 +314,18 @@ public class DataPool extends HashMap<String, Object>
             
             if(detokenizationRecursionDepthMax >= detokenizationRecursionDepthMax)
             {
-            		detokenizationRecursionDepthExceeded = true;
+            	detokenizationRecursionDepthExceeded = true;
             }
             else
             {
-            		deTokenizedString = detokenizeDataPoolValues(deTokenizedString);
+            	deTokenizedString = detokenizeDataPoolValues(deTokenizedString);
             }
             
             detokenizationRecursionDepthCounter -= 1;
             
             if(detokenizationRecursionDepthExceeded == true && detokenizationRecursionDepthCounter == 0)
             {
-            		detokenizationRecursionDepthExceeded = false;
+            	detokenizationRecursionDepthExceeded = false;
             }
         }
 

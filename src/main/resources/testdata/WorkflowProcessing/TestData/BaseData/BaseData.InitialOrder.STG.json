@@ -1,0 +1,47 @@
+{
+	"action": "Initial",
+	"endCustomer": 
+	{
+		"contractManager": 
+		{
+			"firstName": "{{random_first_name}}",
+			"lastName": "{{random_last_name}}",
+			"email": "email@{{random_email_domain}}.com",
+			"language": "EN",
+			"countryCode": "US"
+		},
+	    "account":
+		{ 
+	      "name": "{{random_first_name}} {{random_last_name}}",
+	      "addressLine1": "1600 {{random_email_domain}} St",
+	      "addressLine2": "{{random_first_name}} 14",
+	      "addressLine3": "{{random_last_name}} 1",
+	      "city": "Denver",
+	      "stateProvinceCode": "CO",
+	      "postalCode": "80202",
+	      "countryCode": "US"
+        }
+	},
+	"shipTo": 
+	{
+		"csn": "$CSN_SECONDARY$"
+	},
+	"reseller": 
+	{
+		"csn": "$CSN_SECONDARY$"
+	},
+	"soldTo": 
+	{
+		"csn": "$CSN_SECONDARY$"
+	},
+	"poNumber": "PO_{{po_number}}",
+	"customerPoNumber": "CUST_PO_{{cust_po_number}}",
+    "lineItems": [
+    {
+      "partNumber": "$PRODUCT_SKU_PRIMARY$",
+      "partnerSubscriptionId": "psi-{{uuid1}}",
+      "quantity": 1,
+      "netPrice": "$NET_PRICE$"
+    }
+  ]
+}

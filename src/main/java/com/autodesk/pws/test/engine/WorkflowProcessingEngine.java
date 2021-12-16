@@ -108,7 +108,8 @@ public class WorkflowProcessingEngine
 				
 				step.logNoPad("  -->  Substep: " + currentStep + ".Preparation()");
 				step.preparation();
-				
+			    //step.logNoPad(DataPool.dumpDataPool());
+			    
 				if(checkForExceptionAbort(step))
 				{
 					break;
@@ -116,7 +117,8 @@ public class WorkflowProcessingEngine
 				
 				step.logNoPad("  -->  Substep: " + currentStep + ".Action()");
 				step.action();
-
+			    //step.logNoPad(DataPool.dumpDataPool());
+			    
 				if(checkForExceptionAbort(step))
 				{
 					break;
@@ -124,7 +126,8 @@ public class WorkflowProcessingEngine
 				
 				step.logNoPad("  -->  Substep: " + currentStep + ".Validation()");
 				step.validation();
-				
+			    //step.logNoPad(DataPool.dumpDataPool());
+			    
 				if(checkForExceptionAbort(step))
 				{
 					break;
@@ -132,14 +135,16 @@ public class WorkflowProcessingEngine
 
 				step.logNoPad("  -->  Substep: " + currentStep + ".Cleanup()");
 				step.cleanup();
-
+			    //step.logNoPad(DataPool.dumpDataPool());
+			    
 				if(checkForExceptionAbort(step))
 				{
 					break;
 				}
 
 				step.logNoPad("'" + currentStep + "' execution time: " + (totalStepTime.getTime() / 1000) + " seconds.");
-				step.logNoPad("-------------------------------------------------------------");
+				step.logNoPad("-------------------------------------------------------------");				
+			    
 				lastStep = step;
 			  } 
 			  catch (Exception ex) 
