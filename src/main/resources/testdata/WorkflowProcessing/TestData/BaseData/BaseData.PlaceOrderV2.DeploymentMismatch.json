@@ -1,0 +1,33 @@
+{
+    "action": "Initial",
+    "endCustomer": {
+        "account": {
+            "csn": "5118761720"
+        },
+        "contractManager": {
+            "firstName": "KRIS483",
+            "lastName": "TUMA483",
+            "email": "kristuma483@ssttest.net",
+            "language": "EN",
+            "countryCode": "US"
+        }
+    },
+    "shipTo": {
+        "csn": "0070176510"
+    },
+    "reseller": {
+        "csn": "0070176510"
+    },
+    "soldTo": {
+        "csn": "0070176510"
+    },
+    "poNumber": "KT_{{po_number}}",
+    "customerPoNumber": "KT_CUST_{{po_number}}",
+    "lineItems": [
+        {
+            "partNumber": "128M1-WW6542-L618",
+            "quantity": 1,
+            "netPrice": "{{net_price}}"
+        }
+    ]
+}
