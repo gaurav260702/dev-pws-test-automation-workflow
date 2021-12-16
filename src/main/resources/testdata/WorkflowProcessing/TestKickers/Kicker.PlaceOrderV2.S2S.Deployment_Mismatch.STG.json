@@ -3,7 +3,7 @@
   "oAuthBaseUrl":  "https://enterprise-api-STG.autodesk.com",
   "sireBaseUrl": "https://api.sire-STG.autodesk.com",
   "sireOAuthBaseUrl": "https://auth.sire-STG.autodesk.com",
-  "baseFile": "./testdata/WorkflowProcessing/TestData/Overrides/Override.DeploymentMismatch.STG.json",
+  "baseFile": "./testdata/WorkflowProcessing/TestData/BaseData/BaseData.PlaceOrderV2.DeploymentMismatch.json",
   "overridesFile": "./testdata/WorkflowProcessing/TestData/Overrides/Override.NONE.json",
   "validationFile": "./testdata/WorkflowProcessing/TestData/Validators/Validator.PlaceOrderV2.DeploymentMismatchPayload.json",
   "secretsFile": "./testdata/WorkflowProcessing/TestData/Configurations/Secrets.GetInvoiceServices.INT.json",
