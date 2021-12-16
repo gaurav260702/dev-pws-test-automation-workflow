@@ -12,7 +12,7 @@ public class WaitForOrderStatusChange extends RestActionBase
 	//  "accepted", however this state can be overriddent by
 	//  providing a new value in the Kicker file called
 	//  "WaitForOrderStatusChange.expectedEndStateStatus"...
-	protected String expectedEndStateStatus = "failed";
+	protected String expectedEndStateStatus = "accepted";
 	
 	@Override
     public void preparation()
