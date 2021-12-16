@@ -1,0 +1,15 @@
+{
+  "GetOrderStatus":
+	{
+    "transactionId": "*",
+    "status": "failed",
+    "statusV1": "FAILED",
+    "messageV1": "Order line items and the contract term do not match.",
+    "lastUpdated": "*",
+    "soldToCsn": "*",
+    "error": {
+      "message": "Order line items and the contract term do not match.",
+      "code": "43140"
+    }
+  }
+}
