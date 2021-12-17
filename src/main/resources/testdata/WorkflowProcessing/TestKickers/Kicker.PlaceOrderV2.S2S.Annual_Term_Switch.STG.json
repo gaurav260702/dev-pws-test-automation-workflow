@@ -1,0 +1,13 @@
+{
+  "baseUrl": "https://enterprise-api-STG.autodesk.com",
+  "oAuthBaseUrl":  "https://enterprise-api-STG.autodesk.com",
+  "sireBaseUrl": "https://api.sire-STG.autodesk.com",
+  "sireOAuthBaseUrl": "https://auth.sire-STG.autodesk.com",
+  "baseFile": "./testdata/WorkflowProcessing/TestData/BaseData/BaseData.PlaceOrderV2.S2SPayload.json",
+  "overridesFile": "./testdata/WorkflowProcessing/TestData/Overrides/Override.S2SInitialAnnualTerm.STG.json",
+  "addOnOverridesFile":"./testdata/WorkflowProcessing/TestData/Overrides/Override.S2SSwitchAnnualTerm.STG.json",
+  "validationFile": "./testdata/WorkflowProcessing/TestData/Validators/Validator.PlaceOrderV2.S2SPCAT2Payload.json",
+  "secretsFile": "./testdata/WorkflowProcessing/TestData/Configurations/Secrets.GetInvoiceServices.INT.json",
+  "workflow": "PlaceS2SOrder",
+  "WaitForOrderStatusChange2ndPass.expectedEndStateStatus": "accepted"
+}
