@@ -17,10 +17,10 @@ public class WaitForOrderStatusChange extends RestActionBase
 	@Override
     public void preparation()
     {
-		    getOrderStatus.DataPool = this.DataPool;
-        getOrderStatus.preparation();
-        this.ClassName = this.getClass().getSimpleName();
-		    expectedEndStateStatus = DataPool.getOrDefault(this.ClassName + ".expectedEndStateStatus", expectedEndStateStatus).toString();
+		  getOrderStatus.DataPool = this.DataPool;
+      getOrderStatus.preparation();
+      this.ClassName = this.getClass().getSimpleName();
+		  expectedEndStateStatus = DataPool.getOrDefault(this.ClassName + ".expectedEndStateStatus", expectedEndStateStatus).toString();
     }
 
 	@Override
