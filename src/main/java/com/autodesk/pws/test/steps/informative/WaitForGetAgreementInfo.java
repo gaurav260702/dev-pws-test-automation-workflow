@@ -22,7 +22,7 @@ public class WaitForGetAgreementInfo extends RestActionBase
 		boolean continueTrying = true;
 		boolean retryTimeout = false;
 		Integer maxRetries = 60;
-		Integer msSleepBeforeStatus = 10000;
+		Integer msSleepBeforeStatus = 120000;
 		Integer retryCounter = 0;
 		Integer flagForDelaysAt = 25;
 		String status = "Waiting for service syncing and a non-zero length reply...";

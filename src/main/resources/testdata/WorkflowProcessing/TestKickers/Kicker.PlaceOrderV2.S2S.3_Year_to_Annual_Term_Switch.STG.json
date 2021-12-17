@@ -9,5 +9,5 @@
   "validationFile": "./testdata/WorkflowProcessing/TestData/Validators/Validator.PlaceOrderV2.S2SFailedTermSwitch.json",
   "secretsFile": "./testdata/WorkflowProcessing/TestData/Configurations/Secrets.GetInvoiceServices.INT.json",
   "workflow": "PlaceS2SOrder",
-  "WaitForOrderStatusChange.expectedEndStateStatus": "failed"
+  "WaitForOrderStatusChange2ndPass.expectedEndStateStatus": "failed"
 }
