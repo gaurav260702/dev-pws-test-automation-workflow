@@ -23,7 +23,7 @@
   },
   "poNumber": "pws_monitoring_test_{{timestamp}",
   "customerPoNumber": "CUST-PO-{{timestamp}",
-  "contractNumber": "110005289995",
+  "contractNumber": "$CONTRACT_NUMBER$",
   "lineItems": [
     {
       "partNumber": "C1RK1-WWNC14-L252",
@@ -31,7 +31,7 @@
       "netPrice": "{{net_price}}",
       "previousSubscriptions": [
         {
-          "subscriptionReferenceNumber": "580-79256478"
+          "subscriptionReferenceNumber": "$SUBSCRIPTION_REFERENCE_NUMBER$"
         }
       ]
     }
