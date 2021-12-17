@@ -3,6 +3,7 @@ package com.autodesk.pws.test.steps.base;
 import java.io.IOException;
 
 import com.autodesk.pws.test.processor.*;
+import com.autodesk.pws.test.steps.authentication.*;
 
 import io.restassured.path.json.JsonPath;
 import okhttp3.Response;
@@ -12,15 +13,22 @@ public class PwsServiceBase extends RestActionBase
     public boolean EnableRetryOnNullResponse = true;
     public int MaximumNullRetryCountBeforeError = 10;
     public int MillisecondsBetweenNullResponseRetry = 1000;
-    
+	//  Call the method that does the meat of the work...
+    public Response ActionResult = null;
+	
     @Override
     public void preparation()
     {
-    	//  Do stuff that the Action depends on to execute...
+    	rootPreparation();
+    }
+
+    public void rootPreparation()
+    {
+    //  Do stuff that the Action depends on to execute...
     	initVariables();
     	prepareRequestHeaders();
     }
-
+    
     private void prepareRequestHeaders()
     {
     	//  Add in the headers required for this request type...
@@ -40,8 +48,8 @@ public class PwsServiceBase extends RestActionBase
     {
     	//  Set variables that are extracted
 		//  from the DataPool Here...
-		String baseFileData = DataPool.get("rawBaseFile").toString();
-		DataPool.loadJsonDataAsDataPoolData(baseFileData);
+		//String baseFileData = DataPool.get("rawBaseFile").toString();
+		//DataPool.loadJsonDataAsDataPoolData(baseFileData);
 		this.BaseUrl = DataPool.get("baseUrl").toString();
 	}
 
@@ -68,6 +76,7 @@ public class PwsServiceBase extends RestActionBase
 		{
 			ResourcePath = DataPool.detokenizeDataPoolValues(ResourcePath);
 			ResourcePath = DynamicData.detokenizeRuntimeValues(ResourcePath);
+			ResourcePath = DynamicData.simpleScriptEval(ResourcePath);
 		}
     }
 	
@@ -111,11 +120,23 @@ public class PwsServiceBase extends RestActionBase
 		setJsonRequestBody(rawJsonRequest);	
 	}
 	
+	public void refreshOauthToken()
+	{
+		log("Refreshing OAuth Token...");
+		
+		GetOAuthCredentials newOAuth = new GetOAuthCredentials();
+		
+		newOAuth.DataPool = this.DataPool;
+		
+		newOAuth.preparation();
+		newOAuth.action();
+		newOAuth.validation();
+		newOAuth.cleanup();
+	}
+	
 	@Override
     public void action()
     {
-		//  Call the method that does the meat of the work...
-		Response actionResult = null;
 		int retryCount = 0;
 		
 		boolean keepTrying = true;
@@ -126,11 +147,11 @@ public class PwsServiceBase extends RestActionBase
 		while(keepTrying)
 		{
 			//  Grab the info...
-			actionResult = getInfo();
+			ActionResult = getInfo();
 			
 			//  If actionResult contains something, 
 			//  then set the flag to break the loop...
-			if(actionResult != null)
+			if(ActionResult != null)
 			{
 				keepTrying = false;
 			}
@@ -167,7 +188,7 @@ public class PwsServiceBase extends RestActionBase
 			//  the JSON body and get ready to return it...
 			if(!retryExceeded)
 			{
-				rawJson = actionResult.body().string();
+				rawJson = ActionResult.body().string();
 			}
 			else
 			{
@@ -187,8 +208,7 @@ public class PwsServiceBase extends RestActionBase
 		this.JsonResponseBody = rawJson;
     }
 
-
-    public Response getInfo()
+	public Response getInfo()
     {
     	//  Prep a response container...
         Response retVal = null;
@@ -197,6 +217,9 @@ public class PwsServiceBase extends RestActionBase
         
         addCsnHeader();
         
+		//  Do SimpleScript resolution...
+		JsonRequestBody = DynamicData.simpleScriptEval(JsonRequestBody);	
+		
         //  Try and get the request...
 		try
 		{
@@ -228,7 +251,7 @@ public class PwsServiceBase extends RestActionBase
     //  If one is found, it then converts the JSON to a prettified string string and
     //  shoves it into a container and sets an abort status flag, which is checked by
     //  the WPE between each sub-step and acted upon if it is set to 'true'...
-	public void setExecutionAbortFlagOnError() 
+	public boolean setExecutionAbortFlagOnError() 
 	{
 		JsonPath pathFinder = JsonPath.from(JsonResponseBody);
 		
@@ -237,5 +260,7 @@ public class PwsServiceBase extends RestActionBase
 			ExceptionAbortStatus = true;
 			ExceptionMessage = ClassName + ": " + this.LineMark + pathFinder.prettify();
 		}
+		
+		return ExceptionAbortStatus;
 	}
 }

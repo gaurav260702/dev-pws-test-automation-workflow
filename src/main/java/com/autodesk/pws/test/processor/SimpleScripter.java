@@ -3,7 +3,8 @@ package com.autodesk.pws.test.processor;
 import java.io.Reader;
 import java.io.StreamTokenizer;
 import java.io.StringReader;
-import java.lang.reflect.Method;  
+import java.lang.reflect.Method;
+import java.text.SimpleDateFormat;
 import java.util.*;
 import java.util.AbstractMap.*;
 
@@ -19,6 +20,8 @@ public class SimpleScripter
 //        
 //        debugLog(extractAndResolveSimpleScripts(scriptLine, "${", "}$"));
 //    }
+	
+	public static boolean DebugLoggingEnabled = false;
     
     public static String extractAndResolveSimpleScripts(String simpleScriptLine, String scriptMarkerStart, String scriptMarkerEnd)
 	{
@@ -77,6 +80,7 @@ public class SimpleScripter
 			    else
 			    {
 			        keepResolving = false;
+					retVal = simpleScriptLine;
 			    }
 			}
 			else
@@ -84,7 +88,7 @@ public class SimpleScripter
 				keepResolving = false;
 			}
 		}
-	
+		
 		return retVal;
 	}
      
@@ -212,6 +216,26 @@ public class SimpleScripter
         debugLog("Return value: '" + retVal + "'...");
         
         return retVal;
+    }
+    
+    public static String Date(String numberOfDaysToAddToCurrentDate)
+    {
+    	String retVal = "";
+    	
+    	Integer numberOfDaysToAdd = Integer.parseInt(numberOfDaysToAddToCurrentDate);    	
+    	SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+    	Calendar c = Calendar.getInstance();
+    	c.setTime(new Date()); // Using today's date
+    	c.add(Calendar.DATE, numberOfDaysToAdd); // Adding 5 days
+    	retVal = sdf.format(c.getTime());
+    	
+    	return retVal;
+    }
+    
+    public static String ForceFloat(String numericalValueToFormatAsFloat, int numberOfPlaces)
+    {
+    	float value = Float.parseFloat(numericalValueToFormatAsFloat);
+    	return String.format("%." + numberOfPlaces + "f", value);
     }
     
     //  Grabs a reference to the given method name...
@@ -353,9 +377,10 @@ public class SimpleScripter
     
     private static void debugLog(String msg)
     {
-    	//  Uncomment the line below to see the 
-    	//  debug logging during execution...
-        //  System.out.println(msg);
+    	if(DebugLoggingEnabled)
+    	{
+    		System.out.println("SimpleScript: " + msg);
+    	}
     }
     
     private static List<SimpleEntry<String,Integer>> findInnermostExpression(List<String> tokens)
@@ -466,7 +491,25 @@ public class SimpleScripter
         switch(st.ttype)
         {
         	case StreamTokenizer.TT_NUMBER:
-        		retVal = "Value   : " + st.nval;
+        		//  Check to make sure we're not
+        		//  dealing with a "false double" here...
+                double d = st.nval;  
+                int i = (int)d;
+                double doubleCheck = Double.valueOf(i); 
+                String trueValue = "";
+                
+                if(doubleCheck == d)
+                {
+                    debugLog("False double: " + i);
+                    trueValue = String.valueOf(i);
+                }
+                else
+                {
+                	debugLog("True double: " + d);
+                    trueValue = String.valueOf(d);
+                }
+        		
+        		retVal = "Value   : " + trueValue;
         		break;
 
         	case StreamTokenizer.TT_WORD:
@@ -475,7 +518,7 @@ public class SimpleScripter
           
             default:
             	//  If a token isn't a NUMBER or a WORD it 
-            	//  requires some specail handling...
+            	//  requires some special handling...
             	
                 retVal = ((Object)st).toString();
                 int start = retVal.indexOf("[") + 1;

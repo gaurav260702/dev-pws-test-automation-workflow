@@ -51,7 +51,7 @@ public class WorkflowLibrary {
     workflow.add(new PostOrder());
     workflow.add(new GetOAuthCredentials());
     workflow.add(new WaitForOrderStatusChange());
-    workflow.add(new GetOrderDetailsV1());
+    workflow.add(new GetOrderDetails());
     workflow.add(new WaitForGetAgreementInfo());
 
     return workflow;
@@ -69,7 +69,7 @@ public class WorkflowLibrary {
     workflow.add(new PostOrder());
     workflow.add(new GetOAuthCredentials());
     workflow.add(new WaitForOrderStatusChange());
-    workflow.add(new GetOrderDetailsV1());
+    workflow.add(new GetOrderDetails());
     workflow.add(new WaitForGetAgreementInfo());
 
     return workflow;
@@ -145,7 +145,7 @@ public class WorkflowLibrary {
     workflow.add(new PostOrder());
     workflow.add(new GetOAuthCredentials());
     workflow.add(new WaitForOrderStatusChange2ndPass());
-    workflow.add(new GetOrderDetailsV1());
+    workflow.add(new GetOrderDetails());
 
     return workflow;
   }
