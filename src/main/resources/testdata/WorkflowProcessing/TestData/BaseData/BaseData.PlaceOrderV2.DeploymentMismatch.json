@@ -1,13 +1,13 @@
 {
-    "action": "Subscription to Subscription Switch",
+    "action": "Initial",
     "endCustomer": {
         "account": {
             "csn": "5118761720"
         },
         "contractManager": {
-          "firstName": "{{random_first_name}}",
-          "lastName": "{{random_last_name}}",
-          "email": "email@{{random_email_domain}}.com",
+            "firstName": "KRIS483",
+            "lastName": "TUMA483",
+            "email": "kristuma483@ssttest.net",
             "language": "EN",
             "countryCode": "US"
         }
@@ -21,20 +21,13 @@
     "soldTo": {
         "csn": "0070176510"
     },
-    "poNumber": "pws_monitoring_test_{{timestamp}",
-    "customerPoNumber": "CUST-PO-{{timestamp}",
-    "contractNumber": "110005289995",
+    "poNumber": "KT_{{po_number}}",
+    "customerPoNumber": "KT_CUST_{{po_number}}",
     "lineItems": [
         {
-            "partNumber": "C1RK1-WWNC47-L222",
+            "partNumber": "128M1-WW6542-L618",
             "quantity": 1,
-            "netPrice": "{{net_price}}",
-            "previousSubscriptions": [
-                {
-                    "subscriptionReferenceNumber": "580-79256478"
-                }
-            ]
+            "netPrice": "{{net_price}}"
         }
     ]
-  }
-  
+}
