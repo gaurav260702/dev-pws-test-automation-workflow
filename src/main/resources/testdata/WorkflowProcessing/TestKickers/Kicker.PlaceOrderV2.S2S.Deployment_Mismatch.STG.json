@@ -5,7 +5,7 @@
   "sireOAuthBaseUrl": "https://auth.sire-STG.autodesk.com",
   "baseFile": "./testdata/WorkflowProcessing/TestData/BaseData/BaseData.PlaceOrderV2.DeploymentMismatch.json",
   "overridesFile": "./testdata/WorkflowProcessing/TestData/Overrides/Override.NONE.json",
-  "addOnOverridesFile":"./testdata/WorkflowProcessing/TestData/Overrides/Override.PlaceS2SOrder.DeploymentMismatch",
+  "addOnOverridesFile":"./testdata/WorkflowProcessing/TestData/Overrides/Override.PlaceS2SOrder.DeploymentMismatch.json",
   "validationFile": "./testdata/WorkflowProcessing/TestData/Validators/Validator.PlaceOrderV2.DeploymentMismatchPayload.json",
   "secretsFile": "./testdata/WorkflowProcessing/TestData/Configurations/Secrets.GetInvoiceServices.INT.json",
   "workflow": "PlaceS2SOrder",
