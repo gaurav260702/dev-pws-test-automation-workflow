@@ -4,9 +4,9 @@
 		"transactionId": "*",
 		"status": "failed",
 		"statusV1": "FAILED",
-		"messageV1": "Part Number C1RK1-WWNC47-L222 deployment type incorrect for Previous Subscriptions",
+		"messageV1": "Part Number C1RK1-WWNC14-L252 deployment type incorrect for Previous Subscriptions",
 		"lastUpdated": "*",
 		"soldToCsn": "*",
-		"error":{"code":"43068", "message":"Part Number C1RK1-WWNC47-L222 deployment type incorrect for Previous Subscriptions"}
+		"error":{"code":"43068", "message":"Part Number C1RK1-WWNC14-L252 deployment type incorrect for Previous Subscriptions"}
 	}
 }
