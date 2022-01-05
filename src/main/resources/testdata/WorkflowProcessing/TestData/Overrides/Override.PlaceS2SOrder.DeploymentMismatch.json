@@ -21,8 +21,8 @@
   "soldTo": {
     "csn": "0070176510"
   },
-  "poNumber": "pws_monitoring_test_{{timestamp}",
-  "customerPoNumber": "CUST-PO-{{timestamp}",
+  "poNumber": "pws_monitoring_test_{{timestamp}}",
+  "customerPoNumber": "CUST-PO-{{timestamp}}",
   "contractNumber": "$CONTRACT_NUMBER$",
   "lineItems": [
     {
