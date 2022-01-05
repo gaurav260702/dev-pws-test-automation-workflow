@@ -2,7 +2,7 @@ package com.autodesk.pws.test.steps.order;
 
 import com.autodesk.pws.test.steps.base.*;
 
-public class GetOrderDetailsV1 extends PwsServiceBase
+public class GetOrderDetails extends PwsServiceBase
 {
    @Override
     public void preparation()

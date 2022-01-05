@@ -65,12 +65,14 @@ public class StepBase
 
     public void logErr(String exceptionMsg, String className, String methodName)
     {
+    	SuppressLogging = false;
 		String errMsg = "Error in " + className + "." + methodName + "():" + LineMark + exceptionMsg;
     	log(errMsg);
     }
     
     public void logErr(Exception ex, String className, String methodName) //throws Throwable
     {
+    	SuppressLogging = false;
 		logErr(ex.toString(), className, methodName);
 	}
 
