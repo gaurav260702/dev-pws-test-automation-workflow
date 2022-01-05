@@ -25,7 +25,7 @@
     "customerPoNumber": "KT_CUST_{{po_number}}",
     "lineItems": [
         {
-            "partNumber": "128M1-WW6542-L618",
+            "partNumber": "128M1-WWN881-L782",
             "quantity": 1,
             "netPrice": "{{net_price}}"
         }

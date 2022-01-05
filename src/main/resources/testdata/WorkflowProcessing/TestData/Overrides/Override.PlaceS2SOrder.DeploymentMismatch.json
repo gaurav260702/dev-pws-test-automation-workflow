@@ -26,7 +26,7 @@
   "contractNumber": "$CONTRACT_NUMBER$",
   "lineItems": [
     {
-      "partNumber": "C1RK1-WWNC14-L252",
+      "partNumber": "C1RK1-WW1C58-L882",
       "quantity": 1,
       "netPrice": "{{net_price}}",
       "previousSubscriptions": [
