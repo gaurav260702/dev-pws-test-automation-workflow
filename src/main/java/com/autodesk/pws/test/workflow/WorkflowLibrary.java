@@ -7,8 +7,9 @@ import com.autodesk.pws.test.steps.invoice.*;
 import com.autodesk.pws.test.steps.opportunity.*;
 import com.autodesk.pws.test.steps.order.*;
 import com.autodesk.pws.test.steps.price.*;
-import com.autodesk.pws.test.steps.utility.*;
+import com.autodesk.pws.test.steps.quote.*;
 import com.autodesk.pws.test.steps.rule.*;
+import com.autodesk.pws.test.steps.utility.*;
 
 import java.util.*;
 
@@ -139,6 +140,17 @@ public class WorkflowLibrary
         workflow.add(new GetSkuPrice());
         workflow.add(new PostOrder());
         workflow.add(new WaitForOrderStatusChange());
+
+        return workflow;
+    }
+     
+    public static List<StepBase> CreateQuote()
+    {
+        List<StepBase> workflow = new ArrayList<StepBase>();
+
+        workflow.add(new LoadQuoteFilesAndExtractData());
+        workflow.add(new GetOAuthCredentials());
+        workflow.add(new CreateQuote());
 
         return workflow;
     }

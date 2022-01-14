@@ -1,0 +1,41 @@
+{
+  "action": "Initial",
+  "endCustomer": {
+    "contractManager": {
+      "firstName": "{{random_first_name}}",
+      "lastName": "{{random_last_name}}",
+      "email": "email@{{random_email_domain}}.com",
+      "language": "EN",
+      "countryCode": "US"
+    },
+    "account": {
+      "csn": "$CSN_PRIMARY$"
+    }
+  },
+  "shipTo": {
+    "name": "PWS {{random_first_name}} {{random_last_name}}",
+    "addressLine1": "46951 {{random_last_name}} Tree Ln",
+    "addressLine2": "Apt 04928",
+    "addressLine3": "Flr 560",
+    "city": "Mountain View",
+    "stateProvinceCode": "CA",
+    "countryCode": "US",
+    "postalCode": "94039"
+  },
+  "reseller": {
+    "csn": "$CSN_SECONDARY$"
+  },
+  "soldTo": {
+    "csn": "$CSN_SECONDARY$"
+  },
+  "poNumber": "PO_{{po_number}}",
+  "customerPoNumber": "CUST_PO_{{cust_po_number}}",
+  "lineItems": [
+    {
+      "partNumber": "$PRODUCT_SKU_PRIMARY$",
+      "partnerSubscriptionId": "psi-{{uuid1}}",
+      "quantity": 1,
+      "netPrice": "0.00"
+    }
+  ]
+}

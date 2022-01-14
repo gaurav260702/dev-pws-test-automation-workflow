@@ -1,0 +1,68 @@
+{
+    "priceDate": "2020-12-10",
+
+    "agent": 
+	{
+        "csn": "$CSN_SECONDARY$",
+        "contact": 
+		{
+            "email": "james.bond@mia.com"
+        }
+    },
+
+    "currencyCode": "USD",
+    "endCustomer": 
+	{
+        "isIndividual": false,
+        "csn": "$CSN_PRIMARY$",
+        "address": 
+		{
+            "name": "Doe Industries",
+            "addressLine1": "123 Main St",
+            "addressLine2": "Building A",
+            "addressLine3": "Floor 10",
+            "city": "San Francisco",
+            "stateProvinceCode": "CA",
+            "postalCode": "94104",
+            "countryCode": "US"
+        },
+        "contact": 
+		{
+            "firstName": "John",
+            "lastName": "Doe",
+            "email": "john.doe@fakedoeindustries.com",
+            "language": "EN",
+            "countryCode": "US"
+        }
+    },
+
+    "lineItems": 
+	[
+        {
+            "orderAction": "New",
+            "subscriptionStartDate": "2020-12-31",
+            "offer": {
+                "offeringId": "OD-300001",
+                "intendedUsage": "Commercial",
+                "accessModel": "Single User",
+                "term": "Annual",
+                "billingBehavior": "Once",
+                "connectivity": "online"
+            },
+            "quantity": 2
+        },
+        {
+            "orderAction": "New",
+            "subscriptionStartDate": "2020-12-31",
+            "offer": {
+                "offeringId": "OD-300001",
+                "intendedUsage": "Commercial",
+                "accessModel": "Single User",
+                "term": "Annual",
+                "billingBehavior": "Once",
+                "connectivity": "online"
+            },
+            "quantity": 10
+        }
+	]
+}

@@ -38,6 +38,8 @@ public class RestActionBase extends StepBase
     
     public HashMap<String, String> RequestHeaders = new HashMap<String, String>();
 
+    private HashMap<String, String> attachedRequestHeaders = new HashMap<String, String>();
+    
     public void initBaseVariables()
     {
 		clientId = DataPool.get("clientId").toString();
@@ -46,25 +48,13 @@ public class RestActionBase extends StepBase
 		BaseUrl =  DataPool.get("oAuthBaseUrl").toString();
     }
 
-    public void addCsnHeader()
-    {
-    	if(DataPool.containsKey("$CSN_HEADER$"))
-    	{
-    		addHeaderFromDataPool("CSN", "$CSN_HEADER$");
-    	}
-    	else if(DataPool.containsKey("$CSN_SECONDARY$"))
-    	{
-    		addHeaderFromDataPool("CSN", "$CSN_SECONDARY$");    		
-    	}
-    	else
-    	{
-    		addHeaderFromDataPool("CSN", "$CUSTOMER_NUMBER$");
-    	}
-    }
-
     public void addHeaderFromDataPool(String headerAndDataPoolLabel)
     {
-    	RequestHeaders.put(headerAndDataPoolLabel, DataPool.get(headerAndDataPoolLabel).toString());
+    	//  Check to make sure the 
+    	if(!RequestHeaders.containsKey(headerAndDataPoolLabel))
+    	{
+    		RequestHeaders.put(headerAndDataPoolLabel, DataPool.get(headerAndDataPoolLabel).toString());
+    	}
     }
 
     public void addHeaderFromDataPool(String headerLabel, String DataPoolLabel)
@@ -169,9 +159,9 @@ public class RestActionBase extends StepBase
 					if(payload != "{}")
 					{
 						//  Nasty bit of hackery to ensure that the "quanity" value is set to
-					//  an integer instead of a float.  There's an issue with this when the
-					//  file is loaded from disk and fiddled about with by the Jackson
-					//  JSON library...
+					    //  an integer instead of a float.  There's an issue with this when the
+					    //  file is loaded from disk and fiddled about with by the Jackson
+					    //  JSON library...
 						payload = hack_CleanQuantityFloatType(payload);
 						
 						//  Ensure that the payload is completely detokenized 
@@ -324,6 +314,16 @@ public class RestActionBase extends StepBase
     	return jsonMap;
     }
     
+    public void attachHeaderFromDataPool(String headerLabel, String dataPoolLabel)
+    {
+    	attachedRequestHeaders.put(headerLabel, dataPoolLabel);
+    }
+    
+    public void attachHeaderFromDataPool(String headerLabel)
+    {
+    	attachedRequestHeaders.put(headerLabel, headerLabel);
+    }
+    
     public HashMap<String,Object> removeAllNullValuesFromJson(Map<String, Object> orderInfo)// throws JsonProcessingException
     {
     	//  https://stackoverflow.com/questions/37019059/remove-null-values-from-json-using-jackson
@@ -362,7 +362,7 @@ public class RestActionBase extends StepBase
     	return jsonMap;
     }
 
-    public void generateAndAppendCurrentTokenHeaders()
+    public void generateTokenHeaders()
     {
         HashMap<String, String> authHeaders = this.generateAccessTokenHeadersWithCurrentToken();
 
@@ -450,5 +450,16 @@ public class RestActionBase extends StepBase
 		String str = clientId + ":" + clientSecret;
 		byte[] bytesEncoded = org.apache.commons.codec.binary.Base64.encodeBase64(str.getBytes());
 		return new String(bytesEncoded);
+	}
+
+	public void generateAttachedRequestHeaders() 
+	{
+		attachedRequestHeaders
+		.forEach(
+	    			(headerLabel, dataPoolLabel) ->
+			        {
+			        	addHeaderFromDataPool(headerLabel, dataPoolLabel);
+			        }
+				);
 	}
 }

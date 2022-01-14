@@ -1,9 +1,6 @@
 package com.autodesk.pws.test.steps.rule;
 
-import java.io.IOException;
 import okhttp3.Response;
-
-import java.util.HashMap;
 
 import com.autodesk.pws.test.steps.base.*;
 
@@ -20,21 +17,21 @@ public class ExecuteSireRule extends RestActionBase
 
   private void initVariables()
   {
-    initBaseVariables();
-    this.ClassName = this.getClass().getSimpleName();
-    pullDataPoolVariables();
+	initBaseVariables();
+	this.ClassName = this.getClass().getSimpleName();
+	pullDataPoolVariables();
   }
 
   private void pullDataPoolVariables()
   {
-	  this.sireRule = DataPool.get("sireRule").toString();
-    //
-    // TODO -- CREATE A SECONDARY DATA FILE METHOD TO KEEP OVERRIDE 
-    // FILES DIFFERENT FROM ADDITIONAL PAYLOAD FILES
-    //
-    this.requestPayload = DataPool.get("rawOverrideFile").toString();
-
-	  BaseUrl =  DataPool.get("sireBaseUrl").toString();
+	this.sireRule = DataPool.get("sireRule").toString();
+	//
+	// TODO -- CREATE A SECONDARY DATA FILE METHOD TO KEEP OVERRIDE 
+	// FILES DIFFERENT FROM ADDITIONAL PAYLOAD FILES
+	//
+	this.requestPayload = DataPool.get("rawOverrideFile").toString();
+	
+	BaseUrl =  DataPool.get("sireBaseUrl").toString();
   }
 
   @Override
