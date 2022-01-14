@@ -143,6 +143,23 @@ public class WorkflowLibrary
 
         return workflow;
     }
+    
+    public static List<StepBase> PlaceS2SOrder()
+    {
+        // Initial PlaceOrder...
+        List < StepBase > workflow = PlaceOrder();
+
+        // Place S2S order...
+        workflow.add(new LoadAddOnFilesAndExtractAddOnInfoData());
+        workflow.add(new GetOAuthCredentials());
+        workflow.add(new GetSkuPrice());
+        workflow.add(new PostOrder());
+        workflow.add(new GetOAuthCredentials());
+        workflow.add(new WaitForOrderStatusChange2ndPass());
+        workflow.add(new GetOrderDetails());
+
+        return workflow;
+    }
      
     public static List<StepBase> CreateQuote()
     {
