@@ -1,0 +1,32 @@
+{
+  "action": "Subscription to Subscription Switch",
+  "endCustomer": {
+      "account": {
+          "csn": "5152245157"
+      }
+  },
+  "shipTo": {
+      "csn": "0070176510"
+  },
+  "reseller": {
+      "csn": "0070176510"
+  },
+  "soldTo": {
+      "csn": "0070176510"
+  },
+  "poNumber": "pws_s2s3year_sw_{{timestamp}}",
+  "customerPoNumber": "CUST-PO-{{timestamp}}",
+  "contractNumber": "$CONTRACT_NUMBER$",
+  "lineItems": [
+      {
+          "partNumber": "02HI1-WW6C42-L543",
+          "quantity": 1,
+          "netPrice": "{{net_price}}",
+          "previousSubscriptions": [
+              {
+                  "subscriptionReferenceNumber": "$SERIAL_NUMBER$"
+              }
+          ]
+      }
+  ]
+}
