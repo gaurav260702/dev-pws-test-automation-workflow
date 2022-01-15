@@ -1,6 +1,7 @@
 package com.autodesk.pws.test.steps.base;
 
 import java.io.IOException;
+import java.util.HashMap;
 
 import com.autodesk.pws.test.processor.*;
 import com.autodesk.pws.test.steps.authentication.*;
@@ -15,7 +16,7 @@ public class PwsServiceBase extends RestActionBase
     public int MillisecondsBetweenNullResponseRetry = 1000;
 	//  Call the method that does the meat of the work...
     public Response ActionResult = null;
-	
+    
     @Override
     public void preparation()
     {
@@ -24,19 +25,10 @@ public class PwsServiceBase extends RestActionBase
 
     public void rootPreparation()
     {
-    //  Do stuff that the Action depends on to execute...
+        //  Do stuff that the Action depends on to execute...
     	initVariables();
-    	prepareRequestHeaders();
     }
     
-    private void prepareRequestHeaders()
-    {
-    	//  Add in the headers required for this request type...
-    	//  TODO: Determine method to determine if calling EXTERNAL
-    	//  web service and therefore not needed...
-    	addHeaderFromDataPool("x-api-key");
-	}
-
 	private void initVariables()
     {
 		this.initBaseVariables();
@@ -213,9 +205,18 @@ public class PwsServiceBase extends RestActionBase
     	//  Prep a response container...
         Response retVal = null;
         
-        generateAndAppendCurrentTokenHeaders();
+        //  This whole bit with generating headers is starting to feel
+        //  more than a tiny bit "ad hack" (ha ha ha - me so punny)...
+        //
+        //  But seriously.  This whole approach needs to be cleaned up,
+        //  abstracted, and unified into a consistent approach...
+        generateTokenHeaders();
         
-        addCsnHeader();
+    	addHeaderFromDataPool("x-api-key");
+    	
+        generateAttachedRequestHeaders();
+    	
+        determinePwsCsnHeader();
         
 		//  Do SimpleScript resolution...
 		JsonRequestBody = DynamicData.simpleScriptEval(JsonRequestBody);	
@@ -232,6 +233,22 @@ public class PwsServiceBase extends RestActionBase
 		}
 
         return retVal;
+    }
+	
+    public void determinePwsCsnHeader()
+    {
+    	if(DataPool.containsKey("$CSN_HEADER$"))
+    	{
+    		addHeaderFromDataPool("CSN", "$CSN_HEADER$");
+    	}
+    	else if(DataPool.containsKey("$CSN_SECONDARY$"))
+    	{
+    		addHeaderFromDataPool("CSN", "$CSN_SECONDARY$");    		
+    	}
+    	else
+    	{
+    		addHeaderFromDataPool("CSN", "$CUSTOMER_NUMBER$");
+    	}
     }
 
     @Override

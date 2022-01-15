@@ -4,20 +4,20 @@ import com.google.gson.*;
 
 import io.restassured.path.json.JsonPath;
 
-public class LoadAddOnFilesAndExtractAddOnInfoData extends LoadBaseFiles
+public class LoadQuoteFilesAndExtractData extends LoadBaseFiles
 {
     @Override
     public void preparation()
     {
     	//  Note that we're *>NOT<* calling the 
     	//  super.initBaseVariables() method here! 
-    	initBaseVariables();
+    	this.initBaseVariables();
     	initVariables();
     }
 
     public void initBaseVariables()
     {
-        OverridesFileLabel = "addOnOverridesFile";
+    	DataPoolLabelOrderInfoRawJson = "rawCreateQuote";
     }
     
     private void initVariables()
@@ -35,9 +35,9 @@ public class LoadAddOnFilesAndExtractAddOnInfoData extends LoadBaseFiles
     	JsonPath pathFinder = JsonPath.with(json);
     	
     	//  Extact data that may be needed by other steps later on...	
-    	extractDataFromJsonAndAddToDataPool("$QUANTITY$", "lineItems[0].quantity", pathFinder); 
-    	extractDataFromJsonAndAddToDataPool("$NET_PRICE$", "lineItems[0].netPrice", pathFinder); 
-    	extractDataFromJsonAndAddToDataPool("$SKU_OR_PART_NUMBER$", "lineItems[0].partNumber", pathFinder); 
+    	// extractDataFromJsonAndAddToDataPool("$QUANTITY$", "lineItems[0].quantity", pathFinder); 
+    	// extractDataFromJsonAndAddToDataPool("$NET_PRICE$", "lineItems[0].netPrice", pathFinder); 
+    	// extractDataFromJsonAndAddToDataPool("$SKU_OR_PART_NUMBER$", "lineItems[0].partNumber", pathFinder); 
 	}
 	
     @Override

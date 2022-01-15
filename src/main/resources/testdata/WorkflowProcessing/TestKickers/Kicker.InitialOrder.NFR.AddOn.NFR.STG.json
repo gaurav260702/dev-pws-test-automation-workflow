@@ -1,0 +1,29 @@
+{
+  "$ROOT$": "./testdata/WorkflowProcessing/TestData",
+  "$ENV$": "STG",
+  "$BASE_NAME$": "InitialOrderAndAddOnWithNfrSku",
+  
+  "$CSN_PRIMARY$": "0070176021",
+  "$CSN_SECONDARY$": "0070176021",
+
+  "$PRODUCT_SKU_PRIMARY$": "001M1-WW8451-L245",
+  "$PRODUCT_SKU_SECONDARY$": "001M1-WW8451-L245",
+
+  "baseUrl": "https://enterprise-api-$ENV$.autodesk.com",
+  "oAuthBaseUrl":  "https://enterprise-api-$ENV$.autodesk.com",
+  "getOrderStatusV2Url": "https://api.ddws$ENV$.autodesk.com",
+  "opptyServiceBaseUrl": "https://api.sfdc-$ENV$.autodesk.com",
+  "opptyOAuthBaseUrl": "https://api-sfdc-$ENV$-autodesk.auth.us-east-1.amazoncognito.com",
+
+  "baseFile": "$ROOT$/BaseData/BaseData.IntialOrderV2.NFR.$ENV$.json",
+  "overridesFile": "$ROOT$/Overrides/Override.NONE.json",
+
+  "renewalRequestFile": "$ROOT$/BaseData/IntialOrderV2.NFR.$ENV$.json",
+  "renewalOverridesFile": "$ROOT$/Overrides/Override.Valid.AddOn.$ENV$.json", "FakeHeader" : "<----  Hey idiot!  This is missing!!!",
+
+  "validationFile": "$ROOT$/Validators/Validator.InitialOrder.SecondSubmission.$ENV$.json",
+
+  "secretsFile": "$ROOT$/Configurations/Secrets.GetInvoiceServices.INT.json",
+
+  "workflow": "GenericPlaceOrderWithAddOn"
+}
