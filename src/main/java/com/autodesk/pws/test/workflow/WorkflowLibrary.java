@@ -167,8 +167,10 @@ public class WorkflowLibrary
 
         workflow.add(new LoadQuoteFilesAndExtractData());
         workflow.add(new GetOAuthCredentials());
-        workflow.add(new CreateQuote());
-
+        workflow.add(new QuoteCreate());
+        workflow.add(new QuoteStatus());
+        workflow.add(new QuoteDetails());
+        
         return workflow;
     }
 }

@@ -2,13 +2,11 @@ package com.autodesk.pws.test.steps.quote;
 
 import com.autodesk.pws.test.processor.DynamicData;
 import com.autodesk.pws.test.steps.base.*;
-import com.google.gson.Gson;
-
 import io.restassured.path.json.JsonPath;
 
-public class CreateQuote extends PwsServiceBase 
+public class QuoteCreate extends PwsServiceBase 
 {
-	public String DataPoolSourceInfoLabel = "rawCreateQuote";
+	public String DataPoolSourceInfoLabel = "";
 	
     @Override
     public void preparation()
@@ -19,6 +17,7 @@ public class CreateQuote extends PwsServiceBase
     	//  used by the super/base classes ".preparation()" 
     	//  method.
 		this.ClassName = this.getClass().getSimpleName();
+		this.DataPoolSourceInfoLabel = "raw" + this.ClassName;
 		
 		//  Set the ServiceVerb to a "POST" style service.
 		//  We're doing this first in case there are any 
@@ -50,7 +49,8 @@ public class CreateQuote extends PwsServiceBase
 
     private void setResourcePath()
     {
-		super.setResourcePath("/v1/");
+		super.setResourcePath("v1/create");
+		// quote.ddwsdev.autodesk.com/v1/status/ 
     }
 
 	@Override
