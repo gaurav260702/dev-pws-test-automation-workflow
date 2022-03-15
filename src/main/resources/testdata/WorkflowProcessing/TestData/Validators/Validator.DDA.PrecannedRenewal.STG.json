@@ -3,9 +3,5 @@
 	{
 		"messageV1": "Order is under review by Client Services with the case number*",
 		"error.message": "Order is under review by Client Services with the case number*"
-	},
-	"GetOrderDetails":
-	{
-		"status": "ok"
 	}
 }
