@@ -32,7 +32,8 @@ public class DataPool extends HashMap<String, Object>
 	//public Logger logger;
     public StepBase StepLogger;
     public final String NewLine = System.getProperty("line.separator");
-
+    public boolean SuppressDetokenizationWarnings = true;
+    
     private static int detokenizationRecursionDepthCounter = 0;
     private static int detokenizationRecursionDepthMax = 10;
     private static boolean detokenizationRecursionDepthExceeded = false;
@@ -377,7 +378,10 @@ public class DataPool extends HashMap<String, Object>
         	//  unresolved token.\
         	if(StepLogger != null)
         	{
-        		StepLogger.log("**** WARNING!  Detokenzied string appears to still contain tokenized values!");
+        		if(!SuppressDetokenizationWarnings)
+        		{
+        			StepLogger.log("**** WARNING!  Detokenzied string appears to still contain tokenized values!");
+        		}
         	}
             
             //  Recusively call this method to finish detokenizing the string...
