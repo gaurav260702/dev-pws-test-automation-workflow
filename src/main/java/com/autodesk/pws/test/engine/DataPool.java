@@ -12,6 +12,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import com.autodesk.pws.test.processor.*;
 import com.autodesk.pws.test.steps.base.*;
+import com.autodesk.pws.test.utilities.StringUtils;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonElement;
@@ -31,7 +32,8 @@ public class DataPool extends HashMap<String, Object>
 	//public Logger logger;
     public StepBase StepLogger;
     public final String NewLine = System.getProperty("line.separator");
-
+    public boolean SuppressDetokenizationWarnings = true;
+    
     private static int detokenizationRecursionDepthCounter = 0;
     private static int detokenizationRecursionDepthMax = 10;
     private static boolean detokenizationRecursionDepthExceeded = false;
@@ -59,29 +61,29 @@ public class DataPool extends HashMap<String, Object>
 	    		forEach(
 	    				(keyName, value) ->
 	    					{
-			                String rawJson = value.toString().trim();
-			                
-			                //  Odd little hack here...
-			                //  For some reason we're occasionally getting the value back
-			                //  inside square brackets ("[...]") instead of pointy brackets ("{...}").
-			                //  For whateever reason, GSON can't handle parsing that, so we're 
-			                //  stripping off the external square brackets and hoping whatever 
-			                //  remains is valid JSON...
-			                if(rawJson.startsWith("[") && rawJson.endsWith("]"))
+				                String rawJson = value.toString().trim();
+				                
+				                //  Odd little hack here...
+				                //  For some reason we're occasionally getting the value back
+				                //  inside square brackets ("[...]") instead of pointy brackets ("{...}").
+				                //  For whateever reason, GSON can't handle parsing that, so we're 
+				                //  stripping off the external square brackets and hoping whatever 
+				                //  remains is valid JSON...
+				                if(rawJson.startsWith("[") && rawJson.endsWith("]"))
 			                	{
 			                		rawJson = rawJson.substring(1, rawJson.length() - 1);
-			                }
-			                
-	    						Object jsonObj = 
-				    						new Gson().
-						    	    				fromJson
-						    	    					(
-						    	    						rawJson,
-						    							new TypeToken<HashMap<String, Object>>(){}.getType()
-						    						);
-	    						
+				                }
+				                
+		    						Object jsonObj = 
+					    						new Gson().
+							    	    				fromJson
+							    	    					(
+							    	    						rawJson,
+							    	    						new TypeToken<HashMap<String, Object>>(){}.getType()
+							    	    					);
+		    						
 	    						reformattedValidChain.put(keyName, jsonObj);
-		                }
+			                }
 				   );
 	    	
 	    	String json = gson.toJson(reformattedValidChain); 
@@ -98,7 +100,7 @@ public class DataPool extends HashMap<String, Object>
 
         if(!containsKey("ValidationChain"))
         {
-        		HashMap<String, Object> validationChainDictionary = new HashMap<String, Object>();
+        	HashMap<String, Object> validationChainDictionary = new HashMap<String, Object>();
             this.add("ValidationChain", validationChainDictionary);
         }
 
@@ -117,38 +119,38 @@ public class DataPool extends HashMap<String, Object>
 
 	public void loadJsonDataAsDataPoolData(String rawJasonData)
 	{
-	    	//  Grab a dictionary of all the first-level elements...
-	    	Map<String, Object> keyVals =
-	    			new Gson().
-	    				fromJson
-	    					(
+    	//  Grab a dictionary of all the first-level elements...
+    	Map<String, Object> keyVals =
+    			new Gson().
+    				fromJson
+    					(
 							rawJasonData,
 							new TypeToken<HashMap<String, Object>>(){}.getType()
-						);
-	
-	    	//  Loop through all the items in the 'testKicker' object...
-	    	keyVals.
-	    		forEach(
-	    				(keyName, value) ->
+    					);
+
+    	//  Loop through all the items in the 'testKicker' object...
+    	keyVals.
+    		forEach(
+    				(keyName, value) ->
 	    				{
 			                //  Add each item to the DataPool as key-val...
 			                this.put(keyName, value.toString());
 		                }
-					   );
+				   );
 	}
 
     public JsonPath loadJsonFileAsDataPoolData(String jsonFilePath)
     {
-	    	//  Prep a JsonPath object to hold the kickerFile contents...
-			jsonFilePath = DynamicData.convertRelativePathToFullPath(jsonFilePath);
-			JsonPath jsonObj = JsonPath.from(jsonFilePath);
-	
-	    	//  Grab the raw JSON data from the file...
-	    	String rawJson = loadJsonFile(jsonFilePath);
-	
-	    	loadJsonDataAsDataPoolData(rawJson);
-	
-	    	return jsonObj;
+    	//  Prep a JsonPath object to hold the kickerFile contents...
+		jsonFilePath = DynamicData.convertRelativePathToFullPath(jsonFilePath);
+		JsonPath jsonObj = JsonPath.from(jsonFilePath);
+
+    	//  Grab the raw JSON data from the file...
+    	String rawJson = loadJsonFile(jsonFilePath);
+
+    	loadJsonDataAsDataPoolData(rawJson);
+
+    	return jsonObj;
     }
 
 	public void loadJsonPath(Response responseObject) throws IOException
@@ -182,6 +184,77 @@ public class DataPool extends HashMap<String, Object>
 		return jsonRequestBody;
 	}
 
+	public Object getRaw(String key)
+	{
+		return super.get(key);
+	}
+	
+	public Object get(String key)
+	{
+		return super.get(key);
+	}
+	
+	public Object get(String key, boolean detokenize)
+	{
+		Object retVal = null;
+		
+		if(detokenize)
+		{
+			retVal = getDetokenized(key);
+		}
+		else
+		{
+			retVal = this.getRaw(key);
+		}
+		
+		return retVal;
+	}
+	
+	public Object getDetokenized(String key)
+	{
+		Object val = this.getRaw(key);
+		
+		if(isTokenizedVariable(val.toString()))
+		{
+			String detaggedVal = val.toString();
+			
+			int maxRecursion = this.size();
+			int recurseCount = 0;
+			
+			boolean keepTrying = true;
+			
+			while(keepTrying)
+			{
+				recurseCount += 1;
+				//detaggedVal = DynamicData.detokenizeString(detaggedVal, "$", "$", this);
+				detaggedVal = detokenizeDataPoolValues(detaggedVal);
+				keepTrying = isTokenizedVariable(detaggedVal);
+				
+				if(recurseCount >= maxRecursion)
+				{
+					StepLogger.log("WARNING! '" + key + "' still contains token markers!");
+					keepTrying = false;
+				}
+			}
+			
+			val = detaggedVal;
+		}
+		
+		return val;
+	}
+	
+	private boolean isTokenizedVariable(String value)
+	{
+		boolean retVal = false;
+		
+		if(StringUtils.pattherMatch(value, "*$*$*"))
+		{
+			retVal = true;
+		}
+		
+		return retVal;
+	}
+	
     public void add(String key, Object value)
     {
         String actionType = "Adding";
@@ -208,7 +281,7 @@ public class DataPool extends HashMap<String, Object>
         }
 		else
 		{
-			System.out.println(msg);
+			logger.info(msg);
 		}
     }
 
@@ -301,9 +374,15 @@ public class DataPool extends HashMap<String, Object>
         //  If we're still seeing what appears to be tokens in the detokenized string...
         if (deTokenizedString.matches(wildcardToRegex("*$*$*")))
         {
-	        	//  We need to make a note of it in the log, as it's possible we have an
-	        	//  unresolved token.
-            logger.info("**** WARNING!  Detokenzied string appears to still contain tokenized values!");
+        	//  We need to make a note of it in the log, as it's possible we have an
+        	//  unresolved token.\
+        	if(StepLogger != null)
+        	{
+        		if(!SuppressDetokenizationWarnings)
+        		{
+        			StepLogger.log("**** WARNING!  Detokenzied string appears to still contain tokenized values!");
+        		}
+        	}
             
             //  Recusively call this method to finish detokenizing the string...
             //  ---- NOTE ----
@@ -311,6 +390,7 @@ public class DataPool extends HashMap<String, Object>
             //  to detokenize the string?  Could that somehow possibly result in an
             //  infinite loop?
             detokenizationRecursionDepthCounter += 1;
+            detokenizationRecursionDepthMax = this.size();
             
             if(detokenizationRecursionDepthMax >= detokenizationRecursionDepthMax)
             {

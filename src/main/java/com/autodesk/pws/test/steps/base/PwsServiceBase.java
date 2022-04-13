@@ -216,7 +216,7 @@ public class PwsServiceBase extends RestActionBase
     	
         generateAttachedRequestHeaders();
     	
-        determinePwsCsnHeader();
+        determineCsnHeader();
         
 		//  Do SimpleScript resolution...
 		JsonRequestBody = DynamicData.simpleScriptEval(JsonRequestBody);	
@@ -235,19 +235,32 @@ public class PwsServiceBase extends RestActionBase
         return retVal;
     }
 	
-    public void determinePwsCsnHeader()
+    public void determineCsnHeader()
     {
     	if(DataPool.containsKey("$CSN_HEADER$"))
     	{
     		addHeaderFromDataPool("CSN", "$CSN_HEADER$");
+    		addHeaderFromDataPool("customer_number", "$CSN_HEADER$");
+    	}
+    	else if(DataPool.containsKey("$CSN_TERTIARY$"))
+    	{
+    		addHeaderFromDataPool("CSN", "$CSN_TERTIARY$");    		    		
+    		addHeaderFromDataPool("customer_number", "$CSN_TERTIARY$");    		    		
     	}
     	else if(DataPool.containsKey("$CSN_SECONDARY$"))
     	{
     		addHeaderFromDataPool("CSN", "$CSN_SECONDARY$");    		
+    		addHeaderFromDataPool("customer_number", "$CSN_SECONDARY$");    		
+    	}
+    	else if(DataPool.containsKey("$CSN_PRIMARY$"))
+    	{
+    		addHeaderFromDataPool("CSN", "$CSN_PRIMARY$");    		    		
+    		addHeaderFromDataPool("customer_number", "$CSN_PRIMARY$");    		    		
     	}
     	else
     	{
     		addHeaderFromDataPool("CSN", "$CUSTOMER_NUMBER$");
+    		addHeaderFromDataPool("customer_number", "$CUSTOMER_NUMBER$");
     	}
     }
 

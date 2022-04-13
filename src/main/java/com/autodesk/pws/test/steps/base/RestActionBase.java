@@ -16,6 +16,7 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.gson.Gson;
 import io.restassured.path.json.JsonPath;
+import okhttp3.Headers;
 import okhttp3.MediaType;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -42,10 +43,10 @@ public class RestActionBase extends StepBase
     
     public void initBaseVariables()
     {
-		clientId = DataPool.get("clientId").toString();
-		clientSecret = DataPool.get("clientSecret").toString();
-		callBackUrl = DataPool.get("callBackUrl").toString();
-		BaseUrl =  DataPool.get("oAuthBaseUrl").toString();
+		clientId = DataPool.getDetokenized("clientId").toString();
+		clientSecret = DataPool.getDetokenized("clientSecret").toString();
+		callBackUrl = DataPool.getDetokenized("callBackUrl").toString();
+		BaseUrl =  DataPool.getDetokenized("oAuthBaseUrl").toString();
     }
 
     public void addHeaderFromDataPool(String headerAndDataPoolLabel)
@@ -53,13 +54,13 @@ public class RestActionBase extends StepBase
     	//  Check to make sure the 
     	if(!RequestHeaders.containsKey(headerAndDataPoolLabel))
     	{
-    		RequestHeaders.put(headerAndDataPoolLabel, DataPool.get(headerAndDataPoolLabel).toString());
+    		RequestHeaders.put(headerAndDataPoolLabel, DataPool.getDetokenized(headerAndDataPoolLabel).toString());
     	}
     }
 
     public void addHeaderFromDataPool(String headerLabel, String DataPoolLabel)
     {
-    	RequestHeaders.put(headerLabel, DataPool.get(DataPoolLabel).toString());
+    	RequestHeaders.put(headerLabel, DataPool.getDetokenized(DataPoolLabel).toString());
     }
 
     public void addValidationChainLink(String validationLabel, Object dataToValidate)
@@ -197,9 +198,18 @@ public class RestActionBase extends StepBase
 			//log(key + ": " + headerVal);
 			requestBuilder.addHeader(key, headerVal);
 		}
-
+		
         //  Build the final Request object...
 		Request request = requestBuilder.build();
+
+		Headers headers = request.headers();
+
+		//  Log the headers for debugging purposes...
+		log("-- REQUEST HEADERS --");
+		for (int i = 0, count = headers.size(); i < count; i++)
+		{
+			log( headers.name(i) + " : " + headers.value(i), 4);
+		}
 
 		//  Ready the REST client...
 		OkHttpClient client = new OkHttpClient().newBuilder().build();

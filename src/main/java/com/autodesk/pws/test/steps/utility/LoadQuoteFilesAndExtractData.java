@@ -17,7 +17,7 @@ public class LoadQuoteFilesAndExtractData extends LoadBaseFiles
 
     public void initBaseVariables()
     {
-    	DataPoolLabelOrderInfoRawJson = "rawCreateQuote";
+    	DataPoolLabelOrderInfoRawJson = "rawQuoteCreate";
     }
     
     private void initVariables()

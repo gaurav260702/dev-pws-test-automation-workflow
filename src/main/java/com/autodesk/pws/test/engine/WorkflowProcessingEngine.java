@@ -1,6 +1,5 @@
 package com.autodesk.pws.test.engine;
 
-import java.io.File;
 import java.util.List;
 import org.apache.commons.lang3.time.StopWatch;
 

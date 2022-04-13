@@ -1,0 +1,28 @@
+{
+  "$BASE_NAME$": "DDA.PrecannedRenewal",
+  "$ROOT$": "./testdata/WorkflowProcessing/TestData",
+  "$ENV$": "STG",
+
+  "$CSN_PRIMARY$": "5104553993",
+  "$CSN_SECONDARY$": "5118761720",
+  "$CSN_TERTIARY$": "0070176510",
+  "$DISCOUNT_ID$": "A-1565305",
+  "$PART_NUMBER$": "128K1-WW6542-L618",
+  "$CSN_HEADER$": "$CUSTOMER_NUMBER$",
+
+  "baseUrl": "https://enterprise-api-$ENV$.autodesk.com",
+  "oAuthBaseUrl":  "https://enterprise-api-$ENV$.autodesk.com",
+
+  "baseFile": "$ROOT$/BaseData/BaseData.$BASE_NAME$.json",
+  "overridesFile": "$ROOT$/Overrides/Override.NONE.json",
+
+  "validationFile": "$ROOT$/Validators/Validator.$BASE_NAME$.$ENV$.json",
+
+  "getOrderStatusV2Url": "https://api.ddws$ENV$.autodesk.com",
+  "secretsFile": "$ROOT$/Configurations/Secrets.GetInvoiceServices.INT.json",
+  "workflow": "GenericPlaceOrder",
+
+  "opptyServiceBaseUrl": "https://api.sfdc-$ENV$.autodesk.com",
+  "opptyOAuthBaseUrl": "https://api-sfdc-$ENV$-autodesk.auth.us-east-1.amazoncognito.com",
+  "WaitForOrderStatusChange.expectedEndStateStatus": "review"
+}

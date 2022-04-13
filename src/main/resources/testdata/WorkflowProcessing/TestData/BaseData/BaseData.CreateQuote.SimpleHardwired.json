@@ -1,68 +1,45 @@
 {
-    "priceDate": "2020-12-10",
-
-    "agent": 
-	{
-        "csn": "$CSN_SECONDARY$",
-        "contact": 
-		{
-            "email": "james.bond@mia.com"
-        }
+    "salesOpportunityNumber": "A-31725362",
+    "quoteNote": "Notefromagenttocustomer.",
+    "subscriptionStartDate": "2021-10-01T00:00:00.0000000",
+    "currency": "USD",
+    "agency": {
+        "accountCsn": "$CSN_SECONDARY$"
     },
-
-    "currencyCode": "USD",
-    "endCustomer": 
-	{
-        "isIndividual": false,
-        "csn": "$CSN_PRIMARY$",
-        "address": 
-		{
-            "name": "Doe Industries",
-            "addressLine1": "123 Main St",
-            "addressLine2": "Building A",
-            "addressLine3": "Floor 10",
-            "city": "San Francisco",
-            "stateProvinceCode": "CA",
-            "postalCode": "94104",
-            "countryCode": "US"
-        },
-        "contact": 
-		{
-            "firstName": "John",
-            "lastName": "Doe",
-            "email": "john.doe@fakedoeindustries.com",
-            "language": "EN",
-            "countryCode": "US"
-        }
+    "agent": {
+        "email": "John.b@awesomeagency.com"
     },
-
-    "lineItems": 
-	[
+    "endCustomer": {
+        "accountCsn": "$CNS_PRIMARY$",
+        "name": "HenryInc",
+        "addressLine1": "1482spicetreecircle",
+        "addressLine2": "Suite:203",
+        "addressLine3": "xyz",
+        "city": "Fairborn",
+        "stateProvinceCode": "OH",
+        "postalCode": "45324",
+        "countryCode": "USA",
+        "isIndividual": false
+    },
+    "purchaser": {
+        "email": "henry@chrisutesting.com",
+        "firstName": "Henry",
+        "lastName": "Chris",
+        "phone": "4128008008",
+        "preferredLanguage": "en-us"
+    },
+    "lineItems": [
         {
+            "offeringId": "OD-0000789",
             "orderAction": "New",
-            "subscriptionStartDate": "2020-12-31",
+            "quantity": 10000,
             "offer": {
-                "offeringId": "OD-300001",
-                "intendedUsage": "Commercial",
-                "accessModel": "Single User",
-                "term": "Annual",
-                "billingBehavior": "Once",
-                "connectivity": "online"
-            },
-            "quantity": 2
-        },
-        {
-            "orderAction": "New",
-            "subscriptionStartDate": "2020-12-31",
-            "offer": {
-                "offeringId": "OD-300001",
-                "intendedUsage": "Commercial",
-                "accessModel": "Single User",
-                "term": "Annual",
-                "billingBehavior": "Once",
-                "connectivity": "online"
-            },
-            "quantity": 10
+                "term": "A01",
+                "accessModel": "F",
+                "connectivity": "C100",
+                "servicePlanId": "GOLDA",
+                "billingBehavior": "A300"
+            }
         }
-	]
+    ]
 }
