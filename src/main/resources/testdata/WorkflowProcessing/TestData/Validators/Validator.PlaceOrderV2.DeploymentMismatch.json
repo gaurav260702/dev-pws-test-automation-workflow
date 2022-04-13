@@ -1,0 +1,12 @@
+{
+  "GetOrderStatus2ndPass": 
+	{
+		"transactionId": "*",
+		"status": "failed",
+		"statusV1": "FAILED",
+		"messageV1": "Part Number C1RK1-WW1C58-L882 deployment type incorrect for Previous Subscriptions",
+		"lastUpdated": "*",
+		"soldToCsn": "*",
+		"error":{"code":"43068", "message":"Part Number C1RK1-WW1C58-L882 deployment type incorrect for Previous Subscriptions"}
+	}
+}

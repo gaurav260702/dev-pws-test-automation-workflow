@@ -214,7 +214,7 @@
 		"[0].ServiceContract[0].ServiceLevels[0].ContractLineItems[0].Status" : "Active",
 		"[0].ServiceContract[0].ServiceLevels[0].ContractLineItems[0].StartDate" : "*",
 		"[0].ServiceContract[0].ServiceLevels[0].ContractLineItems[0].SoldtoAccountCSN" : "0070176510",
-		"[0].ServiceContract[0].ServiceLevels[0].ContractLineItems[0].SerialNumber" : "*",
+		"[0].ServiceContract[0].ServiceLevels[0].ContractLineItems[0].SerialNumber" : "*-*",
 		"[0].ServiceContract[0].ServiceLevels[0].ContractLineItems[0].RevenueId" : "*",
 		"[0].ServiceContract[0].ServiceLevels[0].ContractLineItems[0].ResellerAccountCSN" : "0070000010",
 		"[0].ServiceContract[0].ServiceLevels[0].ContractLineItems[0].ProductLineCode" : "3DSMAX",

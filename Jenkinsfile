@@ -52,6 +52,7 @@ pipeline {
                             echo "Test case full directory ${full_dir}"
                             echo "Test case relative directory to run: ${testcase_run_dir}"
                            // sh "docker run autodesk-docker.art-bobcat.autodesk.com/team-pws/test-automation:latest mvn spring-boot:run -Dspring-boot.run.arguments='${testcase_run_dir}'"
+
                         }
                     }
                 }

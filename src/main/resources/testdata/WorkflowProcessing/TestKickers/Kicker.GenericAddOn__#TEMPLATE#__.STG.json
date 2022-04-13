@@ -1,0 +1,25 @@
+﻿{
+  "$ROOT$": "./testdata/WorkflowProcessing/TestData",
+  "$ENV$": "STG",
+  "$BASE_NAME$": "AddProductOrderWithUserPackTERM_LicSku",
+
+  "$CSN_PRIMARY$": "0070176510",
+  "$CSN_SECONDARY$": "0070176510",
+  "$PRODUCT_SKU_PRIMARY$": "C0PL1-WWN957-L650",
+  "$PRODUCT_SKU_SECONDARY$": "C0PL1-WWN957-L650",
+  "$PRODUCT_SKU_TERTIARY$": "C0PL1-WWN957-L650",
+  "$PRODUCT_SKU_QUATERNARY": "C0PL1-WWN957-L650",
+
+  "baseUrl": "https://enterprise-api-$ENV$.autodesk.com",
+  "oAuthBaseUrl":  "https://enterprise-api-$ENV$.autodesk.com",
+
+  "baseFile": "$ROOT$/BaseData/BaseData.$BASE_NAME$.json",
+  "overridesFile": "$ROOT$/Overrides/Override.$BASE_NAME$Prep.$ENV$.json",
+  "addOnOverridesFile": "$ROOT$/Overrides/Override.$BASE_NAME$.$ENV$.json",
+
+  "validationFile": "$ROOT$/Validators/Validator.$BASE_NAME$.$ENV$.json",
+
+  "secretsFile": "$ROOT$/Configurations/Secrets.GetInvoiceServices.INT.json",
+
+  "workflow": "GenericPlaceOrderWithAddOn"
+}

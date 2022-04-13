@@ -1,5 +1,8 @@
 package com.autodesk.pws.test.steps.base;
 
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import com.autodesk.pws.test.engine.*;
@@ -8,16 +11,10 @@ import io.restassured.path.json.JsonPath;
 
 public class StepBase
 {
-  protected final Logger logger = LoggerFactory.getLogger(StepBase.class);
+    protected final Logger logger = LoggerFactory.getLogger(StepBase.class);
 
-  // TODO: <Kurt> make public DataPool dataPool; as protected earlier StepBase.java was in
-  // package com.autodesk.pws.test.engine;
-  // ^^^^ NOTE: DataPool is a public property and according my understanding of the Java casing guidelines
-  //            should have be a capitalized name.  DataPool is passed around frequently between classes
-  //            and is deliberately intended to be interrogated and modified by other classes.  Getters
-  //            and Setters *SHOULD* *NOT* be used when working with DataPool as it adds fragility and 
-  //            excess code and thereby creates a large potential for introducing needless coding errors
-  //		    into the codebase.  It's best to conceptualize DataPool as a global, runtime database.
+    public static final int DEFAULT_LEFT_SPACE_PADDING = 7;
+    
     public DataPool DataPool;
     public static Object ActionManager;
     public boolean BypassValidationChainLogging;
@@ -25,11 +22,13 @@ public class StepBase
     //  a global value that is set once at runtime and then either directly referenced when
     //  required or the value will be passed into the class at instantiation...
 	public final String LineMark =  System.getProperty("line.separator");
-	//public Logger logger;
+
 	public String ClassName;
 	public Boolean SuppressLogging = false;
 	public String ExceptionMessage = "";
 	public Boolean ExceptionAbortStatus = false;
+	public Boolean LogToFile = false;
+	public String LogFile = "";
 	
     public void preparation()
     {
@@ -64,19 +63,73 @@ public class StepBase
 		}
     }
 
+    public void logErr(String exceptionMsg, String className, String methodName)
+    {
+    	SuppressLogging = false;
+		String errMsg = "Error in " + className + "." + methodName + "():" + LineMark + exceptionMsg;
+    	log(errMsg);
+    }
+    
     public void logErr(Exception ex, String className, String methodName) //throws Throwable
     {
-		String errMsg = "Error in " + className + "." + methodName + "():" + LineMark + ex.toString();
-		log(errMsg);
-		//throw ex;
-    }
+    	SuppressLogging = false;
+		logErr(ex.toString(), className, methodName);
+	}
 
-    public void log(String msgToLog)
+    public void logNoPad(String msgToLog)
+    {
+    	log(msgToLog, 0);
+    }
+    
+    public void log(String msgToLog, int indentSpace)
     {
     	if(!SuppressLogging)
     	{
-    		logger.info(msgToLog);
+    		String leftPad = "";
+    		
+    		if(indentSpace > 0)
+    		{
+    			leftPad = padLeft(" ", indentSpace);
+    		}
+    		
+    		String lines[] = msgToLog.split("\\r?\\n");
+    		
+    		for(String line : lines)
+    		{
+    			if(this.LogToFile)
+    			{
+    				logToFile(line);
+    			}
+    			
+    			logger.info(leftPad + line);
+    		}
     	}
+    }
+    
+    private void logToFile(String line) 
+    {
+    	try 
+    	{
+    	    FileWriter fw = new FileWriter(LogFile, true);
+    	    BufferedWriter bw = new BufferedWriter(fw);
+    	    bw.write(line + this.LineMark);
+    	    bw.close();
+	    } 
+    	catch (Exception e) 
+    	{
+			System.out.println("An error occurred in 'logToFile'!");
+			e.printStackTrace();
+		}
+	}
+
+	private String padLeft(String s, int n) 
+    {
+        return String.format("%" + n + "s", s);  
+    }
+    
+    public void log(String msgToLog)
+    {
+    	log(msgToLog, DEFAULT_LEFT_SPACE_PADDING);
     }
 
     public String dumpDataPool()

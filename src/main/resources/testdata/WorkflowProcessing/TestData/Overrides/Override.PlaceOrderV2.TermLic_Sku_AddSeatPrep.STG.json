@@ -1,0 +1,31 @@
+{
+  "endCustomer": {
+    "account": {
+      "csn": "0070000010"
+    },
+    "contractManager": {
+      "firstName": "{{random_first_name}}",
+      "lastName": "{{random_last_name}}",
+      "email": "email@{{random_email_domain}}.com",
+      "language": "EN",
+      "countryCode": "US"
+    }
+  },
+  "shipTo": {
+    "csn": "0070000010"
+  },
+  "reseller": {
+    "csn": "0070000010"
+  },
+  "soldTo": {
+    "csn": "0070000010"
+  },
+  "lineItems": [
+    {
+      "partNumber": "128H1-00N313-L881",
+      "partnerSubscriptionId": "psi-{{uuid1}}",
+      "quantity": 1,
+      "netPrice": "{{net_price}}"
+    }
+  ]
+}

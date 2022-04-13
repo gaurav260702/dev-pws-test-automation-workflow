@@ -1,0 +1,13 @@
+{
+  "action": "Renewal",
+  "opportunityNumber": "$OPPORTUNITY_NUMBER$",
+  "contractNumber": "$CONTRACT_NUMBER$",
+  "lineItems": [
+    {
+      "partNumber": "$SKU_OR_PART_NUMBER$",
+      "subscriptionReferenceNumber": "$SERIAL_NUMBER$",
+      "quantity": 1,
+      "netPrice": "$NET_PRICE$"
+    }
+  ]
+}

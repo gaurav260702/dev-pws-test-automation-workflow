@@ -1,0 +1,33 @@
+{
+  "QuoteCreate": 
+  {
+    "transactionId": "*",
+    "message": "success"
+  },
+
+  "QuoteStatus": 
+  {
+    "status": "ReceivedQuote",
+    "transactionId": "Existing Transaction ID"
+  },
+
+  "QuoteDetails": 
+  {
+    "salesChannelType": "Agency",
+    "agreementTypeCode": "Agent",
+    "salesPlatformCode": "CPQ",
+    "quoteNumber": "*",
+    "salesOpportunityNumber": "*-*",
+    "quoteCreatedDate": "*",
+    "quoteExpirationDate": "*",
+    "quoteStatus.code": "InProcess",
+    "quoteStatus.description": "In Process",
+    "pricing.currency": "*",
+    "pricing.priceRegionCode": "*",
+    "agency.accountCsn": "$CSN_PRIMARY$",
+    "agent.contactCsn": "$CSN_SECONDARY$",
+    "agent.firstName": "*",
+    "agent.lastName": "*",
+    "agent.phone": "*"
+  }
+}

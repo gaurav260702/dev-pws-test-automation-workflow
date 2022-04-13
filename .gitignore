@@ -9,6 +9,7 @@ test-output
 .mvn/
 mvnw
 mvnw.cmd
+bin
 
 ### STS ###
 .apt_generated
@@ -46,3 +47,6 @@ build/
 ### Ignore .bak files ###
 *.bak
 .*.bak
+*.log
+*.class
+/*.json

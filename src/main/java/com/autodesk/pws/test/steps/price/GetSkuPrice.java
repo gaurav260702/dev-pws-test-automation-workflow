@@ -22,13 +22,14 @@ public class GetSkuPrice extends PwsServiceBase
     	//  Set the Resource path BEFORE the base/super class
 		//  sets the targetUrl..
 		setResourcePath();
+		
     	//  Do stuff that the Action depends on to execute...
     	super.preparation();
     }
 
     private void setResourcePath()
     {
-		super.setResourcePath("/v1/sku/prices?customer_number=$CUSTOMER_NUMBER$&part_number=$SKU_OR_PART_NUMBER$&price_date=$PRICE_DATE$&quantity=$QUANTITY$");
+		super.setResourcePath("/v1/sku/prices?customer_number=$CUSTOMER_NUMBER$&part_number=$SKU_OR_PART_NUMBER$&price_date=$PRICE_DATE$&quantity=$QUANTITY$", true);
     }
     
     public void initVariables()
@@ -55,9 +56,16 @@ public class GetSkuPrice extends PwsServiceBase
 		//  after it has been filled out...
     	super.validation();
     	
-    	super.setExecutionAbortFlagOnError();
-    	
-    	//  Extact data that may be needed by other steps later on...	
-    	extractDataFromJsonAndAddToDataPool("$NET_PRICE$", "response.net_price"); 
+    	if(!super.setExecutionAbortFlagOnError())
+    	{
+	    	//  Extact data that may be needed by other steps later on...	
+	    	extractDataFromJsonAndAddToDataPool("$NET_PRICE$", "response.net_price"); 
+	    	
+	    	//  This is a $NET_PRICE$ format hack...
+	    	String netPrice = DataPool.get("$NET_PRICE$").toString();
+	    	float value = Float.parseFloat(netPrice);
+	    	netPrice = String.format("%.2f", value);
+	    	DataPool.add("$NET_PRICE$", netPrice);
+    	}
 	}
 }

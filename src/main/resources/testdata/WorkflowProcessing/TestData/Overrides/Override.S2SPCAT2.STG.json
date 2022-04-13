@@ -1,0 +1,39 @@
+{
+  "action": "Subscription to Subscription Switch",
+  "endCustomer": {
+      "account": {
+          "csn": "5152245157"
+      },
+      "contractManager": {
+        "firstName": "{{random_first_name}}",
+        "lastName": "{{random_last_name}}",
+        "email": "email@{{random_email_domain}}.com",
+          "language": "EN",
+          "countryCode": "US"
+      }
+  },
+  "shipTo": {
+      "csn": "0070012612"
+  },
+  "reseller": {
+      "csn": "0070012612"
+  },
+  "soldTo": {
+      "csn": "0070012612"
+  },
+  "poNumber": "pws_monitoring_test_{{timestamp}",
+  "customerPoNumber": "CUST-PO-{{timestamp}",
+  "contractNumber": "$CONTRACT_NUMBER$",
+  "lineItems": [
+      {
+          "partNumber": "02JI1-WW8C33-L552",
+          "quantity": 1,
+          "netPrice": "{{net_price}}",
+          "previousSubscriptions": [
+              {
+                  "subscriptionReferenceNumber": "$SERIAL_NUMBER$"
+              }
+          ]
+      }
+  ]
+}

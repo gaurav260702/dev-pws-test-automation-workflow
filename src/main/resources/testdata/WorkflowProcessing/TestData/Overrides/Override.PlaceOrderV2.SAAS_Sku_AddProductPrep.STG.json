@@ -1,0 +1,31 @@
+{
+  "endCustomer": {
+    "account": {
+      "csn": "0070028220"
+    },
+    "contractManager": {
+      "firstName": "{{random_first_name}}",
+      "lastName": "{{random_last_name}}",
+      "email": "email@{{random_email_domain}}.com",
+      "language": "EN",
+      "countryCode": "US"
+    }
+  },
+  "shipTo": {
+    "csn": "0070028220"
+  },
+  "reseller": {
+    "csn": "0070028220"
+  },
+  "soldTo": {
+    "csn": "0070028220"
+  },
+  "lineItems": [
+    {
+      "partNumber": "C1FJ1-NS1145-V103",
+      "partnerSubscriptionId": "psi-{{uuid1}}",
+      "quantity": 1,
+      "netPrice": "{{net_price}}"
+    }
+  ]
+}

@@ -33,11 +33,11 @@ public class LoadBaseFilesAndExtractOrderInfoData extends LoadBaseFiles
 		
         //  Grab the final OrderInfo json and pop it into a JsonPath object...
 		Gson gson = new Gson(); 
-		String json = gson.toJson(DataPool.get(this.DataPoolLabelOrderInfoFinal)); 
+		String json = gson.toJson(DataPool.getRaw(this.DataPoolLabelOrderInfoFinalJson)); 
     	JsonPath pathFinder = JsonPath.with(json);
     	
     	//  Extact data that may be needed by other steps later on...	
-    	extractDataFromJsonAndAddToDataPool("$CUSTOMER_NUMBER$", "soldTo.csn", pathFinder); 
+    	extractDataFromJsonAndAddToDataPool("$CUSTOMER_NUMBER$", "reseller.csn", pathFinder); 
     	extractDataFromJsonAndAddToDataPool("$RESELLER_NUMBER$", "reseller.csn", pathFinder); 
     	extractDataFromJsonAndAddToDataPool("$PO_NUMBER$", "poNumber", pathFinder); 
     	extractDataFromJsonAndAddToDataPool("$CUSTOMER_PO_NUMBER$", "customerPoNumber", pathFinder); 

@@ -1,0 +1,45 @@
+{
+    "salesOpportunityNumber": "A-31725362",
+    "quoteNote": "Notefromagenttocustomer.",
+    "subscriptionStartDate": "2021-10-01T00:00:00.0000000",
+    "currency": "USD",
+    "agency": {
+        "accountCsn": "$CSN_SECONDARY$"
+    },
+    "agent": {
+        "email": "John.b@awesomeagency.com"
+    },
+    "endCustomer": {
+        "accountCsn": "$CNS_PRIMARY$",
+        "name": "HenryInc",
+        "addressLine1": "1482spicetreecircle",
+        "addressLine2": "Suite:203",
+        "addressLine3": "xyz",
+        "city": "Fairborn",
+        "stateProvinceCode": "OH",
+        "postalCode": "45324",
+        "countryCode": "USA",
+        "isIndividual": false
+    },
+    "purchaser": {
+        "email": "henry@chrisutesting.com",
+        "firstName": "Henry",
+        "lastName": "Chris",
+        "phone": "4128008008",
+        "preferredLanguage": "en-us"
+    },
+    "lineItems": [
+        {
+            "offeringId": "OD-0000789",
+            "orderAction": "New",
+            "quantity": 10000,
+            "offer": {
+                "term": "A01",
+                "accessModel": "F",
+                "connectivity": "C100",
+                "servicePlanId": "GOLDA",
+                "billingBehavior": "A300"
+            }
+        }
+    ]
+}

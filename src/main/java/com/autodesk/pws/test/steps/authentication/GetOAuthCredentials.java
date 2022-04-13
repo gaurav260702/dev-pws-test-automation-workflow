@@ -1,12 +1,11 @@
 package com.autodesk.pws.test.steps.authentication;
 
-import java.io.IOException;
 import okhttp3.Response;
-
 import com.autodesk.pws.test.steps.base.*;
 
 public class GetOAuthCredentials extends RestActionBase
 {
+	protected String accessTokenToExtract = "access_token:access_token";
     @Override
     public void preparation()
     {
@@ -38,7 +37,7 @@ public class GetOAuthCredentials extends RestActionBase
 			//  Can somebody tell me why the ******** this has to be in a try-catch?!?!
 			rawJson = actionResult.body().string();
 		}
-		catch (IOException e)
+		catch (Exception e)
 		{
 			this.logErr(e, this.ClassName, "action");
 		}
@@ -48,7 +47,7 @@ public class GetOAuthCredentials extends RestActionBase
 
 		//  Here we would extract any data that needs
 		//  to be promoted in the DataPool...
-		extractDataFromJsonIntoDataPool(rawJson, "access_token:access_token");
+		extractDataFromJsonIntoDataPool(rawJson, accessTokenToExtract);
     }
 
     public Response getInfo()
@@ -63,15 +62,17 @@ public class GetOAuthCredentials extends RestActionBase
 
     	try
     	{
+			log("creating request: ");
     		//  Make the call to the oAuth service...
 			oAuthResponse = getRestResponse("POST", BaseUrl + "/v2/oauth/generateaccesstoken?grant_type=client_credentials", "{}");
     	}
-    	catch (IOException e)
+    	catch (Exception e)
     	{
     		//  Uh-oh.  Now what happened?
     		logErr(e, this.ClassName, "getInfo");
 		}
 
+		log("oAuth Response: "+oAuthResponse);
     	return oAuthResponse;
     }
 }

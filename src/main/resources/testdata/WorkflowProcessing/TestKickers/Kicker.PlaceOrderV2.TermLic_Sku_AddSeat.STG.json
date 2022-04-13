@@ -1,0 +1,10 @@
+﻿{
+  "baseUrl": "https://enterprise-api-STG.autodesk.com",
+  "oAuthBaseUrl":  "https://enterprise-api-STG.autodesk.com",
+  "baseFile": "./testdata/WorkflowProcessing/TestData/BaseData/DefaultPlaceOrderV2.json",
+  "overridesFile": "./testdata/WorkflowProcessing/TestData/Overrides/Override.PlaceOrderV2.TermLic_Sku_AddSeatPrep.STG.json",
+  "addOnOverridesFile": "./testdata/WorkflowProcessing/TestData/Overrides/Override.PlaceOrderV2.TermLic_Sku_AddSeat.STG.json",
+  "validationFile": "./testdata/WorkflowProcessing/TestData/Validators/Validator.PlaceOrderV2.TermLic_Sku_AddSeat.STG.json",
+  "secretsFile": "./testdata/WorkflowProcessing/TestData/Configurations/Secrets.GetInvoiceServices.INT.json",
+  "workflow": "GenericPlaceOrderWithAddOn"
+}

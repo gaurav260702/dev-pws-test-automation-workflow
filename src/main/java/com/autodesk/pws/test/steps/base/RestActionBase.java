@@ -16,6 +16,7 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.gson.Gson;
 import io.restassured.path.json.JsonPath;
+import okhttp3.Headers;
 import okhttp3.MediaType;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -25,50 +26,48 @@ import okhttp3.Response;
 
 public class RestActionBase extends StepBase
 {
-    // Note: Regarding Instance fields always keep it private, if a class extends and if they are
-    // required in other class(s) keep them as protected
-    private String clientId;
-    private String clientSecret;
-    private String callBackUrl;
-    public String BaseUrl;
-
+	public String BaseUrl;
+	public String TargetUrl;
+    public String ResourcePath;
+    public String JsonRequestBody = "";
+    public String JsonResponseBody = "";
+    public String ServiceVerb = "GET";
+    
+    protected String clientId;
+    protected String clientSecret;
+    protected String callBackUrl;
+    
     public HashMap<String, String> RequestHeaders = new HashMap<String, String>();
 
+    private HashMap<String, String> attachedRequestHeaders = new HashMap<String, String>();
+    
     public void initBaseVariables()
     {
-		clientId = DataPool.get("clientId").toString();
-		clientSecret = DataPool.get("clientSecret").toString();
-		callBackUrl = DataPool.get("callBackUrl").toString();
-		BaseUrl =  DataPool.get("oAuthBaseUrl").toString();
-    }
-
-    public void addCsnHeader()
-    {
-    	if(DataPool.containsKey("$CSN_HEADER$"))
-    	{
-    		addHeaderFromDataPool("CSN", "$CSN_HEADER$");
-    	}
-    	else
-    	{
-    		addHeaderFromDataPool("CSN", "$CUSTOMER_NUMBER$");
-    	}
+		clientId = DataPool.getDetokenized("clientId").toString();
+		clientSecret = DataPool.getDetokenized("clientSecret").toString();
+		callBackUrl = DataPool.getDetokenized("callBackUrl").toString();
+		BaseUrl =  DataPool.getDetokenized("oAuthBaseUrl").toString();
     }
 
     public void addHeaderFromDataPool(String headerAndDataPoolLabel)
     {
-    	RequestHeaders.put(headerAndDataPoolLabel, DataPool.get(headerAndDataPoolLabel).toString());
+    	//  Check to make sure the 
+    	if(!RequestHeaders.containsKey(headerAndDataPoolLabel))
+    	{
+    		RequestHeaders.put(headerAndDataPoolLabel, DataPool.getDetokenized(headerAndDataPoolLabel).toString());
+    	}
     }
 
     public void addHeaderFromDataPool(String headerLabel, String DataPoolLabel)
     {
-    	RequestHeaders.put(headerLabel, DataPool.get(DataPoolLabel).toString());
+    	RequestHeaders.put(headerLabel, DataPool.getDetokenized(DataPoolLabel).toString());
     }
 
     public void addValidationChainLink(String validationLabel, Object dataToValidate)
     {
         if (!BypassValidationChainLogging)
         {
-            log("       Adding '" + validationLabel + "' to validation chain...");
+            log("Adding '" + validationLabel + "' to validation chain...");
             DataPool.addToValidationChain(validationLabel, dataToValidate);
         }
     }
@@ -97,59 +96,120 @@ public class RestActionBase extends StepBase
 
 	public Response getRestResponse(String restMethod, String restResourcePath) throws IOException
 	{
-		return getRestResponse(restMethod, restResourcePath, "");
+		return getRestResponse(restMethod, restResourcePath, "", "");
 	}
 
 	public Response getRestResponse(String restMethod, String restResourcePath, String jsonPayload) throws IOException
 	{
+		return getRestResponse(restMethod, restResourcePath, jsonPayload, "application/json");
+	}
+	
+	public Response getRestResponse(String restMethod, String restResourcePath, String payload, String mediaTypeOverride) throws IOException
+	{		
+		//////////////////////////////////////////////////
+		/// **********************************************
+		///  THIS CODE NEEDS TO BE CLEANED UP!
+		///  It's functional for now, but there's
+		///  some serious potential for things to
+		///  get overly complicated fast.  I think
+		///  this could all be simplified to handle
+		///  the various media types in few lines 
+		///  of code, and with less if/then branching...
+		/// **********************************************
+		//////////////////////////////////////////////////
+		
+		//  Ensure the resource path is fully detokenized...
+		restResourcePath = DataPool.detokenizeDataPoolValues(restResourcePath);
+		
 		//  Build the first portions of the REST request...
 		Builder requestBuilder = new Request.Builder().url(restResourcePath);
-
-		log("       Target URL: " + restResourcePath);
-
-		//  If a JSON payload is included,
-		//  append it to the Request Builder...
-		if(jsonPayload != "")
+		
+		//  Set the default mediaTypeValue...
+		String jsonDefaultMediaType = "application/json";
+		String mediaTypeValue = jsonDefaultMediaType;
+		
+		//  Check for a mediaType override...
+		if(mediaTypeOverride.length() > 0)
 		{
-		    MediaType mediaType = MediaType.parse("application/json");
-		    
-		    if(jsonPayload != "{}")
-		    {
-			    //  Nasty bit of hackery to ensure that the "quanity" value is set to
-				//  an integer instead of a float.  There's an issue with this when the
-				//  file is loaded from disk and fiddled about with by the Jackson
-				//  JSON library...
-			    jsonPayload = hack_CleanQuantityFloatType(jsonPayload);
-			    
-			    jsonPayload = DynamicData.detokenizeRuntimeValues(jsonPayload);
-			    
-			    //  All this floofery is so we can convert the raw JSON payload into a 
-			    //  single line version so it's easier to read in the log, but still 
-			    //  useful if we need to pop it into PostMan or something...
-			    ObjectMapper objectMapper = new ObjectMapper();
-			    JsonNode jsonNode = objectMapper.readValue(jsonPayload, JsonNode.class);
+			mediaTypeValue = mediaTypeOverride;
+		}
+		
+		//  Prepare a mediaType container in case it's needed...
+		MediaType mediaType = null;
+		
+		//  Prepare a body container in case it's needed...
+		RequestBody body = null;
+		
+		log("Target URL: " + restResourcePath);
 
-			    log("       Payload: " + jsonNode.toString());
-		    }
-		    
-		    RequestBody body = RequestBody.create(mediaType, jsonPayload);
-			requestBuilder.method(restMethod, body);
-			}
+		if(restMethod.toUpperCase() == "POST")
+		{
+			mediaType = MediaType.parse(mediaTypeValue);
+		}
+		
+		if(mediaType == null)
+		{
+			requestBuilder.method(restMethod, null);
+		}
 		else
 		{
-			requestBuilder.method(restMethod, null);;
-		}
+			//  If a JSON payload is included,
+			//  append it to the Request Builder...
+			if (mediaTypeValue == jsonDefaultMediaType)
+			{	
+					if(payload != "{}")
+					{
+						//  Nasty bit of hackery to ensure that the "quanity" value is set to
+					    //  an integer instead of a float.  There's an issue with this when the
+					    //  file is loaded from disk and fiddled about with by the Jackson
+					    //  JSON library...
+						payload = hack_CleanQuantityFloatType(payload);
+						
+						//  Ensure that the payload is completely detokenized 
+						//  and all SimpleScript evals have been executed...
+						payload = DynamicData.detokenizeRuntimeValues(payload);
+						payload = DataPool.detokenizeDataPoolValues(payload);
+						payload = DynamicData.simpleScriptEval(payload);
+						
+						//  All this floofery is so we can convert the raw JSON payload into a 
+						//  single line version so it's easier to read in the log, but still 
+						//  useful if we need to pop it into PostMan or something...
+						ObjectMapper objectMapper = new ObjectMapper();
+						JsonNode jsonNode = objectMapper.readValue(payload, JsonNode.class);
 
+						log("Payload: " + jsonNode.toString());
+					}
+					
+					body = RequestBody.create(mediaType, payload);
+					requestBuilder.method(restMethod, body);
+			}
+			else
+			{
+				  body = RequestBody.create(mediaType, payload);
+					requestBuilder.method(restMethod, body);
+					requestBuilder.addHeader("Content-Type", mediaTypeValue);
+			}
+		}
+		
 		//  Add in any required customer headers...
 		for (String key : RequestHeaders.keySet())
-        {
+		{
 			String headerVal = RequestHeaders.get(key);
 			//log(key + ": " + headerVal);
-        	requestBuilder.addHeader(key, headerVal);
-        }
-
+			requestBuilder.addHeader(key, headerVal);
+		}
+		
         //  Build the final Request object...
 		Request request = requestBuilder.build();
+
+		Headers headers = request.headers();
+
+		//  Log the headers for debugging purposes...
+		log("-- REQUEST HEADERS --");
+		for (int i = 0, count = headers.size(); i < count; i++)
+		{
+			log( headers.name(i) + " : " + headers.value(i), 4);
+		}
 
 		//  Ready the REST client...
 		OkHttpClient client = new OkHttpClient().newBuilder().build();
@@ -166,6 +226,22 @@ public class RestActionBase extends StepBase
 		return response;
 	}
 	
+    public void addResponseToValidationChain()
+    {
+		//  Stick that response body in the ValidationChain,
+		//  but let's go ahead and make it puuuurrrdy first.
+    	//
+    	//  Also, we're doing this here on the off chance that
+    	//  the class is part of a "WaitFor*Change" style loop.
+    	//
+    	//  If we were to include it as part of the "action()"
+    	//  method, it would be called 'n' number of times, 
+    	//  which is of course a bit excessive...
+		JsonPath jsonPath = JsonPath.from(JsonResponseBody);
+		String prettyJson = jsonPath.prettify();
+		addValidationChainLink(ClassName, prettyJson);
+    }
+
     private String hack_CleanQuantityFloatType(String rawJson)
     {	    	
 		JsonPath jsonPath = JsonPath.from(rawJson);
@@ -248,6 +324,16 @@ public class RestActionBase extends StepBase
     	return jsonMap;
     }
     
+    public void attachHeaderFromDataPool(String headerLabel, String dataPoolLabel)
+    {
+    	attachedRequestHeaders.put(headerLabel, dataPoolLabel);
+    }
+    
+    public void attachHeaderFromDataPool(String headerLabel)
+    {
+    	attachedRequestHeaders.put(headerLabel, headerLabel);
+    }
+    
     public HashMap<String,Object> removeAllNullValuesFromJson(Map<String, Object> orderInfo)// throws JsonProcessingException
     {
     	//  https://stackoverflow.com/questions/37019059/remove-null-values-from-json-using-jackson
@@ -286,7 +372,7 @@ public class RestActionBase extends StepBase
     	return jsonMap;
     }
 
-    public void generateAndAppendCurrentTokenHeaders()
+    public void generateTokenHeaders()
     {
         HashMap<String, String> authHeaders = this.generateAccessTokenHeadersWithCurrentToken();
 
@@ -374,5 +460,16 @@ public class RestActionBase extends StepBase
 		String str = clientId + ":" + clientSecret;
 		byte[] bytesEncoded = org.apache.commons.codec.binary.Base64.encodeBase64(str.getBytes());
 		return new String(bytesEncoded);
+	}
+
+	public void generateAttachedRequestHeaders() 
+	{
+		attachedRequestHeaders
+		.forEach(
+	    			(headerLabel, dataPoolLabel) ->
+			        {
+			        	addHeaderFromDataPool(headerLabel, dataPoolLabel);
+			        }
+				);
 	}
 }

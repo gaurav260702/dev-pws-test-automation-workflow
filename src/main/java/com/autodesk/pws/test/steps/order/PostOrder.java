@@ -1,5 +1,6 @@
 package com.autodesk.pws.test.steps.order;
 
+import com.autodesk.pws.test.processor.DynamicData;
 import com.autodesk.pws.test.steps.base.*;
 import com.google.gson.Gson;
 
@@ -7,6 +8,8 @@ import io.restassured.path.json.JsonPath;
 
 public class PostOrder extends PwsServiceBase
 {    
+	public String OrderInfoDataPoolLabel = "OrderInfo";
+	
     @Override
     public void preparation()
     {
@@ -26,7 +29,8 @@ public class PostOrder extends PwsServiceBase
 		this.setAsPostService();
 		
 		//  Set the Resource path BEFORE the base/super class
-		//  sets the targetUrl..
+		//  sets the targetUrl during the super class's
+		//  "preparation()" method..
 		setResourcePath();
 		
     	//  Do stuff that the Action depends on to execute...
@@ -34,7 +38,8 @@ public class PostOrder extends PwsServiceBase
     	
     	//  Grab the JsonRequestBody...
     	Gson gson = new Gson();
-    	String jsonBody = gson.toJson(DataPool.get("OrderInfo"));
+    	String jsonBody = gson.toJson(DataPool.get(OrderInfoDataPoolLabel));
+    	jsonBody = DynamicData.detokenizeRuntimeValues(jsonBody);
     	this.setJsonRequestBody(jsonBody);
     }
 
@@ -51,7 +56,9 @@ public class PostOrder extends PwsServiceBase
 	
 	@Override
 	public void validation()
-	{
+	{    	
+		super.validation();
+	
 		//  Here we would extract any data that needs to be promoted to 
 		//  the DataPool and may be needed by other steps later on...
     	JsonPath pathFinder = JsonPath.with(JsonResponseBody);

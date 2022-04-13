@@ -1,0 +1,31 @@
+{
+  "endCustomer": {
+    "account": {
+      "csn": "$CSN_PRIMARY$"
+    },
+    "contractManager": {
+      "firstName": "{{random_first_name}}",
+      "lastName": "{{random_last_name}}",
+      "email": "email@{{random_email_domain}}.com",
+      "language": "EN",
+      "countryCode": "US"
+    }
+  },
+  "shipTo": {
+    "csn": "$CSN_SECONDARY$"
+  },
+  "reseller": {
+    "csn": "$CSN_SECONDARY$"
+  },
+  "soldTo": {
+    "csn": "$CSN_SECONDARY$"
+  },
+  "lineItems": [
+    {
+      "partNumber": "$PRODUCT_SKU_PRIMARY$",
+      "partnerSubscriptionId": "psi-{{uuid1}}",
+      "quantity": 1,
+      "netPrice": "{{net_price}}"
+    }
+  ]
+}

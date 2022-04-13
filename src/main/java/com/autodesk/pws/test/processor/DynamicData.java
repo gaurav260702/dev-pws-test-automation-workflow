@@ -3,7 +3,11 @@ package com.autodesk.pws.test.processor;
 import java.io.File;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Random;
@@ -120,9 +124,7 @@ public class DynamicData
 
 		try
 		{
-			// String uniqueStamp = Long.toHexString(Calendar.getInstance().getInstance().getTimeInMillis());
-			DynamicData dd = new DynamicData();
-			String fullFilePath = dd.getClass().getClassLoader().getResource(jsonFilePath).getFile();
+			String fullFilePath = convertRelativePathToFullPath(jsonFilePath);
 			File file = new File(fullFilePath);
 
 			jsonRequestBody = FileUtils.readFileToString(file, StandardCharsets.UTF_8);
@@ -246,5 +248,20 @@ public class DynamicData
         String prettyJsonString = gson.toJson(je);
         return prettyJsonString;
     }
+
+	public static String getSimpleDatTimeFormat() 
+	{
+		Date date = Calendar.getInstance().getTime();  
+        DateFormat dateFormat =  new SimpleDateFormat("yyyy-MM-dd_HH.mm.ss.SSS");
+        String strDate = dateFormat.format(date);  
+        
+        return strDate;
+	}
+
+	public static String simpleScriptEval(String simpleScriptContainer) 
+	{
+		String retVal = SimpleScripter.extractAndResolveSimpleScripts(simpleScriptContainer, "[[", "]]");
+		return retVal;
+	}
 }
 

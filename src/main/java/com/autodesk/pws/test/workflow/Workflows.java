@@ -18,10 +18,6 @@ public class Workflows
 
         for (int i = 0; i < methods.length; i++)
         {
-//        	System.out.println(methods[i].getName().toLowerCase());
-//        	System.out.println(workflowName.toLowerCase());
-//        	System.out.println("-----------------------------------");
-
             if(methods[i].getName().toLowerCase().compareTo(workflowName.toLowerCase()) == 0)
             {
                 retVal = (List<StepBase>) methods[i].invoke(workflowLibraryObject);
