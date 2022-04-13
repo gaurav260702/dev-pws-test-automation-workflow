@@ -147,8 +147,10 @@ public class StepBase
         return retVal.toString();
     }
     
-	public void extractDataFromJsonAndAddToDataPool(String dataPoolLabel, String targetPath, JsonPath pathFinder)
+	public boolean extractDataFromJsonAndAddToDataPool(String dataPoolLabel, String targetPath, JsonPath pathFinder)
 	{
+		boolean extractionSuccessful = false;
+		
 		try
 		{
 			//  Some weird monkeyshines here.  Raw numbers seem to be coming back as floats
@@ -186,10 +188,13 @@ public class StepBase
 			//  At long last, we're finally at the point where we can store the 
 			//  value in the DataPool!  Whoopee!!
 			DataPool.add(dataPoolLabel, targetValue); 
+			extractionSuccessful = true;
 		}
 		catch (Exception ex)
 		{
 			this.log("Unable to locate path in JSON: '" + targetPath + "'...");
 		}
+		
+		return extractionSuccessful;
 	}
 }

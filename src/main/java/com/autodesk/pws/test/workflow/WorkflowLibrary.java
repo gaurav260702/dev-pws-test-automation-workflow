@@ -51,8 +51,8 @@ public class WorkflowLibrary
     {
         List<StepBase> workflow = GenericPlaceOrder();
         
-        workflow.add(new WaitForGetAgreementInfo());
         workflow.add(new GetOrderDetails());
+        workflow.add(new WaitForGetAgreementInfo());
 
         return workflow;
     }

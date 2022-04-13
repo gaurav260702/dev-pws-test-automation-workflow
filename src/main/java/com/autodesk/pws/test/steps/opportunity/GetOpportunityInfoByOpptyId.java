@@ -120,6 +120,7 @@ public class GetOpportunityInfoByOpptyId extends PwsServiceBase
 					switch(status.toUpperCase())
 					{					
 						case "ERROR":
+						case "FORBIDDEN":
 							keepTrying = false;
 							setError = true;
 							break;
@@ -171,6 +172,7 @@ public class GetOpportunityInfoByOpptyId extends PwsServiceBase
 		
 		if(setError)
 		{
+			addResponseToValidationChain();
 			logErr(status, this.ClassName, "action");
 			this.ExceptionAbortStatus = true;
 			this.ExceptionMessage = this.ClassName + ".action() -- " + statusMsg;
@@ -186,6 +188,15 @@ public class GetOpportunityInfoByOpptyId extends PwsServiceBase
 		//  the DataPool and may be needed by other steps later on...
 		JsonPath pathFinder = JsonPath.with(JsonResponseBody);
 	
+		boolean foundRenewalSku = extractDataFromJsonAndAddToDataPool("$PRODUCT_SKU_SECONDARY$", "message[0].line_items[0].renewal_sku", pathFinder);
+		extractDataFromJsonAndAddToDataPool("$RENEWAL_SKU$", "message[0].line_items[0].renewal_sku", pathFinder);
+		
+		if(!foundRenewalSku)
+		{
+			this.ExceptionMessage = ">>> *** Unable to extract the RenewalSku from the [" + this.ClassName + "] response! *** <<<";
+			this.ExceptionAbortStatus = true;
+		}
+		
 		addResponseToValidationChain();
 	}	
 

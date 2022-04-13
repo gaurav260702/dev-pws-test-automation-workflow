@@ -4,13 +4,13 @@
   "contractNumber": "$CONTRACT_NUMBER$",
   "orderDiscounts": [
     {
-      "discountId": "A-1658430",
+      "discountId": "$DISCOUNT_ID$",
       "discountType": "DDA"
     }
   ],
   "lineItems": [
     {
-      "partNumber": "C1RK1-002900-L983",
+      "partNumber": "$RENEWAL_SKU$",
       "subscriptionReferenceNumber": "$SERIAL_NUMBER$",
       "quantity": 1,
       "netPrice": "{{net_price}}"
