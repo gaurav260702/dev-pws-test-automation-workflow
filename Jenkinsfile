@@ -2,7 +2,7 @@
 @Library("PSL@master") _
 
   def dockerReg = "autodesk-docker.art-bobcat.autodesk.com/team-pws"
-  //def dockerTestImage = "autodesk-docker.art-bobcat.autodesk.com/team-pws/test-automation:latest"
+
   def dockerTestImage = "autodesk-docker.art-bobcat.autodesk.com/team-pws/test-automation:latest"
 
   def imageName = "test-automation" 
@@ -33,7 +33,7 @@ pipeline {
            }
             steps {
                 script {
-                    testfiles = findFiles(glob: '**/*INT.json')
+                    testfiles = findFiles(glob: '**/Kicker.*.json')
                     echo """${testfiles[0].name} ${testfiles[0].path} ${testfiles[0].directory} ${testfiles[0].length} ${testfiles[0].lastModified}"""
                 }
             }
@@ -51,7 +51,7 @@ pipeline {
                         stage(testfiles[i].name){
                             echo "Test case full directory ${full_dir}"
                             echo "Test case relative directory to run: ${testcase_run_dir}"
-                            sh "docker run autodesk-docker.art-bobcat.autodesk.com/team-pws/test-automation:latest mvn spring-boot:run -Dspring-boot.run.arguments='${testcase_run_dir}'"
+                           // sh "docker run autodesk-docker.art-bobcat.autodesk.com/team-pws/test-automation:latest mvn spring-boot:run -Dspring-boot.run.arguments='${testcase_run_dir}'"
                         }
                     }
                 }
