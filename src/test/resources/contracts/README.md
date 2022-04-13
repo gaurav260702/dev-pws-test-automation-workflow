@@ -1,0 +1,1 @@
+fix contracts test issue
