@@ -163,5 +163,6 @@ public class GetOpptyStatusByOpportunityTransactionId extends PwsServiceBase
 		String opptyId = pathFinder.getString("opportunities");
 		opptyId = opptyId.substring(opptyId.indexOf("[") + 1, opptyId.indexOf("]"));
 		DataPool.add("$OPPORTUNITY_NUMBER$", opptyId);
+		
 	}	
 }

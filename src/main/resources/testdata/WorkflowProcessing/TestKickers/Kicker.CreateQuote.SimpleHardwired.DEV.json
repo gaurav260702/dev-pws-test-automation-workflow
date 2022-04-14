@@ -7,10 +7,11 @@
   "$BASE_DATA$": "$ROOT$/BaseData",
   "$CONFIG$": "$ROOT$/Configurations",
 
-  "$CSN_PRIMARY$": "7567890989",
+  "$CSN_PRIMARY$": "9876543210",
   "$CSN_SECONDARY$": "13456789",
+  "$CSN_QUOTE_STATUS$": "9876543210",
 
-  "$CREATE_QUOTE_BASE_URL$": "https://quote.ddws$ENV$.autodesk.com/",
+  "$CREATE_QUOTE_BASE_URL$": "https://enterprise-api-$ENV$.autodesk.com/",
 
   "baseUrl": "https://enterprise-api-$ENV$.autodesk.com",
   "oAuthBaseUrl":  "https://enterprise-api-$ENV$.autodesk.com",

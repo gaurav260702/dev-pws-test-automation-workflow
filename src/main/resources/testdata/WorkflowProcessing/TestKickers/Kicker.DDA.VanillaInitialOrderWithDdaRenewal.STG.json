@@ -3,20 +3,38 @@
   "$ROOT$": "./testdata/WorkflowProcessing/TestData",
   "$ENV$": "STG",
 
-  "$CSN_PRIMARY$": "5104553993",
-  "$CSN_SECONDARY$": "5118761720",
-  "$CSN_TERTIARY$": "0070176510",
+  "$CSN_SOLDTO$": "0070176510",
+  "$CSN_RESELLER$": "0070176510",
+  "$CSN_ENDCUSTOMER$": "5104553993",
+  "$CSN_SHIPTO$": "5104553993",  
+  "$CSN_SHIPTO.OLD$": "5118761720",
+ 
+  "$CSN_PRIMARY$": "$CSN_ENDCUSTOMER$",
+  "$CSN_SECONDARY$": "$CSN_RESELLER$",
+  "$CSN_TERTIARY$": "$CSN_SOLDTO$", 
+  "$CSN_QUATERNARY$": "$CSN_SOLDTO$",
+ 
+  "$CSN_PRIMARY.OLD$": "5104553993",
+  "$CSN_SECONDARY.OLD$": "0070176510",
+  "$CSN_TERTIARY.OLD$": "5118761720",
+  
   "$DISCOUNT_ID$": "A-1565305",
   "$PART_NUMBER$": "128K1-WW6542-L618",
+  "$PRODUCT_SKU_PRIMARY$": "$PART_NUMBER$",
+  "$RENEWAL_SKU$": "128F1-001355-L890",
   "$CSN_HEADER$": "$CUSTOMER_NUMBER$",
+
+  "$EXTENSION_DATE$": "[[Date(455)]]",
 
   "baseUrl": "https://enterprise-api-$ENV$.autodesk.com",
   "oAuthBaseUrl":  "https://enterprise-api-$ENV$.autodesk.com",
-
-  "baseFile": "$ROOT$/BaseData/IntialOrderV2.DDA.json",
+ 
+  "$BASE_FILE$" : "$ROOT$/BaseData/BaseData.$BASE_NAME$.1st.STG.json",
+  "baseFile": "$BASE_FILE$",
   "overridesFile": "$ROOT$/Overrides/Override.NONE.json",
 
-  "renewalRequestFile": "$ROOT$/BaseData/IntialOrderV2.DDA.json",
+  "renewalRequestFile.old": "$ROOT$/BaseData/BaseData.$BASE_NAME$.1st.STG.json",
+  "renewalRequestFile": "$BASE_FILE$",
   "renewalOverridesFile": "$ROOT$/Overrides/Override.ValidDDARenewal.json",
 
   "validationFile": "$ROOT$/Validators/Validator.DDA.VanillaInitialOrderWithDdaRenewal.$ENV$.json",
@@ -27,5 +45,7 @@
 
   "opptyServiceBaseUrl": "https://api.sfdc-$ENV$.autodesk.com",
   "opptyOAuthBaseUrl": "https://api-sfdc-$ENV$-autodesk.auth.us-east-1.amazoncognito.com",
-  "WaitForOrderStatusChange.expectedEndStateStatus": "review"
+
+  "WaitForOrderStatusChange.expectedEndStateStatus": "accepted",
+  "WaitForOrderStatusChange2ndPass.expectedEndStateStatus": "review"
 }

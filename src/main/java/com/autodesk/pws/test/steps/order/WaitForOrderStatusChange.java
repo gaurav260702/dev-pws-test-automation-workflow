@@ -3,7 +3,8 @@ package com.autodesk.pws.test.steps.order;
 import com.autodesk.pws.test.steps.base.*;
 import io.restassured.path.json.JsonPath;
 
-public class WaitForOrderStatusChange extends RestActionBase {
+public class WaitForOrderStatusChange extends RestActionBase 
+{
 	protected GetOrderStatus getOrderStatus = new GetOrderStatus();
 	// This state will be used to allow negative tests to be
 	// successfully executed. The default expected state is
@@ -14,17 +15,22 @@ public class WaitForOrderStatusChange extends RestActionBase {
 	public int OAuthTokenRefreshModulus = 75;
 
 	@Override
-	public void preparation() {
+	public void preparation() 
+	{
 		getOrderStatus.DataPool = this.DataPool;
 		getOrderStatus.preparation();
 		this.ClassName = this.getClass().getSimpleName();
 		expectedEndStateStatus =
-				DataPool.getOrDefault(this.ClassName + ".expectedEndStateStatus", expectedEndStateStatus)
-						.toString();
+				DataPool.
+					getOrDefault(
+									this.ClassName + ".expectedEndStateStatus",
+									expectedEndStateStatus
+								).toString();
 	}
 
 	@Override
-	public void action() {
+	public void action() 
+	{
 		boolean continueTrying = true;
 		Integer maxRetries = 600;
 		Integer flagForDelaysAt = 25;
@@ -32,9 +38,11 @@ public class WaitForOrderStatusChange extends RestActionBase {
 		Integer retryCounter = 0;
 		String finalStatus = "none";
 
+		log("Executing [" + getOrderStatus.ClassName + "]");
 		log("Expected end state value: " + expectedEndStateStatus);
 
-		while (continueTrying) {
+		while (continueTrying) 
+		{
 			sleep(msSleepBeforeStatus);
 
 			retryCounter += 1;
@@ -48,7 +56,9 @@ public class WaitForOrderStatusChange extends RestActionBase {
 			{
 				continueTrying = false;
 				finalStatus = "timeout";
-			} else {
+			}
+			else 
+			{
 				log("Attempt (" + retryCounter + ") of (" + maxRetries + ")...");
 
 				getOrderStatus.action();
@@ -75,26 +85,38 @@ public class WaitForOrderStatusChange extends RestActionBase {
 				if (status == null && faultString != null) {
 					status = "fault";
 				}
-
+				
 				if (statusMsg != null && statusMsg.length() > 0) {
 					statusMsg = " - " + statusMsg;
 				} else {
 					statusMsg = "";
 				}
 
-				if (statusMsg.contains("Order is under review")) {
+				if (statusMsg.contains("export control review"))
+				{
+					status = "exportControl";
+				}
+				
+				if (statusMsg.contains("Order is under review"))
+				{
 					status = "review";
 				}
 
 				log("Current status: " + status + statusMsg);
 
-				if (status.matches("accepted") || status.matches("error") || status.matches("failed")
-						|| status.matches("fault") || status.matches("review")) {
+				if (status.matches("accepted") ||
+					status.matches("error") || 
+					status.matches("failed") || 
+					status.matches("fault") || 
+					status.matches("exportControl") || 
+					status.matches("review")) 
+				{
 					continueTrying = false;
 					finalStatus = status;
 				}
 
-				if (retryCounter >= flagForDelaysAt) {
+				if (retryCounter >= flagForDelaysAt) 
+				{
 					// TODO: Create some way of reporting when waiting for the
 					// OrderStatusToChange exceeds a reasonable amount of time...
 				}
@@ -108,16 +130,17 @@ public class WaitForOrderStatusChange extends RestActionBase {
 		// This check should probably be migrated into the
 		// "validation()" routine as the intention is to
 		// cause an alteration of the default workflow...
-		if (!finalStatus.matches(expectedEndStateStatus)) {
+		if (!finalStatus.matches(expectedEndStateStatus)) 
+		{
 			getOrderStatus.addResponseToValidationChain();
 			ExceptionAbortStatus = true;
-			ExceptionMessage = "Expected to reach '" + expectedEndStateStatus + "' state, but ended in '"
-					+ finalStatus + "' state!";
+			ExceptionMessage = "Expected to reach '" + expectedEndStateStatus + "' state, but ended in '" + finalStatus + "' state!";
 		}
 	}
 
 	@Override
-	public void validation() {
+	public void validation() 
+	{
 		super.validation();
 
 		// We call this here to be sure that the final JsonResponseBody

@@ -26,15 +26,14 @@ public class GetOAuthCredentials extends RestActionBase
     @Override
     public void action()
     {
-		//  Call the method that does the meat of the work...
-		Response actionResult = getInfo();
-
-		//  Grab the body of the response (if any)...
+		//  Prep a container for the response body (if any)...
 		String rawJson = "";
 
 		try
 		{
-			//  Can somebody tell me why the ******** this has to be in a try-catch?!?!
+			//  Call the method that does the meat of the work...
+			Response actionResult = getInfo();
+
 			rawJson = actionResult.body().string();
 		}
 		catch (Exception e)

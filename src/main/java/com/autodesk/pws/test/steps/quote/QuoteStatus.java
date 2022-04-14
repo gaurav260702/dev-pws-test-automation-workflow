@@ -34,28 +34,20 @@ public class QuoteStatus extends PwsServiceBase
     	//  Do stuff that the Action depends on to execute...
     	super.preparation();
     	
-    	//  Grab the JsonRequestBody...
-    	//Gson gson = new Gson();
-    	//String jsonBody = DataPool.get(DataPoolSourceInfoLabel).toString();
-    	//String jsonBody = gson.toJson(rawJson);
-    	//jsonBody = DynamicData.detokenizeRuntimeValues(jsonBody);
-    	//this.setJsonRequestBody(jsonBody);
-    	
-    	//   https://quote.ddwsdev.autodesk.com
-    	this.BaseUrl = "$CREATE_QUOTE_BASE_URL$";
     	setTargetUrl();
     }
 
     private void setResourcePath()
     {
-		super.setResourcePath("v1/status/?transactionId=$TRANSACTION_ID$");
+		super.setResourcePath("/v1/status/?transactionId=$TRANSACTION_ID$");
     }
 
 	@Override
     public void action()
     {
-		attachHeaderFromDataPool("x-api-key", "createQuoteXApiKey");
-		attachHeaderFromDataPool("CSN", "$CSN_SECONDARY$");
+		//attachHeaderFromDataPool("x-api-key", "createQuoteXApiKey");
+		//attachHeaderFromDataPool("CSN", "$CSN_QUOTE_STATUS$");
+		attachHeaderFromDataPool("CSN", "$CSN_PRIMARY$");
 		
 		super.action();
     }
