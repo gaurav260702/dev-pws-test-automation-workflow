@@ -13,6 +13,8 @@
 
   "$CREATE_QUOTE_BASE_URL$": "https://enterprise-api-$ENV$.autodesk.com/",
 
+  "x-adsk-test-event": "true",
+
   "baseUrl": "https://enterprise-api-$ENV$.autodesk.com",
   "oAuthBaseUrl":  "https://enterprise-api-$ENV$.autodesk.com",
 
