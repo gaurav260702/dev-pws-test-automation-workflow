@@ -76,7 +76,7 @@ public class StringUtils
     //
     // Function that matches input str with given wildcard pattern...
     //
-    public static boolean pattherMatch(String stringToTest, String patternToMatch)
+    public static boolean patternMatch(String stringToTest, String patternToMatch)
     {
     	int testStringLength = stringToTest.length();
     	int patternLength = patternToMatch.length();

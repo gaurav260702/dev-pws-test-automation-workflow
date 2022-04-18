@@ -15,6 +15,8 @@ import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.gson.Gson;
+import com.google.gson.internal.LinkedTreeMap;
+
 import io.restassured.path.json.JsonPath;
 import okhttp3.Headers;
 import okhttp3.MediaType;
@@ -24,7 +26,8 @@ import okhttp3.Request.Builder;
 import okhttp3.RequestBody;
 import okhttp3.Response;
 
-public class RestActionBase extends StepBase {
+public class RestActionBase extends StepBase 
+{
 	public String BaseUrl;
 	public String TargetUrl;
 	public String ResourcePath;
@@ -40,60 +43,70 @@ public class RestActionBase extends StepBase {
 
 	private HashMap<String, String> attachedRequestHeaders = new HashMap<String, String>();
 
-	public void initBaseVariables() {
+	public void initBaseVariables() 
+	{
 		clientId = DataPool.getDetokenized("clientId").toString();
 		clientSecret = DataPool.getDetokenized("clientSecret").toString();
 		callBackUrl = DataPool.getDetokenized("callBackUrl").toString();
 		BaseUrl = DataPool.getDetokenized("oAuthBaseUrl").toString();
 	}
 
-	public void addHeaderFromDataPool(String headerAndDataPoolLabel) {
+	public void addHeaderFromDataPool(String headerAndDataPoolLabel) 
+	{
 		// Check to make sure the
-		if (!RequestHeaders.containsKey(headerAndDataPoolLabel)) {
+		if (!RequestHeaders.containsKey(headerAndDataPoolLabel)) 
+		{
 			RequestHeaders.put(headerAndDataPoolLabel, DataPool.getDetokenized(headerAndDataPoolLabel).toString());
 		}
 	}
 
-	public void addHeaderFromDataPool(String headerLabel, String DataPoolLabel) {
+	public void addHeaderFromDataPool(String headerLabel, String DataPoolLabel) 
+	{
 		RequestHeaders.put(headerLabel, DataPool.getDetokenized(DataPoolLabel).toString());
 	}
 
-	public void addValidationChainLink(String validationLabel, Object dataToValidate) {
+	public void addValidationChainLink(String validationLabel, Object dataToValidate) 
+	{
 		if (!BypassValidationChainLogging) {
 			log("Adding '" + validationLabel + "' to validation chain...");
 			DataPool.addToValidationChain(validationLabel, dataToValidate);
 		}
 	}
 
-	public void extractIntoDataPool(String targetDataLabel, Object targetDataValue) {
+	public void extractIntoDataPool(String targetDataLabel, Object targetDataValue) 
+	{
 		String targetAsString = targetDataValue.toString();
 		String displayValue = targetAsString.substring(0, Math.min(targetAsString.length(), 50));
 		log("Extracting '" + targetDataLabel + "' with value of '" + displayValue + "' ...");
 		DataPool.add(targetDataLabel, targetDataValue);
 	}
 
-	public void extractDataFromJsonIntoDataPool(String rawJson, String... pathsAndLabels) {
+	public void extractDataFromJsonIntoDataPool(String rawJson, String... pathsAndLabels) 
+	{
 		JsonPath jsonPathObj = JsonPath.from(rawJson);
 
-		for (int i = 0; i < pathsAndLabels.length; i++) {
+		for (int i = 0; i < pathsAndLabels.length; i++) 
+		{
 			String[] pathAndLabel = pathsAndLabels[i].split(":");
-
 			String val = jsonPathObj.getString(pathAndLabel[0]).toString();
 
 			DataPool.add(pathAndLabel[1], val);
 		}
 	}
 
-	public Response getRestResponse(String restMethod, String restResourcePath) throws IOException {
+	public Response getRestResponse(String restMethod, String restResourcePath) throws IOException 
+	{
 		return getRestResponse(restMethod, restResourcePath, "", "");
 	}
 
-	public Response getRestResponse(String restMethod, String restResourcePath, String jsonPayload) throws IOException {
+	public Response getRestResponse(String restMethod, String restResourcePath, String jsonPayload) throws IOException 
+	{
 		return getRestResponse(restMethod, restResourcePath, jsonPayload, "application/json");
 	}
 
-	public Response getRestResponse(String restMethod, String restResourcePath, String payload,
-			String mediaTypeOverride) throws IOException {
+	@SuppressWarnings("unchecked")
+	public Response getRestResponse(String restMethod, String restResourcePath, String payload, String mediaTypeOverride) throws IOException 
+	{
 		//////////////////////////////////////////////////
 		/// **********************************************
 		/// THIS CODE NEEDS TO BE CLEANED UP!
@@ -117,7 +130,8 @@ public class RestActionBase extends StepBase {
 		String mediaTypeValue = jsonDefaultMediaType;
 
 		// Check for a mediaType override...
-		if (mediaTypeOverride.length() > 0) {
+		if (mediaTypeOverride.length() > 0) 
+		{
 			mediaTypeValue = mediaTypeOverride;
 		}
 
@@ -129,17 +143,23 @@ public class RestActionBase extends StepBase {
 
 		log("Target URL: " + restResourcePath);
 
-		if (restMethod.toUpperCase() == "POST") {
+		if (restMethod.toUpperCase() == "POST") 
+		{
 			mediaType = MediaType.parse(mediaTypeValue);
 		}
 
-		if (mediaType == null) {
+		if (mediaType == null) 
+		{
 			requestBuilder.method(restMethod, null);
-		} else {
+		} 
+		else 
+		{
 			// If a JSON payload is included,
 			// append it to the Request Builder...
-			if (mediaTypeValue == jsonDefaultMediaType) {
-				if (payload != "{}") {
+			if (mediaTypeValue == jsonDefaultMediaType) 
+			{
+				if (payload != "{}") 
+				{
 					// Nasty bit of hackery to ensure that the "quanity" value is set to
 					// an integer instead of a float. There's an issue with this when the
 					// file is loaded from disk and fiddled about with by the Jackson
@@ -163,15 +183,40 @@ public class RestActionBase extends StepBase {
 
 				body = RequestBody.create(mediaType, payload);
 				requestBuilder.method(restMethod, body);
-			} else {
+			} 
+			else 
+			{
 				body = RequestBody.create(mediaType, payload);
 				requestBuilder.method(restMethod, body);
 				requestBuilder.addHeader("Content-Type", mediaTypeValue);
 			}
 		}
 
+		//  This bit allows the user to configure "forceable headers" in the kicker file.
+		//  It will loop through the JSON structure given for that value and add it into
+		//  the header section of every request that gets executed...
+		if(this.DataPool.containsKey("includeForceableHeaders"))
+		{
+			if(Boolean.parseBoolean(this.DataPool.get("includeForceableHeaders").toString()))
+			{
+				String rawJson = this.DataPool.get("forceableHeaders").toString();
+				//HashMap<String, ObjeAct> forcedHeaders = (HashMap<String, Object>) rawForceableHeaders;
+				
+				HashMap<String,Object> forcedHeaders = new ObjectMapper().readValue(rawJson, HashMap.class);
+				
+				// Add in any required customer headers...
+				for (Object key : forcedHeaders.keySet()) 
+				{
+					String headerVal = forcedHeaders.get(key).toString();
+					// log(key + ": " + headerVal);
+					requestBuilder.addHeader(key.toString(), headerVal);
+				}
+			}
+		}
+		
 		// Add in any required customer headers...
-		for (String key : RequestHeaders.keySet()) {
+		for (String key : RequestHeaders.keySet()) 
+		{
 			String headerVal = RequestHeaders.get(key);
 			// log(key + ": " + headerVal);
 			requestBuilder.addHeader(key, headerVal);
@@ -184,7 +229,8 @@ public class RestActionBase extends StepBase {
 
 		// Log the headers for debugging purposes...
 		log("-- REQUEST HEADERS --");
-		for (int i = 0, count = headers.size(); i < count; i++) {
+		for (int i = 0, count = headers.size(); i < count; i++) 
+		{
 			log(headers.name(i) + " : " + headers.value(i), 4);
 		}
 
@@ -225,10 +271,12 @@ public class RestActionBase extends StepBase {
 
 		String lines[] = prettyJson.split(this.LineMark);
 
-		for (String line : lines) {
+		for (String line : lines) 
+		{
 			String tmp = line.trim();
 
-			if (tmp.toLowerCase().startsWith("\"quantity\"")) {
+			if (tmp.toLowerCase().startsWith("\"quantity\"")) 
+			{
 				String keyVal[] = tmp.split(":");
 				String val = keyVal[1].replace(',', ' ').trim();
 				float f = Float.parseFloat(val);
@@ -245,7 +293,8 @@ public class RestActionBase extends StepBase {
 	}
 
 	@SuppressWarnings("unchecked")
-	public Map<String, Object> mergeJsonFromStrings(String rawJsonOriginal, String rawJsonOverride) {
+	public Map<String, Object> mergeJsonFromStrings(String rawJsonOriginal, String rawJsonOverride) 
+	{
 		// https://stackoverflow.com/questions/35784713/merge-json-objects-with-java
 		Gson gson = new Gson();
 		// read both jsons
@@ -261,44 +310,53 @@ public class RestActionBase extends StepBase {
 		return combined;
 	}
 
-	public HashMap<String, Object> jsonStringToHashMap(String json) {
+	public HashMap<String, Object> jsonStringToHashMap(String json) 
+	{
 		// https://stackoverflow.com/questions/37019059/remove-null-values-from-json-using-jackson
 		ObjectMapper mapper = new ObjectMapper();
 		mapper.setSerializationInclusion(Include.NON_NULL);
 
-		try {
+		try 
+		{
 			json = mapper.writeValueAsString(json);
-		} catch (JsonProcessingException e) {
+		} 
+		catch (JsonProcessingException e) 
+		{
 			logErr(e, this.ClassName, "removeAllNullValuesFromJson");
 		}
 
 		// https://stackoverflow.com/questions/2525042/how-to-convert-a-json-string-to-a-mapstring-string-with-jackson-json
-		TypeReference<HashMap<String, Object>> typeRef = new TypeReference<HashMap<String, Object>>() {
-		};
+		TypeReference<HashMap<String, Object>> typeRef = new TypeReference<HashMap<String, Object>>() {};
 
 		HashMap<String, Object> jsonMap = new HashMap<String, Object>();
 
-		try {
+		try 
+		{
 			jsonMap = mapper.readValue(json, typeRef);
-		} catch (JsonMappingException e) {
+		} 
+		catch (JsonMappingException e) 
+		{
 			logErr(e, this.ClassName, "removeAllNullValuesFromJson");
-		} catch (JsonProcessingException e) {
+		} 
+		catch (JsonProcessingException e) 
+		{
 			logErr(e, this.ClassName, "removeAllNullValuesFromJson");
 		}
 
 		return jsonMap;
 	}
 
-	public void attachHeaderFromDataPool(String headerLabel, String dataPoolLabel) {
+	public void attachHeaderFromDataPool(String headerLabel, String dataPoolLabel)
+	{
 		attachedRequestHeaders.put(headerLabel, dataPoolLabel);
 	}
 
-	public void attachHeaderFromDataPool(String headerLabel) {
+	public void attachHeaderFromDataPool(String headerLabel) 
+	{
 		attachedRequestHeaders.put(headerLabel, headerLabel);
 	}
 
-	public HashMap<String, Object> removeAllNullValuesFromJson(Map<String, Object> orderInfo)// throws
-																								// JsonProcessingException
+	public HashMap<String, Object> removeAllNullValuesFromJson(Map<String, Object> orderInfo)// throws JsonProcessingException
 	{
 		// https://stackoverflow.com/questions/37019059/remove-null-values-from-json-using-jackson
 		ObjectMapper mapper = new ObjectMapper();
@@ -306,36 +364,45 @@ public class RestActionBase extends StepBase {
 
 		String json = "{}";
 
-		try {
+		try 
+		{
 			json = mapper.writeValueAsString(orderInfo);
-		} catch (JsonProcessingException e) {
+		} 
+		catch (JsonProcessingException e) 
+		{
 			logErr(e, this.ClassName, "removeAllNullValuesFromJson");
 		}
 
 		// https://stackoverflow.com/questions/2525042/how-to-convert-a-json-string-to-a-mapstring-string-with-jackson-json
-		TypeReference<HashMap<String, Object>> typeRef = new TypeReference<HashMap<String, Object>>() {
-		};
+		TypeReference<HashMap<String, Object>> typeRef = new TypeReference<HashMap<String, Object>>() { };
 
 		HashMap<String, Object> jsonMap = new HashMap<String, Object>();
 
-		try {
+		try 
+		{
 			jsonMap = mapper.readValue(json, typeRef);
-		} catch (JsonMappingException e) {
+		} 
+		catch (JsonMappingException e) 
+		{
 			logErr(e, this.ClassName, "removeAllNullValuesFromJson");
-		} catch (JsonProcessingException e) {
+		} 
+		catch (JsonProcessingException e) 
+		{
 			logErr(e, this.ClassName, "removeAllNullValuesFromJson");
 		}
 
 		return jsonMap;
 	}
 
-	public void generateTokenHeaders() {
+	public void generateTokenHeaders() 
+	{
 		HashMap<String, String> authHeaders = this.generateAccessTokenHeadersWithCurrentToken();
 
 		RequestHeaders.putAll(authHeaders);
 	}
 
-	public HashMap<String, String> generateAccessTokenHeadersWithCurrentToken() {
+	public HashMap<String, String> generateAccessTokenHeadersWithCurrentToken() 
+	{
 		HashMap<String, String> headers = new HashMap<String, String>();
 
 		String accessToken = DataPool.get("access_token").toString();
@@ -349,7 +416,8 @@ public class RestActionBase extends StepBase {
 		return headers;
 	}
 
-	public HashMap<String, String> generateAccessTokenHeaders() {
+	public HashMap<String, String> generateAccessTokenHeaders() 
+	{
 		String timeStamp = getTimeStamp();
 		String signature = getSignature(timeStamp);
 		String baseAuth = getBaseAuth();

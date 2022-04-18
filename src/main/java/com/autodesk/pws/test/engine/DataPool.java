@@ -247,7 +247,7 @@ public class DataPool extends HashMap<String, Object>
 	{
 		boolean retVal = false;
 		
-		if(StringUtils.pattherMatch(value, "*$*$*"))
+		if(StringUtils.patternMatch(value, "*$*$*"))
 		{
 			retVal = true;
 		}

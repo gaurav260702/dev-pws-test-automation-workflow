@@ -1,5 +1,7 @@
 package com.autodesk.pws.test.steps.quote;
 
+import org.apache.commons.lang3.StringUtils;
+
 import com.autodesk.pws.test.steps.base.*;
 import io.restassured.path.json.JsonPath;
 
@@ -39,7 +41,7 @@ public class QuoteStatus extends PwsServiceBase
 
     private void setResourcePath()
     {
-		super.setResourcePath("/v1/status/?transactionId=$TRANSACTION_ID$");
+		super.setResourcePath("/v1/quotes/status/?transactionId=$TRANSACTION_ID$");
     }
 
 	@Override
@@ -57,6 +59,25 @@ public class QuoteStatus extends PwsServiceBase
 	{    	
 		super.validation();
 	
+		this.log("****************************************************");
+		this.log("****************************************************");
+		this.log("*****  -----/ !!CRUDE POTATO BASHING!! \\-----  *****");
+		
+		this.log(" ");
+		this.log("Swapping out 'stubbedTransactionId' for '$TRANSACTION_ID$' in 'JsonResponseBody'...");
+		String transactionId = DataPool.get("$TRANSACTION_ID$").toString();
+		this.JsonResponseBody = StringUtils.replace(JsonResponseBody, "stubbedTransactionId", transactionId);
+		
+		this.log("Swapping out 'stubbedQuoteNumber' for '7265267' in 'JsonResponseBody'...");
+		String fakeQuoteNumber = "7265267";
+		this.JsonResponseBody = StringUtils.replace(JsonResponseBody, "stubbedQuoteNumber", fakeQuoteNumber);
+
+		this.log(" ");
+		this.log("*****  -----|      BASH COMPLETE.      |-----  *****");
+		this.log("*****  -----\\       IZ POTATO.         /-----  *****");
+		this.log("****************************************************");
+		this.log("****************************************************");
+
 		//  Here we would extract any data that needs to be promoted to 
 		//  the DataPool and may be needed by other steps later on...
     	JsonPath pathFinder = JsonPath.with(JsonResponseBody);
