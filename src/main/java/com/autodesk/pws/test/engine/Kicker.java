@@ -23,7 +23,9 @@ import com.autodesk.pws.test.processor.*;
 import com.autodesk.pws.test.steps.base.*;
 import com.autodesk.pws.test.utilities.StringUtils;
 import com.autodesk.pws.test.workflow.*;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.gson.Gson;
+import com.google.gson.internal.LinkedTreeMap;
 import com.google.gson.reflect.TypeToken;
 import io.restassured.path.json.JsonPath;
 
@@ -1060,17 +1062,26 @@ public class Kicker
     	String rawJson = DynamicData.loadJsonFile(jsonFilePath);
 
     	//  Grab a dictionary of all the first-level elements...
-    	Map<String, Object> testKickerKeyVals =
-    			new Gson().fromJson(rawJson, new TypeToken<HashMap<String, Object>>() {}.getType());
+    	Map<String, Object> testKickerKeyVals = new Gson().fromJson(rawJson, new TypeToken<HashMap<String, Object>>() {}.getType());
 
     	//  Loop through all the items in the 'testKicker' object...
     	testKickerKeyVals.
     		forEach(
 	    				(keyName, value) ->
 		    				{
-				                //  Add each item to the DataPool as key-val...
-				                dataPool.put(keyName, value.toString());
-		
+		    					if(value instanceof LinkedTreeMap<?,?>)
+		    					{
+					                //  Add item to the DataPool as a keyname/rawJson string...
+		    						LinkedTreeMap<?,?> linkTree = (LinkedTreeMap<?,?>) value;
+									String jsonString = ConvertLinkedTreeMapToRawJson(linkTree);
+					                dataPool.put(keyName, jsonString);	
+		    					}
+		    					else
+		    					{
+					                //  Add item to the DataPool as key-val...
+					                dataPool.put(keyName, value.toString());
+		    					}
+		    					
 				                if(logValues)
 				                {
 				                	logIt("   --> " + keyName + ": " + value.toString());
@@ -1079,10 +1090,54 @@ public class Kicker
 				                {
 				                	logIt("   --> " + keyName + ": *****************");
 				                }
+		    					
 			                }
 				    );
     }
 
+    public String ConvertLinkedTreeMapToRawJson(LinkedTreeMap<?, ?> linkedTreeMap)
+    {
+		HashMap<String, Object> hashMappedVals = convertLinkedTreeMapToHashMap(linkedTreeMap);
+		
+		//Deep clone
+		Gson gson = new Gson();
+		String jsonString = gson.toJson(hashMappedVals);
+		
+		return jsonString;
+    }
+    
+    @SuppressWarnings({ "unchecked", "rawtypes" })
+	public HashMap<String, Object> convertLinkedTreeMapToHashMap(LinkedTreeMap<?, ?> linkedTreeMap) 
+    {
+        HashMap<String, Object> retVal = new HashMap<String, Object>();
+        
+        Object[] objs = linkedTreeMap.entrySet().toArray();
+        
+        for (int l=0;l<objs.length;l++)
+        {
+            Map.Entry o= (Map.Entry) objs[l];
+            try 
+            {
+                if (o.getValue() instanceof LinkedTreeMap)
+                {
+                	LinkedTreeMap<String, Object> linkTreeVal =	(LinkedTreeMap<String, Object>) o.getValue();
+                	HashMap<String, Object> nodeVal = convertLinkedTreeMapToHashMap(linkTreeVal);
+                	retVal.put(o.getKey().toString(), nodeVal);
+                }
+                else
+                {
+                	retVal.put(o.getKey().toString(),o.getValue());
+                }
+            } 
+            catch (Exception e) 
+            {
+                e.printStackTrace();
+            }
+        }
+        
+        return retVal;
+    }
+    
     private void logIt(String msg)
     {
         //  Strip out any "overformatting" that

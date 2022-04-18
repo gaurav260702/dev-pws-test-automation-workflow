@@ -7,11 +7,23 @@
   "$BASE_DATA$": "$ROOT$/BaseData",
   "$CONFIG$": "$ROOT$/Configurations",
 
-  "$CSN_PRIMARY$": "9876543210",
-  "$CSN_SECONDARY$": "13456789",
-  "$CSN_QUOTE_STATUS$": "9876543210",
+  "$CSN_SOLDTO$": "0070176510",
+  "$CSN_RESELLER$": "0070176510",
+  "$CSN_ENDCUSTOMER$": "5500040762",
+  "$CSN_SHIPTO$": "5104553993",  
+ 
+  "$CSN_PRIMARY$": "$CSN_ENDCUSTOMER$",
+  "$CSN_SECONDARY$": "$CSN_RESELLER$",
+  "$CSN_TERTIARY$": "$CSN_SOLDTO$", 
+  "$CSN_QUATERNARY$": "$CSN_SOLDTO$",
 
   "$CREATE_QUOTE_BASE_URL$": "https://enterprise-api-$ENV$.autodesk.com/",
+
+  "includeForceableHeaders": "true",
+  "forceableHeaders": 
+  {
+    "x-adsk-test-event": "true"
+  },
 
   "baseUrl": "https://enterprise-api-$ENV$.autodesk.com",
   "oAuthBaseUrl":  "https://enterprise-api-$ENV$.autodesk.com",

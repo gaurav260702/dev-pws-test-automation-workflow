@@ -51,7 +51,7 @@ public class QuoteDetails extends PwsServiceBase
     	// https://quote.ddwsdev.autodesk.com/v1/details?quoteNumber=7265267
     	this.log("!!!! WARNING -- THIS STEP HAS HARD CODED VALUES -- WARNING!!!!");
     	DataPool.add("$QUOTE_NUMBER$", "7265267");
-		super.setResourcePath("v1/details?quoteNumber=$QUOTE_NUMBER$");
+		super.setResourcePath("v1/quotes/details?quoteNumber=$QUOTE_NUMBER$");
     }
 
 	@Override

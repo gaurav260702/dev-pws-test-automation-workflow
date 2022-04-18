@@ -49,7 +49,7 @@ public class QuoteCreate extends PwsServiceBase
 
     private void setResourcePath()
     {
-		super.setResourcePath("v1/create");
+		super.setResourcePath("v1/quotes");
 		// quote.ddwsdev.autodesk.com/v1/status/ 
     }
 
