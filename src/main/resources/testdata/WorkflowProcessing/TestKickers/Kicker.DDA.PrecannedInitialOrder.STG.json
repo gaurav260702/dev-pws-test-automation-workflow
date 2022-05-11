@@ -1,0 +1,42 @@
+{
+  "$BASE_NAME$": "DDA.PrecannedInitialOrder",
+  "$ROOT$": "./testdata/WorkflowProcessing/TestData",
+  "$ENV$": "STG",
+
+  "$CSN_ENDCUSTOMER$": "0070176021",
+  "$CSN_SOLDTO$": "0070176021",
+  "$CSN_RESELLER$": "0070176021",
+  "$CSN_SHIPTO$": "0070176021",  
+
+  "$CSN_PRIMARY$": "$CSN_ENDCUSTOMER$",
+  "$CSN_SECONDARY$": "$CSN_RESELLER$",
+  "$CSN_TERTIARY$": "$CSN_SOLDTO$",
+  "$CSN_QUATERNARY$": "$CSN_SHIPTO$",
+
+  "$DISCOUNT_ID$": "A-1565305",
+  "$PART_NUMBER$": "128K1-WW6542-L618",
+  "$PRODUCT_SKU_PRIMARY$": "$PART_NUMBER$",
+  "$RENEWAL_SKU$": "128F1-001355-L890",
+  "$CSN_HEADER$": "$CSN_RESELLER$",
+
+  "$EXTENSION_DATE$": "[[Date(455)]]",
+
+  "baseUrl": "https://enterprise-api-$ENV$.autodesk.com",
+  "oAuthBaseUrl":  "https://enterprise-api-$ENV$.autodesk.com",
+
+  "$BASE_FILE$" : "$ROOT$/BaseData/BaseData.$BASE_NAME$.STG.json",
+  "baseFile": "$BASE_FILE$",
+  "overridesFile": "$ROOT$/Overrides/Override.NONE.json",
+
+  "validationFile": "$ROOT$/Validators/Validator.DDA.VanillaInitialOrderWithDdaRenewal.$ENV$.json",
+
+  "getOrderStatusV2Url": "https://api.ddws$ENV$.autodesk.com",
+  "secretsFile": "$ROOT$/Configurations/Secrets.GetInvoiceServices.INT.json",
+  "workflow": "GenericPlaceOrderWithRenewal",
+
+  "opptyServiceBaseUrl": "https://api.sfdc-$ENV$.autodesk.com",
+  "opptyOAuthBaseUrl": "https://api-sfdc-$ENV$-autodesk.auth.us-east-1.amazoncognito.com",
+
+  "WaitForOrderStatusChange.expectedEndStateStatus": "accepted",
+  "WaitForOrderStatusChange2ndPass.expectedEndStateStatus": "review"
+}

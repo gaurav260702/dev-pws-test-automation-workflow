@@ -5,7 +5,8 @@
     "message": "success"
   },
 
-  "QuoteStatus": {
+  "QuoteStatus": 
+  {
     "transactionId": "*",
     "quoteNumber": "*",
     "status": "Draft"

@@ -123,11 +123,6 @@ public class WorkflowLibrary
     public static List<StepBase> CreateSalesForceRenewalOpportunity()
     {
         List<StepBase> workflow = new ArrayList<StepBase>();
-        
-//        workflow.add(new OpenSalesForce());
-//        workflow.add(new SalesForceLogin());
-//        workflow.add(new CreateRenewalOpportunityFromSalesForceId());
-//        workflow.add(new CloseBrowser());
     
         workflow.add(new GetOpptyOAuthCredentials());
         workflow.add(new CreateOpptyByAgreementId());
