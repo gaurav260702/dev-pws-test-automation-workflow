@@ -9,7 +9,7 @@
   ],
   "endCustomer": {
     "account": {
-      "csn": "$CSN_PRIMARY$"
+      "csn": "$CSN_ENDCUSTOMER$"
     },
     "contractManager": {
       "firstName": "{{random_first_name}}",
@@ -20,13 +20,13 @@
     }
   },
   "shipTo": {
-    "csn": "$CSN_SECONDARY$"
+    "csn": "$CSN_SHIPTO$"
   },
   "reseller": {
-    "csn": "$CSN_TERTIARY$"
+    "csn": "$CSN_RESELLER$"
   },
   "soldTo": {
-    "csn": "$CSN_TERTIARY$"
+    "csn": "$CSN_SOLDTO$"
   },
   "poNumber": "PO_{{po_number}}",
   "customerPoNumber": "CUST_PO_{{cust_po_number}}",

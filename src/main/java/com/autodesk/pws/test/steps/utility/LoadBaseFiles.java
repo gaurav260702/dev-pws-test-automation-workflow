@@ -49,8 +49,11 @@ public class LoadBaseFiles extends RestActionBase
     {
         //  Load in default test data, relevant overrides,
         //  and merge into order info object...
+
     	String baseFilePath = DynamicData.detokenizeRuntimeValues((String)DataPool.get(RequestFileLabel.toString()));
-        String baseFileRaw = DynamicData.loadJsonFile(baseFilePath);
+    	
+    	log("Loading base data file: " + baseFilePath);
+    	String baseFileRaw = DynamicData.loadJsonFile(baseFilePath);
         DataPool.add(DataPoolLabelOrderInfoRawJson, baseFileRaw);
 
         String overrideInfoRaw = DynamicData.loadJsonFile((String)DataPool.get(OverridesFileLabel));

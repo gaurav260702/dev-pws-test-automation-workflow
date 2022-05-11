@@ -37,7 +37,7 @@ public class LoadBaseFilesAndExtractOrderInfoData extends LoadBaseFiles
     	JsonPath pathFinder = JsonPath.with(json);
     	
     	//  Extact data that may be needed by other steps later on...	
-    	extractDataFromJsonAndAddToDataPool("$CUSTOMER_NUMBER$", "reseller.csn", pathFinder); 
+    	extractDataFromJsonAndAddToDataPool("$CUSTOMER_NUMBER$", "endCustomer.account.csn", pathFinder); 
     	extractDataFromJsonAndAddToDataPool("$RESELLER_NUMBER$", "reseller.csn", pathFinder); 
     	extractDataFromJsonAndAddToDataPool("$PO_NUMBER$", "poNumber", pathFinder); 
     	extractDataFromJsonAndAddToDataPool("$CUSTOMER_PO_NUMBER$", "customerPoNumber", pathFinder); 

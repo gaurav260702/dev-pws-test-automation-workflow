@@ -1,0 +1,40 @@
+
+{
+  "action": "Initial",
+  "orderDiscounts": [
+    {
+      "discountId": "$DISCOUNT_ID$",
+      "discountType": "DDA"
+    }
+  ],
+  "endCustomer": {
+    "account": {
+      "csn": "$CSN_ENDCUSTOMER$"
+    },
+    "contractManager": {
+      "firstName": "{{random_first_name}}",
+      "lastName": "{{random_last_name}}",
+      "email": "email@{{random_email_domain}}.com",
+      "language": "EN",
+      "countryCode": "US"
+    }
+  },
+  "shipTo": {
+    "csn": "$CSN_SHIPTO$"
+  },
+  "reseller": {
+    "csn": "$CSN_RESELLER$"
+  },
+  "soldTo": {
+    "csn": "$CSN_SOLDTO$"
+  },
+  "poNumber": "PO_{{po_number}}",
+  "customerPoNumber": "CUST_PO_{{cust_po_number}}",
+  "lineItems": [
+    {
+      "partNumber": "$PART_NUMBER$",
+      "quantity": 1,
+      "netPrice": "$NET_PRICE$"
+    }
+  ]
+}
