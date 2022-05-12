@@ -29,6 +29,7 @@ public class LoadBaseFiles extends RestActionBase
     @Override
     public void preparation()
     {
+    	log("Initializiing variables...");
     	initVariables();
     }
 
