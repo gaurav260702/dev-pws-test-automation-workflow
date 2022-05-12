@@ -9,7 +9,9 @@ public class LoadBaseFilesAndExtractOrderInfoData extends LoadBaseFiles
     @Override
     public void preparation()
     {
+    	log("Calling super class 'initBaseVariables()'...");
     	super.initBaseVariables();
+    	log("Calling local 'initVariables()'...");
     	initVariables();
     }
 
