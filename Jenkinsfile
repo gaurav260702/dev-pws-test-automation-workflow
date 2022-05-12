@@ -36,7 +36,8 @@ pipeline {
       }
       steps {
         script {
-          testfiles = findFiles(glob: '**/Kicker.*.json')
+          //testfiles = findFiles(glob: '**/Kicker.*.json')
+          testfiles = findFiles(glob: '**/Kicker.AddProductOrderWithSAAS_ServSku.STG.json')
           echo ""
           "${testfiles[0].name} ${testfiles[0].path} ${testfiles[0].directory} ${testfiles[0].length} ${testfiles[0].lastModified}"
           ""
