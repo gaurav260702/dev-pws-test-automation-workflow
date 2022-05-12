@@ -11,11 +11,13 @@ import org.springframework.context.annotation.Bean;
 import com.autodesk.pws.test.engine.Kicker;
 
 @SpringBootApplication
-public class WpeTestAutomationApplication {
+public class WpeTestAutomationApplication 
+{
     static Logger logger = LoggerFactory.getLogger(WpeTestAutomationApplication.class);
 
-    public static void main(String[] args) {
-		SpringApplication.run(WpeTestAutomationApplication.class, args);
+    public static void main(String[] args) 
+    {
+		//SpringApplication.run(WpeTestAutomationApplication.class, args);
         // logger.info("Info level log message");
         // logger.debug("Debug level log message");
         // logger.error("Error level log message");
@@ -26,6 +28,10 @@ public class WpeTestAutomationApplication {
         // for (String beanName : beanNames) {
         // logger.info(beanName);
         // }
+    	logger.info("THIS IS A DE-SPRINGIFIED EXECUTION!");
+        logger.info("Executing Kicker with args: " + Arrays.toString(args));
+        Kicker kicker = new Kicker();
+        kicker.kickIt(args);
 	}
 
   /**
@@ -34,8 +40,10 @@ public class WpeTestAutomationApplication {
    * @return
    */
   @Bean
-  public CommandLineRunner testKicker(ApplicationContext ctx) {
-    return args -> {
+  public CommandLineRunner testKicker(ApplicationContext ctx)
+  {
+    return args -> 
+    {
       logger.info("Executing Kicker with args: " + Arrays.toString(args));
       Kicker kicker = new Kicker();
       kicker.kickIt(args);
