@@ -20,26 +20,26 @@ def testfiles
 
 pipeline 
 {
-//  agent 
-//  {
+  agent 
+  {
 //       label "aws-centos"
-//  }
+  }
   stages 
   {
-//    stage('Fetch Test Image') 
-//    {
-//      steps 
-//      {
-//        retry(3) 
-//        {
+    stage('Fetch Test Image') 
+    {
+     steps 
+     {
+        retry(3) 
+        {
 //          sh "docker pull ${dockerTestImage}"
-//        }
-//      }
-//    }
+        }
+      }
+    }
     stage('find test cases') {
-//      agent {
-//        label "aws-centos"
-//      }
+      agent {
+       // label "aws-centos"
+      }
       steps {
         script {
           //testfiles = findFiles(glob: '**/Kicker.*.json')
