@@ -18,29 +18,35 @@ def isMasterBranch = false
 
 def testfiles
 
-pipeline {
-  agent {
-    label "aws-centos"
-  }
-  stages {
-    stage('Fetch Test Image') {
-      steps {
-        retry(3) {
-          sh "docker pull ${dockerTestImage}"
-        }
-      }
-    }
+pipeline 
+{
+//  agent 
+//  {
+//       label "aws-centos"
+//  }
+  stages 
+  {
+//    stage('Fetch Test Image') 
+//    {
+//      steps 
+//      {
+//        retry(3) 
+//        {
+//          sh "docker pull ${dockerTestImage}"
+//        }
+//      }
+//    }
     stage('find test cases') {
-      agent {
-        label "aws-centos"
-      }
+//      agent {
+//        label "aws-centos"
+//      }
       steps {
         script {
           //testfiles = findFiles(glob: '**/Kicker.*.json')
           testfiles = findFiles(glob: '**/Kicker.AddProductOrderWithSAAS_ServSku.STG.json')
           echo ""
-          "${testfiles[0].name} ${testfiles[0].path} ${testfiles[0].directory} ${testfiles[0].length} ${testfiles[0].lastModified}"
-          ""
+          echo "${testfiles[0].name} ${testfiles[0].path} ${testfiles[0].directory} ${testfiles[0].length} ${testfiles[0].lastModified}"
+          echo ""
         }
       }
     }
@@ -48,8 +54,8 @@ pipeline {
       steps {
         script {
           echo ""
-          "${testfiles[0].name} ${testfiles[0].path} ${testfiles[0].directory} ${testfiles[0].length} ${testfiles[0].lastModified}"
-          ""
+          echo "${testfiles[0].name} ${testfiles[0].path} ${testfiles[0].directory} ${testfiles[0].length} ${testfiles[0].lastModified}"
+          echo ""
           def dir_offset_to_trim = 'src/main/resources/'
           def testcase_run_dir
           def full_dir
