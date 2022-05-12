@@ -22,7 +22,7 @@ pipeline
 {
   agent 
   {
-//       label "aws-centos"
+       label "aws-centos"
   }
   stages 
   {
@@ -32,13 +32,13 @@ pipeline
      {
         retry(3) 
         {
-//          sh "docker pull ${dockerTestImage}"
+          sh "docker pull ${dockerTestImage}"
         }
       }
     }
     stage('find test cases') {
       agent {
-       // label "aws-centos"
+        label "aws-centos"
       }
       steps {
         script {
