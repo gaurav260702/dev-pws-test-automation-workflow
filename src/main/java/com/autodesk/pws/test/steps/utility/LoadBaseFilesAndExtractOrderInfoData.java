@@ -53,8 +53,10 @@ public class LoadBaseFilesAndExtractOrderInfoData extends LoadBaseFiles
     @Override
     public void action()
     {
+    	log("Calling LoadBaseFiles.action()");
         super.action();
         
+        log("Pulling DataPool variables");
         pullDataPoolVariables();
     }
 }

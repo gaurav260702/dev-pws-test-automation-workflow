@@ -49,7 +49,7 @@ public class LoadBaseFiles extends RestActionBase
     {
         //  Load in default test data, relevant overrides,
         //  and merge into order info object...
-
+    	log("Detokenizing '" + RequestFileLabel.toString());
     	String baseFilePath = DynamicData.detokenizeRuntimeValues((String)DataPool.get(RequestFileLabel.toString()));
     	
     	log("Loading base data file: " + baseFilePath);
