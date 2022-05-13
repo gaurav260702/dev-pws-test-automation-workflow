@@ -18,19 +18,19 @@ def isMasterBranch = false
 
 def testfiles
 
-pipeline 
+pipeline
 {
-  agent 
+  agent
   {
        label "aws-centos"
   }
-  stages 
+  stages
   {
-    stage('Fetch Test Image') 
+    stage('Fetch Test Image')
     {
-     steps 
+     steps
      {
-        retry(3) 
+        retry(3)
         {
           sh "docker pull ${dockerTestImage}"
         }
@@ -65,7 +65,9 @@ pipeline
             stage(testfiles[i].name) {
               echo "Test case full directory ${full_dir}"
               echo "Test case relative directory to run: ${testcase_run_dir}"
-              sh "docker run autodesk-docker.art-bobcat.autodesk.com/team-pws/test-automation:latest mvn spring-boot:run -Dspring-boot.run.arguments='${testcase_run_dir}'"
+              sh "mvn --version"
+              sh "mvn spring-boot:run -Dspring-boot.run.arguments='${testcase_run_dir}'"
+              //sh "docker run autodesk-docker.art-bobcat.autodesk.com/team-pws/test-automation:latest mvn spring-boot:run -Dspring-boot.run.arguments='${testcase_run_dir}'"
             }
           }
         }
