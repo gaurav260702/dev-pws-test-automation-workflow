@@ -9,6 +9,9 @@ public class GetOAuthCredentials extends RestActionBase
     @Override
     public void preparation()
     {
+    	log("BOYS AND GIRLS AND KIDS OF ALL AGES!");
+    	log("WE'RE GETTING OUR OAUTH CREDENTIALS NOW!");
+    	
     	initVariables();
     }
 
