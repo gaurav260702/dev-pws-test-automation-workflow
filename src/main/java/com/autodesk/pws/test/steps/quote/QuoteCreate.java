@@ -55,9 +55,7 @@ public class QuoteCreate extends PwsServiceBase
 
 	@Override
     public void action()
-    {
-		attachHeaderFromDataPool("x-api-key", "createQuoteXApiKey");
-		
+    {	
 		super.action();
     }
 	

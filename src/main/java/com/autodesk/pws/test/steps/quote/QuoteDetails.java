@@ -57,7 +57,6 @@ public class QuoteDetails extends PwsServiceBase
 	@Override
     public void action()
     {
-		attachHeaderFromDataPool("x-api-key", "quoteStatusXApiKey");
 		attachHeaderFromDataPool("CSN", "$CSN_SECONDARY$");
 		
 		super.action();
