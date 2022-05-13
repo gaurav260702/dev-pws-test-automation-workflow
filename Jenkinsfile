@@ -24,12 +24,14 @@ pipeline {
   }
   stages {
     stage('Build Image') {
-     script {
-        sh "docker build --tag wpe ."
-        sh "docker image ls"
+     steps {
+       script {
+          sh "docker build --tag wpe ."
+          sh "docker image ls"
+        }
       }
     }
-    stage('find test cases') {
+    stage('Find Test Cases') {
       agent {
         label "aws-centos"
       }
