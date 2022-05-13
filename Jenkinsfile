@@ -34,7 +34,7 @@ pipeline
         // {
         //   sh "docker pull ${dockerTestImage}"
         // }
-        sh "docker build --tag wpe-image"
+        sh "docker build --tag wpe-image ."
       }
     }
     stage('find test cases') {
