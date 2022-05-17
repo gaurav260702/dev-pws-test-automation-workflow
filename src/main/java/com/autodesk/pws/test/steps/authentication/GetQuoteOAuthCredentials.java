@@ -3,19 +3,24 @@ package com.autodesk.pws.test.steps.authentication;
 import okhttp3.Response;
 import com.autodesk.pws.test.steps.base.*;
 
-public class GetOAuthCredentials extends RestActionBase
+public class GetQuoteOAuthCredentials extends RestActionBase
 {
 	protected String accessTokenToExtract = "access_token:access_token";
     @Override
     public void preparation()
     {
-    	log("BOYS AND GIRLS AND KIDS OF ALL AGES!");
-    	log("WE'RE GETTING OUR OAUTH CREDENTIALS NOW!");
-    	
     	initVariables();
+    	setClientOAuthValues();
     }
 
-    private void initVariables()
+    private void setClientOAuthValues() 
+    {
+		clientId = DataPool.get("clientIdQuote").toString();
+		clientSecret = DataPool.get("clientSecretQuote").toString();
+		callBackUrl = DataPool.getDetokenized("callBackUrlQuote").toString();	
+	}
+
+	private void initVariables()
     {
     	this.ClassName = this.getClass().getSimpleName();
     	pullDataPoolVariables();

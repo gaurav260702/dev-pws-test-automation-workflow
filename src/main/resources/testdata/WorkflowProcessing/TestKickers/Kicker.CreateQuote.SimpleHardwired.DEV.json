@@ -19,7 +19,7 @@
 
   "$CREATE_QUOTE_BASE_URL$": "https://enterprise-api-$ENV$.autodesk.com/",
 
-  "includeForceableHeaders": "true",
+  "includeForceableHeaders": "false",
   "forceableHeaders": 
   {
     "x-adsk-test-event": "true"

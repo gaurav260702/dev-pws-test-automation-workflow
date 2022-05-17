@@ -169,7 +169,7 @@ public class WorkflowLibrary
         List<StepBase> workflow = new ArrayList<StepBase>();
 
         workflow.add(new LoadQuoteFilesAndExtractData());
-        workflow.add(new GetOAuthCredentials());
+        workflow.add(new GetQuoteOAuthCredentials());
         workflow.add(new QuoteCreate());
         workflow.add(new QuoteStatus());
         workflow.add(new QuoteDetails());

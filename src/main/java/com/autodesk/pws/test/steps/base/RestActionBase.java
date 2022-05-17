@@ -231,7 +231,7 @@ public class RestActionBase extends StepBase
 		log("-- REQUEST HEADERS --");
 		for (int i = 0, count = headers.size(); i < count; i++) 
 		{
-			log(headers.name(i) + " : " + headers.value(i), 4);
+			log(headers.name(i) + " : " + headers.value(i), DEFAULT_LEFT_SPACE_PADDING + 4);
 		}
 
 		// Ready the REST client...
