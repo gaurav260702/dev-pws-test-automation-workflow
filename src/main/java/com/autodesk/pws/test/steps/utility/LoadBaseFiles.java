@@ -53,10 +53,13 @@ public class LoadBaseFiles extends RestActionBase
     	log("Detokenizing '" + RequestFileLabel.toString());
     	String baseFilePath = DynamicData.detokenizeRuntimeValues((String)DataPool.get(RequestFileLabel.toString()));
     	
+    	log("");
     	log("Loading base data file: " + baseFilePath);
     	String baseFileRaw = DynamicData.loadJsonFile(baseFilePath);
         DataPool.add(DataPoolLabelOrderInfoRawJson, baseFileRaw);
 
+    	log("");
+    	log("Loading override data file: " + baseFilePath);
         String overrideInfoRaw = DynamicData.loadJsonFile((String)DataPool.get(OverridesFileLabel));
         DataPool.add(DataPoolLabelOrderInfoOverridesJson, overrideInfoRaw);
 

@@ -11,6 +11,7 @@ public class QuoteDetails extends PwsServiceBase
     public void preparation()
     {
 		//  Do some basic variable preparation...
+    	this.UseAlternateAuthHeaderGenerationMethod = true;
     	
     	//  Need to set the ClassName here as this will be
     	//  used by the super/base classes ".preparation()" 
@@ -50,8 +51,8 @@ public class QuoteDetails extends PwsServiceBase
     {
     	// https://quote.ddwsdev.autodesk.com/v1/details?quoteNumber=7265267
     	this.log("!!!! WARNING -- THIS STEP HAS HARD CODED VALUES -- WARNING!!!!");
-    	DataPool.add("$QUOTE_NUMBER$", "7265267");
-		super.setResourcePath("v1/quotes/details?quoteNumber=$QUOTE_NUMBER$");
+    	DataPool.add("$QUOTE_NUMBER$", "Q-00600");
+		super.setResourcePath("v1/quotes?quoteNumber=$QUOTE_NUMBER$");
     }
 
 	@Override
@@ -72,6 +73,6 @@ public class QuoteDetails extends PwsServiceBase
     	JsonPath pathFinder = JsonPath.with(JsonResponseBody);
 
     	//  Extact data that 	
-    	extractDataFromJsonAndAddToDataPool("$TRANSACTION_ID$", "transactionId", pathFinder); 
+    	//extractDataFromJsonAndAddToDataPool("$TRANSACTION_ID$", "transactionId", pathFinder); 
 	}	
 }

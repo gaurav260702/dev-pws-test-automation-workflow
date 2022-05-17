@@ -1,0 +1,36 @@
+{
+  "QuoteCreate":
+  {
+    "transactionId": "*",
+    "message": "success"
+  },
+
+  "QuoteStatus":
+  {
+    "transactionId": "*",
+    "quoteNumber": "*",
+    "status": "*"
+  },
+
+  "QuoteDetails":
+  {
+    "quoteNumber": "$QUOTE_NUMBER$",
+    "quoteCreatedDate": "*",
+    "pricing.currency": "*",
+    "agentAccount.accountCsn": "$CSN_SOLDTO$",
+    "agentContact.contactCsn": "$CSN_ACCOUNT_CONTACT$"
+  },
+
+  "QuoteFinalize":
+  {
+    "status": "FINALIZING",
+    "quoteNumber": "$QUOTE_NUMBER$"
+  },
+
+  "QuoteStatusByQuoteNumber":
+  {
+    "transactionId": "*",
+    "quoteNumber": "$QUOTE_NUMBER$",
+    "status": "*"
+  }
+}

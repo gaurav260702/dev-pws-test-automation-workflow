@@ -1,7 +1,9 @@
 package com.autodesk.pws.test.steps.authentication;
 
-import okhttp3.Response;
 import com.autodesk.pws.test.steps.base.*;
+
+import okhttp3.Response;
+
 
 public class GetOAuthCredentials extends RestActionBase
 {
@@ -9,15 +11,17 @@ public class GetOAuthCredentials extends RestActionBase
     @Override
     public void preparation()
     {
-    	log("BOYS AND GIRLS AND KIDS OF ALL AGES!");
-    	log("WE'RE GETTING OUR OAUTH CREDENTIALS NOW!");
-    	
     	initVariables();
     }
 
     private void initVariables()
     {
     	this.ClassName = this.getClass().getSimpleName();
+    	
+		clientId = DataPool.getDetokenized("clientId").toString();
+		clientSecret = DataPool.getDetokenized("clientSecret").toString();
+		callBackUrl = DataPool.getDetokenized("callBackUrl").toString();
+		
     	pullDataPoolVariables();
 	}
 

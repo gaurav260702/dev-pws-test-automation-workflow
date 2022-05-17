@@ -173,6 +173,8 @@ public class WorkflowLibrary
         workflow.add(new QuoteCreate());
         workflow.add(new QuoteStatus());
         workflow.add(new QuoteDetails());
+        workflow.add(new QuoteFinalize());
+        workflow.add(new QuoteStatusByQuoteNumber());
         
         return workflow;
     }

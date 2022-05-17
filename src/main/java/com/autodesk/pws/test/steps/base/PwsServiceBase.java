@@ -1,8 +1,6 @@
 package com.autodesk.pws.test.steps.base;
 
 import java.io.IOException;
-import java.util.HashMap;
-
 import com.autodesk.pws.test.processor.*;
 import com.autodesk.pws.test.steps.authentication.*;
 
@@ -198,6 +196,9 @@ public class PwsServiceBase extends RestActionBase
 
 		//  Make the json response body available for data extraction...
 		this.JsonResponseBody = rawJson;
+		
+		this.log("-- RESPONSE BODY --");
+		this.log(this.JsonResponseBody, DEFAULT_LEFT_SPACE_PADDING + 4);
     }
 
 	public Response getInfo()
@@ -257,10 +258,15 @@ public class PwsServiceBase extends RestActionBase
     		addHeaderFromDataPool("CSN", "$CSN_PRIMARY$");    		    		
     		addHeaderFromDataPool("customer_number", "$CSN_PRIMARY$");    		    		
     	}
-    	else
+    	else if(DataPool.containsKey("$CUSTOMER_NUMBER$"))
     	{
     		addHeaderFromDataPool("CSN", "$CUSTOMER_NUMBER$");
     		addHeaderFromDataPool("customer_number", "$CUSTOMER_NUMBER$");
+    	}
+    	else
+    	{
+    		addHeader("CSN", "***NO_CUSTOMER_NUMBER_ENTRY_IN_DATA_POOL***");
+    		addHeader("customer_number", "***NO_CUSTOMER_NUMBER_IN_DATA_POOL***");
     	}
     }
 
