@@ -37,13 +37,17 @@ pipeline
         sh "docker build --tag wpe-image ."
       }
     }
-    stage('find test cases') {
+    stage('Find Test Cases') {
       agent {
         label "aws-centos"
       }
       steps {
         script {
-          //testfiles = findFiles(glob: '**/Kicker.*.json')
+          //
+          //  Temporarily pulling out the "full pull" of tests so that only
+          //  the Quote test will show up for demonstration purposes...
+          //
+          //  testfiles = findFiles(glob: '**/Kicker.*.json')
           testfiles = findFiles(glob: '**/Kicker.CreateQuote.SimpleHardwired.DEV.json')
           echo ""
           echo "${testfiles[0].name} ${testfiles[0].path} ${testfiles[0].directory} ${testfiles[0].length} ${testfiles[0].lastModified}"
@@ -70,6 +74,14 @@ pipeline
             }
           }
         }
+      }
+    }
+  }
+  post {
+    always {
+      script {
+        sh 'docker image rm -f wpe'
+        sh 'docker image ls'
       }
     }
   }
