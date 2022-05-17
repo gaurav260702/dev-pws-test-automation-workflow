@@ -37,7 +37,12 @@ pipeline {
       }
       steps {
         script {
-          testfiles = findFiles(glob: '**/Kicker.*.json')
+          //
+          //  Temporarily pulling out the "full pull" of tests so that only
+          //  the Quote test will show up for demonstration purposes...
+          //
+          //  testfiles = findFiles(glob: '**/Kicker.*.json')
+          testfiles = findFiles(glob: '**/Kicker.CreateQuote.SimpleHardwired.INT.json')
           echo ""
           echo "${testfiles[0].name} ${testfiles[0].path} ${testfiles[0].directory} ${testfiles[0].length} ${testfiles[0].lastModified}"
           echo ""
