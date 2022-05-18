@@ -18,31 +18,32 @@ def isMasterBranch = false
 
 def testfiles
 
-pipeline {
-  agent {
+pipeline
+{
+  agent
+  {
        label "aws-centos"
   }
-  stages {
-    stage('Build Image') {
-     steps {
-       script {
-          sh "docker build --tag wpe ."
-          sh "docker image ls"
+  stages
+  {
+    stage('Fetch Test Image')
+    {
+     steps
+     {
+        retry(3)
+        {
+          sh "docker pull ${dockerTestImage}"
         }
       }
     }
-    stage('Find Test Cases') {
+    stage('find test cases') {
       agent {
         label "aws-centos"
       }
       steps {
         script {
-          //
-          //  Temporarily pulling out the "full pull" of tests so that only
-          //  the Quote test will show up for demonstration purposes...
-          //
-          //  testfiles = findFiles(glob: '**/Kicker.*.json')
-          testfiles = findFiles(glob: '**/Kicker.CreateQuote.SimpleHardwired.*.json')
+          //testfiles = findFiles(glob: '**/Kicker.*.json')
+          testfiles = findFiles(glob: '**/Kicker.CreateQuote.*.json')
           echo ""
           echo "${testfiles[0].name} ${testfiles[0].path} ${testfiles[0].directory} ${testfiles[0].length} ${testfiles[0].lastModified}"
           echo ""
@@ -64,18 +65,12 @@ pipeline {
             stage(testfiles[i].name) {
               echo "Test case full directory ${full_dir}"
               echo "Test case relative directory to run: ${testcase_run_dir}"
-              sh "docker run wpe mvn spring-boot:run -Dspring-boot.run.arguments='${testcase_run_dir}'"
+              sh "mvn --version"
+              sh "mvn spring-boot:run -Dspring-boot.run.arguments='${testcase_run_dir}'"
+              //sh "docker run autodesk-docker.art-bobcat.autodesk.com/team-pws/test-automation:latest mvn spring-boot:run -Dspring-boot.run.arguments='${testcase_run_dir}'"
             }
           }
         }
-      }
-    }
-  }
-  post {
-    always {
-      script {
-        sh 'docker image rm -f wpe'
-        sh 'docker image ls'
       }
     }
   }
