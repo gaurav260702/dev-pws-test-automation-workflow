@@ -24,17 +24,6 @@ public class GetQuoteOAuthCredentials extends RestActionBase
     	DataPool.add("$CLIENT_ID$", DataPool.get("clientIdQuote").toString());
     	DataPool.add("$CLIENT_SECRET$", DataPool.get("clientSecretQuote").toString());
     	DataPool.add("$CALLBACK_URL$", DataPool.getDetokenized("callBackUrlQuote").toString());
-    	
-    	/*
-		clientId = DataPool.getDetokenized("clientId").toString();
-		clientSecret = DataPool.getDetokenized("clientSecret").toString();
-		callBackUrl = DataPool.getDetokenized("callBackUrl").toString();
-    	
-		clientId = DataPool.get("clientIdQuote").toString();
-		clientSecret = DataPool.get("clientSecretQuote").toString();
-		callBackUrl = DataPool.getDetokenized("callBackUrlQuote").toString();	
-		*/
-	}
 
 	private void initVariables()
     {
