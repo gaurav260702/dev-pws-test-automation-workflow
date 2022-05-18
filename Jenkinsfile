@@ -31,7 +31,7 @@ pipeline {
         }
       }
     }
-    stage('find test cases') {
+    stage('Find Test Cases') {
       agent {
         label "aws-centos"
       }
@@ -61,11 +61,18 @@ pipeline {
             stage(testfiles[i].name) {
               echo "Test case full directory ${full_dir}"
               echo "Test case relative directory to run: ${testcase_run_dir}"
-
               sh "docker run wpe mvn spring-boot:run -Dspring-boot.run.arguments='${testcase_run_dir}'"
             }
           }
         }
+      }
+    }
+  }
+  post {
+    always {
+      script {
+        sh 'docker image rm -f wpe'
+        sh 'docker image ls'
       }
     }
   }
