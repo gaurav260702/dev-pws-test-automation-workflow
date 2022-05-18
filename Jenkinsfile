@@ -18,25 +18,26 @@ def isMasterBranch = false
 
 def testfiles
 
-pipeline 
+pipeline
 {
-  agent 
+  agent
   {
        label "aws-centos"
   }
-  stages 
+  stages
   {
-    stage('Fetch Test Image') 
+    stage('Fetch Test Image')
     {
-     steps 
+     steps
      {
-        retry(3) 
-        {
-          sh "docker pull ${dockerTestImage}"
-        }
+        // retry(3)
+        // {
+        //   sh "docker pull ${dockerTestImage}"
+        // }
+        sh "docker build --tag wpe-image ."
       }
     }
-    stage('find test cases') {
+    stage('Find Test Cases') {
       agent {
         label "aws-centos"
       }
@@ -73,6 +74,14 @@ pipeline
             }
           }
         }
+      }
+    }
+  }
+  post {
+    always {
+      script {
+        sh 'docker image rm -f wpe'
+        sh 'docker image ls'
       }
     }
   }
