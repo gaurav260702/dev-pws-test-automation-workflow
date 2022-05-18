@@ -18,21 +18,16 @@ def isMasterBranch = false
 
 def testfiles
 
-pipeline
-{
-  agent
-  {
+pipeline {
+  agent {
        label "aws-centos"
   }
-  stages
-  {
-    stage('Fetch Test Image')
-    {
-     steps
-     {
-        retry(3)
-        {
-          sh "docker pull ${dockerTestImage}"
+  stages {
+    stage('Build Image') {
+     steps {
+       script {
+          sh "docker build --tag wpe ."
+          sh "docker image ls"
         }
       }
     }
@@ -42,8 +37,9 @@ pipeline
       }
       steps {
         script {
-          //testfiles = findFiles(glob: '**/Kicker.*.json')
-          testfiles = findFiles(glob: '**/Kicker.CreateQuote.*.json')
+          // testfiles = findFiles(glob: '**/Kicker.*.json')
+          testfiles = findFiles(glob: '**/Kicker.CreateQuote.SimpleHardwired.*.json')
+
           echo ""
           echo "${testfiles[0].name} ${testfiles[0].path} ${testfiles[0].directory} ${testfiles[0].length} ${testfiles[0].lastModified}"
           echo ""
@@ -65,9 +61,8 @@ pipeline
             stage(testfiles[i].name) {
               echo "Test case full directory ${full_dir}"
               echo "Test case relative directory to run: ${testcase_run_dir}"
-              sh "mvn --version"
-              sh "mvn spring-boot:run -Dspring-boot.run.arguments='${testcase_run_dir}'"
-              //sh "docker run autodesk-docker.art-bobcat.autodesk.com/team-pws/test-automation:latest mvn spring-boot:run -Dspring-boot.run.arguments='${testcase_run_dir}'"
+
+              sh "docker run wpe mvn spring-boot:run -Dspring-boot.run.arguments='${testcase_run_dir}'"
             }
           }
         }
