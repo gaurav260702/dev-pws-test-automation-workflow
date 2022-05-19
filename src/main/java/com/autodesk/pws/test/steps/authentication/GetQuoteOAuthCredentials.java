@@ -9,16 +9,22 @@ public class GetQuoteOAuthCredentials extends RestActionBase
     @Override
     public void preparation()
     {
+    	this.UseAlternateAuthHeaderGenerationMethod = true;
+    	
+    	setClientOAuthValues();    	
     	initVariables();
-    	setClientOAuthValues();
     }
 
     private void setClientOAuthValues() 
     {
-		clientId = DataPool.get("clientIdQuote").toString();
-		clientSecret = DataPool.get("clientSecretQuote").toString();
-		callBackUrl = DataPool.getDetokenized("callBackUrlQuote").toString();	
-	}
+    	DataPool.add("clientId", "$CLIENT_ID$");
+    	DataPool.add("clientSecret", "$CLIENT_SECRET$");
+    	DataPool.add("callBackUrl", "$CALLBACK_URL$");
+    	
+    	DataPool.add("$CLIENT_ID$", DataPool.get("clientIdQuote").toString());
+    	DataPool.add("$CLIENT_SECRET$", DataPool.get("clientSecretQuote").toString());
+    	DataPool.add("$CALLBACK_URL$", DataPool.getDetokenized("callBackUrlQuote").toString());
+    }
 
 	private void initVariables()
     {

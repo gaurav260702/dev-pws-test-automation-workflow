@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
+
 import javax.crypto.Mac;
 import javax.crypto.spec.SecretKeySpec;
 
@@ -15,9 +16,9 @@ import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.gson.Gson;
-import com.google.gson.internal.LinkedTreeMap;
 
 import io.restassured.path.json.JsonPath;
+
 import okhttp3.Headers;
 import okhttp3.MediaType;
 import okhttp3.OkHttpClient;
@@ -35,6 +36,8 @@ public class RestActionBase extends StepBase
 	public String JsonResponseBody = "";
 	public String ServiceVerb = "GET";
 
+	public boolean UseAlternateAuthHeaderGenerationMethod = false;
+	
 	protected String clientId;
 	protected String clientSecret;
 	protected String callBackUrl;
@@ -53,7 +56,7 @@ public class RestActionBase extends StepBase
 
 	public void addHeaderFromDataPool(String headerAndDataPoolLabel) 
 	{
-		// Check to make sure the
+		// Check to make sure the headers doesn't already contain the key in question...
 		if (!RequestHeaders.containsKey(headerAndDataPoolLabel)) 
 		{
 			RequestHeaders.put(headerAndDataPoolLabel, DataPool.getDetokenized(headerAndDataPoolLabel).toString());
@@ -62,9 +65,14 @@ public class RestActionBase extends StepBase
 
 	public void addHeaderFromDataPool(String headerLabel, String DataPoolLabel) 
 	{
-		RequestHeaders.put(headerLabel, DataPool.getDetokenized(DataPoolLabel).toString());
+		addHeader(headerLabel, DataPool.getDetokenized(DataPoolLabel).toString());
 	}
 
+	public void addHeader(String headerLabel, String headerValue)
+	{
+		RequestHeaders.put(headerLabel, headerValue);
+	}
+	
 	public void addValidationChainLink(String validationLabel, Object dataToValidate) 
 	{
 		if (!BypassValidationChainLogging) {
@@ -143,7 +151,9 @@ public class RestActionBase extends StepBase
 
 		log("Target URL: " + restResourcePath);
 
-		if (restMethod.toUpperCase() == "POST") 
+		String ucaseRestMethod = restMethod.toUpperCase();
+		
+		if (ucaseRestMethod == "POST" || ucaseRestMethod == "PATCH") 
 		{
 			mediaType = MediaType.parse(mediaTypeValue);
 		}
@@ -401,32 +411,142 @@ public class RestActionBase extends StepBase
 		RequestHeaders.putAll(authHeaders);
 	}
 
-	public HashMap<String, String> generateAccessTokenHeadersWithCurrentToken() 
+	public HashMap<String, String> generateAccessTokenHeadersWithCurrentToken_ALT()
 	{
+
+		//console.info("Generating timestamp")
+		// Generate timestamp header
+		//double timestamp = Math.floor(new Date().getTime()) ;// / 1000);
+		String timestamp = getTimeStamp();
+		
+		//console.info("Generating signature")
+		// Generate signature header
+		String session_id = DataPool.get("access_token").toString();
+		
+		//console.info("Encoding environment variables")
+		String base_str = callBackUrl + session_id + timestamp;
+		//var hmacsha256 = CryptoJS.HmacSHA256(base_str, clientSecret);
+		//String signature = CryptoJS.enc.Base64.stringify(hmacsha256);
+		
+		String signature = "";
+
+		try 
+		{
+			Mac sha256_HMAC = Mac.getInstance("HmacSHA256");
+			SecretKeySpec secret_key = new SecretKeySpec(clientSecret.getBytes(), "HmacSHA256");
+			sha256_HMAC.init(secret_key);
+			var finalSha256 = sha256_HMAC.doFinal(base_str.getBytes());
+			signature = org.apache.commons.codec.binary.Base64.encodeBase64String(finalSha256);
+		} 
+		catch (Exception e) 
+		{
+			logger.error("Error in " + this.ClassName + ".generateAccessTokenHeadersWithCurrentToken_ALT()", e);
+		}
+		
 		HashMap<String, String> headers = new HashMap<String, String>();
-
-		String accessToken = DataPool.get("access_token").toString();
-		String timeStamp = getTimeStamp();
-		String signature = getSignature(timeStamp, accessToken);
-
-		headers.put("Authorization", "Bearer " + accessToken);
-		headers.put("timestamp", timeStamp);
+		
+		headers.put("Authorization", "Bearer " + session_id);
+		headers.put("timestamp", String.valueOf(timestamp));
 		headers.put("signature", signature);
 
 		return headers;
+		
+		//return signature;
+		
+		//console.info("Setting environment variables")
+		//postman.setEnvironmentVariable("api_timestamp", timestamp);
+		//postman.setEnvironmentVariable("api_signature", api_signature);
+
 	}
-
-	public HashMap<String, String> generateAccessTokenHeaders() 
+	
+	public HashMap<String, String> generateAccessTokenHeadersWithCurrentToken() 
 	{
-		String timeStamp = getTimeStamp();
-		String signature = getSignature(timeStamp);
-		String baseAuth = getBaseAuth();
-
+		
 		HashMap<String, String> headers = new HashMap<String, String>();
 
-		headers.put("Authorization", "Basic " + baseAuth);
-		headers.put("timestamp", timeStamp);
+		if(UseAlternateAuthHeaderGenerationMethod)
+		{
+			headers = this.generateAccessTokenHeadersWithCurrentToken_ALT();
+		}
+		else
+		{
+			String accessToken = DataPool.get("access_token").toString();
+			String timeStamp = getTimeStamp();
+			String signature = getSignature(timeStamp, accessToken);
+	
+			headers.put("Authorization", "Bearer " + accessToken);
+			headers.put("timestamp", timeStamp);
+			headers.put("signature", signature);
+		}
+		
+		return headers;
+	}
+
+	public HashMap<String, String> generateAccessTokenHeaders_ALT()
+	{
+		//var client_id = environment.client_id;
+		//var client_secret = environment.client_secret;
+		//var callback = environment.callback;
+
+		//console.info("client_id: " + client_id);
+		//console.info("client_secret: " + client_secret);
+		//console.info("callback: " + callback);
+
+		// Generate timestamp header
+		// var timestamp = Math.floor(Date.now() / 1000);
+		var timestamp = getTimeStamp();
+		//timestamp = "1652722919";
+		
+		// Generate Authorization header
+		//string cred_str = this.clientId + ":" + this.clientSecret;
+		//var base64_header = btoa(unescape(encodeURIComponent(cred_str)));
+
+		String credentials = this.clientId + ":" + this.clientSecret;
+		byte[] bytesEncoded = org.apache.commons.codec.binary.Base64.encodeBase64(credentials.getBytes());
+		String base64Header =  new String(bytesEncoded);
+		
+		// Generate signature header
+		// var base_str = callback + client_id + timestamp;
+		// var hmacsha256 = CryptoJS.HmacSHA256(base_str, client_secret);
+		// var signature = CryptoJS.enc.Base64.stringify(hmacsha256);
+		
+		String signatureSeed = this.callBackUrl + this.clientId + timestamp;
+		String signature = getSha256Hash(signatureSeed);
+		//String signature =  org.apache.commons.codec.binary.Base64.encodeBase64String(hmacsha256.getBytes());
+
+		//postman.setEnvironmentVariable("oauth_authorization", base64_header);
+		//postman.setEnvironmentVariable("oauth_timestamp", timestamp);
+		//postman.setEnvironmentVariable("oauth_signature", signature);
+
+		//console.info("pre-request script complete")
+
+		HashMap<String, String> headers = new HashMap<String, String>();
+		
+		headers.put("Authorization", "Basic " + base64Header);
+		headers.put("timestamp", timestamp);
 		headers.put("signature", signature);
+		
+		return headers;
+	}
+	
+	public HashMap<String, String> generateAccessTokenHeaders() 
+	{
+		HashMap<String, String> headers = new HashMap<String, String>();
+		
+		if(this.UseAlternateAuthHeaderGenerationMethod)
+		{	
+			headers = generateAccessTokenHeaders_ALT();
+		}
+		else
+		{
+			String timeStamp = getTimeStamp();
+			String signature = getSignature(timeStamp);
+			String baseAuth = getBaseAuth();
+	
+			headers.put("Authorization", "Basic " + baseAuth);
+			headers.put("timestamp", timeStamp);
+			headers.put("signature", signature);
+		}
 
 		return headers;
 	}
@@ -468,7 +588,8 @@ public class RestActionBase extends StepBase
 		return hashedStr;
 	}
 
-	public String getBaseAuth() {
+	public String getBaseAuth() 
+	{
 		String str = clientId + ":" + clientSecret;
 		byte[] bytesEncoded = org.apache.commons.codec.binary.Base64.encodeBase64(str.getBytes());
 		return new String(bytesEncoded);

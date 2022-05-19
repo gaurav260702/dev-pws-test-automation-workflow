@@ -1,6 +1,6 @@
 ﻿{
   "$ROOT$": "./testdata/WorkflowProcessing/TestData",
-  "$ENV$": "DEV",
+  "$ENV$": "INT",
   "$BASE_NAME$": "CreateQuote.SimpleHardwired",
   "$VALIDATION$": "$ROOT$/Validators",
   "$OVERRIDES$": "$ROOT$/Overrides",
@@ -16,6 +16,8 @@
   "$CSN_SECONDARY$": "$CSN_RESELLER$",
   "$CSN_TERTIARY$": "$CSN_SOLDTO$", 
   "$CSN_QUATERNARY$": "$CSN_SOLDTO$",
+
+  "$CSN_ACCOUNT_CONTACT$": "83858067",
 
   "$CREATE_QUOTE_BASE_URL$": "https://enterprise-api-$ENV$.autodesk.com/",
 
