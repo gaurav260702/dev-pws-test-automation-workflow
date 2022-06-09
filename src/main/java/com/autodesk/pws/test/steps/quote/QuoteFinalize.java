@@ -56,7 +56,7 @@ public class QuoteFinalize extends PwsServiceBase
 	@Override
     public void action()
     {
-		attachHeaderFromDataPool("CSN", "$CSN_SECONDARY$");
+		// attachHeaderFromDataPool("CSN", "$CSN_SECONDARY$");
 		
 		super.action();
     }

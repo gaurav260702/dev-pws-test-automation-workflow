@@ -2,7 +2,17 @@ package com.autodesk.pws.test.steps.quote;
 
 public class QuoteStatusByQuoteNumber extends QuoteStatus
 {
-  @Override
+  public QuoteStatusByQuoteNumber(boolean useLoopTillExpectedStatus) 
+  {
+	  this.LoopTillExpectedStatus = useLoopTillExpectedStatus;
+
+	  if(LoopTillExpectedStatus)
+	  {
+		  this.ExpectedEndStateStatus = "QUOTED";
+	  }
+  }
+
+@Override
   public void preparation() 
   {
     super.preparation();

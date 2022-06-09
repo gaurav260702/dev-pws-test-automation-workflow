@@ -6,6 +6,18 @@ import io.restassured.path.json.JsonPath;
 public class QuoteStatus extends PwsServiceBase 
 {
 	public String DataPoolSourceInfoLabel = "";
+	protected boolean LoopTillExpectedStatus = false;
+	public String ExpectedEndStateStatus = "CREATED";
+	
+	QuoteStatus()
+	{
+		this.LoopTillExpectedStatus = false;
+	}
+	
+	public QuoteStatus(boolean useLoopTillExpectedStatus)
+	{
+		this.LoopTillExpectedStatus = useLoopTillExpectedStatus;
+	}
 	
     @Override
     public void preparation()
@@ -46,38 +58,110 @@ public class QuoteStatus extends PwsServiceBase
 	@Override
     public void action()
     {
-		attachHeaderFromDataPool("CSN", "$CSN_SECONDARY$");
+		//attachHeaderFromDataPool("CSN", "$CSN_SECONDARY$");
 		
-		super.action();
+		if(this.LoopTillExpectedStatus)
+		{
+			doActionLoop();
+		}
+		else
+		{
+			super.action();
+		}
     }
+	
+	private void doActionLoop()
+	{
+		boolean continueTrying = true;
+		Integer maxRetries = 600;
+		Integer flagForDelaysAt = 25;
+		Integer msSleepBeforeStatus = 10000;
+		Integer retryCounter = 0;
+		String finalStatus = "none";
+
+		log("Executing [" + this.ClassName + "]");
+		log("Expected end state value: " + ExpectedEndStateStatus);
+
+		while (continueTrying) 
+		{
+			sleep(msSleepBeforeStatus);
+
+			retryCounter += 1;
+			
+/*          //  
+			if(retryCounter % OAuthTokenRefreshModulus == 0)
+			{
+				getOrderStatus.refreshOauthToken();
+			}
+*/
+			if(retryCounter >= maxRetries)
+			{
+				continueTrying = false;
+				finalStatus = "timeout";
+			}
+			else 
+			{
+				log("Attempt (" + retryCounter + ") of (" + maxRetries + ")...");
+
+				super.action();
+
+				String json = this.JsonResponseBody;
+
+				JsonPath pathFinder = JsonPath.from(json);
+
+				String status = pathFinder.get("status");
+				String faultString = pathFinder.get("fault.faultstring");
+				String statusMsg = pathFinder.getString("message");
+				
+				if (status == null && faultString != null) {
+					status = "fault";
+				}
+				
+				if (statusMsg != null && statusMsg.length() > 0) {
+					statusMsg = " - " + statusMsg;
+				} else {
+					statusMsg = "";
+				}
+
+				log("Current status: " + status + statusMsg);
+
+				if (status.matches(ExpectedEndStateStatus) ||
+					status.toLowerCase().matches("error") || 
+					status.toLowerCase().matches("failed") || 
+					status.toLowerCase().matches("fault"))
+				{
+					continueTrying = false;
+					finalStatus = status;
+				}
+
+				if (retryCounter >= flagForDelaysAt) 
+				{
+					// TODO: Create some way of reporting when waiting for the
+					// OrderStatusToChange exceeds a reasonable amount of time...
+				}
+			}
+
+			//this.SuppressLogging = true;
+		}
+
+		log("Final status: " + finalStatus);
+
+		// This check should probably be migrated into the
+		// "validation()" routine as the intention is to
+		// cause an alteration of the default workflow...
+		if (!finalStatus.matches(ExpectedEndStateStatus)) 
+		{
+			this.addResponseToValidationChain();
+			ExceptionAbortStatus = true;
+			ExceptionMessage = "Expected to reach '" + ExpectedEndStateStatus + "' state, but ended in '" + finalStatus + "' state!";
+		}
+	
+	}
 	
 	@Override
 	public void validation()
 	{    	
 		super.validation();
-	
-		/*
-		this.log("****************************************************");
-		this.log("****************************************************");
-		this.log("*****  -----/ !!CRUDE POTATO BASHING!! \\-----  *****");
-		
-		this.log(" ");
-
-		String transactionId = DataPool.get("$TRANSACTION_ID$").toString();
-		this.log("Swapping out 'stubbedTransactionId' for '$TRANSACTION_ID$' in 'JsonResponseBody'...");
-		this.JsonResponseBody = StringUtils.replace(JsonResponseBody, "stubbedTransactionId", transactionId);
-		
-		String fakeQuoteNumber = "Q-00600";
-		this.log("Swapping out 'stubbedQuoteNumber' for '7265267' in 'JsonResponseBody'...");
-		
-		this.JsonResponseBody = StringUtils.replace(JsonResponseBody, "stubbedQuoteNumber", fakeQuoteNumber);
-
-		this.log(" ");
-		this.log("*****  -----|    BASHING COMPLETE.       |-----  *****");
-		this.log("*****  -----\\       IZ POTATO.         //-----  *****");
-		this.log("****************************************************");
-		this.log("****************************************************");
-		*/
 		
 		//  Here we would extract any data that needs to be promoted to 
 		//  the DataPool and may be needed by other steps later on...

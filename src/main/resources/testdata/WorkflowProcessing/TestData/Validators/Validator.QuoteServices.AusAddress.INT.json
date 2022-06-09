@@ -17,8 +17,8 @@
     "quoteNumber": "$QUOTE_NUMBER$",
     "quoteCreatedDate": "*",
     "pricing.currency": "*",
-    "agentAccount.accountCsn": "$CSN_SOLDTO$",
-    "agentContact.contactCsn": "$CSN_ACCOUNT_CONTACT$"
+    "agentAccount.accountCsn": "$CSN_ACCOUNT_CONTACT$",
+    "agentContact.contactCsn": "$CSN_SOLDTO$"
   },
 
   "QuoteFinalize":
@@ -31,6 +31,6 @@
   {
     "transactionId": "*",
     "quoteNumber": "$QUOTE_NUMBER$",
-    "status": "QUOTED"
+    "status": "*"
   }
 }
