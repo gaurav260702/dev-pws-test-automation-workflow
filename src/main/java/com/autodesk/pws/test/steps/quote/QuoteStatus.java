@@ -7,7 +7,7 @@ public class QuoteStatus extends PwsServiceBase
 {
 	public String DataPoolSourceInfoLabel = "";
 	protected boolean LoopTillExpectedStatus = false;
-	public String ExpectedEndStateStatus = "CREATED";
+	public String ExpectedEndStateStatus = "DRAFT-CREATED";
 	
 	QuoteStatus()
 	{

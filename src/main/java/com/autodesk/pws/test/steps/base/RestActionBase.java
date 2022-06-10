@@ -36,6 +36,9 @@ public class RestActionBase extends StepBase
 	public String JsonResponseBody = "";
 	public String ServiceVerb = "GET";
 
+	public String ExpectedResponseMessage = "";
+	public String ActualResponseMessage = "";
+	
 	public boolean UseAlternateAuthHeaderGenerationMethod = false;
 	
 	protected String clientId;
@@ -255,6 +258,8 @@ public class RestActionBase extends StepBase
 
 		this.log("Service response: " + response.code() + " -- " + response.message());
 
+		this.ActualResponseMessage = response.message();
+		
 		// Hand back to the caller whatever we received from the REST service...
 		return response;
 	}
