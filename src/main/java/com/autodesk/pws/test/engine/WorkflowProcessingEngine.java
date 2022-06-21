@@ -24,13 +24,16 @@ public class WorkflowProcessingEngine
     //  Container for the LogFilePath...
     public String LogFileName = "";
     
+    //  Name of the current test...
+    public String CurrentTestName = "";
+    
     //////////////////////////////////////////////////////////////////////////////
     // TODO:  Implement routines to handle "ExceptionAbortStatus"!!
     //        This should come between each substep (preparation, action, 
     //        validation, cleanup) and should end execution immediately upon
     //        detection (with options to report out states and messages)...
     //////////////////////////////////////////////////////////////////////////////
-    public boolean execute(List<StepBase> workflowToExecute) throws Exception 
+    public boolean execute(List<StepBase> workflowToExecute, String currentTestName) throws Exception 
     {    	
 	    // Prep a container for the current step name...
 	    String currentStep = "";
@@ -52,6 +55,8 @@ public class WorkflowProcessingEngine
 	    // the step.logger() method in the loop below...
 	    Boolean firstReportMade = false;
 	    
+	    this.CurrentTestName = currentTestName;
+	    
 	    // Report out intended step execution...
 	    for (int i = 0; i < workflowToExecute.size(); i++) 
 		{
@@ -63,6 +68,7 @@ public class WorkflowProcessingEngine
 			if (!firstReportMade) 
 			{
 				step.logNoPad("  ");
+				step.logNoPad("Test Name: " + this.CurrentTestName);
 				step.logNoPad("Step execution outline:");
 				firstReportMade = true;
 			}
@@ -101,7 +107,7 @@ public class WorkflowProcessingEngine
 				// Log each substep in order...
 				step.logNoPad("");
 				step.logNoPad("");
-				step.logNoPad("Step #" + stepCount + " of " + workflowToExecute.size() + "...");
+				step.logNoPad("Step #" + stepCount + " of " + workflowToExecute.size() + " [-- " + this.CurrentTestName + " --]");
 				step.logNoPad("-------------------------------------------------------------");
 				step.logNoPad("EXECUTING STEP: '" + currentStep + "'");
 				

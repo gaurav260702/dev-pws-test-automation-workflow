@@ -5,11 +5,6 @@ public class QuoteStatusByQuoteNumber extends QuoteStatus
   public QuoteStatusByQuoteNumber(boolean useLoopTillExpectedStatus) 
   {
 	  this.LoopTillExpectedStatus = useLoopTillExpectedStatus;
-
-	  if(LoopTillExpectedStatus)
-	  {
-		  this.ExpectedEndStateStatus = "QUOTED";
-	  }
   }
 
 @Override
@@ -21,6 +16,13 @@ public class QuoteStatusByQuoteNumber extends QuoteStatus
     setResourcePath();
     
     setTargetUrl();
+
+    if(LoopTillExpectedStatus)
+    {
+    	this.ExpectedEndStateStatus = "QUOTED";
+    }
+    
+    setExpectedEndState(this.ClassName);
   }
   
   private void setResourcePath()

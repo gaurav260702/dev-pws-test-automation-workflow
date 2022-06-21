@@ -15,7 +15,7 @@
   "QuoteDetails":
   {
     "quoteNumber": "$QUOTE_NUMBER$",
-    "quoteCreatedDate": "*",
+    "quoteCreatedTime": "*",
     "pricing.currency": "*",
     "agentAccount.accountCsn": "$CSN_SOLDTO$",
     "agentContact.contactCsn": "$CSN_ACCOUNT_CONTACT$"

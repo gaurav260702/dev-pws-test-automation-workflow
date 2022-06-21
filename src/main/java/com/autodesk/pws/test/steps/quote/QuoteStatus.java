@@ -7,16 +7,15 @@ public class QuoteStatus extends PwsServiceBase
 {
 	public String DataPoolSourceInfoLabel = "";
 	protected boolean LoopTillExpectedStatus = false;
-	public String ExpectedEndStateStatus = "DRAFT-CREATED";
-	
+
 	QuoteStatus()
 	{
-		this.LoopTillExpectedStatus = false;
+		LoopTillExpectedStatus = false;
 	}
 	
 	public QuoteStatus(boolean useLoopTillExpectedStatus)
 	{
-		this.LoopTillExpectedStatus = useLoopTillExpectedStatus;
+		LoopTillExpectedStatus = useLoopTillExpectedStatus;
 	}
 	
     @Override
@@ -48,9 +47,12 @@ public class QuoteStatus extends PwsServiceBase
     	super.preparation();
     	
     	setTargetUrl();
+    	
+		ExpectedEndStateStatus = "DRAFT-CREATED";
+    	super.setExpectedEndState(this.ClassName);
     }
 
-    private void setResourcePath()
+	private void setResourcePath()
     {
 		super.setResourcePath("/v1/quotes/status?transactionId=$TRANSACTION_ID$");
     }

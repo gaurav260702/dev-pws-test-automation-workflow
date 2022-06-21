@@ -443,7 +443,7 @@ public class Kicker
         	workflowProcEngine.setLogToFile(logToFile, logFileName, testName);
         	
             //  Execute the workflow steps...
-            workflowCompleted = workflowProcEngine.execute(workflow);
+            workflowCompleted = workflowProcEngine.execute(workflow, testName);
 
             logIt("  ");
             logIt("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
