@@ -7,41 +7,30 @@
 
   "QuoteStatus":
   {
-    "error":
-    {
-      "code": "45011",
-      "message": "Agent not eligible for creating a quote"
-    },
-    "quoteNumber": "NA",
     "transactionId": "*",
-    "status": "FAILED"
+    "quoteNumber": "*",
+    "status": "*"
   },
 
   "QuoteDetails":
   {
-    "error":
-    {
-      "code": "45101",
-      "message": "quoteNumber is not valid"
-    },
-    "status": "error"
+    "quoteNumber": "$QUOTE_NUMBER$",
+    "quoteCreatedTime": "*",
+    "pricing.currency": "*",
+    "agentAccount.accountCsn": "$CSN_ACCOUNT_CONTACT$",
+    "agentContact.contactCsn": "$CSN_SOLDTO$"
   },
 
   "QuoteFinalize":
   {
-    "error": {
-      "code": "45002",
-      "message": "Enter a valid quoteNumber"
-    },
-    "status": "ERROR"
+    "status": "FINALIZING",
+    "quoteNumber": "$QUOTE_NUMBER$"
   },
 
   "QuoteStatusByQuoteNumber":
   {
-    "error": {
-      "code": "45002",
-      "message": "Enter a valid quoteNumber"
-    },
-    "status": "error"
+    "transactionId": "*",
+    "quoteNumber": "$QUOTE_NUMBER$",
+    "status": "*"
   }
 }

@@ -2,8 +2,9 @@
   "$ROOT$": "./testdata/WorkflowProcessing/TestData",
   "$ENV$": "INT",
 
-  "$ROOT_NAME$": "QuoteServices.BadStateCode",
-  "$BASE_NAME$": "$ROOT_NAME$",
+  "$ROOT_NAME$": "QuoteServices.AusAddress",
+  "$VARIATION_COUNT$": "WithState.6",
+  "$BASE_NAME$": "$ROOT_NAME$_$VARIATION_COUNT$",
   "$VALIDATION$": "$ROOT$/Validators",
   "$OVERRIDES$": "$ROOT$/Overrides",
   "$BASE_DATA$": "$ROOT$/BaseData",
@@ -29,8 +30,8 @@
 
    "$ADDRESS1$": "1b Pitt Street",
    "$CITY$": "Gladstone Central",
-   "$STATE$": "ZZZZ",
-   "$POSTAL_CODE$": 4680,
+   "$STATE$": "ZZZ123##$^&*(){}",
+   "$POSTAL_CODE$": "4680",
    "$COUNTRY$": "AU",
 
   "includeForceableHeaders": "true",
@@ -44,14 +45,10 @@
   "baseUrl": "https://enterprise-api-$ENV$.autodesk.com",
   "oAuthBaseUrl":  "https://enterprise-api-$ENV$.autodesk.com",
 
-  "secretsFile": "$CONFIG$/Secrets.GetInvoiceServices.INT.json",
-
-  "baseFile": "$BASE_DATA$/BaseData.$ROOT_NAME$.$ENV$.json",
+  "baseFile": "$BASE_DATA$/BaseData.$ROOT_NAME$.WithStateCode.$ENV$.json",
   "overridesFile": "$OVERRIDES$/Override.NONE.json",
   "validationFile": "$VALIDATION$/Validator.$ROOT_NAME$.$ENV$.json",
-
-  "QuoteStatus.ExpectedEndStateStatus": "FAILED",
-  "QuoteStatusByQuoteNumber.ExpectedEndStateStatus": "error",
+  "secretsFile": "$CONFIG$/Secrets.GetInvoiceServices.INT.json",
 
   "workflow": "CreateQuote"
 }

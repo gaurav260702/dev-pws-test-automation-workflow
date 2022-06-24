@@ -28,7 +28,7 @@
   "$CURRENCY$": "AUD",
 
    "$ADDRESS1$": "1b Pitt Street",
-   "$CITY$": "Gladstone Central",
+   "$CITY$": "Zizzy Zazz Zeripity ##!$%^*(){}",
    "$STATE$": "QLD",
    "$POSTAL_CODE$": "4680",
    "$COUNTRY$": "AU",
@@ -50,8 +50,8 @@
   "overridesFile": "$OVERRIDES$/Override.NONE.json",
   "validationFile": "$VALIDATION$/Validator.$ROOT_NAME$.$ENV$.json",
 
-  "QuoteStatus.ExpectedEndStateStatus": "FAILED",
-  "QuoteStatusByQuoteNumber.ExpectedEndStateStatus": "error",
+  "QuoteStatus.ExpectedEndStateStatus": "DRAFT-CREATED",
+  "QuoteStatusByQuoteNumber.ExpectedEndStateStatus": "QUOTED",
 
   "workflow": "CreateQuote"
 }

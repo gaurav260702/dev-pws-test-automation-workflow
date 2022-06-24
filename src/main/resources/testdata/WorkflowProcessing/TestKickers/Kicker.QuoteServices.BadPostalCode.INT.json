@@ -50,8 +50,8 @@
   "overridesFile": "$OVERRIDES$/Override.NONE.json",
   "validationFile": "$VALIDATION$/Validator.$ROOT_NAME$.$ENV$.json",
 
-  "QuoteStatus.ExpectedEndStateStatus": "FAILED",
-  "QuoteStatusByQuoteNumber.ExpectedEndStateStatus": "error",
+  "QuoteStatus.ExpectedEndStateStatus": "DRAFT-CREATED",
+  "QuoteStatusByQuoteNumber.ExpectedEndStateStatus": "QUOTED",
 
   "workflow": "CreateQuote"
 }
