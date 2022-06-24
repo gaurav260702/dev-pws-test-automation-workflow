@@ -31,7 +31,7 @@
    "$ADDRESS1$": "20 Labouchere Road",
    "$CITY$": "South Perth",
    "$STATE$": "WA",
-   "$POSTAL_CODE$": 6151,
+   "$POSTAL_CODE$": "6151",
    "$COUNTRY$": "AU",
 
   "includeForceableHeaders": "true",

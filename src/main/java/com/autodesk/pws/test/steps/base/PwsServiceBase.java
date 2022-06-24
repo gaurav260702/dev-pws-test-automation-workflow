@@ -310,5 +310,6 @@ public class PwsServiceBase extends RestActionBase
 									ExpectedEndStateStatus
 								).toString();
 		
+		ExpectedResponseMessage = this.ExpectedEndStateStatus;
 	}
 }

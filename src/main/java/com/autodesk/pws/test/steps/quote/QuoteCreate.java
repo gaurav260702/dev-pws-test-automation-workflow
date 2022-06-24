@@ -45,7 +45,10 @@ public class QuoteCreate extends PwsServiceBase
     	this.BaseUrl = "$CREATE_QUOTE_BASE_URL$";
     	setTargetUrl();
     	
-    	this.ExpectedResponseMessage = "Accepted";
+    	//this.ExpectedResponseMessage = "Accepted";
+    	this.ExpectedEndStateStatus = "Accepted";
+    	
+    	this.setExpectedEndState(this.ClassName);
     }
 
     private void setResourcePath()

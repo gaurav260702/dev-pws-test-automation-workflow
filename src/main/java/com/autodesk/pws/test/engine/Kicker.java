@@ -455,6 +455,8 @@ public class Kicker
 	            //  Get the validation relative file path from the data pool...
 	            String validationFile = dataPool.getRaw("validationFile").toString();
 	            
+	            logIt("  -- Validation file: " + validationFile);
+	            
 	            //  Check to see if the validation file exists, and...
 	            if(fileExists(validationFile))
 	            {

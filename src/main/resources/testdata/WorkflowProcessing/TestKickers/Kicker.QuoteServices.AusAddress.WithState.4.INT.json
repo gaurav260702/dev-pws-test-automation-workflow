@@ -31,7 +31,7 @@
    "$ADDRESS1$": "1 Jalan Kipas",
    "$CITY$": "Home Island",
    "$STATE$": "Shire of Cocos",
-   "$POSTAL_CODE$": 6799,
+   "$POSTAL_CODE$": "6799",
    "$COUNTRY$": "CC",
 
   "includeForceableHeaders": "true",

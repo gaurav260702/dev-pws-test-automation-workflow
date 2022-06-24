@@ -2,9 +2,8 @@
   "$ROOT$": "./testdata/WorkflowProcessing/TestData",
   "$ENV$": "INT",
 
-  "$ROOT_NAME$": "QuoteServices.AusAddress",
-  "$VARIATION_COUNT$": "WithState.3",
-  "$BASE_NAME$": "$ROOT_NAME$_$VARIATION_COUNT$",
+  "$ROOT_NAME$": "QuoteServices.BadTimezone",
+  "$BASE_NAME$": "$ROOT_NAME$",
   "$VALIDATION$": "$ROOT$/Validators",
   "$OVERRIDES$": "$ROOT$/Overrides",
   "$BASE_DATA$": "$ROOT$/BaseData",
@@ -25,14 +24,14 @@
 
   "$CREATE_QUOTE_BASE_URL$": "https://enterprise-api-$ENV$.autodesk.com/",
 
-  "$TIMEZONE_CITY$": "Australia/Sydney",
+  "$TIMEZONE_CITY$": "America/New_York",
   "$CURRENCY$": "AUD",
 
-   "$ADDRESS1$": "1 Jalan Kipas",
-   "$CITY$": "Home Island",
-   "$STATE$": "Shire of Cocos",
-   "$POSTAL_CODE$": "6799",
-   "$COUNTRY$": "CC",
+   "$ADDRESS1$": "123 Nowhere Outback",
+   "$CITY$": "Gladstone Central",
+   "$STATE$": "QLD",
+   "$POSTAL_CODE$": "6889",
+   "$COUNTRY$": "AU",
 
   "includeForceableHeaders": "true",
   "forceableHeaders":
@@ -45,10 +44,15 @@
   "baseUrl": "https://enterprise-api-$ENV$.autodesk.com",
   "oAuthBaseUrl":  "https://enterprise-api-$ENV$.autodesk.com",
 
-  "baseFile": "$BASE_DATA$/BaseData.$ROOT_NAME$.WithStateCode.$ENV$.json",
+  "secretsFile": "$CONFIG$/Secrets.GetInvoiceServices.INT.json",
+
+  "baseFile": "$BASE_DATA$/BaseData.QuoteServices.GenericAus.$ENV$.json",
   "overridesFile": "$OVERRIDES$/Override.NONE.json",
   "validationFile": "$VALIDATION$/Validator.$ROOT_NAME$.$ENV$.json",
-  "secretsFile": "$CONFIG$/Secrets.GetInvoiceServices.INT.json",
+
+  "QuoteCreate.ExpectedEndStateStatus": "Accepted",
+  "QuoteStatus.ExpectedEndStateStatus": "FAILED",
+  "QuoteStatusByQuoteNumber.ExpectedEndStateStatus": "error",
 
   "workflow": "CreateQuote"
 }

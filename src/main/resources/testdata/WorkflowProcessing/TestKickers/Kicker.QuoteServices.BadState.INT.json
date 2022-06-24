@@ -2,7 +2,7 @@
   "$ROOT$": "./testdata/WorkflowProcessing/TestData",
   "$ENV$": "INT",
 
-  "$ROOT_NAME$": "QuoteServices.BadCountryCode",
+  "$ROOT_NAME$": "QuoteServices.BadStateCode",
   "$BASE_NAME$": "$ROOT_NAME$",
   "$VALIDATION$": "$ROOT$/Validators",
   "$OVERRIDES$": "$ROOT$/Overrides",
