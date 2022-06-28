@@ -1,0 +1,30 @@
+{
+  "KickerFiles":
+  [
+    "./testdata/WorkflowProcessing/TestKickers/Kicker.CreateQuote.SimpleHardwired.INT.json",
+    "./testdata/WorkflowProcessing/TestKickers/Kicker.QuoteServices.AusAddress.NoState.1.INT.json",
+    "./testdata/WorkflowProcessing/TestKickers/Kicker.QuoteServices.AusAddress.NoState.2.INT.json",
+    "./testdata/WorkflowProcessing/TestKickers/Kicker.QuoteServices.AusAddress.NoState.3.INT.json",
+    "./testdata/WorkflowProcessing/TestKickers/Kicker.QuoteServices.AusAddress.NoState.4.INT.json",
+    "./testdata/WorkflowProcessing/TestKickers/Kicker.QuoteServices.AusAddress.NoState.5.INT.json",
+    "./testdata/WorkflowProcessing/TestKickers/Kicker.QuoteServices.AusAddress.NoState.6.INT.json",
+    "./testdata/WorkflowProcessing/TestKickers/Kicker.QuoteServices.AusAddress.WithState.1.INT.json",
+    "./testdata/WorkflowProcessing/TestKickers/Kicker.QuoteServices.AusAddress.WithState.2.INT.json",
+    "./testdata/WorkflowProcessing/TestKickers/Kicker.QuoteServices.AusAddress.WithState.3.INT.json",
+    "./testdata/WorkflowProcessing/TestKickers/Kicker.QuoteServices.AusAddress.WithState.4.INT.json",
+    "./testdata/WorkflowProcessing/TestKickers/Kicker.QuoteServices.AusAddress.WithState.5.INT.json",
+    "./testdata/WorkflowProcessing/TestKickers/Kicker.QuoteServices.AusAddress.WithState.6.INT.json",
+    "./testdata/WorkflowProcessing/TestKickers/Kicker.QuoteServices.BadCity.INT.json",
+    "./testdata/WorkflowProcessing/TestKickers/Kicker.QuoteServices.BadCorruptTimezone.INT.json",
+    "./testdata/WorkflowProcessing/TestKickers/Kicker.QuoteServices.BadCountryCode.INT.json",
+    "./testdata/WorkflowProcessing/TestKickers/Kicker.QuoteServices.BadCurrency.INT.json",
+    "./testdata/WorkflowProcessing/TestKickers/Kicker.QuoteServices.BadHeaderCsn.INT.json",
+    "./testdata/WorkflowProcessing/TestKickers/Kicker.QuoteServices.BadJsonInject.INT.json",
+    "./testdata/WorkflowProcessing/TestKickers/Kicker.QuoteServices.BadPostalCode.INT.json",
+    "./testdata/WorkflowProcessing/TestKickers/Kicker.QuoteServices.BadResellerCsn.INT.json",
+    "./testdata/WorkflowProcessing/TestKickers/Kicker.QuoteServices.BadSoldToCsn.INT.json",
+    "./testdata/WorkflowProcessing/TestKickers/Kicker.QuoteServices.BadState.INT.json",
+    "./testdata/WorkflowProcessing/TestKickers/Kicker.QuoteServices.BadTimezone.INT.json",
+    "./testdata/WorkflowProcessing/TestKickers/Kicker.QuoteServices.FullWorkflow.INT.json",
+  ]
+}

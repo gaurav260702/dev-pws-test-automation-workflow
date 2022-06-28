@@ -1,43 +1,43 @@
 {
-    "quoteNote": "Notefromagenttocustomer.",
-    "currency": "AUD",
-    "agentAccount": {
-        "accountCsn": "5070132992"
-    },
-    "agentContact": {
-        "email": "australiauser1@letscheck.email"
-    },
-    "endCustomer": {
-        "name": "SM Qute Aussie Inc ",
-        "addressLine1": "11 Brunton Ave",
-        "city": "Richmond",
-        "countryCode": "AU",
-        "postalCode": "3002",
-        "stateProvinceCode": " VIC",
-        "isIndividual": false
-    },
-    "purchaser": {
-        "email": "SMAUST12@letscheck.pw",
-        "firstName": "SMPWSAUS12",
-        "lastName": "User12",
-        "phone": "9454454460",
-        "preferredLanguage": "en-us"
-    },
-    "lineItems": [
-        {
-            "quantity": 7500,
-            "offeringId": "OD-000163",
-            "orderAction": "New",
-            "subscriptionStartDate": "2022-06-30",
-            "offer": {
-                "term": "Annual",
-                "accessModel": "Flex",
-                "intendedUsage": "Commercial",
-                "connectivity": "Online",
-                "servicePlan": "Standard",
-                "billingBehavior": "Once",
-                "billingType": "Up-front"
-            }
-        }
-    ]
+  "lineItems": [
+    {
+      "offer": {
+        "billingBehavior": "Once",
+        "accessModel": "Flex",
+        "servicePlan": "Standard",
+        "connectivity": "Online",
+        "billingType": "Up-front",
+        "term": "Annual",
+        "intendedUsage": "Commercial"
+      },
+      "quantity": 7500,
+      "offeringId": "OD-000163",
+      "subscriptionStartDate": "2022-06-30",
+      "orderAction": "New"
+    }
+  ],
+  "agentAccount": {
+    "accountCsn": "5070132992"
+  },
+  "quoteNote": "Notefromagenttocustomer.",
+  "purchaser": {
+    "firstName": "SMPWSAUS12",
+    "lastName": "User12",
+    "preferredLanguage": "en-us",
+    "phone": "9454454460",
+    "email": "SMAUST12@letscheck.pw"
+  },
+  "agentContact": {
+    "email": "australiauser1@letscheck.email"
+  },
+  "endCustomer": {
+    "city": "Christmas Island",
+    "countryCode": "CX",
+    "postalCode": "6799",
+    "name": "SM Qute Aussie Inc ",
+    "addressLine1": "Jalan Bunga Mawar",
+    "stateCode": "Island of Cocos",
+    "isIndividual": false
+  },
+  "currency": "AUD"
 }

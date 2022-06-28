@@ -6,6 +6,7 @@ import java.io.FileWriter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import com.autodesk.pws.test.engine.*;
+import com.autodesk.pws.test.processor.DynamicData;
 
 import io.restassured.path.json.JsonPath;
 
@@ -48,6 +49,16 @@ public class StepBase
     public void cleanup()
     {
 
+    }
+    
+    public String fullyDetokenize(String tokenziedString)
+    {
+    	String retVal = tokenziedString;
+    	
+    	retVal = DynamicData.detokenizeRuntimeValues(retVal);
+    	retVal = DataPool.detokenizeDataPoolValues(retVal);
+    	
+    	return retVal;
     }
     
     public void sleep(int millisecondsToSleep)
