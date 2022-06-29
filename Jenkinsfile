@@ -19,6 +19,15 @@ def isMasterBranch = false
 def testfiles
 
 pipeline {
+  triggers {
+  parameterizedCron(env.BRANCH_NAME == 'master' ? '''
+      # Cron Format UTC - minute hour day month dayOfWeek
+      # -- Run all every day at 8 AM PST. 
+      0 08 * * *;
+      # -- Run all every day at 8 PM PST. 
+      0 20 * * *;
+      ''' : '')
+  }
   agent {
        label "aws-centos"
   }
@@ -38,7 +47,7 @@ pipeline {
       steps {
         script {
           // testfiles = findFiles(glob: '**/Kicker.*.json')
-          testfiles = findFiles(glob: '**/Kicker*Quote*json')
+          testfiles = findFiles(glob: '**/KickerSuite.QuoteServices.INT.json')
 
           echo ""
           echo "${testfiles[0].name} ${testfiles[0].path} ${testfiles[0].directory} ${testfiles[0].length} ${testfiles[0].lastModified}"
