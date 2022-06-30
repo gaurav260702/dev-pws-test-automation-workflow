@@ -22,8 +22,6 @@ pipeline {
   triggers {
   parameterizedCron(env.BRANCH_NAME == 'master' ? '''
       # Cron Format UTC - minute hour day month dayOfWeek
-      # -- Run all every day at 8 AM PST. 
-      0 08 * * *
       # -- Run all every day at 8 PM PST. 
       0 20 * * *
       ''' : '')
