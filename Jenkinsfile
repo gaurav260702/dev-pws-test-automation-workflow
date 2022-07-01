@@ -18,80 +18,62 @@ def isMasterBranch = false
 
 def testfiles
 
-pipeline 
-{
-    agent 
-    {
+pipeline {
+  agent {
+       label "aws-centos"
+  }
+  stages {
+    stage('Build Image') {
+     steps {
+       script {
+          sh "docker build --tag wpe ."
+          sh "docker image ls"
+        }
+      }
+    }
+    stage('Find Test Cases') {
+      agent {
         label "aws-centos"
-    }
-    stages 
-    {
-        stage('Build Image') 
-        {
-            steps 
-            {
-                script 
-                {
-                    sh "docker build --tag wpe ."
-                    sh "docker image ls"
-                }
-            }
-        }
-        stage('Find Test Cases') 
-        {
-            agent 
-            {
-                label "aws-centos"
-            }
-            steps 
-            {
-                script 
-                {
-                    // testfiles = findFiles(glob: '**/Kicker.*.json')
-                    testfiles = findFiles(glob: '**/KickerSuite.QuoteServices.INT.json')
+      }
+      steps {
+        script {
+          // testfiles = findFiles(glob: '**/Kicker.*.json')
+          testfiles = findFiles(glob: '**/Kicker*Quote*json')
 
-                    echo ""
-                    echo "${testfiles[0].name} ${testfiles[0].path} ${testfiles[0].directory} ${testfiles[0].length} ${testfiles[0].lastModified}"
-                    echo ""
-                }
-            }
+          echo ""
+          echo "${testfiles[0].name} ${testfiles[0].path} ${testfiles[0].directory} ${testfiles[0].length} ${testfiles[0].lastModified}"
+          echo ""
         }
-        stage('Running Cases') 
-        {
-            steps 
-            {
-                script 
-                {
-                    echo ""
-                    echo "${testfiles[0].name} ${testfiles[0].path} ${testfiles[0].directory} ${testfiles[0].length} ${testfiles[0].lastModified}"
-                    echo ""
-                    def dir_offset_to_trim = 'src/main/resources/'
-                    def testcase_run_dir
-                    def full_dir
-                    for (int i = 0; i < testfiles.size(); i++) 
-                    {
-                        full_dir = "${testfiles[i].path}"
-                        testcase_run_dir = full_dir.replaceAll(/^$ {dir_offset_to_trim}/, "")
-                        stage(testfiles[i].name) 
-                        {
-                            echo "Test case full directory ${full_dir}"
-                            echo "Test case relative directory to run: ${testcase_run_dir}"
-                            sh "docker run wpe mvn spring-boot:run -Dspring-boot.run.arguments='${testcase_run_dir}'"
-                        }
-                    }
-                }
-            }
-        }
+      }
     }
-    post 
-    {
-        always 
-        {
-            script 
-            {
-                sh 'docker image rm -f wpe'
-                sh 'docker image ls'
+    stage('Running Cases') {
+      steps {
+        script {
+          echo ""
+          echo "${testfiles[0].name} ${testfiles[0].path} ${testfiles[0].directory} ${testfiles[0].length} ${testfiles[0].lastModified}"
+          echo ""
+          def dir_offset_to_trim = 'src/main/resources/'
+          def testcase_run_dir
+          def full_dir
+          for (int i = 0; i < testfiles.size(); i++) {
+            full_dir = "${testfiles[i].path}"
+            testcase_run_dir = full_dir.replaceAll(/^${dir_offset_to_trim}/, "")
+            stage(testfiles[i].name) {
+              echo "Test case full directory ${full_dir}"
+              echo "Test case relative directory to run: ${testcase_run_dir}"
+              sh "docker run wpe mvn spring-boot:run -Dspring-boot.run.arguments='${testcase_run_dir}'"
             }
+          }
         }
+      }
     }
+  }
+  post {
+    always {
+      script {
+        sh 'docker image rm -f wpe'
+        sh 'docker image ls'
+      }
+    }
+  }
 }
