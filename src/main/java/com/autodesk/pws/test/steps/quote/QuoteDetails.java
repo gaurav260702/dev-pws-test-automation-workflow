@@ -50,15 +50,13 @@ public class QuoteDetails extends PwsServiceBase
     private void setResourcePath()
     {
     	// https://quote.ddwsdev.autodesk.com/v1/details?quoteNumber=7265267
-    	this.log("!!!! WARNING -- THIS STEP HAS HARD CODED VALUES -- WARNING!!!!");
-    	DataPool.add("$QUOTE_NUMBER$", "Q-00600");
 		super.setResourcePath("v1/quotes?quoteNumber=$QUOTE_NUMBER$");
     }
 
 	@Override
     public void action()
     {
-		attachHeaderFromDataPool("CSN", "$CSN_SECONDARY$");
+		//attachHeaderFromDataPool("CSN", "$CSN_ACCOUNT_CONTACT$");
 		
 		super.action();
     }

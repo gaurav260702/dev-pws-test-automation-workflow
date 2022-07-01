@@ -14,7 +14,8 @@ public class PwsServiceBase extends RestActionBase
     public int MillisecondsBetweenNullResponseRetry = 1000;
 	//  Call the method that does the meat of the work...
     public Response ActionResult = null;
-    
+	public String ExpectedEndStateStatus = "";
+	
     @Override
     public void preparation()
     {
@@ -298,5 +299,17 @@ public class PwsServiceBase extends RestActionBase
 		}
 		
 		return ExceptionAbortStatus;
+	}
+
+    public void setExpectedEndState(String className) 
+    {
+		ExpectedEndStateStatus =
+				DataPool.
+					getOrDefault(
+									className + ".ExpectedEndStateStatus",
+									ExpectedEndStateStatus
+								).toString();
+		
+		ExpectedResponseMessage = this.ExpectedEndStateStatus;
 	}
 }

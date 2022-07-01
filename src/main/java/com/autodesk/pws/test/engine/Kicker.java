@@ -3,7 +3,6 @@ package com.autodesk.pws.test.engine;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
-import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.nio.charset.Charset;
 import java.nio.file.Path;
@@ -23,7 +22,6 @@ import com.autodesk.pws.test.processor.*;
 import com.autodesk.pws.test.steps.base.*;
 import com.autodesk.pws.test.utilities.StringUtils;
 import com.autodesk.pws.test.workflow.*;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.gson.Gson;
 import com.google.gson.internal.LinkedTreeMap;
 import com.google.gson.reflect.TypeToken;
@@ -445,7 +443,7 @@ public class Kicker
         	workflowProcEngine.setLogToFile(logToFile, logFileName, testName);
         	
             //  Execute the workflow steps...
-            workflowCompleted = workflowProcEngine.execute(workflow);
+            workflowCompleted = workflowProcEngine.execute(workflow, testName);
 
             logIt("  ");
             logIt("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
@@ -456,6 +454,8 @@ public class Kicker
 	
 	            //  Get the validation relative file path from the data pool...
 	            String validationFile = dataPool.getRaw("validationFile").toString();
+	            
+	            logIt("  -- Validation file: " + validationFile);
 	            
 	            //  Check to see if the validation file exists, and...
 	            if(fileExists(validationFile))

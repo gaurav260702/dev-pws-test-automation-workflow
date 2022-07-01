@@ -1,6 +1,5 @@
 package com.autodesk.pws.test.steps.quote;
 
-import com.autodesk.pws.test.processor.DynamicData;
 import com.autodesk.pws.test.steps.base.*;
 import io.restassured.path.json.JsonPath;
 
@@ -36,13 +35,14 @@ public class QuoteFinalize extends PwsServiceBase
     	//  Do stuff that the Action depends on to execute...
     	super.preparation();
     	
-    	//  Having a "PATCH" method normally requires a body, but 
-    	//  for some reason this service was implemented without
-    	//  actually needing a real JSON body.  To get around that
-    	//  we're essentially sticking in a zero-data JSON body...
-    	String jsonBody = "{ \"foobar\": \"foo\" }";
-    	//String jsonBody = gson.toJson(rawJson);
-    	jsonBody = DynamicData.detokenizeRuntimeValues(jsonBody);
+    	//  Having a "PATCH" method requires a body.
+    	//  This should be stored in an external file, but
+    	//  for the moment we're going to embed it in the 
+    	//  class as I don't want to deal with creating a
+    	//  loader/extracter at this time...
+    	String jsonBody = "{\"quoteNumber\":\"$QUOTE_NUMBER$\",\"agentAccount\":{\"accountCsn\":\"$CSN_HEADER$\"},\"agentContact\":{\"email\":\"BIG_FAKE_EMAIL@FAKE-EMAIL.com\"}}";
+    	jsonBody = this.fullyDetokenize(jsonBody);
+    	
     	this.setJsonRequestBody(jsonBody);
     	
     	setTargetUrl();
@@ -50,13 +50,13 @@ public class QuoteFinalize extends PwsServiceBase
 
     private void setResourcePath()
     {
-		super.setResourcePath("/v1/quotes/finalize/$QUOTE_NUMBER$");
+		super.setResourcePath("/v1/quotes/finalize");
     }
 
 	@Override
     public void action()
     {
-		attachHeaderFromDataPool("CSN", "$CSN_SECONDARY$");
+		// attachHeaderFromDataPool("CSN", "$CSN_SECONDARY$");
 		
 		super.action();
     }

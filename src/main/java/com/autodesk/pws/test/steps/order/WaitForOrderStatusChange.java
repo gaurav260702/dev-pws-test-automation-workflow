@@ -122,7 +122,7 @@ public class WaitForOrderStatusChange extends RestActionBase
 				}
 			}
 
-			getOrderStatus.SuppressLogging = true;
+			//getOrderStatus.SuppressLogging = true;
 		}
 
 		log("Final status: " + finalStatus);
