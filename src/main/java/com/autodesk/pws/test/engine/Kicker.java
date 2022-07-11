@@ -161,7 +161,11 @@ public class Kicker
 
 			SimpleScripter.DebugLoggingEnabled = Boolean.valueOf(dataPool.get("SimpleScriptDebugLoggingEnabled").toString());
 			
-			logIt("LOG FILE PATH: " + reportOutLogFileInfo());
+			String fullLogFilePath = reportOutLogFileInfo();
+			
+			dataPool.add("$LOG_FILE_PATH$", fullLogFilePath);
+			
+			logIt("LOG FILE PATH: " + fullLogFilePath);
 			logIt("SIMPLESCRIPT DEBUG: " + SimpleScripter.DebugLoggingEnabled);
     	}
     }
@@ -442,6 +446,13 @@ public class Kicker
         	//  Set the logToFile flag on the WPE...
         	workflowProcEngine.setLogToFile(logToFile, logFileName, testName);
         	
+        	//  Assume the test fails unless it's specifically
+        	//  marked with "PASS" result...
+        	dataPool.addAsDefault("$TEST_STATUS$", "FAIL");
+        	
+        	//  Record the JuiceBox log...
+        	logJuiceBoxTestInfo(testName, workflow);
+        	
             //  Execute the workflow steps...
             workflowCompleted = workflowProcEngine.execute(workflow, testName);
 
@@ -460,7 +471,7 @@ public class Kicker
 	            //  Check to see if the validation file exists, and...
 	            if(fileExists(validationFile))
 	            {
-		            //  If it exists, theb do the validations...
+		            //  If it exists, then do the validations...
 	            	validationResults = doValidations(validationFile);
 	            	validationsCompleted = true;
 	            }
@@ -533,7 +544,68 @@ public class Kicker
         	dumpDataPool();
         }
         
+        if(exitCode == 0)
+        {
+        	dataPool.add("$TEST_RESULT$", "PASS");
+        }
+        
+        //  Log the JuiceBox test results...
+        logJuiceBoxResultInfo();
+        
         return exitCode;
+    }
+    
+    private void logJuiceBoxTestInfo(String currentTestName, List<StepBase> currentWorkflow) 
+    {
+    	//  Set the DataPool value for the $TEST_NAME$...
+	    dataPool.addAsDefault("$TEST_NAME$", currentTestName);
+    	
+	    //  Prepare a quoted, comma delimited list of workflow steps...
+	    ArrayList<String> workflowList = new ArrayList<String>();
+	    
+	    // Prep a step container for use during looping...
+	    StepBase step = null;
+	    
+	    String stepName = "";
+	    
+		// Loop through each step in order...
+		for (int i = 0; i < currentWorkflow.size(); i++) 
+		{
+			// Grab the next step...
+			step = currentWorkflow.get(i);
+			
+			// Grab the next step...
+			stepName = step.getClass().getSimpleName();
+			workflowList.add("\"" + stepName + "\"");
+		}
+	    
+	    String csvWorkflowList = String.join(",", workflowList);
+	    
+	    dataPool.add("$QUOTED_CSV_WORKFLOW$", csvWorkflowList);
+	    
+	    //  Prepare the JuiceBox raw JSON "container"...
+	    String rawJuiceBox = "$juiceBox->{\"juiceBox\":{\"juiceBoxType\":\"testInfo\",\"TestName\":\"$TEST_NAME$\",\"Workflow\":[$QUOTED_CSV_WORKFLOW$],\"Description\":\"$TEST_DESCRIPTION$\",\"testId\":\"$TEST_ID$\",\"runtimeId\": \"$RUNTIME_ID$\"}}<-juiceBox$";
+
+	    dataPool.addAsDefault("$TEST_ID$", "???");
+	    dataPool.addAsDefault("$TEST_DESCRIPTION$", "");
+	    
+	    //  Swap in the appropriate token values...
+	    rawJuiceBox = dataPool.detokenizeDataPoolValues(rawJuiceBox);
+		
+	    //  LOG IT!!
+	    logIt(rawJuiceBox);
+	}
+
+    private void logJuiceBoxResultInfo()
+    {
+    //  Prepare the JuiceBox raw JSON "container"...
+	    String rawJuiceBox = "$juiceBox->{\"juiceBox\":{\"juiceBoxType\":\"testResults\",\"TestName\":\"$TEST_NAME$\",\"TestLogPath\":\"$LOG_FILE_PATH$\",\"TestStatus\":\"$TEST_STATUS$\",\"testId\":\"$TEST_ID$\",\"runtimeId\": \"$RUNTIME_ID$\"}}<-juiceBox$";
+	    
+	    //  Swap in the appropriate token values...
+	    rawJuiceBox = dataPool.detokenizeDataPoolValues(rawJuiceBox);
+		
+	    //  LOG IT!!
+	    logIt(rawJuiceBox);
     }
 
 	private void mergeCmdLineOverridesIntoDataPool() 
@@ -588,6 +660,7 @@ public class Kicker
     {
 		String strDate = DynamicData.getSimpleDatTimeFormat();
         dataPool.add("$FULL_DATE_TIME$", strDate);
+        dataPool.add("$RUNTIME_ID$", SimpleScripter.CreateUniqueHexTimestamp());
 	}
 
 	private boolean fileExists(String relativeFilePath) 
@@ -761,7 +834,7 @@ public class Kicker
     	logIt("ExecutionPath set to: " + absolute);
     }
 
-    @SuppressWarnings("unchecked")
+    @SuppressWarnings({ "unchecked", "unused" })
 	private String dumpValidationChain()
     {
     	//  Ready a container to hold the return value...

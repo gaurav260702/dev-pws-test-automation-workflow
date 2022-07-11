@@ -12,7 +12,7 @@
       },
       "quantity": 7500,
       "offeringId": "OD-000163",
-      "subscriptionStartDate": "2022-06-30",
+      "subscriptionStartDate": "[[Date(25)]]",
       "orderAction": "New"
     }
   ],

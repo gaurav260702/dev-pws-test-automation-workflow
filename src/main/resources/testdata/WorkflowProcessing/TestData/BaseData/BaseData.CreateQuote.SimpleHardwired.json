@@ -1,7 +1,7 @@
 {
     "salesOpportunityNumber": "A-31725362",
     "quoteNote": "Notefromagenttocustomer.",
-    "subscriptionStartDate": "2022-05-01",
+    "subscriptionStartDate": "[[Date(25)]]",
     "currency": "USD",
     "agentAccount": {
         "accountCsn": "$CSN_RESELLER$"

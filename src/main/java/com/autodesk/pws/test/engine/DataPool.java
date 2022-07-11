@@ -440,4 +440,12 @@ public class DataPool extends HashMap<String, Object>
         s.append('$');
         return(s.toString());
     }
+
+	public void addAsDefault(String key, String defaultValueIfNonExistent) 
+	{
+	    if(!this.containsKey(key))
+	    {
+	    	this.add(key, defaultValueIfNonExistent);
+	    }
+	}
 }
