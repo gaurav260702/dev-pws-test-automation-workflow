@@ -19,6 +19,16 @@ def isMasterBranch = false
 def testfiles
 
 pipeline {
+  triggers {
+    parameterizedCron(env.BRANCH_NAME == 'master' ? '''
+        # run all performance tests every Tuesday at 8 AM PST. Cron Format UTC - minute hour day month dayOfWeek
+        0 15 * * 2 % runAllSpartanTests=true;
+        # run all performance tests every Tuesday at 9 AM PST
+        0 16 * * 2 % runAllDDWSTests=true;
+        # run security scans every Monday at 8 AM PST
+        0 15 * * 1 % runSecurityScan=true;
+    ''' : '')
+  }
   agent {
        label "aws-centos"
   }
