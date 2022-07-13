@@ -546,7 +546,7 @@ public class Kicker
         
         if(exitCode == 0)
         {
-        	dataPool.add("$TEST_RESULT$", "PASS");
+        	dataPool.add("$TEST_STATUS$", "PASS");
         }
         
         //  Log the JuiceBox test results...
