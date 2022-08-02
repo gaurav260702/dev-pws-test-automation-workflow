@@ -12,7 +12,7 @@
 	  "transactionId": "*",
 	  "error": {
 	    "code": "46002",
-	    "message": "Requested currency 'ZZZ' is not part of ['AED', 'ARS', 'ATS', 'AUD', 'BEF', 'BRL', 'CAD', 'CHF', 'CNY', 'COP', 'CZK', 'DEM', 'DKK', 'ESP', 'EUR', 'FIM', 'FRF', 'GBP', 'GRD', 'HKD', 'HUF', 'IDR', 'IEP', 'ILS', 'INR', 'ISK', 'ITL', 'JPY', 'KRW', 'MXN', 'MYR', 'NLG', 'NOK', 'NZD', 'PHP', 'PLN', 'QAR', 'ROL', 'RON', 'RUB', 'SAR', 'SEK', 'SGD', 'SKK', 'THB', 'TRY', 'TWD', 'UAH', 'USD', 'VEB', 'VEF', 'VND', 'ZAR']."
+	    "message": "Invalid currency code"
 	  }
 	},
 
@@ -32,7 +32,7 @@
       "code": "45002",
       "message": "Enter a valid quoteNumber"
     },
-    "status": "ERROR"
+    "status": "error"
   },
 
   "QuoteStatusByQuoteNumber":

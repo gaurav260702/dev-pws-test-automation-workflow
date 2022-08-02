@@ -11,7 +11,7 @@
 
   "$CSN_SOLDTO$": "1234567890",
   "$CSN_RESELLER$": "5070132992",
-  "$CSN_ENDCUSTOMER$": "5070132992",
+  "$CSN_ENDCUSTOMER$": "$CSN_SOLDTO$",
   "$CSN_SHIPTO$": "5070132992",
 
   "$CSN_PRIMARY$": "$CSN_ENDCUSTOMER$",
@@ -46,7 +46,7 @@
 
   "secretsFile": "$CONFIG$/Secrets.GetInvoiceServices.INT.json",
 
-  "baseFile": "$BASE_DATA$/BaseData.QuoteServices.GenericAus.$ENV$.json",
+  "baseFile": "$BASE_DATA$/BaseData.QuoteServices.BadSoldToCSN.$ENV$.json",
   "overridesFile": "$OVERRIDES$/Override.NONE.json",
   "validationFile": "$VALIDATION$/Validator.$ROOT_NAME$.$ENV$.json",
 

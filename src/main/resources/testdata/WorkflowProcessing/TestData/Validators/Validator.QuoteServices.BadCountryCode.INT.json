@@ -33,7 +33,7 @@
       "code": "45002",
       "message": "Enter a valid quoteNumber"
     },
-    "status": "ERROR"
+    "status": "error"
   },
 
   "QuoteStatusByQuoteNumber":
