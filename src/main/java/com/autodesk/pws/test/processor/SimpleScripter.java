@@ -4,6 +4,8 @@ import java.io.Reader;
 import java.io.StreamTokenizer;
 import java.io.StringReader;
 import java.lang.reflect.Method;
+import java.nio.ByteBuffer;
+import java.nio.charset.StandardCharsets;
 import java.text.SimpleDateFormat;
 import java.util.*;
 import java.util.AbstractMap.*;
@@ -216,6 +218,30 @@ public class SimpleScripter
         debugLog("Return value: '" + retVal + "'...");
         
         return retVal;
+    }
+    
+    public static String CreateUniqueHexTimestamp()
+    {
+    	long time = System.nanoTime();
+    	
+        byte [] bytes = ByteBuffer.allocate(8).putLong(time).array();
+        
+        String retVal = bytesToHex(bytes);
+        
+        return retVal;
+    }
+    
+    private static final byte[] HEX_ARRAY = "0123456789ABCDEF".getBytes(StandardCharsets.US_ASCII);
+    
+    public static String bytesToHex(byte[] bytes) 
+    {
+        byte[] hexChars = new byte[bytes.length * 2];
+        for (int j = 0; j < bytes.length; j++) {
+            int v = bytes[j] & 0xFF;
+            hexChars[j * 2] = HEX_ARRAY[v >>> 4];
+            hexChars[j * 2 + 1] = HEX_ARRAY[v & 0x0F];
+        }
+        return new String(hexChars, StandardCharsets.UTF_8);
     }
     
     public static String Date(String numberOfDaysToAddToCurrentDate)

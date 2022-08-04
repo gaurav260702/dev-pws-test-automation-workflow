@@ -1,7 +1,6 @@
 {
   "KickerFiles":
   [
-    "./testdata/WorkflowProcessing/TestKickers/Kicker.CreateQuote.SimpleHardwired.INT.json",
     "./testdata/WorkflowProcessing/TestKickers/Kicker.QuoteServices.AusAddress.NoState.1.INT.json",
     "./testdata/WorkflowProcessing/TestKickers/Kicker.QuoteServices.AusAddress.NoState.2.INT.json",
     "./testdata/WorkflowProcessing/TestKickers/Kicker.QuoteServices.AusAddress.NoState.3.INT.json",
@@ -25,6 +24,6 @@
     "./testdata/WorkflowProcessing/TestKickers/Kicker.QuoteServices.BadSoldToCsn.INT.json",
     "./testdata/WorkflowProcessing/TestKickers/Kicker.QuoteServices.BadState.INT.json",
     "./testdata/WorkflowProcessing/TestKickers/Kicker.QuoteServices.BadTimezone.INT.json",
-    "./testdata/WorkflowProcessing/TestKickers/Kicker.QuoteServices.FullWorkflow.INT.json",
+    "./testdata/WorkflowProcessing/TestKickers/Kicker.QuoteServices.FullWorkflow.INT.json"
   ]
 }

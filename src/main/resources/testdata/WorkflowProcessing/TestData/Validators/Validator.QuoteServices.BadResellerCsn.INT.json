@@ -1,16 +1,20 @@
 {
   "QuoteCreate":
   {
+    "error": {
+      "code": "45001",
+      "message": "Enter a valid Agent Account CSN"
+    },
     "transactionId": "*",
-    "message": "Enter a valid Agent Account CSN"
+    "status": "error"
   },
 
   "QuoteStatus":
   {
     "status": "error",
     "error": {
-      "code": "45004",
-      "message": "transactionId is not valid"
+      "code": "45001",
+      "message": "Agent Account CSN is not Authorized"
     }
   },
 
@@ -30,7 +34,7 @@
       "code": "45002",
       "message": "Enter a valid quoteNumber"
     },
-    "status": "ERROR"
+    "status": "error"
   },
 
   "QuoteStatusByQuoteNumber":

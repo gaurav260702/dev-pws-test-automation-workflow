@@ -7,7 +7,9 @@ public class QuoteStatus extends PwsServiceBase
 {
 	public String DataPoolSourceInfoLabel = "";
 	protected boolean LoopTillExpectedStatus = false;
-
+	protected Integer MaxRetryLoopCount = 12;
+	protected Integer MilliSecondsSleepBeforeStatusAttempt = 10000;
+	
 	QuoteStatus()
 	{
 		LoopTillExpectedStatus = false;
@@ -75,9 +77,7 @@ public class QuoteStatus extends PwsServiceBase
 	private void doActionLoop()
 	{
 		boolean continueTrying = true;
-		Integer maxRetries = 600;
 		Integer flagForDelaysAt = 25;
-		Integer msSleepBeforeStatus = 10000;
 		Integer retryCounter = 0;
 		String finalStatus = "none";
 
@@ -86,7 +86,7 @@ public class QuoteStatus extends PwsServiceBase
 
 		while (continueTrying) 
 		{
-			sleep(msSleepBeforeStatus);
+			sleep(MilliSecondsSleepBeforeStatusAttempt);
 
 			retryCounter += 1;
 			
@@ -96,14 +96,14 @@ public class QuoteStatus extends PwsServiceBase
 				getOrderStatus.refreshOauthToken();
 			}
 */
-			if(retryCounter >= maxRetries)
+			if(retryCounter >= MaxRetryLoopCount)
 			{
 				continueTrying = false;
 				finalStatus = "timeout";
 			}
 			else 
 			{
-				log("Attempt (" + retryCounter + ") of (" + maxRetries + ")...");
+				log("Attempt (" + retryCounter + ") of (" + MaxRetryLoopCount + ")...");
 
 				super.action();
 

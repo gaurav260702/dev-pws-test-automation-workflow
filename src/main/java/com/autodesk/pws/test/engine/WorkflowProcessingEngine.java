@@ -27,6 +27,8 @@ public class WorkflowProcessingEngine
     //  Name of the current test...
     public String CurrentTestName = "";
     
+    private List<StepBase> currentWorkflow;
+    
     //////////////////////////////////////////////////////////////////////////////
     // TODO:  Implement routines to handle "ExceptionAbortStatus"!!
     //        This should come between each substep (preparation, action, 
@@ -45,7 +47,7 @@ public class WorkflowProcessingEngine
 	    // Prep a container for a lastStep reference...
 	    StepBase lastStep = null;
 	    
-	    // Prep a container for looping through..
+	    // Prep a step container for use during looping...
 	    StepBase step = null;
 	
 	    // Ready a step counter...
@@ -55,12 +57,13 @@ public class WorkflowProcessingEngine
 	    // the step.logger() method in the loop below...
 	    Boolean firstReportMade = false;
 	    
-	    this.CurrentTestName = currentTestName;
+	    this.CurrentTestName = currentTestName;    
+	    this.currentWorkflow = workflowToExecute;
 	    
 	    // Report out intended step execution...
-	    for (int i = 0; i < workflowToExecute.size(); i++) 
+	    for (int i = 0; i < currentWorkflow.size(); i++) 
 		{
-	    	step = workflowToExecute.get(i);
+	    	step = currentWorkflow.get(i);
 	    	DataPool.StepLogger = step;
 	      
 	    	stepCount += 1;
@@ -68,22 +71,23 @@ public class WorkflowProcessingEngine
 			if (!firstReportMade) 
 			{
 				step.logNoPad("  ");
-				step.logNoPad("Test Name: " + this.CurrentTestName);
+				step.logNoPad("Test Name: " + CurrentTestName);
 				step.logNoPad("Step execution outline:");
+				
 				firstReportMade = true;
 			}
 	
 			step.logNoPad("   (" + stepCount + ") -- " + step.getClass().getSimpleName());
 	    }
-	
+
 	    // Reset the step counter...
 	    stepCount = 0;
 	
 		// Loop through and execute each step in order...
-		for (int i = 0; i < workflowToExecute.size(); i++) 
+		for (int i = 0; i < currentWorkflow.size(); i++) 
 		{
 			// Grab the next step...
-			step = workflowToExecute.get(i);
+			step = currentWorkflow.get(i);
 		 	
 		 	// Push up the counter...
 		   	stepCount += 1;
@@ -107,7 +111,7 @@ public class WorkflowProcessingEngine
 				// Log each substep in order...
 				step.logNoPad("");
 				step.logNoPad("");
-				step.logNoPad("Step #" + stepCount + " of " + workflowToExecute.size() + " [-- " + this.CurrentTestName + " --]");
+				step.logNoPad("Step #" + stepCount + " of " + currentWorkflow.size() + " [-- " + this.CurrentTestName + " --]");
 				step.logNoPad("-------------------------------------------------------------");
 				step.logNoPad("EXECUTING STEP: '" + currentStep + "'");
 				

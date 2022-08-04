@@ -40,7 +40,7 @@ public class QuoteFinalize extends PwsServiceBase
     	//  for the moment we're going to embed it in the 
     	//  class as I don't want to deal with creating a
     	//  loader/extracter at this time...
-    	String jsonBody = "{\"quoteNumber\":\"$QUOTE_NUMBER$\",\"agentAccount\":{\"accountCsn\":\"$CSN_HEADER$\"},\"agentContact\":{\"email\":\"BIG_FAKE_EMAIL@FAKE-EMAIL.com\"}}";
+    	String jsonBody = "{\"quoteNumber\":\"$QUOTE_NUMBER$\",\"agentAccount\":{\"accountCsn\":\"$CSN_HEADER$\"},\"agentContact\":{\"email\":\"partneruser_da_int_0070000339_2@letscheck.email\"}}";
     	jsonBody = this.fullyDetokenize(jsonBody);
     	
     	this.setJsonRequestBody(jsonBody);

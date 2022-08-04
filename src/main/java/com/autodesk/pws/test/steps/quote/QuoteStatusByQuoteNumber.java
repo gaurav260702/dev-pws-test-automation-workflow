@@ -13,6 +13,9 @@ public class QuoteStatusByQuoteNumber extends QuoteStatus
     super.preparation();
     this.ClassName = this.getClass().getSimpleName();
     
+    //  Clamp down on the default retry count...
+    this.MaxRetryLoopCount = 12;
+    
     setResourcePath();
     
     setTargetUrl();
