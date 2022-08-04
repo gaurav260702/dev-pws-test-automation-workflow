@@ -30,7 +30,7 @@
   "QuoteFinalize":
   {
     "error": {
-      "code": "45002",
+      "code": "45302",
       "message": "Enter a valid quoteNumber"
     },
     "status": "error"
@@ -39,7 +39,7 @@
   "QuoteStatusByQuoteNumber":
   {
     "error": {
-      "code": "45002",
+      "code": "45202",
       "message": "Enter a valid quoteNumber"
     },
     "status": "error"
