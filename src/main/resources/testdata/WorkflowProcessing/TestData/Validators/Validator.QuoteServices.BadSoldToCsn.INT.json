@@ -8,7 +8,7 @@
   "QuoteStatus":
 
   {
-    "status": "FAILED",
+    "quoteStatus": "FAILED",
     "quoteNumber": "NA",
     "transactionId": "*",
     "error": {

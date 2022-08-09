@@ -9,7 +9,7 @@
   {
     "transactionId": "$TRANSACTION_ID$",
     "quoteNumber": "*",
-    "status": "*"
+    "quoteStatus": "*"
   },
 
   "QuoteDetails":
@@ -31,6 +31,6 @@
   {
     "transactionId": "$TRANSACTION_ID$",
     "quoteNumber": "$QUOTE_NUMBER$",
-    "status": "QUOTED"
+    "quoteStatus": "QUOTED"
   }
 }

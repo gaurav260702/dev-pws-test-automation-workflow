@@ -10,7 +10,7 @@
   "$BASE_DATA$": "$ROOT$/BaseData",
   "$CONFIG$": "$ROOT$/Configurations",
 
-  "$CSN_SOLDTO$": "172611146",
+  "$CSN_SOLDTO$": "185723294",
   "$CSN_RESELLER$": "5070132992",
   "$CSN_ENDCUSTOMER$": "5070132992",
   "$CSN_SHIPTO$": "5070132992",
@@ -22,6 +22,9 @@
 
   "$CSN_ACCOUNT_CONTACT$": "5070132992",
   "$CSN_HEADER$": "5070132992",
+
+  "$OFFERING_ID$": "OD-000450","$AGENT_EMAIL$":
+  "partneruser_da_stg_5070132992_2@letscheck.email",
 
   "$CREATE_QUOTE_BASE_URL$": "https://enterprise-api-$ENV$.autodesk.com/",
 

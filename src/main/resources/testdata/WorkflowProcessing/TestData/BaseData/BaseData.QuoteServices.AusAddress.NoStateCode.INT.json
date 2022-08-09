@@ -5,7 +5,7 @@
         "accountCsn": "$CSN_RESELLER$"
     },
     "agentContact": {
-        "email": "australiauser1@letscheck.email"
+        "email": "$AGENT_EMAIL$"
     },
     "endCustomer": {
         "name": "SM Qute Aussie Inc ",
@@ -25,7 +25,7 @@
     "lineItems": [
         {
             "quantity": 7500,
-            "offeringId": "OD-000163",
+            "offeringId": "$OFFERING_ID$",
             "orderAction": "New",
             "subscriptionStartDate": "[[Date(25)]]",
             "offer": {
