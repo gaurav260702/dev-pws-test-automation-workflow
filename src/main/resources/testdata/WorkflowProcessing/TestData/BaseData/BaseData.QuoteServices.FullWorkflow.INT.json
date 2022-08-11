@@ -11,7 +11,7 @@
         "intendedUsage": "Commercial"
       },
       "quantity": 7500,
-      "offeringId": "OD-000163",
+      "offeringId": "$OFFERING_ID$",
       "subscriptionStartDate": "[[Date(25)]]",
       "orderAction": "New"
     }
@@ -28,7 +28,7 @@
     "email": "SMAUST12@letscheck.pw"
   },
   "agentContact": {
-    "email": "australiauser1@letscheck.email"
+    "email": "$AGENT_EMAIL$"
   },
   "endCustomer": {
     "city": "Christmas Island",

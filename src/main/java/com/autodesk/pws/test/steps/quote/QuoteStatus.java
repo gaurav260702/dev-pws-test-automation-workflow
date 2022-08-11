@@ -111,21 +111,29 @@ public class QuoteStatus extends PwsServiceBase
 
 				JsonPath pathFinder = JsonPath.from(json);
 
-				String status = pathFinder.get("status");
+				String status = pathFinder.get("quoteStatus");
 				String faultString = pathFinder.get("fault.faultstring");
-				String statusMsg = pathFinder.getString("message");
+				String errMsg = pathFinder.get("error.message");
+				String errStatus = pathFinder.get("status");
 				
-				if (status == null && faultString != null) {
+				if (status == null && faultString != null)
+				{
 					status = "fault";
 				}
 				
-				if (statusMsg != null && statusMsg.length() > 0) {
-					statusMsg = " - " + statusMsg;
+				if(errStatus != null)
+				{
+					status = errStatus;
+				}
+				
+				if (errMsg != null && errMsg.length() > 0) 
+				{
+					errMsg = " - " + errMsg;
 				} else {
-					statusMsg = "";
+					errMsg = "";
 				}
 
-				log("Current status: " + status + statusMsg);
+				log("Current status: " + status + errMsg);
 
 				if (status.matches(ExpectedEndStateStatus) ||
 					status.toLowerCase().matches("error") || 

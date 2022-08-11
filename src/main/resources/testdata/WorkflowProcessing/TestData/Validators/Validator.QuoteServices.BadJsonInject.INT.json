@@ -7,10 +7,10 @@
 
   "QuoteStatus":
   {
-	  "status": "FAILED",
+	  "quoteStatus": "FAILED",
 	  "quoteNumber": "NA",
 	  "transactionId": "*",
-	  "error": 
+	  "error":
 	  {
 	    "code": "46007",
 	    "message": "Invalid EndCustomer Address"

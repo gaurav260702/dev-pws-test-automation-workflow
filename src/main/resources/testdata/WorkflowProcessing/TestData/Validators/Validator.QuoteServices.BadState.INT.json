@@ -14,7 +14,7 @@
     },
     "quoteNumber": "NA",
     "transactionId": "*",
-    "status": "FAILED"
+    "quoteStatus": "FAILED"
   },
 
   "QuoteDetails":
