@@ -264,7 +264,8 @@ public class RestActionBase extends StepBase
 		return response;
 	}
 
-	public void addResponseToValidationChain() {
+	public void addResponseToValidationChain() 
+	{
 		// Stick that response body in the ValidationChain,
 		// but let's go ahead and make it puuuurrrdy first.
 		//

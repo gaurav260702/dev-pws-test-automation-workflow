@@ -132,10 +132,24 @@ public class WaitForOrderStatusChange extends RestActionBase
 		// cause an alteration of the default workflow...
 		if (!finalStatus.matches(expectedEndStateStatus)) 
 		{
-			getOrderStatus.addResponseToValidationChain();
+			addToValidationChain();
+
 			ExceptionAbortStatus = true;
 			ExceptionMessage = "Expected to reach '" + expectedEndStateStatus + "' state, but ended in '" + finalStatus + "' state!";
 		}
+	}
+
+	private void addToValidationChain() 
+	{
+		// Call this to be sure that the final JsonResponseBody
+		// is added to the ValidationChain...
+		getOrderStatus.addResponseToValidationChain();
+		
+		//  Now overwriting the default GetOrderStatus class name
+		//  with the name of this class so that the ValidationChain
+		//  has an appropriate entry in it...
+		getOrderStatus.ClassName = this.ClassName;
+		getOrderStatus.validation();
 	}
 
 	@Override
@@ -143,8 +157,6 @@ public class WaitForOrderStatusChange extends RestActionBase
 	{
 		super.validation();
 
-		// We call this here to be sure that the final JsonResponseBody
-		// is added to the ValidationChain...
-		getOrderStatus.validation();
+		addToValidationChain();
 	}
 }

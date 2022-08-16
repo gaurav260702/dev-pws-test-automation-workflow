@@ -1,5 +1,5 @@
 {
-  "$BASE_NAME$": "DDA.PrecannedInitialOrder",
+  "$BASE_NAME$": "DDA.InitialOrder",
   "$ROOT$": "./testdata/WorkflowProcessing/TestData",
   "$ENV$": "STG",
 
@@ -25,8 +25,8 @@
   "$PRODUCT_SKU_PRIMARY$": "$PART_NUMBER$",
   "$RENEWAL_SKU$": "128F1-001355-L890",
   "$CSN_HEADER$": "$CSN_RESELLER$",
-
   "$EXTENSION_DATE$": "[[Date(455)]]",
+  "$QUANTITY$": "10",
 
   "baseUrl": "https://enterprise-api-$ENV$.autodesk.com",
   "oAuthBaseUrl":  "https://enterprise-api-$ENV$.autodesk.com",
@@ -35,17 +35,17 @@
   "baseFile": "$BASE_FILE$",
   "overridesFile": "$ROOT$/Overrides/Override.NONE.json",
 
-  "validationFile": "$ROOT$/Validators/Validator.DDA.VanillaInitialOrderWithDdaRenewal.$ENV$.json",
+  "validationFile": "$ROOT$/Validators/Validator.$BASE_NAME$.$ENV$.json",
 
   "getOrderStatusV2Url": "https://api.ddws$ENV$.autodesk.com",
   "secretsFile": "$ROOT$/Configurations/Secrets.GetInvoiceServices.INT.json",
-  "workflow": "GenericPlaceOrderWithRenewal",
+  "workflow": "GenericPlaceOrder",
 
   "GetSkuPrice.ResourcePath": "/v1/sku/prices?customer_number=$CSN_RESELLER$&part_number=$SKU_OR_PART_NUMBER$&price_date=$PRICE_DATE$&quantity=$QUANTITY$",
 
   "opptyServiceBaseUrl": "https://api.sfdc-$ENV$.autodesk.com",
   "opptyOAuthBaseUrl": "https://api-sfdc-$ENV$-autodesk.auth.us-east-1.amazoncognito.com",
-  
-  "WaitForOrderStatusChange.expectedEndStateStatus": "accepted",
+
+  "WaitForOrderStatusChange.expectedEndStateStatus": "review",
   "WaitForOrderStatusChange2ndPass.expectedEndStateStatus": "review"
 }

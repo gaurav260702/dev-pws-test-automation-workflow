@@ -1,13 +1,13 @@
 {
   "QuoteCreate":
   {
-    "transactionId": "$TRANSACTION_ID$",
+    "transactionId": "*",
     "message": "success"
   },
 
   "QuoteStatus":
   {
-    "transactionId": "$TRANSACTION_ID$",
+    "transactionId": "*",
     "quoteNumber": "*",
     "quoteStatus": "*"
   },
@@ -29,7 +29,7 @@
 
   "QuoteStatusByQuoteNumber":
   {
-    "transactionId": "$TRANSACTION_ID$",
+    "transactionId": "*",
     "quoteNumber": "$QUOTE_NUMBER$",
     "quoteStatus": "QUOTED"
   }
