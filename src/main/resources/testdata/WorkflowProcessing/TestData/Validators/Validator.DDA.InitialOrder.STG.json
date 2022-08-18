@@ -1,0 +1,12 @@
+{
+  "WaitForOrderStatusChange":
+	{
+    "transactionId": "*-*-*-*-*",
+    "status": "Order is processing.",
+    "statusV1": "processing",
+    "messageV1": "Order is under review by Client Services with the case number*",
+    "lastUpdated": "*-*-* *:*:* UTC",
+    "soldToCsn": "$CSN_SOLDTO$",
+    "error.message": "Order is under review by Client Services with the case number*"
+  }
+}
