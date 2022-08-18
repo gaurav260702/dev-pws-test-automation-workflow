@@ -139,7 +139,10 @@ public class RestActionBase extends StepBase
 		// Set the default mediaTypeValue...
 		String jsonDefaultMediaType = "application/json";
 		String mediaTypeValue = jsonDefaultMediaType;
-
+		
+		//  Prepare a container for a loggable version of the payload, if it exists...
+		String loggableJsonPayload = "";
+		
 		// Check for a mediaType override...
 		if (mediaTypeOverride.length() > 0) 
 		{
@@ -151,7 +154,7 @@ public class RestActionBase extends StepBase
 
 		// Prepare a body container in case it's needed...
 		RequestBody body = null;
-
+		
 		log("Target URL: " + restResourcePath);
 
 		String ucaseRestMethod = restMethod.toUpperCase();
@@ -191,7 +194,10 @@ public class RestActionBase extends StepBase
 					ObjectMapper objectMapper = new ObjectMapper();
 					JsonNode jsonNode = objectMapper.readValue(payload, JsonNode.class);
 
-					log("Payload: " + jsonNode.toString());
+					//  We're going to log the payload later so it makes it bit more 
+					//  comprehensible for the layout in the log file...
+					//log("Payload: " + jsonNode.toString(), DEFAULT_LEFT_SPACE_PADDING + 4);
+					loggableJsonPayload = jsonNode.toString();
 				}
 
 				body = RequestBody.create(mediaType, payload);
@@ -241,12 +247,18 @@ public class RestActionBase extends StepBase
 		Headers headers = request.headers();
 
 		// Log the headers for debugging purposes...
-		log("-- REQUEST HEADERS --");
+		log("-- REQUEST HEADERS --", DEFAULT_LEFT_SPACE_PADDING + 4);
 		for (int i = 0, count = headers.size(); i < count; i++) 
 		{
-			log(headers.name(i) + " : " + headers.value(i), DEFAULT_LEFT_SPACE_PADDING + 4);
+			log(headers.name(i) + " : " + headers.value(i), DEFAULT_LEFT_SPACE_PADDING + 8);
 		}
 
+		if(loggableJsonPayload.length() > 0)
+		{
+			log("-- REQUEST BODY --", DEFAULT_LEFT_SPACE_PADDING + 4);
+			log(loggableJsonPayload, DEFAULT_LEFT_SPACE_PADDING + 8);
+		}
+		
 		// Ready the REST client...
 		OkHttpClient client = new OkHttpClient().newBuilder().build();
 
@@ -257,6 +269,13 @@ public class RestActionBase extends StepBase
 		response = client.newCall(request).execute();
 
 		this.log("Service response: " + response.code() + " -- " + response.message());
+		
+		log("-- RESPONSE HEADERS --", DEFAULT_LEFT_SPACE_PADDING + 4);
+		Headers responseHeaders = response.headers();
+		for (int i = 0, count = responseHeaders.size(); i < count; i++) 
+		{
+			log(responseHeaders.name(i) + " : " + responseHeaders.value(i), DEFAULT_LEFT_SPACE_PADDING + 8);
+		}
 
 		this.ActualResponseMessage = response.message();
 		

@@ -198,8 +198,8 @@ public class PwsServiceBase extends RestActionBase
 		//  Make the json response body available for data extraction...
 		this.JsonResponseBody = rawJson;
 		
-		this.log("-- RESPONSE BODY --");
-		this.log(this.JsonResponseBody, DEFAULT_LEFT_SPACE_PADDING + 4);
+		this.log("-- RESPONSE BODY --", DEFAULT_LEFT_SPACE_PADDING + 4);
+		this.log(this.JsonResponseBody, DEFAULT_LEFT_SPACE_PADDING + 8);
     }
 
 	public Response getInfo()

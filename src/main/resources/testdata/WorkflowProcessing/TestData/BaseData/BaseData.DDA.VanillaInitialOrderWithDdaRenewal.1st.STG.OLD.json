@@ -1,0 +1,33 @@
+{
+  "action": "Initial",
+  "endCustomer": {
+    "account": {
+      "csn": "$CSN_ENDCUSTOMER$"
+    },
+    "contractManager": {
+      "firstName": "PwsAuto{{random_first_name}}",
+      "lastName": "PwsAuto{{random_last_name}}",
+      "email": "emailPwsAuto@{{random_email_domain}}.com",
+      "language": "EN",
+      "countryCode": "US"
+    }
+  },
+  "shipTo": {
+    "csn": "$CSN_SHIPTO$"
+  },
+  "reseller": {
+    "csn": "$CSN_RESELLER$"
+  },
+  "soldTo": {
+    "csn": "$CSN_SOLDTO$"
+  },
+  "poNumber": "PO_{{po_number}}",
+  "customerPoNumber": "CUST_PO_{{cust_po_number}}",
+  "lineItems": [
+    {
+      "partNumber": "$PRODUCT_SKU_PRIMARY$",
+      "quantity": 1,
+      "netPrice": "{{net_price}}"
+    }
+  ]
+}
