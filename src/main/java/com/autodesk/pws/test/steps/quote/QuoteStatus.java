@@ -165,7 +165,6 @@ public class QuoteStatus extends PwsServiceBase
 			ExceptionAbortStatus = true;
 			ExceptionMessage = "Expected to reach '" + ExpectedEndStateStatus + "' state, but ended in '" + finalStatus + "' state!";
 		}
-	
 	}
 	
 	@Override

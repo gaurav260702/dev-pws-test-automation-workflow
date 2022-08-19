@@ -35,6 +35,9 @@ public class QuoteFinalize extends PwsServiceBase
     	//  Do stuff that the Action depends on to execute...
     	super.preparation();
     	
+    	ExpectedEndStateStatus = "FINALIZING";
+		super.setExpectedEndState(this.ClassName);
+    	
     	//  Having a "PATCH" method requires a body.
     	//  This should be stored in an external file, but
     	//  for the moment we're going to embed it in the 
@@ -66,12 +69,19 @@ public class QuoteFinalize extends PwsServiceBase
 	{    	
 		super.validation();
 		
-		//  Here we would extract any data that needs to be promoted to 
-		//  the DataPool and may be needed by other steps later on...
-    	JsonPath pathFinder = JsonPath.with(JsonResponseBody);
+		//  :::TODO:::
+		//  Need to abstract this whole mechanism into the "RestActionBase" 
+		//  or the "PwsServiceBase" set of methods and properties...
+		String json = this.JsonResponseBody;
+		JsonPath pathFinder = JsonPath.from(json);
+		String finalStatus = pathFinder.get("status");
 
-    	//  Extact data that 	
-    	//extractDataFromJsonAndAddToDataPool("$TRANSACTION_ID$", "transactionId", pathFinder); 
-    	//extractDataFromJsonAndAddToDataPool("$QUOTE_NUMBER$", "quoteNumber", pathFinder); 
+		if (!finalStatus.matches(ExpectedEndStateStatus)) 
+		{
+			this.addResponseToValidationChain();
+			ExceptionAbortStatus = true;
+			ExceptionMessage = "Expected to reach '" + ExpectedEndStateStatus + "' state, but ended in '" + finalStatus + "' state!";
+		}
+		//  :::TODO:::
 	}	
 }

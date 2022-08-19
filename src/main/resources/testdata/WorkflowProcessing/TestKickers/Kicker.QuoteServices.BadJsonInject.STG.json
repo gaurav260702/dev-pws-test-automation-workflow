@@ -55,6 +55,7 @@
 
   "QuoteStatus.ExpectedEndStateStatus": "DRAFT-CREATED",
   "QuoteStatusByQuoteNumber.ExpectedEndStateStatus": "error",
+  "QuoteFinalize.ExpectedEndStateStatus": "error",
 
   "workflow": "CreateQuote"
 }
