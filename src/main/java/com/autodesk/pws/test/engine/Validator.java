@@ -40,36 +40,47 @@ public class Validator
 		
 		logIt("Beginning validations...");
 		
-        //  Get the validation relative file path from the data pool...
-        String validationFile = kicker.DataPool.getRaw("validationFile").toString();
-        
-        logIt("  -- Validation file: " + validationFile);
-        
-        //  Check to see if the validation file exists, and...
-        if(fileExists(validationFile))
-        {
-            //  If it exists, then do the validations...
-        	try 
-        	{
-				retVal.ValidationResults = this.doValidations(validationFile);	        	
-	        	retVal.ValidationsCompleted = true;
-			} 
-        	catch (Exception e) 
-        	{
-        		logIt("Unable to execute Validation!");
-        		logErr(e, "Validate");
-	        	
+		try
+		{
+	        //  Get the validation relative file path from the data pool...
+	        String validationFile = kicker.DataPool.getRaw("validationFile").toString();
+	        
+	        logIt("  -- Validation file: " + validationFile);
+	        
+	        //  Check to see if the validation file exists, and...
+	        if(fileExists(validationFile))
+	        {
+	            //  If it exists, then do the validations...
+	        	try 
+	        	{
+					retVal.ValidationResults = this.doValidations(validationFile);	        	
+		        	retVal.ValidationsCompleted = true;
+				} 
+	        	catch (Exception e) 
+	        	{
+	        		logIt("Unable to execute Validation!");
+	        		logErr(e, "Validate");
+		        	
+		            retVal.ExitCode = -1;
+		        	retVal.ValidationsCompleted = true;
+				}
+	        }
+	        else
+	        {
+	        	// If it doesn't, return a exitCode indicasting a failure...
+	            logIt("Validation file cannot be found.  Skipping validations.");
+	            retVal.ValidationsCompleted = false;
 	            retVal.ExitCode = -1;
-	        	retVal.ValidationsCompleted = true;
-			}
-        }
-        else
-        {
-        	// If it doesn't, return a exitCode indicasting a failure...
-            logIt("Validation file cannot be found.  Skipping validations.");
-            retVal.ValidationsCompleted = false;
+	        }
+		}
+		catch(Exception e)
+    	{
+    		logIt("Unable to execute Validation!");
+    		logErr(e, "Validate");
+        	
             retVal.ExitCode = -1;
-        }
+        	retVal.ValidationsCompleted = true;
+		}
 		
         return retVal;
 	}
