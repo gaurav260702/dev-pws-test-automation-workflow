@@ -20,6 +20,12 @@ def testfiles
 
 pipeline {
   triggers {
+    parameterizedCron(env.BRANCH_NAME == 'master' ? '''
+        # run every day at 8:01 AM. Cron Format UTC - minute hour day month dayOfWeek
+        1 8 * * * % runAllSpartanTests=true;
+        # un every day at 8:01 PM. Cron Format UTC - minute hour day month dayOfWeek
+        1 20 * * * 2 % runAllDDWSTests=true;
+    ''' : '')
   }
   agent {
        label "aws-centos"
@@ -40,7 +46,7 @@ pipeline {
       steps {
         script {
           // testfiles = findFiles(glob: '**/Kicker.*.json')
-          testfiles = findFiles(glob: '**/Kicker*Quote*json')
+          testfiles = findFiles(glob: '**/KickerSuite.QuoteServices.*.json')
 
           echo ""
           echo "${testfiles[0].name} ${testfiles[0].path} ${testfiles[0].directory} ${testfiles[0].length} ${testfiles[0].lastModified}"
