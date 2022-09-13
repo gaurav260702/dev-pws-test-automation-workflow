@@ -55,6 +55,7 @@
 
   "QuoteStatus.ExpectedEndStateStatus": "FAILED",
   "QuoteStatusByQuoteNumber.ExpectedEndStateStatus": "error",
+  "QuoteFinalize.ExpectedEndStateStatus": "error",
 
   "workflow": "CreateQuote"
 }

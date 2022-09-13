@@ -18,6 +18,8 @@ import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.FilenameUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import com.autodesk.pws.test.engine.Validator.ValidationContainer;
 import com.autodesk.pws.test.processor.*;
 import com.autodesk.pws.test.steps.base.*;
 import com.autodesk.pws.test.utilities.StringUtils;
@@ -47,7 +49,7 @@ import io.restassured.path.json.JsonPath;
 public class Kicker
 {
     //  Prep DataPool...
-    private DataPool dataPool;
+    public DataPool DataPool;
     //  Prep total test count...
     private int testCountTotal = 0;
     //  Prep test result reporting container...
@@ -104,30 +106,30 @@ public class Kicker
         //  if there was a long String of tests run...
         if (failureCount > 0)
         {
-            logIt(":::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::");
-            logIt("------------------------------------->    FAILED TESTS    <------------------------------------");
+            LogIt(":::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::");
+            LogIt("------------------------------------->    FAILED TESTS    <------------------------------------");
             allTests.forEach(
 				    			(testName, status) ->
 						        {
 									if (status == "FAIL")
 									{
-									    logIt("      " + testName);
+									    LogIt("      " + testName);
 									}
 						        }
 			        		);
-            logIt(":::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::");
+            LogIt(":::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::");
         }
 
         //  Loop through all tests and report out results...
         allTests.forEach(
 			    			(testName, status) ->
 					        {
-					        	logIt("  " + testName + " -- " + status);
+					        	LogIt("  " + testName + " -- " + status);
 					        }
 		        		);
 
         //  Log the total pass/fail stats...
-        logIt("(" + (testCountTotal - failureCount) + ") of (" + testCountTotal + ") PASSED.");
+        LogIt("(" + (testCountTotal - failureCount) + ") of (" + testCountTotal + ") PASSED.");
 
         //  Set the exit code and get the heck outta Dodge...
         return Math.abs(failureCount) * -1;
@@ -152,21 +154,21 @@ public class Kicker
     	{
     		loadFlatJsonAsDataPool(configFilePath);
     		
-    		logToFile = Boolean.valueOf(dataPool.get("LogToFile").toString());
+    		logToFile = Boolean.valueOf(DataPool.get("LogToFile").toString());
     		
-    		logFileNameTemplate = dataPool.get("LogFileNameTemplate").toString();
+    		logFileNameTemplate = DataPool.get("LogFileNameTemplate").toString();
     		logFileNameTemplate = logFileNameTemplate.replace("%", "$");
     		
-			logFileName = dataPool.detokenizeDataPoolValues(logFileNameTemplate);
+			logFileName = DataPool.detokenizeDataPoolValues(logFileNameTemplate);
 
-			SimpleScripter.DebugLoggingEnabled = Boolean.valueOf(dataPool.get("SimpleScriptDebugLoggingEnabled").toString());
+			SimpleScripter.DebugLoggingEnabled = Boolean.valueOf(DataPool.get("SimpleScriptDebugLoggingEnabled").toString());
 			
 			String fullLogFilePath = reportOutLogFileInfo();
 			
-			dataPool.add("$LOG_FILE_PATH$", fullLogFilePath);
+			DataPool.add("$LOG_FILE_PATH$", fullLogFilePath);
 			
-			logIt("LOG FILE PATH: " + fullLogFilePath);
-			logIt("SIMPLESCRIPT DEBUG: " + SimpleScripter.DebugLoggingEnabled);
+			LogIt("LOG FILE PATH: " + fullLogFilePath);
+			LogIt("SIMPLESCRIPT DEBUG: " + SimpleScripter.DebugLoggingEnabled);
     	}
     }
 
@@ -208,20 +210,15 @@ public class Kicker
             
             	
             default:
-                logIt("==================================================");
-                logIt("Unknown file type '" + execType + "' in '" + filePathArgument + "'!");
-                logIt("==================================================");
+                LogIt("==================================================");
+                LogIt("Unknown file type '" + execType + "' in '" + filePathArgument + "'!");
+                LogIt("==================================================");
                 failureCount = 1;
                 break;
         }
 
         return failureCount;
     }
-
-//    private void ExecuteKickerPackFile(String kickerPackFilePath)
-//    {
-//        logIt("KickPack file processing has not yet been implemented...");
-//    }
     
     private int executeKickersInDirectory(String kickerDirectory)
     {
@@ -317,10 +314,10 @@ public class Kicker
 	    catch (Exception ex)
 	    {
 	    	//  Deal with the "uh-oh"...
-	    	logIt("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
-	    	logIt("Exception during '" + testName + "'!");
-	    	logIt(ex.toString());
-	    	logIt("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+	    	LogIt("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+	    	LogIt("Exception during '" + testName + "'!");
+	    	LogIt(ex.toString());
+	    	LogIt("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
 	    }
 
 	    //  Add the result to the test results list based on the exit code...
@@ -368,7 +365,7 @@ public class Kicker
 
         //  Force a reset to the DataPool in case it contains
         //  data from a previous execution...
-        dataPool = new DataPool();
+        DataPool = new DataPool();
 
         //  Initialize the DynamicData runtime values...
         DynamicData.initRuntimeValues();
@@ -380,7 +377,7 @@ public class Kicker
         File testFile = new File(kickerFilePath);
         
         String testName = testFile.getName();
-        dataPool.add("$TEST_NAME$", testName);
+        DataPool.add("$TEST_NAME$", testName);
         
         //  Load in LocalConfig info, if it exists.
         //  Because this method ALSO determines if log entries
@@ -394,16 +391,16 @@ public class Kicker
         setExecutionPathVariable();
         
         //  Log the test start time...
-        logIt("====================================================");
-        logIt("Test start time: " + getCurrentTime());
-        logIt("====================================================");
-        logIt("  ");
+        LogIt("====================================================");
+        LogIt("Test start time: " + getCurrentTime());
+        LogIt("====================================================");
+        LogIt("  ");
         
-        logIt("Test file name: " + testName);
-        dataPool.add("TestFileName", testName);
+        LogIt("Test file name: " + testName);
+        DataPool.add("TestFileName", testName);
         
-        logIt("Full file path: " + kickerFilePath);
-        dataPool.add("FullKickerFilePath", kickerFilePath);
+        LogIt("Full file path: " + kickerFilePath);
+        DataPool.add("FullKickerFilePath", kickerFilePath);
                
         //  Load in test params as DataPool data...
         loadTestKickerAsDataPoolData(kickerFilePath);
@@ -426,11 +423,11 @@ public class Kicker
 
         //  Set WPE DataPool reference...
         
-        workflowProcEngine.DataPool = dataPool;
+        workflowProcEngine.DataPool = DataPool;
         
         //  Load the workflow steps...
         //List<StepBase> workflow = loadWorkflow(testKicker.getString("workflow").toString());
-        List<StepBase> workflow = loadWorkflow(dataPool.get("workflow").toString());
+        List<StepBase> workflow = loadWorkflow(DataPool.get("workflow").toString());
 
         //  Prepare a 'validationResults' container...
         HashMap<String, Object> validationResults = new HashMap<String, Object>();
@@ -448,7 +445,7 @@ public class Kicker
         	
         	//  Assume the test fails unless it's specifically
         	//  marked with "PASS" result...
-        	dataPool.addAsDefault("$TEST_STATUS$", "FAIL");
+        	DataPool.addAsDefault("$TEST_STATUS$", "FAIL");
         	
         	//  Record the JuiceBox log...
         	logJuiceBoxTestInfo(testName, workflow);
@@ -456,35 +453,23 @@ public class Kicker
             //  Execute the workflow steps...
             workflowCompleted = workflowProcEngine.execute(workflow, testName);
 
-            logIt("  ");
-            logIt("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+            LogIt("  ");
+            LogIt("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
             
             if(workflowCompleted)
             {
-	            logIt("Beginning validations...");
-	
-	            //  Get the validation relative file path from the data pool...
-	            String validationFile = dataPool.getRaw("validationFile").toString();
-	            
-	            logIt("  -- Validation file: " + validationFile);
-	            
-	            //  Check to see if the validation file exists, and...
-	            if(fileExists(validationFile))
-	            {
-		            //  If it exists, then do the validations...
-	            	validationResults = doValidations(validationFile);
-	            	validationsCompleted = true;
-	            }
-	            else
-	            {
-	            	// If it doesn't, return a exitCode indicasting a failure...
-		            logIt("Validation file cannot be found.  Skipping validations.");
-		            exitCode = -1;
-	            }
+            	//  Create a Validator...
+            	Validator validator = new Validator(this);
+            	
+            	ValidationContainer validationContainer = validator.Validate();
+            	
+            	exitCode = validationContainer.ExitCode;
+            	validationsCompleted = validationContainer.ValidationsCompleted;
+            	validationResults = validationContainer.ValidationResults;
             }
             else
             {
-	            logIt("Workflow failed to complete.  Skipping validations.");
+	            LogIt("Workflow failed to complete.  Skipping validations.");
 	            exitCode = -1;
             }
         }
@@ -508,21 +493,21 @@ public class Kicker
 	        int failCount = (int) validationResults.get("FailCount");
 	        int passCount =(int)  validationResults.get("PassCount");
 	
-	        logIt("  ");
-	        logIt("-----------------------------------------------------------------------------------------------");
-	        logIt("-----------------------------------------------------------------------------------------------");
-	        logIt("-----------------------------------   VALIDATION RESULTS   ------------------------------------");
-	        logIt("Validation Total: " + validationCount);
-	        logIt("Failure Count:    " + failCount);
-	        logIt("Pass Count:       " + passCount);
+	        LogIt("  ");
+	        LogIt("-----------------------------------------------------------------------------------------------");
+	        LogIt("-----------------------------------------------------------------------------------------------");
+	        LogIt("-----------------------------------   VALIDATION RESULTS   ------------------------------------");
+	        LogIt("Validation Total: " + validationCount);
+	        LogIt("Failure Count:    " + failCount);
+	        LogIt("Pass Count:       " + passCount);
 	
 	        if(failCount > 0)
 	        {
 	        	dumpValidationList(validationResults.get("ValidationList"));
 	        }
 	
-	        logIt("-----------------------------------------------------------------------------------------------");
-	        logIt("-----------------------------------------------------------------------------------------------");
+	        LogIt("-----------------------------------------------------------------------------------------------");
+	        LogIt("-----------------------------------------------------------------------------------------------");
 	
 	        if ((validationResults.size() == 0 || ((int) validationResults.get("FailCount")) > 0))
 	        {
@@ -546,7 +531,7 @@ public class Kicker
         
         if(exitCode == 0)
         {
-        	dataPool.add("$TEST_STATUS$", "PASS");
+        	DataPool.add("$TEST_STATUS$", "PASS");
         }
         
         //  Log the JuiceBox test results...
@@ -558,7 +543,7 @@ public class Kicker
     private void logJuiceBoxTestInfo(String currentTestName, List<StepBase> currentWorkflow) 
     {
     	//  Set the DataPool value for the $TEST_NAME$...
-	    dataPool.addAsDefault("$TEST_NAME$", currentTestName);
+	    DataPool.addAsDefault("$TEST_NAME$", currentTestName);
     	
 	    //  Prepare a quoted, comma delimited list of workflow steps...
 	    ArrayList<String> workflowList = new ArrayList<String>();
@@ -581,19 +566,19 @@ public class Kicker
 	    
 	    String csvWorkflowList = String.join(",", workflowList);
 	    
-	    dataPool.add("$QUOTED_CSV_WORKFLOW$", csvWorkflowList);
+	    DataPool.add("$QUOTED_CSV_WORKFLOW$", csvWorkflowList);
 	    
 	    //  Prepare the JuiceBox raw JSON "container"...
 	    String rawJuiceBox = "$juiceBox->{\"juiceBox\":{\"juiceBoxType\":\"testInfo\",\"TestName\":\"$TEST_NAME$\",\"Workflow\":[$QUOTED_CSV_WORKFLOW$],\"Description\":\"$TEST_DESCRIPTION$\",\"testId\":\"$TEST_ID$\",\"runtimeId\": \"$RUNTIME_ID$\"}}<-juiceBox$";
 
-	    dataPool.addAsDefault("$TEST_ID$", "???");
-	    dataPool.addAsDefault("$TEST_DESCRIPTION$", "");
+	    DataPool.addAsDefault("$TEST_ID$", "???");
+	    DataPool.addAsDefault("$TEST_DESCRIPTION$", "");
 	    
 	    //  Swap in the appropriate token values...
-	    rawJuiceBox = dataPool.detokenizeDataPoolValues(rawJuiceBox);
+	    rawJuiceBox = DataPool.detokenizeDataPoolValues(rawJuiceBox);
 		
 	    //  LOG IT!!
-	    logIt(rawJuiceBox);
+	    LogIt(rawJuiceBox);
 	}
 
     private void logJuiceBoxResultInfo()
@@ -602,31 +587,31 @@ public class Kicker
 	    String rawJuiceBox = "$juiceBox->{\"juiceBox\":{\"juiceBoxType\":\"testResults\",\"TestName\":\"$TEST_NAME$\",\"TestLogPath\":\"$LOG_FILE_PATH$\",\"TestStatus\":\"$TEST_STATUS$\",\"testId\":\"$TEST_ID$\",\"runtimeId\": \"$RUNTIME_ID$\"}}<-juiceBox$";
 	    
 	    //  Swap in the appropriate token values...
-	    rawJuiceBox = dataPool.detokenizeDataPoolValues(rawJuiceBox);
+	    rawJuiceBox = DataPool.detokenizeDataPoolValues(rawJuiceBox);
 		
 	    //  LOG IT!!
-	    logIt(rawJuiceBox);
+	    LogIt(rawJuiceBox);
     }
 
 	private void mergeCmdLineOverridesIntoDataPool() 
 	{
 		//  Merges command line override  
 		//  values into DataPool...
-    	logIt("Merging command line override values...");
+    	LogIt("Merging command line override values...");
     	
 		cmdLineOverrides.
 			forEach(
 						(keyName, value) ->
 						{							
-							dataPool.add(keyName, value);
+							DataPool.add(keyName, value);
 						}
 					);
 	}
 
 	private void exportDataPoolToJson(Boolean logToFile, String logFileName) 
     {
-		var dataPoolDump = dataPool.toRawJson();
-		var validationChainDump = dataPool.validationChainToRawJson();
+		var dataPoolDump = DataPool.toRawJson();
+		var validationChainDump = DataPool.validationChainToRawJson();
 		
 		if(logToFile)
 		{	
@@ -637,46 +622,39 @@ public class Kicker
 			} 
 			catch (Exception e) 
 			{
-				logErr(e, "exportDataPoolToJson");
+				LogErr(e, "exportDataPoolToJson");
 			}
 		}
 	}
 
-	private void logErr(Exception e, String methodName)	
+	public void LogErr(Exception e, String methodName)	
 	{
 		// TODO Auto-generated catch block
 		var x = e.getStackTrace();
 		
-		logIt("Error in method! -- " + methodName);
+		LogIt("Error in method! -- " + methodName);
 		
 		for (int i=0; i<x.length; i++) 
 		{ 
 		    Object y = x[i];
-		    this.logIt(y.toString());
+		    this.LogIt(y.toString());
 		}
 	}
 		
 	private void initDataPoolRuntimeValues() 
     {
 		String strDate = DynamicData.getSimpleDatTimeFormat();
-        dataPool.add("$FULL_DATE_TIME$", strDate);
-        dataPool.add("$RUNTIME_ID$", SimpleScripter.CreateUniqueHexTimestamp());
-	}
-
-	private boolean fileExists(String relativeFilePath) 
-    {
-    	relativeFilePath = DynamicData.convertRelativePathToFullPath(relativeFilePath);
-        File fileCheck = new File(relativeFilePath);
-        return fileCheck.exists();
+        DataPool.add("$FULL_DATE_TIME$", strDate);
+        DataPool.add("$RUNTIME_ID$", SimpleScripter.CreateUniqueHexTimestamp());
 	}
 
 	private void logTestEndTime() 
     {
         //  Log the test end time...
-        logIt("====================================================");
-        logIt("Test end time: " + getCurrentTime());
-        logIt("===================================================="); // + newLine);
-        logIt("  ");
+        LogIt("====================================================");
+        LogIt("Test end time: " + getCurrentTime());
+        LogIt("===================================================="); // + newLine);
+        LogIt("  ");
     }
 
 	private void loadSecretsFilesFromDataPool() 
@@ -687,7 +665,7 @@ public class Kicker
     	//  We'll have to add any secretsFiles we discover in the array
     	//  above because Java will throw a concurrency error if we attempt
     	//  to operate on the DataPool while it's being iterated over...
-        dataPool.
+        DataPool.
 			forEach(
 						(keyName, value) ->
 						{							
@@ -712,7 +690,7 @@ public class Kicker
 
 	private void detokenizeDataPool() 
     {
-        dataPool.
+        DataPool.
 			forEach(
 						(key, value) ->
 						{
@@ -720,7 +698,7 @@ public class Kicker
 							String detokenizedValue = value.toString();
 							
 							//  Detokenize the value (this is forward only)...
-							detokenizedValue = dataPool.detokenizeDataPoolValues(detokenizedValue);
+							detokenizedValue = DataPool.detokenizeDataPoolValues(detokenizedValue);
 							
 							//  Resolve any embedded simple script items...
 							detokenizedValue = DynamicData.simpleScriptEval(detokenizedValue);
@@ -729,7 +707,7 @@ public class Kicker
 							//  treatments, reset the value for the key... 							
 							if(detokenizedValue != value.toString())
 							{
-								dataPool.add(key, detokenizedValue);
+								DataPool.add(key, detokenizedValue);
 							}
 						}
 					);
@@ -744,20 +722,20 @@ public class Kicker
     {
     	if(ex != null)
     	{
-    		logIt(ex.toString());
+    		LogIt(ex.toString());
     	}
-        logIt("===  DATA POOL DUMP  ===");
+        LogIt("===  DATA POOL DUMP  ===");
         
-        String[] dataPoolDump = dataPool.dumpDataPool().split("\\r?\\n");
+        String[] dataPoolDump = DataPool.dumpDataPool().split("\\r?\\n");
         
         for(String line: dataPoolDump)
         {
-            logIt(line);        	
+            LogIt(line);        	
         }
 
 //        logIt("=====  VALIDATION CHAIN DUMP  =====");
 //        logIt(dumpValidationChain());
-        logIt("Test Failed!");
+        LogIt("Test Failed!");
     }
 
     @SuppressWarnings("unchecked")
@@ -771,9 +749,9 @@ public class Kicker
 					(k, v) ->
 					{
 					    {
-					    	logIt("=================================================");
-					    	logIt("  ");
-					    	logIt("Validation section: " + k);
+					    	LogIt("=================================================");
+					    	LogIt("  ");
+					    	LogIt("Validation section: " + k);
 					    	HashMap<String, Object> validationItemsList = (HashMap<String, Object>) v;
 					    	dumpValidationItem(validationItemsList.get("ValidationList"));
 					    }
@@ -798,12 +776,12 @@ public class Kicker
 
 					    	if(testResult != "PASS")
 					    	{
-						    	logIt("-----------");
-						    	logIt("  ");
-						    	logIt("Test Path:      " + k);
-						    	logIt("Expected value: " + validationItemDetails.get("ExpectedValue"));
-						    	logIt("Actual value:   " + validationItemDetails.get("ActualValue"));
-						    	logIt("Test Result:    " + validationItemDetails.get("TestResult"));
+						    	LogIt("-----------");
+						    	LogIt("  ");
+						    	LogIt("Test Path:      " + k);
+						    	LogIt("Expected value: " + validationItemDetails.get("ExpectedValue"));
+						    	LogIt("Actual value:   " + validationItemDetails.get("ActualValue"));
+						    	LogIt("Test Result:    " + validationItemDetails.get("TestResult"));
 					    	}
 					    }
 					}
@@ -829,9 +807,9 @@ public class Kicker
     		absolute = absolute.replace("file:", "");
     	}
 
-    	dataPool.add("ExecutionPath", absolute);
+    	DataPool.add("ExecutionPath", absolute);
 
-    	logIt("ExecutionPath set to: " + absolute);
+    	LogIt("ExecutionPath set to: " + absolute);
     }
 
     @SuppressWarnings({ "unchecked", "unused" })
@@ -841,7 +819,7 @@ public class Kicker
         StringBuilder sb = new StringBuilder();
 
         //  Convert the DataPool's "ValidationChain" object into a first class object...
-        HashMap<String, Object> validationChain = (HashMap<String, Object>) dataPool.get("ValidationChain");
+        HashMap<String, Object> validationChain = (HashMap<String, Object>) DataPool.get("ValidationChain");
 
         //  If the ValidationChain object isn't null, then...
         if(validationChain != null)
@@ -891,12 +869,12 @@ public class Kicker
         }
         else
         {
-            logIt("Found workflow for '" + workflowName + "'.");
+            LogIt("Found workflow for '" + workflowName + "'.");
         }
 
         return workflowSteps;
     }
-
+/*
     @SuppressWarnings("unchecked")
 	private HashMap<String, Object> doValidations(String validationFilePath) throws Exception
     {
@@ -909,7 +887,9 @@ public class Kicker
         int totalTestCount = 0;
 
         //  Grab the ValidationChain...
-        HashMap<String, Object> validationChain = (HashMap<String, Object>) dataPool.get("ValidationChain");
+        LogIt("      --> Grabbing ValidationChain from DataPool...");
+        HashMap<String, Object> validationChain = (HashMap<String, Object>) DataPool.get("ValidationChain");
+        LogIt("      --> (" + validationChain.size() + ") entries in ValidationChain...");
 
         //  Check to see if there's a validation chain to do validation against...
         if (validationChain != null)
@@ -924,7 +904,7 @@ public class Kicker
             }
 
             //  Grab all the validator commands from the validator file...
-            String validatorRawJson = dataPool.loadJsonFile(validationFilePath);
+            String validatorRawJson = DataPool.loadJsonFile(validationFilePath);
         	JsonPath validator = JsonPath.from(validatorRawJson);
         	
             //  Get the length, which we'll test to make sure it's long
@@ -947,7 +927,7 @@ public class Kicker
 	            	Object sectionKey = validatorKeys[i];
 	            	
 	            	//  Log it for manual post-analysis...
-	            	logIt("  -- " + sectionKey.toString());
+	            	LogIt("  -- " + sectionKey.toString());
 	            	
 	            	//  Grab the validatorKeyVal for the section...
 	            	Object section = validatorKeyVals.get(sectionKey);
@@ -996,7 +976,7 @@ public class Kicker
             Object[] validatorListKeys = validationList.keySet().toArray();
 
             //  Grab the validation chain section and token path to be tested...
-            String chainSecionRawJson = dataPool.getValidationChainItem(sectionName).toString();
+            String chainSecionRawJson = DataPool.getValidationChainItem(sectionName).toString();
         	JsonPath chainSection = JsonPath.with(chainSecionRawJson);
 
             //  Start looping through the validation items...
@@ -1059,7 +1039,7 @@ public class Kicker
                 //  Here we'll detokenize and resolve any Runtime and DataPool
                 //  values that exist in the validation data...
                 expectedValue = DynamicData.detokenizeRuntimeValues(expectedValue);
-                expectedValue = dataPool.detokenizeDataPoolValues(expectedValue);
+                expectedValue = DataPool.detokenizeDataPoolValues(expectedValue);
                 
                 //  Here we'll resolve any SimpleScript fragments that exist in 
                 //  the validation data...
@@ -1113,6 +1093,7 @@ public class Kicker
 
         return validationResults;
     }
+*/
 
     private void loadTestKickerAsDataPoolData(String testKickerFilePath)
     {
@@ -1147,21 +1128,21 @@ public class Kicker
 					                //  Add item to the DataPool as a keyname/rawJson string...
 		    						LinkedTreeMap<?,?> linkTree = (LinkedTreeMap<?,?>) value;
 									String jsonString = ConvertLinkedTreeMapToRawJson(linkTree);
-					                dataPool.put(keyName, jsonString);	
+					                DataPool.put(keyName, jsonString);	
 		    					}
 		    					else
 		    					{
 					                //  Add item to the DataPool as key-val...
-					                dataPool.put(keyName, value.toString());
+					                DataPool.put(keyName, value.toString());
 		    					}
 		    					
 				                if(logValues)
 				                {
-				                	logIt("   --> " + keyName + ": " + value.toString());
+				                	LogIt("   --> " + keyName + ": " + value.toString());
 				                }
 				                else
 				                {
-				                	logIt("   --> " + keyName + ": *****************");
+				                	LogIt("   --> " + keyName + ": *****************");
 				                }
 		    					
 			                }
@@ -1211,7 +1192,7 @@ public class Kicker
         return retVal;
     }
     
-    private void logIt(String msg)
+    public void LogIt(String msg)
     {
         //  Strip out any "overformatting" that
         //  may have been passed in and replace

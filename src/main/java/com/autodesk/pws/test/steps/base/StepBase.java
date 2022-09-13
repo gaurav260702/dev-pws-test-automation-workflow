@@ -107,12 +107,14 @@ public class StepBase
     		
     		for(String line : lines)
     		{
+    			line = leftPad + line;
+    			
     			if(this.LogToFile)
     			{
     				logToFile(line);
     			}
     			
-    			logger.info(leftPad + line);
+    			logger.info(line);
     		}
     	}
     }
