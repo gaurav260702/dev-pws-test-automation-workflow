@@ -1,0 +1,100 @@
+{
+  "QuoteCreate":
+  {
+    "transactionId": "*",
+    "message": "success"
+  },
+
+  "QuoteStatus":
+  {
+    "transactionId": "*",
+    "quoteNumber": "*",
+    "quoteStatus": "*"
+  },
+
+  "QuoteDetails":
+  {
+    "agentAccount.accountCsn": "$CSN_SOLDTO$",
+    "agentAccount.addressLine1": "Hiicbdoakganfablhbfciijhiapbjpjp",
+    "agentAccount.addressLine2": "Unit 3bbbb",
+    "agentAccount.city": "Eight Mile Plains",
+    "agentAccount.countryCode": "AU",
+    "agentAccount.name": "FODCEDJBDLDMADCMMCALPJBINCLPIHEM",
+    "agentAccount.postalCode": "4113",
+    "agentAccount.stateProvinceCode": "QLD",
+    "agentContact.contactCsn": "$CSN_ACCOUNT_CONTACT$",
+    "agentContact.email": "agentpartnera2k@letscheck.email",
+    "agentContact.firstName": "a2kagent",
+    "agentContact.lastName": "Partner",
+    "agentContact.phone": "+4155078888",
+    "agentContact.preferredLanguage": "en",
+    "agentTimeZone": "GMT",
+    "endCustomer.accountCsn": "5501172028",
+    "endCustomer.addressLine1": "12 Pinnacle Road",
+    "endCustomer.city": "Altona North",
+    "endCustomer.countryCode": "AU",
+    "endCustomer.isIndividual": "False",
+    "endCustomer.name": "Western Electrical",
+    "endCustomer.postalCode": "3025",
+    "endCustomer.stateProvinceCode": "VIC",
+    "lineItems[0].lineNumber": "1",
+    "lineItems[0].offer.accessModel": "Flex",
+    "lineItems[0].offer.billingBehavior": "Once",
+    "lineItems[0].offer.billingFrequency": "One-Time",
+    "lineItems[0].offer.billingType": "Up-front",
+    "lineItems[0].offer.connectivity": "Online",
+    "lineItems[0].offer.connectivityInterval": "1 Day",
+    "lineItems[0].offer.intendedUsage": "Commercial",
+    "lineItems[0].offer.servicePlanId": "Standard",
+    "lineItems[0].offer.term": "Annual",
+    "lineItems[0].offeringCode": "FLEXACCESS",
+    "lineItems[0].offeringId": "OD-000163",
+    "lineItems[0].offeringName": "Flex",
+    "lineItems[0].orderAction": "New",
+    "lineItems[0].pricing.currency": "AUD",
+    "lineItems[0].pricing.endUserAdditionalDiscountAmount": "",
+    "lineItems[0].pricing.endUserAdditionalDiscountPercent": "",
+    "lineItems[0].pricing.endUserPrice": "21937.5",
+    "lineItems[0].pricing.extendedDiscountedSRP": "21937.5",
+    "lineItems[0].pricing.extendedSRP": "22500",
+    "lineItems[0].pricing.totalDiscount": "562.5",
+    "lineItems[0].pricing.transactionVolumeDiscountAmount": "562.5",
+    "lineItems[0].pricing.transactionVolumeDiscountPercent": "2.5",
+    "lineItems[0].pricing.unitSRP": "3.75",
+    "lineItems[0].quantity": "6000",
+    "lineItems[0].subscriptionEndDate": "",
+    "lineItems[0].subscriptionStartDate": "",
+    "lineItems[0].unitOfMeasure": "EA",
+    "pricing.currency": "AUD",
+    "pricing.estimatedTax": "2193.75",
+    "pricing.priceRegionCode": "AH",
+    "pricing.totalAmount": "24131.25",
+    "pricing.totalDiscount": "562.5",
+    "pricing.totalListAmount": "22500",
+    "pricing.totalNetAmount": "21937.5",
+    "purchaser.contactCsn": "4000120835",
+    "purchaser.email": "num5labonte@gmail.com",
+    "purchaser.firstName": "Test",
+    "purchaser.lastName": "Employee",
+    "purchaser.phone": "+02 6583 2733",
+    "purchaser.preferredLanguage": "en",
+    "quoteCreatedTime": "*",
+    "quotedDate": "",
+    "quoteExpirationDate": "",
+    "quoteNumber": "$QUOTE_NUMBER$",
+    "quoteStatus": "Draft"
+  },
+
+  "QuoteFinalize":
+  {
+    "status": "FINALIZING",
+    "quoteNumber": "$QUOTE_NUMBER$"
+  },
+
+  "QuoteStatusByQuoteNumber":
+  {
+    "transactionId": "*",
+    "quoteNumber": "$QUOTE_NUMBER$",
+    "quoteStatus": "QUOTED"
+  }
+}
