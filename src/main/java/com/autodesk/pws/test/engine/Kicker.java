@@ -461,7 +461,7 @@ public class Kicker
             
             String forceValidations = (String)DataPool.get("forceValidationsIfWorkflowIncomplete");
             
-            if(forceValidations.equalsIgnoreCase("true"))
+            if(forceValidations != null && forceValidations.equalsIgnoreCase("true"))
             {
             	forceValidationsIfWorkflowIncomplete = true;
             }

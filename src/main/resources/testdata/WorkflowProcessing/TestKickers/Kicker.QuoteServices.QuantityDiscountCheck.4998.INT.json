@@ -1,7 +1,11 @@
 ﻿{
   "$ROOT$": "./testdata/WorkflowProcessing/TestData",
   "$ENV$": "INT",
-  "$BASE_NAME$": "QuoteServices.QuantityDiscountCheck6000",
+
+  "$QUANTITY_TO_PURCHASE$": "4998",
+  "$ROOT_NAME$": "QuoteServices.QuantityDiscountCheck",
+  "$BASE_NAME$": "$ROOT_NAME$.$QUANTITY_TO_PURCHASE$",
+
   "$VALIDATION$": "$ROOT$/Validators",
   "$OVERRIDES$": "$ROOT$/Overrides",
   "$BASE_DATA$": "$ROOT$/BaseData",
@@ -19,9 +23,26 @@
 
   "$CSN_ACCOUNT_CONTACT$": "5112991506",
   "$CSN_HEADER$": "5112991506",
+  "$CSN_VALIDATION_ACCOUNT$": "4000003508",
+  "$CSN_AGENT_ACCOUNT_CONTACT$": "4000003508",
+  "$CSN_VALIDATION_END_CUSTOMER$": "5501164200",
 
   "$OFFERING_ID$": "OD-000163",
   "$AGENT_EMAIL$": "agentpartnera2k@letscheck.email",
+
+  "********** Quantity Specific Validation Items ***********": "(ignore me)",
+
+  "$lineItems[0].pricing.endUserPrice$": "18742.5",
+  "$lineItems[0].pricing.extendedDiscountedSRP$": "18742.5",
+  "$lineItems[0].pricing.extendedSRP$": "18742.5",
+  "$lineItems[0].pricing.totalDiscount$": "0",
+  "$lineItems[0].pricing.transactionVolumeDiscountAmount$": "0",
+  "$lineItems[0].pricing.transactionVolumeDiscountPercent$": "0",
+  "$pricing.estimatedTax$": "1874.25",
+  "$pricing.totalAmount$": "20616.75",
+  "$pricing.totalDiscount$": "0",
+  "$pricing.totalListAmount$": "18742.5",
+  "$pricing.totalNetAmount$": "18742.5",
 
   "$CREATE_QUOTE_BASE_URL$": "https://enterprise-api-$ENV$.autodesk.com/",
 
@@ -41,9 +62,9 @@
   "baseUrl": "https://enterprise-api-$ENV$.autodesk.com",
   "oAuthBaseUrl":  "https://enterprise-api-$ENV$.autodesk.com",
 
-  "baseFile": "$BASE_DATA$/BaseData.$BASE_NAME$.$ENV$.json",
+  "baseFile": "$BASE_DATA$/BaseData.$ROOT_NAME$.$ENV$.json",
   "overridesFile": "$OVERRIDES$/Override.NONE.json",
-  "validationFile": "$VALIDATION$/Validator.$BASE_NAME$.$ENV$.json",
+  "validationFile": "$VALIDATION$/Validator.$ROOT_NAME$.$ENV$.json",
   "secretsFile": "$CONFIG$/Secrets.GetInvoiceServices.INT.json",
 
   "workflow": "CreateQuote"

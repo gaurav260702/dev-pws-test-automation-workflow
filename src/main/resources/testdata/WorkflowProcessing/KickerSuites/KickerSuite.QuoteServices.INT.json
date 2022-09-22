@@ -24,6 +24,11 @@
     "./testdata/WorkflowProcessing/TestKickers/Kicker.QuoteServices.BadSoldToCsn.INT.json",
     "./testdata/WorkflowProcessing/TestKickers/Kicker.QuoteServices.BadState.INT.json",
     "./testdata/WorkflowProcessing/TestKickers/Kicker.QuoteServices.BadTimezone.INT.json",
-    "./testdata/WorkflowProcessing/TestKickers/Kicker.QuoteServices.FullWorkflow.INT.json"
+    "./testdata/WorkflowProcessing/TestKickers/Kicker.QuoteServices.FullWorkflow.INT.json",
+    "./testdata/WorkflowProcessing/TestKickers/Kicker.QuoteServices.QuantityDiscountCheck.4998.INT.json",
+    "./testdata/WorkflowProcessing/TestKickers/Kicker.QuoteServices.QuantityDiscountCheck.4999.INT.json",
+    "./testdata/WorkflowProcessing/TestKickers/Kicker.QuoteServices.QuantityDiscountCheck.5000.INT.json",
+    "./testdata/WorkflowProcessing/TestKickers/Kicker.QuoteServices.QuantityDiscountCheck.5001.INT.json",
+    "./testdata/WorkflowProcessing/TestKickers/Kicker.QuoteServices.QuantityDiscountCheck.6000.INT.json",
   ]
 }

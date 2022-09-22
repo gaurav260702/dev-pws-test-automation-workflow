@@ -10,7 +10,7 @@
    },
    "lineItems": [
       {
-         "quantity": 6000,
+         "quantity": $QUANTITY_TO_PURCHASE$,
          "orderAction": "New",
          "offeringId": "$OFFERING_ID$",
          "offer": {
