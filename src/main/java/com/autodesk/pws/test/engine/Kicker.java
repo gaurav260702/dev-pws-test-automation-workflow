@@ -438,6 +438,9 @@ public class Kicker
         //  Prep a flag to mark if the validations succesfully completed...
         Boolean validationsCompleted = false;
         
+        //  Prep a flag to check for forced validations...
+        Boolean forceValidationsIfWorkflowIncomplete = false;
+        
         try
         {
         	//  Set the logToFile flag on the WPE...
@@ -456,14 +459,29 @@ public class Kicker
             LogIt("  ");
             LogIt("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
             
-            if(workflowCompleted)
+            String forceValidations = (String)DataPool.get("forceValidationsIfWorkflowIncomplete");
+            
+            if(forceValidations != null && forceValidations.equalsIgnoreCase("true"))
+            {
+            	forceValidationsIfWorkflowIncomplete = true;
+            }
+            
+            if(workflowCompleted || forceValidationsIfWorkflowIncomplete)
             {
             	//  Create a Validator...
             	Validator validator = new Validator(this);
             	
             	ValidationContainer validationContainer = validator.Validate();
             	
-            	exitCode = validationContainer.ExitCode;
+            	if(workflowCompleted)
+            	{
+            		exitCode = validationContainer.ExitCode;
+            	}
+            	else
+            	{
+            		exitCode = -1;
+            	}
+            	
             	validationsCompleted = validationContainer.ValidationsCompleted;
             	validationResults = validationContainer.ValidationResults;
             }
@@ -485,7 +503,7 @@ public class Kicker
         exportDataPoolToJson(logToFile, logFileName);
         
         //  Check to see if the workflow actually completed.
-        if(workflowCompleted && validationsCompleted)
+        if((workflowCompleted && validationsCompleted) || forceValidationsIfWorkflowIncomplete)
         {
             //  If the workflow did complete, we're going 
         	//  to report out all the validation stuff...
@@ -753,7 +771,22 @@ public class Kicker
 					    	LogIt("  ");
 					    	LogIt("Validation section: " + k);
 					    	HashMap<String, Object> validationItemsList = (HashMap<String, Object>) v;
-					    	dumpValidationItem(validationItemsList.get("ValidationList"));
+					    	if(validationItemsList != null)
+					    	{
+					    		Object validationList = validationItemsList.get("ValidationList");
+					    		
+					    		if(validationList != null)
+				    			{
+					    			dumpValidationItem(validationList);
+				    			}
+					    		
+					    		Object generalError = validationItemsList.get("GeneralError");
+					    		
+					    		if(generalError != null)
+				    			{
+					    			LogIt("  -> " + (String)generalError);
+				    			}
+					    	}
 					    }
 					}
     			   );
@@ -768,23 +801,23 @@ public class Kicker
     	validationItemslist.
     		forEach(
 					(k, v) ->
-					{
-					    {
-					    	HashMap<String, Object> validationItemDetails = (HashMap<String, Object>) v;
-
-					    	String testResult = validationItemDetails.get("TestResult").toString();
-
-					    	if(testResult != "PASS")
-					    	{
-						    	LogIt("-----------");
-						    	LogIt("  ");
-						    	LogIt("Test Path:      " + k);
-						    	LogIt("Expected value: " + validationItemDetails.get("ExpectedValue"));
-						    	LogIt("Actual value:   " + validationItemDetails.get("ActualValue"));
-						    	LogIt("Test Result:    " + validationItemDetails.get("TestResult"));
-					    	}
-					    }
-					}
+						{
+						    {
+						    	HashMap<String, Object> validationItemDetails = (HashMap<String, Object>) v;
+	
+						    	String testResult = validationItemDetails.get("TestResult").toString();
+	
+						    	if(testResult != "PASS")
+						    	{
+							    	LogIt("-----------");
+							    	LogIt("  ");
+							    	LogIt("Test Path:      " + k);
+							    	LogIt("Expected value: " + validationItemDetails.get("ExpectedValue"));
+							    	LogIt("Actual value:   " + validationItemDetails.get("ActualValue"));
+							    	LogIt("Test Result:    " + validationItemDetails.get("TestResult"));
+						    	}
+						    }
+						}
     			   );
     }
 

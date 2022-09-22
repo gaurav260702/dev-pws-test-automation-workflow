@@ -139,19 +139,30 @@ public class Validator
 	            	//  Log it for manual post-analysis...
 	            	logIt("  -- " + sectionKey.toString());
 	            	
-	            	//  Grab the validatorKeyVal for the section...
-	            	Object section = validatorKeyVals.get(sectionKey);
-
-	                //  Execute the validations against the appropriate 
-	            	//  part of the execution results...
-	            	HashMap<String, Object> newValidationResult = executeValidator(sectionKey.toString(), section);
-
-	            	//  Stuff the results into a validationResults collection...
-	                validationResultCollection.put(sectionKey.toString(), newValidationResult);
-
-	                //  Increment the test total counters as necessary...
-	                totalTestCount += Integer.parseInt(newValidationResult.get("ValidationCount").toString());
-	                totalFailCount += Integer.parseInt(newValidationResult.get("FailCount").toString());
+	            	//  Check to see if the Validator section exists in the 
+	            	//  validation chain...
+	            	if(validatorKeyVals.containsKey(sectionKey))
+	            	{
+	            		//  Grab the validatorKeyVal for the section...
+		            	Object section = validatorKeyVals.get(sectionKey);
+	
+		                //  Execute the validations against the appropriate 
+		            	//  part of the execution results...
+		            	HashMap<String, Object> newValidationResult = executeValidator(sectionKey.toString(), section);
+	
+		            	//  Stuff the results into a validationResults collection...
+		                validationResultCollection.put(sectionKey.toString(), newValidationResult);
+	
+		                //  Increment the test total counters as necessary...
+		                totalTestCount += Integer.parseInt(newValidationResult.get("ValidationCount").toString());
+		                totalFailCount += Integer.parseInt(newValidationResult.get("FailCount").toString());
+	            	}
+	            	else
+	            	{
+	            		//  Log the fact that the section is missing in the ValidationChain...
+		                validationResultCollection.put(sectionKey.toString(), "Missing validation chain section!");
+		                totalFailCount += 1;
+	            	}
 	            }
             }
             //  Calculate the total passing tests...
@@ -186,118 +197,131 @@ public class Validator
             //  Convert the validation list to an array of Keys...
             Object[] validatorListKeys = validationList.keySet().toArray();
 
-            //  Grab the validation chain section and token path to be tested...
-            String chainSecionRawJson = kicker.DataPool.getValidationChainItem(sectionName).toString();
-        	JsonPath chainSection = JsonPath.with(chainSecionRawJson);
-
-            //  Start looping through the validation items...
-            for(int i = 0; i < validatorListKeys.length; i++)
+            //  Check to see if the validatio chain section exists...
+            if(kicker.DataPool.getValidationChainItem(sectionName) == null)
             {
-                validationCount += 1;
-
-                //  Get a test results container ready...
-                HashMap<String, String> testResults = new HashMap<String, String>();
-
-                //  Grab the Json path that needs to be tested...
-                String pathToTest = validatorListKeys[i].toString();
-                //logIt("ValidationPath: " + pathToTest);                
-                
-                //  Grab the last *expected* value we want to compare it to...
-                String expectedValue = validationList.get(pathToTest).toString();
-                //logIt("ExpectedValue:  " + expectedValue);
-                
-                if(expectedValue == "null")
-                {
-                	expectedValue = null;
-                }
-                
-                //  Set the default value of 'valueToTest' in case the;
-                //  path doesn't exist...
-                String actualValue = "--> The target path doesn't exist! <--";
-
-                //  Grab the chain section version of the path as an object...
-                //
-                //  NOTE: I think a library must have been updated, because
-                //        if you try to "chainSection.get()" section that doesn't
-                //        exist, Java throws a "null exception" or some such
-                //        craziness.  So we set the value null by default and then 
-                //        try to grab the value, but catch it if it errs out.
-                //        At some point this should be wrapped into an external
-                //        function rather than testing for that condition inline...
-                Object actualValueObj = null;
-                
-                try
-                {
-                	actualValueObj = chainSection.get(pathToTest);
-                }
-                catch (Exception e)
-                {
-                	//  do nothing as this means there was a null value referenced
-                	//  and the actualValue is therefore "missing"...
-                }
-                
-                //  Check to see if the path token actually exists...
-                if (actualValueObj != null)
-                {
-                    //  Grab the value from the path token...
-                	actualValue = actualValueObj.toString();
-                	if(actualValue.startsWith("[") && actualValue.endsWith("]")) 
-                	{
-                		actualValue = actualValue.substring(1, actualValue.length() - 1);
-                	}
-                }
-
-                //  Here we'll detokenize and resolve any Runtime and DataPool
-                //  values that exist in the validation data...
-                expectedValue = DynamicData.detokenizeRuntimeValues(expectedValue);
-                expectedValue = kicker.DataPool.detokenizeDataPoolValues(expectedValue);
-                
-                //  Here we'll resolve any SimpleScript fragments that exist in 
-                //  the validation data...
-                //expectedValue = SimpleScripter.extractAndResolveSimpleScripts(expectedValue, "[[", "]]");
-                expectedValue = DynamicData.simpleScriptEval(expectedValue);
-                
-                //  Convert the wildcard/plainstring expected value
-                //  to a regular expression...
-                expectedValue = DynamicData.wildcardToRegex(expectedValue);
-
-                //  Do the actual validation and record the results...
-                if (actualValue.matches(expectedValue) && !actualValue.matches("--> The target path doesn't exist! <--"))
-                {
-                    testResults.put("TestResult", "PASS");
-                }
-                else
-                {
-                    testResults.put("TestResult", "FAIL");
-                    failCount += 1;
-                }
-
-                //  Fill out the test results container with the data we
-                //  have collected during validation...
-                testResults.put("ValidationPath", pathToTest);
-                testResults.put("ExpectedValue", expectedValue);
-                testResults.put("ActualValue", actualValue);
-                
-                //  Keep these lines, but uncomment when debugging validation items...
-                //logIt("ValidationPath: " + pathToTest);
-                //logIt("ExpectedValue:  " + expectedValue);
-                //logIt("ActualValue:    " + actualValue);
-                
-                validationList.put(validatorListKeys[i].toString(), testResults);
+                //  Fill out the test results container with sadness...
+                validationResults.put("GeneralError", "No '" + sectionName + "' data found in the validation chain!");
+                validationResults.put("ValidationCount", 1);
+                validationResults.put("FailCount", 1);
+                validationResults.put("PassCount", 0);
+                validationResults.put("ValidationList", null);
             }
-
-            //  Group all test results for summmary...
-            validationResults.put("ValidationList", validationList);
-            validationResults.put("ValidationCount", validationCount);
-            validationResults.put("PassCount", validationCount - failCount);
-            validationResults.put("FailCount", failCount);
+            else
+            {
+	            //  Grab the validation chain section and token path to be tested...
+	            String chainSecionRawJson = kicker.DataPool.getValidationChainItem(sectionName).toString();
+	        	JsonPath chainSection = JsonPath.with(chainSecionRawJson);
+	
+	            //  Start looping through the validation items...
+	            for(int i = 0; i < validatorListKeys.length; i++)
+	            {
+	                validationCount += 1;
+	
+	                //  Get a test results container ready...
+	                HashMap<String, String> testResults = new HashMap<String, String>();
+	
+	                //  Grab the Json path that needs to be tested...
+	                String pathToTest = validatorListKeys[i].toString();
+	                //logIt("ValidationPath: " + pathToTest);                
+	                
+	                //  Grab the last *expected* value we want to compare it to...
+	                String expectedValue = validationList.get(pathToTest).toString();
+	                //logIt("ExpectedValue:  " + expectedValue);
+	                
+	                if(expectedValue == "null")
+	                {
+	                	expectedValue = null;
+	                }
+	                
+	                //  Set the default value of 'valueToTest' in case the;
+	                //  path doesn't exist...
+	                String actualValue = "--> The target path doesn't exist! <--";
+	
+	                //  Grab the chain section version of the path as an object...
+	                //
+	                //  NOTE: I think a library must have been updated, because
+	                //        if you try to "chainSection.get()" section that doesn't
+	                //        exist, Java throws a "null exception" or some such
+	                //        craziness.  So we set the value null by default and then 
+	                //        try to grab the value, but catch it if it errs out.
+	                //        At some point this should be wrapped into an external
+	                //        function rather than testing for that condition inline...
+	                Object actualValueObj = null;
+	                
+	                try
+	                {
+	                	actualValueObj = chainSection.get(pathToTest);
+	                }
+	                catch (Exception e)
+	                {
+	                	//  do nothing as this means there was a null value referenced
+	                	//  and the actualValue is therefore "missing"...
+	                }
+	                
+	                //  Check to see if the path token actually exists...
+	                if (actualValueObj != null)
+	                {
+	                    //  Grab the value from the path token...
+	                	actualValue = actualValueObj.toString();
+	                	if(actualValue.startsWith("[") && actualValue.endsWith("]")) 
+	                	{
+	                		actualValue = actualValue.substring(1, actualValue.length() - 1);
+	                	}
+	                }
+	
+	                //  Here we'll detokenize and resolve any Runtime and DataPool
+	                //  values that exist in the validation data...
+	                expectedValue = DynamicData.detokenizeRuntimeValues(expectedValue);
+	                expectedValue = kicker.DataPool.detokenizeDataPoolValues(expectedValue);
+	                
+	                //  Here we'll resolve any SimpleScript fragments that exist in 
+	                //  the validation data...
+	                //expectedValue = SimpleScripter.extractAndResolveSimpleScripts(expectedValue, "[[", "]]");
+	                expectedValue = DynamicData.simpleScriptEval(expectedValue);
+	                
+	                //  Convert the wildcard/plainstring expected value
+	                //  to a regular expression...
+	                expectedValue = DynamicData.wildcardToRegex(expectedValue);
+	
+	                //  Do the actual validation and record the results...
+	                if (actualValue.matches(expectedValue) && !actualValue.matches("--> The target path doesn't exist! <--"))
+	                {
+	                    testResults.put("TestResult", "PASS");
+	                }
+	                else
+	                {
+	                    testResults.put("TestResult", "FAIL");
+	                    failCount += 1;
+	                }
+	
+	                //  Fill out the test results container with the data we
+	                //  have collected during validation...
+	                testResults.put("ValidationPath", pathToTest);
+	                testResults.put("ExpectedValue", expectedValue);
+	                testResults.put("ActualValue", actualValue);
+	                
+	                //  Keep these lines, but uncomment when debugging validation items...
+	                //logIt("ValidationPath: " + pathToTest);
+	                //logIt("ExpectedValue:  " + expectedValue);
+	                //logIt("ActualValue:    " + actualValue);
+	                
+	                validationList.put(validatorListKeys[i].toString(), testResults);
+	            }
+	            
+	            //  Group all test results for summmary...
+	            validationResults.put("ValidationList", validationList);
+	            validationResults.put("ValidationCount", validationCount);
+	            validationResults.put("PassCount", validationCount - failCount);
+	            validationResults.put("FailCount", failCount);
+            }
         }
         else
         {
             //  Fill out the test results container with sadness...
-            validationResults.put("GeneralError", "No '{validatorSection.Key}' validator data found!  Check for configuration errors...");
-            validationResults.put("ValidationCount", 0);
-            validationResults.put("FailCount", 0);
+            validationResults.put("GeneralError", "No '" + sectionName + "' data found in the validation file!  Check for configuration errors...");
+            validationResults.put("ValidationCount", 1);
+            validationResults.put("FailCount", 1);
             validationResults.put("PassCount", 0);
             validationResults.put("ValidationList", null);
         }

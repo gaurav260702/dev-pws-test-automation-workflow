@@ -1,0 +1,71 @@
+﻿{
+  "$ROOT$": "./testdata/WorkflowProcessing/TestData",
+  "$ENV$": "INT",
+
+  "$QUANTITY_TO_PURCHASE$": "6000",
+  "$ROOT_NAME$": "QuoteServices.QuantityDiscountCheck",
+  "$BASE_NAME$": "$ROOT_NAME$.$QUANTITY_TO_PURCHASE$",
+
+  "$VALIDATION$": "$ROOT$/Validators",
+  "$OVERRIDES$": "$ROOT$/Overrides",
+  "$BASE_DATA$": "$ROOT$/BaseData",
+  "$CONFIG$": "$ROOT$/Configurations",
+
+  "$CSN_SOLDTO$": "5112991506",
+  "$CSN_RESELLER$": "5112991506",
+  "$CSN_ENDCUSTOMER$": "5112991506",
+  "$CSN_SHIPTO$": "5112991506",
+
+  "$CSN_PRIMARY$": "$CSN_ENDCUSTOMER$",
+  "$CSN_SECONDARY$": "$CSN_RESELLER$",
+  "$CSN_TERTIARY$": "$CSN_SOLDTO$",
+  "$CSN_QUATERNARY$": "$CSN_SOLDTO$",
+
+  "$CSN_ACCOUNT_CONTACT$": "5112991506",
+  "$CSN_HEADER$": "5112991506",
+  "$CSN_VALIDATION_ACCOUNT$": "4000003508",
+  "$CSN_AGENT_ACCOUNT_CONTACT$": "4000003508",
+  "$CSN_VALIDATION_END_CUSTOMER$": "5501164200",
+
+  "$OFFERING_ID$": "OD-000163",
+  "$AGENT_EMAIL$": "agentpartnera2k@letscheck.email",
+
+  "********** Quantity Specific Validation Items ***********": "(ignore me)",
+
+  "$lineItems[0].pricing.endUserPrice$": "21937.5",
+  "$lineItems[0].pricing.extendedDiscountedSRP$": "21937.5",
+  "$lineItems[0].pricing.extendedSRP$": "22500",
+  "$lineItems[0].pricing.totalDiscount$": "562.5",
+  "$lineItems[0].pricing.transactionVolumeDiscountAmount$": "562.5",
+  "$lineItems[0].pricing.transactionVolumeDiscountPercent$": "2.5",
+  "$pricing.estimatedTax$": "2193.75",
+  "$pricing.totalAmount$": "24131.25",
+  "$pricing.totalDiscount$": "562.5",
+  "$pricing.totalListAmount$": "22500",
+  "$pricing.totalNetAmount$": "21937.5",
+
+  "$CREATE_QUOTE_BASE_URL$": "https://enterprise-api-$ENV$.autodesk.com/",
+
+  "$TIMEZONE_CITY$": "Australia/Sydney",
+  "$CURRENCY$": "AUD",
+
+  "includeForceableHeaders": "true",
+  "forceableHeaders":
+  {
+    "x-adsk-test-event": "false",
+    "timezone_city": "$TIMEZONE_CITY$",
+    "CSN": "$CSN_HEADER$"
+  },
+
+  "forceValidationsIfWorkflowIncomplete": true,
+
+  "baseUrl": "https://enterprise-api-$ENV$.autodesk.com",
+  "oAuthBaseUrl":  "https://enterprise-api-$ENV$.autodesk.com",
+
+  "baseFile": "$BASE_DATA$/BaseData.$ROOT_NAME$.$ENV$.json",
+  "overridesFile": "$OVERRIDES$/Override.NONE.json",
+  "validationFile": "$VALIDATION$/Validator.$ROOT_NAME$.$ENV$.json",
+  "secretsFile": "$CONFIG$/Secrets.GetInvoiceServices.INT.json",
+
+  "workflow": "CreateQuote"
+}
