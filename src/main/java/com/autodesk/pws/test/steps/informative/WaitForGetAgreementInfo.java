@@ -22,7 +22,7 @@ public class WaitForGetAgreementInfo extends RestActionBase
   {
     boolean continueTrying = true;
     boolean retryTimeout = false;
-    Integer maxRetries = 600;
+    Integer maxRetries = 48;
     Integer msSleepBeforeStatus = 10000;
     Integer retryCounter = 0;
     Integer flagForDelaysAt = 25;
@@ -60,7 +60,7 @@ public class WaitForGetAgreementInfo extends RestActionBase
           continueTrying = false;
         }
 
-        log("WaitForGetAgreementInfo status: " + json.length() + " char reply...");
+        log("WaitForGetAgreementInfo status: " + getAgreementInfo.ActionResult.code() + " - " + json.length() + " char reply...");
       }
 
       getAgreementInfo.SuppressLogging = true;

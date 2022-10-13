@@ -25,7 +25,7 @@ public class GetOrderDetails extends PwsServiceBase
 
     private void setResourcePath()
     {
-		super.setResourcePath("/v1/orders?partner_po=$PO_NUMBER$&customer_number=$CUSTOMER_NUMBER$", true);
+		super.setResourcePath("/v1/orders?partner_po=$PO_NUMBER$&customer_number=$CSN_RESELLER$", true);
     }
 
 	@Override

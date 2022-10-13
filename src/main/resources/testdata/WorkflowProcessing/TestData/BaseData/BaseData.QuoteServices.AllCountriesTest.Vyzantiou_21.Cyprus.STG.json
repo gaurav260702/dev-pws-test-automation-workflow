@@ -1,0 +1,43 @@
+{
+  "lineItems": [
+    {
+      "offer": {
+        "billingBehavior": "Once",
+        "accessModel": "Flex",
+        "servicePlan": "Standard",
+        "connectivity": "Online",
+        "billingType": "Up-front",
+        "term": "Annual",
+        "intendedUsage": "Commercial"
+      },
+      "quantity": 7500,
+      "offeringId": "$OFFERING_ID$",
+      "subscriptionStartDate": "[[Date(25)]]",
+      "orderAction": "New"
+    }
+  ],
+  "agentAccount": {
+    "accountCsn": "5100827226"
+  },
+  "quoteNote": "Notefromagenttocustomer.",
+  "purchaser": {
+    "firstName": "SMPWSAUS12",
+    "lastName": "User12",
+    "preferredLanguage": "en-us",
+    "phone": "9454454460",
+    "email": "SMAUST12@letscheck.pw"
+  },
+  "agentContact": {
+    "email": "partneruser_da_int_5100827226@letscheck.email"
+  },
+  "endCustomer": {
+    "city": "Strovolos",
+    "countryCode": "Cyprus",
+    "postalCode": "2064",
+    "name": "Autodesk",
+    "addressLine1": "Vyzantiou 21",
+    "stateCode": "Aragón",
+    "isIndividual": false
+  },
+  "currency": "EUR"
+}

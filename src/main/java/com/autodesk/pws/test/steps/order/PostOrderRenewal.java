@@ -23,7 +23,7 @@ public class PostOrderRenewal extends PostOrder
 	{
 		super.validation();
 		
-		if(ActionResult.message() != ExpectedResponse)
+		if(!ActionResult.message().matches(ExpectedResponse))
 		{
 			this.ExceptionAbortStatus = true;
 			this.ExceptionMessage = "Unexpected response from " + this.ClassName + "! -- Exepected '" + ExpectedResponse + "' vs. Actual '" + ActionResult.message() + "'...";   

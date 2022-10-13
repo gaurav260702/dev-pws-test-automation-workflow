@@ -160,6 +160,18 @@ public class StepBase
         return retVal.toString();
     }
     
+    public boolean extractDataFromJsonAndAddToDataPoolIfNull(String dataPoolLabel, String targetPath, JsonPath pathFinder)
+	{
+    	boolean extractionSuccessful = false;
+    	
+    	if(!DataPool.containsKey(dataPoolLabel))
+		{
+    		extractionSuccessful = extractDataFromJsonAndAddToDataPool(dataPoolLabel, targetPath, pathFinder); 
+		}
+    	
+    	return extractionSuccessful;
+	}
+    
 	public boolean extractDataFromJsonAndAddToDataPool(String dataPoolLabel, String targetPath, JsonPath pathFinder)
 	{
 		boolean extractionSuccessful = false;

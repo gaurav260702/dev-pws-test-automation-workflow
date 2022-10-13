@@ -39,7 +39,10 @@ public class PostOrder extends PwsServiceBase
     	//  Grab the JsonRequestBody...
     	Gson gson = new Gson();
     	String jsonBody = gson.toJson(DataPool.get(OrderInfoDataPoolLabel));
+    	
+    	//jsonBody = DataPool.detokenizeDataPoolValues("$QUANTITY$");
     	jsonBody = DynamicData.detokenizeRuntimeValues(jsonBody);
+    	jsonBody = DataPool.detokenizeDataPoolValues(jsonBody);
     	this.setJsonRequestBody(jsonBody);
     }
 

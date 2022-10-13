@@ -39,9 +39,9 @@
   "baseUrl": "https://enterprise-api-$ENV$.autodesk.com",
   "oAuthBaseUrl":  "https://enterprise-api-$ENV$.autodesk.com",
 
-  "baseFile": "$BASE_DATA$/BaseData.$BASE_NAME$.INT.json",
+  "baseFile": "$BASE_DATA$/BaseData.$BASE_NAME$.$ENV$.json",
   "overridesFile": "$OVERRIDES$/Override.NONE.json",
-  "validationFile": "$VALIDATION$/Validator.$BASE_NAME$.INT.json",
+  "validationFile": "$VALIDATION$/Validator.$BASE_NAME$.$ENV$.json",
   "secretsFile": "$CONFIG$/Secrets.GetInvoiceServices.INT.json",
 
   "workflow": "CreateQuote"
