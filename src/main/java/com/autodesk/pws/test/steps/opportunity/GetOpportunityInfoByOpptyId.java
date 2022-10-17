@@ -115,7 +115,10 @@ public class GetOpportunityInfoByOpptyId extends PwsServiceBase
 						}
 					}
 			
-					log("GetOpptyInfo status: " + status + " -- " + statusMsg);
+					this.log("-- RESPONSE BODY --", DEFAULT_LEFT_SPACE_PADDING + 4);
+					this.log(JsonResponseBody, DEFAULT_LEFT_SPACE_PADDING + 8);
+					
+					log("GetOpptyInfo status: " + status + " -- " + statusMsg, DEFAULT_LEFT_SPACE_PADDING);
 					
 					switch(status.toUpperCase())
 					{					
