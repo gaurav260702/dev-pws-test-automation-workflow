@@ -1,5 +1,5 @@
 {
-  "$BASE_NAME$": "DDA.AddOn",
+  "$BASE_NAME$": "DDA.Renewal",
   "$ROOT$": "./testdata/WorkflowProcessing/TestData",
   "$ENV$": "STG",
 
@@ -23,7 +23,7 @@
   "$DISCOUNT_ID$": "A-1565305",
   "$PART_NUMBER$": "128K1-WW6542-L618",
   "$PRODUCT_SKU_PRIMARY$": "$PART_NUMBER$",
-  "$ADDON_SKU$": "128K1-WW6542-L618",
+  "$RENEWAL_SKU$": "128F1-001355-L890",
   "$CSN_HEADER$": "$CSN_RESELLER$",
 
   "$EXTENSION_DATE$": "[[Date(455)]]",
@@ -34,10 +34,10 @@
   "$BASE_FILE$" : "$ROOT$/BaseData/BaseData.$BASE_NAME$.InitialOrder.STG.json",
   "baseFile": "$BASE_FILE$",
   "overridesFile": "$ROOT$/Overrides/Override.NONE.json",
-  "renewalRequestFile": "$ROOT$/BaseData/BaseData.$BASE_NAME$.AddOnOrder.STG.json",
+  "renewalRequestFile": "$ROOT$/BaseData/BaseData.$BASE_NAME$.RenewalOrder.STG.json",
   "renewalOverridesFile": "$ROOT$/Overrides/Override.NONE.json",
 
-  "validationFile": "$ROOT$/Validators/Validator.DDA.VanillaInitialOrderWithDdaRenewal.$ENV$.json",
+  "validationFile": "$ROOT$/Validators/Validator.$BASE_NAME$.$ENV$.json",
 
   "getOrderStatusV2Url": "https://api.ddws$ENV$.autodesk.com",
   "secretsFile": "$ROOT$/Configurations/Secrets.GetInvoiceServices.INT.json",
