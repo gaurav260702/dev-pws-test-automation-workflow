@@ -78,10 +78,8 @@ public class LoadBaseFiles extends RestActionBase
 	    
 	    log("Full path to list: " + dirOrFilePath, DEFAULT_LEFT_SPACE_PADDING + 4);
 	    
-	    try
-	    {
-		    DirectoryStream<Path> stream = Files.newDirectoryStream(Paths.get(dir));
-		    
+	    try(DirectoryStream<Path> stream = Files.newDirectoryStream(Paths.get(dir)))
+	    {		    
 	        for (Path path : stream) 
 	        {
 	            if (!Files.isDirectory(path)) 
@@ -93,9 +91,6 @@ public class LoadBaseFiles extends RestActionBase
 	            	fileSet.add("[" + path.toString() + "]");
 	            }
 	        }
-	        
-	        stream.close();
-		    
 	    }
 	    catch (Exception ex)
 	    {
