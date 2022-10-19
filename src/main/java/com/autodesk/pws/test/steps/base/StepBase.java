@@ -140,6 +140,11 @@ public class StepBase
         return String.format("%" + n + "s", s);  
     }
     
+	public void log(Exception ex)
+	{
+		log(ex.toString(), DEFAULT_LEFT_SPACE_PADDING);
+	}
+	
     public void log(String msgToLog)
     {
     	log(msgToLog, DEFAULT_LEFT_SPACE_PADDING);
