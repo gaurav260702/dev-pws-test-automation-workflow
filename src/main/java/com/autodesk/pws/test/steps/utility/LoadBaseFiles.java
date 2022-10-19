@@ -76,22 +76,26 @@ public class LoadBaseFiles extends RestActionBase
 	    	dir  = file.getParent();
 	    }
 	    
+	    log("Full path to list: " + dirOrFilePath, DEFAULT_LEFT_SPACE_PADDING + 4);
+	    
 	    try
 	    {
-		    try (DirectoryStream<Path> stream = Files.newDirectoryStream(Paths.get(dir)))
-		    {
-		        for (Path path : stream) 
-		        {
-		            if (!Files.isDirectory(path)) 
-		            {
-		                fileSet.add(path.getFileName().toString());
-		            }
-		            else
-		            {
-		            	fileSet.add("[" + path.toString() + "]");
-		            }
-		        }
-		    }
+		    DirectoryStream<Path> stream = Files.newDirectoryStream(Paths.get(dir));
+		    
+	        for (Path path : stream) 
+	        {
+	            if (!Files.isDirectory(path)) 
+	            {
+	                fileSet.add(path.getFileName().toString());
+	            }
+	            else
+	            {
+	            	fileSet.add("[" + path.toString() + "]");
+	            }
+	        }
+	        
+	        stream.close();
+		    
 	    }
 	    catch (Exception ex)
 	    {
