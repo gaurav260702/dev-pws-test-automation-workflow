@@ -7,7 +7,7 @@ import io.restassured.path.json.JsonPath;
 public class GetOpportunityInfoByOpptyId extends PwsServiceBase
 {
 	public int MillisecondsBetweenGetOpptyInfoRetries = 10000;
-	public int MaxGetOpptyInfoRetries = 600;
+	public int MaxGetOpptyInfoRetries = 60;
 	public int OAuthTokenRefreshModulus = 75;
 	
 	private String finalStatus = "";
