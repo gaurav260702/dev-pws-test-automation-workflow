@@ -30,11 +30,11 @@ public class QuoteFinalize extends PwsServiceBase
 		//  Have some crappy fall-through code here, but this
 		//  should only be temporary until the STG environment
 		//  gets updated to the same code base as INT environment...
-		this.setServiceVerb("PATCH");
+		this.setServiceVerb("PUT");
 		
-		if(((String)DataPool.get("$ENV$")).contentEquals("INT"))
+		if(((String)DataPool.get("$ENV$")).contentEquals("STG"))
 		{
-			this.setServiceVerb("PUT");	
+			this.setServiceVerb("PATCH");	
 		}
 		
 		//  Set the Resource path BEFORE the base/super class
