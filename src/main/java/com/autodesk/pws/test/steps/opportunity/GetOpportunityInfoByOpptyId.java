@@ -10,7 +10,7 @@ public class GetOpportunityInfoByOpptyId extends PwsServiceBase
 	public int MaxGetOpptyInfoRetries = 60;
 	public int OAuthTokenRefreshModulus = 75;
 	
-	//private String finalStatus = "";
+	private String finalStatus = "";
 	
 	@Override
 	public void preparation()
