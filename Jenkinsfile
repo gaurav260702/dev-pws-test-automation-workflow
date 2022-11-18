@@ -24,6 +24,10 @@ pipeline {
   agent {
        label "aws-centos"
   }
+  triggers {
+    //run security scans everyday at 5 AM PST
+    cron( env.BRANCH_NAME.equals('master') ? '0 12 * * *' : '')
+  }
   stages {
     stage('Build Image') {
      steps {
