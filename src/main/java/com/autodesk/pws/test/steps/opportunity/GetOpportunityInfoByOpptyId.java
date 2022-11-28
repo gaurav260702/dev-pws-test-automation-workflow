@@ -164,7 +164,7 @@ public class GetOpportunityInfoByOpptyId extends PwsServiceBase
 					log("Continuing...");
 				}
 			}
-			
+
 			finalStatus = status;
 		}
 		catch (Exception e)
