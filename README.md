@@ -1,6 +1,8 @@
+[![Build Status](https://master-2.jenkins.autodesk.com/buildStatus/icon?job=PWS%2Fpws-test-automation-workflow%2Fmaster)](https://master-2.jenkins.autodesk.com/job/pws/job/pws-test-automation-workflow/job/master/)
+
 # PWS Test Automation using Workflow Processing Engine
 
-Documentation and other sundries: 
+Documentation and other sundries:
 * https://wiki.autodesk.com/pages/viewpage.action?spaceKey=PWSEng&title=PWS+-+Workflow+Processing+Engine+-+Documentation+and+Discussion
 
 ![Workflow Processing Engine Execution Diagram](https://git.autodesk.com/PWS/pws-test-automation-workflow/blob/master/WorkflowProcessingEngineExecutionDiagram.png?version=2&modificationDate=1607721171186&api=v2&effects=border-simple,shadow-kn)
@@ -10,12 +12,12 @@ This project creates the pws automation container based on the [workflow process
 It uses spring-boot framework and is a commandline application.
 
 ### Test Data and config
-It is assumed that the testdata in resources folder will be attached to this container externally 
-and managed as another project. 
-To test locally you can add files there. 
+It is assumed that the testdata in resources folder will be attached to this container externally
+and managed as another project.
+To test locally you can add files there.
 
 Please note that the `./src/main/resources/testdata` folder is ignored in git as well as overwritten/erased when deployed.
-Please do not change that and it is as designed. 
+Please do not change that and it is as designed.
 
 ### Prerequisites
 * JDK 8 or higher and available in path
