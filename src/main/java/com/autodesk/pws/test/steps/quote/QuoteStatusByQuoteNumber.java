@@ -28,6 +28,17 @@ public class QuoteStatusByQuoteNumber extends QuoteStatus
     setExpectedEndState(this.ClassName);
   }
   
+@Override
+  public void validation()
+  {
+	  //  We *DO NOT* want to execute the
+	  //  code found in the superclass!
+	  //  -- Thanks @Shailesh Pathade  for finding this bug!
+	
+	 addResponseToValidationChain();
+  }
+	
+
   private void setResourcePath()
   {
 	  super.setResourcePath("/v1/quotes/status?quoteNumber=$QUOTE_NUMBER$");

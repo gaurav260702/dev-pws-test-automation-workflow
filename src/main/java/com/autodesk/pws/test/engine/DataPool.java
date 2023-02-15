@@ -31,6 +31,7 @@ public class DataPool extends HashMap<String, Object>
 	public JsonPath jsonPath;
 	//public Logger logger;
     public StepBase StepLogger;
+    
     public final String NewLine = System.getProperty("line.separator");
     public boolean SuppressDetokenizationWarnings = true;
     
@@ -184,6 +185,48 @@ public class DataPool extends HashMap<String, Object>
 		return jsonRequestBody;
 	}
 
+	public Object getWithDeFloatCheck(String key)
+	{
+		//  Some weird monkeyshines here.  Raw numbers seem to be coming back as floats
+		//  from JsonPath even if they're clearly Integers (ie, digits with no trailing
+		//  decimal places).  This crazy little test would have been a lot easier in C#,
+		//  but this was the only way I knew how to do it in Java, so, this is a stupid
+		//  bit of code that shouldn't be removed...
+		Object rawTargetValue = this.getRaw(key);
+		Object retVal = null;
+		
+		try
+		{			
+			//  Ok, forcefully turn the target value into a float...
+	        Float floatTest = Float.parseFloat(rawTargetValue.toString());
+	        
+	        //  Now convert it to an integer, which should force drop
+	        //  any trailing decimal places...
+	        Integer intTest = Math.round(floatTest);
+	        
+	        //  Now we reconvert the "intergerized" float back to a float
+	        //  and check to see if they're equal.  If the *are* equal, it's
+	        //  likely the number should have been an integer all along.
+	        //  If they' not equal, when they then they were clearly intended
+	        //  to be a float in the first place...
+	        if(Float.parseFloat(intTest.toString()) == floatTest)
+	        {
+	        	//  Looks like the float/int values were equal, so we're going
+	        	//  to store the integer version of the number as a string
+	        	//  instead of the float version...
+	        	//targetValue = intTest.toString();
+	        	
+	        	retVal = intTest;
+	        }
+		}
+		catch(Exception ex)
+		{
+			retVal = rawTargetValue;
+		}
+		
+		return retVal;
+	}
+	
 	public Object getRaw(String key)
 	{
 		return super.get(key);
@@ -447,5 +490,16 @@ public class DataPool extends HashMap<String, Object>
 	    {
 	    	this.add(key, defaultValueIfNonExistent);
 	    }
+	}
+
+	public String detokenizeBySingleKey(String tokenizedString, String key) 
+	{
+		String retVal = tokenizedString;
+		
+		Object value = this.getWithDeFloatCheck(key);
+		
+		retVal = retVal.replace(key, value.toString());
+		
+		return retVal;
 	}
 }

@@ -1,0 +1,8 @@
+{
+  "KickerFiles":
+  [
+    "./testdata/WorkflowProcessing/TestKickers/Kicker.DDA.AddOn.STG.json",
+    "./testdata/WorkflowProcessing/TestKickers/Kicker.DDA.InitialOrder.STG.json",
+    "./testdata/WorkflowProcessing/TestKickers/Kicker.DDA.Renewal.STG.json"
+  ]
+}

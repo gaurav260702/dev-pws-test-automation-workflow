@@ -1,0 +1,57 @@
+
+{
+    "action": "Add-On",
+
+    "opportunityNumber": "$OPPORTUNITY_NUMBER$",
+    "contractNumber": "$CONTRACT_NUMBER$",
+
+    "orderDiscounts" :
+    [
+      {
+         "discountId":"$DISCOUNT_ID$",
+         "discountType":"DDA"
+      }
+    ],
+
+    "endCustomer":
+    {
+        "account":
+        {
+          "csn": "5104553993"
+        },
+
+        "contractManager":
+        {
+            "countryCode": "US",
+            "email": "SM123@letscheck.pw",
+            "firstName": "SM_PWS",
+            "lastName": "DDA123",
+            "language": "EN"
+        }
+    },
+
+    "shipTo":
+    {
+      "csn": "5104553993"
+    },
+
+    "reseller": {
+        "csn": "0070176510"
+    },
+    "soldTo": {
+        "csn": "0070176510"
+    },
+
+    "poNumber": "PO_{{po_number}}",
+    "customerPoNumber": "CUST_PO_{{cust_po_number}}",
+
+    "lineItems":
+      [
+         {
+            "partNumber": "$ADDON_SKU$",
+            "quantity": 10,
+            "netPrice": "$NET_PRICE$",
+            "subscriptionReferenceNumber": "$SUBSCRIPTION_REFERENCE_NUMBER$"
+         }
+      ]
+}

@@ -25,7 +25,12 @@ public class QuoteFinalize extends PwsServiceBase
 		//  Naturally, we can't allow any 'setAs***Service()'
 		//  methods to have any dependencies if it's being
 		//  called before anything else...
-		this.setServiceVerb("PATCH");
+		
+		
+		//  Have some crappy fall-through code here, but this
+		//  should only be temporary until the STG environment
+		//  gets updated to the same code base as INT environment...
+		this.setServiceVerb("PUT");
 		
 		//  Set the Resource path BEFORE the base/super class
 		//  sets the targetUrl during the super class's

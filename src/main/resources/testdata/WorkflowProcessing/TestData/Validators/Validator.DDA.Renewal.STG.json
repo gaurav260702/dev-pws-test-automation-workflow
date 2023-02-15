@@ -1,0 +1,12 @@
+{
+	"GetOrderStatus2ndPass":
+	{
+	    "lastUpdated": "*-*-* *:*:* UTC",
+	    "statusV1": "processing",
+	    "soldToCsn": "$CSN_SOLDTO$",
+		"messageV1": "Order is under review by Client Services with the case number*",
+		"error.message": "Order is under review by Client Services with the case number*",
+	    "transactionId": "*-*-*-*-*",
+	    "status": "Order is processing."
+	}
+}

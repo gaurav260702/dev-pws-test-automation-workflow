@@ -19,7 +19,7 @@ public class WaitForGetAssetDetails extends StepBase
     public void action()
     {
 		boolean continueTrying = true;
-		Integer maxRetries = 600;
+		Integer maxRetries = 48;
 		Integer OAuthTokenRefreshModulus = 75;
 		Integer msSleepBeforeStatus = 10000;
 		Integer retryCounter = 0;

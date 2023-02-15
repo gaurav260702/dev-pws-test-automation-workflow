@@ -7,7 +7,7 @@ import io.restassured.path.json.JsonPath;
 public class GetOpportunityInfoByOpptyId extends PwsServiceBase
 {
 	public int MillisecondsBetweenGetOpptyInfoRetries = 10000;
-	public int MaxGetOpptyInfoRetries = 600;
+	public int MaxGetOpptyInfoRetries = 60;
 	public int OAuthTokenRefreshModulus = 75;
 	
 	private String finalStatus = "";
@@ -115,7 +115,10 @@ public class GetOpportunityInfoByOpptyId extends PwsServiceBase
 						}
 					}
 			
-					log("GetOpptyInfo status: " + status + " -- " + statusMsg);
+					this.log("-- RESPONSE BODY --", DEFAULT_LEFT_SPACE_PADDING + 4);
+					this.log(JsonResponseBody, DEFAULT_LEFT_SPACE_PADDING + 8);
+					
+					log("GetOpptyInfo status: " + status + " -- " + statusMsg, DEFAULT_LEFT_SPACE_PADDING);
 					
 					switch(status.toUpperCase())
 					{					
@@ -161,7 +164,7 @@ public class GetOpportunityInfoByOpptyId extends PwsServiceBase
 					log("Continuing...");
 				}
 			}
-			
+
 			finalStatus = status;
 		}
 		catch (Exception e)

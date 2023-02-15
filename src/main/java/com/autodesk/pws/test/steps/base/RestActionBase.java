@@ -159,11 +159,18 @@ public class RestActionBase extends StepBase
 
 		String ucaseRestMethod = restMethod.toUpperCase();
 		
-		if (ucaseRestMethod == "POST" || ucaseRestMethod == "PATCH") 
+		if (ucaseRestMethod == "POST" || ucaseRestMethod == "PATCH" || ucaseRestMethod == "PUT") 
 		{
 			mediaType = MediaType.parse(mediaTypeValue);
 		}
 
+		/*
+		if (payload.length() > 2) 
+		{
+			mediaType = MediaType.parse(mediaTypeValue);
+		}
+		*/
+		
 		if (mediaType == null) 
 		{
 			requestBuilder.method(restMethod, null);

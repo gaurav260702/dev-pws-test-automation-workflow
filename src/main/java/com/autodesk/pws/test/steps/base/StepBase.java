@@ -140,6 +140,11 @@ public class StepBase
         return String.format("%" + n + "s", s);  
     }
     
+	public void log(Exception ex)
+	{
+		log(ex.toString(), DEFAULT_LEFT_SPACE_PADDING);
+	}
+	
     public void log(String msgToLog)
     {
     	log(msgToLog, DEFAULT_LEFT_SPACE_PADDING);
@@ -159,6 +164,18 @@ public class StepBase
 
         return retVal.toString();
     }
+    
+    public boolean extractDataFromJsonAndAddToDataPoolIfNull(String dataPoolLabel, String targetPath, JsonPath pathFinder)
+	{
+    	boolean extractionSuccessful = false;
+    	
+    	if(!DataPool.containsKey(dataPoolLabel))
+		{
+    		extractionSuccessful = extractDataFromJsonAndAddToDataPool(dataPoolLabel, targetPath, pathFinder); 
+		}
+    	
+    	return extractionSuccessful;
+	}
     
 	public boolean extractDataFromJsonAndAddToDataPool(String dataPoolLabel, String targetPath, JsonPath pathFinder)
 	{

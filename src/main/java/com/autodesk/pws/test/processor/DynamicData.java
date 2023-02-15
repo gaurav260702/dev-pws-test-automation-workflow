@@ -15,6 +15,7 @@ import java.util.UUID;
 import org.apache.commons.io.FileUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonElement;
@@ -25,7 +26,7 @@ public class DynamicData
 {
     protected static final Logger logger = LoggerFactory.getLogger(DynamicData.class);
     private static HashMap<String, Object> runtimeValues;
-
+    
     public static void initRuntimeValues()
     {
         runtimeValues = new HashMap<String, Object>();
@@ -108,8 +109,21 @@ public class DynamicData
 
 	public static String convertRelativePathToFullPath(String relativePath)
 	{
-		DynamicData dd = new DynamicData();
-		String fullFilePath = dd.getClass().getClassLoader().getResource(relativePath).getFile();
+		String fullFilePath = "";
+		
+		try
+		{
+			DynamicData dd = new DynamicData();
+			fullFilePath = dd.getClass().getClassLoader().getResource(relativePath).getFile();
+		}
+		catch(Exception ex)
+		{
+		
+			logger.error("Error during 'convertRelativePathToFullPath'!");
+			logger.error(ex.getStackTrace().toString());
+			logger.error(fullFilePath);
+		}
+		
 		return fullFilePath;
 	}
 

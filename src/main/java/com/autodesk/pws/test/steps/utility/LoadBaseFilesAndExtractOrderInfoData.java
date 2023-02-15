@@ -39,17 +39,17 @@ public class LoadBaseFilesAndExtractOrderInfoData extends LoadBaseFiles
     	JsonPath pathFinder = JsonPath.with(json);
     	
     	//  Extact data that may be needed by other steps later on...	
-    	extractDataFromJsonAndAddToDataPool("$CUSTOMER_NUMBER$", "endCustomer.account.csn", pathFinder); 
-    	extractDataFromJsonAndAddToDataPool("$RESELLER_NUMBER$", "reseller.csn", pathFinder); 
-    	extractDataFromJsonAndAddToDataPool("$PO_NUMBER$", "poNumber", pathFinder); 
-    	extractDataFromJsonAndAddToDataPool("$CUSTOMER_PO_NUMBER$", "customerPoNumber", pathFinder); 
+    	extractDataFromJsonAndAddToDataPoolIfNull("$CUSTOMER_NUMBER$", "endCustomer.account.csn", pathFinder); 
+    	extractDataFromJsonAndAddToDataPoolIfNull("$RESELLER_NUMBER$", "reseller.csn", pathFinder); 
+    	extractDataFromJsonAndAddToDataPoolIfNull("$PO_NUMBER$", "poNumber", pathFinder); 
+    	extractDataFromJsonAndAddToDataPoolIfNull("$CUSTOMER_PO_NUMBER$", "customerPoNumber", pathFinder); 
 	
     	//  NOTE: There is a weakness in the WPE internal assumption, which presumes
     	//        that there will only be a single LineItem requested.  This will need
     	//        to be dealt with differently when multiple LineItems are in the request...
-    	extractDataFromJsonAndAddToDataPool("$QUANTITY$", "lineItems[0].quantity", pathFinder); 
-    	extractDataFromJsonAndAddToDataPool("$NET_PRICE$", "lineItems[0].netPrice", pathFinder); 
-    	extractDataFromJsonAndAddToDataPool("$SKU_OR_PART_NUMBER$", "lineItems[0].partNumber", pathFinder); 
+		extractDataFromJsonAndAddToDataPoolIfNull("$QUANTITY$", "lineItems[0].quantity", pathFinder); 
+		extractDataFromJsonAndAddToDataPoolIfNull("$NET_PRICE$", "lineItems[0].netPrice", pathFinder); 
+		extractDataFromJsonAndAddToDataPoolIfNull("$SKU_OR_PART_NUMBER$", "lineItems[0].partNumber", pathFinder); 
 	}
 	
     @Override
