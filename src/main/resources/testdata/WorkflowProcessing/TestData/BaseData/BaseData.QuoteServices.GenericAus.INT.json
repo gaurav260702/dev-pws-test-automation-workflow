@@ -11,7 +11,7 @@
         "name": "SM Qute Aussie Inc ",
         "addressLine1": "$ADDRESS1$",
         "city": "$CITY$",
-        "stateCode": "$STATE$",
+        "stateProvinceCode": "$STATE$",
         "countryCode": "$COUNTRY$",
         "postalCode": "$POSTAL_CODE$",
         "isIndividual": false

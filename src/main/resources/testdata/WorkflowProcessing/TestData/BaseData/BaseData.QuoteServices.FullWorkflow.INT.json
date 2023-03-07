@@ -36,7 +36,7 @@
     "postalCode": "6799",
     "name": "SM Qute Aussie Inc ",
     "addressLine1": "Jalan Bunga Mawar",
-    "stateCode": "Island of Cocos",
+    "stateProvinceCode": "Island of Cocos",
     "isIndividual": false
   },
   "currency": "AUD"
