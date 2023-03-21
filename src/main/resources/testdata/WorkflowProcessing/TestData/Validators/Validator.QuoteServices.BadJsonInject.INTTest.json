@@ -1,0 +1,29 @@
+{
+  "QuoteCreate":
+  {
+    "transactionId": "*",
+    "message": "success"
+  },
+
+"GetQuoteOAuthCredentials":
+{
+  "access_token": "*",
+  "expires_in": "*",
+  "token_type": "*"
+
+},
+
+  "QuoteStatus":
+  {
+	  "quoteStatus": "FAILED",
+	  "quoteNumber": "NA",
+	  "transactionId": "*",
+	  "error":
+	  {
+	    "code": "46007",
+	    "message": "Invalid EndCustomer Address"
+	  }
+  }
+
+
+}
