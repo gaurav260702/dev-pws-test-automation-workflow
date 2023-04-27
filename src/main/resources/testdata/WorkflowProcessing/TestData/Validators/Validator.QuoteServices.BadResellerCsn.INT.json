@@ -1,48 +1,49 @@
 {
-  "QuoteCreate":
-  {
-    "error": {
-      "code": "45001",
-      "message": "Enter a valid Agent Account CSN"
-    },
+
+  "QuoteStatus": {
+    "errors": [
+      {
+        "code": "45201",
+        "message": "Agent Account CSN is not Authorized"
+      }
+    ],
+    "status": "error"
+  },
+  "QuoteStatusByQuoteNumber": {
+    "errors": [
+      {
+        "code": "45202",
+        "message": "Enter a valid quoteNumber"
+      }
+    ],
+    "status": "error"
+  },
+  "QuoteCreate": {
     "transactionId": "*",
+    "errors": [
+      {
+        "code": "45001",
+        "message": "Enter a valid Agent Account CSN"
+      }
+    ],
     "status": "error"
   },
-
-  "QuoteStatus":
-  {
-    "status": "error",
-    "error": {
-      "code": "45201",
-      "message": "Agent Account CSN is not Authorized"
-    }
-  },
-
-  "QuoteDetails":
-  {
-    "error":
-    {
-      "code": "45101",
-      "message": "quoteNumber is not valid"
-    },
+  "QuoteDetails": {
+    "errors": [
+      {
+        "code": "45101",
+        "message": "quoteNumber is not valid"
+      }
+    ],
     "status": "error"
   },
-
-  "QuoteFinalize":
-  {
-    "error": {
-      "code": "45302",
-      "message": "Enter a valid quoteNumber"
-    },
-    "status": "error"
-  },
-
-  "QuoteStatusByQuoteNumber":
-  {
-    "error": {
-      "code": "45202",
-      "message": "Enter a valid quoteNumber"
-    },
+  "QuoteFinalize": {
+    "errors": [
+      {
+        "code": "45302",
+        "message": "Enter a valid quoteNumber"
+      }
+    ],
     "status": "error"
   }
 }

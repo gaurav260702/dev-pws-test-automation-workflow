@@ -1,46 +1,45 @@
 {
-  "QuoteCreate":
-  {
+
+  "QuoteStatus": {
+    "quoteStatus": "FAILED",
+    "quoteNumber": "NA",
     "transactionId": "*",
-    "message": "success"
+    "errors": [
+      {
+        "code": "46002",
+        "message": "Invalid currency code"
+      }
+    ]
   },
-
-  "QuoteStatus":
-	{
-	  "quoteStatus": "FAILED",
-	  "quoteNumber": "NA",
-	  "transactionId": "*",
-	  "error": {
-	    "code": "46002",
-	    "message": "Invalid currency code"
-	  }
-	},
-
-  "QuoteDetails":
-  {
-    "error":
-    {
-      "code": "45101",
-      "message": "quoteNumber is not valid"
-    },
+  "QuoteStatusByQuoteNumber": {
+    "errors": [
+      {
+        "code": "45202",
+        "message": "Enter a valid quoteNumber"
+      }
+    ],
     "status": "error"
   },
-
-  "QuoteFinalize":
-  {
-    "error": {
-      "code": "45302",
-      "message": "Enter a valid quoteNumber"
-    },
+  "QuoteCreate": {
+    "message": "success",
+    "transactionId": "*"
+  },
+  "QuoteDetails": {
+    "errors": [
+      {
+        "code": "45101",
+        "message": "quoteNumber is not valid"
+      }
+    ],
     "status": "error"
   },
-
-  "QuoteStatusByQuoteNumber":
-  {
-    "error": {
-      "code": "45202",
-      "message": "Enter a valid quoteNumber"
-    },
+  "QuoteFinalize": {
+    "errors": [
+      {
+        "code": "45302",
+        "message": "Enter a valid quoteNumber"
+      }
+    ],
     "status": "error"
   }
 }
