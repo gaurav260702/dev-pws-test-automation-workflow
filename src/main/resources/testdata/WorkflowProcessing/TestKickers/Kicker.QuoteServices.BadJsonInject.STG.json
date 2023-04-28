@@ -54,8 +54,8 @@
   "validationFile": "$VALIDATION$/Validator.$ROOT_NAME$.INT.json",
 
   "QuoteStatus.ExpectedEndStateStatus": "DRAFT-CREATED",
-  "QuoteStatusByQuoteNumber.ExpectedEndStateStatus": "error",
-  "QuoteFinalize.ExpectedEndStateStatus": "error",
+  "QuoteStatusByQuoteNumber.ExpectedEndStateStatus": "QUOTED",
+  "QuoteFinalize.ExpectedEndStateStatus": "FINALIZING",
 
   "workflow": "CreateQuote"
 }
