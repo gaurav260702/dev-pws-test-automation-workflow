@@ -42,7 +42,7 @@
   "baseFile": "$BASE_DATA$/BaseData.$BASE_NAME$.$ENV$.json",
   "overridesFile": "$OVERRIDES$/Override.NONE.json",
   "validationFile": "$VALIDATION$/Validator.$BASE_NAME$.$ENV$.json",
-  "secretsFile": "$CONFIG$/Secrets.GetInvoiceServices.INT.json",
+  "secretsFile": "$CONFIG$/Secrets.GetInvoiceServices.STG.json",
 
   "workflow": "CreateQuote"
 }

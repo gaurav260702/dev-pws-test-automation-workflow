@@ -48,10 +48,10 @@
   "baseUrl": "https://enterprise-api-$ENV$.autodesk.com",
   "oAuthBaseUrl":  "https://enterprise-api-$ENV$.autodesk.com",
 
-  "baseFile": "$BASE_DATA$/BaseData.$ROOT_NAME$.WithStateCode.INT.json",
+  "baseFile": "$BASE_DATA$/BaseData.$ROOT_NAME$.WithStateCode.STG.json",
   "overridesFile": "$OVERRIDES$/Override.NONE.json",
-  "validationFile": "$VALIDATION$/Validator.$ROOT_NAME$.INT.json",
-  "secretsFile": "$CONFIG$/Secrets.GetInvoiceServices.INT.json",
+  "validationFile": "$VALIDATION$/Validator.$ROOT_NAME$.STG.json",
+  "secretsFile": "$CONFIG$/Secrets.GetInvoiceServices.STG.json",
 
   "workflow": "CreateQuote"
 }
