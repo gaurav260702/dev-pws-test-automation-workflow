@@ -1,0 +1,42 @@
+{
+    "quoteNote": "Notefromagenttocustomer.",
+    "currency": "$CURRENCY$",
+    "agentAccount": {
+        "accountCsn": "$CSN_RESELLER$"
+    },
+    "agentContact": {
+        "email": "$AGENT_EMAIL$"
+    },
+    "endCustomer": {
+        "name": "SM Qute Aussie Inc ",
+        "addressLine1": "$ADDRESS1$",
+        "city": "$CITY$",
+        "countryCode": "$COUNTRY$",
+        "postalCode": "$POSTAL_CODE$",
+        "isIndividual": false
+    },
+    "purchaser": {
+        "email": "SMAUST12@letscheck.pw",
+        "firstName": "SMPWSAUS12",
+        "lastName": "User12",
+        "phone": "9454454460",
+        "preferredLanguage": "en-us"
+    },
+    "lineItems": [
+        {
+            "quantity": 7500,
+            "offeringId": "$OFFERING_ID$",
+            "orderAction": "New",
+            "subscriptionStartDate": "[[Date(25)]]",
+            "offer": {
+                "term": "Annual",
+                "accessModel": "Flex",
+                "intendedUsage": "Commercial",
+                "connectivity": "Online",
+                "servicePlan": "Standard",
+                "billingBehavior": "Once",
+                "billingType": "Up-front"
+            }
+        }
+    ]
+}
