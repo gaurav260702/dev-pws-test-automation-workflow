@@ -25,12 +25,10 @@
     "transactionId": "*"
   },
   "QuoteDetails": {
-    "errors": [
-      {
-        "code": "45101",
-        "message": "quoteNumber is not valid"
-      }
-    ],
+    "error": {
+      "code": "45101",
+      "message": "quoteNumber is not valid"
+    },
     "status": "error"
   },
   "QuoteFinalize": {
