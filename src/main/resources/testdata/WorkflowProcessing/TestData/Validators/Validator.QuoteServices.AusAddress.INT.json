@@ -9,7 +9,7 @@
   {
     "transactionId": "*",
     "quoteNumber": "*",
-    "quoteStatus": "*"
+    "quoteStatus": "FAILED"
   },
 
   "QuoteDetails":
@@ -23,7 +23,7 @@
 
   "QuoteFinalize":
   {
-    "status": "FINALIZING",
+    "status": "error",
     "quoteNumber": "$QUOTE_NUMBER$"
   },
 
@@ -31,6 +31,6 @@
   {
     "transactionId": "*",
     "quoteNumber": "$QUOTE_NUMBER$",
-    "quoteStatus": "*"
+    "quoteStatus": "error"
   }
 }

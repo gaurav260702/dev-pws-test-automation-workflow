@@ -1,24 +1,34 @@
 {
+
   "QuoteStatus": {
-    "quoteStatus": "DRAFT-CREATED",
-    "quoteNumber": "*",
-    "transactionId": "*"
-  },
-  "QuoteStatusByQuoteNumber": {
-    "quoteStatus": "QUOTED",
-    "quoteNumber": "*",
-    "transactionId": "*"
+    "quoteStatus": "FAILED",
+    "quoteNumber": "NA",
+    "transactionId": "*",
+    "errors": [
+      {
+        "code": "46007",
+        "message": "Invalid EndCustomer Address"
+      }
+    ]
   },
   "QuoteCreate": {
     "message": "success",
     "transactionId": "*"
   },
   "QuoteDetails": {
-    "quoteNumber": "*",
-    "quoteCreatedTime": "*"
+    "error": {
+      "code": "45101",
+      "message": "quoteNumber is not valid"
+    },
+    "status": "error"
   },
   "QuoteFinalize": {
-    "quoteNumber": "*",
-    "status": "FINALIZING"
+    "errors": [
+      {
+        "code": "45302",
+        "message": "Enter a valid quoteNumber"
+      }
+    ],
+    "status": "error"
   }
 }

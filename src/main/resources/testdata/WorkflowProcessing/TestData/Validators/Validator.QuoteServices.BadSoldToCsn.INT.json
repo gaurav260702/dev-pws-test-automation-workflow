@@ -1,11 +1,13 @@
 {
+
   "QuoteStatus": {
     "quoteStatus": "FAILED",
     "quoteNumber": "NA",
     "transactionId": "*",
     "errors": [
       {
-        "message": "Account not found in sfdc"
+        "code": "45011",
+        "message": "Agent not eligible for creating a quote"
       }
     ]
   },
@@ -23,12 +25,10 @@
     "transactionId": "*"
   },
   "QuoteDetails": {
-    "errors": [
-      {
-        "code": "45101",
-        "message": "quoteNumber is not valid"
-      }
-    ],
+    "error": {
+      "code": "45101",
+      "message": "quoteNumber is not valid"
+    },
     "status": "error"
   },
   "QuoteFinalize": {

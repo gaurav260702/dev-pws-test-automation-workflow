@@ -14,8 +14,11 @@
     "transactionId": "*"
   },
   "QuoteDetails": {
+
+    "agentTimeZone": "*",
     "quoteNumber": "*",
-    "quoteCreatedTime": "*"
+    "quoteStatus": "*"
+
   },
   "QuoteFinalize": {
     "quoteNumber": "*",
