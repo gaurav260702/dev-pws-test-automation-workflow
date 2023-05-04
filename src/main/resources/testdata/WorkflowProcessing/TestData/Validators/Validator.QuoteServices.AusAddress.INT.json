@@ -1,36 +1,27 @@
 {
-  "QuoteCreate":
-  {
-    "transactionId": "*",
-    "message": "success"
-  },
-
-  "QuoteStatus":
-  {
-    "transactionId": "*",
+  "QuoteStatus": {
+    "quoteStatus": "DRAFT-CREATED",
     "quoteNumber": "*",
-    "quoteStatus": "FAILED"
+    "transactionId": "*"
   },
-
-  "QuoteDetails":
-  {
+  "QuoteStatusByQuoteNumber": {
+    "quoteStatus": "QUOTED",
+    "quoteNumber": "*",
+    "transactionId": "*"
+  },
+  "QuoteCreate": {
+    "message": "success",
+    "transactionId": "*"
+  },
+  "QuoteDetails": {
     "quoteNumber": "$QUOTE_NUMBER$",
     "quoteCreatedTime": "*",
     "pricing.currency": "*",
     "agentAccount.accountCsn": "$CSN_ACCOUNT_CONTACT$",
     "agentContact.contactCsn": "$CSN_SOLDTO$"
   },
-
-  "QuoteFinalize":
-  {
-    "status": "error",
-    "quoteNumber": "$QUOTE_NUMBER$"
-  },
-
-  "QuoteStatusByQuoteNumber":
-  {
-    "transactionId": "*",
-    "quoteNumber": "$QUOTE_NUMBER$",
-    "quoteStatus": "error"
+  "QuoteFinalize": {
+    "quoteNumber": "*",
+    "status": "FINALIZING"
   }
 }
