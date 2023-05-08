@@ -11,15 +11,16 @@
         "name": "SM Qute Aussie Inc ",
         "addressLine1": "$ADDRESS1$",
         "city": "$CITY$",
+        "stateProvinceCode": "$STATE$",
         "countryCode": "$COUNTRY$",
         "postalCode": "$POSTAL_CODE$",
         "isIndividual": false
     },
     "purchaser": {
         "email": "SMAUST12@letscheck.pw",
-        "firstName": "SMPWSAUS1234",
-        "lastName": "User1234",
-        "phone": "9454454460",
+        "firstName": "SMPWSAUS1989",
+        "lastName": "User1989",
+        "phone": "9454454490",
         "preferredLanguage": "en-us"
     },
     "lineItems": [
