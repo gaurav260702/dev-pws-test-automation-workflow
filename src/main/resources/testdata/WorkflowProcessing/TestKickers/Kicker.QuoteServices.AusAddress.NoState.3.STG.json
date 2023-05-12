@@ -31,11 +31,11 @@
   "$TIMEZONE_CITY$": "Australia/Sydney",
   "$CURRENCY$": "AUD",
 
-  "$ADDRESS1$": "9 Gaze Rd",
-  "$CITY$": "Christmas Island",
+  "$ADDRESS1$": "4 Edmundsons Road",
+  "$CITY$": "Magpie",
   "$STATE$": "",
-  "$POSTAL_CODE$": "6798",
-  "$COUNTRY$": "CX",
+  "$POSTAL_CODE$": "3352",
+  "$COUNTRY$": "AU",
 
   "includeForceableHeaders": "true",
   "forceableHeaders":

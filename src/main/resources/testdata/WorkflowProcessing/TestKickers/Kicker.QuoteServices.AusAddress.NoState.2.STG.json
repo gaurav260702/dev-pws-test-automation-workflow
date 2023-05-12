@@ -31,11 +31,11 @@
   "$TIMEZONE_CITY$": "Australia/Sydney",
   "$CURRENCY$": "AUD",
 
-  "$ADDRESS1$": "55-63 Gaze Rd",
-  "$CITY$": "Christmas Island",
+  "$ADDRESS1$": "43 Ranworth Road",
+  "$CITY$": "Attadale",
   "$STATE$": "",
-  "$POSTAL_CODE$": "67981",
-  "$COUNTRY$": "CX",
+  "$POSTAL_CODE$": "6156",
+  "$COUNTRY$": "AU",
 
   "includeForceableHeaders": "true",
   "forceableHeaders":
