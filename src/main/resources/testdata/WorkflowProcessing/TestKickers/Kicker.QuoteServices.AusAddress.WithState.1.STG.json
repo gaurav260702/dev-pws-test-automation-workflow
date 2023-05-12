@@ -31,11 +31,11 @@
   "$TIMEZONE_CITY$": "Australia/Sydney",
   "$CURRENCY$": "AUD",
 
-  "$ADDRESS1$": "Jalan Bunga Mawar",
-  "$CITY$": "Christmas Island",
-  "$STATE$": "Island of Cocos",
-  "$POSTAL_CODE$": "6799",
-  "$COUNTRY$": "CX",
+  "$ADDRESS1$": "85 Meyer Road",
+  "$CITY$": "Naidia",
+  "$STATE$": "South Australia",
+  "$POSTAL_CODE$": "5354",
+  "$COUNTRY$": "AU",
 
   "includeForceableHeaders": "true",
   "forceableHeaders":

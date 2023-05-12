@@ -31,11 +31,11 @@
   "$TIMEZONE_CITY$": "Australia/Sydney",
   "$CURRENCY$": "AUD",
 
-   "$ADDRESS1$": "1b Pitt Street",
-   "$CITY$": "Gladstone Central",
-   "$STATE$": "QLD",
-   "$POSTAL_CODE$": "4680",
-   "$COUNTRY$": "AU",
+  "$ADDRESS1$": "58 Rimbanda Road",
+  "$CITY$": "Steinbrook",
+  "$STATE$": "New South Wales",
+  "$POSTAL_CODE$": "2372",
+  "$COUNTRY$": "AU",
 
   "includeForceableHeaders": "true",
   "forceableHeaders":
