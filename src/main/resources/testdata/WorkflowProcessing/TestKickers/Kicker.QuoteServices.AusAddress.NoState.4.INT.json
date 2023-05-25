@@ -31,11 +31,11 @@
   "$TIMEZONE_CITY$": "Australia/Sydney",
   "$CURRENCY$": "AUD",
 
-  "$ADDRESS1$": "1 Mission Road",
-  "$CITY$": "Burnt Pine",
+  "$ADDRESS1$": "10 Jalan Kipas",
+  "$CITY$": "Home Island",
   "$STATE$": "",
-  "$POSTAL_CODE$": "2899",
-  "$COUNTRY$": "NF",
+  "$POSTAL_CODE$": "6799",
+  "$COUNTRY$": "CC",
 
   "includeForceableHeaders": "true",
   "forceableHeaders":
