@@ -29,6 +29,8 @@
     "./testdata/WorkflowProcessing/TestKickers/Kicker.QuoteServices.QuantityDiscountCheck.4999.INT.json",
     "./testdata/WorkflowProcessing/TestKickers/Kicker.QuoteServices.QuantityDiscountCheck.5000.INT.json",
     "./testdata/WorkflowProcessing/TestKickers/Kicker.QuoteServices.QuantityDiscountCheck.5001.INT.json",
-    "./testdata/WorkflowProcessing/TestKickers/Kicker.QuoteServices.QuantityDiscountCheck.6000.INT.json"
+    "./testdata/WorkflowProcessing/TestKickers/Kicker.QuoteServices.QuantityDiscountCheck.6000.INT.json",
+    "./testdata/WorkflowProcessing/TestKickers/Kicker.QuoteServices.AusAddress.WithState.4.Resend.Quote.Email.INT.json"
+
   ]
 }
