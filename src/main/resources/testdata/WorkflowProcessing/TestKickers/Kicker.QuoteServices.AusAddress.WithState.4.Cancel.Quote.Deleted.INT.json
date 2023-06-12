@@ -3,7 +3,7 @@
   "$ENV$": "INT",
 
   "$ROOT_NAME$": "QuoteServices.AusAddress",
-  "$VARIATION_COUNT$": "WithState.4.Resend.Quote.Email",
+  "$VARIATION_COUNT$": "WithState.4.Cancel.Quote.Deleted",
   "$BASE_NAME$": "$ROOT_NAME$_$VARIATION_COUNT$",
   "$VALIDATION$": "$ROOT$/Validators",
   "$OVERRIDES$": "$ROOT$/Overrides",
@@ -31,7 +31,7 @@
   "$TIMEZONE_CITY$": "Australia/Sydney",
   "$CURRENCY$": "AUD",
 
-  "$ADDRESS1$": "43 Savages Road 21",
+  "$ADDRESS1$": "4300 Savages Road 221",
   "$CITY$": "Acacia Ridge",
   "$STATE$": "Queensland",
   "$POSTAL_CODE$": "4110",
@@ -48,10 +48,10 @@
   "baseUrl": "https://enterprise-api-$ENV$.autodesk.com",
   "oAuthBaseUrl":  "https://enterprise-api-$ENV$.autodesk.com",
 
-  "baseFile": "$BASE_DATA$/BaseData.$ROOT_NAME$.WithStateCode4.Resend.Quote.Email.$ENV$.json",
+  "baseFile": "$BASE_DATA$/BaseData.$ROOT_NAME$.WithStateCode4.Cancel.Quote.Deleted.$ENV$.json",
   "overridesFile": "$OVERRIDES$/Override.NONE.json",
-  "validationFile": "$VALIDATION$/Validator.$ROOT_NAME$.WithStateCode4.Resend.Quote.Email.$ENV$.json",
+  "validationFile": "$VALIDATION$/Validator.$ROOT_NAME$.WithStateCode4.Cancel.Quote.Deleted.$ENV$.json",
   "secretsFile": "$CONFIG$/Secrets.GetInvoiceServices.INT.json",
 
-  "workflow": "CreateQuoteResendEmail"
+  "workflow": "QuoteCancelForDeleteQuote"
 }
