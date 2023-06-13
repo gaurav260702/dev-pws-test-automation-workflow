@@ -32,6 +32,7 @@
     "./testdata/WorkflowProcessing/TestKickers/Kicker.QuoteServices.QuantityDiscountCheck.6000.INT.json",
     "./testdata/WorkflowProcessing/TestKickers/Kicker.QuoteServices.AusAddress.WithState.4.Resend.Quote.Email.INT.json",
     "./testdata/WorkflowProcessing/TestKickers/Kicker.QuoteServices.AusAddress.WithState.4.Cancel.Quote.INT.json",
-    "./testdata/WorkflowProcessing/TestKickers/Kicker.QuoteServices.AusAddress.WithState.4.Cancel.Quote.Deleted.INT.json"
+    "./testdata/WorkflowProcessing/TestKickers/Kicker.QuoteServices.AusAddress.WithState.4.Cancel.Quote.Deleted.INT.json",
+    "./testdata/WorkflowProcessing/TestKickers/Kicker.QuoteServices.AusAddress.WithState.4.Cancel.Quote.Positive.INT.json"
   ]
 }

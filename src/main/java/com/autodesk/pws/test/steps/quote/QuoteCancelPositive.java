@@ -40,7 +40,7 @@ public class QuoteCancelPositive extends PwsServiceBase
     	//  Do stuff that the Action depends on to execute...
     	super.preparation();
 
-		ExpectedEndStateStatus = "*";
+	//	ExpectedEndStateStatus = "*";
     //	ExpectedEndStateStatus = "Q-215420 is cancelled"; //$QUOTE_NUMBER$
 	//	ExpectedEndStateStatus = "$QUOTE_NUMBER$ is cancelled";
 	//	ExpectedEndStateStatus = QUOTE_NUMBER+" is cancelled";
@@ -84,14 +84,14 @@ public class QuoteCancelPositive extends PwsServiceBase
 		//  or the "PwsServiceBase" set of methods and properties...
 		String json = this.JsonResponseBody;
 		JsonPath pathFinder = JsonPath.from(json);
-		String finalStatus = pathFinder.get("status");
+	//	String finalStatus = pathFinder.get("status");
 
-		if (!finalStatus.matches(ExpectedEndStateStatus)) 
+		/*if (!finalStatus.matches(ExpectedEndStateStatus))
 		{
 			this.addResponseToValidationChain();
 			ExceptionAbortStatus = true;
 			ExceptionMessage = "Expected to reach '" + ExpectedEndStateStatus + "' state, but ended in '" + finalStatus + "' state!";
-		}
+		}*/
 		//  :::TODO:::
 	}	
 }

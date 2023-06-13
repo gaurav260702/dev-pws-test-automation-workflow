@@ -9,7 +9,7 @@
     "transactionId": "*"
   },
   "QuoteCancelPositive": {
-    "message": "*",
+
     "transactionId": "*"
   }
 }
