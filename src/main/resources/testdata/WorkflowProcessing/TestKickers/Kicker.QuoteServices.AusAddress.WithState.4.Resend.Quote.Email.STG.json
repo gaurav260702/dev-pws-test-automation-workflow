@@ -31,7 +31,7 @@
   "$TIMEZONE_CITY$": "Australia/Sydney",
   "$CURRENCY$": "AUD",
 
-   "$ADDRESS1$": "10 Jalan Kipas",
+   "$ADDRESS1$": "20 Jalan Kipas",
    "$CITY$": "Home Island",
    "$STATE$": "Shire of Cocos",
    "$POSTAL_CODE$": "6799",
