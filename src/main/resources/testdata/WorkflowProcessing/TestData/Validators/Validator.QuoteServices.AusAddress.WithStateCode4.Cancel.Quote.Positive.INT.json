@@ -1,0 +1,15 @@
+{
+  "QuoteStatus": {
+    "quoteStatus": "DRAFT-CREATED",
+    "quoteNumber": "*",
+    "transactionId": "*"
+  },
+  "QuoteCreate": {
+    "message": "success",
+    "transactionId": "*"
+  },
+  "QuoteCancelPositive": {
+    "message": "*",
+    "transactionId": "*"
+  }
+}
