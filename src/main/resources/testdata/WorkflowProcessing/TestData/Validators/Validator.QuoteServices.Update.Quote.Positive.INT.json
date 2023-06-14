@@ -1,0 +1,18 @@
+{
+  "QuoteStatus": {
+    "quoteStatus": "DRAFT-CREATED",
+    "quoteNumber": "*",
+    "transactionId": "*"
+  },
+  "QuoteCreate": {
+    "message": "success",
+    "transactionId": "*"
+  },
+  "QuoteUpdatePositive": {
+    "quoteNumber": "*",
+    "quoteStatus": "Draft",
+    "quoteCreatedTime": "*",
+    "agentTimeZone": "Australia/Sydney"
+
+  }
+}
