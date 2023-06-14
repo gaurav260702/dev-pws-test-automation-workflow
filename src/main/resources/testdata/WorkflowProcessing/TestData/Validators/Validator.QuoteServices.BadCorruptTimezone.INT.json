@@ -1,47 +1,54 @@
 {
-  "QuoteCreate":
-  {
-    "transactionId": "*",
-    "message": "success"
-  },
 
-  "QuoteStatus":
-  {
+  "QuoteStatus": {
     "quoteStatus": "FAILED",
     "quoteNumber": "NA",
     "transactionId": "*",
-    "error":
-    {
-      "code": "46007",
-      "message": "Invalid EndCustomer Address"
-    }
+    "errors": [
+      {
+        "code": "45001",
+        "message": [
+          {
+            "code": "45001",
+            "message": "Invalid time zone specified: Flibbity/Flahboo"
+          }
+        ]
+      }
+    ]
   },
-
-  "QuoteDetails":
-  {
-    "error":
-    {
+  "QuoteStatusByQuoteNumber": {
+    "errors": [
+      {
+        "code": "45202",
+        "message": "Enter a valid quoteNumber"
+      }
+    ],
+    "status": "error"
+  },
+  "QuoteCreate": {
+    "transactionId": "*",
+    "errors": [
+      {
+        "code": "45001",
+        "message": "Invalid time zone specified: Flibbity/Flahboo"
+      }
+    ],
+    "status": "error"
+  },
+  "QuoteDetails": {
+    "error": {
       "code": "45101",
       "message": "quoteNumber is not valid"
     },
     "status": "error"
   },
-
-  "QuoteFinalize":
-  {
-    "error": {
-      "code": "45002",
-      "message": "Enter a valid quoteNumber"
-    },
-    "status": "ERROR"
-  },
-
-  "QuoteStatusByQuoteNumber":
-  {
-    "error": {
-      "code": "45002",
-      "message": "Enter a valid quoteNumber"
-    },
+  "QuoteFinalize": {
+    "errors": [
+      {
+        "code": "45302",
+        "message": "Enter a valid quoteNumber"
+      }
+    ],
     "status": "error"
   }
 }

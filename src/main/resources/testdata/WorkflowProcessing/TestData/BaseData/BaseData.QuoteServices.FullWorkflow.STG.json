@@ -1,0 +1,43 @@
+{
+  "lineItems": [
+    {
+      "offer": {
+        "billingBehavior": "Once",
+        "accessModel": "Flex",
+        "servicePlan": "Standard",
+        "connectivity": "Online",
+        "billingType": "Up-front",
+        "term": "Annual",
+        "intendedUsage": "Commercial"
+      },
+      "quantity": 7500,
+      "offeringId": "$OFFERING_ID$",
+      "subscriptionStartDate": "[[Date(25)]]",
+      "orderAction": "New"
+    }
+  ],
+  "agentAccount": {
+    "accountCsn": "5070132992"
+  },
+  "quoteNote": "Notefromagenttocustomer.",
+  "purchaser": {
+    "firstName": "SMPWSAUS12",
+    "lastName": "User12",
+    "preferredLanguage": "en-us",
+    "phone": "03 9282 1975",
+    "email": "SMAUST12@letscheck.pw"
+  },
+  "agentContact": {
+    "email": "$AGENT_EMAIL$"
+  },
+  "endCustomer": {
+    "city": "Christmas Island",
+    "countryCode": "CX",
+    "postalCode": "6799",
+    "name": "SM Qute Aussie Inc ",
+    "addressLine1": "Jalan Bunga Mawar",
+    "stateProvinceCode": "Island of Cocos",
+    "isIndividual": false
+  },
+  "currency": "AUD"
+}

@@ -33,7 +33,7 @@
    "$ADDRESS1$": "1b Pitt Street",
    "$CITY$": "Gladstone Central",
    "$STATE$": "QLD",
-   "$POSTAL_CODE$": "ABC123!@#",
+   "$POSTAL_CODE$": "4680XXX",
    "$COUNTRY$": "AU",
 
   "includeForceableHeaders": "true",
@@ -47,11 +47,11 @@
   "baseUrl": "https://enterprise-api-$ENV$.autodesk.com",
   "oAuthBaseUrl":  "https://enterprise-api-$ENV$.autodesk.com",
 
-  "secretsFile": "$CONFIG$/Secrets.GetInvoiceServices.INT.json",
+  "secretsFile": "$CONFIG$/Secrets.GetInvoiceServices.STG.json",
 
-  "baseFile": "$BASE_DATA$/BaseData.QuoteServices.GenericAus.INT.json",
+  "baseFile": "$BASE_DATA$/BaseData.QuoteServices.GenericAus.STG.json",
   "overridesFile": "$OVERRIDES$/Override.NONE.json",
-  "validationFile": "$VALIDATION$/Validator.$ROOT_NAME$.INT.json",
+  "validationFile": "$VALIDATION$/Validator.$ROOT_NAME$.STG.json",
 
   "QuoteStatus.ExpectedEndStateStatus": "DRAFT-CREATED",
   "QuoteStatusByQuoteNumber.ExpectedEndStateStatus": "QUOTED",

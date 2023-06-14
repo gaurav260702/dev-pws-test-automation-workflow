@@ -114,6 +114,10 @@ public class QuoteStatus extends PwsServiceBase
 				String status = pathFinder.get("quoteStatus");
 				String faultString = pathFinder.get("fault.faultstring");
 				String errMsg = pathFinder.get("error.message");
+			//	String errMsg = pathFinder.get("errors[0].message");
+				log("Quote Status Message Error: " + errMsg);
+			//	String errCode = pathFinder.get("errors[0].code");
+			//	log("Quote Status Code Error: " + errCode);
 				String errStatus = pathFinder.get("status");
 				
 				if (status == null && faultString != null)
@@ -134,6 +138,7 @@ public class QuoteStatus extends PwsServiceBase
 				}
 
 				log("Current status: " + status + errMsg);
+			//	log("Current status: " + status);
 
 				if (status.matches(ExpectedEndStateStatus) ||
 					status.toLowerCase().matches("error") || 

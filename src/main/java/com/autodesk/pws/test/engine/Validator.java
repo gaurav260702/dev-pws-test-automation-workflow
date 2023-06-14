@@ -264,12 +264,18 @@ public class Validator
 	                {
 	                    //  Grab the value from the path token...
 	                	actualValue = actualValueObj.toString();
-	                	if(actualValue.startsWith("[") && actualValue.endsWith("]")) 
+	                	if(actualValue.startsWith("[") && actualValue.endsWith("]"))
 	                	{
 	                		actualValue = actualValue.substring(1, actualValue.length() - 1);
 	                	}
+
 	                }
-	
+
+					if(expectedValue.startsWith("[") && expectedValue.endsWith("]"))   //<Shailesh> 28 April 23 - to Handle error array logic
+					{
+						expectedValue = expectedValue.substring(1, expectedValue.length() - 1);
+					}
+
 	                //  Here we'll detokenize and resolve any Runtime and DataPool
 	                //  values that exist in the validation data...
 	                expectedValue = DynamicData.detokenizeRuntimeValues(expectedValue);

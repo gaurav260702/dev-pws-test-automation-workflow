@@ -1,0 +1,45 @@
+{
+   "currency": "AUD",
+   "purchaser": {
+      "preferredLanguage": "en-us",
+      "phone": "03 9282 1975",
+      "lastName": "Jones",
+      "firstName": "Benny",
+      "email": "num5labonte@gmail.com",
+      "description": null
+   },
+   "lineItems": [
+      {
+         "quantity": $QUANTITY_TO_PURCHASE$,
+         "orderAction": "New",
+         "offeringId": "$OFFERING_ID$",
+         "offer": {
+            "term": "Annual",
+            "servicePlan": "Standard",
+            "intendedUsage": "Commercial",
+            "connectivity": "Online",
+            "billingType": "Up-front",
+            "billingBehavior": "Once",
+            "accessModel": "Flex"
+         }
+      }
+   ],
+   "endCustomer": {
+      "stateProvinceCode": "VIC",
+      "postalCode": "3025",
+      "name": "Western Electrical",
+      "isIndividual": false,
+      "countryCode": "AU",
+      "city": "Altona North",
+      "addressLine3": null,
+      "addressLine2": "",
+      "addressLine1": "12 Pinnacle Road",
+      "accountCsn": null
+   },
+   "agentContact": {
+      "email": "$AGENT_EMAIL$"
+   },
+   "agentAccount": {
+      "accountCsn": "$CSN_ACCOUNT_CONTACT$"
+   }
+}

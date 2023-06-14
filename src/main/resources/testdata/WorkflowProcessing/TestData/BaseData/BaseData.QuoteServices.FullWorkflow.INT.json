@@ -21,10 +21,10 @@
   },
   "quoteNote": "Notefromagenttocustomer.",
   "purchaser": {
-    "firstName": "SMPWSAUS12",
-    "lastName": "User12",
+    "firstName": "SMPWSAUS1234",
+    "lastName": "User1234",
     "preferredLanguage": "en-us",
-    "phone": "9454454460",
+    "phone": "03 9282 1975",
     "email": "SMAUST12@letscheck.pw"
   },
   "agentContact": {
@@ -36,7 +36,7 @@
     "postalCode": "6799",
     "name": "SM Qute Aussie Inc ",
     "addressLine1": "Jalan Bunga Mawar",
-    "stateCode": "Island of Cocos",
+    "stateProvinceCode": "Island of Cocos",
     "isIndividual": false
   },
   "currency": "AUD"

@@ -1,36 +1,34 @@
 {
-  "QuoteCreate":
-  {
+
+  "QuoteStatus": {
+    "quoteStatus": "FAILED",
+    "quoteNumber": "NA",
     "transactionId": "*",
-    "message": "success"
+    "errors": [
+      {
+        "code": "46007",
+        "message": "Invalid EndCustomer Address"
+      }
+    ]
   },
-
-  "QuoteStatus":
-  {
-    "transactionId": "*",
-    "quoteNumber": "*",
-    "quoteStatus": "*"
+  "QuoteCreate": {
+    "message": "success",
+    "transactionId": "*"
   },
-
-  "QuoteDetails":
-  {
-    "quoteNumber": "$QUOTE_NUMBER$",
-    "quoteCreatedTime": "*",
-    "pricing.currency": "*",
-    "agentAccount.accountCsn": "$CSN_ACCOUNT_CONTACT$",
-    "agentContact.contactCsn": "$CSN_SOLDTO$"
+  "QuoteDetails": {
+    "error": {
+      "code": "45101",
+      "message": "quoteNumber is not valid"
+    },
+    "status": "error"
   },
-
-  "QuoteFinalize":
-  {
-    "status": "FINALIZING",
-    "quoteNumber": "$QUOTE_NUMBER$"
-  },
-
-  "QuoteStatusByQuoteNumber":
-  {
-    "transactionId": "*",
-    "quoteNumber": "$QUOTE_NUMBER$",
-    "quoteStatus": "*"
+  "QuoteFinalize": {
+    "errors": [
+      {
+        "code": "45302",
+        "message": "Enter a valid quoteNumber"
+      }
+    ],
+    "status": "error"
   }
 }

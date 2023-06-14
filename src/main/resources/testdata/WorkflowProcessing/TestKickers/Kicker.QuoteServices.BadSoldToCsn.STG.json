@@ -47,11 +47,11 @@
   "baseUrl": "https://enterprise-api-$ENV$.autodesk.com",
   "oAuthBaseUrl":  "https://enterprise-api-$ENV$.autodesk.com",
 
-  "secretsFile": "$CONFIG$/Secrets.GetInvoiceServices.INT.json",
+  "secretsFile": "$CONFIG$/Secrets.GetInvoiceServices.STG.json",
 
-  "baseFile": "$BASE_DATA$/BaseData.QuoteServices.BadSoldToCSN.INT.json",
+  "baseFile": "$BASE_DATA$/BaseData.QuoteServices.BadSoldToCSN.STG.json",
   "overridesFile": "$OVERRIDES$/Override.NONE.json",
-  "validationFile": "$VALIDATION$/Validator.$ROOT_NAME$.INT.json",
+  "validationFile": "$VALIDATION$/Validator.$ROOT_NAME$.STG.json",
 
   "QuoteCreate.ExpectedEndStateStatus": "Accepted",
   "QuoteStatus.ExpectedEndStateStatus": "FAILED",

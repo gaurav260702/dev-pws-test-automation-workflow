@@ -2,7 +2,7 @@
   "$ROOT$": "./testdata/WorkflowProcessing/TestData",
   "$ENV$": "INT",
 
-  "$ROOT_NAME$": "QuoteServices.BadTimezone",
+  "$ROOT_NAME$": "QuoteServices.BadCorruptTimezone",
   "$BASE_NAME$": "$ROOT_NAME$",
   "$VALIDATION$": "$ROOT$/Validators",
   "$OVERRIDES$": "$ROOT$/Overrides",
@@ -53,9 +53,12 @@
   "overridesFile": "$OVERRIDES$/Override.NONE.json",
   "validationFile": "$VALIDATION$/Validator.$ROOT_NAME$.$ENV$.json",
 
-  "QuoteCreate.ExpectedEndStateStatus": "Accepted",
+  "QuoteCreate.ExpectedEndStateStatus": "Bad Request",
   "QuoteStatus.ExpectedEndStateStatus": "FAILED",
+  "QuoteFinalize.ExpectedEndStateStatus": "error",
   "QuoteStatusByQuoteNumber.ExpectedEndStateStatus": "error",
+
+
 
   "workflow": "CreateQuote"
 }

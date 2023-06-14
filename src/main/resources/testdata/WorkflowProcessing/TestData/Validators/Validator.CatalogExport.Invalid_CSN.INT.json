@@ -1,11 +1,11 @@
 {
   "GetCatalogDetails": {
-    "errors":
+    "errors": [
       {
         "code": "48001",
         "message": "Agent Account CSN is not Authorized"
       }
-    ,
+    ],
     "status": "error"
   }
 }
