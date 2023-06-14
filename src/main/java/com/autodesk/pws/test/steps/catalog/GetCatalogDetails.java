@@ -35,13 +35,6 @@ public class GetCatalogDetails extends PwsServiceBase
     @Override
     public void validation()
     {
-        try {
-            super.validation();
-        }
-        catch(Exception e){
-
-        }
-
-
+        super.validation();
     }
 }
