@@ -1,0 +1,24 @@
+{
+  "QuoteStatus": {
+    "quoteStatus": "DRAFT-CREATED",
+    "quoteNumber": "*",
+    "transactionId": "*"
+  },
+  "QuoteStatusByQuoteNumber": {
+    "quoteStatus": "QUOTED",
+    "quoteNumber": "*",
+    "transactionId": "*"
+  },
+  "QuoteCreate": {
+    "message": "success",
+    "transactionId": "*"
+  },
+  "QuoteDetails": {
+    "quoteNumber": "*",
+    "quoteCreatedTime": "*"
+  },
+  "QuoteFinalize": {
+    "quoteNumber": "*",
+    "status": "FINALIZING"
+  }
+}

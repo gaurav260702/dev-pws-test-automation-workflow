@@ -1,94 +1,27 @@
 {
-  "QuoteCreate":
-  {
-    "transactionId": "*",
-    "message": "success"
-  },
 
-  "QuoteStatus":
-  {
-    "transactionId": "*",
+  "QuoteStatus": {
+    "quoteStatus": "DRAFT-CREATED",
     "quoteNumber": "*",
-    "quoteStatus": "*"
+    "transactionId": "*"
   },
-
-  "QuoteDetails":
-  {
-    "agentAccount.accountCsn": "$CSN_ACCOUNT_CONTACT$",
-    "agentAccount.addressLine1": "Hiicbdoakganfablhbfciijhiapbjpjp",
-    "agentAccount.addressLine2": "Unit 3bbbb",
-    "agentAccount.city": "Eight Mile Plains",
-    "agentAccount.countryCode": "AU",
-    "agentAccount.name": "FODCEDJBDLDMADCMMCALPJBINCLPIHEM",
-    "agentAccount.postalCode": "4113",
-    "agentAccount.stateProvinceCode": "QLD",
-    "agentContact.contactCsn": "$CSN_AGENT_ACCOUNT_CONTACT$",
-    "agentContact.email": "agentpartnera2k@letscheck.email",
-    "agentContact.firstName": "a2kagent",
-    "agentContact.lastName": "Partner",
-    "agentContact.phone": "+4155078888",
-    "agentContact.preferredLanguage": "en",
-    "agentTimeZone": "Australia/Sydney",
-    "endCustomer.accountCsn": "$CSN_VALIDATION_END_CUSTOMER$",
-    "endCustomer.addressLine1": "12 Pinnacle R*d",
-    "endCustomer.city": "Altona North",
-    "endCustomer.countryCode": "AU",
-    "endCustomer.isIndividual": "false",
-    "endCustomer.name": "Western Electrical",
-    "endCustomer.postalCode": "3025",
-    "endCustomer.stateProvinceCode": "VIC",
-    "lineItems[0].lineNumber": "1",
-    "lineItems[0].offer.accessModel": "Flex",
-    "lineItems[0].offer.billingBehavior": "Once",
-    "lineItems[0].offer.billingFrequency": "One-Time",
-    "lineItems[0].offer.billingType": "Up-front",
-    "lineItems[0].offer.connectivity": "Online",
-    "lineItems[0].offer.connectivityInterval": "1 Day",
-    "lineItems[0].offer.intendedUsage": "Commercial",
-    "lineItems[0].offer.servicePlanId": "Standard",
-    "lineItems[0].offer.term": "Annual",
-    "lineItems[0].offeringCode": "FLEXACCESS",
-    "lineItems[0].offeringId": "OD-000163",
-    "lineItems[0].offeringName": "Flex",
-    "lineItems[0].orderAction": "New",
-    "lineItems[0].pricing.currency": "AUD",
-    "lineItems[0].pricing.endUserPrice": "$lineItems[0].pricing.endUserPrice$",
-    "lineItems[0].pricing.extendedDiscountedSRP": "$lineItems[0].pricing.extendedDiscountedSRP$",
-    "lineItems[0].pricing.extendedSRP": "$lineItems[0].pricing.extendedSRP$",
-    "lineItems[0].pricing.totalDiscount": "$lineItems[0].pricing.totalDiscount$",
-    "lineItems[0].pricing.transactionVolumeDiscountAmount": "$lineItems[0].pricing.transactionVolumeDiscountAmount$",
-    "lineItems[0].pricing.transactionVolumeDiscountPercent": "$lineItems[0].pricing.transactionVolumeDiscountPercent$",
-    "lineItems[0].pricing.unitSRP": "3.75",
-    "lineItems[0].quantity": "$QUANTITY_TO_PURCHASE$",
-    "lineItems[0].unitOfMeasure": "EA",
-    "pricing.currency": "AUD",
-    "pricing.estimatedTax": "$pricing.estimatedTax$",
-    "pricing.priceRegionCode": "AH",
-    "pricing.totalAmount": "$pricing.totalAmount$",
-    "pricing.totalDiscount": "$pricing.totalDiscount$",
-    "pricing.totalListAmount": "$pricing.totalListAmount$",
-    "pricing.totalNetAmount": "$pricing.totalNetAmount$",
-    "purchaser.contactCsn": "4000120835",
-    "purchaser.email": "num5labonte@gmail.com",
-    "purchaser.firstName": "Test",
-    "purchaser.lastName": "Employee",
-    "purchaser.phone": "+02 6583 2733",
-    "purchaser.preferredLanguage": "en",
+  "QuoteStatusByQuoteNumber": {
+    "quoteStatus": "QUOTED",
+    "quoteNumber": "*",
+    "transactionId": "*"
+  },
+  "QuoteCreate": {
+    "message": "success",
+    "transactionId": "*"
+  },
+  "QuoteDetails": {
+    "quoteCreatedTime": "*",
     "quoteCreatedTime": "*",
     "quoteNumber": "$QUOTE_NUMBER$",
     "quoteStatus": "Draft"
   },
-
-  "QuoteFinalize":
-  {
-    "status": "FINALIZING",
-    "quoteNumber": "$QUOTE_NUMBER$"
-  },
-
-  "QuoteStatusByQuoteNumber":
-  {
-    "transactionId": "*",
-    "quoteNumber": "$QUOTE_NUMBER$",
-    "quoteStatus": "QUOTED"
+  "QuoteFinalize": {
+    "quoteNumber": "*",
+    "status": "FINALIZING"
   }
 }

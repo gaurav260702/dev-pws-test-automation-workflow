@@ -1,47 +1,43 @@
 {
-  "QuoteCreate":
-  {
-    "transactionId": "*",
-    "message": "success"
-  },
 
-  "QuoteStatus":
-  {
-    "error":
-    {
-      "code": "45011",
-      "message": "Agent not eligible for creating a quote"
-    },
+  "QuoteStatus": {
+    "quoteStatus": "FAILED",
     "quoteNumber": "NA",
     "transactionId": "*",
-    "quoteStatus": "FAILED"
+    "errors": [
+      {
+        "code": "45011",
+        "message": "Agent not eligible for creating a quote"
+      }
+    ]
   },
-
-  "QuoteDetails":
-  {
-    "error":
-    {
+  "QuoteStatusByQuoteNumber": {
+    "errors": [
+      {
+        "code": "45202",
+        "message": "Enter a valid quoteNumber"
+      }
+    ],
+    "status": "error"
+  },
+  "QuoteCreate": {
+    "message": "success",
+    "transactionId": "*"
+  },
+  "QuoteDetails": {
+    "error": {
       "code": "45101",
       "message": "quoteNumber is not valid"
     },
     "status": "error"
   },
-
-  "QuoteFinalize":
-  {
-    "error": {
-      "code": "45302",
-      "message": "Enter a valid quoteNumber"
-    },
-    "status": "error"
-  },
-
-  "QuoteStatusByQuoteNumber":
-  {
-    "error": {
-      "code": "45202",
-      "message": "Enter a valid quoteNumber"
-    },
+  "QuoteFinalize": {
+    "errors": [
+      {
+        "code": "45302",
+        "message": "Enter a valid quoteNumber"
+      }
+    ],
     "status": "error"
   }
 }

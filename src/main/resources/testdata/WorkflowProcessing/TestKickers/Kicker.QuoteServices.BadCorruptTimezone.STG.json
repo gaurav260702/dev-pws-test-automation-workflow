@@ -2,7 +2,7 @@
   "$ROOT$": "./testdata/WorkflowProcessing/TestData",
   "$ENV$": "STG",
 
-  "$ROOT_NAME$": "QuoteServices.BadTimezone",
+  "$ROOT_NAME$": "QuoteServices.BadCorruptTimezone",
   "$BASE_NAME$": "$ROOT_NAME$",
   "$VALIDATION$": "$ROOT$/Validators",
   "$OVERRIDES$": "$ROOT$/Overrides",
@@ -47,14 +47,15 @@
   "baseUrl": "https://enterprise-api-$ENV$.autodesk.com",
   "oAuthBaseUrl":  "https://enterprise-api-$ENV$.autodesk.com",
 
-  "secretsFile": "$CONFIG$/Secrets.GetInvoiceServices.INT.json",
+  "secretsFile": "$CONFIG$/Secrets.GetInvoiceServices.STG.json",
 
-  "baseFile": "$BASE_DATA$/BaseData.QuoteServices.GenericAus.INT.json",
+  "baseFile": "$BASE_DATA$/BaseData.QuoteServices.GenericAus.STG.json",
   "overridesFile": "$OVERRIDES$/Override.NONE.json",
-  "validationFile": "$VALIDATION$/Validator.$ROOT_NAME$.INT.json",
+  "validationFile": "$VALIDATION$/Validator.$ROOT_NAME$.STG.json",
 
-  "QuoteCreate.ExpectedEndStateStatus": "Accepted",
+  "QuoteCreate.ExpectedEndStateStatus": "Bad Request",
   "QuoteStatus.ExpectedEndStateStatus": "FAILED",
+  "QuoteFinalize.ExpectedEndStateStatus": "error",
   "QuoteStatusByQuoteNumber.ExpectedEndStateStatus": "error",
 
   "workflow": "CreateQuote"

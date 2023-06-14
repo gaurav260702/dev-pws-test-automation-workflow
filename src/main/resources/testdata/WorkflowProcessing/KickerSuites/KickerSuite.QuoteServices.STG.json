@@ -24,6 +24,7 @@
     "./testdata/WorkflowProcessing/TestKickers/Kicker.QuoteServices.BadSoldToCsn.STG.json",
     "./testdata/WorkflowProcessing/TestKickers/Kicker.QuoteServices.BadState.STG.json",
     "./testdata/WorkflowProcessing/TestKickers/Kicker.QuoteServices.BadTimezone.STG.json",
-    "./testdata/WorkflowProcessing/TestKickers/Kicker.QuoteServices.FullWorkflow.STG.json"
+    "./testdata/WorkflowProcessing/TestKickers/Kicker.QuoteServices.FullWorkflow.STG.json",
+    "./testdata/WorkflowProcessing/TestKickers/Kicker.QuoteServices.AusAddress.WithState.4.Resend.Quote.Email.STG.json"
   ]
 }

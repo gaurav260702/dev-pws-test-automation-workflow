@@ -1,0 +1,56 @@
+{
+
+  "QuoteStatus": {
+    "quoteStatus": "FAILED",
+    "quoteNumber": "NA",
+    "transactionId": "*",
+    "errors": [
+      {
+        "code": "45001",
+        "message": [
+          {
+            "code": "45001",
+            "message": "Invalid time zone specified: Flibbity/Flahboo"
+          }
+        ]
+      }
+    ]
+  },
+  "QuoteStatusByQuoteNumber": {
+    "errors": [
+      {
+        "code": "45202",
+        "message": "Enter a valid quoteNumber"
+      }
+    ],
+    "status": "error"
+  },
+  "QuoteCreate": {
+    "transactionId": "*",
+    "errors": [
+      {
+        "code": "45001",
+        "message": "Invalid time zone specified: Flibbity/Flahboo"
+      }
+    ],
+    "status": "error"
+  },
+  "QuoteDetails": {
+    "errors": [
+      {
+        "code": "45101",
+        "message": "quoteNumber is not valid"
+      }
+    ],
+    "status": "error"
+  },
+  "QuoteFinalize": {
+    "errors": [
+      {
+        "code": "45302",
+        "message": "Enter a valid quoteNumber"
+      }
+    ],
+    "status": "error"
+  }
+}
