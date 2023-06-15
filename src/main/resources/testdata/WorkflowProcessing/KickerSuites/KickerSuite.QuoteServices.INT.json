@@ -33,6 +33,9 @@
     "./testdata/WorkflowProcessing/TestKickers/Kicker.QuoteServices.AusAddress.WithState.4.Resend.Quote.Email.INT.json",
     "./testdata/WorkflowProcessing/TestKickers/Kicker.QuoteServices.AusAddress.WithState.4.Cancel.Quote.INT.json",
     "./testdata/WorkflowProcessing/TestKickers/Kicker.QuoteServices.AusAddress.WithState.4.Cancel.Quote.Deleted.INT.json",
-    "./testdata/WorkflowProcessing/TestKickers/Kicker.QuoteServices.AusAddress.WithState.4.Cancel.Quote.Positive.INT.json"
+    "./testdata/WorkflowProcessing/TestKickers/Kicker.QuoteServices.AusAddress.WithState.4.Cancel.Quote.Positive.INT.json",
+    "./testdata/WorkflowProcessing/TestKickers/Kicker.QuoteServices.Update.Quote.Negative.INT.json",
+    "./testdata/WorkflowProcessing/TestKickers/Kicker.QuoteServices.Update.Quote.LineNumber.MISMATCHED.Negative.INT.json",
+    "./testdata/WorkflowProcessing/TestKickers/Kicker.QuoteServices.Update.Quote.Positive.INT.json"
   ]
 }
