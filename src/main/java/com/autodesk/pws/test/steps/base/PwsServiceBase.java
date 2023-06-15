@@ -201,14 +201,14 @@ public class PwsServiceBase extends RestActionBase
 		this.JsonResponseBody = rawJson;
 
 		//See if valid JSON,if not(like in case of CSV/Image),check if status is 200 ,
-		// if yes,set JsonResponseBody to a valid JSON
+		// if yes,set JsonResponseBody to a Empty JSON
 		try {
 			JsonPath jsonPath = JsonPath.from(this.JsonResponseBody);
 			String prettyJson = jsonPath.prettify();
 		}
 		catch(Exception e){
 			if(status == 200){
-				this.JsonResponseBody = "{\"valid\":true}";
+				this.JsonResponseBody = "{}";
 			}
 
 		}
