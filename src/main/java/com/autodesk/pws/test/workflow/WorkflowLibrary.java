@@ -10,6 +10,7 @@ import com.autodesk.pws.test.steps.price.*;
 import com.autodesk.pws.test.steps.quote.*;
 import com.autodesk.pws.test.steps.rule.*;
 import com.autodesk.pws.test.steps.utility.*;
+import com.autodesk.pws.test.steps.catalog.*;
 
 import java.util.*;
 
@@ -181,6 +182,7 @@ public class WorkflowLibrary
         return workflow;
     }
 
+
     public static List<StepBase> CreateQuoteResendEmail()
     {
         boolean waitForExpectedStatus = true;
@@ -252,6 +254,17 @@ public class WorkflowLibrary
      //   workflow.add(new QuoteStatusByQuoteNumber(waitForExpectedStatus));
         workflow.add(new QuoteCancelPositive());
 
+        return workflow;
+    }
+
+    public static List<StepBase> CatalogExport()
+    {
+        List<StepBase> workflow = new ArrayList<StepBase>();
+
+        workflow.add(new LoadBaseFiles());
+        // workflow.add(new GetOAuthCredentials());
+        workflow.add(new GetCatalogExportOAuthCredentials());
+        workflow.add(new GetCatalogDetails());
 
         return workflow;
     }

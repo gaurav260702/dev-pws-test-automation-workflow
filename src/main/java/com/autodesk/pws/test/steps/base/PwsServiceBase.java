@@ -129,6 +129,7 @@ public class PwsServiceBase extends RestActionBase
     public void action()
     {
 		int retryCount = 0;
+		int status ;
 		
 		boolean keepTrying = true;
 		boolean retryExceeded = false;
@@ -180,6 +181,7 @@ public class PwsServiceBase extends RestActionBase
 			if(!retryExceeded)
 			{
 				rawJson = ActionResult.body().string();
+				status = ActionResult.code();
 			}
 			else
 			{
@@ -197,6 +199,19 @@ public class PwsServiceBase extends RestActionBase
 
 		//  Make the json response body available for data extraction...
 		this.JsonResponseBody = rawJson;
+
+		//See if valid JSON,if not(like in case of CSV/Image),check if status is 200 ,
+		// if yes,set JsonResponseBody to a Empty JSON
+		try {
+			JsonPath jsonPath = JsonPath.from(this.JsonResponseBody);
+			String prettyJson = jsonPath.prettify();
+		}
+		catch(Exception e){
+			if(status == 200){
+				this.JsonResponseBody = "{}";
+			}
+
+		}
 		
 		this.log("-- RESPONSE BODY --", DEFAULT_LEFT_SPACE_PADDING + 4);
 		this.log(this.JsonResponseBody, DEFAULT_LEFT_SPACE_PADDING + 8);
