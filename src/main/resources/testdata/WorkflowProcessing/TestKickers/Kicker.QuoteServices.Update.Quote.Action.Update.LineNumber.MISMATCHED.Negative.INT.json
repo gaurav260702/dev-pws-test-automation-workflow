@@ -3,7 +3,7 @@
   "$ENV$": "INT",
 
   "$ROOT_NAME$": "QuoteServices",
-  "$VARIATION_COUNT$": "Update.Quote.Positive",
+  "$VARIATION_COUNT$": "Update.Quote.LineNumber.MISMATCHED.Negative",
   "$BASE_NAME$": "$ROOT_NAME$_$VARIATION_COUNT$",
   "$VALIDATION$": "$ROOT$/Validators",
   "$OVERRIDES$": "$ROOT$/Overrides",
@@ -31,7 +31,7 @@
   "$TIMEZONE_CITY$": "Australia/Sydney",
   "$CURRENCY$": "AUD",
 
-  "$ADDRESS1$": "123 Savages Road",
+  "$ADDRESS1$": "51234 Savages Road",
   "$CITY$": "Acacia Ridge",
   "$STATE$": "Queensland",
   "$POSTAL_CODE$": "4110",
@@ -48,10 +48,10 @@
   "baseUrl": "https://enterprise-api-$ENV$.autodesk.com",
   "oAuthBaseUrl":  "https://enterprise-api-$ENV$.autodesk.com",
 
-  "baseFile": "$BASE_DATA$/BaseData.$ROOT_NAME$.Update.Quote.Positive.$ENV$.json",
+  "baseFile": "$BASE_DATA$/BaseData.$ROOT_NAME$.Update.Quote.LineNumber.MISMATCHED.Negative.$ENV$.json",
   "overridesFile": "$OVERRIDES$/Override.NONE.json",
-  "validationFile": "$VALIDATION$/Validator.$ROOT_NAME$.Update.Quote.Positive.$ENV$.json",
+  "validationFile": "$VALIDATION$/Validator.$ROOT_NAME$.Update.Quote.LineNumber.MISMATCHED.Negative.$ENV$.json",
   "secretsFile": "$CONFIG$/Secrets.GetInvoiceServices.INT.json",
 
-  "workflow": "QuoteUpdatePositive"
+  "workflow": "QuoteUpdateLineNumberMismatchedNeg"
 }

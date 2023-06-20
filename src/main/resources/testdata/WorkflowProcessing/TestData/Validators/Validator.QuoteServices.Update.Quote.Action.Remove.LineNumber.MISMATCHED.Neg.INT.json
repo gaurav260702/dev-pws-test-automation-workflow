@@ -30,7 +30,7 @@
     "errors": [
       {
         "code": "UQ04007",
-        "message": "Quote Line Number 'QL-0176625' does not belong to this quote (Line Item 1)."
+        "message": "Quote Line Number \u0027QL-0176625\u0027 does not belong to this quote (Line Item 1)."
       }
     ]
   }

@@ -358,7 +358,7 @@ public class WorkflowLibrary
         workflow.add(new QuoteDetails());
         workflow.add(new QuoteFinalize());
         workflow.add(new QuoteStatusByQuoteNumber(waitForExpectedStatus));
-        workflow.add(new QuoteUpdateLineNumberMismatchedNeg());
+        workflow.add(new QuoteUpdateActionRemoveLineNumberMismatchedNeg());
 
 
         return workflow;
