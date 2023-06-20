@@ -201,6 +201,62 @@ public class WorkflowLibrary
         return workflow;
     }
 
+    public static List<StepBase> QuoteResendEmailTwiceNegative()
+    {
+        boolean waitForExpectedStatus = true;
+
+        List<StepBase> workflow = new ArrayList<StepBase>();
+
+        workflow.add(new LoadQuoteFilesAndExtractData());
+        workflow.add(new GetQuoteOAuthCredentials());
+        workflow.add(new QuoteCreate());
+        workflow.add(new QuoteStatus(waitForExpectedStatus));
+        workflow.add(new QuoteDetails());
+        workflow.add(new QuoteFinalize());
+        workflow.add(new QuoteStatusByQuoteNumber(waitForExpectedStatus));
+        workflow.add(new QuoteResendEmail());
+        workflow.add(new QuoteResendEmailTwiceNegative());
+
+        return workflow;
+    }
+
+    public static List<StepBase> QuoteResendEmailInvalidQuoteNumberNegative()
+    {
+        boolean waitForExpectedStatus = true;
+
+        List<StepBase> workflow = new ArrayList<StepBase>();
+
+        workflow.add(new LoadQuoteFilesAndExtractData());
+        workflow.add(new GetQuoteOAuthCredentials());
+        workflow.add(new QuoteCreate());
+        workflow.add(new QuoteStatus(waitForExpectedStatus));
+        workflow.add(new QuoteDetails());
+        workflow.add(new QuoteFinalize());
+        workflow.add(new QuoteStatusByQuoteNumber(waitForExpectedStatus));
+        workflow.add(new QuoteResendEmailInvalidQuoteNumberNegative());
+
+        return workflow;
+    }
+
+    public static List<StepBase> QuoteResendEmailQuoteNumberDraftStateNegative()
+    {
+        boolean waitForExpectedStatus = true;
+
+        List<StepBase> workflow = new ArrayList<StepBase>();
+
+        workflow.add(new LoadQuoteFilesAndExtractData());
+        workflow.add(new GetQuoteOAuthCredentials());
+        workflow.add(new QuoteCreate());
+        workflow.add(new QuoteStatus(waitForExpectedStatus));
+        //  workflow.add(new QuoteDetails());
+        //  workflow.add(new QuoteFinalize());
+        //  workflow.add(new QuoteStatusByQuoteNumber(waitForExpectedStatus));
+        workflow.add(new QuoteResendEmailQuoteNumberDraftStateNegative());
+
+
+        return workflow;
+    }
+
     public static List<StepBase> CancelQuoteNegative()
     {
         boolean waitForExpectedStatus = true;
