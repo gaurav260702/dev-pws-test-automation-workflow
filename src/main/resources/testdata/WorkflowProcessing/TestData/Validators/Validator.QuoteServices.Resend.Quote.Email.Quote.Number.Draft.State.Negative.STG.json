@@ -1,0 +1,21 @@
+{
+  "QuoteStatus": {
+    "quoteStatus": "DRAFT-CREATED",
+    "quoteNumber": "*",
+    "transactionId": "*"
+  },
+  "QuoteCreate": {
+    "message": "success",
+    "transactionId": "*"
+  },
+
+  "QuoteResendEmailQuoteNumberDraftStateNegative": {
+    "status": "error",
+    "errors": [
+      {
+        "code": "45757",
+        "message": "$QUOTE_NUMBER$ is not Quoted"
+      }
+    ]
+  }
+}
