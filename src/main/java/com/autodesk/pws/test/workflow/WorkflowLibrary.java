@@ -363,6 +363,25 @@ public class WorkflowLibrary
         return workflow;
     }
 
+    public static List<StepBase> QuoteUpdateLineNumberMismatchedSTGNeg()
+    {
+        boolean waitForExpectedStatus = true;
+
+        List<StepBase> workflow = new ArrayList<StepBase>();
+
+        workflow.add(new LoadQuoteFilesAndExtractData());
+        workflow.add(new GetQuoteOAuthCredentials());
+        workflow.add(new QuoteCreate());
+        workflow.add(new QuoteStatus(waitForExpectedStatus));
+        workflow.add(new QuoteDetails());
+        workflow.add(new QuoteFinalize());
+        workflow.add(new QuoteStatusByQuoteNumber(waitForExpectedStatus));
+        workflow.add(new QuoteUpdateLineNumberMismatchedSTGNeg());
+
+
+        return workflow;
+    }
+
     public static List<StepBase> QuoteUpdatePositive()
     {
         boolean waitForExpectedStatus = true;
@@ -377,6 +396,25 @@ public class WorkflowLibrary
     //  workflow.add(new QuoteFinalize());
     //  workflow.add(new QuoteStatusByQuoteNumber(waitForExpectedStatus));
         workflow.add(new QuoteUpdatePositive());
+
+
+        return workflow;
+    }
+
+    public static List<StepBase> QuoteUpdateDraftStateSTGPositive()
+    {
+        boolean waitForExpectedStatus = true;
+
+        List<StepBase> workflow = new ArrayList<StepBase>();
+
+        workflow.add(new LoadQuoteFilesAndExtractData());
+        workflow.add(new GetQuoteOAuthCredentials());
+        workflow.add(new QuoteCreate());
+        workflow.add(new QuoteStatus(waitForExpectedStatus));
+        //  workflow.add(new QuoteDetails());
+        //  workflow.add(new QuoteFinalize());
+        //  workflow.add(new QuoteStatusByQuoteNumber(waitForExpectedStatus));
+        workflow.add(new QuoteUpdateDraftStateSTGPositive());
 
 
         return workflow;
@@ -415,6 +453,25 @@ public class WorkflowLibrary
         workflow.add(new QuoteFinalize());
         workflow.add(new QuoteStatusByQuoteNumber(waitForExpectedStatus));
         workflow.add(new QuoteUpdateActionRemoveLineNumberMismatchedNeg());
+
+
+        return workflow;
+    }
+
+    public static List<StepBase> QuoteUpdateActionRemoveLineNumberMismatchedSTGNeg()
+    {
+        boolean waitForExpectedStatus = true;
+
+        List<StepBase> workflow = new ArrayList<StepBase>();
+
+        workflow.add(new LoadQuoteFilesAndExtractData());
+        workflow.add(new GetQuoteOAuthCredentials());
+        workflow.add(new QuoteCreate());
+        workflow.add(new QuoteStatus(waitForExpectedStatus));
+        workflow.add(new QuoteDetails());
+        workflow.add(new QuoteFinalize());
+        workflow.add(new QuoteStatusByQuoteNumber(waitForExpectedStatus));
+        workflow.add(new QuoteUpdateActionRemoveLineNumberMismatchedSTGNeg());
 
 
         return workflow;
