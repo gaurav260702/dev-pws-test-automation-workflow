@@ -1,0 +1,11 @@
+{
+  "GetPromotionDetails": {
+    "errors": [
+      {
+        "code": "49001",
+        "message": "Agent Account CSN is not Authorized"
+      }
+    ],
+    "status": "error"
+  }
+}
