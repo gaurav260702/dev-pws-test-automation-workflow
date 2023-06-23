@@ -1,0 +1,57 @@
+﻿{
+  "$ROOT$": "./testdata/WorkflowProcessing/TestData",
+  "$ENV$": "STG",
+
+  "$ROOT_NAME$": "QuoteServices",
+  "$VARIATION_COUNT$": "Update.Quote.Action.Remove.Not.In.Draft.Negative",
+  "$BASE_NAME$": "$ROOT_NAME$_$VARIATION_COUNT$",
+  "$VALIDATION$": "$ROOT$/Validators",
+  "$OVERRIDES$": "$ROOT$/Overrides",
+  "$BASE_DATA$": "$ROOT$/BaseData",
+  "$CONFIG$": "$ROOT$/Configurations",
+
+  "$CSN_SOLDTO$": "185723294",
+  "$CSN_RESELLER$": "5070132992",
+  "$CSN_ENDCUSTOMER$": "5070132992",
+  "$CSN_SHIPTO$": "5070132992",
+
+  "$CSN_PRIMARY$": "$CSN_ENDCUSTOMER$",
+  "$CSN_SECONDARY$": "$CSN_RESELLER$",
+  "$CSN_TERTIARY$": "$CSN_SOLDTO$",
+  "$CSN_QUATERNARY$": "$CSN_SOLDTO$",
+
+  "$CSN_ACCOUNT_CONTACT$": "5070132992",
+  "$CSN_HEADER$": "5070132992",
+
+  "$OFFERING_ID$": "OD-000450","$AGENT_EMAIL$":
+  "partneruser_da_stg_5070132992_2@letscheck.email",
+
+  "$CREATE_QUOTE_BASE_URL$": "https://enterprise-api-$ENV$.autodesk.com/",
+
+  "$TIMEZONE_CITY$": "Australia/Sydney",
+  "$CURRENCY$": "AUD",
+
+   "$ADDRESS1$": "7212 Jalan Kipas",
+   "$CITY$": "Home Island",
+   "$STATE$": "Shire of Cocos",
+   "$POSTAL_CODE$": "6799",
+   "$COUNTRY$": "CC",
+
+  "includeForceableHeaders": "true",
+  "forceableHeaders":
+  {
+    "x-adsk-test-event": "false",
+    "timezone_city": "$TIMEZONE_CITY$",
+    "CSN": "$CSN_HEADER$"
+  },
+
+  "baseUrl": "https://enterprise-api-$ENV$.autodesk.com",
+  "oAuthBaseUrl":  "https://enterprise-api-$ENV$.autodesk.com",
+
+  "baseFile": "$BASE_DATA$/BaseData.$ROOT_NAME$.Update.Quote.Action.Remove.Not.In.Draft.Negative.STG.json",
+  "overridesFile": "$OVERRIDES$/Override.NONE.json",
+  "validationFile": "$VALIDATION$/Validator.$ROOT_NAME$.Update.Quote.Action.Remove.Not.In.Draft.Negative.STG.json",
+  "secretsFile": "$CONFIG$/Secrets.GetInvoiceServices.STG.json",
+
+  "workflow": "QuoteUpdateActionRemoveNegative"
+}

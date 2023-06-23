@@ -8,8 +8,11 @@
     "message": "success",
     "transactionId": "*"
   },
-  "QuoteCancelPositive": {
-    "message": "$QUOTE_NUMBER$ is cancelled",
-    "transactionId": "*"
+  "QuoteUpdateDraftStateSTGPositive": {
+    "quoteNumber": "$QUOTE_NUMBER$",
+    "quoteStatus": "Draft",
+    "quoteCreatedTime": "*",
+    "agentTimeZone": "Australia/Sydney"
+
   }
 }

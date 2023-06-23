@@ -1,0 +1,37 @@
+{
+  "QuoteStatus": {
+    "quoteStatus": "DRAFT-CREATED",
+    "quoteNumber": "*",
+    "transactionId": "*"
+  },
+  "QuoteStatusByQuoteNumber": {
+    "quoteStatus": "QUOTED",
+    "quoteNumber": "*",
+    "transactionId": "*"
+  },
+  "QuoteCreate": {
+    "message": "success",
+    "transactionId": "*"
+  },
+  "QuoteDetails": {
+    "quoteNumber": "$QUOTE_NUMBER$",
+    "quoteCreatedTime": "*",
+    "pricing.currency": "*",
+    "agentAccount.accountCsn": "$CSN_ACCOUNT_CONTACT$",
+    "agentContact.contactCsn": "$CSN_SOLDTO$"
+  },
+  "QuoteCancelForDeleteQuote": {
+    "transactionId": "*",
+    "errors": [
+      {
+        "code": "45606",
+        "message": "Quote \u0027Q-0000068\u0027 is not found."
+      }
+    ],
+    "status": "error"
+  },
+  "QuoteFinalize": {
+    "quoteNumber": "*",
+    "status": "FINALIZING"
+  }
+}
