@@ -7,6 +7,7 @@ import com.autodesk.pws.test.steps.invoice.*;
 import com.autodesk.pws.test.steps.opportunity.*;
 import com.autodesk.pws.test.steps.order.*;
 import com.autodesk.pws.test.steps.price.*;
+import com.autodesk.pws.test.steps.promotions.GetPromotionDetails;
 import com.autodesk.pws.test.steps.quote.*;
 import com.autodesk.pws.test.steps.rule.*;
 import com.autodesk.pws.test.steps.utility.*;
@@ -321,6 +322,18 @@ public class WorkflowLibrary
         // workflow.add(new GetOAuthCredentials());
         workflow.add(new GetCatalogExportOAuthCredentials());
         workflow.add(new GetCatalogDetails());
+
+        return workflow;
+    }
+
+    public static List<StepBase> PromotionsExport()
+    {
+        List<StepBase> workflow = new ArrayList<StepBase>();
+
+        workflow.add(new LoadBaseFiles());
+        // workflow.add(new GetOAuthCredentials());
+        workflow.add(new GetPromotionsExportOAuthCredentials());
+        workflow.add(new GetPromotionDetails());
 
         return workflow;
     }
