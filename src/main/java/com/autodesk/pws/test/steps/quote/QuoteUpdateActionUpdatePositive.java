@@ -54,7 +54,7 @@ public class QuoteUpdateActionUpdatePositive extends PwsServiceBase
 				"    \"lineItems\": [\n" +
 				"        {\n" +
 				"            \"action\": \"update\",\n" +
-				"            \"quoteLineNumber\": \"QL-0249675\",\n" +
+				"            \"quoteLineNumber\": \"QL-0249678\",\n" +
 				"            \"quantity\": 140\n" +
 				"        }\n" +
 				"    ]\n" +
