@@ -3,7 +3,7 @@ package com.autodesk.pws.test.steps.quote;
 import com.autodesk.pws.test.steps.base.PwsServiceBase;
 import io.restassured.path.json.JsonPath;
 
-public class QuoteUpdatePositive extends PwsServiceBase
+public class QuoteUpdateActionAddSTGPositive extends PwsServiceBase
 {
 	public String DataPoolSourceInfoLabel = "";
 	
@@ -53,7 +53,7 @@ public class QuoteUpdatePositive extends PwsServiceBase
 				"    \"quoteNumber\": \"$QUOTE_NUMBER$\",\n" +
 				"    \"lineItems\": [{\n" +
 				"        \"action\": \"add\",\n" +
-				"        \"offeringId\": \"OD-000163\",\n" +
+				"        \"offeringId\": \"OD-000450\",\n" +
 				"        \"quantity\": 100,\n" +
 				"        \"orderAction\": \"New\",\n" +
 				"        \"offer\": {\n" +
@@ -101,6 +101,7 @@ public class QuoteUpdatePositive extends PwsServiceBase
 		String json = this.JsonResponseBody;
 		JsonPath pathFinder = JsonPath.from(json);
 		String finalStatus = pathFinder.get("status");
+		extractDataFromJsonAndAddToDataPool("$QUOTE_LINE_NUMBER$", "lineItems[0].quoteLineNumber", pathFinder);
 
 		/*if (!finalStatus.matches(ExpectedEndStateStatus))
 		{

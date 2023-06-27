@@ -31,7 +31,7 @@
   "$TIMEZONE_CITY$": "Australia/Sydney",
   "$CURRENCY$": "AUD",
 
-  "$ADDRESS1$": "1423 Savages Road",
+  "$ADDRESS1$": "52531 Savages Road",
   "$CITY$": "Acacia Ridge",
   "$STATE$": "Queensland",
   "$POSTAL_CODE$": "4110",
@@ -53,5 +53,5 @@
   "validationFile": "$VALIDATION$/Validator.$ROOT_NAME$.Update.Quote.Positive.$ENV$.json",
   "secretsFile": "$CONFIG$/Secrets.GetInvoiceServices.INT.json",
 
-  "workflow": "QuoteUpdatePositive"
+  "workflow": "QuoteUpdateActionAddPositive"
 }

@@ -382,7 +382,7 @@ public class WorkflowLibrary
         return workflow;
     }
 
-    public static List<StepBase> QuoteUpdatePositive()
+    public static List<StepBase> QuoteUpdateActionAddPositive()
     {
         boolean waitForExpectedStatus = true;
 
@@ -395,13 +395,13 @@ public class WorkflowLibrary
     //  workflow.add(new QuoteDetails());
     //  workflow.add(new QuoteFinalize());
     //  workflow.add(new QuoteStatusByQuoteNumber(waitForExpectedStatus));
-        workflow.add(new QuoteUpdatePositive());
+        workflow.add(new QuoteUpdateActionAddPositive());
 
 
         return workflow;
     }
 
-    public static List<StepBase> QuoteUpdateDraftStateSTGPositive()
+    public static List<StepBase> QuoteUpdateActionAddSTGPositive()
     {
         boolean waitForExpectedStatus = true;
 
@@ -414,7 +414,7 @@ public class WorkflowLibrary
         //  workflow.add(new QuoteDetails());
         //  workflow.add(new QuoteFinalize());
         //  workflow.add(new QuoteStatusByQuoteNumber(waitForExpectedStatus));
-        workflow.add(new QuoteUpdateDraftStateSTGPositive());
+        workflow.add(new QuoteUpdateActionAddSTGPositive());
 
 
         return workflow;

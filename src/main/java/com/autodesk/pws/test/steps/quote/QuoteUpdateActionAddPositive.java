@@ -3,7 +3,7 @@ package com.autodesk.pws.test.steps.quote;
 import com.autodesk.pws.test.steps.base.PwsServiceBase;
 import io.restassured.path.json.JsonPath;
 
-public class QuoteUpdateDraftStateSTGPositive extends PwsServiceBase
+public class QuoteUpdateActionAddPositive extends PwsServiceBase
 {
 	public String DataPoolSourceInfoLabel = "";
 	
@@ -53,7 +53,7 @@ public class QuoteUpdateDraftStateSTGPositive extends PwsServiceBase
 				"    \"quoteNumber\": \"$QUOTE_NUMBER$\",\n" +
 				"    \"lineItems\": [{\n" +
 				"        \"action\": \"add\",\n" +
-				"        \"offeringId\": \"OD-000450\",\n" +
+				"        \"offeringId\": \"OD-000163\",\n" +
 				"        \"quantity\": 100,\n" +
 				"        \"orderAction\": \"New\",\n" +
 				"        \"offer\": {\n" +
@@ -101,6 +101,11 @@ public class QuoteUpdateDraftStateSTGPositive extends PwsServiceBase
 		String json = this.JsonResponseBody;
 		JsonPath pathFinder = JsonPath.from(json);
 		String finalStatus = pathFinder.get("status");
+		String quoteLineNumber = pathFinder.get("lineItems[0].quoteLineNumber");
+
+		System.out.println("Final Status: "+finalStatus);
+		System.out.println("quote Line Number: "+quoteLineNumber);
+		extractDataFromJsonAndAddToDataPool("$QUOTE_LINE_NUMBER$", "lineItems[0].quoteLineNumber", pathFinder);
 
 		/*if (!finalStatus.matches(ExpectedEndStateStatus))
 		{

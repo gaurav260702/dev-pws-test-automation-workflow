@@ -8,7 +8,7 @@
     "message": "success",
     "transactionId": "*"
   },
-  "QuoteUpdatePositive": {
+  "QuoteUpdateActionAddPositive": {
     "quoteNumber": "*",
     "quoteStatus": "Draft",
     "quoteCreatedTime": "*",

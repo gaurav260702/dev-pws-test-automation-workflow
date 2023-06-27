@@ -31,7 +31,7 @@
   "$TIMEZONE_CITY$": "Australia/Sydney",
   "$CURRENCY$": "AUD",
 
-   "$ADDRESS1$": "721 Jalan Kipas",
+   "$ADDRESS1$": "7211 Jalan Kipas",
    "$CITY$": "Home Island",
    "$STATE$": "Shire of Cocos",
    "$POSTAL_CODE$": "6799",
@@ -53,5 +53,5 @@
   "validationFile": "$VALIDATION$/Validator.$ROOT_NAME$.Update.Quote.Action.Add.Positive.STG.json",
   "secretsFile": "$CONFIG$/Secrets.GetInvoiceServices.STG.json",
 
-  "workflow": "QuoteUpdateDraftStateSTGPositive"
+  "workflow": "QuoteUpdateActionAddSTGPositive"
 }
