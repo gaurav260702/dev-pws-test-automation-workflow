@@ -395,7 +395,7 @@ public class WorkflowLibrary
         return workflow;
     }
 
-    public static List<StepBase> QuoteUpdatePositive()
+    public static List<StepBase> QuoteUpdateActionAddPositive()
     {
         boolean waitForExpectedStatus = true;
 
@@ -408,13 +408,13 @@ public class WorkflowLibrary
     //  workflow.add(new QuoteDetails());
     //  workflow.add(new QuoteFinalize());
     //  workflow.add(new QuoteStatusByQuoteNumber(waitForExpectedStatus));
-        workflow.add(new QuoteUpdatePositive());
+        workflow.add(new QuoteUpdateActionAddPositive());
 
 
         return workflow;
     }
 
-    public static List<StepBase> QuoteUpdateDraftStateSTGPositive()
+    public static List<StepBase> QuoteUpdateActionAddSTGPositive()
     {
         boolean waitForExpectedStatus = true;
 
@@ -427,7 +427,7 @@ public class WorkflowLibrary
         //  workflow.add(new QuoteDetails());
         //  workflow.add(new QuoteFinalize());
         //  workflow.add(new QuoteStatusByQuoteNumber(waitForExpectedStatus));
-        workflow.add(new QuoteUpdateDraftStateSTGPositive());
+        workflow.add(new QuoteUpdateActionAddSTGPositive());
 
 
         return workflow;
@@ -447,6 +447,25 @@ public class WorkflowLibrary
         //  workflow.add(new QuoteFinalize());
         //  workflow.add(new QuoteStatusByQuoteNumber(waitForExpectedStatus));
         workflow.add(new QuoteUpdateActionUpdatePositive());
+
+
+        return workflow;
+    }
+
+    public static List<StepBase> QuoteUpdateActionUpdateSTGPositive()
+    {
+        boolean waitForExpectedStatus = true;
+
+        List<StepBase> workflow = new ArrayList<StepBase>();
+
+        workflow.add(new LoadQuoteFilesAndExtractData());
+        workflow.add(new GetQuoteOAuthCredentials());
+        workflow.add(new QuoteCreate());
+        workflow.add(new QuoteStatus(waitForExpectedStatus));
+        //  workflow.add(new QuoteDetails());
+        //  workflow.add(new QuoteFinalize());
+        //  workflow.add(new QuoteStatusByQuoteNumber(waitForExpectedStatus));
+        workflow.add(new QuoteUpdateActionUpdateSTGPositive());
 
 
         return workflow;
@@ -509,7 +528,7 @@ public class WorkflowLibrary
         return workflow;
     }
 
-    public static List<StepBase> QuoteUpdateActionRemovePositive()
+    /*public static List<StepBase> QuoteUpdateActionRemovePositive()   // [Shailesh]- commented for Testing purpose
     {
         boolean waitForExpectedStatus = true;
 
@@ -523,6 +542,46 @@ public class WorkflowLibrary
         //  workflow.add(new QuoteFinalize());
         //  workflow.add(new QuoteStatusByQuoteNumber(waitForExpectedStatus));
         workflow.add(new QuoteUpdateActionRemovePositive());
+
+
+        return workflow;
+    }*/
+
+    public static List<StepBase> QuoteUpdateActionRemovePositive()
+    {
+        boolean waitForExpectedStatus = true;
+
+       // List<StepBase> workflow = new ArrayList<StepBase>();
+        List<StepBase> workflow = QuoteUpdateActionAddPositive();
+
+        /*workflow.add(new LoadQuoteFilesAndExtractData());
+        workflow.add(new GetQuoteOAuthCredentials());
+        workflow.add(new QuoteCreate());
+        workflow.add(new QuoteStatus(waitForExpectedStatus));*/
+        //  workflow.add(new QuoteDetails());
+        //  workflow.add(new QuoteFinalize());
+        //  workflow.add(new QuoteStatusByQuoteNumber(waitForExpectedStatus));
+        workflow.add(new QuoteUpdateActionRemovePositive());
+
+
+        return workflow;
+    }
+
+    public static List<StepBase> QuoteUpdateActionRemoveSTGPositive()
+    {
+        boolean waitForExpectedStatus = true;
+
+        // List<StepBase> workflow = new ArrayList<StepBase>();
+        List<StepBase> workflow = QuoteUpdateActionAddSTGPositive();
+
+        /*workflow.add(new LoadQuoteFilesAndExtractData());
+        workflow.add(new GetQuoteOAuthCredentials());
+        workflow.add(new QuoteCreate());
+        workflow.add(new QuoteStatus(waitForExpectedStatus));*/
+        //  workflow.add(new QuoteDetails());
+        //  workflow.add(new QuoteFinalize());
+        //  workflow.add(new QuoteStatusByQuoteNumber(waitForExpectedStatus));
+        workflow.add(new QuoteUpdateActionRemoveSTGPositive());
 
 
         return workflow;

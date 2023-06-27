@@ -8,7 +8,7 @@
     "message": "success",
     "transactionId": "*"
   },
-  "QuoteUpdateDraftStateSTGPositive": {
+  "QuoteUpdateActionAddSTGPositive": {
     "quoteNumber": "$QUOTE_NUMBER$",
     "quoteStatus": "Draft",
     "quoteCreatedTime": "*",

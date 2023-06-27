@@ -8,11 +8,12 @@
     "message": "success",
     "transactionId": "*"
   },
-  "QuoteUpdateActionAddPositive": {
+  "QuoteUpdateActionAddSTGPositive": {
     "quoteNumber": "*",
     "quoteStatus": "Draft",
     "quoteCreatedTime": "*",
-    "agentTimeZone": "Australia/Sydney"
+    "agentTimeZone": "Australia/Sydney",
+    "lineItems[0].quantity":"*"
 
   }
 }

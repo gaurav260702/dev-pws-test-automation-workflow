@@ -3,7 +3,7 @@
   "$ENV$": "STG",
 
   "$ROOT_NAME$": "QuoteServices",
-  "$VARIATION_COUNT$": "Resend.Quote.Email.Twice.Negative",
+  "$VARIATION_COUNT$": "Update.Quote.Action.Update.Positive",
   "$BASE_NAME$": "$ROOT_NAME$_$VARIATION_COUNT$",
   "$VALIDATION$": "$ROOT$/Validators",
   "$OVERRIDES$": "$ROOT$/Overrides",
@@ -31,7 +31,7 @@
   "$TIMEZONE_CITY$": "Australia/Sydney",
   "$CURRENCY$": "AUD",
 
-   "$ADDRESS1$": "520 Jalan Kipas",
+   "$ADDRESS1$": "7222 Jalan Kipas",
    "$CITY$": "Home Island",
    "$STATE$": "Shire of Cocos",
    "$POSTAL_CODE$": "6799",
@@ -48,10 +48,10 @@
   "baseUrl": "https://enterprise-api-$ENV$.autodesk.com",
   "oAuthBaseUrl":  "https://enterprise-api-$ENV$.autodesk.com",
 
-  "baseFile": "$BASE_DATA$/BaseData.$ROOT_NAME$.Resend.Quote.Email.Twice.Negative.STG.json",
+  "baseFile": "$BASE_DATA$/BaseData.$ROOT_NAME$.Update.Quote.Action.Update.Positive.STG.json",
   "overridesFile": "$OVERRIDES$/Override.NONE.json",
-  "validationFile": "$VALIDATION$/Validator.$ROOT_NAME$.Resend.Quote.Email.Twice.Negative.STG.json",
+  "validationFile": "$VALIDATION$/Validator.$ROOT_NAME$.Update.Quote.Action.Update.Positive.STG.json",
   "secretsFile": "$CONFIG$/Secrets.GetInvoiceServices.STG.json",
 
-  "workflow": "QuoteResendEmailTwiceNegative"
+  "workflow": "QuoteUpdateActionUpdateSTGPositive"
 }

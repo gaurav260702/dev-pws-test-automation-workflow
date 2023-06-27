@@ -33,9 +33,11 @@
     "./testdata/WorkflowProcessing/TestKickers/Kicker.QuoteServices.Cancel.Quote.For.Already.Deleted.Quote.Negative.STG.json",
     "./testdata/WorkflowProcessing/TestKickers/Kicker.QuoteServices.Cancel.Quote.In.Draft.State.Positive.STG.json",
     "./testdata/WorkflowProcessing/TestKickers/Kicker.QuoteServices.Update.Quote.Action.Add.Not.In.Draft.Negative.STG.json",
-    "./testdata/WorkflowProcessing/TestKickers/Kicker.QuoteServices.Update.Quote.Action.Update.LineNumber.MISMATCHED.Negative.STG.json",
     "./testdata/WorkflowProcessing/TestKickers/Kicker.QuoteServices.Update.Quote.Action.Add.Positive.STG.json",
+    "./testdata/WorkflowProcessing/TestKickers/Kicker.QuoteServices.Update.Quote.Action.Update.LineNumber.MISMATCHED.Negative.STG.json",
+    "./testdata/WorkflowProcessing/TestKickers/Kicker.QuoteServices.Update.Quote.Action.Update.Positive.STG.json",
     "./testdata/WorkflowProcessing/TestKickers/Kicker.QuoteServices.Update.Quote.Action.Remove.LineNumber.MISMATCHED.Neg.STG.json",
-    "./testdata/WorkflowProcessing/TestKickers/Kicker.QuoteServices.Update.Quote.Action.Remove.Not.In.Draft.Negative.STG.json"
+    "./testdata/WorkflowProcessing/TestKickers/Kicker.QuoteServices.Update.Quote.Action.Remove.Not.In.Draft.Negative.STG.json",
+    "./testdata/WorkflowProcessing/TestKickers/Kicker.QuoteServices.Update.Quote.Action.Remove.Positive.STG.json"
   ]
 }

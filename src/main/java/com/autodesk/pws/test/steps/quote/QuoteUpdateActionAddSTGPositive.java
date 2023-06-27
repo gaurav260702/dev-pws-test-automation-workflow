@@ -3,7 +3,7 @@ package com.autodesk.pws.test.steps.quote;
 import com.autodesk.pws.test.steps.base.PwsServiceBase;
 import io.restassured.path.json.JsonPath;
 
-public class QuoteUpdateActionUpdatePositive extends PwsServiceBase
+public class QuoteUpdateActionAddSTGPositive extends PwsServiceBase
 {
 	public String DataPoolSourceInfoLabel = "";
 	
@@ -50,15 +50,25 @@ public class QuoteUpdateActionUpdatePositive extends PwsServiceBase
     	//  loader/extracter at this time...
     //	String jsonBody = "{\"quoteNumber\":\"$QUOTE_NUMBER$\"}";
 		String jsonBody = "{\n" +
-				"    \"quoteNumber\": \"Q-231778\",\n" +
-				"    \"lineItems\": [\n" +
-				"        {\n" +
-				"            \"action\": \"update\",\n" +
-				"            \"quoteLineNumber\": \"QL-0249678\",\n" +
-				"            \"quantity\": 140\n" +
-				"        }\n" +
-				"    ]\n" +
-				"}";
+				"    \"quoteNumber\": \"$QUOTE_NUMBER$\",\n" +
+				"    \"lineItems\": [{\n" +
+				"        \"action\": \"add\",\n" +
+				"        \"offeringId\": \"OD-000450\",\n" +
+				"        \"quantity\": 100,\n" +
+				"        \"orderAction\": \"New\",\n" +
+				"        \"offer\": {\n" +
+				"                \"term\": \"A01\",\n" +
+				"                \"accessModel\": \"F\",\n" +
+				"                \"intendedUsage\": \"COM\",\n" +
+				"                \"connectivity\": \"C100\",\n" +
+				"                \"connectivityInterval\": \"C01\",\n" +
+				"                \"servicePlanId\": \"STND\",\n" +
+				"                \"billingBehavior\": \"A100\",\n" +
+				"                \"billingType\": \"B100\",\n" +
+				"                \"billingFrequency\": \"B01\"\n" +
+				"            }\n" +
+				"    }]\n" +
+				"}\n";
 
     	jsonBody = this.fullyDetokenize(jsonBody);
     	
@@ -91,6 +101,7 @@ public class QuoteUpdateActionUpdatePositive extends PwsServiceBase
 		String json = this.JsonResponseBody;
 		JsonPath pathFinder = JsonPath.from(json);
 		String finalStatus = pathFinder.get("status");
+		extractDataFromJsonAndAddToDataPool("$QUOTE_LINE_NUMBER$", "lineItems[0].quoteLineNumber", pathFinder);
 
 		/*if (!finalStatus.matches(ExpectedEndStateStatus))
 		{

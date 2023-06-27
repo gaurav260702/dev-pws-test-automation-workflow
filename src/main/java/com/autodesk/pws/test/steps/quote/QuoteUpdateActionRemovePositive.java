@@ -53,7 +53,7 @@ public class QuoteUpdateActionRemovePositive extends PwsServiceBase
 				"    \"quoteNumber\": \"$QUOTE_NUMBER$\",\n" +
 				"    \"lineItems\": [{\n" +
 				"        \"action\": \"remove\",\n" +
-				"        \"quoteLineNumber\": \"QL-0247836\"\n" +
+				"        \"quoteLineNumber\": \"$QUOTE_LINE_NUMBER$\"\n" +
 				"    }]\n" +
 				"}";
 

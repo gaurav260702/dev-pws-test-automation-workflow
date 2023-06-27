@@ -3,7 +3,7 @@ package com.autodesk.pws.test.steps.quote;
 import com.autodesk.pws.test.steps.base.PwsServiceBase;
 import io.restassured.path.json.JsonPath;
 
-public class QuoteUpdateActionUpdatePositive extends PwsServiceBase
+public class QuoteUpdateActionRemoveSTGPositive extends PwsServiceBase
 {
 	public String DataPoolSourceInfoLabel = "";
 	
@@ -50,14 +50,11 @@ public class QuoteUpdateActionUpdatePositive extends PwsServiceBase
     	//  loader/extracter at this time...
     //	String jsonBody = "{\"quoteNumber\":\"$QUOTE_NUMBER$\"}";
 		String jsonBody = "{\n" +
-				"    \"quoteNumber\": \"Q-231778\",\n" +
-				"    \"lineItems\": [\n" +
-				"        {\n" +
-				"            \"action\": \"update\",\n" +
-				"            \"quoteLineNumber\": \"QL-0249678\",\n" +
-				"            \"quantity\": 140\n" +
-				"        }\n" +
-				"    ]\n" +
+				"    \"quoteNumber\": \"$QUOTE_NUMBER$\",\n" +
+				"    \"lineItems\": [{\n" +
+				"        \"action\": \"remove\",\n" +
+				"        \"quoteLineNumber\": \"$QUOTE_LINE_NUMBER$\"\n" +
+				"    }]\n" +
 				"}";
 
     	jsonBody = this.fullyDetokenize(jsonBody);

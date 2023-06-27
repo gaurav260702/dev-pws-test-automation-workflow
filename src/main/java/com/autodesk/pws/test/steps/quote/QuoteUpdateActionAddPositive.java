@@ -3,7 +3,7 @@ package com.autodesk.pws.test.steps.quote;
 import com.autodesk.pws.test.steps.base.PwsServiceBase;
 import io.restassured.path.json.JsonPath;
 
-public class QuoteUpdatePositive extends PwsServiceBase
+public class QuoteUpdateActionAddPositive extends PwsServiceBase
 {
 	public String DataPoolSourceInfoLabel = "";
 	
@@ -101,6 +101,11 @@ public class QuoteUpdatePositive extends PwsServiceBase
 		String json = this.JsonResponseBody;
 		JsonPath pathFinder = JsonPath.from(json);
 		String finalStatus = pathFinder.get("status");
+		String quoteLineNumber = pathFinder.get("lineItems[0].quoteLineNumber");
+
+		System.out.println("Final Status: "+finalStatus);
+		System.out.println("quote Line Number: "+quoteLineNumber);
+		extractDataFromJsonAndAddToDataPool("$QUOTE_LINE_NUMBER$", "lineItems[0].quoteLineNumber", pathFinder);
 
 		/*if (!finalStatus.matches(ExpectedEndStateStatus))
 		{

@@ -3,7 +3,7 @@ package com.autodesk.pws.test.steps.quote;
 import com.autodesk.pws.test.steps.base.PwsServiceBase;
 import io.restassured.path.json.JsonPath;
 
-public class QuoteUpdateDraftStateSTGPositive extends PwsServiceBase
+public class QuoteUpdateActionUpdateSTGPositive extends PwsServiceBase
 {
 	public String DataPoolSourceInfoLabel = "";
 	
@@ -50,25 +50,15 @@ public class QuoteUpdateDraftStateSTGPositive extends PwsServiceBase
     	//  loader/extracter at this time...
     //	String jsonBody = "{\"quoteNumber\":\"$QUOTE_NUMBER$\"}";
 		String jsonBody = "{\n" +
-				"    \"quoteNumber\": \"$QUOTE_NUMBER$\",\n" +
-				"    \"lineItems\": [{\n" +
-				"        \"action\": \"add\",\n" +
-				"        \"offeringId\": \"OD-000450\",\n" +
-				"        \"quantity\": 100,\n" +
-				"        \"orderAction\": \"New\",\n" +
-				"        \"offer\": {\n" +
-				"                \"term\": \"A01\",\n" +
-				"                \"accessModel\": \"F\",\n" +
-				"                \"intendedUsage\": \"COM\",\n" +
-				"                \"connectivity\": \"C100\",\n" +
-				"                \"connectivityInterval\": \"C01\",\n" +
-				"                \"servicePlanId\": \"STND\",\n" +
-				"                \"billingBehavior\": \"A100\",\n" +
-				"                \"billingType\": \"B100\",\n" +
-				"                \"billingFrequency\": \"B01\"\n" +
-				"            }\n" +
-				"    }]\n" +
-				"}\n";
+				"    \"quoteNumber\": \"Q-337827\",\n" +
+				"    \"lineItems\": [\n" +
+				"        {\n" +
+				"            \"action\": \"update\",\n" +
+				"            \"quoteLineNumber\": \"QL-0431585\",\n" +
+				"            \"quantity\": 140\n" +
+				"        }\n" +
+				"    ]\n" +
+				"}";
 
     	jsonBody = this.fullyDetokenize(jsonBody);
     	
