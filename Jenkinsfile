@@ -1,6 +1,4 @@
 
-#!/usr/bin/env groovy
-
 @Library("PSL@master") _
 
 def dockerReg = "autodesk-docker.art-bobcat.autodesk.com/team-pws"
