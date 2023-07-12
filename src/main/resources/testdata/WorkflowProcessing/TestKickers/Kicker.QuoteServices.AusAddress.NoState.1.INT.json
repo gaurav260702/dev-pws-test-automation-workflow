@@ -31,11 +31,11 @@
   "$TIMEZONE_CITY$": "Australia/Sydney",
   "$CURRENCY$": "AUD",
 
-  "$ADDRESS1$": "59 Quarry Rd",
-  "$CITY$": "Christmas Island",
+  "$ADDRESS1$": "2 Middlegate Road",
+  "$CITY$": "Kingston",
   "$STATE$": "",
-  "$POSTAL_CODE$": "6798",
-  "$COUNTRY$": "CX",
+  "$POSTAL_CODE$": "2899",
+  "$COUNTRY$": "NF",
 
   "includeForceableHeaders": "true",
   "forceableHeaders":
