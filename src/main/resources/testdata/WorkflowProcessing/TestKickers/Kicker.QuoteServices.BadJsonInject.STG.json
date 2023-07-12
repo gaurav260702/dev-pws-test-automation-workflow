@@ -30,11 +30,11 @@
   "$TIMEZONE_CITY$": "Australia/Sydney",
   "$CURRENCY$": "AUD",
 
-   "$ADDRESS1$": "{\\\"BadJsonNode\\\": \\\"BadJsonValue\\\"}",
-   "$CITY$": "Gladstone Central",
-   "$STATE$": "QLD",
-   "$POSTAL_CODE$": "ABC123!@#",
-   "$COUNTRY$": "AU",
+  "$ADDRESS1$": "{\\\"BadJsonNode\\\": \\\"BadJsonValue\\\"}",
+  "$CITY$": "Home Island",
+  "$STATE$": "Shire of Cocos",
+  "$POSTAL_CODE$": "ABC6799@!#",
+  "$COUNTRY$": "CC",
 
   "includeForceableHeaders": "true",
   "forceableHeaders":

@@ -31,12 +31,12 @@
     "email": "$AGENT_EMAIL$"
   },
   "endCustomer": {
-    "city": "Christmas Island",
-    "countryCode": "CX",
+    "city": "Home Island",
+    "countryCode": "CC",
     "postalCode": "6799",
     "name": "SM Qute Aussie Inc ",
-    "addressLine1": "Jalan Bunga Mawar",
-    "stateProvinceCode": "Island of Cocos",
+    "addressLine1": "1 Jalan Raya",
+    "stateProvinceCode": "Shire of Cocos",
     "isIndividual": false
   },
   "currency": "AUD"
