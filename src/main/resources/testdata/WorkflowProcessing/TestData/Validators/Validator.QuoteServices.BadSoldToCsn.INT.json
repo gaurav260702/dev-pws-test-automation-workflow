@@ -6,8 +6,8 @@
     "transactionId": "*",
     "errors": [
       {
-        "code": "45011",
-        "message": "Agent not eligible for creating a quote"
+        "code": "45007",
+        "message": "Invalid address - This customer is outside of your authorized territory"
       }
     ]
   },
