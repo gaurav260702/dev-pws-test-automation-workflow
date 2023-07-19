@@ -12,7 +12,6 @@
         "name": "Kaline Associates Ltd",
         "addressLine1": "$ADDRESS1$",
         "city": "$CITY$",
-        "stateProvinceCode": "$STATE$",
         "countryCode": "$COUNTRY$",
         "postalCode": "$POSTAL_CODE$",
         "isIndividual": false
