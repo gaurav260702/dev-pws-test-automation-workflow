@@ -8,10 +8,11 @@
         "email": "$AGENT_EMAIL$"
     },
     "endCustomer": {
-        "accountCsn": "$CSN_ENDCUSTOMER$",
+        "accountCsn": "5112991506",
         "name": "Kaline Associates Ltd",
         "addressLine1": "$ADDRESS1$",
         "city": "$CITY$",
+        "stateProvinceCode": "$STATE$",
         "countryCode": "$COUNTRY$",
         "postalCode": "$POSTAL_CODE$",
         "isIndividual": false

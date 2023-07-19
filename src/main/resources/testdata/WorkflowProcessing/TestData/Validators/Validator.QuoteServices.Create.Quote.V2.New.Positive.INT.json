@@ -20,7 +20,7 @@
     "agentAccount.accountCsn": "$CSN_ACCOUNT_CONTACT$",
     "agentContact.contactCsn": "$CSN_SOLDTO$"
   },
-  "QuoteFinalize": {
+  "QuoteFinalizeV2New": {
     "quoteNumber": "$QUOTE_NUMBER$",
     "status": "FINALIZING"
   }
