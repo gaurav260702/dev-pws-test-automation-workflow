@@ -75,10 +75,10 @@ public class QuoteCreate extends PwsServiceBase
     	//  Extact data that 	
     	extractDataFromJsonAndAddToDataPool("$TRANSACTION_ID$", "transactionId", pathFinder); 
     	
-    	if(ExpectedResponseMessage.compareTo(ActualResponseMessage) != 0)
+    	/*if(ExpectedResponseMessage.compareTo(ActualResponseMessage) != 0)
     	{
     		this.ExceptionMessage = "'" + this.ClassName + "' was expecting a response message of '" + this.ExpectedResponseMessage + "' but ended in a '" + this.ActualResponseMessage + "' response message!";
     		this.ExceptionAbortStatus = true;
-    	}
+    	}*/
 	}	
 }

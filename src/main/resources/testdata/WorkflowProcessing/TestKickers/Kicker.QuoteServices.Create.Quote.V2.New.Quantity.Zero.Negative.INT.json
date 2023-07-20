@@ -3,7 +3,7 @@
   "$ENV$": "INT",
 
   "$ROOT_NAME$": "QuoteServices",
-  "$VARIATION_COUNT$": "Create.Quote.V2.New.Is.Individual.True.Negative",
+  "$VARIATION_COUNT$": "Create.Quote.V2.New.Quantity.Zero.Negative",
   "$BASE_NAME$": "$ROOT_NAME$_$VARIATION_COUNT$",
   "$VALIDATION$": "$ROOT$/Validators",
   "$OVERRIDES$": "$ROOT$/Overrides",
@@ -34,7 +34,9 @@
   "$CITY$": "Kambah",
   "$POSTAL_CODE$": "2902",
   "$COUNTRY$": "AU",
-  "$NAME$": "'name'",
+  "$NAME$": "'lineItems[0].quantity'",
+
+
 
 
   "includeForceableHeaders": "true",
@@ -48,10 +50,10 @@
   "baseUrl": "https://enterprise-api-$ENV$.autodesk.com",
   "oAuthBaseUrl":  "https://enterprise-api-$ENV$.autodesk.com",
 
-  "baseFile": "$BASE_DATA$/BaseData.$ROOT_NAME$.Create.Quote.V2.New.Is.Individual.True.Negative.$ENV$.json",
+  "baseFile": "$BASE_DATA$/BaseData.$ROOT_NAME$.Create.Quote.V2.New.Quantity.Zero.Negative.$ENV$.json",
   "overridesFile": "$OVERRIDES$/Override.NONE.json",
-  "validationFile": "$VALIDATION$/Validator.$ROOT_NAME$.Create.Quote.V2.New.Is.Individual.True.Negative.$ENV$.json",
+  "validationFile": "$VALIDATION$/Validator.$ROOT_NAME$.Create.Quote.V2.New.Quantity.Zero.Negative.$ENV$.json",
   "secretsFile": "$CONFIG$/Secrets.GetInvoiceServices.INT.json",
 
-  "workflow": "CreateQuoteV2NewIsIndividualTrueNegative"
+  "workflow": "CreateQuoteV2NewQuantityZeroNegative"
 }

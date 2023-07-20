@@ -216,6 +216,20 @@ public class WorkflowLibrary
         return workflow;
     }
 
+    public static List<StepBase> CreateQuoteV2NewQuantityZeroNegative()
+    {
+        boolean waitForExpectedStatus = true;
+
+        List<StepBase> workflow = new ArrayList<StepBase>();
+
+        workflow.add(new LoadQuoteFilesAndExtractData());
+        workflow.add(new GetQuoteOAuthCredentials());
+        workflow.add(new QuoteCreate());
+        // workflow.add(new QuoteCreateV2New());
+
+
+        return workflow;
+    }
 
     public static List<StepBase> CreateQuoteResendEmail()
     {
