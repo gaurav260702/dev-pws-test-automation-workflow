@@ -1,0 +1,12 @@
+{
+  "QuoteCreate": {
+    "transactionId": "*",
+    "errors": [
+      {
+        "code": "45001",
+        "message": "$NAME$ is not allowed"
+      }
+    ],
+    "status": "error"
+  }
+}

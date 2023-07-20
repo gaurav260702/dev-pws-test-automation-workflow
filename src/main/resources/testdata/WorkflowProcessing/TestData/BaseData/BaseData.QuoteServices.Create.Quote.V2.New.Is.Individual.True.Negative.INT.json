@@ -1,0 +1,55 @@
+{
+    "quoteNote": "Notefromagenttocustomer.",
+    "currency": "$CURRENCY$",
+    "agentAccount": {
+        "accountCsn": "$CSN_RESELLER$"
+    },
+    "agentContact": {
+        "email": "$AGENT_EMAIL$"
+    },
+    "endCustomer": {
+        "accountCsn": "5112991506",
+        "name": "Kaline Associates Ltd",
+        "addressLine1": "$ADDRESS1$",
+        "city": "$CITY$",
+        "countryCode": "$COUNTRY$",
+        "postalCode": "$POSTAL_CODE$",
+        "isIndividual": true
+    },
+    "purchaser": {
+        "email": "SM_Aususer1@letscheck.pw",
+        "firstName": "SM",
+        "lastName": "User1Dinkum",
+        "phone": "9454456666",
+        "preferredLanguage": "en"
+    },
+    "lineItems": [
+        {
+            "quantity": 10000,
+            "offeringId": "OD-000163",
+            "action": "New",
+            "offer": {
+                "term": {
+                    "code": "A01",
+                    "description": "Annual"
+                },
+                "accessModel": {
+                    "code": "F",
+                    "description": "Flex"
+                },
+                "intendedUsage": {
+                    "code": "COM",
+                    "description": "Commercial"
+                },
+                "connectivity": {
+                    "code": "C100",
+                    "description": "Online"
+                },
+                "servicePlanId": {
+                    "code": "STND",
+                    "description": "Standard"
+                }
+            }
+        }
+    ]
+}
