@@ -1,0 +1,16 @@
+{
+  "QuoteCreate": {
+    "transactionId": "*",
+    "status": "error",
+    "errors": [
+      {
+        "code": "45001",
+        "message": "$NAME$ must be greater than or equal to 1"
+      },
+      {
+        "code": "45001",
+        "message": "$NAME1$ is required"
+      }
+    ]
+  }
+}
