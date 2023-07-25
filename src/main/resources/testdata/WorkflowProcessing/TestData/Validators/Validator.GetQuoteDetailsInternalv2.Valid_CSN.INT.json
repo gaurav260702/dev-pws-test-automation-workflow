@@ -1,0 +1,10 @@
+{
+   "transactionId": "*",
+   "status": "error",
+   "error": [
+       {
+           "code": "45104",
+           "message": "Provided parameter filter[accountCsn] is not found"
+       }
+   ]
+}

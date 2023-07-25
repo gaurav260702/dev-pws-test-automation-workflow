@@ -1,0 +1,9 @@
+{
+  "KickerFiles":
+  [
+    "./testdata/WorkflowProcessing/TestKickers/Kicker.GetQuoteDetailsInternalv2.Valid_CSN.INT.json",
+    "./testdata/WorkflowProcessing/TestKickers/Kicker.GetQuoteDetailsInternalv2.Valid_OID.INT.json",
+    "./testdata/WorkflowProcessing/TestKickers/Kicker.GetQuoteDetailsInternalv2.Valid.INT.json",
+    "./testdata/WorkflowProcessing/TestKickers/Kicker.GetQuoteDetailsInternalv2.Invalid_CSN.INT.json"
+  ]
+}

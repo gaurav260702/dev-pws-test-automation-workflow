@@ -587,6 +587,17 @@ public class WorkflowLibrary
         return workflow;
     }
 
+    public static List<StepBase> GetQuoteDetailsInternalv2()
+    {
+       boolean waitForExpectedStatus = true;
+
+        List<StepBase> workflow = new ArrayList<StepBase>();
+
+        workflow.add(new GetInternalQuoteV2ForgeCredentials());
+        workflow.add(new QuoteDetailsInternalv2());
+
+        return workflow;
+    }
 
 
 
