@@ -50,7 +50,8 @@ public class QuoteUpdateActionRemoveLineNumberMismatchedNeg extends PwsServiceBa
     	//  loader/extracter at this time...
     //	String jsonBody = "{\"quoteNumber\":\"$QUOTE_NUMBER$\"}";
 		String jsonBody = "{\n" +
-				"    \"quoteNumber\": \"Q-168290\",\n" +
+			//	"    \"quoteNumber\": \"Q-168290\",\n" +
+				"    \"quoteNumber\": \"$QUOTE_NUMBER$\",\n" +
 				"    \"lineItems\": [{\n" +
 				"        \"action\": \"remove\",\n" +
 				"        \"quoteLineNumber\": \"QL-0176625\"\n" +

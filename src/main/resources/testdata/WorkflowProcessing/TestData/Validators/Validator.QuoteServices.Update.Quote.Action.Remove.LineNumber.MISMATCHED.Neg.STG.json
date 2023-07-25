@@ -4,25 +4,9 @@
     "quoteNumber": "$QUOTE_NUMBER$",
     "transactionId": "*"
   },
-  "QuoteStatusByQuoteNumber": {
-    "quoteStatus": "QUOTED",
-    "quoteNumber": "$QUOTE_NUMBER$",
-    "transactionId": "*"
-  },
   "QuoteCreate": {
     "message": "success",
     "transactionId": "*"
-  },
-  "QuoteDetails": {
-    "quoteNumber": "$QUOTE_NUMBER$",
-    "quoteCreatedTime": "*",
-    "pricing.currency": "*",
-    "agentAccount.accountCsn": "$CSN_ACCOUNT_CONTACT$",
-    "agentContact.contactCsn": "$CSN_SOLDTO$"
-  },
-  "QuoteFinalize": {
-    "quoteNumber": "$QUOTE_NUMBER$",
-    "status": "FINALIZING"
   },
   "QuoteUpdateActionRemoveLineNumberMismatchedSTGNeg": {
     "status": "error",
