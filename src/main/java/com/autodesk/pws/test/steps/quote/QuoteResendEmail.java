@@ -40,7 +40,7 @@ public class QuoteResendEmail extends PwsServiceBase
     	//  Do stuff that the Action depends on to execute...
     	super.preparation();
     	
-    	ExpectedEndStateStatus = "E-mail resend request is received.";
+    	ExpectedEndStateStatus = "Email request is received.";
 		super.setExpectedEndState(this.ClassName);
     	
     	//  Having a "PATCH" method requires a body.
