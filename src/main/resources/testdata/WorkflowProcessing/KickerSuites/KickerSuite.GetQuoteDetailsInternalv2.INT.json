@@ -1,9 +1,34 @@
 {
   "KickerFiles":
   [
+    "./testdata/WorkflowProcessing/TestKickers/Kicker.GetQuoteDetailsInternalv2.Invalid_filter1.INT.json",
+    "./testdata/WorkflowProcessing/TestKickers/Kicker.GetQuoteDetailsInternalv2.Invalid_input.INT.json",
+    "./testdata/WorkflowProcessing/TestKickers/Kicker.GetQuoteDetailsInternalv2.Invalid_filter2.INT.json",
+    
+    "./testdata/WorkflowProcessing/TestKickers/Kicker.GetQuoteDetailsInternalv2.Invalid_CSN.1.INT.json",
+    "./testdata/WorkflowProcessing/TestKickers/Kicker.GetQuoteDetailsInternalv2.Invalid_CSN.2.INT.json",
+    "./testdata/WorkflowProcessing/TestKickers/Kicker.GetQuoteDetailsInternalv2.Invalid_CSN.3.INT.json",
+    "./testdata/WorkflowProcessing/TestKickers/Kicker.GetQuoteDetailsInternalv2.Invalid_CSN.4.INT.json",
+    
+    "./testdata/WorkflowProcessing/TestKickers/Kicker.GetQuoteDetailsInternalv2.Invalid_OID.1.INT.json",
+    "./testdata/WorkflowProcessing/TestKickers/Kicker.GetQuoteDetailsInternalv2.Invalid_OID.2.INT.json",
+    "./testdata/WorkflowProcessing/TestKickers/Kicker.GetQuoteDetailsInternalv2.Invalid_OID.3.INT.json",
+    "./testdata/WorkflowProcessing/TestKickers/Kicker.GetQuoteDetailsInternalv2.Invalid_OID.4.INT.json",
+    
+    "./testdata/WorkflowProcessing/TestKickers/Kicker.GetQuoteDetailsInternalv2.Invalid_quoteNumber.1.INT.json",
+    "./testdata/WorkflowProcessing/TestKickers/Kicker.GetQuoteDetailsInternalv2.Invalid_quoteNumber.2.INT.json",
+    "./testdata/WorkflowProcessing/TestKickers/Kicker.GetQuoteDetailsInternalv2.Invalid_quoteNumber.3.INT.json",
+    "./testdata/WorkflowProcessing/TestKickers/Kicker.GetQuoteDetailsInternalv2.Invalid_quoteNumber.4.INT.json",
+
+    "./testdata/WorkflowProcessing/TestKickers/Kicker.GetQuoteDetailsInternalv2.Multiple_empty.INT.json",
+    "./testdata/WorkflowProcessing/TestKickers/Kicker.GetQuoteDetailsInternalv2.Multiple_params.INT.json",
+    "./testdata/WorkflowProcessing/TestKickers/Kicker.GetQuoteDetailsInternalv2.Duplicate_quoteNumber.INT.json",
+    "./testdata/WorkflowProcessing/TestKickers/Kicker.GetQuoteDetailsInternalv2.Duplicate_CSN.INT.json",
+    "./testdata/WorkflowProcessing/TestKickers/Kicker.GetQuoteDetailsInternalv2.Multiple_empty.INT.json",
+  
+
     "./testdata/WorkflowProcessing/TestKickers/Kicker.GetQuoteDetailsInternalv2.Valid_CSN.INT.json",
     "./testdata/WorkflowProcessing/TestKickers/Kicker.GetQuoteDetailsInternalv2.Valid_OID.INT.json",
-    "./testdata/WorkflowProcessing/TestKickers/Kicker.GetQuoteDetailsInternalv2.Valid.INT.json",
-    "./testdata/WorkflowProcessing/TestKickers/Kicker.GetQuoteDetailsInternalv2.Invalid_CSN.INT.json"
+    "./testdata/WorkflowProcessing/TestKickers/Kicker.GetQuoteDetailsInternalv2.Valid_quoteNumber.INT.json",
   ]
 }
