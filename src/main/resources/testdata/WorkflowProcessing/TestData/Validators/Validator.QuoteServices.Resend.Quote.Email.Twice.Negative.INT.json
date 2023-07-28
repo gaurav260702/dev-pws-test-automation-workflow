@@ -1,12 +1,12 @@
 {
   "QuoteStatus": {
     "quoteStatus": "DRAFT-CREATED",
-    "quoteNumber": "*",
+    "quoteNumber": "$QUOTE_NUMBER$",
     "transactionId": "*"
   },
   "QuoteStatusByQuoteNumber": {
     "quoteStatus": "QUOTED",
-    "quoteNumber": "*",
+    "quoteNumber": "$QUOTE_NUMBER$",
     "transactionId": "*"
   },
   "QuoteCreate": {
@@ -21,19 +21,19 @@
     "agentContact.contactCsn": "$CSN_SOLDTO$"
   },
   "QuoteFinalize": {
-    "quoteNumber": "*",
+    "quoteNumber": "$QUOTE_NUMBER$",
     "status": "FINALIZING"
   },
   "QuoteResendEmail": {
     "quoteNumber": "*",
-    "status": "E-mail resend request is received."
+    "status": "Email request is received."
   },
   "QuoteResendEmailTwiceNegative": {
     "status": "error",
     "errors": [
       {
         "code": "45756",
-        "message": "Email resend already requested. Please try after some time."
+        "message": "Email request is already received. Please try after some time."
       }
     ]
   }
