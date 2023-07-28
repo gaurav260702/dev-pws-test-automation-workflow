@@ -24,7 +24,7 @@ package com.autodesk.pws.test.steps.authentication;
          clientSecret = DataPool.get("clientSecret").toString();
          BaseUrl = DataPool.get("oAuthBaseUrl").toString();
 
-         DataPool.add("$X-API-KEY$", DataPool.get("quoteInternal-x-api-key").toString());
+         DataPool.add("$X-API-KEY$", DataPool.get("x-api-key").toString());
      }
 
      @Override

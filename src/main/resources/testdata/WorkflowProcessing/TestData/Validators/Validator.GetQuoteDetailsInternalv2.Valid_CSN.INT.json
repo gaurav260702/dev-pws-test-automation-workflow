@@ -1,10 +1,44 @@
 {
-   "transactionId": "*",
-   "status": "error",
-   "error": [
-       {
-           "code": "45104",
-           "message": "Provided parameter filter[accountCsn] is not found"
-       }
-   ]
-}
+    "GetQuoteDetailsInternalv2ForgeCredentials": {
+      "access_token": "*",
+      "token_type": "Bearer"
+    },
+    "QuoteDetailsInternalv2": {
+      "salesChannelType": "*",
+
+      "salesPlatformCode": "PWS",
+      "quoteNumber": "Q-*",
+      "quoteCreatedDate": "*",
+      "quoteExpirationDate": "*",
+
+      "quoteStatus": "*",
+      "paymentTerms": [
+        {
+        "*":"*"
+        }
+      ],
+      "endCustomer": [
+        {
+        "*":"*"
+        }
+      ], 
+      "pricing": [
+        {
+        "*":"*"
+        }
+      ],
+      "agentAccount": [
+        {
+        "*":"*"
+        }
+      ],
+      
+  
+      "purchaser": [
+        {
+          "*":"*"
+        }
+      ]
+      
+    }
+  }
