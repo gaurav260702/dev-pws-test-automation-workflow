@@ -1,12 +1,12 @@
 {
   "QuoteStatus": {
     "quoteStatus": "DRAFT-CREATED",
-    "quoteNumber": "*",
+    "quoteNumber": "$QUOTE_NUMBER$",
     "transactionId": "*"
   },
   "QuoteStatusByQuoteNumber": {
     "quoteStatus": "QUOTED",
-    "quoteNumber": "*",
+    "quoteNumber": "$QUOTE_NUMBER$",
     "transactionId": "*"
   },
   "QuoteCreate": {
@@ -21,11 +21,11 @@
     "agentContact.contactCsn": "$CSN_SOLDTO$"
   },
   "QuoteFinalize": {
-    "quoteNumber": "*",
+    "quoteNumber": "$QUOTE_NUMBER$",
     "status": "FINALIZING"
   },
   "QuoteResendEmail": {
-    "quoteNumber": "*",
-    "status": "E-mail resend request is received."
+    "quoteNumber": "$QUOTE_NUMBER$",
+    "status": "Email request is received."
   }
 }

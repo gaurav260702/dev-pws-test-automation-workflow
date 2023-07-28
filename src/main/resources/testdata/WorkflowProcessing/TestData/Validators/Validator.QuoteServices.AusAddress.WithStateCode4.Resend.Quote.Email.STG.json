@@ -8,8 +8,8 @@
   "QuoteStatus":
   {
     "transactionId": "*",
-    "quoteNumber": "*",
-    "quoteStatus": "*"
+    "quoteNumber": "$QUOTE_NUMBER$",
+    "quoteStatus": "DRAFT-CREATED"
   },
 
   "QuoteDetails":
@@ -31,11 +31,11 @@
   {
     "transactionId": "*",
     "quoteNumber": "$QUOTE_NUMBER$",
-    "quoteStatus": "*"
+    "quoteStatus": "QUOTED"
   },
 
   "QuoteResendEmail": {
-    "quoteNumber": "*",
-    "status": "E-mail resend request is received."
+    "quoteNumber": "$QUOTE_NUMBER$",
+    "status": "Email request is received."
   }
 }
