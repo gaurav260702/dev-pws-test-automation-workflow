@@ -1,9 +1,9 @@
 {
   "KickerFiles":
   [
-    "./testdata/WorkflowProcessing/TestKickers/Kicker.GetQuoteDetailsInternalv2.Invalid_filter1.INT.json",
-    "./testdata/WorkflowProcessing/TestKickers/Kicker.GetQuoteDetailsInternalv2.Invalid_input.INT.json",
-    "./testdata/WorkflowProcessing/TestKickers/Kicker.GetQuoteDetailsInternalv2.Invalid_filter2.INT.json",
+    "./testdata/WorkflowProcessing/TestKickers/Kicker.GetQuoteDetailsInternalv2.Invalid_param.1.INT.json",
+    "./testdata/WorkflowProcessing/TestKickers/Kicker.GetQuoteDetailsInternalv2.Invalid_param.2.INT.json",
+    "./testdata/WorkflowProcessing/TestKickers/Kicker.GetQuoteDetailsInternalv2.Invalid_param.3.INT.json",
     
     "./testdata/WorkflowProcessing/TestKickers/Kicker.GetQuoteDetailsInternalv2.Invalid_CSN.1.INT.json",
     "./testdata/WorkflowProcessing/TestKickers/Kicker.GetQuoteDetailsInternalv2.Invalid_CSN.2.INT.json",

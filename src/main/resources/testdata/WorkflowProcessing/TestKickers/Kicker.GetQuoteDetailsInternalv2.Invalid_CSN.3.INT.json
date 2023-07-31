@@ -4,7 +4,7 @@
 
     "x-api-key": "KSw9zyNEMY3npzsb6NR8wag3Rl63jfsH5cyzMZM3",
 
-    "param":"accountCsn",
+    "param":"filter[accountCsn]",
     "value": "0!0700@520978%23%23",
 
     "includeForceableHeaders": "true",

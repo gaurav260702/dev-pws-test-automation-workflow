@@ -4,7 +4,7 @@
 
     "x-api-key": "KSw9zyNEMY3npzsb6NR8wag3Rl63jfsH5cyzMZM3",
 
-    "param":"quoteNumber",
+    "param":"filter[quoteNumber]",
     "value": "Q-11a934b",
 
     "includeForceableHeaders": "true",

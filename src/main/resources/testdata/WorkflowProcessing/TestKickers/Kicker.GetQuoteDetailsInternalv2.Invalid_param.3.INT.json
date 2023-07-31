@@ -4,8 +4,8 @@
 
     "x-api-key": "KSw9zyNEMY3npzsb6NR8wag3Rl63jfsH5cyzMZM3",
 
-    "param":"filter[accountCsn]",
-    "value": "100000000000",
+    "param":"filter(quote Number%23)",
+    "value": "Q-11934",
 
     "includeForceableHeaders": "true",
     "forceableHeaders":

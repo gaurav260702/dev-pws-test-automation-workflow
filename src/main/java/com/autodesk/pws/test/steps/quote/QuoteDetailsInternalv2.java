@@ -50,7 +50,7 @@ package com.autodesk.pws.test.steps.quote;
      {
          // https://quote.ddwsdev.autodesk.com/v1/details?quoteNumber=7265267
         //  super.setResourcePath("/v2/details?filter[quoteNumber]=Q-11931");
-         super.setResourcePath("/v2/details?filter[param]=" + "value");
+         super.setResourcePath("/v2/details?param=" + "value");
      }
 
      @Override
