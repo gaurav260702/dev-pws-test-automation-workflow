@@ -10,7 +10,12 @@
     "status": "error",
     "error": [
       {
-        "*":"*"
+        "code": "45107",
+        "message": "filter[accountId] is not a valid parameter"
+      },
+      {
+        "code": "45101",
+        "message": "Mandatory Parameters filter[quoteNumber]/filter[accountCsn]/filter[oxygenId] missing"
       }
     ]
   }

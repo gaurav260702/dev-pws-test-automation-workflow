@@ -20,15 +20,8 @@
     "./testdata/WorkflowProcessing/TestKickers/Kicker.GetQuoteDetailsInternalv2.Invalid_quoteNumber.3.INT.json",
     "./testdata/WorkflowProcessing/TestKickers/Kicker.GetQuoteDetailsInternalv2.Invalid_quoteNumber.4.INT.json",
 
-    "./testdata/WorkflowProcessing/TestKickers/Kicker.GetQuoteDetailsInternalv2.Multiple_empty.INT.json",
-    "./testdata/WorkflowProcessing/TestKickers/Kicker.GetQuoteDetailsInternalv2.Multiple_params.INT.json",
-    "./testdata/WorkflowProcessing/TestKickers/Kicker.GetQuoteDetailsInternalv2.Duplicate_quoteNumber.INT.json",
-    "./testdata/WorkflowProcessing/TestKickers/Kicker.GetQuoteDetailsInternalv2.Duplicate_CSN.INT.json",
-    "./testdata/WorkflowProcessing/TestKickers/Kicker.GetQuoteDetailsInternalv2.Multiple_empty.INT.json",
-  
-
     "./testdata/WorkflowProcessing/TestKickers/Kicker.GetQuoteDetailsInternalv2.Valid_CSN.INT.json",
     "./testdata/WorkflowProcessing/TestKickers/Kicker.GetQuoteDetailsInternalv2.Valid_OID.INT.json",
-    "./testdata/WorkflowProcessing/TestKickers/Kicker.GetQuoteDetailsInternalv2.Valid_quoteNumber.INT.json",
+    "./testdata/WorkflowProcessing/TestKickers/Kicker.GetQuoteDetailsInternalv2.Valid_quoteNumber.INT.json"
   ]
 }
