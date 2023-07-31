@@ -14,7 +14,7 @@
     "transactionId": "*"
   },
   "QuoteDetailsV2New": {
-    "agentTimeZone": "Australia/Sydney",
+    "agentTimeZone": "*",
     "quoteNumber": "$QUOTE_NUMBER$",
     "quoteStatus": "Draft",
     "quoteCreatedTime": "*",
