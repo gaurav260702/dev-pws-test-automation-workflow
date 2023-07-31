@@ -75,7 +75,8 @@ package com.autodesk.pws.test.steps.authentication;
              MediaType mediaType = MediaType.parse("application/x-www-form-urlencoded");
              RequestBody body = RequestBody.create(mediaType, requestBody);
              Request request = new Request.Builder()
-                     .url("https://developer-stg.api.autodesk.com/authentication/v1/authenticate")
+                    //  .url("https://developer-stg.api.autodesk.com/authentication/v1/authenticate")
+                     .url(BaseUrl+"/authentication/v1/authenticate")
                      .method("POST", body)
                      .addHeader("Content-Type", "application/x-www-form-urlencoded")
                      .addHeader("Cookie", "PF=mps66M0oG87MgPzyr9QqOT")
