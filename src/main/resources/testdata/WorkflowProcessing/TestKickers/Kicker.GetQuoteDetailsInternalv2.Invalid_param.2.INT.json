@@ -17,7 +17,7 @@
     "oAuthBaseUrl":  "https://developer-stg.api.autodesk.com",
     "baseFile": "./testdata/WorkflowProcessing/TestData/BaseData/BaseData.GetQuoteDetailsInternalv2.INT.json",
     "overridesFile": "./testdata/WorkflowProcessing/TestData/Overrides/Override.NONE.json",
-    "validationFile": "./testdata/WorkflowProcessing/TestData/Validators/Validator.GetQuoteDetailsInternalv2.Invalid_CSN.INT.json",
+    "validationFile": "./testdata/WorkflowProcessing/TestData/Validators/Validator.GetQuoteDetailsInternalv2.Invalid_input.INT.json",
     "secretsFile": "./testdata/WorkflowProcessing/TestData/Configurations/Secrets.GetQuoteDetailsInternalv2.INT.json",
     
     "workflow": "GetQuoteDetailsInternalv2"

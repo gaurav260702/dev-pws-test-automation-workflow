@@ -10,8 +10,8 @@
     "status": "error",
     "error": [
       {
-        "code": "45103",
-            "message": "Bad request eg filter[oxygenId] is missing in URL parameters or filter[oxygenId] is not valid"
+        "code": "4510*",
+            "message": "*"
       }
     ]
   }
