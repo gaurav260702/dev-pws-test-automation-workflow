@@ -1,11 +1,11 @@
-{
+  {
     "$ENV$": "int",
     "$GET_QUOTE_DETAILS_INTERNAL_v2_BASE_URL$": "https://quote-internal.ddws$ENV$.autodesk.com",
 
     "x-api-key": "KSw9zyNEMY3npzsb6NR8wag3Rl63jfsH5cyzMZM3",
-
+    
     "param":"filter[accountCsn]",
-    "value": "0!0700@520978%23%23",
+    "value": "0070176510",
 
     "includeForceableHeaders": "true",
     "forceableHeaders":
@@ -17,7 +17,7 @@
     "oAuthBaseUrl":  "https://developer-stg.api.autodesk.com",
     "baseFile": "./testdata/WorkflowProcessing/TestData/BaseData/BaseData.NONE.json",
     "overridesFile": "./testdata/WorkflowProcessing/TestData/Overrides/Override.NONE.json",
-    "validationFile": "./testdata/WorkflowProcessing/TestData/Validators/Validator.GetQuoteDetailsInternalv2.Invalid_CSN.INT.json",
+    "validationFile": "./testdata/WorkflowProcessing/TestData/Validators/Validator.GetQuoteDetailsInternalv2.Valid_CSN.INT.json",
     "secretsFile": "./testdata/WorkflowProcessing/TestData/Configurations/Secrets.GetQuoteDetailsInternalv2.INT.json",
     
     "workflow": "GetQuoteDetailsInternalv2"
