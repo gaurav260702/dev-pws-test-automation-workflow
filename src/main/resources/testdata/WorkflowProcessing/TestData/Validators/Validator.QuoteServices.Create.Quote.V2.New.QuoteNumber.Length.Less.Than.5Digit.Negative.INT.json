@@ -1,0 +1,9 @@
+{
+  "QuoteDetailsV2NewInvalidQuoteNo": {
+    "error": {
+      "code": "45101",
+      "message": "filter[quoteNumber] is not valid"
+    },
+    "status": "error"
+  }
+}
