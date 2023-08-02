@@ -9,6 +9,11 @@
     "./testdata/WorkflowProcessing/TestKickers/Kicker.QuoteServices.Create.Quote.V2.New.Multiline.Annual.Past.StartDate.Negative.INT.json",
     "./testdata/WorkflowProcessing/TestKickers/Kicker.QuoteServices.Create.Quote.V2.New.Multiline.Annual.StartDate.Diff.LineItems.Negative.INT.json",
     "./testdata/WorkflowProcessing/TestKickers/Kicker.QuoteServices.Create.Quote.V2.New.Multiline.Annual.StartDate.MoreThan.30Days.Future.Negative.INT.json",
-    "./testdata/WorkflowProcessing/TestKickers/Kicker.QuoteServices.Create.Quote.V2.New.Multiline.Annual.PhoneNumber.Length.Greater.Than.29.Negative.INT.json"
+    "./testdata/WorkflowProcessing/TestKickers/Kicker.QuoteServices.Create.Quote.V2.New.Multiline.Annual.PhoneNumber.Length.Greater.Than.29.Negative.INT.json",
+    "./testdata/WorkflowProcessing/TestKickers/Kicker.QuoteServices.Create.Quote.V2.New.Premium.Offering.Positive.INT.json",
+    "./testdata/WorkflowProcessing/TestKickers/Kicker.QuoteServices.Create.Quote.V2.New.Multi.Premium.NonPremium.Offering.3Y.Positive.INT",
+    "./testdata/WorkflowProcessing/TestKickers/Kicker.QuoteServices.Create.Quote.V2.New.Multi.Flex.Premium.Offering.Annual.Positive.INT",
+    "./testdata/WorkflowProcessing/TestKickers/Kicker.QuoteServices.Create.Quote.V2.New.Premium.Offering.Multi.Year.Positive.INT",
+    "./testdata/WorkflowProcessing/TestKickers/Kicker.QuoteServices.Create.Quote.V2.New.Non.Premium.Flex.QTY.Less.Than.100.Negative.INT"
   ]
 }
