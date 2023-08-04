@@ -33,16 +33,16 @@
             "action": "New",
             "offer": {
                 "term": {
-                    "code": "A02",
-                    "description": "Monthly"
+                    "code": "A01",
+                    "description": "Annual"
                 },
                 "accessModel": {
                     "code": "F",
                     "description": "Flex"
                 },
                 "intendedUsage": {
-                    "code": "Non-COM",
-                    "description": "Non Commercial"
+                    "code": "COM",
+                    "description": "Commercial"
                 },
                 "connectivity": {
                     "code": "C100",

@@ -5,8 +5,8 @@
     "transactionId": "*",
     "errors": [
       {
-        "code": "46002",
-        "message": "Please enter valid offer details"
+        "code": "46006",
+        "message": "Invalid Agency accountCSN"
       }
     ]
   },
