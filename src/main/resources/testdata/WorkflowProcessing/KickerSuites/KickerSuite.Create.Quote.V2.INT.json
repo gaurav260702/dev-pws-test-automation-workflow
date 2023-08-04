@@ -14,6 +14,12 @@
     "./testdata/WorkflowProcessing/TestKickers/Kicker.QuoteServices.Create.Quote.V2.New.Multi.Premium.NonPremium.Offering.3Y.Positive.INT.json",
     "./testdata/WorkflowProcessing/TestKickers/Kicker.QuoteServices.Create.Quote.V2.New.Multi.Flex.Premium.Offering.Annual.Positive.INT.json",
     "./testdata/WorkflowProcessing/TestKickers/Kicker.QuoteServices.Create.Quote.V2.New.Premium.Offering.Multi.Year.Positive.INT.json",
-    "./testdata/WorkflowProcessing/TestKickers/Kicker.QuoteServices.Create.Quote.V2.New.Non.Premium.Flex.QTY.Less.Than.100.Negative.INT.json"
+    "./testdata/WorkflowProcessing/TestKickers/Kicker.QuoteServices.Create.Quote.V2.New.Non.Premium.Flex.QTY.Less.Than.100.Negative.INT.json",
+    "./testdata/WorkflowProcessing/TestKickers/Kicker.QuoteServices.Create.Quote.V2.New.Non.Premium.Flex.Monthly.Offering.Negative.INT.json",
+    "./testdata/WorkflowProcessing/TestKickers/Kicker.QuoteServices.Create.Quote.V2.New.Non.Premium.Flex.intendedUsage.Non.COM.Negative.INT.json",
+    "./testdata/WorkflowProcessing/TestKickers/Kicker.QuoteServices.Create.Quote.V2.New.Non.Premium.Flex.Invalid.Agent.CSN.Negative.INT.json",
+    "./testdata/WorkflowProcessing/TestKickers/Kicker.QuoteServices.Create.Quote.V2.New.Non.Premium.Flex.Diff.Agent.CSN.Negative.INT.json",
+    "./testdata/WorkflowProcessing/TestKickers/Kicker.QuoteServices.Create.Quote.V2.New.Non.Premium.Flex.Invalid.Agent.Contact.Negative.INT.json",
+    "./testdata/WorkflowProcessing/TestKickers/Kicker.QuoteServices.Create.Quote.V2.New.Non.Premium.Flex.Agent.EndCustomer.Not.In.Same.Territory.Negative.INT.json"
   ]
 }
