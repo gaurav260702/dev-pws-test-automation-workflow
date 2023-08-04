@@ -3,7 +3,7 @@
   "$ENV$": "INT",
 
   "$ROOT_NAME$": "QuoteServices",
-  "$VARIATION_COUNT$": "Create.Quote.V2.New.Non.Premium.Flex.Invalid.Agent.CSN.Negative",
+  "$VARIATION_COUNT$": "Create.Quote.V2.New.Non.Premium.Flex.Diff.Agent.CSN.Negative",
   "$BASE_NAME$": "$ROOT_NAME$_$VARIATION_COUNT$",
   "$VALIDATION$": "$ROOT$/Validators",
   "$OVERRIDES$": "$ROOT$/Overrides",
@@ -21,7 +21,7 @@
   "$CSN_QUATERNARY$": "$CSN_SOLDTO$",
 
   "$CSN_ACCOUNT_CONTACT$": "5112991506",
-  "$CSN_HEADER$": "5118751926",
+  "$CSN_HEADER$": "5112991506",
 
       "$OFFERING_ID$": "OD-000321",
       "$AGENT_EMAIL$": "agentpartnera2k@letscheck.email",
@@ -47,10 +47,10 @@
   "baseUrl": "https://enterprise-api-$ENV$.autodesk.com",
   "oAuthBaseUrl":  "https://enterprise-api-$ENV$.autodesk.com",
 
-  "baseFile": "$BASE_DATA$/BaseData.$ROOT_NAME$.Create.Quote.V2.New.Non.Premium.Flex.Invalid.Agent.CSN.Negative.$ENV$.json",
+  "baseFile": "$BASE_DATA$/BaseData.$ROOT_NAME$.Create.Quote.V2.New.Non.Premium.Flex.Diff.Agent.CSN.Negative.$ENV$.json",
   "overridesFile": "$OVERRIDES$/Override.NONE.json",
-  "validationFile": "$VALIDATION$/Validator.$ROOT_NAME$.Create.Quote.V2.New.Non.Premium.Flex.Invalid.Agent.CSN.Negative.$ENV$.json",
+  "validationFile": "$VALIDATION$/Validator.$ROOT_NAME$.Create.Quote.V2.New.Non.Premium.Flex.Diff.Agent.CSN.Negative.$ENV$.json",
   "secretsFile": "$CONFIG$/Secrets.GetInvoiceServices.INT.json",
 
-  "workflow": "CreateQuoteV2NewFlexQTYLessThan100"
+  "workflow": "CreateQuoteV2NewFlexInvalidCSN"
 }

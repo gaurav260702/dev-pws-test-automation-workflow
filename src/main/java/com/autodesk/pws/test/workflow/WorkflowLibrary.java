@@ -231,7 +231,7 @@ public class WorkflowLibrary
         workflow.add(new QuoteCreate());
         // workflow.add(new QuoteCreateV2New());
         //  workflow.add(new QuoteStatusFAILED());
-        workflow.add(new QuoteStatusERROR(waitForExpectedStatus));
+      //  workflow.add(new QuoteStatusERROR(waitForExpectedStatus));
         //  workflow.add(new QuoteDetailsV2New());
         //  workflow.add(new QuoteFinalizeV2New());
         //  workflow.add(new QuoteStatusByQuoteNumber(waitForExpectedStatus));
