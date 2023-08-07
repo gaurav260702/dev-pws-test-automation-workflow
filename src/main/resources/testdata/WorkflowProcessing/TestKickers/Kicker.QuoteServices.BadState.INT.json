@@ -31,7 +31,7 @@
   "$TIMEZONE_CITY$": "Australia/Sydney",
   "$CURRENCY$": "AUD",
 
-   "$ADDRESS1$": "1b Pitt Street",
+   "$ADDRESS1$": "123b Pitt Street",
    "$CITY$": "Gladstone Central",
    "$STATE$": "ZZZ123##$^&*(){}",
    "$POSTAL_CODE$": "4680",

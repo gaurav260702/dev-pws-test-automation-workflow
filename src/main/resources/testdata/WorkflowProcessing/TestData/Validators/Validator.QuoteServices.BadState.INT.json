@@ -6,8 +6,8 @@
     "transactionId": "*",
     "errors": [
       {
-        "code": "46007",
-        "message": "Invalid EndCustomer Address"
+        "code": "46012",
+        "message": "Invalid State code"
       }
     ]
   },
