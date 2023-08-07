@@ -6,10 +6,19 @@
     "transactionId": "*",
     "errors": [
       {
-        "code": "46007",
-        "message": "Invalid EndCustomer Address"
+        "code": "46013",
+        "message": "Invalid postalCode"
       }
     ]
+  },
+  "QuoteStatusByQuoteNumber": {
+    "errors": [
+      {
+        "code": "45202",
+        "message": "Enter a valid quoteNumber"
+      }
+    ],
+    "status": "error"
   },
   "QuoteCreate": {
     "message": "success",
