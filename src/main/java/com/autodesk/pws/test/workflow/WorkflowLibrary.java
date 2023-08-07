@@ -14,6 +14,7 @@ import com.autodesk.pws.test.steps.utility.*;
 import com.autodesk.pws.test.steps.catalog.*;
 
 import java.util.*;
+import java.io.UnsupportedEncodingException;
 
 public class WorkflowLibrary
 {
@@ -587,6 +588,16 @@ public class WorkflowLibrary
         return workflow;
     }
 
+    public static List<StepBase> GetQuoteDetailsInternalv2()
+    {
+        List<StepBase> workflow = new ArrayList<StepBase>();
+
+        workflow.add(new LoadQuoteFilesAndExtractData());
+        workflow.add(new GetQuoteDetailsInternalv2ForgeCredentials());
+        workflow.add(new QuoteDetailsInternalv2());
+
+        return workflow;
+    }
 
 
 

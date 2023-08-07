@@ -1,0 +1,18 @@
+{
+  "GetQuoteDetailsInternalv2ForgeCredentials": {
+    "access_token": "*",
+    "token_type": "Bearer"
+  },
+
+  "QuoteDetailsInternalv2":
+  {
+    "transactionId": "*-*-*-*-*",
+    "status": "error",
+    "error": [
+      {
+        "code": "4510*",
+            "message": "*"
+      }
+    ]
+  }
+}

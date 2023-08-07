@@ -457,6 +457,7 @@ public class RestActionBase extends StepBase
 		
 		//console.info("Encoding environment variables")
 		String base_str = callBackUrl + session_id + timestamp;
+		clientSecret = DataPool.getDetokenized("clientSecret").toString();
 		//var hmacsha256 = CryptoJS.HmacSHA256(base_str, clientSecret);
 		//String signature = CryptoJS.enc.Base64.stringify(hmacsha256);
 		

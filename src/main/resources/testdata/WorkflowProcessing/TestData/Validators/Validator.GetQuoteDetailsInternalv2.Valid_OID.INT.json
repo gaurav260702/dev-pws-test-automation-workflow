@@ -1,0 +1,44 @@
+{
+  "GetQuoteDetailsInternalv2ForgeCredentials": {
+    "access_token": "*",
+    "token_type": "Bearer"
+  },
+  "QuoteDetailsInternalv2": {
+    "salesChannelType": "*",
+
+    "salesPlatformCode": "*",
+    "quoteNumber": "Q-*",
+    "quoteCreatedDate": "*",
+    "quoteExpirationDate": "*",
+
+    "quoteStatus": "*",
+    "paymentTerms": [
+      {
+      "*":"*"
+      }
+    ],
+    "endCustomer": [
+      {
+      "*":"*"
+      }
+    ], 
+    "pricing": [
+      {
+      "*":"*"
+      }
+    ],
+    "agentAccount": [
+      {
+      "*":"*"
+      }
+    ],
+    
+
+    "purchaser": [
+      {
+        "*":"*"
+      }
+    ]
+    
+  }
+}
