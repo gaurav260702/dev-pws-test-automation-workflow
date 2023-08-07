@@ -1,7 +1,7 @@
 {
   "QuoteStatus": {
     "quoteStatus": "DRAFT-CREATED",
-    "quoteNumber": "*",
+    "quoteNumber": "$QUOTE_NUMBER$",
     "transactionId": "*"
   },
   "QuoteCreate": {
@@ -9,10 +9,10 @@
     "transactionId": "*"
   },
   "QuoteUpdateActionAddPositive": {
-    "quoteNumber": "*",
+    "quoteNumber": "$QUOTE_NUMBER$",
     "quoteStatus": "Draft",
     "quoteCreatedTime": "*",
-    "agentTimeZone": "Australia/Sydney"
+    "agentTimeZone": "*"
 
   }
 }

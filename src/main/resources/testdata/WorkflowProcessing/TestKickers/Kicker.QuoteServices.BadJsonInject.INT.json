@@ -33,7 +33,7 @@
    "$ADDRESS1$": "{\\\"BadJsonNode\\\": \\\"BadJsonValue\\\"}",
    "$CITY$": "Gladstone Central",
    "$STATE$": "QLD",
-   "$POSTAL_CODE$": "ABC123!@#",
+   "$POSTAL_CODE$": "ABC231!@#",
    "$COUNTRY$": "AU",
 
   "includeForceableHeaders": "true",
