@@ -1,0 +1,17 @@
+{
+  "QuoteStatusFAILED": {
+    "quoteStatus": "FAILED",
+    "quoteNumber": "NA",
+    "transactionId": "*",
+    "errors": [
+      {
+        "code": "45018",
+        "message": "Unsupported currency - please update and resubmit."
+      }
+    ]
+  },
+  "QuoteCreate": {
+    "message": "success",
+    "transactionId": "*"
+  }
+}
