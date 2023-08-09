@@ -1,0 +1,83 @@
+{
+    "quoteNote": "Notefromagenttocustomer.",
+    "currency": "$CURRENCY$",
+    "agentAccount": {
+        "accountCsn": "$CSN_RESELLER$"
+    },
+    "agentContact": {
+        "email": "$AGENT_EMAIL$"
+    },
+    "endCustomer": {
+        "accountCsn": "5109052180",
+        "name": "VIRU Designs Ltd",
+        "addressLine1": "$ADDRESS1$",
+        "city": "$CITY$",
+        "countryCode": "$COUNTRY$",
+        "postalCode": "$POSTAL_CODE$",
+        "isIndividual": false,
+        "stateProvinceCode": "WA"
+    },
+    "purchaser": {
+        "email": "SM_AUS_MYuser1@letscheck.pw",
+        "firstName": "SM",
+        "lastName": "MultiYearUser",
+        "phone": "4154446666",
+        "preferredLanguage": "en"
+    },
+    "lineItems": [
+        {
+            "quantity": 2,
+            "offeringId": "OD-000021",
+            "action": "New",
+            "offer": {
+                "term": {
+                    "code": "A06",
+                    "description": "3 Year"
+                },
+                "accessModel": {
+                    "code": "S",
+                    "description": "Single User"
+                },
+                "intendedUsage": {
+                    "code": "COM",
+                    "description": "Commercial"
+                },
+                "connectivity": {
+                    "code": "C100",
+                    "description": "Online"
+                },
+                "servicePlanId": {
+                    "code": "STND",
+                    "description": "Standard"
+                }
+            }
+        },
+        {
+            "quantity": 2,
+            "offeringId": "OD-000031",
+            "action": "New",
+            "offer": {
+                "term": {
+                    "code": "A06",
+                    "description": "3 Year"
+                },
+                "accessModel": {
+                    "code": "S",
+                    "description": "Single User"
+                },
+                "intendedUsage": {
+                    "code": "COM",
+                    "description": "Commercial"
+                },
+                "connectivity": {
+                    "code": "C100",
+                    "description": "Online"
+                },
+                "servicePlanId": {
+                    "code": "STND",
+                    "description": "Standard"
+                }
+            }
+        }
+    ]
+}
