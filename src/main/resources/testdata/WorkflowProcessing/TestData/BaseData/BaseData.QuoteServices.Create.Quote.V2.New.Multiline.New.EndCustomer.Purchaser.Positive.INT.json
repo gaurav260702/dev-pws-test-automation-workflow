@@ -1,0 +1,82 @@
+{
+    "quoteNote": "Notefromagenttocustomer2",
+    "currency": "$CURRENCY$",
+    "agentAccount": {
+        "accountCsn": "$CSN_RESELLER$"
+    },
+    "agentContact": {
+        "email": "$AGENT_EMAIL$"
+    },
+    "endCustomer": {
+        "addressLine1": "2 Barrack St",
+        "city": "Perth",
+        "countryCode": "AU",
+        "isIndividual": false,
+        "name": "SMVIRU Associates Ltd",
+        "postalCode": "2000",
+        "stateProvinceCode": "WA"
+    },
+    "purchaser": {
+        "email": "sunnygopi2021@gmail.com",
+        "firstName": "Sunny",
+        "lastName": "Gopim",
+        "phone": "4154776666",
+        "preferredLanguage": "en"
+    },
+    "lineItems": [
+        {
+            "quantity": 100,
+            "offeringId": "OD-000163",
+            "action": "New",
+            "offer": {
+                "term": {
+                    "code": "A01",
+                    "description": "Annual"
+                },
+                "accessModel": {
+                    "code": "F",
+                    "description": "Flex"
+                },
+                "intendedUsage": {
+                    "code": "COM",
+                    "description": "Commercial"
+                },
+                "connectivity": {
+                    "code": "C100",
+                    "description": "Online"
+                },
+                "servicePlanId": {
+                    "code": "STND",
+                    "description": "Standard"
+                }
+            }
+        },
+        {
+            "quantity": 2,
+            "offeringId": "OD-000021",
+            "action": "New",
+            "offer": {
+                "term": {
+                    "code": "A01",
+                    "description": "Annual"
+                },
+                "accessModel": {
+                    "code": "S",
+                    "description": "Single User"
+                },
+                "intendedUsage": {
+                    "code": "COM",
+                    "description": "Commercial"
+                },
+                "connectivity": {
+                    "code": "C100",
+                    "description": "Online"
+                },
+                "servicePlanId": {
+                    "code": "STND",
+                    "description": "Standard"
+                }
+            }
+        }
+    ]
+}
