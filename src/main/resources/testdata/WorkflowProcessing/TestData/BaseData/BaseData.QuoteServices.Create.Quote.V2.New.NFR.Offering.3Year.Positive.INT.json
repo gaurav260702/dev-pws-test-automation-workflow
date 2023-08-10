@@ -1,0 +1,83 @@
+{
+    "quoteNote": "Notefromagenttocustomer2.",
+    "currency": "$CURRENCY$",
+    "agentAccount": {
+        "accountCsn": "$CSN_RESELLER$"
+    },
+    "agentContact": {
+        "email": "$AGENT_EMAIL$"
+    },
+    "endCustomer": {
+        "accountCsn": "5112991506",
+        "name": "VIRU Designs Ltd",
+        "addressLine1": "$ADDRESS1$",
+        "city": "$CITY$",
+        "countryCode": "$COUNTRY$",
+        "postalCode": "$POSTAL_CODE$",
+        "stateProvinceCode": "WA",
+        "isIndividual": false
+    },
+    "purchaser": {
+        "email": "agentpartnera2k@letscheck.email",
+        "firstName": "SM",
+        "lastName": "MultiYearUser",
+        "phone": "4154446666",
+        "preferredLanguage": "en"
+    },
+    "lineItems": [
+        {
+            "quantity": 2,
+            "offeringId": "OD-000021",
+            "action": "New",
+            "offer": {
+                "term": {
+                    "code": "A06",
+                    "description": "3 Year"
+                },
+                "accessModel": {
+                    "code": "S",
+                    "description": "Single User"
+                },
+                "intendedUsage": {
+                    "code": "NFR",
+                    "description": "Demo/Eval"
+                },
+                "connectivity": {
+                    "code": "C100",
+                    "description": "Online"
+                },
+                "servicePlanId": {
+                    "code": "STNDNS",
+                    "description": "Standard No Support"
+                }
+            }
+        },
+        {
+            "quantity": 1,
+            "offeringId": "OD-000021",
+            "action": "New",
+            "offer": {
+                "term": {
+                    "code": "A06",
+                    "description": "3 Year"
+                },
+                "accessModel": {
+                    "code": "S",
+                    "description": "Single User"
+                },
+                "intendedUsage": {
+                    "code": "NFR",
+                    "description": "Demo/Eval"
+                },
+                "connectivity": {
+                    "code": "C100",
+                    "description": "Online"
+                },
+                "servicePlanId": {
+                    "code": "STNDNS",
+                    "description": "Standard No Support"
+                }
+            }
+        }
+    ]
+}
