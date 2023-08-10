@@ -4,8 +4,8 @@
     "quoteNumber": "$QUOTE_NUMBER$",
     "transactionId": "*"
   },
-  "QuoteStatusByQuoteNumberMOAB": {
-    "quoteStatus": "UNDER-REVIEW",
+  "QuoteStatusByQuoteNumber": {
+    "quoteStatus": "QUOTED",
     "quoteNumber": "$QUOTE_NUMBER$",
     "transactionId": "*"
   },
