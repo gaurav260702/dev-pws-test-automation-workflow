@@ -31,10 +31,10 @@
   "$TIMEZONE_CITY$": "Australia/Sydney",
   "$CURRENCY$": "AUD",
 
-  "$ADDRESS1$": "43 Savages Road",
-  "$CITY$": "Acacia Ridge",
-  "$STATE$": "Queensland",
-  "$POSTAL_CODE$": "4110",
+  "$ADDRESS1$": "1 Barrack Street",
+  "$CITY$": "Perth",
+  "$STATE$": "WA",
+  "$POSTAL_CODE$": "6000",
   "$COUNTRY$": "AU",
 
   "includeForceableHeaders": "true",

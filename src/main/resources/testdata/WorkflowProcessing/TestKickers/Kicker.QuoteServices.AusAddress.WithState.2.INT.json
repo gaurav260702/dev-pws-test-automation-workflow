@@ -31,10 +31,10 @@
   "$TIMEZONE_CITY$": "Australia/Sydney",
   "$CURRENCY$": "AUD",
 
-  "$ADDRESS1$": "43 Ranworth Road",
-  "$CITY$": "Attadale",
-  "$STATE$": "Western Australia",
-  "$POSTAL_CODE$": "6156",
+  "$ADDRESS1$": "12 Barrack Street",
+  "$CITY$": "Perth",
+  "$STATE$": "WA",
+  "$POSTAL_CODE$": "6000",
   "$COUNTRY$": "AU",
 
   "includeForceableHeaders": "true",
