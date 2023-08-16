@@ -45,6 +45,7 @@ public class WpeTestAutomationApplication {
   @Bean
   public CommandLineRunner testKicker(ApplicationContext ctx) {
     return args -> {
+      ListFunctionsResult functionResult = null;
       AWSLambda awsLambda = AWSLambdaClientBuilder.standard()
               .withCredentials(new ProfileCredentialsProvider())
               .withRegion(Regions.US_WEST_2).build();
