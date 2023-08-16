@@ -47,6 +47,7 @@ VAULT_ADDR=$VAULT_ADDR
 VAULT_PATH=$VAULT_PATH
 VAULT_TOKEN=$VAULT_TOKEN
 
+echo "Starting aws auth"
 # Override variables with passed in option
 while getopts hea:u:p:v:t:s option
 do
