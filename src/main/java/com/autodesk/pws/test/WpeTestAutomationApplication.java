@@ -69,7 +69,7 @@ public class WpeTestAutomationApplication {
       InvokeResult invokeResult = null;
       AWSLambda awsLambda = AWSLambdaClientBuilder.standard()
 //              //.withCredentials(new ProfileCredentialsProvider())
-//              .withRegion(Regions.US_WEST_2).build();
+              .withRegion(Regions.US_WEST_2).build();
 
       String event = "{\n" +
               "  \"version\": \"0\",\n" +
