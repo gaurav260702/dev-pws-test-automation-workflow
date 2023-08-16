@@ -61,7 +61,7 @@ pipeline {
           sh """
             chmod -R u+rwX,go+rX,go-w . || true
             rm -f ~/.vault-token
-            bash aws_auth -u s2 -p Pulsedecure@123 -a https://vault.aws.autodesk.com  -v spg/pws-development/aws/adsk-eis-spartan-dev/sts/admin
+            bash aws_auth
             cat ~/.aws/credentials
           """
           echo ""
