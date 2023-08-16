@@ -69,7 +69,7 @@ public class WpeTestAutomationApplication {
       InvokeResult invokeResult = null;
       AWSLambda awsLambda = AWSLambdaClientBuilder.standard()
 //              //.withCredentials(new ProfileCredentialsProvider())
-              .withRegion(Regions.US_WEST_2).build();
+              .withRegion(Regions.US_EAST_1).build();
 
       String event = "{\n" +
               "  \"version\": \"0\",\n" +
@@ -112,10 +112,7 @@ public class WpeTestAutomationApplication {
               "}";
       InvokeRequest invokeRequest = new InvokeRequest()
               .withFunctionName("pws-catalog-upd-notify-async-dev")
-              .withPayload("{\n" +
-                      " \"Hello \": \"Paris\",\n" +
-                      " \"countryCode\": \"FR\"\n" +
-                      "}");
+              .withPayload(event);
       invokeResult = awsLambda.invoke(invokeRequest);
 
       String ans = new String(invokeResult.getPayload().array(), StandardCharsets.UTF_8);
