@@ -14,12 +14,10 @@
     "transactionId": "*"
   },
   "QuoteDetailsV2New": {
-    "agentTimeZone": "Australia/Sydney",
     "quoteNumber": "$QUOTE_NUMBER$",
     "quoteStatus": "Draft",
     "quoteCreatedTime": "*",
-    "pricing.currency": "AUD",
-    "agentAccount.accountCsn": "$CSN_ACCOUNT_CONTACT$"
+    "pricing.currency": "AUD"
   },
   "QuoteFinalizeV2New": {
     "quoteNumber": "$QUOTE_NUMBER$",

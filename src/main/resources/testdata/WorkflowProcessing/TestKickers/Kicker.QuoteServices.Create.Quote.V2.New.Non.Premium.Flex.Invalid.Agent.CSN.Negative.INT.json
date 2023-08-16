@@ -52,5 +52,5 @@
   "validationFile": "$VALIDATION$/Validator.$ROOT_NAME$.Create.Quote.V2.New.Non.Premium.Flex.Invalid.Agent.CSN.Negative.$ENV$.json",
   "secretsFile": "$CONFIG$/Secrets.GetInvoiceServices.INT.json",
 
-  "workflow": "CreateQuoteV2NewFlexQTYLessThan100"
+  "workflow": "CreateQuoteV2New"
 }
