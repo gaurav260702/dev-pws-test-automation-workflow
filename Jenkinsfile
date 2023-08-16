@@ -58,9 +58,11 @@ pipeline {
           }
       steps {
         script {
-          chmod -R u+rwX,go+rX,go-w . || true
-          rm -f ~/.vault-token
-          bash /bin/aws_auth
+          sh """
+            chmod -R u+rwX,go+rX,go-w . || true
+            rm -f ~/.vault-token
+            bash /bin/aws_auth
+          """
           echo ""
           echo "${testfiles[0].name} ${testfiles[0].path} ${testfiles[0].directory} ${testfiles[0].length} ${testfiles[0].lastModified}"
           echo ""
