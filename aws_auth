@@ -87,7 +87,7 @@ if [[ -z $VAULT_TOKEN ]]; then
     REQUEST_BODY="{ \"password\": \"$LDAP_PSW\" }"
 
     LOGIN_RESPONSE=$(curl -sS -f "$ENDPOINT" -d "$REQUEST_BODY")
-
+    echo "$LOGIN_RESPONSE"
     # shellcheck disable=SC2181
     if [[ $? -ne 0 ]]; then
         echo "Failed to login to vault" > /dev/stderr
