@@ -73,6 +73,7 @@ public class WpeTestAutomationApplication {
 
       String event = "{\n" +
               "  \"version\": \"0\",\n" +
+              "  \"isTestEvent\": \"true\",\n" +
               "  \"id\": \"f5b56bf6-dbaf-4072-80f5-64dc236a7500\",\n" +
               "  \"detail-type\": \"adsk.o2pcoop:productcatalog.update.PRODUCTCATALOG_CHANGED\",\n" +
               "  \"source\": \"urn:adsk.dpe.dbp:moniker:CPRDCTLG-C-UW2\",\n" +
@@ -110,6 +111,8 @@ public class WpeTestAutomationApplication {
               "    }\n" +
               "  }\n" +
               "}";
+
+
       InvokeRequest invokeRequest = new InvokeRequest()
               .withFunctionName("pws-catalog-upd-notify-async-dev")
               .withPayload(event);
