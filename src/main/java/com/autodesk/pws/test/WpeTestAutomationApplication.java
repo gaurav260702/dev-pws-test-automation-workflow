@@ -45,21 +45,21 @@ public class WpeTestAutomationApplication {
   @Bean
   public CommandLineRunner testKicker(ApplicationContext ctx) {
     return args -> {
-//      ListFunctionsResult functionResult = null;
-//      AWSLambda awsLambda = AWSLambdaClientBuilder.standard()
-//              .withCredentials(new ProfileCredentialsProvider())
-//              .withRegion(Regions.US_WEST_2).build();
-//
-//      functionResult = awsLambda.listFunctions();
-//
-//      List<FunctionConfiguration> list = functionResult.getFunctions();
-//
-//      for (Iterator iter = list.iterator(); iter.hasNext(); ) {
-//        FunctionConfiguration config = (FunctionConfiguration)iter.next();
-//
-//        System.out.println("The function name is "+config.getFunctionName());
-//        logger.info("The function name is "+config.getFunctionName());
-//      }
+      ListFunctionsResult functionResult = null;
+      AWSLambda awsLambda = AWSLambdaClientBuilder.standard()
+              //.withCredentials(new ProfileCredentialsProvider())
+              .withRegion(Regions.US_WEST_2).build();
+
+      functionResult = awsLambda.listFunctions();
+
+      List<FunctionConfiguration> list = functionResult.getFunctions();
+
+      for (Iterator iter = list.iterator(); iter.hasNext(); ) {
+        FunctionConfiguration config = (FunctionConfiguration)iter.next();
+
+        System.out.println("The function name is "+config.getFunctionName());
+        logger.info("The function name is "+config.getFunctionName());
+      }
       logger.info("Executing Kicker with args: " + Arrays.toString(args));
       Kicker kicker = new Kicker();
       kicker.kickIt(args);
