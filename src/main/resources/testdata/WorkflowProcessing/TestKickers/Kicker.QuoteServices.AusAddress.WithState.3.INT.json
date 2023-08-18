@@ -31,10 +31,10 @@
   "$TIMEZONE_CITY$": "Australia/Sydney",
   "$CURRENCY$": "AUD",
 
-  "$ADDRESS1$": "4 Edmundsons Road",
-  "$CITY$": "Magpie",
-  "$STATE$": "Victoria",
-  "$POSTAL_CODE$": "3352",
+  "$ADDRESS1$": "14 Barrack Street",
+  "$CITY$": "Perth",
+  "$STATE$": "WA",
+  "$POSTAL_CODE$": "6000",
   "$COUNTRY$": "AU",
 
   "includeForceableHeaders": "true",

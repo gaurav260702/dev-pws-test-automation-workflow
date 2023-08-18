@@ -1,43 +1,11 @@
 {
-
   "QuoteStatus": {
-    "quoteStatus": "FAILED",
-    "quoteNumber": "NA",
-    "transactionId": "*",
-    "errors": [
-      {
-        "code": "46012",
-        "message": "Invalid State code"
-      }
-    ]
-  },
-  "QuoteStatusByQuoteNumber": {
-    "errors": [
-      {
-        "code": "45202",
-        "message": "Enter a valid quoteNumber"
-      }
-    ],
-    "status": "error"
+    "quoteStatus": "DRAFT-CREATED",
+    "quoteNumber": "*",
+    "transactionId": "*"
   },
   "QuoteCreate": {
     "message": "success",
     "transactionId": "*"
-  },
-  "QuoteDetails": {
-    "error": {
-      "code": "45101",
-      "message": "quoteNumber is not valid"
-    },
-    "status": "error"
-  },
-  "QuoteFinalize": {
-    "errors": [
-      {
-        "code": "45302",
-        "message": "Enter a valid quoteNumber"
-      }
-    ],
-    "status": "error"
   }
 }
