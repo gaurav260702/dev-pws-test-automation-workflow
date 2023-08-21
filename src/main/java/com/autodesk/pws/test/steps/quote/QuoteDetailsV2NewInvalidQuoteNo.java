@@ -50,7 +50,8 @@ public class QuoteDetailsV2NewInvalidQuoteNo extends PwsServiceBase
     private void setResourcePath()
     {
     	// https://quote.ddwsdev.autodesk.com/v1/details?quoteNumber=7265267
-		super.setResourcePath("v2/quotes?quoteNumber=Q-4084");
+		super.setResourcePath("v2/quotes?filter[quoteNumber]=Q-4084");
+		// super.setResourcePath("v2/quotes?filter[quoteNumber]=$QUOTE_NUMBER$")
     }
 
 	@Override
