@@ -49,8 +49,8 @@
                     "description": "Online"
                 },
                 "servicePlanId": {
-                    "code": "STND",
-                    "description": "Standard"
+                    "code": "PREMSUB",
+                    "description": "Premium"
                 }
             }
         }
