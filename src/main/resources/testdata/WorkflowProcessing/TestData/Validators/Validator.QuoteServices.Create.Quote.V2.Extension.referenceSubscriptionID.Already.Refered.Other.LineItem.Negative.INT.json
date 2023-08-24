@@ -1,0 +1,17 @@
+{
+  "QuoteStatusFAILED": {
+    "quoteStatus": "FAILED",
+    "quoteNumber": "*",
+    "transactionId": "*",
+    "errors": [
+      {
+        "code": "45001",
+        "message": "Subscription ID can be referenced on only one line item of a quote."
+      }
+    ]
+  },
+  "QuoteCreate": {
+    "message": "success",
+    "transactionId": "*"
+  }
+}
