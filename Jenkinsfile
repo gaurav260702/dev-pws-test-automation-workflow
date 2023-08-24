@@ -50,6 +50,25 @@ pipeline {
         }
       }
     }
+
+    stage('Check') {
+          agent {
+            docker {
+              image wpe
+            }
+          }
+          steps {
+
+          script {
+                    sh """
+                        echo "Starting test case"
+                        mvn spring-boot:run -Dspring-boot.run.arguments=testdata/WorkflowProcessing/KickerSuites/KickerSuite.QuoteServices.INT.json
+                        echo "finished test case"
+                      """
+          }
+
+          }
+     }
     stage('Running Cases') {
     environment {
             LDAP = credentials('6215a3b2-fb0e-4beb-b2ab-cf3b3fb52bc0')
