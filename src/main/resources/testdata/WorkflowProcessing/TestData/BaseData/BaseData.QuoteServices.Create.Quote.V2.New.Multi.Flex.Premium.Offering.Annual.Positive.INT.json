@@ -48,7 +48,7 @@
                     "code": "C100",
                     "description": "Online"
                 },
-                "servicePlanId": {
+                "servicePlan": {
                     "code": "PREMSUB",
                     "description": "Premium"
                 }
@@ -75,7 +75,7 @@
                     "code": "C100",
                     "description": "Online"
                 },
-                "servicePlanId": {
+                "servicePlan": {
                     "code": "STND",
                     "description": "Standard"
                 }

@@ -46,7 +46,7 @@
                     "code": "C100",
                     "description": "Online"
                 },
-                "servicePlanId": {
+                "servicePlan": {
                     "code": "STNDNS",
                     "description": "Standard No Support"
                 }
@@ -73,7 +73,7 @@
                     "code": "C100",
                     "description": "Online"
                 },
-                "servicePlanId": {
+                "servicePlan": {
                     "code": "STNDNS",
                     "description": "Standard No Support"
                 }
