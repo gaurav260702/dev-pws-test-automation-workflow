@@ -35,6 +35,6 @@
     "./testdata/WorkflowProcessing/TestKickers/Kicker.QuoteServices.Create.Quote.V2.Switch.Product.3Year.Contract.Positive.INT.json",
     "./testdata/WorkflowProcessing/TestKickers/Kicker.QuoteServices.Create.Quote.V2.Switch.Term.Annual.To.3Year.Contract.Positive.INT.json",
     "./testdata/WorkflowProcessing/TestKickers/Kicker.QuoteServices.Create.Quote.V2.Switch.Term.3Year.To.Annual.Contract.Positive.INT.json",
-    "./testdata/WorkflowProcessing/TestKickers/Kicker.QuoteServices.Create.Quote.V2.Extension.referenceSubscriptionID.Already.Refered.Other.LineItem.Negative.INT.json"
+    "./testdata/WorkflowProcessing/TestKickers/Kicker.QuoteServices.Create.Quote.V2.Extension.referenceSubscriptionID.Already.Referred.Other.LineItem.Negative.INT.json"
   ]
 }
