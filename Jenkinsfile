@@ -54,7 +54,7 @@ pipeline {
     stage('Check') {
           agent {
             docker {
-              image wpe
+              image 'wpe'
             }
           }
           steps {
