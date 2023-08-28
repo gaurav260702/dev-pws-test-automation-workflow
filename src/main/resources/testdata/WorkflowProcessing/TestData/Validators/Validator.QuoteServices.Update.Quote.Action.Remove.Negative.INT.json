@@ -29,7 +29,7 @@
     "transactionId": "*",
     "errors": [
       {
-        "code": "UQ04002",
+        "code": "45503",
         "message": "Quotes can only be updated when in a draft status."
       }
     ]
