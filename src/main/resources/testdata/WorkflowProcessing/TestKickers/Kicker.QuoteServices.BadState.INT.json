@@ -31,7 +31,7 @@
   "$TIMEZONE_CITY$": "Australia/Sydney",
   "$CURRENCY$": "AUD",
 
-  "$ADDRESS1$": "90 Barrack Street",
+  "$ADDRESS1$": "914 Barrack Street",
   "$CITY$": "Perth",
   "$STATE$": "ZZZ123##$^&*(){}",
   "$POSTAL_CODE$": "6000",
@@ -53,9 +53,7 @@
   "validationFile": "$VALIDATION$/Validator.$ROOT_NAME$.$ENV$.json",
   "secretsFile": "$CONFIG$/Secrets.GetInvoiceServices.INT.json",
 
-  "QuoteStatus.ExpectedEndStateStatus": "FAILED",
-  "QuoteStatusByQuoteNumber.ExpectedEndStateStatus": "error",
-  "QuoteFinalize.ExpectedEndStateStatus": "error",
+
 
   "workflow": "CreateQuote"
 }

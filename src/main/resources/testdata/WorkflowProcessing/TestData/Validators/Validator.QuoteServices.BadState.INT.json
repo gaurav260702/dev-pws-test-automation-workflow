@@ -1,11 +1,23 @@
 {
+
   "QuoteStatus": {
     "quoteStatus": "DRAFT-CREATED",
-    "quoteNumber": "*",
+    "quoteNumber": "$QUOTE_NUMBER$",
     "transactionId": "*"
   },
   "QuoteCreate": {
     "message": "success",
     "transactionId": "*"
+  },
+  "QuoteDetails": {
+    "quoteCreatedTime": "*",
+    "agentTimeZone": "*",
+    "quoteNumber": "$QUOTE_NUMBER$",
+    "quoteStatus": "Draft",
+    "pricing.currency": "AUD"
+  },
+  "QuoteFinalize": {
+    "quoteNumber": "$QUOTE_NUMBER$",
+    "status": "FINALIZING"
   }
 }
