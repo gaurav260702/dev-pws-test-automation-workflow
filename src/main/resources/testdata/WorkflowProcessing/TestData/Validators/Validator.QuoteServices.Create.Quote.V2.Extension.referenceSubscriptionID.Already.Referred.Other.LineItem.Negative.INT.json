@@ -6,7 +6,7 @@
     "errors": [
       {
         "code": "45001",
-        "message": "Subscription ID can be referenced on only one line item of a quote."
+        "message": "Subscription ID 69101800825966 can only be referenced on a single quote line item."
       }
     ]
   },
