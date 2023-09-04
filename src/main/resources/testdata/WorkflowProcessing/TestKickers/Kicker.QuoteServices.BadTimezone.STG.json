@@ -30,11 +30,11 @@
   "$TIMEZONE_CITY$": "America/New_York",
   "$CURRENCY$": "AUD",
 
-   "$ADDRESS1$": "123 Nowhere Outback",
-   "$CITY$": "Gladstone Central",
-   "$STATE$": "QLD",
-   "$POSTAL_CODE$": "6889",
-   "$COUNTRY$": "AU",
+  "$ADDRESS1$": "77 Barrack Street",
+  "$CITY$": "Perth",
+  "$STATE$": "WA",
+  "$POSTAL_CODE$": "6000",
+  "$COUNTRY$": "AU",
 
   "includeForceableHeaders": "true",
   "forceableHeaders":
