@@ -1,0 +1,86 @@
+{
+    "quoteNote": "Notefromagenttocustomer2",
+    "currency": "AUD",
+    "agentAccount": {
+        "accountCsn": "5112991506"
+    },
+    "agentContact": {
+        "email": "agentpartnera2k@letscheck.email"
+    },
+    "endCustomer": {
+        "accountCsn": "5102489540",
+        "name": "Kaline Associates Ltd",
+        "addressLine1": "60 Jenke Cct",
+        "city": "Kambah",
+        "countryCode": "AU",
+        "postalCode": "2902",
+        "isIndividual": false
+    },
+    "purchaser": {
+        "email": "SM_Aususer1@letscheck.pw",
+        "firstName": "SM",
+        "lastName": "User1Dinkum",
+        "phone": "9454456666",
+        "preferredLanguage": "en"
+    },
+    "lineItems": [
+        {
+            "quantity": 1000,
+            "offeringId": "OD-000163",
+            "offeringCode": "F360",
+            "offeringName": "testName",
+            "action": "New",
+            "offer": {
+                "term": {
+                    "code": "A01",
+                    "description": "Annual"
+                },
+                "accessModel": {
+                    "code": "F",
+                    "description": "Flex"
+                },
+                "intendedUsage": {
+                    "code": "COM",
+                    "description": "Commercial"
+                },
+                "connectivity": {
+                    "code": "C100",
+                    "description": "Online"
+                },
+                "servicePlan": {
+                    "code": "STND",
+                    "description": "Standard"
+                }
+            }
+        },
+        {
+            "quantity": 2,
+            "offeringId": "OD-000021",
+            "offeringCode": "F360",
+            "offeringName": "testName",
+            "action": "New",
+            "offer": {
+                "term": {
+                    "code": "A01",
+                    "description": "Annual"
+                },
+                "accessModel": {
+                    "code": "S",
+                    "description": "Single User"
+                },
+                "intendedUsage": {
+                    "code": "COM",
+                    "description": "Commercial"
+                },
+                "connectivity": {
+                    "code": "C100",
+                    "description": "Online"
+                },
+                "servicePlan": {
+                    "code": "STND",
+                    "description": "Standard"
+                }
+            }
+        }
+    ]
+}
