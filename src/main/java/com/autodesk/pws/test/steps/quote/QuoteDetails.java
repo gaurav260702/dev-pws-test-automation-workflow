@@ -69,6 +69,7 @@ public class QuoteDetails extends PwsServiceBase
 		//  Here we would extract any data that needs to be promoted to 
 		//  the DataPool and may be needed by other steps later on...
     	JsonPath pathFinder = JsonPath.with(JsonResponseBody);
+		//  extractDataFromJsonAndAddToDataPool("$QUOTE_LINE_NUMBER$", "lineItems[0].quoteLineNumber", pathFinder);
 
     	//  Extact data that 	
     	//extractDataFromJsonAndAddToDataPool("$TRANSACTION_ID$", "transactionId", pathFinder); 

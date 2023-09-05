@@ -554,6 +554,7 @@ public class WorkflowLibrary
         return workflow;
     }
 
+
     public static List<StepBase> QuoteUpdateActionAddSTGPositive()
     {
         boolean waitForExpectedStatus = true;
@@ -587,6 +588,25 @@ public class WorkflowLibrary
         //  workflow.add(new QuoteFinalize());
         //  workflow.add(new QuoteStatusByQuoteNumber(waitForExpectedStatus));
         workflow.add(new QuoteUpdateActionUpdatePositive());
+
+
+        return workflow;
+    }
+
+    public static List<StepBase> UpdateQuoteV2OperationUpdateActionNew()
+    {
+        boolean waitForExpectedStatus = true;
+
+        List<StepBase> workflow = new ArrayList<StepBase>();
+
+        workflow.add(new LoadQuoteFilesAndExtractData());
+        workflow.add(new GetQuoteOAuthCredentials());
+        workflow.add(new QuoteCreate());
+        workflow.add(new QuoteStatus(waitForExpectedStatus));
+        workflow.add(new QuoteDetailsV2New());
+        //  workflow.add(new QuoteFinalize());
+        //  workflow.add(new QuoteStatusByQuoteNumber(waitForExpectedStatus));
+        workflow.add(new QuoteUpdateV2OperationUpdateActionNew());
 
 
         return workflow;
