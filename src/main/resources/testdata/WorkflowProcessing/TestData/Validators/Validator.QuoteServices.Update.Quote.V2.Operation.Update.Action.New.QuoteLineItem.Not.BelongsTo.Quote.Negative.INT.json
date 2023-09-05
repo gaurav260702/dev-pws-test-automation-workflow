@@ -1,0 +1,30 @@
+{
+  "QuoteStatus": {
+    "quoteStatus": "DRAFT-CREATED",
+    "quoteNumber": "$QUOTE_NUMBER$",
+    "transactionId": "*"
+  },
+  "QuoteCreate": {
+    "message": "success",
+    "transactionId": "*"
+  },
+  "QuoteDetailsV2New": {
+    "agentTimeZone": "*",
+    "quoteNumber": "$QUOTE_NUMBER$",
+    "quoteStatus": "Draft",
+    "quoteCreatedTime": "*",
+    "pricing.currency": "AUD",
+    "agentAccount.accountCsn": "$CSN_ACCOUNT_CONTACT$"
+
+  },
+  "QuoteUpdateV2OperationUpdateActionNewNeg": {
+    "transactionId": "*",
+    "errors": [
+      {
+        "code": "UQ04007",
+        "message": "Quote Line Number QL-0628499 does not belong to this quote  1."
+      }
+    ],
+    "status": "error"
+  }
+}
