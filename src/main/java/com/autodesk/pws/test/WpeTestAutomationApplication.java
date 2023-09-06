@@ -9,21 +9,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 import com.autodesk.pws.test.engine.Kicker;
-import com.amazonaws.auth.profile.ProfileCredentialsProvider;
-import com.amazonaws.regions.Regions;
-import com.amazonaws.services.lambda.AWSLambda;
-import com.amazonaws.services.lambda.AWSLambdaClientBuilder;
-import com.amazonaws.services.lambda.model.FunctionConfiguration;
-import com.amazonaws.services.lambda.model.ListFunctionsResult;
-import com.amazonaws.services.lambda.model.ServiceException;
-import java.util.Iterator;
-import java.util.List;
-import com.amazonaws.auth.profile.ProfileCredentialsProvider;
-import com.amazonaws.services.lambda.model.InvokeRequest;
-import com.amazonaws.services.lambda.model.InvokeResult;
-
-
-import java.nio.charset.StandardCharsets;
 
 @SpringBootApplication
 public class WpeTestAutomationApplication {
