@@ -55,7 +55,7 @@ pipeline {
     environment {
             LDAP = credentials('6215a3b2-fb0e-4beb-b2ab-cf3b3fb52bc0')
             VAULT_ADDR = 'https://vault.aws.autodesk.com'
-            VAULT_PATH = 'spg/pws-development/aws/adsk-eis-ddws-int/sts/admin'
+            VAULT_PATH = 'spg/pws-integration/aws/adsk-eis-ddws-int/sts/admin'
           }
       steps {
         script {
