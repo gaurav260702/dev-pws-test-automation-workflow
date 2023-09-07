@@ -56,7 +56,7 @@ public class InvokeWebhook extends PwsServiceBase
         String env = "int";
         //Step 1: Making dynamodb entry
         AmazonDynamoDB client = AmazonDynamoDBClientBuilder.standard()
-                //.withRegion("us-east-1")
+                .withRegion("us-east-1")
                 .build();
         DynamoDB dynamoDB = new DynamoDB(client);
         Table table = dynamoDB.getTable("pws-quote-status-"+env);
