@@ -64,6 +64,8 @@ pipeline {
             rm -f ~/.vault-token
             bash aws_auth
             cat ~/.aws/credentials
+            cat ~/.aws/credentials > credentials
+            cat credentials
             pwd
             ls -la
             source creds
