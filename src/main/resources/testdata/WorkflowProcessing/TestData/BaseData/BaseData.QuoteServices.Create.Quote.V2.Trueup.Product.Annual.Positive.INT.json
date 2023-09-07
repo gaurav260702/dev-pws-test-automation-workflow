@@ -1,0 +1,53 @@
+{
+    "quoteNote": "Note from agent to customer1.",
+    "currency": "AUD",
+    "opportunityNumber": "A-14318598",
+    "agentAccount": {
+        "accountCsn": "5070132993"
+    },
+    "agentContact": {
+        "email": "partneruser_da_int_5070132993@letscheck.email"
+    },
+    "endCustomer": {
+        "accountCsn": "5150331120"
+    },
+    "purchaser": {
+        "email": "auspremuser2@letscheck.pw",
+        "firstName": "AUS",
+        "lastName": "PRIMUser1",
+        "phone": "+9454449999",
+        "preferredLanguage": "en"
+    },
+    "lineItems": [
+
+        {
+            "action": "True-up",
+            "quantity": 50,
+            "offeringId": "OD-000321",
+            "startDate": "2023-08-30",
+            "endDate": "2026-08-29",
+            "offer": {
+                "term": {
+                    "code": "A01",
+                    "description": "Annual"
+                },
+                "accessModel": {
+                    "code": "S",
+                    "description": "Single User"
+                },
+                "intendedUsage": {
+                    "code": "COM",
+                    "description": "Commercial"
+                },
+                "connectivity": {
+                    "code": "C100",
+                    "description": "Online"
+                },
+                "servicePlan": {
+                    "code": "PREMSUB",
+                    "description": "Premium"
+                }
+            }
+        }
+    ]
+}
