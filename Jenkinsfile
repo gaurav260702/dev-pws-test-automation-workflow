@@ -83,7 +83,7 @@ pipeline {
             stage(testfiles[i].name) {
               echo "Test case full directory ${full_dir}"
               echo "Test case relative directory to run: ${testcase_run_dir}"
-              sh "docker run -e AWS_ACCESS_KEY_ID -e AWS_SECRET_ACCESS_KEY -e AWS_SESSION_TOKEN wpe mvn spring-boot:run -Dspring-boot.run.arguments='${testcase_run_dir}'"
+              sh "docker run -v /home/jenkins/.aws/credentials:/home/app/.aws/credentials:ro -e AWS_ACCESS_KEY_ID -e AWS_SECRET_ACCESS_KEY -e AWS_SESSION_TOKEN wpe mvn spring-boot:run -Dspring-boot.run.arguments='${testcase_run_dir}'"
             }
           }
         }
