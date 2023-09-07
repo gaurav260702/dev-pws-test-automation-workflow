@@ -68,7 +68,7 @@ pipeline {
             cat credentials
             pwd
             ls -la
-            source creds
+            . ./creds
             env
           """
           echo ""
