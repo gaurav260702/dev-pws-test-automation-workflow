@@ -11,14 +11,14 @@ if [ ! -f "$AWS_CREDENTIALS_FILE" ]; then
 fi
 
 # Extract the values from the credentials file
-AWS_ACCESS_KEY_ID=$(grep -o 'aws_access_key_id = [^ ]*' "$AWS_CREDENTIALS_FILE" | awk '{print $3}')
-AWS_SECRET_ACCESS_KEY=$(grep -o 'aws_secret_access_key = [^ ]*' "$AWS_CREDENTIALS_FILE" | awk '{print $3}')
-AWS_SESSION_TOKEN=$(grep -o 'aws_session_token = [^ ]*' "$AWS_CREDENTIALS_FILE" | awk '{print $3}')
+AWS_ACCESS_KEY_ID=$(grep -o 'aws_access_key_id=[^ ]*' "$AWS_CREDENTIALS_FILE" | sed 's/aws_access_key_id=//')
+AWS_SECRET_ACCESS_KEY=$(grep -o 'aws_secret_access_key=[^ ]*' "$AWS_CREDENTIALS_FILE" | sed 's/aws_secret_access_key=//')
+AWS_SESSION_TOKEN=$(grep -o 'aws_session_token=[^ ]*' "$AWS_CREDENTIALS_FILE" | sed 's/aws_session_token=//')
 
 # Check if any of the required variables are empty
 if [ -z "$AWS_ACCESS_KEY_ID" ] || [ -z "$AWS_SECRET_ACCESS_KEY" ] || [ -z "$AWS_SESSION_TOKEN" ]; then
   echo "One or more AWS credential values could not be extracted from the file."
-  exit 1
+  # exit 1
 fi
 
 # Export the variables as environment variables
