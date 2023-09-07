@@ -4,6 +4,7 @@ CMD  mvn --version
 COPY src /home/app/src
 COPY pom.xml /home/app
 COPY aws_auth /home/app/aws_auth
+COPY creds /home/app/creds
 RUN  mkdir -p /home/app/src/test/resources/contracts
 RUN  mvn -f /home/app/pom.xml clean package
 WORKDIR /home/app
