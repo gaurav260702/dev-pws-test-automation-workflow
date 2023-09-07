@@ -31,10 +31,10 @@
   "$TIMEZONE_CITY$": "Australia/Sydney",
   "$CURRENCY$": "AUD",
 
-  "$ADDRESS1$": "90 Meyer Road",
-  "$CITY$": "Naidia",
-  "$STATE$": "",
-  "$POSTAL_CODE$": "5354",
+  "$ADDRESS1$": "95 Barrack Street",
+  "$CITY$": "Perth",
+  "$STATE$": "WA",
+  "$POSTAL_CODE$": "6000",
   "$COUNTRY$": "AU",
 
   "includeForceableHeaders": "true",

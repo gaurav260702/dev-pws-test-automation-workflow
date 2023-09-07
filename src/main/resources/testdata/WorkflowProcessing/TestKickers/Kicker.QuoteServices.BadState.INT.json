@@ -31,11 +31,11 @@
   "$TIMEZONE_CITY$": "Australia/Sydney",
   "$CURRENCY$": "AUD",
 
-   "$ADDRESS1$": "123b Pitt Street",
-   "$CITY$": "Gladstone Central",
-   "$STATE$": "ZZZ123##$^&*(){}",
-   "$POSTAL_CODE$": "4680",
-   "$COUNTRY$": "AU",
+  "$ADDRESS1$": "914 Barrack Street",
+  "$CITY$": "Perth",
+  "$STATE$": "ZZZ123##$^&*(){}",
+  "$POSTAL_CODE$": "6000",
+  "$COUNTRY$": "AU",
 
   "includeForceableHeaders": "true",
   "forceableHeaders":
@@ -53,9 +53,7 @@
   "validationFile": "$VALIDATION$/Validator.$ROOT_NAME$.$ENV$.json",
   "secretsFile": "$CONFIG$/Secrets.GetInvoiceServices.INT.json",
 
-  "QuoteStatus.ExpectedEndStateStatus": "FAILED",
-  "QuoteStatusByQuoteNumber.ExpectedEndStateStatus": "error",
-  "QuoteFinalize.ExpectedEndStateStatus": "error",
+
 
   "workflow": "CreateQuote"
 }

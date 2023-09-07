@@ -6,7 +6,7 @@
     "QuoteDetailsInternalv2": {
       "salesChannelType": "*",
 
-      "salesPlatformCode": "PWS",
+      "salesPlatformCode": "*",
       "quoteNumber": "Q-*",
       "quoteCreatedDate": "*",
       "quoteExpirationDate": "*",
