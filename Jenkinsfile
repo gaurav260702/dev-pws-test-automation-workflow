@@ -65,9 +65,7 @@ pipeline {
             bash aws_auth
             cat ~/.aws/credentials
             source creds
-            echo $AWS_ACCESS_KEY_ID
-            echo $AWS_SECRET_ACCESS_KEY
-            echo $AWS_SESSION_TOKEN
+            env
           """
           echo ""
           echo "${testfiles[0].name} ${testfiles[0].path} ${testfiles[0].directory} ${testfiles[0].length} ${testfiles[0].lastModified}"
