@@ -51,29 +51,11 @@ pipeline {
       }
     }
 
-    stage('Check') {
-          agent {
-            docker {
-              image 'wpe'
-            }
-          }
-          steps {
-
-          script {
-                    sh """
-                        echo "Starting test case"
-                        mvn spring-boot:run -Dspring-boot.run.arguments=testdata/WorkflowProcessing/KickerSuites/KickerSuite.QuoteServices.INT.json
-                        echo "finished test case"
-                      """
-          }
-
-          }
-     }
     stage('Running Cases') {
     environment {
             LDAP = credentials('6215a3b2-fb0e-4beb-b2ab-cf3b3fb52bc0')
             VAULT_ADDR = 'https://vault.aws.autodesk.com'
-            VAULT_PATH = 'spg/pws-development/aws/adsk-eis-spartan-dev/sts/admin'
+            VAULT_PATH = 'spg/pws-development/aws/adsk-eis-ddws-int/sts/admin'
           }
       steps {
         script {
