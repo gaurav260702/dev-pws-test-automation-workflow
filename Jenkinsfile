@@ -64,12 +64,6 @@ pipeline {
             rm -f ~/.vault-token
             bash aws_auth
             cat ~/.aws/credentials
-            cat ~/.aws/credentials > credentials
-            cat credentials
-            pwd
-            ls -la
-            . ./creds
-            env
           """
           echo ""
           echo "${testfiles[0].name} ${testfiles[0].path} ${testfiles[0].directory} ${testfiles[0].length} ${testfiles[0].lastModified}"
@@ -83,7 +77,7 @@ pipeline {
             stage(testfiles[i].name) {
               echo "Test case full directory ${full_dir}"
               echo "Test case relative directory to run: ${testcase_run_dir}"
-              sh "docker run -v /home/jenkins/.aws/credentials:/root/.aws/credentials:ro -e AWS_ACCESS_KEY_ID -e AWS_SECRET_ACCESS_KEY -e AWS_SESSION_TOKEN wpe mvn spring-boot:run -Dspring-boot.run.arguments='${testcase_run_dir}'"
+              sh "docker run -v /home/jenkins/.aws/credentials:/root/.aws/credentials:ro wpe mvn spring-boot:run -Dspring-boot.run.arguments='${testcase_run_dir}'"
             }
           }
         }
