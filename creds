@@ -3,6 +3,7 @@
 # Specify the path to your AWS credentials file
 AWS_CREDENTIALS_FILE="/home/jenkins/.aws/credentials"
 
+
 # Check if the credentials file exists
 if [ ! -f "$AWS_CREDENTIALS_FILE" ]; then
   echo "AWS credentials file not found: $AWS_CREDENTIALS_FILE"
