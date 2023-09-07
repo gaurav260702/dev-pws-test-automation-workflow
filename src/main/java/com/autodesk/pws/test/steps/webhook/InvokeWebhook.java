@@ -61,8 +61,8 @@ public class InvokeWebhook extends PwsServiceBase
         //Step 1: Making dynamodb entry
         AWSCredentialsProvider credentialsProvider = new ProfileCredentialsProvider("default");
         AmazonDynamoDB client = AmazonDynamoDBClientBuilder.standard()
-                //.withCredentials(credentialsProvider)
-                .withCredentials(DefaultAWSCredentialsProviderChain.getInstance())
+                .withCredentials(credentialsProvider)
+                //.withCredentials(DefaultAWSCredentialsProviderChain.getInstance())
                 .withRegion("us-east-1")
                 .build();
         DynamoDB dynamoDB = new DynamoDB(client);
