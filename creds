@@ -2,7 +2,7 @@
 
 # Specify the path to your AWS credentials file
 AWS_CREDENTIALS_FILE="/home/jenkins/.aws/credentials"
-
+echo "Starting exporting credentials"
 
 # Check if the credentials file exists
 if [ ! -f "$AWS_CREDENTIALS_FILE" ]; then
