@@ -1,5 +1,8 @@
 package com.autodesk.pws.test.steps.webhook;
 
+import com.amazonaws.auth.AWSCredentialsProvider;
+import com.amazonaws.auth.PropertiesFileCredentialsProvider;
+import com.amazonaws.auth.profile.ProfileCredentialsProvider;
 import com.amazonaws.services.dynamodbv2.AmazonDynamoDB;
 import com.amazonaws.services.dynamodbv2.AmazonDynamoDBClientBuilder;
 import com.amazonaws.services.dynamodbv2.document.DynamoDB;
@@ -55,7 +58,9 @@ public class InvokeWebhook extends PwsServiceBase
 
         String env = "int";
         //Step 1: Making dynamodb entry
+        AWSCredentialsProvider credentialsProvider = new ProfileCredentialsProvider();
         AmazonDynamoDB client = AmazonDynamoDBClientBuilder.standard()
+                .withCredentials(credentialsProvider)
                 .withRegion("us-east-1")
                 .build();
         DynamoDB dynamoDB = new DynamoDB(client);
