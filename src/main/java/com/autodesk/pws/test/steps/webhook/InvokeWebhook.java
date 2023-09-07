@@ -92,7 +92,7 @@ public class InvokeWebhook extends PwsServiceBase
             System.out.println("Written to status db");
             System.out.println(outcome);
             System.out.println("Item added to DynamoDB table successfully.");
-        } catch (AmazonDynamoDBException e) {
+        } catch (Exception e) {
             System.err.println("Error adding item to DynamoDB: " + e.getMessage());
         }
 
@@ -237,7 +237,8 @@ public class InvokeWebhook extends PwsServiceBase
 
 
         Region region = Region.US_EAST_1;
-        EventBridgeClient eventBridgeClient = EventBridgeClient.builder()
+        EventBridgeClient eventBridgeClient = EventBridgeClient
+                .builder()
                 .region(region)
                 .build();
 
@@ -254,6 +255,7 @@ public class InvokeWebhook extends PwsServiceBase
                 .build();
         // Publish the event to EventBridge
         eventBridgeClient.putEvents(putEventsRequest);
+        System.out.println("Event published successfully");
 
         //Step 3: Reading cloudwatch logs
         String logGroupName = "/aws/lambda/pws-cpq-quote-upd-notify-async-"+env;
