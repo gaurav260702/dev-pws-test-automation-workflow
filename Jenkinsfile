@@ -65,6 +65,7 @@ pipeline {
             bash aws_auth
             cat ~/.aws/credentials
             pwd
+            ls -la
             source creds
             env
           """
