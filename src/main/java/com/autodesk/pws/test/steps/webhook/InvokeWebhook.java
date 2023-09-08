@@ -49,7 +49,7 @@ public class InvokeWebhook extends PwsServiceBase
 
     private void setResourcePath()
     {
-        super.setResourcePath("/v1/catalog/export");
+
     }
 
     @Override
