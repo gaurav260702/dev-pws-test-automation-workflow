@@ -87,9 +87,9 @@ public class InvokeWebhook extends PwsServiceBase
 
         try {
             // Put the item into the DynamoDB table
-            System.out.println("ttl is"+ ttl);
-            System.out.println("quotenumber is"+ quoteNumber);
-            System.out.println("transactionId is"+ uuid);
+            System.out.println("ttl is "+ ttl);
+            System.out.println("quotenumber is "+ quoteNumber);
+            System.out.println("transactionId is "+ uuid);
             //client.putItem(request);
             PutItemOutcome outcome = table.putItem(item);
             System.out.println("Written to status db");
@@ -110,7 +110,7 @@ public class InvokeWebhook extends PwsServiceBase
                 "  \"source\": \"urn:adsk.dpe.crm:moniker:749E33AC-C-UE1\",\n" +
                 "  \"specversion\": \"1.0\",\n" +
                 "  \"type\": \"adsk.cip:quote.created-updated-1.0.0\",\n" +
-                "  \"subject\": \"Event triggered for Quote(Quote Number) Q-03094\",\n" +
+                "  \"subject\": \"Event triggered from Automation Test\",\n" +
                 "  \"time\": \"2022-04-29T14:01:46.394703+00:00\",\n" +
                 "  \"dataschema\": \"https://platform.stoplight.autodesk.com/docs/salesforceintegrations/event-specs/QuoteChangeEvent.json/components/schemas/QuoteEvent\",\n" +
                 "  \"tracebaggage\": \"463ac35c9f6413ad48485a3953bb6124\",\n" +
