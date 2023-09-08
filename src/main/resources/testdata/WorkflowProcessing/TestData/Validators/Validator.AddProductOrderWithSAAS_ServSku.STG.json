@@ -1,5 +1,4 @@
 {
-	GetQuoteNotification
  	"GetOrderStatus": 
 	{
 		"transactionId": "*",
