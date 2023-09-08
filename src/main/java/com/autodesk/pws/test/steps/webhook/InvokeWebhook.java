@@ -59,6 +59,7 @@ public class InvokeWebhook extends PwsServiceBase
 
         String env = "int";
         //Step 1: Making dynamodb entry
+        System.out.println("Creating Quote Status Dynamodb entry");
         AWSCredentialsProvider credentialsProvider = new ProfileCredentialsProvider("default");
         AmazonDynamoDB client = AmazonDynamoDBClientBuilder.standard()
                 .withCredentials(credentialsProvider)
@@ -92,7 +93,7 @@ public class InvokeWebhook extends PwsServiceBase
             //client.putItem(request);
             PutItemOutcome outcome = table.putItem(item);
             System.out.println("Written to status db");
-            System.out.println(outcome);
+            // System.out.println(outcome);
             System.out.println("Item added to DynamoDB table successfully.");
         } catch (Exception e) {
             System.err.println("Error adding item to DynamoDB: " + e.getMessage());
@@ -261,6 +262,7 @@ public class InvokeWebhook extends PwsServiceBase
         System.out.println("Event published successfully");
 
         //Step 3: Reading cloudwatch logs
+        System.out.println("Starting to reading Cloudwatch logs every 1min ");
         String logGroupName = "/aws/lambda/pws-cpq-quote-upd-notify-async-"+env;
         CloudWatchLogsClient cloudWatchLogsClient = CloudWatchLogsClient.builder()
                 .region(Region.US_EAST_1)
@@ -277,14 +279,16 @@ public class InvokeWebhook extends PwsServiceBase
         long endTimeMillis = System.currentTimeMillis();
 
         int count =1;
-        boolean isNotificationAPIInvokedWithSuccessResponse = false;
+        boolean isMatchFound = false;
         while (count<=5) {
             try {
                 //Read lambda logs every 1 min
                 Thread.sleep(60000);
+                System.out.println("Reading Cloudwatch logs for last: "+ count+ " min");
 
                 //For 1st cycle,read logs for last 2min
                 //For 2nt cycle,read logs for last 3min
+
                 FilterLogEventsRequest logEventsRequest = FilterLogEventsRequest.builder()
                         .logGroupName(logGroupName)
                         .startTime(System.currentTimeMillis() - ((count+1)*60*1000))
@@ -316,21 +320,25 @@ public class InvokeWebhook extends PwsServiceBase
                         if (startIndex != -1 && endIndex != -1 && startIndex < endIndex) {
                             // Get the string after the search word
                             String notificationResponse = logMessage.substring(startIndex + startWord.length(), endIndex).trim();
-                            System.out.println("notificationResponse::" + notificationResponse);
+                            // System.out.println("notification Response::" + notificationResponse);
                             ;          ObjectMapper notificationResponseMapper = new ObjectMapper();
 
                             // Parse the JSON string
+                            //System.out.println("Current notification Api response"+notificationResponse);
                             try{
                                 JsonNode jsonNode = notificationResponseMapper.readTree(notificationResponse);
                                 // Get the value of a specific property
                                 String status = jsonNode.get("status").asText();
                                 String id = jsonNode.get("data").get("id").asText();
-                                System.out.println("Id Found: " + id);
-                                System.out.println("Status Found: " + status);
+                                // System.out.println("Id Found: " + id);
+                                // System.out.println("Status Found: " + status);
 
                                 if(Objects.equals(id, eventId) && Integer.valueOf(status) == 202 ){
                                     //System.out.println("Test case passed in "+count+ "iteration");
-                                    isNotificationAPIInvokedWithSuccessResponse = true;
+                                    System.out.println("Log for mapped event");
+                                    System.out.println(notificationResponse);
+                                    this.JsonResponseBody = "{ \"status\":\"202\"}";
+                                    isMatchFound = true;
                                     break;
                                 }
 
@@ -345,8 +353,7 @@ public class InvokeWebhook extends PwsServiceBase
                     //System.out.println();
                 }
                 count++;
-                if(isNotificationAPIInvokedWithSuccessResponse) {
-                    System.out.println("Test case passed in "+count+ "iteration");
+                if(isMatchFound){
                     break;
                 }
                 if(count == 6){
@@ -365,10 +372,6 @@ public class InvokeWebhook extends PwsServiceBase
         // Close the clients
         //lambdaClient.close();
         cloudWatchLogsClient.close();
-
-        if(isNotificationAPIInvokedWithSuccessResponse){
-            this.JsonResponseBody = "{}";
-        }
 
         this.log("-- RESPONSE BODY --", DEFAULT_LEFT_SPACE_PADDING + 4);
         this.log(this.JsonResponseBody, DEFAULT_LEFT_SPACE_PADDING + 8);
