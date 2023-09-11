@@ -12,6 +12,8 @@ import com.autodesk.pws.test.steps.quote.*;
 import com.autodesk.pws.test.steps.rule.*;
 import com.autodesk.pws.test.steps.utility.*;
 import com.autodesk.pws.test.steps.catalog.*;
+import com.autodesk.pws.test.steps.webhook.InvokeWebhook;
+
 
 import java.util.*;
 import java.io.UnsupportedEncodingException;
@@ -595,6 +597,18 @@ public class WorkflowLibrary
         workflow.add(new LoadQuoteFilesAndExtractData());
         workflow.add(new GetQuoteDetailsInternalv2ForgeCredentials());
         workflow.add(new QuoteDetailsInternalv2());
+
+        return workflow;
+    }
+
+    public static List<StepBase> GetQuoteNotification()
+    {
+        List<StepBase> workflow = new ArrayList<StepBase>();
+
+        workflow.add(new LoadBaseFiles());
+        // workflow.add(new GetOAuthCredentials());
+        //workflow.add(new GetCatalogExportOAuthCredentials());
+        workflow.add(new InvokeWebhook());
 
         return workflow;
     }

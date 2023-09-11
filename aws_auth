@@ -1,0 +1,137 @@
+#!/bin/bash
+
+usage="
+Script to configure the ~/.aws/credentials file with temporary access keys given by
+Vault based on the following variables:
+
+\$LDAP_USR
+\$LDAP_PSW
+\$VAULT_ADDR
+\$VAULT_PATH
+
+These variables default to the values set as environment variables. If you need to override,
+pass them in as options to this script. Refer to usage and example below
+
+Usage:
+======
+
+$(basename "$0") -u LDAPUSERNAME -p LDAPPASSWORD -a VAULTADDR -v VAULTPATH
+
+Examples:
+=========
+
+Modifies ~/.aws/credentials file:
+
+    $(basename "$0") -u johndoe -p johndoepassword -a https://vault.aws.autodesk.com -v spg/teamname-tst/aws/adsk-eis-teamname-tst/sts/admin
+
+Populates AWS_* environment variables in the current scope:
+
+    set -o pipefail && creds=\"\$($(basename "$0") -e -t some_vault_token -a https://vault.aws.autodesk.com -v spg/teamname-tst/aws/adsk-eis-teamname-tst/sts/admin)\" && eval \"\${creds}\" && unset creds
+
+options:
+========
+    -h  show this usage text
+    -u  LDAP username. Optional. Will prompt if not provided.
+    -p  LDAP password. Optional. Will prompt if not provided.
+    -a  Vault address. Optional. Will prompt if not provided.
+    -v  Vault path. Optional. Will prompt if not provided.
+    -t  Vault Token. Optional. Will not ask for LDAP credentials if provided. It is recommended to provide a token limited to specific set of policies. Instead of the auth/login token.
+    -e  Set to make output evaluable. See example.
+    -s  Set to override the Vault token at \$HOME/.vault-token, needed to invoke Vault functions like rotate root password
+"
+
+# Default variables to env variables
+LDAP_USR=$LDAP_USR
+LDAP_PSW=$LDAP_PSW
+VAULT_ADDR=$VAULT_ADDR
+VAULT_PATH=$VAULT_PATH
+VAULT_TOKEN=$VAULT_TOKEN
+
+echo "Starting aws auth"
+# Override variables with passed in option
+while getopts hea:u:p:v:t:s option
+do
+    case "${option}"
+    in
+        a) VAULT_ADDR=${OPTARG};;
+        u) LDAP_USR=${OPTARG};;
+        p) LDAP_PSW=${OPTARG};;
+        v) VAULT_PATH=${OPTARG};;
+        t) VAULT_TOKEN=${OPTARG};;
+        e) EVALUABLE=yes;;
+        s) SAVE_VAULT_TOKEN=yes;;
+        *) echo "${usage}" > /dev/stderr;exit;;
+    esac
+done
+
+# Request user input if any variables are empty
+if [[ -z $VAULT_TOKEN && -z $LDAP_USR ]]; then
+    read -r -p "Username: " LDAP_USR
+fi
+
+if [[ -z $VAULT_TOKEN && -z $LDAP_PSW ]]; then
+    read -r -sp "Password: " LDAP_PSW
+    echo # newline
+fi
+
+if [[ -z $VAULT_ADDR ]]; then
+    read -r -p "Vault Address: " VAULT_ADDR
+fi
+
+if [[ -z $VAULT_PATH ]]; then
+    read -r -p "Vault Path: " VAULT_PATH
+fi
+
+if [[ -z $VAULT_TOKEN ]]; then
+    ENDPOINT=$VAULT_ADDR/v1/auth/ldap/login/$LDAP_USR
+    REQUEST_BODY="{ \"password\": \"$LDAP_PSW\" }"
+
+    LOGIN_RESPONSE=$(curl -sS -f "$ENDPOINT" -d "$REQUEST_BODY")
+    echo "$LOGIN_RESPONSE"
+    # shellcheck disable=SC2181
+    if [[ $? -ne 0 ]]; then
+        echo "Failed to login to vault" > /dev/stderr
+        exit 1
+    fi
+
+    VAULT_TOKEN=$(echo "$LOGIN_RESPONSE" | jq -r .auth.client_token)
+fi
+
+echo "Vault token set" > /dev/stderr
+
+clean_vault_addr="${VAULT_ADDR%%/}"
+clean_vault_path="${VAULT_PATH##/}"
+sts_creds_url="${clean_vault_addr}/v1/${clean_vault_path}"
+VAULT_RESPONSE="$(curl --max-time 10 --silent --fail --show-error --location --header "X-Vault-Token: ${VAULT_TOKEN}" "${sts_creds_url}")"
+
+# shellcheck disable=SC2181
+if [[ $? -ne 0 ]] || [[ -z "${VAULT_RESPONSE}"  ]]; then
+    echo "Failed to retrieve AWS credentials" > /dev/stderr
+    exit 1
+fi
+
+AWS_ACCESS_KEY_ID=$(echo "$VAULT_RESPONSE" | jq -r .data.access_key)
+AWS_SECRET_ACCESS_KEY=$(echo "$VAULT_RESPONSE" | jq -r .data.secret_key)
+AWS_SESSION_TOKEN=$(echo "$VAULT_RESPONSE" | jq -r .data.security_token)
+export AWS_ACCESS_KEY_ID AWS_SECRET_ACCESS_KEY AWS_SESSION_TOKEN
+
+if [ "${EVALUABLE}" != "yes" ]; then
+  # TODO Can we solve this so we only set ENVARS
+  if [ "${SAVE_VAULT_TOKEN}" = "yes" ]; then
+    echo -n "${VAULT_TOKEN}" > "${HOME}/.vault-token"
+  fi
+  mkdir -p ~/.aws
+  cat > ~/.aws/credentials << EOF
+[default]
+aws_access_key_id=${AWS_ACCESS_KEY_ID}
+aws_secret_access_key=${AWS_SECRET_ACCESS_KEY}
+aws_session_token=${AWS_SESSION_TOKEN}
+EOF
+  echo 'AWS credentials set' > /dev/stderr
+else
+  echo "export AWS_ACCESS_KEY_ID='${AWS_ACCESS_KEY_ID}'"
+  echo "export AWS_SECRET_ACCESS_KEY='${AWS_SECRET_ACCESS_KEY}'"
+  echo "export AWS_SESSION_TOKEN='${AWS_SESSION_TOKEN}'"
+  echo 'Vault Token set' > /dev/stderr
+  echo "export VAULT_TOKEN='${VAULT_TOKEN}'"
+fi
