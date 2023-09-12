@@ -6,7 +6,7 @@
     "errors": [
       {
         "message": "Customer details for this opportunity do not match the quote. Update the customer details on the quote to continue.",
-        "code": "45001"
+        "code": "45068"
       }
     ]
   },
