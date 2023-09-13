@@ -27,20 +27,36 @@ pipeline {
   triggers {
     cron(env.BRANCH_NAME.equals('master') ? '00 01 * * 1-5' : '')
   }
+
+  stage('Build Image') {
+     steps {
+       script {
+          sh "docker build --tag ${imageName} ."
+          sh "docker image ls"
+        }
+      }
+    }
   
   stages {
     stage('Run Test Cases') {
+      agent {
+        docker {
+          image imageName
+          reuseNode true
+          args '-v /tmp/reports:reports'
+        }
+      }
       // environment {
       //       LDAP = credentials('d88e9614-fb62-4a2a-a4ca-380277fdb498')
       //       VAULT_ADDR = 'https://vault.aws.autodesk.com'
       //       VAULT_PATH = 'spg/pws-integration/aws/adsk-eis-ddws-int/sts/admin'
       //     }
-      agent {
-        dockerfile {
-            reuseNode true
-            args '-v /tmp/reports:/reports'
-          }
-      }
+      // agent {
+      //   dockerfile {
+      //       reuseNode true
+      //       args '-v /tmp/reports:/reports'
+      //     }
+      // }
       steps {
         script {
           try {
@@ -96,9 +112,9 @@ pipeline {
     always {
       script {
         echo ""
-        sh 'ls /tmp/reports'
-        sh 'docker image rm -f wpetest'
-        sh 'docker image ls'
+        sh "ls /tmp/reports"
+        sh "docker image rm -f ${imageName}"
+        sh "docker image ls"
       }
     }
   }
