@@ -29,24 +29,16 @@ pipeline {
   }
   
   stages {
-    stage('Build Image') {
-     steps {
-       script {
-          sh "docker build --tag wpe ."
-          sh "docker image ls"
-        }
-      }
-    }
     stage('Run Test Cases') {
-      environment {
-            LDAP = credentials('d88e9614-fb62-4a2a-a4ca-380277fdb498')
-            VAULT_ADDR = 'https://vault.aws.autodesk.com'
-            VAULT_PATH = 'spg/pws-integration/aws/adsk-eis-ddws-int/sts/admin'
-          }
+      // environment {
+      //       LDAP = credentials('d88e9614-fb62-4a2a-a4ca-380277fdb498')
+      //       VAULT_ADDR = 'https://vault.aws.autodesk.com'
+      //       VAULT_PATH = 'spg/pws-integration/aws/adsk-eis-ddws-int/sts/admin'
+      //     }
       agent {
         dockerfile {
             reuseNode true
-            args '-v /tmp/reports:/reports -v /home/jenkins/.aws/credentials:/root/.aws/credentials'
+            args '-v /tmp/reports:/reports'
           }
       }
       steps {
