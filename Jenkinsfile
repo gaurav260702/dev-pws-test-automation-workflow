@@ -7,7 +7,7 @@ def dockerReg = "autodesk-docker.art-bobcat.autodesk.com/team-pws"
 
 def dockerTestImage = "autodesk-docker.art-bobcat.autodesk.com/team-pws/test-automation:latest"
 
-def imageName = "test-automation"
+def imageName = "test-automation-"+ env.BUILD_NUMBER +
 def regUser = "local-svc_p_ors_art"
 
 def buildInfo = env.JOB_NAME + '-' + env.BUILD_NUMBER + "\n" + env.BUILD_URL
@@ -42,7 +42,7 @@ pipeline {
         docker {
           image "${imageName}"
           reuseNode true
-          args '-v /tmp:/home/app/'
+          args '-v /tmp:/home/app/reports'
         }
       }
       // environment {
@@ -111,7 +111,7 @@ pipeline {
     always {
       script {
         echo ""
-        sh "ls /tmp/reports"
+        sh "ls /tmp/jsonReports"
         sh "docker image rm -f ${imageName}"
         sh "docker image ls"
       }
@@ -122,12 +122,12 @@ pipeline {
 def sendReports() {
   script {
     echo("Send Reports")
-    dir('/tmp/reports') {
+    dir('/tmp/jsonReports') {
       def files = findFiles() 
   
       files.each { f -> 
           echo "This is a directory: ${f.name}"
-          def configJson = readJSON file: "/tmp/reports/${f.name}"
+          def configJson = readJSON file: "/tmp/jsonReports/${f.name}"
           def ENV_NAME = configJson.$ENV$
           def TEST_STATUS = configJson.$TEST_STATUS$
           def TEST_NAME = configJson.$TEST_NAME$
