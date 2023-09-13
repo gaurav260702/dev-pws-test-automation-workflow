@@ -52,12 +52,12 @@ pipeline {
       steps {
         script {
           try {
-            sh """
-            chmod -R u+rwX,go+rX,go-w . || true
-            rm -f ~/.vault-token
-            bash aws_auth
-            cat ~/.aws/credentials
-            """
+            // sh """
+            // chmod -R u+rwX,go+rX,go-w . || true
+            // rm -f ~/.vault-token
+            // bash aws_auth
+            // cat ~/.aws/credentials
+            // """
             sh "mvn spring-boot:run -Dspring-boot.run.arguments='testdata/WorkflowProcessing/KickerSuites/KickerSuite.QuoteServices.INT_STG.json'"
             sendReports()
           } catch (err) {
