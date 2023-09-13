@@ -27,8 +27,9 @@ pipeline {
   triggers {
     cron(env.BRANCH_NAME.equals('master') ? '00 01 * * 1-5' : '')
   }
-
-  stage('Build Image') {
+  
+  stages {
+    stage('Build Image') {
      steps {
        script {
           sh "docker build --tag ${imageName} ."
@@ -36,8 +37,6 @@ pipeline {
         }
       }
     }
-  
-  stages {
     stage('Run Test Cases') {
       agent {
         docker {
