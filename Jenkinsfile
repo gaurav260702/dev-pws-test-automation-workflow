@@ -20,10 +20,10 @@ def isMasterBranch = false
 def testfiles
 
 def allTests = [
-  ServicesQuote_INT_STG: "testdata/WorkflowProcessing/KickerSuites/KickerSuite.ServicesQuote.INT_STG.json",
-  CatalogExport_INT: "testdata/WorkflowProcessing/KickerSuites/KickerSuite.CatalogExport.INT.json",
-  QuoteServices_STG: "testdata/WorkflowProcessing/KickerSuites/KickerSuite.QuoteServices.STG.json",
-  QuoteServices_INT: "testdata/WorkflowProcessing/KickerSuites/KickerSuite.QuoteServices.INT.json",
+  ServicesQuote_INT_STG: [ path: "testdata/WorkflowProcessing/KickerSuites/KickerSuite.ServicesQuote.INT_STG.json"],
+  CatalogExport_INT: [ path: "testdata/WorkflowProcessing/KickerSuites/KickerSuite.CatalogExport.INT.json"],
+  QuoteServices_STG:[ path:  "testdata/WorkflowProcessing/KickerSuites/KickerSuite.QuoteServices.STG.json"],
+  QuoteServices_INT: [ path: "testdata/WorkflowProcessing/KickerSuites/KickerSuite.QuoteServices.INT.json"]
 ]
 
 pipeline {
@@ -79,11 +79,11 @@ pipeline {
             // """
             allTests.each { test ->
                 echo "TEST-START"
-                echo "${test}"
-                echo "${params[test]}"
-                if (params[test]) {
-                   echo "${allTests[test]}"
-                   sh "mvn spring-boot:run -Dspring-boot.run.arguments='${allTests[test]}'"
+                echo "${test.key}"
+                echo "${params[test.key]}"
+                if (params[test.key]) {
+                   echo "${test.value.path}"
+                   sh "mvn spring-boot:run -Dspring-boot.run.arguments='${test.value.path}'"
                 }
             }
             sendReports()
