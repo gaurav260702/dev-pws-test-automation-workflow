@@ -8,3 +8,5 @@ RUN  mkdir -p /root/.aws
 RUN  mkdir -p /home/app/src/test/resources/contracts
 RUN  mvn -f /home/app/pom.xml clean package
 WORKDIR /home/app
+ENTRYPOINT []
+CMD ["bash"]

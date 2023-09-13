@@ -500,7 +500,6 @@ public class Kicker
             exitCode = -1;
         }
 
-        exportDataPoolToJson(logToFile, logFileName);
         
         //  Check to see if the workflow actually completed.
         if((workflowCompleted && validationsCompleted) || forceValidationsIfWorkflowIncomplete)
@@ -552,6 +551,7 @@ public class Kicker
         	DataPool.add("$TEST_STATUS$", "PASS");
         }
         
+		exportDataPoolToJson(logToFile, logFileName);
         //  Log the JuiceBox test results...
         logJuiceBoxResultInfo();
         
@@ -636,6 +636,7 @@ public class Kicker
 			try 
 			{
 				FileUtils.writeStringToFile(new File(logFileName + ".DataPool.json"), dataPoolDump, Charset.defaultCharset());
+				FileUtils.writeStringToFile(new File("reports/"+logFileName + ".json"), dataPoolDump, Charset.defaultCharset());
 				FileUtils.writeStringToFile(new File(logFileName + ".ValidationChain.json"), validationChainDump, Charset.defaultCharset());
 			} 
 			catch (Exception e) 
