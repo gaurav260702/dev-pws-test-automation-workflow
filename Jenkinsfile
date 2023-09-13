@@ -40,6 +40,9 @@ pipeline {
   triggers {
     cron(env.BRANCH_NAME.equals('master') ? '00 01 * * 1-5' : '')
   }
+  options {
+    disableConcurrentBuilds()
+  }
   
   stages {
     stage('Build Image') {
