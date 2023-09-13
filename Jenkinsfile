@@ -40,9 +40,9 @@ pipeline {
     stage('Run Test Cases') {
       agent {
         docker {
-          image imageName
+          image "${imageName}"
           reuseNode true
-          args '-v /tmp/reports:reports'
+          args '-v /tmp/:reports'
         }
       }
       // environment {
