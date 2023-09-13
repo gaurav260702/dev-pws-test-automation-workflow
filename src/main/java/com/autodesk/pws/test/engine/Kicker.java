@@ -636,7 +636,7 @@ public class Kicker
 			try 
 			{
 				FileUtils.writeStringToFile(new File(logFileName + ".DataPool.json"), dataPoolDump, Charset.defaultCharset());
-				FileUtils.writeStringToFile(new File("/home/app/reports/jsonReports/"+logFileName + ".json"), dataPoolDump, Charset.defaultCharset());
+				FileUtils.writeStringToFile(new File("reports/jsonReports/"+logFileName + ".json"), dataPoolDump, Charset.defaultCharset());
 				FileUtils.writeStringToFile(new File(logFileName + ".ValidationChain.json"), validationChainDump, Charset.defaultCharset());
 			} 
 			catch (Exception e) 
