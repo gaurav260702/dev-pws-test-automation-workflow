@@ -42,7 +42,7 @@ pipeline {
         docker {
           image "${imageName}"
           reuseNode true
-          args '-v /tmp/:reports'
+          args '-v /tmp/:/home/app/reports'
         }
       }
       // environment {
