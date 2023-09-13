@@ -46,7 +46,6 @@ pipeline {
      steps {
        script {
           sh "docker build --tag ${imageName} ."
-          sh "docker image ls"
         }
       }
     }
@@ -79,6 +78,9 @@ pipeline {
             // cat ~/.aws/credentials
             // """
             allTests.each { test ->
+                echo "TEST-START"
+                echo "${test}"
+                echo "${params[test]}"
                 if (params[test]) {
                    echo "${allTests[test]}"
                    sh "mvn spring-boot:run -Dspring-boot.run.arguments='${allTests[test]}'"
