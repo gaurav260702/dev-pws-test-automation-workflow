@@ -7,7 +7,7 @@ def dockerReg = "autodesk-docker.art-bobcat.autodesk.com/team-pws"
 
 def dockerTestImage = "autodesk-docker.art-bobcat.autodesk.com/team-pws/test-automation:latest"
 
-def imageName = "test-automation-"+ env.BUILD_NUMBER +
+def imageName = "test-automation-"+ env.BUILD_NUMBER
 def regUser = "local-svc_p_ors_art"
 
 def buildInfo = env.JOB_NAME + '-' + env.BUILD_NUMBER + "\n" + env.BUILD_URL
