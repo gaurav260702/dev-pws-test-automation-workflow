@@ -50,7 +50,7 @@ pipeline {
             // bash aws_auth
             // cat ~/.aws/credentials
             // """
-            sh "mvn spring-boot:run -Dspring-boot.run.arguments='testdata/WorkflowProcessing/KickerSuites/KickerSuite.QuoteServices.INT_STG.json'"
+            sh "mvn spring-boot:run -Dspring-boot.run.arguments='testdata/WorkflowProcessing/KickerSuites/KickerSuite.CatalogExport.INT.json'"
             sendReports()
           } catch (err) {
             echo "${err}"
