@@ -19,9 +19,22 @@ def isMasterBranch = false
 
 def testfiles
 
+def allTests = [
+  ServicesQuote_INT_STG: "testdata/WorkflowProcessing/KickerSuites/KickerSuite.ServicesQuote.INT_STG.json",
+  CatalogExport_INT: "testdata/WorkflowProcessing/KickerSuites/KickerSuite.CatalogExport.INT.json",
+  QuoteServices_STG: "testdata/WorkflowProcessing/KickerSuites/KickerSuite.QuoteServices.STG.json",
+  QuoteServices_INT: "testdata/WorkflowProcessing/KickerSuites/KickerSuite.QuoteServices.INT.json",
+]
+
 pipeline {
   agent {
        label "aws-centos"
+  }
+  parameters {
+    booleanParam(name: 'ServicesQuote_INT_STG',   description: 'Run ServicesQuote Tests in INT and STG', defaultValue: false)
+    booleanParam(name: 'CatalogExport_INT',   description: 'RUN CatalogExport Tests in INT', defaultValue: true)
+    booleanParam(name: 'QuoteServices_STG',   description: 'Run QuoteServices Tests in STG', defaultValue: false)
+    booleanParam(name: 'QuoteServices_INT',   description: 'Run QuoteServices Tests in INT', defaultValue: false)
   }
   
   triggers {
@@ -42,7 +55,7 @@ pipeline {
         docker {
           image "${imageName}"
           reuseNode true
-          args '-v /tmp:/reports'
+          args '-v /tmp:/home/app/reports'
         }
       }
       // environment {
@@ -65,7 +78,12 @@ pipeline {
             // bash aws_auth
             // cat ~/.aws/credentials
             // """
-            sh "mvn spring-boot:run -Dspring-boot.run.arguments='testdata/WorkflowProcessing/KickerSuites/KickerSuite.CatalogExport.INT.json'"
+            allTests.each { test ->
+                if (params[test]) {
+                   echo "${allTests[test]}"
+                   sh "mvn spring-boot:run -Dspring-boot.run.arguments='${allTests[test]}'"
+                }
+            }
             sendReports()
           } catch (err) {
             echo "${err}"
