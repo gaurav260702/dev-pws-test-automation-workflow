@@ -170,7 +170,7 @@ def sendReports() {
           def configJson = readJSON file: "/tmp/reports/${f.name}"
           def ENV_NAME = configJson.$ENV$
           def TEST_STATUS = configJson.$TEST_STATUS$
-          def TEST_NAME = configJson.$TEST_NAME$
+          def TEST_NAME = (configJson.$TEST_NAME$).replaceAll( 'Kicker.', '' )
           def jsonData = [
             "GIT_BRANCH":env.GIT_BRANCH,
             "BUILD_NUMBER":env.BUILD_NUMBER,
