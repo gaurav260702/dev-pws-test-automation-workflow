@@ -1,9 +1,7 @@
-import java.net.URLDecoder
 import groovy.json.JsonSlurper;
 import groovy.json.JsonOutput;
 
 @Library("PSL@master") _
-@Library("gemini-pipeline-library@master")
 
 
 def dockerReg = "autodesk-docker.art-bobcat.autodesk.com/team-pws"
