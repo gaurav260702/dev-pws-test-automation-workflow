@@ -1,27 +1,27 @@
 {
-    "quoteNote": "Note from agent to customer1",
-    "currency": "$CURRENCY$",
+    "quoteNote": "Notefromagenttocustomer2",
+    "currency": "AUD",
     "agentAccount": {
-        "accountCsn": "$CSN_RESELLER$"
+        "accountCsn": "5112991506"
     },
     "agentContact": {
-        "email": "$AGENT_EMAIL$"
+        "email": "agentpartnera2k@letscheck.email"
     },
     "endCustomer": {
-        "accountCsn": "5501824481"
+        "accountCsn": "5102489540"
     },
     "purchaser": {
-        "email": "thqypz2a3f@letscheck.pw",
-        "firstName": "fnhxGgXe",
-        "lastName": "lnhxGgXe",
-        "phone": "+0298500223",
+        "email": "SM_Aususer1@letscheck.pw",
+        "firstName": "SM",
+        "lastName": "User1Dinkum",
+        "phone": "9454456666",
         "preferredLanguage": "en"
     },
     "lineItems": [
         {
             "action": "Extension",
-            "endDate":"2024-08-02",
-            "subscriptionId":"68970510074536"
+            "endDate":"2023-11-07",
+            "subscriptionId":"69271159889187"
         }
     ]
 }

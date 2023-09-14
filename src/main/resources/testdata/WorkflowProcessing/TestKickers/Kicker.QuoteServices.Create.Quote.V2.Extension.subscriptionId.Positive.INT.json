@@ -20,8 +20,8 @@
   "$CSN_TERTIARY$": "$CSN_SOLDTO$",
   "$CSN_QUATERNARY$": "$CSN_SOLDTO$",
 
-  "$CSN_ACCOUNT_CONTACT$": "5501670235",
-  "$CSN_HEADER$": "5501670235",
+  "$CSN_ACCOUNT_CONTACT$": "5112991506",
+  "$CSN_HEADER$": "5112991506",
 
       "$OFFERING_ID$": "OD-000163",
       "$AGENT_EMAIL$": "newuserpartnerau_5501670235@letscheck.pw",
@@ -52,5 +52,5 @@
   "validationFile": "$VALIDATION$/Validator.$ROOT_NAME$.Create.Quote.V2.Extension.subscriptionId.Positive.$ENV$.json",
   "secretsFile": "$CONFIG$/Secrets.GetInvoiceServices.INT.json",
 
-  "workflow": "CreateQuoteV2New"
+  "workflow": "CreateQuoteV2Extension"
 }

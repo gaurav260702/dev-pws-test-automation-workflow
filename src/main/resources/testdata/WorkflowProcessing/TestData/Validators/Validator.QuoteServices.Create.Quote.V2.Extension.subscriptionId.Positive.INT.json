@@ -4,11 +4,6 @@
     "quoteNumber": "$QUOTE_NUMBER$",
     "transactionId": "*"
   },
-  "QuoteStatusByQuoteNumber": {
-    "quoteStatus": "QUOTED",
-    "quoteNumber": "$QUOTE_NUMBER$",
-    "transactionId": "*"
-  },
   "QuoteCreate": {
     "message": "success",
     "transactionId": "*"
@@ -20,9 +15,5 @@
     "quoteCreatedTime": "*",
     "pricing.currency": "AUD",
     "agentAccount.accountCsn": "$CSN_ACCOUNT_CONTACT$"
-  },
-  "QuoteFinalizeV2New": {
-    "quoteNumber": "$QUOTE_NUMBER$",
-    "status": "FINALIZING"
   }
 }

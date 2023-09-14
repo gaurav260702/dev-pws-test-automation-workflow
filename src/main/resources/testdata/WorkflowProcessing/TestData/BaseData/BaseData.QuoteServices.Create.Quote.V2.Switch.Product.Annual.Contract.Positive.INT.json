@@ -7,24 +7,21 @@
         "email": "agentpartnera2k@letscheck.email"
     },
     "endCustomer": {
-        "accountCsn": "5501870536"
+        "accountCsn": "5102489540"
     },
     "purchaser": {
-        "email": "thgssvv1yl@letscheck.pw",
-        "firstName": "Sunny",
-        "lastName": "Gopim",
-        "phone": "4154776666",
+        "email": "SM_Aususer1@letscheck.pw",
+        "firstName": "SM",
+        "lastName": "User1Dinkum",
+        "phone": "9454456666",
         "preferredLanguage": "en"
-    },
-    "primaryAdmin": {
-        "email": "John.doe@awesomeagency.com"
     },
     "lineItems": [
         {
-            "quantity": 20,
+            "quantity": 5,
             "offeringId": "OD-000249",
             "action": "Switch",
-            "referenceSubscriptionId": "69101848313581",
+            "referenceSubscriptionId": "69453475894510",
             "offer": {
                 "term": {
                     "code": "A01",
