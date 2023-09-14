@@ -62,7 +62,7 @@ pipeline {
         docker {
           image "${imageName}"
           reuseNode true
-          args '-v /tmp:/home/app/reports'
+          args '-v /tmp:/tmp'
         }
       }
       environment {
@@ -151,7 +151,7 @@ pipeline {
     always {
       script {
         echo ""
-        sh "ls /tmp"
+        sh 'ls /tmp/reports'
         sh "docker image rm -f ${imageName}"
         sh "docker image ls"
       }
@@ -162,12 +162,12 @@ pipeline {
 def sendReports() {
   script {
     echo("Send Reports")
-    dir('/tmp/jsonReports') {
+    dir('/tmp/reports') {
       def files = findFiles() 
   
       files.each { f -> 
           echo "This is a directory: ${f.name}"
-          def configJson = readJSON file: "/tmp/jsonReports/${f.name}"
+          def configJson = readJSON file: "/tmp/reports/${f.name}"
           def ENV_NAME = configJson.$ENV$
           def TEST_STATUS = configJson.$TEST_STATUS$
           def TEST_NAME = configJson.$TEST_NAME$
