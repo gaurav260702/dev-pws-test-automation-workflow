@@ -65,6 +65,9 @@ pipeline {
           args '-v /tmp:/home/app/reports'
         }
       }
+      environment {
+        LDAP = credentials('6215a3b2-fb0e-4beb-b2ab-cf3b3fb52bc0')
+      }
       // environment {
       //       LDAP = credentials('d88e9614-fb62-4a2a-a4ca-380277fdb498')
       //       VAULT_ADDR = 'https://vault.aws.autodesk.com'
