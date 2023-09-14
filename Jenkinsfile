@@ -85,7 +85,7 @@ pipeline {
             usernameVariable: 'INFLUX_DB_USERNAME',
             passwordVariable: 'INFLUX_DB_PASSWORD',
           )
-        ])
+        ]) {
         script {
           try {
             // sh """
@@ -110,6 +110,7 @@ pipeline {
             echo "${err}"
           }
         }
+      }
       }
     }
 
