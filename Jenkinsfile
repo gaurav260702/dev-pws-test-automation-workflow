@@ -169,6 +169,7 @@ def sendReports() {
           sh """
             curl -i -XPOST "https://calvinklein-7de56744.influxcloud.net:8086/write?db=k6&u=k6writeuser&p=Autodesk@123" --data-binary 'automotion_test_report,TEST_NAME=${TEST_NAME},ENV_NAME=${ENV_NAME},TEST_STATUS=${TEST_STATUS},BUILD=${env.GIT_BRANCH}-${env.BUILD_NUMBER} BUILD_NUMBER=${env.BUILD_NUMBER}'
              """
+             
       }
     }
   }
