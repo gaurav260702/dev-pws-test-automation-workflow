@@ -170,7 +170,7 @@ def sendReports() {
           def configJson = readJSON file: "/tmp/reports/${f.name}"
           def ENV_NAME = configJson.$ENV$
           def TEST_STATUS = configJson.$TEST_STATUS$
-          def TEST_NAME = (configJson.$TEST_NAME$).replaceAll( 'Kicker.', '').replaceAll( '.INT.json', '').replaceAll( '.STG.json', '').replaceAll( '.', '-')
+          def TEST_NAME = (configJson.$TEST_NAME$).replace( 'Kicker.', '').replace( '.INT.json', '').replace( '.STG.json', '')
           def statusName = "pass"
           if(TEST_STATUS == 'FAIL'){
             tatusName = "fail"
