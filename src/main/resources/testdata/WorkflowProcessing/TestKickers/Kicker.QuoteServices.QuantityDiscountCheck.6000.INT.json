@@ -2,7 +2,7 @@
   "$ROOT$": "./testdata/WorkflowProcessing/TestData",
   "$ENV$": "INT",
 
-  "$QUANTITY_TO_PURCHASE$": "6000",
+  "$QUANTITY_TO_PURCHASE$": "6002",
   "$ROOT_NAME$": "QuoteServices.QuantityDiscountCheck",
   "$BASE_NAME$": "$ROOT_NAME$.$QUANTITY_TO_PURCHASE$",
 

@@ -7,7 +7,7 @@
     "errors": [
       {
         "code": "46002",
-        "message": "Request failed with status code 400"
+        "message": "Invalid currency code"
       }
     ]
   },
