@@ -465,7 +465,7 @@ public class WorkflowLibrary
         workflow.add(new GetQuoteOAuthCredentials());
         workflow.add(new QuoteCreate());
         workflow.add(new QuoteStatus(waitForExpectedStatus));
-        //  workflow.add(new QuoteDetails());
+        workflow.add(new QuoteDetails());
         //  workflow.add(new QuoteFinalize());
         //  workflow.add(new QuoteStatusByQuoteNumber(waitForExpectedStatus));
         workflow.add(new QuoteUpdateActionUpdateSTGPositive());
