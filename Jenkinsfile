@@ -104,7 +104,7 @@ pipeline {
                 }
             }
             stage('Send Test Report'){
-              sendReports()
+              sendReports(isMasterBranch)
             }
           } catch (err) {
             echo "${err}"
@@ -159,7 +159,7 @@ pipeline {
   }
 }
 
-def sendReports() {
+def sendReports(isMasterBranch) {
   script {
     echo("Send Reports")
     dir('/tmp/reports') {
