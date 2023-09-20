@@ -98,11 +98,9 @@ pipeline {
                 if (params[test.key]) {
                   echo "Key: ${test.key}"
                   echo "value: ${test.value.path}"
-                  parallel {
                     stage("${test.key}") {
                     sh "mvn spring-boot:run -Dspring-boot.run.arguments='${test.value.path}'"
                     }
-                  }
                 }
             }
             stage('Send Test Report'){
