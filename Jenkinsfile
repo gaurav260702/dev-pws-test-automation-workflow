@@ -96,7 +96,8 @@ pipeline {
             allTests.each { test ->
                 echo "TEST-START"
                 if (params[test.key]) {
-                  echo "${test.key}"
+                  echo "Key: ${test.key}"
+                  echo "value: ${test.value.path}"
                   parallel {
                     stage("${test.key}") {
                     sh "mvn spring-boot:run -Dspring-boot.run.arguments='${test.value.path}'"
