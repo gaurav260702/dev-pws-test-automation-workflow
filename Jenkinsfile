@@ -161,6 +161,7 @@ pipeline {
 
 def sendReports(isMasterBranch) {
   script {
+    echo "${isMasterBranch}"
     echo("Send Reports")
     dir('/tmp/reports') {
       def files = findFiles() 
