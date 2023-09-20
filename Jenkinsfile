@@ -21,10 +21,9 @@ def isMasterBranch = false
 def testfiles
 
 def allTests = [
-  ServicesQuote_INT_STG: [ path: "testdata/WorkflowProcessing/KickerSuites/KickerSuite.ServicesQuote.INT_STG.json"],
-  CatalogExport_INT: [ path: "testdata/WorkflowProcessing/KickerSuites/KickerSuite.CatalogExport.INT.json"],
   QuoteServices_STG:[ path:  "testdata/WorkflowProcessing/KickerSuites/KickerSuite.QuoteServices.STG.json"],
   QuoteServices_INT: [ path: "testdata/WorkflowProcessing/KickerSuites/KickerSuite.QuoteServices.INT.json"],
+  CatalogExport_INT: [ path: "testdata/WorkflowProcessing/KickerSuites/KickerSuite.CatalogExport.INT.json"],
   PromotionsExport_INT: [ path: "testdata/WorkflowProcessing/KickerSuites/KickerSuite.PromotionsExport.INT.json"]
 ]
 
@@ -33,11 +32,10 @@ pipeline {
        label "aws-centos"
   }
   parameters {
-    booleanParam(name: 'ServicesQuote_INT_STG',   description: 'Run ServicesQuote Tests in INT and STG', defaultValue: false)
-    booleanParam(name: 'CatalogExport_INT',   description: 'RUN CatalogExport Tests in INT', defaultValue: true)
-    booleanParam(name: 'QuoteServices_STG',   description: 'Run QuoteServices Tests in STG', defaultValue: false)
-    booleanParam(name: 'QuoteServices_INT',   description: 'Run QuoteServices Tests in INT', defaultValue: false)
-    booleanParam(name: 'PromotionsExport_INT',   description: 'RUN PromotionsExport Tests in INT', defaultValue: true)
+    booleanParam(name: 'QuoteServices_STG',   description: 'Run QuoteServices Tests in STG', defaultValue: true)
+    booleanParam(name: 'QuoteServices_INT',   description: 'Run QuoteServices Tests in INT', defaultValue: true)
+    booleanParam(name: 'CatalogExport_INT',   description: 'RUN CatalogExport Tests in INT', defaultValue: false)
+    booleanParam(name: 'PromotionsExport_INT',   description: 'RUN PromotionsExport Tests in INT', defaultValue: false)
   }
   
   triggers {
@@ -51,6 +49,9 @@ pipeline {
     stage('Build Image') {
      steps {
        script {
+          isMasterBranch = "${env.BRANCH_NAME}" == 'master'
+          // Uncomment to allow your branch to act as master ONLY FOR TESTING
+          // isMasterBranch = true
           sh "docker build --tag ${imageName} ."
         }
       }
@@ -94,17 +95,22 @@ pipeline {
             // """
             allTests.each { test ->
                 echo "TEST-START"
-                echo "${test.key}"
-                echo "${params[test.key]}"
                 if (params[test.key]) {
-                  stage("${test.key}"){
-                   echo "${test.value.path}"
-                   sh "mvn spring-boot:run -Dspring-boot.run.arguments='${test.value.path}'"
+                  echo "${test.key}"
+                  parallel {
+                    stage("${test.key}") {
+                    sh "mvn spring-boot:run -Dspring-boot.run.arguments='${test.value.path}'"
+                    }
                   }
                 }
             }
             stage('Send Test Report'){
-              sendReports()
+              if(isMasterBranch) {
+                sendReports()
+              } 
+              else {
+                echo "Skipping send reports"
+              }
             }
           } catch (err) {
             echo "${err}"
