@@ -93,23 +93,24 @@ pipeline {
             // bash aws_auth
             // cat ~/.aws/credentials
             // """
+            def tests = [:]
             allTests.each { test ->
                 echo "TEST-START"
                 if (params[test.key]) {
                   echo "Key: ${test.key}"
                   echo "value: ${test.value.path}"
-                    stage("${test.key}") {
-                    sh "mvn spring-boot:run -Dspring-boot.run.arguments='${test.value.path}'"
+                  tests["${test.key}"] = {
+                    node {
+                      stage("${test.key}") {
+                      sh "mvn spring-boot:run -Dspring-boot.run.arguments='${test.value.path}'"
+                      }
                     }
+                  }
                 }
             }
+            parallel tests
             stage('Send Test Report'){
-              if(isMasterBranch) {
-                sendReports()
-              } 
-              else {
-                echo "Skipping send reports"
-              }
+              sendReports()
             }
           } catch (err) {
             echo "${err}"
@@ -188,9 +189,14 @@ def sendReports() {
             "TEST_NAME": TEST_NAME,
           ]
           echo "${JsonOutput.toJson(jsonData)}"
+          if(isMasterBranch) {
           sh """
             curl -i -XPOST "https://calvinklein-7de56744.influxcloud.net:8086/write?db=k6&u=$INFLUX_DB_USERNAME&p=$INFLUX_DB_PASSWORD" --data-binary 'automation_test_report,TEST_NAME=${TEST_NAME},ENV_NAME=${ENV_NAME},TEST_STATUS=${TEST_STATUS},BUILD=${env.GIT_BRANCH}-${env.BUILD_NUMBER} value=1,${statusName}=1'
           """
+          } 
+          else {
+            echo "Skipping send reports"
+          }
       }
     }
   }
