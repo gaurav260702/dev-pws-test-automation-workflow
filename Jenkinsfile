@@ -39,7 +39,8 @@ pipeline {
   }
   
   triggers {
-    cron(env.BRANCH_NAME.equals('send-test-reports') ? '00 01 * * 1-5' : '')
+    // Run Every Weekday at 5 AM PST
+    cron(env.BRANCH_NAME.equals('send-test-reports') ? '0 0 12 ? * MON-FRI' : '')
   }
   options {
     disableConcurrentBuilds()
