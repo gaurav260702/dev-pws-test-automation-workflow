@@ -39,7 +39,7 @@ pipeline {
   }
   
   triggers {
-    cron(env.BRANCH_NAME.equals('master') ? '00 01 * * 1-5' : '')
+    cron(env.BRANCH_NAME.equals('send-test-reports') ? '00 01 * * 1-5' : '')
   }
   options {
     disableConcurrentBuilds()
@@ -93,22 +93,16 @@ pipeline {
             // bash aws_auth
             // cat ~/.aws/credentials
             // """
-            def tests = [:]
             allTests.each { test ->
                 echo "TEST-START"
                 if (params[test.key]) {
                   echo "Key: ${test.key}"
                   echo "value: ${test.value.path}"
-                  tests["${test.key}"] = {
-                    node {
-                      stage("${test.key}") {
+                    stage("${test.key}") {
                       sh "mvn spring-boot:run -Dspring-boot.run.arguments='${test.value.path}'"
-                      }
                     }
-                  }
                 }
             }
-            parallel tests
             stage('Send Test Report'){
               sendReports()
             }
