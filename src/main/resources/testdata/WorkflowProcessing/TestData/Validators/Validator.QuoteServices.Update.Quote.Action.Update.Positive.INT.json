@@ -12,8 +12,10 @@
     "quoteNumber": "*",
     "quoteStatus": "Draft",
     "quoteCreatedTime": "*",
-    "agentTimeZone": "Australia/Sydney",
+    "agentTimeZone": "Australia/Perth",
     "lineItems[0].quantity":"*"
+  },
+  "QuoteDetails": {
 
   }
 }

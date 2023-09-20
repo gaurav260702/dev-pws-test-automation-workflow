@@ -50,10 +50,10 @@ public class QuoteUpdateActionRemoveNegative extends PwsServiceBase
     	//  loader/extracter at this time...
     //	String jsonBody = "{\"quoteNumber\":\"$QUOTE_NUMBER$\"}";
 		String jsonBody = "{\n" +
-				"    \"quoteNumber\": \"Q-231770\",\n" +
+				"    \"quoteNumber\": \"$QUOTE_NUMBER$\",\n" +
 				"    \"lineItems\": [{\n" +
 				"        \"action\": \"remove\",\n" +
-				"        \"quoteLineNumber\": \"QL-0247829\"\n" +
+				"        \"quoteLineNumber\": \"$QUOTE_LINE_NUMBER$\"\n" +
 				"    }]\n" +
 				"}";
 

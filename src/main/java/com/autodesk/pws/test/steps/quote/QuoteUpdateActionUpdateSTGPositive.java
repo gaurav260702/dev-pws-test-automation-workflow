@@ -50,11 +50,11 @@ public class QuoteUpdateActionUpdateSTGPositive extends PwsServiceBase
     	//  loader/extracter at this time...
     //	String jsonBody = "{\"quoteNumber\":\"$QUOTE_NUMBER$\"}";
 		String jsonBody = "{\n" +
-				"    \"quoteNumber\": \"Q-337827\",\n" +
+				"    \"quoteNumber\": \"$QUOTE_NUMBER$\",\n" +
 				"    \"lineItems\": [\n" +
 				"        {\n" +
 				"            \"action\": \"update\",\n" +
-				"            \"quoteLineNumber\": \"QL-0431585\",\n" +
+				"            \"quoteLineNumber\": \"$QUOTE_LINE_NUMBER$\",\n" +
 				"            \"quantity\": 140\n" +
 				"        }\n" +
 				"    ]\n" +

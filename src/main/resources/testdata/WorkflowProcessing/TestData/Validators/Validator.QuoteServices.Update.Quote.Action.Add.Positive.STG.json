@@ -12,7 +12,7 @@
     "quoteNumber": "$QUOTE_NUMBER$",
     "quoteStatus": "Draft",
     "quoteCreatedTime": "*",
-    "agentTimeZone": "Australia/Sydney"
+    "agentTimeZone": "*"
 
   }
 }
