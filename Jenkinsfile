@@ -95,11 +95,7 @@ pipeline {
                   echo "Key: ${test.key}"
                   echo "value: ${test.value.path}"
                     stage("${test.key}") {
-                      jobs["${test.key}"] = {
-                      node {
-                      sh "mvn spring-boot:run -Dspring-boot.run.arguments='${test.value.path}'"
-                       }
-                      }
+                      jobs["${test.key}"] = generateStage(test.key, test.value.path)
                     }
                 }
             }
@@ -155,6 +151,17 @@ pipeline {
         echo ""
         sh "docker image rm -f ${imageName}"
         sh "docker image ls"
+      }
+    }
+  }
+}
+
+def generateStage(key, valuePath) {
+  return {
+    node('aws-centos') {
+      stage("stage: ${key}") {
+      sh "mvn spring-boot:run -Dspring-boot.run.arguments='${valuePath}'"
+        sleep 30
       }
     }
   }
