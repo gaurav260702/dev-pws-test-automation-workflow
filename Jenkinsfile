@@ -14,8 +14,6 @@ def regUser = "local-svc_p_ors_art"
 def buildInfo = env.JOB_NAME + '-' + env.BUILD_NUMBER + "\n" + env.BUILD_URL
 def slackChannel = "#dpe-dbp-pws-devops"
 
-def SUCCESS = "SUCCESS"
-def FAILURE = "FAILURE"
 def isMasterBranch = false
 
 def testfiles
@@ -32,10 +30,10 @@ pipeline {
        label "aws-centos"
   }
   parameters {
-    booleanParam(name: 'QuoteServices_STG',   description: 'Run QuoteServices Tests in STG', defaultValue: true)
-    booleanParam(name: 'QuoteServices_INT',   description: 'Run QuoteServices Tests in INT', defaultValue: true)
-    booleanParam(name: 'CatalogExport_INT',   description: 'RUN CatalogExport Tests in INT', defaultValue: false)
-    booleanParam(name: 'PromotionsExport_INT',   description: 'RUN PromotionsExport Tests in INT', defaultValue: false)
+    booleanParam(name: 'QuoteServices_STG',   description: 'Run QuoteServices Tests in STG', defaultValue: false)
+    booleanParam(name: 'QuoteServices_INT',   description: 'Run QuoteServices Tests in INT', defaultValue: false)
+    booleanParam(name: 'CatalogExport_INT',   description: 'RUN CatalogExport Tests in INT', defaultValue: true)
+    booleanParam(name: 'PromotionsExport_INT',   description: 'RUN PromotionsExport Tests in INT', defaultValue: true)
   }
   
   triggers {
@@ -75,12 +73,6 @@ pipeline {
       //       VAULT_ADDR = 'https://vault.aws.autodesk.com'
       //       VAULT_PATH = 'spg/pws-integration/aws/adsk-eis-ddws-int/sts/admin'
       //     }
-      // agent {
-      //   dockerfile {
-      //       reuseNode true
-      //       args '-v /tmp/reports:/reports'
-      //     }
-      // }
       steps {
         withCredentials([
           usernamePassword(credentialsId: 'pws-k6-influx-db-write-user',
@@ -96,16 +88,23 @@ pipeline {
             // bash aws_auth
             // cat ~/.aws/credentials
             // """
+            def jobs = [:]
             allTests.each { test ->
                 echo "TEST-START"
                 if (params[test.key]) {
                   echo "Key: ${test.key}"
                   echo "value: ${test.value.path}"
                     stage("${test.key}") {
+                      jobs["${test.key}"] = {
+                      node {
                       sh "mvn spring-boot:run -Dspring-boot.run.arguments='${test.value.path}'"
+                       }
+                      }
                     }
                 }
             }
+            echo "${jobs}"
+            parallel jobs
             stage('Send Test Report'){
               sendReports(isMasterBranch)
             }
