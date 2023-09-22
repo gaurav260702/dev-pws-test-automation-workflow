@@ -5,7 +5,8 @@
     "transactionId": "*",
     "errors": [
       {
-        "message": "Account not found in sfdc"
+        "code": "45017",
+        "message": "Invalid EndCustomer accountCSN"
       }
     ]
   },
