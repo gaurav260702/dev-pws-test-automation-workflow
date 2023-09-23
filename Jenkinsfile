@@ -195,7 +195,7 @@ def sendReports(isMasterBranch) {
             "Validator_path": Validator_path
           ]
           echo "${JsonOutput.toJson(jsonData)}"
-          def valiDatorJson = readJSON file: "src/main/resources/${configJson.validationFile}"
+          def valiDatorJson = readJSON file: "/home/app/src/main/resources/${configJson.validationFile}"
           echo "${valiDatorJson}"
           if(isMasterBranch) {
           sh """
