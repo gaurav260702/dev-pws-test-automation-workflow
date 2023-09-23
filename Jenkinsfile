@@ -195,10 +195,13 @@ def sendReports(isMasterBranch) {
             "Validator_path": validatorPath
           ]
           echo "${JsonOutput.toJson(jsonData)}"
-          def jsonD = readJSON text: configJson.ValidationChain;
-          // def parser = new JsonSlurper()
-          // def jsonD = parser.parseText(configJson.ValidationChain)
-          echo "${jsonD}"
+          
+          def parser = new JsonSlurper()
+          def parseJson = parser.parseText(configJson.ValidationChain)
+          String json = JsonOutput.toJson(parseJson)
+
+          def prettyJson = JsonOutput.prettyPrint(json)
+          println(prettyJson)
           // def valiDatorJson = readJSON file: "/home/app/src/main/resources/${configJson.validationFile}"
          //  echo "${valiDatorJson}"
           if(isMasterBranch) {
