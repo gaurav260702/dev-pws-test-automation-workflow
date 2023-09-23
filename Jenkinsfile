@@ -195,11 +195,12 @@ def sendReports(isMasterBranch) {
             "Validator_path": validatorPath
           ]
           echo "${JsonOutput.toJson(jsonData)}"
-          def parser = new JsonSlurper()
-          def jsonD = parser.parseText(configJson.ValidationChain)
+          def jsonD = readJSON text: configJson.ValidationChain;
+          // def parser = new JsonSlurper()
+          // def jsonD = parser.parseText(configJson.ValidationChain)
           echo "${jsonD}"
-          def valiDatorJson = readJSON file: "/home/app/src/main/resources/${configJson.validationFile}"
-          echo "${valiDatorJson}"
+          // def valiDatorJson = readJSON file: "/home/app/src/main/resources/${configJson.validationFile}"
+         //  echo "${valiDatorJson}"
           if(isMasterBranch) {
           sh """
             curl -i -XPOST "https://calvinklein-7de56744.influxcloud.net:8086/write?db=k6&u=$INFLUX_DB_USERNAME&p=$INFLUX_DB_PASSWORD" --data-binary 'automation_test_report,TEST_NAME=${TEST_NAME},ENV_NAME=${ENV_NAME},TEST_STATUS=${TEST_STATUS},BUILD=${env.GIT_BRANCH}-${env.BUILD_NUMBER} value=1,${statusName}=1'
