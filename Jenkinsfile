@@ -183,6 +183,7 @@ def sendReports(isMasterBranch) {
             statusName = "fail"
           }
           def API_CALLS = configJson.apiCalls
+          echo "${JsonOutput.toJson(API_CALLS)}"
           echo "${configJson.validationFile}"
           def validatorPath = (configJson.validationFile).replaceAll( '/testdata/WorkflowProcessing/TestData/Validators/', '')
           def jsonData = [
