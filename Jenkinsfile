@@ -146,8 +146,9 @@ pipeline {
     always {
       script {
         echo ""
-        sh "docker image rm -f ${imageName}"
         sh "docker image ls"
+        sh "docker image rm -f ${imageName}"
+        sh "cd /tmp/Validators ls"
       }
     }
   }
@@ -182,7 +183,7 @@ def sendReports(isMasterBranch) {
             statusName = "fail"
           }
           def API_CALLS = configJson.apiCalls
-          def Validator_path = (configJson.validationFile).replace( '/testdata/WorkflowProcessing/TestData/Validators/', '')
+          def Validator_path = (configJson.validationFile).replaceAll( '/testdata/WorkflowProcessing/TestData/Validators/', '')
           def jsonData = [
             "GIT_BRANCH":env.GIT_BRANCH,
             "BUILD_NUMBER":env.BUILD_NUMBER,
