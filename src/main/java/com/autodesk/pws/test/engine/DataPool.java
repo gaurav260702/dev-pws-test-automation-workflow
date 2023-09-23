@@ -95,6 +95,22 @@ public class DataPool extends HashMap<String, Object>
     }
     
 	@SuppressWarnings("unchecked")
+	public void addToAPICall(String key, Object value)
+	{
+		HashMap<String, Object> apiCalls = null;
+
+        if(!containsKey("apiCalls"))
+        {
+        	HashMap<String, Object> apiCallDictionary = new HashMap<String, Object>();
+            this.add("apiCalls", apiCallDictionary);
+        }
+
+        apiCalls = (HashMap<String, Object>) this.get("apiCalls");
+
+        apiCalls.put(key, value);
+	}
+
+	@SuppressWarnings("unchecked")
 	public void addToValidationChain(String validationLabel, Object dataToValidate)
 	{
 		HashMap<String, Object> validationChain = null;

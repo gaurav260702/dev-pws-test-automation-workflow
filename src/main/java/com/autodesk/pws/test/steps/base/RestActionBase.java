@@ -49,6 +49,8 @@ public class RestActionBase extends StepBase
 
 	private HashMap<String, String> attachedRequestHeaders = new HashMap<String, String>();
 
+	private HashMap<String, Object> apiRequests = new HashMap<String, Object>();
+
 	public void initBaseVariables() 
 	{
 		clientId = DataPool.getDetokenized("clientId").toString();
@@ -156,9 +158,9 @@ public class RestActionBase extends StepBase
 		RequestBody body = null;
 		
 		log("Target URL: " + restResourcePath);
-
+		apiRequests.put("requestURL", restResourcePath);
 		String ucaseRestMethod = restMethod.toUpperCase();
-		
+		apiRequests.put("requestMethod", ucaseRestMethod);
 		if (ucaseRestMethod == "POST" || ucaseRestMethod == "PATCH" || ucaseRestMethod == "PUT") 
 		{
 			mediaType = MediaType.parse(mediaTypeValue);
@@ -255,15 +257,19 @@ public class RestActionBase extends StepBase
 
 		// Log the headers for debugging purposes...
 		log("-- REQUEST HEADERS --", DEFAULT_LEFT_SPACE_PADDING + 4);
+	    HashMap<String, String> getRequestHeaders = new HashMap<String, String>();
 		for (int i = 0, count = headers.size(); i < count; i++) 
 		{
 			log(headers.name(i) + " : " + headers.value(i), DEFAULT_LEFT_SPACE_PADDING + 8);
+			getRequestHeaders.put(headers.name(i),headers.value(i));
 		}
+		apiRequests.put("requestHeaders", getRequestHeaders);
 
 		if(loggableJsonPayload.length() > 0)
 		{
 			log("-- REQUEST BODY --", DEFAULT_LEFT_SPACE_PADDING + 4);
 			log(loggableJsonPayload, DEFAULT_LEFT_SPACE_PADDING + 8);
+			apiRequests.put("requestBody", loggableJsonPayload);
 		}
 		
 		// Ready the REST client...
@@ -276,15 +282,21 @@ public class RestActionBase extends StepBase
 		response = client.newCall(request).execute();
 
 		this.log("Service response: " + response.code() + " -- " + response.message());
-		
+		apiRequests.put("responseCode", response.code());
 		log("-- RESPONSE HEADERS --", DEFAULT_LEFT_SPACE_PADDING + 4);
+		HashMap<String, String> getResponseHeaders = new HashMap<String, String>();
 		Headers responseHeaders = response.headers();
+
 		for (int i = 0, count = responseHeaders.size(); i < count; i++) 
 		{
 			log(responseHeaders.name(i) + " : " + responseHeaders.value(i), DEFAULT_LEFT_SPACE_PADDING + 8);
+			getResponseHeaders.put(responseHeaders.name(i),responseHeaders.value(i));
 		}
 
+		apiRequests.put("responseHeaders", getResponseHeaders);
+
 		this.ActualResponseMessage = response.message();
+		DataPool.addToAPICall(ClassName,apiRequests);
 		
 		// Hand back to the caller whatever we received from the REST service...
 		return response;
@@ -304,6 +316,7 @@ public class RestActionBase extends StepBase
 		JsonPath jsonPath = JsonPath.from(JsonResponseBody);
 		String prettyJson = jsonPath.prettify();
 		addValidationChainLink(ClassName, prettyJson);
+		DataPool.addToAPICall("responseBody", JsonResponseBody);
 	}
 
 	private String hack_CleanQuantityFloatType(String rawJson) {

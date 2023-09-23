@@ -52,7 +52,7 @@ pipeline {
        script {
           isMasterBranch = "${env.BRANCH_NAME}" == 'master'
           // Uncomment to allow your branch to act as master ONLY FOR TESTING
-          isMasterBranch = true
+          // isMasterBranch = true
           sh "docker build --tag ${imageName} ."
         }
       }
@@ -184,14 +184,20 @@ def sendReports(isMasterBranch) {
           if(TEST_STATUS == "FAIL"){
             statusName = "fail"
           }
+          def API_CALLS = configJson.apiCalls
+          def Validator_path = (configJson.validationFile).replace( '/testdata/WorkflowProcessing/TestData/Validators/', '')
           def jsonData = [
             "GIT_BRANCH":env.GIT_BRANCH,
             "BUILD_NUMBER":env.BUILD_NUMBER,
             "ENV_NAME": ENV_NAME,
             "TEST_STATUS": TEST_STATUS,
             "TEST_NAME": TEST_NAME,
+            "API_CALLS": API_CALLS,
+            "Validator_path": Validator_path
           ]
           echo "${JsonOutput.toJson(jsonData)}"
+          def valiDatorJson = readJSON file: "/tmp/Validators/${Validator_path}"
+          echo "${valiDatorJson}"
           if(isMasterBranch) {
           sh """
             curl -i -XPOST "https://calvinklein-7de56744.influxcloud.net:8086/write?db=k6&u=$INFLUX_DB_USERNAME&p=$INFLUX_DB_PASSWORD" --data-binary 'automation_test_report,TEST_NAME=${TEST_NAME},ENV_NAME=${ENV_NAME},TEST_STATUS=${TEST_STATUS},BUILD=${env.GIT_BRANCH}-${env.BUILD_NUMBER} value=1,${statusName}=1'
