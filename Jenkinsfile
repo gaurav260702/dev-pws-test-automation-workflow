@@ -52,7 +52,7 @@ pipeline {
        script {
           isMasterBranch = "${env.BRANCH_NAME}" == 'master'
           // Uncomment to allow your branch to act as master ONLY FOR TESTING
-          // isMasterBranch = true
+          isMasterBranch = true
           sh "docker build --tag ${imageName} ."
         }
       }
@@ -192,7 +192,8 @@ def sendReports(isMasterBranch) {
             "TEST_STATUS": TEST_STATUS,
             "TEST_NAME": TEST_NAME,
             "API_CALLS": API_CALLS,
-            "Validator_path": validatorPath
+            "Validator_path": validatorPath,
+            "Validation_Chain": configJson.ValidationChain
           ]
           echo "${JsonOutput.toJson(jsonData)}"
           
@@ -203,7 +204,7 @@ def sendReports(isMasterBranch) {
          //  echo "${valiDatorJson}"
           if(isMasterBranch) {
           sh """
-            curl -i -XPOST "https://calvinklein-7de56744.influxcloud.net:8086/write?db=k6&u=$INFLUX_DB_USERNAME&p=$INFLUX_DB_PASSWORD" --data-binary 'automation_test_report,TEST_NAME=${TEST_NAME},ENV_NAME=${ENV_NAME},TEST_STATUS=${TEST_STATUS},BUILD=${env.GIT_BRANCH}-${env.BUILD_NUMBER} value=1,${statusName}=1'
+            curl -i -XPOST "https://calvinklein-7de56744.influxcloud.net:8086/write?db=k6&u=$INFLUX_DB_USERNAME&p=$INFLUX_DB_PASSWORD" --data-binary 'automation_test_report,TEST_NAME=${TEST_NAME},ENV_NAME=${ENV_NAME},TEST_STATUS=${TEST_STATUS},BUILD=${env.GIT_BRANCH}-${env.BUILD_NUMBER} value=1,${statusName}=1,apicalls=${API_CALLS},validationchain=${configJson.ValidationChain}'
           """
           } 
           else {
