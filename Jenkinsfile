@@ -184,7 +184,7 @@ def sendReports(isMasterBranch) {
           }
           def API_CALLS = configJson.apiCalls
           echo "${configJson.validationFile}"
-          def Validator_path = (configJson.validationFile).replaceAll( '/testdata/WorkflowProcessing/TestData/Validators', '')
+          def validatorPath = (configJson.validationFile).replaceAll( '/testdata/WorkflowProcessing/TestData/Validators/', '')
           def jsonData = [
             "GIT_BRANCH":env.GIT_BRANCH,
             "BUILD_NUMBER":env.BUILD_NUMBER,
@@ -192,9 +192,12 @@ def sendReports(isMasterBranch) {
             "TEST_STATUS": TEST_STATUS,
             "TEST_NAME": TEST_NAME,
             "API_CALLS": API_CALLS,
-            "Validator_path": Validator_path
+            "Validator_path": validatorPath
           ]
           echo "${JsonOutput.toJson(jsonData)}"
+          def parser = new JsonSlurper()
+          def jsonD = parser.parseText(configJson.ValidationChain)
+          echo "${jsonD}"
           def valiDatorJson = readJSON file: "/home/app/src/main/resources/${configJson.validationFile}"
           echo "${valiDatorJson}"
           if(isMasterBranch) {
