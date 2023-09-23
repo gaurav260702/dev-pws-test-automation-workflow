@@ -88,19 +88,16 @@ pipeline {
             // bash aws_auth
             // cat ~/.aws/credentials
             // """
-            def jobs = [:]
             allTests.each { test ->
                 echo "TEST-START"
                 if (params[test.key]) {
                   echo "Key: ${test.key}"
                   echo "value: ${test.value.path}"
                     stage("${test.key}") {
-                      jobs["${test.key}"] = generateStage(test.key, test.value.path)
+                    sh "mvn spring-boot:run -Dspring-boot.run.arguments='${test.value.path}'"
                     }
                 }
             }
-            echo "${jobs}"
-            parallel jobs
             stage('Send Test Report'){
               sendReports(isMasterBranch)
             }
