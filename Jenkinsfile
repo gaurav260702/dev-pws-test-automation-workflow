@@ -198,10 +198,7 @@ def sendReports(isMasterBranch) {
           
           def parser = new JsonSlurper()
           def parseJson = parser.parseText(configJson.ValidationChain)
-          String json = JsonOutput.toJson(parseJson)
-
-          def prettyJson = JsonOutput.prettyPrint(json)
-          println(prettyJson)
+          println(parseJson.keySet())
           // def valiDatorJson = readJSON file: "/home/app/src/main/resources/${configJson.validationFile}"
          //  echo "${valiDatorJson}"
           if(isMasterBranch) {
