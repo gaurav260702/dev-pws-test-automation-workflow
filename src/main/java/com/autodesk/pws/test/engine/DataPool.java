@@ -20,6 +20,8 @@ import com.google.gson.JsonParser;
 import com.google.gson.reflect.TypeToken;
 import io.restassured.path.json.JsonPath;
 import okhttp3.Response;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 public class DataPool extends HashMap<String, Object>
 {
@@ -111,6 +113,22 @@ public class DataPool extends HashMap<String, Object>
 	}
 
 	@SuppressWarnings("unchecked")
+	public void addToResponseChain(String key, Object value)
+	{
+		HashMap<String, Object> responseChain = null;
+
+        if(!containsKey("responseChain"))
+        {
+        	HashMap<String, Object> responseChainDictionary = new HashMap<String, Object>();
+            this.add("responseChain", responseChainDictionary);
+        }
+
+        responseChain = (HashMap<String, Object>) this.get("responseChain");
+
+        responseChain.put(key, value);
+	}
+
+	@SuppressWarnings("unchecked")
 	public void addToValidationChain(String validationLabel, Object dataToValidate)
 	{
 		HashMap<String, Object> validationChain = null;
@@ -122,6 +140,9 @@ public class DataPool extends HashMap<String, Object>
         }
 
         validationChain = (HashMap<String, Object>) this.get("ValidationChain");
+		// ObjectMapper mapper2 = new ObjectMapper();
+        // JsonNode actualObj = mapper2.readTree(dataToValidate);
+		//Object jsonObj = new Gson().fromJson(dataToValidate,new TypeToken<HashMap<String, Object>>(){}.getType());
 
         validationChain.put(validationLabel, dataToValidate);
 	}

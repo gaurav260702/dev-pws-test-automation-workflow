@@ -30,11 +30,11 @@ pipeline {
        label "aws-centos"
   }
   parameters {
-    booleanParam(name: 'WebHook_INT',   description: 'test', defaultValue: true)
+    booleanParam(name: 'WebHook_INT',   description: 'test', defaultValue: false)
     booleanParam(name: 'QuoteServices_STG',   description: 'Run QuoteServices Tests in STG', defaultValue: false)
     booleanParam(name: 'QuoteServices_INT',   description: 'Run QuoteServices Tests in INT', defaultValue: false)
-    booleanParam(name: 'CatalogExport_INT',   description: 'RUN CatalogExport Tests in INT', defaultValue: false)
-    booleanParam(name: 'PromotionsExport_INT',   description: 'RUN PromotionsExport Tests in INT', defaultValue: false)
+    booleanParam(name: 'CatalogExport_INT',   description: 'RUN CatalogExport Tests in INT', defaultValue: true)
+    booleanParam(name: 'PromotionsExport_INT',   description: 'RUN PromotionsExport Tests in INT', defaultValue: true)
   }
   
   triggers {
@@ -80,12 +80,12 @@ pipeline {
         ]) {
         script {
           try {
-            sh """
-            chmod -R u+rwX,go+rX,go-w . || true
-            rm -f ~/.vault-token
-            bash aws_auth
-            cat ~/.aws/credentials
-            """
+            // sh """
+            // chmod -R u+rwX,go+rX,go-w . || true
+            // rm -f ~/.vault-token
+            // bash aws_auth
+            // cat ~/.aws/credentials
+            // """
             allTests.each { test ->
                 echo "TEST-START"
                 if (params[test.key]) {
@@ -180,6 +180,9 @@ def sendReports(isMasterBranch) {
           if(TEST_STATUS == "FAIL"){
             statusName = "fail"
           }
+          def validationData = "${configJson.responseChain}"
+          echo "${validationData}"
+          def responseChain = validationData.replaceAll(/(")/,"")
           // def API_CALLS = configJson.apiCalls
           // echo "${JsonOutput.toJson(API_CALLS)}"
           // echo "${configJson.validationFile}"
@@ -200,7 +203,7 @@ def sendReports(isMasterBranch) {
          //  echo "${valiDatorJson}"
           if(isMasterBranch) {
           sh """
-            curl -i -XPOST "https://calvinklein-7de56744.influxcloud.net:8086/write?db=k6&u=$INFLUX_DB_USERNAME&p=$INFLUX_DB_PASSWORD" --data-binary 'automation_test_report,TEST_NAME=${TEST_NAME},ENV_NAME=${ENV_NAME},TEST_STATUS=${TEST_STATUS},BUILD=${env.GIT_BRANCH}-${env.BUILD_NUMBER} value=1,${statusName}=1'
+            curl -i -XPOST "https://calvinklein-7de56744.influxcloud.net:8086/write?db=k6&u=$INFLUX_DB_USERNAME&p=$INFLUX_DB_PASSWORD" --data-binary 'automation_test_report,TEST_NAME=${TEST_NAME},ENV_NAME=${ENV_NAME},TEST_STATUS=${TEST_STATUS},BUILD=${env.GIT_BRANCH}-${env.BUILD_NUMBER} value=1,${statusName}=1,responseChain="${responseChain}"'
           """
           } 
           else {

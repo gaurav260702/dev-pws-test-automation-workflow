@@ -317,7 +317,7 @@ public class RestActionBase extends StepBase
 		String prettyJson = jsonPath.prettify();
 		addValidationChainLink(ClassName, prettyJson);
 		apiRequests.put("responseBody", prettyJson);
-		//DataPool.addToAPICall("responseBody", JsonResponseBody);
+		DataPool.addToResponseChain(ClassName,JsonResponseBody);
 	}
 
 	private String hack_CleanQuantityFloatType(String rawJson) {
