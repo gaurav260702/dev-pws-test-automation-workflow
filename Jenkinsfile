@@ -17,8 +17,8 @@ def slackChannel = "#dpe-dbp-pws-devops"
 def isMasterBranch = false
 
 def testfiles
-
 def allTests = [
+  WebHook_INT:[path: "testdata/WorkflowProcessing/TestKickers/Kicker.QuoteNotificationWebhook.Valid.INT.json"],
   QuoteServices_STG:[ path:  "testdata/WorkflowProcessing/KickerSuites/KickerSuite.QuoteServices.STG.json"],
   QuoteServices_INT: [ path: "testdata/WorkflowProcessing/KickerSuites/KickerSuite.QuoteServices.INT.json"],
   CatalogExport_INT: [ path: "testdata/WorkflowProcessing/KickerSuites/KickerSuite.CatalogExport.INT.json"],
@@ -30,10 +30,11 @@ pipeline {
        label "aws-centos"
   }
   parameters {
+    booleanParam(name: 'WebHook_INT',   description: 'test', defaultValue: true)
     booleanParam(name: 'QuoteServices_STG',   description: 'Run QuoteServices Tests in STG', defaultValue: false)
     booleanParam(name: 'QuoteServices_INT',   description: 'Run QuoteServices Tests in INT', defaultValue: false)
-    booleanParam(name: 'CatalogExport_INT',   description: 'RUN CatalogExport Tests in INT', defaultValue: true)
-    booleanParam(name: 'PromotionsExport_INT',   description: 'RUN PromotionsExport Tests in INT', defaultValue: true)
+    booleanParam(name: 'CatalogExport_INT',   description: 'RUN CatalogExport Tests in INT', defaultValue: false)
+    booleanParam(name: 'PromotionsExport_INT',   description: 'RUN PromotionsExport Tests in INT', defaultValue: false)
   }
   
   triggers {
@@ -66,13 +67,10 @@ pipeline {
         }
       }
       environment {
-        LDAP = credentials('6215a3b2-fb0e-4beb-b2ab-cf3b3fb52bc0')
+            LDAP = credentials('d88e9614-fb62-4a2a-a4ca-380277fdb498')
+            VAULT_ADDR = 'https://vault.aws.autodesk.com'
+            VAULT_PATH = 'spg/pws-integration/aws/adsk-eis-ddws-int/sts/admin'
       }
-      // environment {
-      //       LDAP = credentials('d88e9614-fb62-4a2a-a4ca-380277fdb498')
-      //       VAULT_ADDR = 'https://vault.aws.autodesk.com'
-      //       VAULT_PATH = 'spg/pws-integration/aws/adsk-eis-ddws-int/sts/admin'
-      //     }
       steps {
         withCredentials([
           usernamePassword(credentialsId: 'pws-k6-influx-db-write-user',
@@ -82,12 +80,12 @@ pipeline {
         ]) {
         script {
           try {
-            // sh """
-            // chmod -R u+rwX,go+rX,go-w . || true
-            // rm -f ~/.vault-token
-            // bash aws_auth
-            // cat ~/.aws/credentials
-            // """
+            sh """
+            chmod -R u+rwX,go+rX,go-w . || true
+            rm -f ~/.vault-token
+            bash aws_auth
+            cat ~/.aws/credentials
+            """
             allTests.each { test ->
                 echo "TEST-START"
                 if (params[test.key]) {
