@@ -192,8 +192,6 @@ def sendReports(isMasterBranch) {
             "ENV_NAME": ENV_NAME,
             "TEST_STATUS": TEST_STATUS,
             "TEST_NAME": TEST_NAME,
-            "API_CALLS": API_CALLS,
-            "Validator_path": validatorPath,
           ]
           echo "${JsonOutput.toJson(jsonData)}"
           
