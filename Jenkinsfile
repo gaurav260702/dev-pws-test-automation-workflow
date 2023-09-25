@@ -182,10 +182,10 @@ def sendReports(isMasterBranch) {
           if(TEST_STATUS == "FAIL"){
             statusName = "fail"
           }
-          def API_CALLS = configJson.apiCalls
-          echo "${JsonOutput.toJson(API_CALLS)}"
-          echo "${configJson.validationFile}"
-          def validatorPath = (configJson.validationFile).replaceAll( '/testdata/WorkflowProcessing/TestData/Validators/', '')
+          // def API_CALLS = configJson.apiCalls
+          // echo "${JsonOutput.toJson(API_CALLS)}"
+          // echo "${configJson.validationFile}"
+          // def validatorPath = (configJson.validationFile).replaceAll( '/testdata/WorkflowProcessing/TestData/Validators/', '')
           def jsonData = [
             "GIT_BRANCH":env.GIT_BRANCH,
             "BUILD_NUMBER":env.BUILD_NUMBER,
@@ -204,7 +204,7 @@ def sendReports(isMasterBranch) {
          //  echo "${valiDatorJson}"
           if(isMasterBranch) {
           sh """
-            curl -i -XPOST "https://calvinklein-7de56744.influxcloud.net:8086/write?db=k6&u=$INFLUX_DB_USERNAME&p=$INFLUX_DB_PASSWORD" --data-binary 'automation_test_report,TEST_NAME=${TEST_NAME},ENV_NAME=${ENV_NAME},TEST_STATUS=${TEST_STATUS},BUILD=${env.GIT_BRANCH}-${env.BUILD_NUMBER} value=1,${statusName}=1,apicalls=${JsonOutput.toJson(API_CALLS)}'
+            curl -i -XPOST "https://calvinklein-7de56744.influxcloud.net:8086/write?db=k6&u=$INFLUX_DB_USERNAME&p=$INFLUX_DB_PASSWORD" --data-binary 'automation_test_report,TEST_NAME=${TEST_NAME},ENV_NAME=${ENV_NAME},TEST_STATUS=${TEST_STATUS},BUILD=${env.GIT_BRANCH}-${env.BUILD_NUMBER} value=1,${statusName}=1'
           """
           } 
           else {

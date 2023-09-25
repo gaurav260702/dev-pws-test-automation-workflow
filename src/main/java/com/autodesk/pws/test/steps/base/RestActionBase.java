@@ -261,7 +261,7 @@ public class RestActionBase extends StepBase
 		for (int i = 0, count = headers.size(); i < count; i++) 
 		{
 			log(headers.name(i) + " : " + headers.value(i), DEFAULT_LEFT_SPACE_PADDING + 8);
-			getRequestHeaders.put(headers.name(i),headers.value(i));
+			getRequestHeaders.put(headers.name(i),(headers.value(i)).replaceAll("\"", ""));
 		}
 		apiRequests.put("requestHeaders", getRequestHeaders);
 
@@ -290,7 +290,7 @@ public class RestActionBase extends StepBase
 		for (int i = 0, count = responseHeaders.size(); i < count; i++) 
 		{
 			log(responseHeaders.name(i) + " : " + responseHeaders.value(i), DEFAULT_LEFT_SPACE_PADDING + 8);
-			getResponseHeaders.put(responseHeaders.name(i),responseHeaders.value(i));
+			getResponseHeaders.put(responseHeaders.name(i),(responseHeaders.value(i)).replaceAll("\"", ""));
 		}
 
 		apiRequests.put("responseHeaders", getResponseHeaders);
