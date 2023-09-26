@@ -26,6 +26,8 @@ import okhttp3.Request;
 import okhttp3.Request.Builder;
 import okhttp3.RequestBody;
 import okhttp3.Response;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 
 public class RestActionBase extends StepBase 
 {
@@ -306,7 +308,7 @@ public class RestActionBase extends StepBase
 		return response;
 	}
 
-	public void addResponseToValidationChain() 
+	public void addResponseToValidationChain()
 	{
 		// Stick that response body in the ValidationChain,
 		// but let's go ahead and make it puuuurrrdy first.
@@ -317,11 +319,19 @@ public class RestActionBase extends StepBase
 		// If we were to include it as part of the "action()"
 		// method, it would be called 'n' number of times,
 		// which is of course a bit excessive...
+		try {
 		JsonPath jsonPath = JsonPath.from(JsonResponseBody);
 		String prettyJson = jsonPath.prettify();
 		addValidationChainLink(ClassName, prettyJson);
 		apiRequests.put("responseBody", prettyJson);
-		DataPool.addToResponseChain(ClassName,JsonResponseBody);
+		JsonObject jsonObject = JsonParser.parseString(JsonResponseBody).getAsJsonObject();
+		//System.out.println(jsonObject.get("status"));
+		System.out.println(jsonObject);
+		DataPool.addToResponseChain(ClassName,jsonObject);
+		}
+		catch (Exception e) {
+					e.printStackTrace();
+			}
 	}
 
 	private String hack_CleanQuantityFloatType(String rawJson) {

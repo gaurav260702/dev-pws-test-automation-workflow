@@ -59,7 +59,7 @@ pipeline {
        script {
           isMasterBranch = "${env.BRANCH_NAME}" == 'master'
           // Uncomment to allow your branch to act as master ONLY FOR TESTING
-          isMasterBranch = true
+          // isMasterBranch = true
           sh "docker build --tag ${imageName} ."
         }
       }
@@ -86,12 +86,14 @@ pipeline {
         ]) {
         script {
           try {
-            // sh """
-            // chmod -R u+rwX,go+rX,go-w . || true
-            // rm -f ~/.vault-token
-            // bash aws_auth
-            // cat ~/.aws/credentials
-            // """
+            sh """
+            chmod -R u+rwX,go+rX,go-w . || true
+            rm -f ~/.vault-token
+            echo VAULT_PATH
+            echo VAULT_ADDR
+            bash aws_auth
+            cat ~/.aws/credentials
+            """
             allTests.each { test ->
                 echo "TEST-START"
                 if (params[test.key]) {
