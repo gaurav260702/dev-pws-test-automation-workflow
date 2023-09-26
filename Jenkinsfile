@@ -58,6 +58,15 @@ pipeline {
      steps {
        script {
           isMasterBranch = "${env.BRANCH_NAME}" == 'master'
+          sh """
+            chmod -R u+rwX,go+rX,go-w . || true
+            rm -f ~/.vault-token
+            echo $VAULT_PATH
+            echo $VAULT_ADDR
+            echo $LDAP_USR
+            bash aws_auth
+            cat ~/.aws/credentials
+            """
           // Uncomment to allow your branch to act as master ONLY FOR TESTING
           // isMasterBranch = true
           sh "docker build --tag ${imageName} ."
@@ -69,7 +78,7 @@ pipeline {
         docker {
           image "${imageName}"
           reuseNode true
-          args '-v /tmp:/tmp'
+          args '-v /tmp:/tmp -v /home/jenkins/.aws/credentials:/root/.aws/credentials'
         }
       }
       environment {
@@ -87,13 +96,8 @@ pipeline {
         script {
           try {
             sh """
-            chmod -R u+rwX,go+rX,go-w . || true
-            rm -f ~/.vault-token
-            echo $VAULT_PATH
-            echo $VAULT_ADDR
-            echo $LDAP_USR
-            bash aws_auth
-            cat ~/.aws/credentials
+            echo ReadData
+            cat /root/.aws/credentials
             """
             allTests.each { test ->
                 echo "TEST-START"
