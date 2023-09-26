@@ -18,11 +18,14 @@ def isMasterBranch = false
 
 def testfiles
 def allTests = [
-  WebHook_INT:[path: "testdata/WorkflowProcessing/TestKickers/Kicker.QuoteNotificationWebhook.Valid.INT.json"],
+  QuoteNotifyWebhook_INT:[path: "testdata/WorkflowProcessing/KickerSuites/KickerSuite.QuoteNotificationWebhook.INT"],
   QuoteServices_STG:[ path:  "testdata/WorkflowProcessing/KickerSuites/KickerSuite.QuoteServices.STG.json"],
   QuoteServices_INT: [ path: "testdata/WorkflowProcessing/KickerSuites/KickerSuite.QuoteServices.INT.json"],
   CatalogExport_INT: [ path: "testdata/WorkflowProcessing/KickerSuites/KickerSuite.CatalogExport.INT.json"],
   PromotionsExport_INT: [ path: "testdata/WorkflowProcessing/KickerSuites/KickerSuite.PromotionsExport.INT.json"]
+  DdaTests_STG: [ path: "testdata/WorkflowProcessing/KickerSuites/KickerSuite.DdaTests.STG.json"]
+  GetInvoiceServices_INT: [ path: "testdata/WorkflowProcessing/KickerSuites/KickerSuite.GetInvoiceServices.INT.json"]
+  GetQuoteDetailsInternalv2_INT: [ path: "testdata/WorkflowProcessing/KickerSuites/KickerSuite.ServicesQuote.GetQuoteDetailsInternalv2.INT.json"]
 ]
 
 pipeline {
@@ -30,11 +33,14 @@ pipeline {
        label "aws-centos"
   }
   parameters {
-    booleanParam(name: 'WebHook_INT',   description: 'test', defaultValue: false)
     booleanParam(name: 'QuoteServices_STG',   description: 'Run QuoteServices Tests in STG', defaultValue: false)
     booleanParam(name: 'QuoteServices_INT',   description: 'Run QuoteServices Tests in INT', defaultValue: false)
     booleanParam(name: 'CatalogExport_INT',   description: 'RUN CatalogExport Tests in INT', defaultValue: true)
     booleanParam(name: 'PromotionsExport_INT',   description: 'RUN PromotionsExport Tests in INT', defaultValue: true)
+    booleanParam(name: 'GetQuoteDetailsInternalv2_INT',   description: 'RUN GetQuoteDetailsInternalv2 Tests in INT', defaultValue: false)
+    booleanParam(name: 'GetInvoiceServices_INT',   description: 'RUN GetInvoiceServices Tests in INT', defaultValue: false)
+    booleanParam(name: 'DdaTests_STG',   description: 'RUN Dda Tests in STG', defaultValue: false)
+    booleanParam(name: 'QuoteNotifyWebhook_INT',   description: 'Run QuoteNotificationWebhook Tests in INT', defaultValue: false)
   }
   
   triggers {
