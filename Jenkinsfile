@@ -197,6 +197,7 @@ def sendReports(isMasterBranch) {
           if(TEST_STATUS == "FAIL"){
             statusName = "fail"
           }
+          echo JsonOutput.toJson(configJson.responseChain)
           def validationData = "${configJson.responseChain}"
           echo "${validationData}"
           def apiCallsData = "${configJson.apiCalls}"
