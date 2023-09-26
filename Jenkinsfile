@@ -55,6 +55,11 @@ pipeline {
   
   stages {
     stage('Build Image') {
+      environment {
+            LDAP = credentials('d88e9614-fb62-4a2a-a4ca-380277fdb498')
+            VAULT_ADDR = 'https://vault.aws.autodesk.com'
+            VAULT_PATH = 'spg/pws-integration/aws/adsk-eis-ddws-int/sts/admin'
+      }
      steps {
        script {
           isMasterBranch = "${env.BRANCH_NAME}" == 'master'
@@ -80,11 +85,6 @@ pipeline {
           reuseNode true
           args '-v /tmp:/tmp -v /home/jenkins/.aws/credentials:/root/.aws/credentials'
         }
-      }
-      environment {
-            LDAP = credentials('d88e9614-fb62-4a2a-a4ca-380277fdb498')
-            VAULT_ADDR = 'https://vault.aws.autodesk.com'
-            VAULT_PATH = 'spg/pws-integration/aws/adsk-eis-ddws-int/sts/admin'
       }
       steps {
         withCredentials([
