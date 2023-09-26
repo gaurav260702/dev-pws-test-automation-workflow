@@ -97,6 +97,7 @@ pipeline {
           try {
             sh """
             echo  ReadData
+            chown -R root:root /root/.aws
             chmod 777 /root/.aws/credentials
             cat /root/.aws/credentials
             """
