@@ -197,8 +197,10 @@ def sendReports(isMasterBranch) {
           if(TEST_STATUS == "FAIL"){
             statusName = "fail"
           }
-          def apiCalls  = JsonOutput.toJson(configJson.apiCalls)
-          def responseChain = JsonOutput.toJson(configJson.responseChain)
+          def apiCalls1  = JsonOutput.toJson(configJson.apiCalls)
+          def responseChain1 = JsonOutput.toJson(configJson.responseChain)
+          def apiCalls = "${apiCalls1}"
+          def responseChain = "${responseChain1}"
           echo "${apiCalls}"
           echo "${responseChain}"
           // def validationData = "${configJson.responseChain}"
