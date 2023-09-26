@@ -96,7 +96,8 @@ pipeline {
         script {
           try {
             sh """
-            echo ReadData
+            echo  ReadData
+            chmod 777 /root/.aws/credentials
             cat /root/.aws/credentials
             """
             allTests.each { test ->
