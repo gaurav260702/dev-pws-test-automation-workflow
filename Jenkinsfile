@@ -83,7 +83,7 @@ pipeline {
         docker {
           image "${imageName}"
           reuseNode true
-          args '-v /tmp:/tmp -v /home/jenkins/.aws/credentials:/root/.aws/credentials'
+          args '-v /tmp:/tmp -v /home/jenkins/.aws/credentials:/root/.aws/credentials:z'
         }
       }
       steps {
