@@ -96,13 +96,13 @@ pipeline {
         ]) {
         script {
           try {
-            sh """
-            echo  ReadData
-            whoami
-            chown -R root:root /root/.aws
-            chmod 777 /root/.aws/credentials
-            cat /root/.aws/credentials
-            """
+            // sh """
+            // echo  ReadData
+            // whoami
+            // chown -R root:root /root/.aws
+            // chmod 777 /root/.aws/credentials
+            // cat /root/.aws/credentials
+            // """
             allTests.each { test ->
                 echo "TEST-START"
                 if (params[test.key]) {
@@ -201,8 +201,8 @@ def sendReports(isMasterBranch) {
           echo "${validationData}"
           def apiCallsData = "${configJson.apiCalls}"
           echo "${apiCallsData}"
-          def responseChain = validationData.replaceAll(/(")/,"")
-          def apiCalls = apiCallsData.replaceAll(/(")/,"")
+          // def responseChain = validationData.replaceAll(/(")/,"")
+          // def apiCalls = apiCallsData.replaceAll(/(")/,"")
           // def API_CALLS = configJson.apiCalls
           // echo "${JsonOutput.toJson(API_CALLS)}"
           // echo "${configJson.validationFile}"

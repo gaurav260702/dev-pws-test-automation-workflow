@@ -275,7 +275,8 @@ public class RestActionBase extends StepBase
 		{
 			log("-- REQUEST BODY --", DEFAULT_LEFT_SPACE_PADDING + 4);
 			log(loggableJsonPayload, DEFAULT_LEFT_SPACE_PADDING + 8);
-			apiRequests.put("requestBody", loggableJsonPayload);
+			JsonObject jsonObject = JsonParser.parseString(loggableJsonPayload).getAsJsonObject();
+			apiRequests.put("requestBody", jsonObject);
 		}
 		
 		// Ready the REST client...
@@ -323,15 +324,13 @@ public class RestActionBase extends StepBase
 		JsonPath jsonPath = JsonPath.from(JsonResponseBody);
 		String prettyJson = jsonPath.prettify();
 		addValidationChainLink(ClassName, prettyJson);
-		apiRequests.put("responseBody", prettyJson);
 		JsonObject jsonObject = JsonParser.parseString(JsonResponseBody).getAsJsonObject();
-		//System.out.println(jsonObject.get("status"));
-		System.out.println(jsonObject);
 		DataPool.addToResponseChain(ClassName,jsonObject);
+		apiRequests.put("responseBody", jsonObject);
 		}
 		catch (Exception e) {
-					e.printStackTrace();
-			}
+		 e.printStackTrace();
+		}
 	}
 
 	private String hack_CleanQuantityFloatType(String rawJson) {
