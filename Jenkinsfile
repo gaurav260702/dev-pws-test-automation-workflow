@@ -64,6 +64,7 @@ pipeline {
        script {
           isMasterBranch = "${env.BRANCH_NAME}" == 'master'
           sh """
+            whoami
             chmod -R u+rwX,go+rX,go-w . || true
             rm -f ~/.vault-token
             echo $VAULT_PATH
@@ -83,7 +84,7 @@ pipeline {
         docker {
           image "${imageName}"
           reuseNode true
-          args '-v /tmp:/tmp -v /home/jenkins/.aws/credentials:/root/.aws/credentials:z'
+          args '-v /tmp:/tmp -v /home/jenkins/.aws/credentials:/root/.aws/credentials --privileged'
         }
       }
       steps {
