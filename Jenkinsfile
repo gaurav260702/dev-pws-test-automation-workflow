@@ -22,9 +22,9 @@ def allTests = [
   QuoteServices_STG:[ path:  "testdata/WorkflowProcessing/KickerSuites/KickerSuite.QuoteServices.STG.json"],
   QuoteServices_INT: [ path: "testdata/WorkflowProcessing/KickerSuites/KickerSuite.QuoteServices.INT.json"],
   CatalogExport_INT: [ path: "testdata/WorkflowProcessing/KickerSuites/KickerSuite.CatalogExport.INT.json"],
-  PromotionsExport_INT: [ path: "testdata/WorkflowProcessing/KickerSuites/KickerSuite.PromotionsExport.INT.json"]
-  DdaTests_STG: [ path: "testdata/WorkflowProcessing/KickerSuites/KickerSuite.DdaTests.STG.json"]
-  GetInvoiceServices_INT: [ path: "testdata/WorkflowProcessing/KickerSuites/KickerSuite.GetInvoiceServices.INT.json"]
+  PromotionsExport_INT: [ path: "testdata/WorkflowProcessing/KickerSuites/KickerSuite.PromotionsExport.INT.json"],
+  DdaTests_STG: [ path: "testdata/WorkflowProcessing/KickerSuites/KickerSuite.DdaTests.STG.json"],
+  GetInvoiceServices_INT: [ path: "testdata/WorkflowProcessing/KickerSuites/KickerSuite.GetInvoiceServices.INT.json"],
   GetQuoteDetailsInternalv2_INT: [ path: "testdata/WorkflowProcessing/KickerSuites/KickerSuite.ServicesQuote.GetQuoteDetailsInternalv2.INT.json"]
 ]
 
