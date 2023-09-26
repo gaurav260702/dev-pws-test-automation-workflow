@@ -74,7 +74,7 @@ pipeline {
             cat ~/.aws/credentials
             """
           // Uncomment to allow your branch to act as master ONLY FOR TESTING
-          // isMasterBranch = true
+          isMasterBranch = true
           sh "docker build --tag ${imageName} ."
         }
       }
@@ -197,11 +197,14 @@ def sendReports(isMasterBranch) {
           if(TEST_STATUS == "FAIL"){
             statusName = "fail"
           }
-          echo JsonOutput.toJson(configJson.responseChain)
-          def validationData = "${configJson.responseChain}"
-          echo "${validationData}"
-          def apiCallsData = "${configJson.apiCalls}"
-          echo "${apiCallsData}"
+          def apiCalls  = JsonOutput.toJson(configJson.apiCalls)
+          def responseChain = JsonOutput.toJson(configJson.responseChain)
+          echo "${apiCalls}"
+          echo "${responseChain}"
+          // def validationData = "${configJson.responseChain}"
+          // echo "${validationData}"
+          // def apiCallsData = "${configJson.apiCalls}"
+          // echo "${apiCallsData}"
           // def responseChain = validationData.replaceAll(/(")/,"")
           // def apiCalls = apiCallsData.replaceAll(/(")/,"")
           // def API_CALLS = configJson.apiCalls
