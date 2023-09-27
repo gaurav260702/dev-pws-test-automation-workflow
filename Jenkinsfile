@@ -43,7 +43,8 @@ pipeline {
         script {
          //  testfiles = findFiles(glob: '**/Kicker.*.json')
          //  testfiles = findFiles(glob: '**/KickerSuite*QuoteServices*json')
-             testfiles = findFiles(glob: '**/KickerSuite.Create.Quote.V2.INT.json')
+         //  testfiles = findFiles(glob: '**/KickerSuite.Create.Quote.V2.INT.json')
+             testfiles = findFiles(glob: '**/KickerSuite.Create.Update.Quote.V2.*.json')
 
           echo ""
           echo "${testfiles[0].name} ${testfiles[0].path} ${testfiles[0].directory} ${testfiles[0].length} ${testfiles[0].lastModified}"

@@ -1,0 +1,7 @@
+{
+  "KickerFiles":
+  [
+    "./testdata/WorkflowProcessing/TestKickers/Kicker.QuoteServices.Create.Quote.V2.New.Multi.NonPremium.Offering.Annual.Existing.EndCust.And.Purchaser.Positive.STG.json",
+    "./testdata/WorkflowProcessing/TestKickers/Kicker.QuoteServices.Create.Quote.V2.New.Single.NonPremium.Offering.3Yr.Existing.EndCust.And.Purchaser.Positive.STG.json"
+  ]
+}
