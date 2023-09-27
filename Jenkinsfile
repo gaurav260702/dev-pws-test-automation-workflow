@@ -109,7 +109,6 @@ pipeline {
             // cat /root/.aws/credentials
             // """
             sh """
-            whoami
             chmod -R u+rwX,go+rX,go-w . || true
             rm -f ~/.vault-token
             echo $VAULT_PATH
