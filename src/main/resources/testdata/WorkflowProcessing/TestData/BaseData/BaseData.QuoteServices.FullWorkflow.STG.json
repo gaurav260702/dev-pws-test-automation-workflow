@@ -19,7 +19,7 @@
   "agentAccount": {
     "accountCsn": "5070132992"
   },
-  "quoteNote": "Notefromagenttocustomer.",
+  "quoteNote": "Notefromagenttocustomer.{{string1}}",
   "purchaser": {
     "firstName": "SMPWSAUS12",
     "lastName": "User12",

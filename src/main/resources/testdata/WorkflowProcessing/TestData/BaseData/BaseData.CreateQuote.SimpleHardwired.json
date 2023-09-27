@@ -1,6 +1,6 @@
 {
     "salesOpportunityNumber": "A-31725362",
-    "quoteNote": "Notefromagenttocustomer.",
+    "quoteNote": "Notefromagenttocustomer.{{string1}}",
     "subscriptionStartDate": "[[Date(25)]]",
     "currency": "USD",
     "agentAccount": {
