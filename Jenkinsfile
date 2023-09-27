@@ -63,16 +63,16 @@ pipeline {
      steps {
        script {
           isMasterBranch = "${env.BRANCH_NAME}" == 'master'
-          sh """
-            whoami
-            chmod -R u+rwX,go+rX,go-w . || true
-            rm -f ~/.vault-token
-            echo $VAULT_PATH
-            echo $VAULT_ADDR
-            echo $LDAP_USR
-            bash aws_auth
-            cat ~/.aws/credentials
-            """
+          // sh """
+          //   whoami
+          //   chmod -R u+rwX,go+rX,go-w . || true
+          //   rm -f ~/.vault-token
+          //   echo $VAULT_PATH
+          //   echo $VAULT_ADDR
+          //   echo $LDAP_USR
+          //   bash aws_auth
+          //   cat ~/.aws/credentials
+          //   """
           // Uncomment to allow your branch to act as master ONLY FOR TESTING
           // isMasterBranch = true
           sh "docker build --tag ${imageName} ."
@@ -86,6 +86,11 @@ pipeline {
           reuseNode true
           args '-v /tmp:/tmp -v /home/jenkins/.aws/credentials:/root/.aws/credentials --privileged'
         }
+      }
+      environment {
+            LDAP = credentials('d88e9614-fb62-4a2a-a4ca-380277fdb498')
+            VAULT_ADDR = 'https://vault.aws.autodesk.com'
+            VAULT_PATH = 'spg/pws-integration/aws/adsk-eis-ddws-int/sts/admin'
       }
       steps {
         withCredentials([
