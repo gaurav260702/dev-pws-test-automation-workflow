@@ -30,7 +30,7 @@
   "$TIMEZONE_CITY$": "America/New_York",
   "$CURRENCY$": "AUD",
 
-  "$ADDRESS1$": "1 Barrack Street",
+  "$ADDRESS1$": "179 Barrack Street",
   "$CITY$": "Perth",
   "$STATE$": "WA",
   "$POSTAL_CODE$": "6000",
@@ -49,7 +49,7 @@
 
   "secretsFile": "$CONFIG$/Secrets.GetInvoiceServices.INT.json",
 
-  "baseFile": "$BASE_DATA$/BaseData.QuoteServices.GenericAus.$ENV$.json",
+  "baseFile": "$BASE_DATA$/BaseData.$ROOT_NAME$.$ENV$.json",
   "overridesFile": "$OVERRIDES$/Override.NONE.json",
   "validationFile": "$VALIDATION$/Validator.$ROOT_NAME$.$ENV$.json",
 

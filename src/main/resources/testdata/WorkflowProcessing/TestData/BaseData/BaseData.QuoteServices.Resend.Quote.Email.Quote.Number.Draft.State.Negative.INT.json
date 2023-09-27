@@ -1,5 +1,5 @@
 {
-    "quoteNote": "Notefromagenttocustomer.",
+    "quoteNote": "Notefromagenttocustomer12.{{note}}",
     "currency": "$CURRENCY$",
     "agentAccount": {
         "accountCsn": "$CSN_RESELLER$"
@@ -20,12 +20,12 @@
         "email": "SMAUST12@letscheck.pw",
         "firstName": "SMPWSAUS19",
         "lastName": "User19",
-        "phone": "03 9282 1975",
+        "phone": "03 9282 1978",
         "preferredLanguage": "en-us"
     },
     "lineItems": [
         {
-            "quantity": 7500,
+            "quantity": 750,
             "offeringId": "$OFFERING_ID$",
             "orderAction": "New",
             "subscriptionStartDate": "[[Date(25)]]",

@@ -2,8 +2,8 @@
   "$ROOT$": "./testdata/WorkflowProcessing/TestData",
   "$ENV$": "INT",
 
-  "$ROOT_NAME$": "QuoteServices.AusAddress",
-  "$VARIATION_COUNT$": "WithState.4",
+  "$ROOT_NAME$": "QuoteServices",
+  "$VARIATION_COUNT$": "AusAddress.WithState.4",
   "$BASE_NAME$": "$ROOT_NAME$_$VARIATION_COUNT$",
   "$VALIDATION$": "$ROOT$/Validators",
   "$OVERRIDES$": "$ROOT$/Overrides",
@@ -48,9 +48,9 @@
   "baseUrl": "https://enterprise-api-$ENV$.autodesk.com",
   "oAuthBaseUrl":  "https://enterprise-api-$ENV$.autodesk.com",
 
-  "baseFile": "$BASE_DATA$/BaseData.$ROOT_NAME$.WithStateCode4.$ENV$.json",
+  "baseFile": "$BASE_DATA$/BaseData.$ROOT_NAME$.AusAddress.WithState.4.$ENV$.json",
   "overridesFile": "$OVERRIDES$/Override.NONE.json",
-  "validationFile": "$VALIDATION$/Validator.$ROOT_NAME$.$ENV$.json",
+  "validationFile": "$VALIDATION$/Validator.$ROOT_NAME$.AusAddress.WithState.4.$ENV$.json",
   "secretsFile": "$CONFIG$/Secrets.GetInvoiceServices.INT.json",
 
   "workflow": "CreateQuote"

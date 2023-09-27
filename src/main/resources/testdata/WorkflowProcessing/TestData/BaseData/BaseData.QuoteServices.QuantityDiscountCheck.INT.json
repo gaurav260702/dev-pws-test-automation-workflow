@@ -1,4 +1,5 @@
 {
+   "quoteNote": "Notefromagenttocustomer.{{note}}",
    "currency": "AUD",
    "purchaser": {
       "preferredLanguage": "en-us",
