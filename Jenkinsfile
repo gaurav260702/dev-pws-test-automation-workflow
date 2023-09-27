@@ -74,7 +74,7 @@ pipeline {
             cat ~/.aws/credentials
             """
           // Uncomment to allow your branch to act as master ONLY FOR TESTING
-          isMasterBranch = true
+          // isMasterBranch = true
           sh "docker build --tag ${imageName} ."
         }
       }
@@ -103,6 +103,16 @@ pipeline {
             // chmod 777 /root/.aws/credentials
             // cat /root/.aws/credentials
             // """
+            sh """
+            whoami
+            chmod -R u+rwX,go+rX,go-w . || true
+            rm -f ~/.vault-token
+            echo $VAULT_PATH
+            echo $VAULT_ADDR
+            echo $LDAP_USR
+            bash aws_auth
+            cat ~/.aws/credentials
+            """
             allTests.each { test ->
                 echo "TEST-START"
                 if (params[test.key]) {
