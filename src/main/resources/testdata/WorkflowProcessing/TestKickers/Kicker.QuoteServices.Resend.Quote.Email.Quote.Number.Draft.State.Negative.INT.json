@@ -10,7 +10,7 @@
   "$BASE_DATA$": "$ROOT$/BaseData",
   "$CONFIG$": "$ROOT$/Configurations",
 
-  "$CSN_SOLDTO$": "172611146",
+  "$CSN_SOLDTO$": "172614711",
   "$CSN_RESELLER$": "5070132992",
   "$CSN_ENDCUSTOMER$": "5070132992",
   "$CSN_SHIPTO$": "5070132992",
@@ -31,12 +31,11 @@
   "$TIMEZONE_CITY$": "Australia/Sydney",
   "$CURRENCY$": "AUD",
 
-  "$ADDRESS1$": "11 Barrack Street",
+  "$ADDRESS1$": "1019 Barrack Street",
   "$CITY$": "Perth",
   "$STATE$": "WA",
   "$POSTAL_CODE$": "6000",
   "$COUNTRY$": "AU",
-
 
   "includeForceableHeaders": "true",
   "forceableHeaders":
@@ -53,6 +52,8 @@
   "overridesFile": "$OVERRIDES$/Override.NONE.json",
   "validationFile": "$VALIDATION$/Validator.$ROOT_NAME$.Resend.Quote.Email.Quote.Number.Draft.State.Negative.$ENV$.json",
   "secretsFile": "$CONFIG$/Secrets.GetInvoiceServices.INT.json",
+
+  "QuoteCreate.ExpectedEndStateStatus": "Accepted",
 
   "workflow": "QuoteResendEmailQuoteNumberDraftStateNegative"
 }
