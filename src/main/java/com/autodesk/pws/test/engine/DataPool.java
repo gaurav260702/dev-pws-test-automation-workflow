@@ -20,8 +20,6 @@ import com.google.gson.JsonParser;
 import com.google.gson.reflect.TypeToken;
 import io.restassured.path.json.JsonPath;
 import okhttp3.Response;
-import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.ObjectMapper;
 
 public class DataPool extends HashMap<String, Object>
 {
@@ -109,7 +107,9 @@ public class DataPool extends HashMap<String, Object>
 
         apiCalls = (HashMap<String, Object>) this.get("apiCalls");
 
-        apiCalls.put(key, value);
+       if(!key.contains("OAuthCredentials")){
+         	apiCalls.put(key, value);
+		}
 	}
 
 	@SuppressWarnings("unchecked")
@@ -140,9 +140,6 @@ public class DataPool extends HashMap<String, Object>
         }
 
         validationChain = (HashMap<String, Object>) this.get("ValidationChain");
-		// ObjectMapper mapper2 = new ObjectMapper();
-        // JsonNode actualObj = mapper2.readTree(dataToValidate);
-		//Object jsonObj = new Gson().fromJson(dataToValidate,new TypeToken<HashMap<String, Object>>(){}.getType());
 
         validationChain.put(validationLabel, dataToValidate);
 	}

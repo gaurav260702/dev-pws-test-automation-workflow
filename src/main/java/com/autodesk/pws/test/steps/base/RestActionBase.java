@@ -263,7 +263,6 @@ public class RestActionBase extends StepBase
 		for (int i = 0, count = headers.size(); i < count; i++) 
 		{
 			log(headers.name(i) + " : " + headers.value(i), DEFAULT_LEFT_SPACE_PADDING + 8);
-			   // String[] words = {"x-api-key","Authorization","signature"};  
 
 			if(!(headers.name(i)).matches("^.*?((?i)x-api-key|Authorization|signature).*$")){
 				getRequestHeaders.put(headers.name(i),(headers.value(i)).replaceAll("\"", ""));
