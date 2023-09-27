@@ -1,6 +1,6 @@
 # Build stage
 FROM maven:3.6.2-jdk-11-slim AS build
-RUN apt-get update && apt-get install -y jq && rm -rf /var/lib/apt/lists/*
+#RUN apt-get update && apt-get install -y jq && rm -rf /var/lib/apt/lists/*
 CMD  mvn --version
 COPY src /home/app/src
 COPY pom.xml /home/app
