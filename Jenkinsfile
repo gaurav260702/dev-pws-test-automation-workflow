@@ -199,8 +199,8 @@ def sendReports(isMasterBranch) {
           }
           def apiCalls1  = JsonOutput.toJson(configJson.apiCalls)
           def responseChain1 = JsonOutput.toJson(configJson.responseChain)
-          def apiCalls = "${apiCalls1}"
-          def responseChain = "${responseChain1}"
+          def apiCalls = "${apiCalls1.toString()}"
+          def responseChain = "${responseChain1.toString()}"
           echo "${apiCalls}"
           echo "${responseChain}"
           // def validationData = "${configJson.responseChain}"
