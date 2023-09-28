@@ -18,7 +18,7 @@ def isMasterBranch = false
 
 def testfiles
 def allTests = [
-  QuoteNotifyWebhook_INT:[path: "testdata/WorkflowProcessing/KickerSuites/KickerSuite.QuoteNotificationWebhook.INT"],
+  QuoteNotifyWebhook_INT:[path: "testdata/WorkflowProcessing/KickerSuites/KickerSuite.QuoteNotificationWebhook.INT.json"],
   QuoteServices_STG:[ path:  "testdata/WorkflowProcessing/KickerSuites/KickerSuite.QuoteServices.STG.json"],
   QuoteServices_INT: [ path: "testdata/WorkflowProcessing/KickerSuites/KickerSuite.QuoteServices.INT.json"],
   CatalogExport_INT: [ path: "testdata/WorkflowProcessing/KickerSuites/KickerSuite.CatalogExport.INT.json"],
@@ -63,16 +63,6 @@ pipeline {
      steps {
        script {
           isMasterBranch = "${env.BRANCH_NAME}" == 'master'
-          // sh """
-          //   whoami
-          //   chmod -R u+rwX,go+rX,go-w . || true
-          //   rm -f ~/.vault-token
-          //   echo $VAULT_PATH
-          //   echo $VAULT_ADDR
-          //   echo $LDAP_USR
-          //   bash aws_auth
-          //   cat ~/.aws/credentials
-          //   """
           // Uncomment to allow your branch to act as master ONLY FOR TESTING
           isMasterBranch = true
           sh "docker build --tag ${imageName} ."
@@ -84,7 +74,7 @@ pipeline {
         docker {
           image "${imageName}"
           reuseNode true
-          args '-v /tmp:/tmp -v /home/jenkins/.aws/credentials:/root/.aws/credentials --privileged'
+          args '-u root -v /tmp:/tmp'
         }
       }
       environment {
@@ -101,13 +91,14 @@ pipeline {
         ]) {
         script {
           try {
-            // sh """
-            // echo  ReadData
-            // whoami
-            // chown -R root:root /root/.aws
-            // chmod 777 /root/.aws/credentials
-            // cat /root/.aws/credentials
-            // """
+            sh """
+            chmod 777 aws_auth 
+            bash aws_auth
+            echo ReadingFileInDocker
+            cat /root/.aws/credentials
+            chmod -R u+rwX,go+rX,go-w /root/.aws || true
+            cat /root/.aws/credentials
+            """
             allTests.each { test ->
                 echo "TEST-START"
                 if (params[test.key]) {
@@ -128,39 +119,6 @@ pipeline {
       }
       }
     }
-
-    // stage('Running Cases') {
-    // environment {
-    //         LDAP = credentials('d88e9614-fb62-4a2a-a4ca-380277fdb498')
-    //         VAULT_ADDR = 'https://vault.aws.autodesk.com'
-    //         VAULT_PATH = 'spg/pws-integration/aws/adsk-eis-ddws-int/sts/admin'
-    //       }
-    //   steps {
-    //     script {
-    //       sh """
-    //         chmod -R u+rwX,go+rX,go-w . || true
-    //         rm -f ~/.vault-token
-    //         bash aws_auth
-    //         cat ~/.aws/credentials
-    //       """
-    //       echo ""
-    //       echo "${testfiles[0].name} ${testfiles[0].path} ${testfiles[0].directory} ${testfiles[0].length} ${testfiles[0].lastModified}"
-    //       echo ""
-    //       def dir_offset_to_trim = 'src/main/resources/'
-    //       def testcase_run_dir
-    //       def full_dir
-    //       for (int i = 0; i < testfiles.size(); i++) {
-    //         full_dir = "${testfiles[i].path}"
-    //         testcase_run_dir = full_dir.replaceAll(/^${dir_offset_to_trim}/, "")
-    //         stage(testfiles[i].name) {
-    //           echo "Test case full directory ${full_dir}"
-    //           echo "Test case relative directory to run: ${testcase_run_dir}"
-    //           sh "docker run -v /home/jenkins/.aws/credentials:/root/.aws/credentials:ro wpe mvn spring-boot:run -Dspring-boot.run.arguments='${testcase_run_dir}'"
-    //         }
-    //       }
-    //     }
-    //   }
-    // }
   }
   post {
     always {
