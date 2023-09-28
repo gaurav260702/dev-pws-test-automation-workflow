@@ -28,6 +28,8 @@ import com.google.gson.Gson;
 import com.google.gson.internal.LinkedTreeMap;
 import com.google.gson.reflect.TypeToken;
 import io.restassured.path.json.JsonPath;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 
 ////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////
@@ -458,7 +460,13 @@ public class Kicker
 
             LogIt("  ");
             LogIt("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
-            
+
+            //Add Expected Validations in DataPool
+			String validationFilePath = DataPool.getRaw("validationFile").toString();
+			String validatorRawJson = DataPool.loadJsonFile(validationFilePath);
+			JsonObject jsonObject = JsonParser.parseString(validatorRawJson).getAsJsonObject();
+			DataPool.add("expValidationChain",jsonObject);
+
             String forceValidations = (String)DataPool.get("forceValidationsIfWorkflowIncomplete");
             
             if(forceValidations != null && forceValidations.equalsIgnoreCase("true"))
