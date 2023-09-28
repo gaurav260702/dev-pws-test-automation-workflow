@@ -203,10 +203,10 @@ def sendReports(isMasterBranch) {
             statusName = "fail"
           }
           def BASE_NAME = configJson.$BASE_NAME$
-          def API_EXP_RESPONSE = configJson.expValidationChain
           def SERVICE_NAME = (BASE_NAME.split('\\.'))[0]
           def RESTAPI_CALL  = JsonOutput.toJson(configJson.apiCalls)
           def API_RESPONSE = JsonOutput.toJson(configJson.responseChain)
+          def API_EXP_RESPONSE = JsonOutput.toJson(configJson.expValidationChain)
           // echo "${apiCalls}"
           // echo "${responseChain}"
           // def validationData = "${configJson.responseChain}"
