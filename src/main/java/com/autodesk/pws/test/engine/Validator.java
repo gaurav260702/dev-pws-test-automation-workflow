@@ -7,6 +7,8 @@ import java.util.Map;
 import com.autodesk.pws.test.processor.DynamicData;
 
 import io.restassured.path.json.JsonPath;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 
 public class Validator 
 {
@@ -116,7 +118,8 @@ public class Validator
             //  Grab all the validator commands from the validator file...
             String validatorRawJson = kicker.DataPool.loadJsonFile(validationFilePath);
         	JsonPath validator = JsonPath.from(validatorRawJson);
-			kicker.DataPool.add("expValidationChain",validatorRawJson);
+			JsonObject jsonObject = JsonParser.parseString(validatorRawJson).getAsJsonObject();
+			kicker.DataPool.add("expValidationChain",jsonObject);
         	
             //  Get the length, which we'll test to make sure it's long
             //  enough to actually contain a validator... 
