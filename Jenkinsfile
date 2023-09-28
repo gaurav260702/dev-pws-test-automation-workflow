@@ -204,8 +204,9 @@ def sendReports(isMasterBranch) {
           }
           def BASE_NAME = configJson.$BASE_NAME$
           def SERVICE_NAME = (BASE_NAME.split('\\.'))[0]
-          def apiCalls  = JsonOutput.toJson(configJson.apiCalls)
-          def responseChain = JsonOutput.toJson(configJson.responseChain)
+          def API_EXP_RESPONSE = configJson.expValidationChain
+          def apiCalls  = JsonOutput.toJson("""${configJson.apiCalls}""")
+          def responseChain = JsonOutput.toJson("""${configJson.responseChain}""")
           // echo "${apiCalls}"
           // echo "${responseChain}"
           // def validationData = "${configJson.responseChain}"
@@ -225,6 +226,7 @@ def sendReports(isMasterBranch) {
             "TEST_STATUS": TEST_STATUS,
             "TEST_NAME": TEST_NAME,
             "SERVICE_NAME":SERVICE_NAME,
+            "API_EXP_RESPONSE":API_EXP_RESPONSE,
           ]
           echo "${JsonOutput.toJson(jsonData)}"
           
@@ -235,7 +237,7 @@ def sendReports(isMasterBranch) {
          //  echo "${valiDatorJson}"
           if(isMasterBranch) {
           sh """
-            curl -i -XPOST "https://calvinklein-7de56744.influxcloud.net:8086/write?db=k6&u=$INFLUX_DB_USERNAME&p=$INFLUX_DB_PASSWORD" --data-binary 'automation_test_report,TEST_NAME=${TEST_NAME},ENV_NAME=${ENV_NAME},TEST_STATUS=${TEST_STATUS},BUILD=${env.GIT_BRANCH}-${env.BUILD_NUMBER},SERVICE_NAME=${SERVICE_NAME} value=1,${statusName}=1,API_RESPONSE="'''${responseChain}'''",RESTAPI_CALL="'''${apiCalls}'''"'
+            curl -i -XPOST "https://calvinklein-7de56744.influxcloud.net:8086/write?db=k6&u=$INFLUX_DB_USERNAME&p=$INFLUX_DB_PASSWORD" --data-binary 'automation_test_report,TEST_NAME=${TEST_NAME},ENV_NAME=${ENV_NAME},TEST_STATUS=${TEST_STATUS},BUILD=${env.GIT_BRANCH}-${env.BUILD_NUMBER},SERVICE_NAME=${SERVICE_NAME} value=1,${statusName}=1,API_RESPONSE="${responseChain}",RESTAPI_CALL="${apiCalls}",API_EXP_RESPONSE="${API_EXP_RESPONSE}"'
           """
           } 
           else {

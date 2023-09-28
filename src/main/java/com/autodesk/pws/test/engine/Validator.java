@@ -116,6 +116,7 @@ public class Validator
             //  Grab all the validator commands from the validator file...
             String validatorRawJson = kicker.DataPool.loadJsonFile(validationFilePath);
         	JsonPath validator = JsonPath.from(validatorRawJson);
+			kicker.DataPool.add("expValidationChain",validatorRawJson);
         	
             //  Get the length, which we'll test to make sure it's long
             //  enough to actually contain a validator... 
