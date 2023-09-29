@@ -72,7 +72,7 @@ pipeline {
             if (params[test.key]) {
                   echo "Key: ${test.key}"
                   echo "value: ${test.value.path}"
-              parallelStages[test.key] = transformIntoStage(test.key,imageName,test.value.path,isMasterBranch)]
+              parallelStages[test.key] = transformIntoStage(test.key,imageName,test.value.path,isMasterBranch)
             }
           }
           parallel parallelStages
