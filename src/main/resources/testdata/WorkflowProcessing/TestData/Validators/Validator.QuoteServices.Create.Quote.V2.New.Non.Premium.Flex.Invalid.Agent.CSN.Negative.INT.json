@@ -1,0 +1,12 @@
+{
+
+  "QuoteStatus": {
+    "quoteStatus": "DRAFT-CREATED",
+    "quoteNumber": "$QUOTE_NUMBER$",
+    "transactionId": "*"
+  },
+  "QuoteCreate": {
+    "message": "success",
+    "transactionId": "*"
+  }
+}

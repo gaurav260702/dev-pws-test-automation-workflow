@@ -1,0 +1,58 @@
+﻿{
+  "$ROOT$": "./testdata/WorkflowProcessing/TestData",
+  "$ENV$": "INT",
+
+  "$ROOT_NAME$": "QuoteServices",
+  "$VARIATION_COUNT$": "Create.Quote.V2.New.Quantity.Field.Missing.Negative",
+  "$BASE_NAME$": "$ROOT_NAME$_$VARIATION_COUNT$",
+  "$VALIDATION$": "$ROOT$/Validators",
+  "$OVERRIDES$": "$ROOT$/Overrides",
+  "$BASE_DATA$": "$ROOT$/BaseData",
+  "$CONFIG$": "$ROOT$/Configurations",
+
+  "$CSN_SOLDTO$": "5112991506",
+  "$CSN_RESELLER$": "5112991506",
+  "$CSN_ENDCUSTOMER$": "5112991506",
+  "$CSN_SHIPTO$": "5112991506",
+
+  "$CSN_PRIMARY$": "$CSN_ENDCUSTOMER$",
+  "$CSN_SECONDARY$": "$CSN_RESELLER$",
+  "$CSN_TERTIARY$": "$CSN_SOLDTO$",
+  "$CSN_QUATERNARY$": "$CSN_SOLDTO$",
+
+  "$CSN_ACCOUNT_CONTACT$": "5112991506",
+  "$CSN_HEADER$": "5112991506",
+
+      "$OFFERING_ID$": "OD-000163",
+      "$AGENT_EMAIL$": "agentpartnera2k@letscheck.email",
+
+  "$CREATE_QUOTE_BASE_URL$": "https://enterprise-api-$ENV$.autodesk.com/",
+  "$VERSION_PATH$": "v2",
+
+  "$TIMEZONE_CITY$": "Australia/Sydney",
+  "$CURRENCY$": "AUD",
+  "$ADDRESS1$": "60 Jenke Cct",
+  "$CITY$": "Kambah",
+  "$POSTAL_CODE$": "2902",
+  "$COUNTRY$": "AU",
+  "$NAME$": "'lineItems[0].quantity'",
+  "$NAME1$":"'lineItems[1].quantity'",
+
+  "includeForceableHeaders": "true",
+  "forceableHeaders":
+  {
+    "x-adsk-test-event": "false",
+    "timezone_city": "$TIMEZONE_CITY$",
+    "CSN": "$CSN_HEADER$"
+  },
+
+  "baseUrl": "https://enterprise-api-$ENV$.autodesk.com",
+  "oAuthBaseUrl":  "https://enterprise-api-$ENV$.autodesk.com",
+
+  "baseFile": "$BASE_DATA$/BaseData.$ROOT_NAME$.Create.Quote.V2.New.Quantity.Field.Missing.Negative.$ENV$.json",
+  "overridesFile": "$OVERRIDES$/Override.NONE.json",
+  "validationFile": "$VALIDATION$/Validator.$ROOT_NAME$.Create.Quote.V2.New.Quantity.Field.Missing.Negative.$ENV$.json",
+  "secretsFile": "$CONFIG$/Secrets.GetInvoiceServices.INT.json",
+
+  "workflow": "CreateQuoteV2NewQuantityZeroNegative"
+}

@@ -1,9 +1,9 @@
 package com.autodesk.pws.test.steps.quote;
 
-import com.autodesk.pws.test.steps.base.*;
+import com.autodesk.pws.test.steps.base.PwsServiceBase;
 import io.restassured.path.json.JsonPath;
 
-public class QuoteDetails extends PwsServiceBase 
+public class QuoteDetailsV2New extends PwsServiceBase
 {
 	public String DataPoolSourceInfoLabel = "";
 	
@@ -50,8 +50,9 @@ public class QuoteDetails extends PwsServiceBase
     private void setResourcePath()
     {
     	// https://quote.ddwsdev.autodesk.com/v1/details?quoteNumber=7265267
-	//	super.setResourcePath("v1/quotes?quoteNumber=$QUOTE_NUMBER$");
-		super.setResourcePath("$VERSION_PATH$/quotes?quoteNumber=$QUOTE_NUMBER$"); //v1 version for create quote v1 flow
+	//	super.setResourcePath("v2/quotes?quoteNumber=$QUOTE_NUMBER$");
+	//	super.setResourcePath("v2/quotes?filter[quoteNumber]=$QUOTE_NUMBER$");
+		super.setResourcePath("$VERSION_PATH$/quotes?filter[quoteNumber]=$QUOTE_NUMBER$");
     }
 
 	@Override
@@ -70,10 +71,10 @@ public class QuoteDetails extends PwsServiceBase
 		//  Here we would extract any data that needs to be promoted to 
 		//  the DataPool and may be needed by other steps later on...
     	JsonPath pathFinder = JsonPath.with(JsonResponseBody);
-		//  extractDataFromJsonAndAddToDataPool("$QUOTE_LINE_NUMBER$", "lineItems[0].quoteLineNumber", pathFinder);
+		extractDataFromJsonAndAddToDataPool("$QUOTE_LINE_NUMBER$", "lineItems[0].quoteLineNumber", pathFinder);
+		extractDataFromJsonAndAddToDataPool("$QUOTE_LINE_NUMBER1$", "lineItems[1].quoteLineNumber", pathFinder);
 
     	//  Extact data that 	
-    	//extractDataFromJsonAndAddToDataPool("$TRANSACTION_ID$", "transactionId", pathFinder);
-		extractDataFromJsonAndAddToDataPool("$QUOTE_LINE_NUMBER$", "lineItems[0].quoteLineNumber", pathFinder);
+    	//extractDataFromJsonAndAddToDataPool("$TRANSACTION_ID$", "transactionId", pathFinder); 
 	}	
 }

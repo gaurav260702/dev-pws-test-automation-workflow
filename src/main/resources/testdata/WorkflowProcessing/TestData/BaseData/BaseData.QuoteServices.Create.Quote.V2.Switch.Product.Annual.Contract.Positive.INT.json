@@ -1,0 +1,49 @@
+{
+    "currency": "AUD",
+    "agentAccount": {
+        "accountCsn": "5112991506"
+    },
+    "agentContact": {
+        "email": "agentpartnera2k@letscheck.email"
+    },
+    "endCustomer": {
+        "accountCsn": "5102489540"
+    },
+    "purchaser": {
+        "email": "SM_Aususer1@letscheck.pw",
+        "firstName": "SM",
+        "lastName": "User1Dinkum",
+        "phone": "9454456666",
+        "preferredLanguage": "en"
+    },
+    "lineItems": [
+        {
+            "quantity": 5,
+            "offeringId": "OD-000249",
+            "action": "Switch",
+            "referenceSubscriptionId": "69453475894510",
+            "offer": {
+                "term": {
+                    "code": "A01",
+                    "description": "Annual"
+                },
+                "accessModel": {
+                    "code": "S",
+                    "description": "Single User"
+                },
+                "intendedUsage": {
+                    "code": "COM",
+                    "description": "Commercial"
+                },
+                "connectivity": {
+                    "code": "C100",
+                    "description": "Online"
+                },
+                "servicePlan": {
+                    "code": "STND",
+                    "description": "Standard"
+                }
+            }
+        }
+    ]
+}
