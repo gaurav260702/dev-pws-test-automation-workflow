@@ -130,6 +130,8 @@ pipeline {
         }
       }
       stage('Process Test Reports') {
+        steps {
+          script {
         if (paramsSelected) {
             stage('Send Test Report') {
               sendReports(isMasterBranch) 
@@ -137,6 +139,8 @@ pipeline {
           } else {
               echo "No params selected"
           }
+          }
+      }
       }
     }
     post {
