@@ -106,6 +106,9 @@ pipeline {
                     paramsSelected = true
                     echo "Key: ${test.key}"
                     echo "value: ${test.value.path}"
+                    def kickerJson = readJSON file: "${workspace}/src/main/resources/${test.value.path}"
+                    def kickerFiles = kickerJson.KickerFiles
+                    echo kickerFiles
                     group["${test.key}"]= {
                       stage("${test.key}") {
                         sh "mvn spring-boot:run -Dspring-boot.run.arguments='${test.value.path}'"
@@ -113,7 +116,7 @@ pipeline {
                     }
                   }
                 }
-                 parallel group
+                parallel group
                 echo "TEST-END"
                 // if (paramsSelected) {
                 //   stage('Send Test Report') {
@@ -132,15 +135,15 @@ pipeline {
       stage('Process Test Reports') {
         steps {
           script {
-        if (paramsSelected) {
-            stage('Send Test Report') {
-              sendReports(isMasterBranch) 
-            }
-          } else {
-              echo "No params selected"
+            if (paramsSelected) {
+                stage('Send Test Report') {
+                  sendReports(isMasterBranch) 
+                }
+              } else {
+                  echo "No params selected"
+              }
           }
-          }
-      }
+        }
       }
     }
     post {
