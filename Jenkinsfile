@@ -66,6 +66,11 @@ pipeline {
           // Uncomment to allow your branch to act as master ONLY FOR TESTING
           // isMasterBranch = true
           sh "docker build --tag ${imageName} ."
+          // Creation of a map of stages
+          def stepsForParallel = allTests.collectEntries {
+              ["echoing ${it}" : transformIntoStage(it,imageName,params,isMasterBranch)]
+          }
+          parallel stepsForParallel
         }
       }
     }
@@ -99,23 +104,16 @@ pipeline {
             chmod -R u+rwX,go+rX,go-w /root/.aws || true
             cat /root/.aws/credentials
             """
-            def builders = [:]
             allTests.each { test ->
                 echo "TEST-START"
                 if (params[test.key]) {
                   echo "Key: ${test.key}"
                   echo "value: ${test.value.path}"
-                  def label = test.key 
-                  builders[label] = {
-                    node(label) {
                     stage("${test.key}") {
                     sh "mvn spring-boot:run -Dspring-boot.run.arguments='${test.value.path}'"
                     }
-                   }
-                 }
                 }
             }
-            parallel builders
             stage('Send Test Report'){
               sendReports(isMasterBranch)
             }
@@ -139,16 +137,60 @@ pipeline {
   }
 }
 
-def generateStage(key, valuePath) {
-  return {
-    node('aws-centos') {
-      stage("stage: ${key}") {
-      sh "mvn spring-boot:run -Dspring-boot.run.arguments='${valuePath}'"
-        sleep 30
+
+
+// Creation of the stage
+def transformIntoStage(test,imageName,params,isMasterBranch) {
+    return {
+        stage('Set Up Automation Tests') {
+      agent {
+        docker {
+          image "${imageName}"
+          reuseNode true
+          args '-u root -v /tmp:/tmp'
+        }
+      }
+      environment {
+            LDAP = credentials('d88e9614-fb62-4a2a-a4ca-380277fdb498')
+            VAULT_ADDR = 'https://vault.aws.autodesk.com'
+            VAULT_PATH = 'spg/pws-integration/aws/adsk-eis-ddws-int/sts/admin'
+      }
+      steps {
+        withCredentials([
+          usernamePassword(credentialsId: 'pws-k6-influx-db-write-user',
+            usernameVariable: 'INFLUX_DB_USERNAME',
+            passwordVariable: 'INFLUX_DB_PASSWORD',
+          )
+        ]) {
+        script {
+          try {
+            sh """
+            chmod 777 aws_auth 
+            bash aws_auth
+            echo ReadingFileInDocker
+            cat /root/.aws/credentials
+            chmod -R u+rwX,go+rX,go-w /root/.aws || true
+            cat /root/.aws/credentials
+            """
+                echo "TEST-START"
+                if (params[test.key]) {
+                  echo "Key: ${test.key}"
+                  echo "value: ${test.value.path}"
+                    stage("${test.key}") {
+                    sh "mvn spring-boot:run -Dspring-boot.run.arguments='${test.value.path}'"
+                    }
+                }
+            stage('Send Test Report'){
+              sendReports(isMasterBranch)
+            }
+          } catch (err) {
+            echo "${err}"
+          }
+        }
+      }
       }
     }
-  }
-}
+    }
 
 def sendReports(isMasterBranch) {
   script {
