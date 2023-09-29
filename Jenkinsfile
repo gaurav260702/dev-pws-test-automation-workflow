@@ -17,6 +17,8 @@ def isMasterBranch = false
 def paramsSelected = false
 def testfiles
 def allTests = [
+  QuoteServices_V2_INT: [path: "testdata/WorkflowProcessing/KickerSuites/KickerSuite.QuoteServices.Create.Update.Quote.V2.INT.json"],
+  QuoteServices_V2_STG: [path: "testdata/WorkflowProcessing/KickerSuites/KickerSuite.QuoteServices.Create.Update.Quote.V2.STG.json"],
   QuoteNotifyWebhook_INT: [path: "testdata/WorkflowProcessing/KickerSuites/KickerSuite.QuoteNotificationWebhook.INT.json"],
   QuoteServices_STG: [path: "testdata/WorkflowProcessing/KickerSuites/KickerSuite.QuoteServices.STG.json"],
   QuoteServices_INT: [path: "testdata/WorkflowProcessing/KickerSuites/KickerSuite.QuoteServices.INT.json"],
@@ -34,6 +36,8 @@ pipeline {
   parameters {
     booleanParam(name: 'QuoteServices_STG', description: 'Run QuoteServices Tests in STG', defaultValue: false)
     booleanParam(name: 'QuoteServices_INT', description: 'Run QuoteServices Tests in INT', defaultValue: false)
+    booleanParam(name: 'QuoteServices_V2_STG', description: 'Run QuoteServices V2 Tests in STG', defaultValue: false)
+    booleanParam(name: 'QuoteServices_V2_INT', description: 'Run QuoteServices V2 Tests in INT', defaultValue: false)
     booleanParam(name: 'CatalogExport_INT', description: 'RUN CatalogExport Tests in INT', defaultValue: false)
     booleanParam(name: 'PromotionsExport_INT', description: 'RUN PromotionsExport Tests in INT', defaultValue: false)
     booleanParam(name: 'GetQuoteDetailsInternalv2_INT', description: 'RUN GetQuoteDetailsInternalv2 Tests in INT', defaultValue: false)
