@@ -191,6 +191,7 @@ def transformIntoStage(test,imageName,params,isMasterBranch) {
       }
     }
     }
+}
 
 def sendReports(isMasterBranch) {
   script {
