@@ -1,5 +1,5 @@
 {
-    "quoteNote": "Notefromagenttocustomer.{{note}}",
+    "quoteNote": "Notefromagentto{{note}}customer.{{note}}",
     "currency": "$CURRENCY$",
     "agentAccount": {
         "accountCsn": "$CSN_RESELLER$"
