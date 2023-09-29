@@ -50,7 +50,8 @@ public class QuoteDetails extends PwsServiceBase
     private void setResourcePath()
     {
     	// https://quote.ddwsdev.autodesk.com/v1/details?quoteNumber=7265267
-		super.setResourcePath("v1/quotes?quoteNumber=$QUOTE_NUMBER$");
+	//	super.setResourcePath("v1/quotes?quoteNumber=$QUOTE_NUMBER$");
+		super.setResourcePath("$VERSION_PATH$/quotes?quoteNumber=$QUOTE_NUMBER$"); //v1 version for create quote v1 flow
     }
 
 	@Override

@@ -24,6 +24,7 @@
   "$AGENT_EMAIL$": "partneruser_da_stg_5070132992_2@letscheck.email",
 
   "$CREATE_QUOTE_BASE_URL$": "https://enterprise-api-$ENV$.autodesk.com/",
+  "$VERSION_PATH$": "v1",
 
   "$TIMEZONE_CITY$": "Australia/Sydney",
   "$CURRENCY$": "AUD",
