@@ -98,9 +98,9 @@ pipeline {
                 chmod -R u+rwX,go+rX,go-w /root/.aws || true
                 cat /root/.aws/credentials
                 """
+                echo "TEST-START"
                 allTests.each {
                   test ->
-                    echo "TEST-START"
                   if (params[test.key]) {
                     paramsSelected = true
                     echo "Key: ${test.key}"
@@ -110,6 +110,7 @@ pipeline {
                     }
                   }
                 }
+                echo "TEST-END"
                 if (paramsSelected) {
                   stage('Send Test Report') {
                     sendReports(isMasterBranch) 
