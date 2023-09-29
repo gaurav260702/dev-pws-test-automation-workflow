@@ -1,0 +1,84 @@
+{
+    "quoteNote": "Notefromagenttocustomer.",
+    "currency": "$CURRENCY$",
+    "agentAccount": {
+        "accountCsn": "$CSN_RESELLER$"
+    },
+    "agentContact": {
+        "email": "$AGENT_EMAIL$"
+    },
+    "endCustomer": {
+        "accountCsn": "5150331120",
+        "name": "SMVIRU Associates Ltd",
+        "addressLine1": "$ADDRESS1$",
+        "city": "$CITY$",
+        "countryCode": "$COUNTRY$",
+        "postalCode": "$POSTAL_CODE$",
+        "isIndividual": false
+    },
+    "purchaser": {
+        "email": "SM_Aususer1@letscheck.pw",
+        "firstName": "SM",
+        "lastName": "User1Dinkum",
+        "phone": "9454456666",
+        "preferredLanguage": "en"
+    },
+    "lineItems": [
+        {
+            "quantity": 10000,
+            "offeringId": "OD-000163",
+            "startDate": "2023-10-27",
+            "action": "New",
+            "offer": {
+                "term": {
+                    "code": "A01",
+                    "description": "Annual"
+                },
+                "accessModel": {
+                    "code": "F",
+                    "description": "Flex"
+                },
+                "intendedUsage": {
+                    "code": "COM",
+                    "description": "Commercial"
+                },
+                "connectivity": {
+                    "code": "C100",
+                    "description": "Online"
+                },
+                "servicePlan": {
+                    "code": "STND",
+                    "description": "Standard"
+                }
+            }
+        },
+        {
+            "quantity": 2000,
+            "offeringId": "OD-000021",
+            "startDate": "2023-10-19",
+            "action": "New",
+            "offer": {
+                "term": {
+                    "code": "A01",
+                    "description": "Annual"
+                },
+                "accessModel": {
+                    "code": "S",
+                    "description": "Single User"
+                },
+                "intendedUsage": {
+                    "code": "COM",
+                    "description": "Commercial"
+                },
+                "connectivity": {
+                    "code": "C100",
+                    "description": "Online"
+                },
+                "servicePlan": {
+                    "code": "STND",
+                    "description": "Standard"
+                }
+            }
+        }
+    ]
+}

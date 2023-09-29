@@ -1,0 +1,12 @@
+{
+  "QuoteCreate": {
+    "transactionId": "*",
+    "status": "error",
+    "errors": [
+      {
+        "code": "45001",
+        "message": "'purchaser.phone' length must be less than or equal to 29 characters long"
+      }
+    ]
+  }
+}
