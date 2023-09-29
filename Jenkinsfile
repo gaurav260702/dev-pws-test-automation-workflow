@@ -23,7 +23,7 @@ pipeline {
   }
   
   triggers {
-    cron(env.BRANCH_NAME.equals('master') ? '00 1 * * 1-5' : '')
+    cron(env.BRANCH_NAME.equals('master') ? '00 01 * * 1-5' : '')
   }
   
   stages {
