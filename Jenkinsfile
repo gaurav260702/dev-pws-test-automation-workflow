@@ -42,7 +42,8 @@ pipeline {
       steps {
         script {
          //  testfiles = findFiles(glob: '**/Kicker.*.json')
-             testfiles = findFiles(glob: '**/KickerSuite*QuoteServices*json')
+         //  testfiles = findFiles(glob: '**/KickerSuite*QuoteServices*json')
+             testfiles = findFiles(glob: '**/KickerSuite.QuoteServices.*.json')
          //  testfiles = findFiles(glob: '**/KickerSuite.Create.Quote.V2.INT.json')
          //  testfiles = findFiles(glob: '**/KickerSuite.Create.Update.Quote.V2.*.json')
 
