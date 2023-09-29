@@ -641,7 +641,6 @@ public class WorkflowLibrary
         //  workflow.add(new QuoteStatusByQuoteNumber(waitForExpectedStatus));
         workflow.add(new QuoteUpdateV2OperationUpdateActionNew());
 
-
         return workflow;
     }
 
