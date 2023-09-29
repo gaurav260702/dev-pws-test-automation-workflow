@@ -1,5 +1,5 @@
 {
-  "quoteNote": "{{note}}Notefromagenttocustomer.",
+
   "lineItems": [
     {
       "offer": {
@@ -20,6 +20,7 @@
   "agentAccount": {
     "accountCsn": "5070132992"
   },
+  "quoteNote": "{{note}}Notefromagenttocustomer.",
   "purchaser": {
     "firstName": "SMPWSAUS12",
     "lastName": "User12",
