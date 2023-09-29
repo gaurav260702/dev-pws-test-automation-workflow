@@ -129,6 +129,15 @@ pipeline {
           }
         }
       }
+      stage('Process Test Reports') {
+        if (paramsSelected) {
+            stage('Send Test Report') {
+              sendReports(isMasterBranch) 
+            }
+          } else {
+              echo "No params selected"
+          }
+      }
     }
     post {
       always {
