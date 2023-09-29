@@ -63,7 +63,7 @@ pipeline {
           script {
             isMasterBranch = "${env.BRANCH_NAME}" == 'master'
             // Uncomment to allow your branch to act as master ONLY FOR TESTING
-            isMasterBranch = true
+            // isMasterBranch = true
             sh "docker build --tag ${imageName} ."
           }
         }
@@ -99,25 +99,29 @@ pipeline {
                 cat /root/.aws/credentials
                 """
                 echo "TEST-START"
+                def group = [:]
                 allTests.each {
                   test ->
                   if (params[test.key]) {
                     paramsSelected = true
                     echo "Key: ${test.key}"
                     echo "value: ${test.value.path}"
-                    stage("${test.key}") {
-                      sh "mvn spring-boot:run -Dspring-boot.run.arguments='${test.value.path}'"
+                    group["${test.key}"]= {
+                      stage("${test.key}") {
+                        sh "mvn spring-boot:run -Dspring-boot.run.arguments='${test.value.path}'"
+                      }
                     }
                   }
                 }
+                 parallel group
                 echo "TEST-END"
-                if (paramsSelected) {
-                  stage('Send Test Report') {
-                    sendReports(isMasterBranch) 
-                  }
-                } else {
-                    echo "No params selected"
-                }
+                // if (paramsSelected) {
+                //   stage('Send Test Report') {
+                //     sendReports(isMasterBranch) 
+                //   }
+                // } else {
+                //     echo "No params selected"
+                // }
               } catch (err) {
                 throw new Exception("Error: ${err}")
               }
