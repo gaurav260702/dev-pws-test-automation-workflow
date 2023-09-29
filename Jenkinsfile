@@ -43,12 +43,10 @@ pipeline {
   }
 
   triggers {
-    parameterizedCron(env.BRANCH_NAME == 'send-test-reports' ? ''
-      '
-      # run tests everyday at 5 AM PST 0 5 * * * % QuoteServices_STG = true; QuoteServices_INT = true;
-      ''
-      ' : '
-      ')
+    parameterizedCron(env.BRANCH_NAME == 'send-test-reports' ? '''
+        # run tests everyday at 5 AM PST
+        0 5 * * * % QuoteServices_STG=true;QuoteServices_INT=true;
+    ''' : '')
     }
     options {
       disableConcurrentBuilds()
@@ -163,18 +161,7 @@ pipeline {
           def RESTAPI_CALL = JsonOutput.toJson(configJson.apiCalls)
           def API_RESPONSE = JsonOutput.toJson(configJson.responseChain)
           def API_EXP_RESPONSE = JsonOutput.toJson(configJson.expValidationChain)
-          // echo "${apiCalls}"
-          // echo "${responseChain}"
-          // def validationData = "${configJson.responseChain}"
-          // echo "${validationData}"
-          // def apiCallsData = "${configJson.apiCalls}"
-          // echo "${apiCallsData}"
-          // def responseChain = validationData.replaceAll(/(")/,"")
-          // def apiCalls = apiCallsData.replaceAll(/(")/,"")
-          // def API_CALLS = configJson.apiCalls
-          // echo "${JsonOutput.toJson(API_CALLS)}"
-          // echo "${configJson.validationFile}"
-          // def validatorPath = (configJson.validationFile).replaceAll( '/testdata/WorkflowProcessing/TestData/Validators/', '')
+          
           def jsonData = [
             "GIT_BRANCH": env.GIT_BRANCH,
             "BUILD_NUMBER": env.BUILD_NUMBER,
@@ -185,30 +172,10 @@ pipeline {
           ]
           echo "${JsonOutput.toJson(jsonData)}"
 
-          if (isMasterBranch) {
-            sh ""
-            "
-            curl - i - XPOST "https://calvinklein-7de56744.influxcloud.net:8086/write?db=k6&u=$INFLUX_DB_USERNAME&p=$INFLUX_DB_PASSWORD"--data - binary 'automation_test_report,TEST_NAME=${TEST_NAME},ENV_NAME=${ENV_NAME},TEST_STATUS=${TEST_STATUS},BUILD=${env.GIT_BRANCH}-${env.BUILD_NUMBER},SERVICE_NAME=${SERVICE_NAME} value=1,${statusName}=1,API_RESPONSE="'
-            ''
-            $ {
-              API_RESPONSE
-            }
-            ''
-            '",API_EXP_RESPONSE="'
-            ''
-            $ {
-              API_EXP_RESPONSE
-            }
-            ''
-            '",RESTAPI_CALL="'
-            ''
-            $ {
-              RESTAPI_CALL
-            }
-            ''
-            '"'
-            ""
-            "
+          if(isMasterBranch) {
+          sh """
+            curl -i -XPOST "https://calvinklein-7de56744.influxcloud.net:8086/write?db=k6&u=$INFLUX_DB_USERNAME&p=$INFLUX_DB_PASSWORD" --data-binary 'automation_test_report,TEST_NAME=${TEST_NAME},ENV_NAME=${ENV_NAME},TEST_STATUS=${TEST_STATUS},BUILD=${env.GIT_BRANCH}-${env.BUILD_NUMBER},SERVICE_NAME=${SERVICE_NAME} value=1,${statusName}=1,API_RESPONSE="'''${API_RESPONSE}'''",API_EXP_RESPONSE="'''${API_EXP_RESPONSE}'''",RESTAPI_CALL="'''${RESTAPI_CALL}'''"'
+          """
           } else {
             echo "Skipping send test reports due to isMasterBranch=${isMasterBranch} "
           }
