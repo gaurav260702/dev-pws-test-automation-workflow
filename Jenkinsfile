@@ -43,7 +43,7 @@ pipeline {
   }
 
   triggers {
-    parameterizedCron(env.BRANCH_NAME == 'send-test-reports' ? '''
+    parameterizedCron(env.BRANCH_NAME == 'master' ? '''
         # run tests everyday at 5 AM PST
         0 5 * * * % QuoteServices_STG=true;QuoteServices_INT=true;
     ''' : '')
@@ -118,13 +118,6 @@ pipeline {
                 }
                 parallel group
                 echo "TEST-END"
-                // if (paramsSelected) {
-                //   stage('Send Test Report') {
-                //     sendReports(isMasterBranch) 
-                //   }
-                // } else {
-                //     echo "No params selected"
-                // }
               } catch (err) {
                 throw new Exception("Error: ${err}")
               }
