@@ -15,7 +15,7 @@ def buildInfo = env.JOB_NAME + '-' + env.BUILD_NUMBER + "\n" + env.BUILD_URL
 def slackChannel = "#dpe-dbp-pws-devops"
 
 def isMasterBranch = false
-def parallelStages = [:]
+
 def testfiles
 def allTests = [
   QuoteNotifyWebhook_INT:[path: "testdata/WorkflowProcessing/KickerSuites/KickerSuite.QuoteNotificationWebhook.INT.json"],
@@ -66,93 +66,10 @@ pipeline {
           // Uncomment to allow your branch to act as master ONLY FOR TESTING
           // isMasterBranch = true
           sh "docker build --tag ${imageName} ."
-          // Creation of a map of stages
-          allTests.each { test ->
-            echo "it: ${test}"
-            if (params[test.key]) {
-                  echo "Key: ${test.key}"
-                  echo "value: ${test.value.path}"
-              parallelStages[test.key] = 
-              {
-                            node {
-                              transformIntoStage(test.key,imageName,test.value.path,isMasterBranch)
-                            }
-              }
-            }
-          }
-          parallel parallelStages
         }
       }
     }
-    // stage('Set Up Automation Tests') {
-    //   agent {
-    //     docker {
-    //       image "${imageName}"
-    //       reuseNode true
-    //       args '-u root -v /tmp:/tmp'
-    //     }
-    //   }
-    //   environment {
-    //         LDAP = credentials('d88e9614-fb62-4a2a-a4ca-380277fdb498')
-    //         VAULT_ADDR = 'https://vault.aws.autodesk.com'
-    //         VAULT_PATH = 'spg/pws-integration/aws/adsk-eis-ddws-int/sts/admin'
-    //   }
-    //   steps {
-    //     withCredentials([
-    //       usernamePassword(credentialsId: 'pws-k6-influx-db-write-user',
-    //         usernameVariable: 'INFLUX_DB_USERNAME',
-    //         passwordVariable: 'INFLUX_DB_PASSWORD',
-    //       )
-    //     ]) {
-    //     script {
-    //       try {
-    //         sh """
-    //         chmod 777 aws_auth 
-    //         bash aws_auth
-    //         echo ReadingFileInDocker
-    //         cat /root/.aws/credentials
-    //         chmod -R u+rwX,go+rX,go-w /root/.aws || true
-    //         cat /root/.aws/credentials
-    //         """
-    //         allTests.each { test ->
-    //             echo "TEST-START"
-    //             if (params[test.key]) {
-    //               echo "Key: ${test.key}"
-    //               echo "value: ${test.value.path}"
-    //                 stage("${test.key}") {
-    //                 sh "mvn spring-boot:run -Dspring-boot.run.arguments='${test.value.path}'"
-    //                 }
-    //             }
-    //         }
-    //         stage('Send Test Report'){
-    //           sendReports(isMasterBranch)
-    //         }
-    //       } catch (err) {
-    //         echo "${err}"
-    //       }
-    //     }
-    //   }
-    //   }
-    // }
-  }
-  post {
-    always {
-      script {
-        echo ""
-        sh "ls /tmp/"
-        sh "docker image ls"
-        sh "docker image rm -f ${imageName}"
-      }
-    }
-  }
-}
-
-
-
-// Creation of the stage
-def transformIntoStage(key,imageName,path,isMasterBranch) {
-    return {
-        stage('Set Up Automation Tests') {
+    stage('Set Up Automation Tests') {
       agent {
         docker {
           image "${imageName}"
@@ -182,10 +99,16 @@ def transformIntoStage(key,imageName,path,isMasterBranch) {
             chmod -R u+rwX,go+rX,go-w /root/.aws || true
             cat /root/.aws/credentials
             """
+            allTests.each { test ->
                 echo "TEST-START"
-                    stage("${key}") {
-                    sh "mvn spring-boot:run -Dspring-boot.run.arguments='${path}'"
+                if (params[test.key]) {
+                  echo "Key: ${test.key}"
+                  echo "value: ${test.value.path}"
+                    stage("${test.key}") {
+                    sh "mvn spring-boot:run -Dspring-boot.run.arguments='${test.value.path}'"
                     }
+                }
+            }
             stage('Send Test Report'){
               sendReports(isMasterBranch)
             }
@@ -196,7 +119,28 @@ def transformIntoStage(key,imageName,path,isMasterBranch) {
       }
       }
     }
+  }
+  post {
+    always {
+      script {
+        echo ""
+        sh "ls /tmp/"
+        sh "docker image ls"
+        sh "docker image rm -f ${imageName}"
+      }
     }
+  }
+}
+
+def generateStage(key, valuePath) {
+  return {
+    node('aws-centos') {
+      stage("stage: ${key}") {
+      sh "mvn spring-boot:run -Dspring-boot.run.arguments='${valuePath}'"
+        sleep 30
+      }
+    }
+  }
 }
 
 def sendReports(isMasterBranch) {
@@ -242,12 +186,7 @@ def sendReports(isMasterBranch) {
             "SERVICE_NAME":SERVICE_NAME,
           ]
           echo "${JsonOutput.toJson(jsonData)}"
-          
-          // def parser = new JsonSlurper()
-          // def parseJson = parser.parseText(configJson.ValidationChain)
-          // println(parseJson.keySet())
-          // def valiDatorJson = readJSON file: "/home/app/src/main/resources/${configJson.validationFile}"
-         //  echo "${valiDatorJson}"
+
           if(isMasterBranch) {
           sh """
             curl -i -XPOST "https://calvinklein-7de56744.influxcloud.net:8086/write?db=k6&u=$INFLUX_DB_USERNAME&p=$INFLUX_DB_PASSWORD" --data-binary 'automation_test_report,TEST_NAME=${TEST_NAME},ENV_NAME=${ENV_NAME},TEST_STATUS=${TEST_STATUS},BUILD=${env.GIT_BRANCH}-${env.BUILD_NUMBER},SERVICE_NAME=${SERVICE_NAME} value=1,${statusName}=1,API_RESPONSE="'''${API_RESPONSE}'''",API_EXP_RESPONSE="'''${API_EXP_RESPONSE}'''",RESTAPI_CALL="'''${RESTAPI_CALL}'''"'
