@@ -106,15 +106,12 @@ pipeline {
                     paramsSelected = true
                     echo "Key: ${test.key}"
                     echo "value: ${test.value.path}"
-                    def kickerJson = readJSON file: "${workspace}/src/main/resources/${test.value.path}"
-                    def kickerFiles = kickerJson.KickerFiles
-                    echo "${kickerFiles}"
-                    kickerFiles.each {
-                      testFile ->
-                      group["${test.key}-${testFile}"]= {
-                        stage("${test.key}-${testFile}") {
-                          sh "mvn spring-boot:run -Dspring-boot.run.arguments='${testFile}'"
-                        }
+                    // def kickerJson = readJSON file: "${workspace}/src/main/resources/${test.value.path}"
+                    // def kickerFiles = kickerJson.KickerFiles
+                    
+                    group["${test.key}"]= {
+                      stage("${test.key}") {
+                        sh "mvn spring-boot:run -Dspring-boot.run.arguments='${test.value.path}'"
                       }
                     }
                   }
