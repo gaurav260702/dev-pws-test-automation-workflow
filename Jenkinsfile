@@ -110,12 +110,12 @@ pipeline {
                     }
                   }
                 }
-                stage('Send Test Report') {
-                  if (paramsSelected) {
-                    sendReports(isMasterBranch)
-                  } else {
-                    echo "No params selected"
+                if (paramsSelected) {
+                  stage('Send Test Report') {
+                    sendReports(isMasterBranch) 
                   }
+                } else {
+                    echo "No params selected"
                 }
               } catch (err) {
                 throw new Exception("Error: ${err}")
