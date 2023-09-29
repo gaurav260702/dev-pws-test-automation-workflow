@@ -109,9 +109,12 @@ pipeline {
                     def kickerJson = readJSON file: "${workspace}/src/main/resources/${test.value.path}"
                     def kickerFiles = kickerJson.KickerFiles
                     echo "${kickerFiles}"
-                    group["${test.key}"]= {
-                      stage("${test.key}") {
-                        sh "mvn spring-boot:run -Dspring-boot.run.arguments='${test.value.path}'"
+                    kickerFiles.each {
+                      testFile ->
+                      group["${test.key}-${testFile}"]= {
+                        stage("${test.key}-${testFile}") {
+                          sh "mvn spring-boot:run -Dspring-boot.run.arguments='${testFile}'"
+                        }
                       }
                     }
                   }
