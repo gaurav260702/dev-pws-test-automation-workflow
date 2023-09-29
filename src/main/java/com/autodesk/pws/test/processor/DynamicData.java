@@ -53,8 +53,6 @@ public class DynamicData
         runtimeValues.put("{{uuid4}}", UUID.randomUUID().toString());
         runtimeValues.put("{{note}}", generateRandomLengthAlphaString(5));
         runtimeValues.put("{{email}}", generateRandomLengthAlphaString(7));
-        runtimeValues.put("{{first}}", generateRandomLengthAlphaString(5));
-        runtimeValues.put("{{last}}", generateRandomLengthAlphaString(5));
 
     }
 

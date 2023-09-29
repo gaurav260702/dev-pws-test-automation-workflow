@@ -18,8 +18,8 @@
     },
     "purchaser": {
         "email": "{{email}}2021@gmail.com",
-        "firstName": "{{first}}",
-        "lastName": "{{last}}",
+        "firstName": "{{random_first_name}}",
+        "lastName": "{{random_last_name}}",
         "phone": "4154776666",
         "preferredLanguage": "en"
     },
