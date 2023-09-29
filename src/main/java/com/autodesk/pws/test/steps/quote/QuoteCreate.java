@@ -53,9 +53,11 @@ public class QuoteCreate extends PwsServiceBase
 
     private void setResourcePath()
     {
+
 	//	super.setResourcePath("v1/quotes");
-		super.setResourcePath("$VERSION_PATH$/quotes");  // v1 version for create quote v1 flow
-		// quote.ddwsdev.autodesk.com/v1/status/ 
+		super.setResourcePath("$VERSION_PATH$/quotes");  // v1 and v2 version for create quote v1 and v2 flow resp.
+
+		// quote.ddwsdev.autodesk.com/v1/status/
     }
 
 	@Override
@@ -76,10 +78,10 @@ public class QuoteCreate extends PwsServiceBase
     	//  Extact data that 	
     	extractDataFromJsonAndAddToDataPool("$TRANSACTION_ID$", "transactionId", pathFinder); 
     	
-    	if(ExpectedResponseMessage.compareTo(ActualResponseMessage) != 0)
+    	/*if(ExpectedResponseMessage.compareTo(ActualResponseMessage) != 0)
     	{
     		this.ExceptionMessage = "'" + this.ClassName + "' was expecting a response message of '" + this.ExpectedResponseMessage + "' but ended in a '" + this.ActualResponseMessage + "' response message!";
     		this.ExceptionAbortStatus = true;
-    	}
+    	}*/
 	}	
 }

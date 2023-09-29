@@ -1,0 +1,12 @@
+{
+  "QuoteCreate": {
+    "transactionId": "*",
+    "errors": [
+      {
+        "code": "45001",
+        "message": "Enter a valid Agent Account CSN"
+      }
+    ],
+    "status": "error"
+  }
+}

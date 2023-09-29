@@ -1,0 +1,27 @@
+{
+    "quoteNote": "Note from agent to customer1",
+    "currency": "$CURRENCY$",
+    "agentAccount": {
+        "accountCsn": "$CSN_RESELLER$"
+    },
+    "agentContact": {
+        "email": "$AGENT_EMAIL$"
+    },
+    "endCustomer": {
+        "accountCsn": "5501670235"
+    },
+    "purchaser": {
+        "email": "thqypz2a3f@letscheck.pw",
+        "firstName": "fnhxGgXe",
+        "lastName": "lnhxGgXe",
+        "phone": "+0298500223",
+        "preferredLanguage": "en"
+    },
+    "lineItems": [
+        {
+            "action": "Extension",
+            "endDate":"2026-09-09",
+            "subscriptionId":"69101767716863"
+        }
+    ]
+}

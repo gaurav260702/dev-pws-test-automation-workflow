@@ -1,9 +1,10 @@
 package com.autodesk.pws.test.steps.quote;
 
-import com.autodesk.pws.test.steps.base.*;
+import com.autodesk.pws.test.processor.DynamicData;
+import com.autodesk.pws.test.steps.base.PwsServiceBase;
 import io.restassured.path.json.JsonPath;
 
-public class QuoteDetails extends PwsServiceBase 
+public class QuoteCreateV2New extends PwsServiceBase
 {
 	public String DataPoolSourceInfoLabel = "";
 	
@@ -25,7 +26,7 @@ public class QuoteDetails extends PwsServiceBase
 		//  Naturally, we can't allow any 'setAs***Service()'
 		//  methods to have any dependencies if it's being
 		//  called before anything else...
-		this.setAsGetService();
+		this.setAsPostService();
 		
 		//  Set the Resource path BEFORE the base/super class
 		//  sets the targetUrl during the super class's
@@ -36,29 +37,29 @@ public class QuoteDetails extends PwsServiceBase
     	super.preparation();
     	
     	//  Grab the JsonRequestBody...
-    	//Gson gson = new Gson();
-    	//String jsonBody = DataPool.get(DataPoolSourceInfoLabel).toString();
-    	//String jsonBody = gson.toJson(rawJson);
-    	//jsonBody = DynamicData.detokenizeRuntimeValues(jsonBody);
-    	//this.setJsonRequestBody(jsonBody);
+    	String jsonBody = DataPool.get(DataPoolSourceInfoLabel).toString();
+    	jsonBody = DynamicData.detokenizeRuntimeValues(jsonBody);
+    	this.setJsonRequestBody(jsonBody);
     	
     	//   https://quote.ddwsdev.autodesk.com
     	this.BaseUrl = "$CREATE_QUOTE_BASE_URL$";
     	setTargetUrl();
+    	
+    	//this.ExpectedResponseMessage = "Accepted";
+    	this.ExpectedEndStateStatus = "Accepted";
+    	
+    	this.setExpectedEndState(this.ClassName);
     }
 
     private void setResourcePath()
     {
-    	// https://quote.ddwsdev.autodesk.com/v1/details?quoteNumber=7265267
-	//	super.setResourcePath("v1/quotes?quoteNumber=$QUOTE_NUMBER$");
-		super.setResourcePath("$VERSION_PATH$/quotes?quoteNumber=$QUOTE_NUMBER$"); //v1 version for create quote v1 flow
+		super.setResourcePath("v2/quotes");
+		// quote.ddwsdev.autodesk.com/v1/status/ 
     }
 
 	@Override
     public void action()
-    {
-		//attachHeaderFromDataPool("CSN", "$CSN_ACCOUNT_CONTACT$");
-		
+    {	
 		super.action();
     }
 	
@@ -70,10 +71,14 @@ public class QuoteDetails extends PwsServiceBase
 		//  Here we would extract any data that needs to be promoted to 
 		//  the DataPool and may be needed by other steps later on...
     	JsonPath pathFinder = JsonPath.with(JsonResponseBody);
-		//  extractDataFromJsonAndAddToDataPool("$QUOTE_LINE_NUMBER$", "lineItems[0].quoteLineNumber", pathFinder);
 
     	//  Extact data that 	
-    	//extractDataFromJsonAndAddToDataPool("$TRANSACTION_ID$", "transactionId", pathFinder);
-		extractDataFromJsonAndAddToDataPool("$QUOTE_LINE_NUMBER$", "lineItems[0].quoteLineNumber", pathFinder);
+    	extractDataFromJsonAndAddToDataPool("$TRANSACTION_ID$", "transactionId", pathFinder); 
+    	
+    	if(ExpectedResponseMessage.compareTo(ActualResponseMessage) != 0)
+    	{
+    		this.ExceptionMessage = "'" + this.ClassName + "' was expecting a response message of '" + this.ExpectedResponseMessage + "' but ended in a '" + this.ActualResponseMessage + "' response message!";
+    		this.ExceptionAbortStatus = true;
+    	}
 	}	
 }

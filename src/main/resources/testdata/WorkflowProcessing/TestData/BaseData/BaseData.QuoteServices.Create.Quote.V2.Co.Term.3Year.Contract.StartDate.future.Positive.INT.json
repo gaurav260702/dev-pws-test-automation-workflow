@@ -1,0 +1,51 @@
+{
+    "quoteNote": "Note from agent to customer1",
+    "currency": "AUD",
+    "agentAccount": {
+        "accountCsn": "5501670235"
+    },
+    "agentContact": {
+        "email": "newuserpartnerau_5501670235@letscheck.pw"
+    },
+    "endCustomer": {
+        "accountCsn": "5501743914"
+    },
+    "purchaser": {
+        "email": "biz-yzemnxgzbk@letscheck.pw",
+        "firstName": "Sunny",
+        "lastName": "Gopim",
+        "phone": "4154776666",
+        "preferredLanguage": "en"
+    },
+    "lineItems": [
+        {
+            "quantity": 10,
+            "offeringId": "OD-000021",
+            "action": "Co-term",
+            "referenceSubscriptionId": "68970518997237",
+            "startDate": "2023-10-27",
+            "offer": {
+                "term": {
+                    "code": "A06",
+                    "description": "Mutli-Year"
+                },
+                "accessModel": {
+                    "code": "S",
+                    "description": "Single User"
+                },
+                "intendedUsage": {
+                    "code": "COM",
+                    "description": "Commercial"
+                },
+                "connectivity": {
+                    "code": "C100",
+                    "description": "Online"
+                },
+                "servicePlan": {
+                    "code": "STND",
+                    "description": "Standard"
+                }
+            }
+        }
+    ]
+}

@@ -1,0 +1,18 @@
+{
+  "QuoteStatusFAILED": {
+  "quoteStatus": "FAILED",
+  "quoteNumber": "NA",
+  "transactionId": "*",
+  "errors": [
+    {
+      "message": "Please enter valid offer details",
+      "code": "46002"
+    }
+  ]
+  },
+
+  "QuoteCreate": {
+    "message": "success",
+    "transactionId": "*"
+  }
+}
