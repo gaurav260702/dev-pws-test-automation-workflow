@@ -90,15 +90,14 @@ pipeline {
           ]) {
             script {
               try {
-                sh ""
-                "
+                sh """
                 chmod 777 aws_auth
                 bash aws_auth
                 echo ReadingFileInDocker
                 cat / root / .aws / credentials
                 chmod - R u + rwX, go + rX, go - w / root / .aws || true
-                cat / root / .aws / credentials ""
-                "
+                cat / root / .aws / credentials 
+                """
                 allTests.each {
                   test ->
                     echo "TEST-START"
@@ -119,7 +118,7 @@ pipeline {
                   }
                 }
               } catch (err) {
-                echo "${err}"
+                throw new Exception("Error: ${err}")
               }
             }
           }
