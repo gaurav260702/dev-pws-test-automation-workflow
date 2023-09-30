@@ -157,47 +157,47 @@ pipeline {
   }
 
   def sendReports(isMasterBranch) {
-    script {
-      echo "${isMasterBranch}"
-      echo("Send Reports")
-      dir('/tmp/reports') {
-        def files = findFiles()
-
-        files.each {
-          f ->
-            echo "This is a directory: ${f.name}"
+  script {
+    echo "${isMasterBranch}"
+    echo("Send Reports")
+    dir('/tmp/reports') {
+      def files = findFiles() 
+  
+      files.each { f -> 
+          echo "This is a directory: ${f.name}"
           def configJson = readJSON file: "/tmp/reports/${f.name}"
           def ENV_NAME = configJson.$ENV$
           def TEST_STATUS = configJson.$TEST_STATUS$
-          def TEST_NAME = (configJson.$TEST_NAME$).replace('Kicker.', '').replace('.INT.json', '').replace('.STG.json', '')
+          def TEST_NAME = (configJson.$TEST_NAME$).replace( 'Kicker.', '').replace( '.INT.json', '').replace( '.STG.json', '')
           def statusName = "pass"
-          if (TEST_STATUS == "FAIL") {
+          if(TEST_STATUS == "FAIL"){
             statusName = "fail"
           }
           def BASE_NAME = configJson.$BASE_NAME$
           def SERVICE_NAME = (BASE_NAME.split('\\.'))[0]
-          def RESTAPI_CALL = JsonOutput.toJson(configJson.apiCalls)
+          def RESTAPI_CALL  = JsonOutput.toJson(configJson.apiCalls)
           def API_RESPONSE = JsonOutput.toJson(configJson.responseChain)
           def API_EXP_RESPONSE = JsonOutput.toJson(configJson.expValidationChain)
-          
+
           def jsonData = [
-            "GIT_BRANCH": env.GIT_BRANCH,
-            "BUILD_NUMBER": env.BUILD_NUMBER,
+            "GIT_BRANCH":env.GIT_BRANCH,
+            "BUILD_NUMBER":env.BUILD_NUMBER,
             "ENV_NAME": ENV_NAME,
             "TEST_STATUS": TEST_STATUS,
             "TEST_NAME": TEST_NAME,
-            "SERVICE_NAME": SERVICE_NAME,
+            "SERVICE_NAME":SERVICE_NAME,
           ]
           echo "${JsonOutput.toJson(jsonData)}"
-
+          
           if(isMasterBranch) {
-            sh """
-              curl -i -XPOST "https://calvinklein-7de56744.influxcloud.net:8086/write?db=k6&u=$INFLUX_DB_USERNAME&p=$INFLUX_DB_PASSWORD" --data-binary 'automation_test_report,TEST_NAME=${TEST_NAME},ENV_NAME=${ENV_NAME},TEST_STATUS=${TEST_STATUS},BUILD=${env.GIT_BRANCH}-${env.BUILD_NUMBER},SERVICE_NAME=${SERVICE_NAME} value=1,${statusName}=1,API_RESPONSE="'''${API_RESPONSE}'''",API_EXP_RESPONSE="'''${API_EXP_RESPONSE}'''",RESTAPI_CALL="'''${RESTAPI_CALL}'''"'
-            """
-          } else {
-            echo "Skipping send test reports due to isMasterBranch=${isMasterBranch} "
+          sh """
+            curl -i -XPOST "https://calvinklein-7de56744.influxcloud.net:8086/write?db=k6&u=$INFLUX_DB_USERNAME&p=$INFLUX_DB_PASSWORD" --data-binary 'automation_test_report,TEST_NAME=${TEST_NAME},ENV_NAME=${ENV_NAME},TEST_STATUS=${TEST_STATUS},BUILD=${env.GIT_BRANCH}-${env.BUILD_NUMBER},SERVICE_NAME=${SERVICE_NAME} value=1,${statusName}=1,API_RESPONSE="'''${API_RESPONSE}'''",API_EXP_RESPONSE="'''${API_EXP_RESPONSE}'''",RESTAPI_CALL="'''${RESTAPI_CALL}'''"'
+          """
+          } 
+          else {
+            echo "Skipping send test reports due to isMasterBranch=${isMasterBranch}"
           }
-        }
       }
     }
   }
+}
