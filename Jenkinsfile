@@ -157,7 +157,7 @@ pipeline {
     }
   }
 
-  def sendReports(isMasterBranch) {
+ def sendReports(isMasterBranch) {
   script {
     echo "${isMasterBranch}"
     echo("Send Reports")
@@ -176,11 +176,20 @@ pipeline {
           }
           def BASE_NAME = configJson.$BASE_NAME$
           def SERVICE_NAME = (BASE_NAME.split('\\.'))[0]
-          def parser = new JsonSlurper()
-          def RESTAPI_CALL  = parser.parseText(configJson.apiCalls)
-          def API_RESPONSE = parser.parseText(configJson.responseChain)
-          def API_EXP_RESPONSE = parser.parseText(configJson.expValidationChain)
-          echo "${RESTAPI_CALL}"
+          def apiCalls  = JsonOutput.toJson(configJson.apiCalls)
+          def responseChain = JsonOutput.toJson(configJson.responseChain)
+          echo "${apiCalls}"
+          echo "${responseChain}"
+          // def validationData = "${configJson.responseChain}"
+          // echo "${validationData}"
+          // def apiCallsData = "${configJson.apiCalls}"
+          // echo "${apiCallsData}"
+          // def responseChain = validationData.replaceAll(/(")/,"")
+          // def apiCalls = apiCallsData.replaceAll(/(")/,"")
+          // def API_CALLS = configJson.apiCalls
+          // echo "${JsonOutput.toJson(API_CALLS)}"
+          // echo "${configJson.validationFile}"
+          // def validatorPath = (configJson.validationFile).replaceAll( '/testdata/WorkflowProcessing/TestData/Validators/', '')
           def jsonData = [
             "GIT_BRANCH":env.GIT_BRANCH,
             "BUILD_NUMBER":env.BUILD_NUMBER,
@@ -191,13 +200,18 @@ pipeline {
           ]
           echo "${JsonOutput.toJson(jsonData)}"
           
+          // def parser = new JsonSlurper()
+          // def parseJson = parser.parseText(configJson.ValidationChain)
+          // println(parseJson.keySet())
+          // def valiDatorJson = readJSON file: "/home/app/src/main/resources/${configJson.validationFile}"
+         //  echo "${valiDatorJson}"
           if(isMasterBranch) {
           sh """
-            curl -i -XPOST "https://calvinklein-7de56744.influxcloud.net:8086/write?db=k6&u=$INFLUX_DB_USERNAME&p=$INFLUX_DB_PASSWORD" --data-binary 'automation_test_report,TEST_NAME=${TEST_NAME},ENV_NAME=${ENV_NAME},TEST_STATUS=${TEST_STATUS},BUILD=${env.GIT_BRANCH}-${env.BUILD_NUMBER},SERVICE_NAME=${SERVICE_NAME} value=1,${statusName}=1,API_RESPONSE=${API_RESPONSE},API_EXP_RESPONSE=${API_EXP_RESPONSE},RESTAPI_CALL=${RESTAPI_CALL}'
+            curl -i -XPOST "https://calvinklein-7de56744.influxcloud.net:8086/write?db=k6&u=$INFLUX_DB_USERNAME&p=$INFLUX_DB_PASSWORD" --data-binary 'automation_test_report,TEST_NAME=${TEST_NAME},ENV_NAME=${ENV_NAME},TEST_STATUS=${TEST_STATUS},BUILD=${env.GIT_BRANCH}-${env.BUILD_NUMBER},SERVICE_NAME=${SERVICE_NAME} value=1,${statusName}=1,API_RESPONSE="'''${responseChain}'''",RESTAPI_CALL="'''${apiCalls}'''"'
           """
           } 
           else {
-            echo "Skipping send test reports due to isMasterBranch=${isMasterBranch}"
+            echo "Skipping send reports"
           }
       }
     }
