@@ -177,9 +177,9 @@ pipeline {
           def BASE_NAME = configJson.$BASE_NAME$
           def SERVICE_NAME = (BASE_NAME.split('\\.'))[0]
           def parser = new JsonSlurper()
-          def RESTAPI_CALL  = parser.parseText("${configJson.apiCalls}")
-          def API_RESPONSE = parser.parseText("${configJson.responseChain}")
-          def API_EXP_RESPONSE = parser.parseText("${configJson.expValidationChain}")
+          def RESTAPI_CALL  = parser.parseText(configJson.apiCalls)
+          def API_RESPONSE = parser.parseText(configJson.responseChain)
+          def API_EXP_RESPONSE = parser.parseText(configJson.expValidationChain)
           echo "${RESTAPI_CALL}"
           def jsonData = [
             "GIT_BRANCH":env.GIT_BRANCH,
