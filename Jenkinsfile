@@ -115,10 +115,9 @@ pipeline {
                     // def kickerFiles = kickerJson.KickerFiles
                     
                     group["${test.key}"]= {
+                      sleep(20)
                       stage("${test.key}") {
-                        sleep(10)
                         sh "mvn spring-boot:run -Dspring-boot.run.arguments='${test.value.path}'"
-                        sleep(10)
                       }
                     }
                   }
