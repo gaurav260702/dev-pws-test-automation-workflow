@@ -116,6 +116,7 @@ pipeline {
                     
                     group["${test.key}"]= {
                       stage("${test.key}") {
+                        sleep(10)
                         sh "mvn spring-boot:run -Dspring-boot.run.arguments='${test.value.path}'"
                         sleep(10)
                       }
