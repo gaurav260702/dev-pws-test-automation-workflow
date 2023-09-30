@@ -176,9 +176,9 @@ pipeline {
           }
           def BASE_NAME = configJson.$BASE_NAME$
           def SERVICE_NAME = (BASE_NAME.split('\\.'))[0]
-          def RESTAPI_CALL  = JsonOutput.toJson(configJson.apiCalls)
-          def API_RESPONSE = JsonOutput.toJson(configJson.responseChain)
-          def API_EXP_RESPONSE = JsonOutput.toJson(configJson.expValidationChain)
+          def RESTAPI_CALL  = JsonOutput.toJson("${configJson.apiCalls}")
+          def API_RESPONSE = JsonOutput.toJson("${configJson.responseChain}")
+          def API_EXP_RESPONSE = JsonOutput.toJson("${configJson.expValidationChain}")
           echo "${RESTAPI_CALL}"
           def jsonData = [
             "GIT_BRANCH":env.GIT_BRANCH,
@@ -192,7 +192,7 @@ pipeline {
           
           if(isMasterBranch) {
           sh """
-            curl -i -XPOST "https://calvinklein-7de56744.influxcloud.net:8086/write?db=k6&u=$INFLUX_DB_USERNAME&p=$INFLUX_DB_PASSWORD" --data-binary 'automation_test_report,TEST_NAME=${TEST_NAME},ENV_NAME=${ENV_NAME},TEST_STATUS=${TEST_STATUS},BUILD=${env.GIT_BRANCH}-${env.BUILD_NUMBER},SERVICE_NAME=${SERVICE_NAME} value=1,${statusName}=1,API_RESPONSE="${API_RESPONSE}",API_EXP_RESPONSE="${API_EXP_RESPONSE}"'
+            curl -i -XPOST "https://calvinklein-7de56744.influxcloud.net:8086/write?db=k6&u=$INFLUX_DB_USERNAME&p=$INFLUX_DB_PASSWORD" --data-binary 'automation_test_report,TEST_NAME=${TEST_NAME},ENV_NAME=${ENV_NAME},TEST_STATUS=${TEST_STATUS},BUILD=${env.GIT_BRANCH}-${env.BUILD_NUMBER},SERVICE_NAME=${SERVICE_NAME} value=1,${statusName}=1,API_RESPONSE="${API_RESPONSE}",API_EXP_RESPONSE="${API_EXP_RESPONSE}",RESTAPI_CALL="${RESTAPI_CALL}"'
           """
           } 
           else {
