@@ -67,7 +67,7 @@ pipeline {
           script {
             isMasterBranch = "${env.BRANCH_NAME}" == 'master'
             // Uncomment to allow your branch to act as master ONLY FOR TESTING
-            isMasterBranch = true
+            // isMasterBranch = true
             sh "docker build --tag ${imageName} ."
           }
         }
@@ -178,7 +178,7 @@ pipeline {
           def RESTAPI_CALL  = JsonOutput.toJson(configJson.apiCalls)
           def API_RESPONSE = JsonOutput.toJson(configJson.responseChain)
           def API_EXP_RESPONSE = JsonOutput.toJson(configJson.expValidationChain)
-
+          echo "${RESTAPI_CALL}"
           def jsonData = [
             "GIT_BRANCH":env.GIT_BRANCH,
             "BUILD_NUMBER":env.BUILD_NUMBER,
