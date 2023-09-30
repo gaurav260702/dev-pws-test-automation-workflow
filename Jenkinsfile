@@ -95,6 +95,7 @@ pipeline {
                 cat /root/.aws/credentials
                 chmod -R u+rwX,go+rX,go-w /root/.aws || true
                 cat /root/.aws/credentials
+                rm -rf /tmp/reports
                 """
                 echo "TEST-START"
                 def group = [:]
@@ -148,7 +149,7 @@ pipeline {
       always {
         script {
           echo ""
-          sh "ls /tmp/"
+          sh "ls /tmp/reports"
           sh "docker image ls"
           sh "docker image rm -f ${imageName}"
         }
