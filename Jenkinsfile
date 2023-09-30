@@ -86,12 +86,6 @@ pipeline {
           VAULT_PATH = 'spg/pws-integration/aws/adsk-eis-ddws-int/sts/admin'
         }
         steps {
-          withCredentials([
-            usernamePassword(credentialsId: 'pws-k6-influx-db-write-user',
-              usernameVariable: 'INFLUX_DB_USERNAME',
-              passwordVariable: 'INFLUX_DB_PASSWORD',
-            )
-          ]) {
             script {
               try {
                 sh """
@@ -128,10 +122,15 @@ pipeline {
               }
             }
           }
-        }
       }
       stage('Process Test Reports') {
         steps {
+          withCredentials([
+            usernamePassword(credentialsId: 'pws-k6-influx-db-write-user',
+              usernameVariable: 'INFLUX_DB_USERNAME',
+              passwordVariable: 'INFLUX_DB_PASSWORD',
+            )
+          ]) {
           script {
             if (paramsSelected) {
                 stage('Send Test Report') {
@@ -140,6 +139,7 @@ pipeline {
               } else {
                   echo "No params selected"
               }
+          }
           }
         }
       }
