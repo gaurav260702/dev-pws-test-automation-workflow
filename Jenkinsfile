@@ -67,7 +67,7 @@ pipeline {
           script {
             isMasterBranch = "${env.BRANCH_NAME}" == 'master'
             // Uncomment to allow your branch to act as master ONLY FOR TESTING
-            isMasterBranch = true
+            // isMasterBranch = true
             sh "docker build --tag ${imageName} ."
           }
         }
@@ -124,9 +124,13 @@ pipeline {
                 }
                 parallel group
                 echo "TEST-END"
-                stage('Send Test Report'){
-                  sendReports(isMasterBranch)
-                 }
+                if (paramsSelected) {
+                stage('Send Test Report') {
+                  sendReports(isMasterBranch) 
+                }
+                } else {
+                    echo "No params selected"
+                }
               } catch (err) {
                 throw new Exception("Error: ${err}")
               }
@@ -136,12 +140,6 @@ pipeline {
       }
       // stage('Process Test Reports') {
       //   steps {
-      //     withCredentials([
-      //       usernamePassword(credentialsId: 'pws-k6-influx-db-write-user',
-      //         usernameVariable: 'INFLUX_DB_USERNAME',
-      //         passwordVariable: 'INFLUX_DB_PASSWORD',
-      //       )
-      //     ]) {
       //     script {
       //       if (paramsSelected) {
       //           stage('Send Test Report') {
@@ -151,7 +149,6 @@ pipeline {
       //             echo "No params selected"
       //         }
       //     }
-      //     }
       //   }
       // }
     }
@@ -159,7 +156,7 @@ pipeline {
       always {
         script {
           echo ""
-          sh "ls /tmp"
+          sh "ls /tmp/"
           sh "docker image ls"
           sh "docker image rm -f ${imageName}"
         }
@@ -167,63 +164,48 @@ pipeline {
     }
   }
 
- def sendReports(isMasterBranch) {
-  script {
-    echo "${isMasterBranch}"
-    echo("Send Reports")
-    dir('/tmp/reports') {
-      def files = findFiles() 
-  
-      files.each { f -> 
-          echo "This is a directory: ${f.name}"
+  def sendReports(isMasterBranch) {
+    script {
+      echo "${isMasterBranch}"
+      echo("Send Reports")
+      dir('/tmp/reports') {
+        def files = findFiles()
+
+        files.each {
+          f ->
+            echo "This is a directory: ${f.name}"
           def configJson = readJSON file: "/tmp/reports/${f.name}"
           def ENV_NAME = configJson.$ENV$
           def TEST_STATUS = configJson.$TEST_STATUS$
-          def TEST_NAME = (configJson.$TEST_NAME$).replace( 'Kicker.', '').replace( '.INT.json', '').replace( '.STG.json', '')
+          def TEST_NAME = (configJson.$TEST_NAME$).replace('Kicker.', '').replace('.INT.json', '').replace('.STG.json', '')
           def statusName = "pass"
-          if(TEST_STATUS == "FAIL"){
+          if (TEST_STATUS == "FAIL") {
             statusName = "fail"
           }
           def BASE_NAME = configJson.$BASE_NAME$
           def SERVICE_NAME = (BASE_NAME.split('\\.'))[0]
-          def apiCalls  = JsonOutput.toJson(configJson.apiCalls)
-          def responseChain = JsonOutput.toJson(configJson.responseChain)
-          echo "${apiCalls}"
-          echo "${responseChain}"
-          // def validationData = "${configJson.responseChain}"
-          // echo "${validationData}"
-          // def apiCallsData = "${configJson.apiCalls}"
-          // echo "${apiCallsData}"
-          // def responseChain = validationData.replaceAll(/(")/,"")
-          // def apiCalls = apiCallsData.replaceAll(/(")/,"")
-          // def API_CALLS = configJson.apiCalls
-          // echo "${JsonOutput.toJson(API_CALLS)}"
-          // echo "${configJson.validationFile}"
-          // def validatorPath = (configJson.validationFile).replaceAll( '/testdata/WorkflowProcessing/TestData/Validators/', '')
+          def RESTAPI_CALL = JsonOutput.toJson(configJson.apiCalls)
+          def API_RESPONSE = JsonOutput.toJson(configJson.responseChain)
+          def API_EXP_RESPONSE = JsonOutput.toJson(configJson.expValidationChain)
+          
           def jsonData = [
-            "GIT_BRANCH":env.GIT_BRANCH,
-            "BUILD_NUMBER":env.BUILD_NUMBER,
+            "GIT_BRANCH": env.GIT_BRANCH,
+            "BUILD_NUMBER": env.BUILD_NUMBER,
             "ENV_NAME": ENV_NAME,
             "TEST_STATUS": TEST_STATUS,
             "TEST_NAME": TEST_NAME,
-            "SERVICE_NAME":SERVICE_NAME,
+            "SERVICE_NAME": SERVICE_NAME,
           ]
           echo "${JsonOutput.toJson(jsonData)}"
-          
-          // def parser = new JsonSlurper()
-          // def parseJson = parser.parseText(configJson.ValidationChain)
-          // println(parseJson.keySet())
-          // def valiDatorJson = readJSON file: "/home/app/src/main/resources/${configJson.validationFile}"
-         //  echo "${valiDatorJson}"
+
           if(isMasterBranch) {
-          sh """
-            curl -i -XPOST "https://calvinklein-7de56744.influxcloud.net:8086/write?db=k6&u=$INFLUX_DB_USERNAME&p=$INFLUX_DB_PASSWORD" --data-binary 'automation_test_report,TEST_NAME=${TEST_NAME},ENV_NAME=${ENV_NAME},TEST_STATUS=${TEST_STATUS},BUILD=${env.GIT_BRANCH}-${env.BUILD_NUMBER},SERVICE_NAME=${SERVICE_NAME} value=1,${statusName}=1,API_RESPONSE="'''${responseChain}'''",RESTAPI_CALL="'''${apiCalls}'''"'
-          """
-          } 
-          else {
-            echo "Skipping send reports"
+            sh """
+              curl -i -XPOST "https://calvinklein-7de56744.influxcloud.net:8086/write?db=k6&u=$INFLUX_DB_USERNAME&p=$INFLUX_DB_PASSWORD" --data-binary 'automation_test_report,TEST_NAME=${TEST_NAME},ENV_NAME=${ENV_NAME},TEST_STATUS=${TEST_STATUS},BUILD=${env.GIT_BRANCH}-${env.BUILD_NUMBER},SERVICE_NAME=${SERVICE_NAME} value=1,${statusName}=1,API_RESPONSE="'''${API_RESPONSE}'''",API_EXP_RESPONSE="'''${API_EXP_RESPONSE}'''",RESTAPI_CALL="'''${RESTAPI_CALL}'''"'
+            """
+          } else {
+            echo "Skipping send test reports due to isMasterBranch=${isMasterBranch} "
           }
+        }
       }
     }
   }
-}
