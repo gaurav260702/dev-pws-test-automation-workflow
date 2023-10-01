@@ -76,7 +76,7 @@ pipeline {
         agent {
           docker {
             image "${imageName}"
-            reuseNode false
+            reuseNode true
             args '-u root -v /tmp:/tmp'
           }
         }
@@ -114,15 +114,15 @@ pipeline {
                     // def kickerJson = readJSON file: "${workspace}/src/main/resources/${test.value.path}"
                     // def kickerFiles = kickerJson.KickerFiles
                     
-                    group["${test.key}"]= {
-                      sleep(20)
+                    // group["${test.key}"]= {
+                    //   sleep(20)
                       stage("${test.key}") {
                         sh "mvn spring-boot:run -Dspring-boot.run.arguments='${test.value.path}'"
                       }
-                    }
+                   // }
                   }
                 }
-                parallel group
+                //parallel group
                 echo "TEST-END"
                 if (paramsSelected) {
                 stage('Send Test Report') {
