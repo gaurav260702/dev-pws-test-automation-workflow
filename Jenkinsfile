@@ -105,24 +105,24 @@ pipeline {
                 """
                 echo "TEST-START"
                 def group = [:]
-                allTests.each {
-                  test ->
+                allTests.eachWithIndex {
+                  test, index ->
                   if (params[test.key]) {
                     paramsSelected = true
                     echo "Key: ${test.key}"
                     echo "value: ${test.value.path}"
                     // def kickerJson = readJSON file: "${workspace}/src/main/resources/${test.value.path}"
                     // def kickerFiles = kickerJson.KickerFiles
-                    
-                    // group["${test.key}"]= {
-                    //   sleep(20)
+                    def count = index +1
+                    group["${test.key}"]= {
                       stage("${test.key}") {
+                        sleep(count*20)
                         sh "mvn spring-boot:run -Dspring-boot.run.arguments='${test.value.path}'"
                       }
-                   // }
+                    }
                   }
                 }
-                //parallel group
+                parallel group
                 echo "TEST-END"
                 if (paramsSelected) {
                 stage('Send Test Report') {
