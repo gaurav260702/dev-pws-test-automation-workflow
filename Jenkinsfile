@@ -67,7 +67,7 @@ pipeline {
           script {
             isMasterBranch = "${env.BRANCH_NAME}" == 'master'
             // Uncomment to allow your branch to act as master ONLY FOR TESTING
-            isMasterBranch = true
+            // isMasterBranch = true
             sh "docker build --tag ${imageName} ."
           }
         }
@@ -175,9 +175,9 @@ pipeline {
           f ->
             echo "This is a directory: ${f.name}"
           def configJson = readJSON file: "/tmp/reports/${f.name}"
-          def ENV_NAME = configJson.$ENV$
+          def ENV_NAME = configJson.$ENV$ ? (configJson.$ENV$).toUpperCase() : null
           def TEST_STATUS = configJson.$TEST_STATUS$
-          def TEST_NAME = (configJson.$TEST_NAME$).replace('Kicker.', '').replace('.INT.json', '').replace('.STG.json', '')
+          def TEST_NAME = (configJson.$TEST_NAME$).replaceAll(/(\s|\)|\(|%|Kicker.|.INT.json|.STG.json)/,"")
           def statusName = "pass"
           if (TEST_STATUS == "FAIL") {
             statusName = "fail"
