@@ -15,7 +15,13 @@ public class WpeTestAutomationApplication {
     static Logger logger = LoggerFactory.getLogger(WpeTestAutomationApplication.class);
 
     public static void main(String[] args) {
-		SpringApplication.run(WpeTestAutomationApplication.class, args);
+    try {
+		  SpringApplication.run(WpeTestAutomationApplication.class, args);
+     } catch (Exception e) {
+        e.printStackTrace(); 
+        System.exit(0);
+        
+      }
         // logger.info("Info level log message");
         // logger.debug("Debug level log message");
         // logger.error("Error level log message");
