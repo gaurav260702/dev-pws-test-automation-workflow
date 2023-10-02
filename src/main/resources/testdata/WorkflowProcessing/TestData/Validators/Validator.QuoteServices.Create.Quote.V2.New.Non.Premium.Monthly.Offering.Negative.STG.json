@@ -1,0 +1,17 @@
+{
+  "QuoteStatusFAILED": {
+    "quoteStatus": "FAILED",
+    "quoteNumber": "NA",
+    "transactionId": "*",
+    "errors": [
+      {
+        "code": "45025",
+        "message": "Monthly is not available for this quote. Select Annual or 3-Year term."
+      }
+    ]
+  },
+  "QuoteCreate": {
+    "message": "success",
+    "transactionId": "*"
+  }
+}
