@@ -183,7 +183,7 @@ pipeline {
             statusName = "fail"
           }
           def BASE_NAME = configJson.$BASE_NAME$
-          def SERVICE_NAME = (BASE_NAME.split('\\.'))[0]
+          def SERVICE_NAME = BASE_NAME ? (BASE_NAME.split('\\.'))[0] : null
           def RESTAPI_CALL = JsonOutput.toJson(configJson.apiCalls)
           def API_RESPONSE = JsonOutput.toJson(configJson.responseChain)
           def API_EXP_RESPONSE = JsonOutput.toJson(configJson.expValidationChain)
