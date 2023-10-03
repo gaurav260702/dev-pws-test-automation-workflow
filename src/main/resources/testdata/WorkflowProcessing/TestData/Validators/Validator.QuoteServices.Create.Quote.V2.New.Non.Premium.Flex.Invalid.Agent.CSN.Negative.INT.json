@@ -1,9 +1,14 @@
 {
-
-  "QuoteStatus": {
-    "quoteStatus": "DRAFT-CREATED",
-    "quoteNumber": "$QUOTE_NUMBER$",
-    "transactionId": "*"
+  "QuoteStatusFAILED": {
+    "quoteStatus": "FAILED",
+    "quoteNumber": "NA",
+    "transactionId": "*",
+    "errors": [
+      {
+        "code": "45011",
+        "message": "Agent not eligible to place a quote"
+      }
+    ]
   },
   "QuoteCreate": {
     "message": "success",
