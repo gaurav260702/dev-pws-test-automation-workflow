@@ -1,0 +1,12 @@
+{
+  "QuoteCreate": {
+    "transactionId": "*",
+    "errors": [
+      {
+        "code": "45001",
+        "message": "\u0027lineItems[0].quantity\u0027 must be greater than or equal to 1"
+      }
+    ],
+    "status": "error"
+  }
+}

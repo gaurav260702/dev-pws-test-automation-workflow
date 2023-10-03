@@ -1,33 +1,32 @@
 {
-    "quoteNote": "Notefromagenttocustomer.{{note}}",
-    "currency": "$CURRENCY$",
+    "quoteNote": "SM_Notefrom_Agenttocustomer.{{note}}",
+    "currency": "AUD",
     "agentAccount": {
-        "accountCsn": "$CSN_RESELLER$"
+        "accountCsn": "5070132993"
     },
     "agentContact": {
-        "email": "$AGENT_EMAIL$"
+        "email": "part_01aug_001@letscheck.pw"
     },
     "endCustomer": {
-        "accountCsn": "5150331120",
-        "name": "SMVIRU Associates Ltd",
-        "addressLine1": "$ADDRESS1$",
-        "city": "$CITY$",
-        "countryCode": "$COUNTRY$",
-        "postalCode": "$POSTAL_CODE$",
+        "accountCsn": "5156266226",
+        "name": "Fnumykpg Lnumykpg",
+        "addressLine1": "1 Barrack St",
+        "city": "Perth",
+        "countryCode": "AU",
+        "postalCode": "6000",
         "isIndividual": false
     },
     "purchaser": {
-        "email": "SM_Aususer1@letscheck.pw",
-        "firstName": "SM",
-        "lastName": "User1Dinkum",
-        "phone": "9454456666",
+        "email": "sunnygopi2021@gmail.com",
+        "firstName": "Sunny",
+        "lastName": "Gopim",
+        "phone": "+4154776666",
         "preferredLanguage": "en"
     },
     "lineItems": [
         {
-            "quantity": 10000,
-            "offeringId": "OD-000163",
-            "startDate": "2023-10-30",
+            "quantity": 1,
+            "offeringId": "OD-000021",
             "action": "New",
             "offer": {
                 "term": {
@@ -35,8 +34,8 @@
                     "description": "Annual"
                 },
                 "accessModel": {
-                    "code": "F",
-                    "description": "Flex"
+                    "code": "S",
+                    "description": "Single User"
                 },
                 "intendedUsage": {
                     "code": "COM",
@@ -53,9 +52,9 @@
             }
         },
         {
-            "quantity": 2000,
-            "offeringId": "OD-000021",
-            "startDate": "2023-10-30",
+            "quantity": 3,
+            "promotionCode": "ANZLT3PACK",
+            "offeringId": "OD-000054",
             "action": "New",
             "offer": {
                 "term": {
@@ -80,5 +79,7 @@
                 }
             }
         }
+
+
     ]
 }

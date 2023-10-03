@@ -1,0 +1,56 @@
+{
+    "currency": "USD",
+    "agentAccount": {
+        "accountCsn": "5070132993"
+    },
+    "agentContact": {
+        "email": "kleekru@yahoo.com"
+    },
+    "endCustomer": {
+        "name": "SMVIRU Associates Ltd",
+        "addressLine1": "2 Barrack St",
+        "city": "Perth",
+        "stateProvinceCode": "WA",
+        "countryCode": "AU",
+        "postalCode": "2000",
+        "isIndividual": false
+    },
+    "purchaser": {
+        "email": "sunnygopi2021@gmail.com",
+        "firstName": "Sunny",
+        "lastName": "Gopim",
+        "phone": "4154776666",
+        "preferredLanguage": "en"
+    },
+    "lineItems": [
+        {
+            "offeringId": "OD-000227",
+            "offeringCode": "INVPROSA",
+            "offeringName": "Inventor Professional",
+            "action": "New",
+            "quantity": 2,
+            "offer": {
+                "term": {
+                    "code": "A06",
+                    "description": "Multi-Year"
+                },
+                "accessModel": {
+                    "code": "S",
+                    "description": "Single User"
+                },
+                "intendedUsage": {
+                    "code": "COM",
+                    "description": "Commercial"
+                },
+                "connectivity": {
+                    "code": "C100",
+                    "description": "Online"
+                },
+                "servicePlan": {
+                    "code": "STND",
+                    "description": "Standard"
+                }
+            }
+        }
+    ]
+}

@@ -1,17 +1,17 @@
 ﻿{
   "$ROOT$": "./testdata/WorkflowProcessing/TestData",
-  "$ENV$": "INT",
+  "$ENV$": "STG",
 
   "$ROOT_NAME$": "QuoteServices",
-  "$VARIATION_COUNT$": "Create.Quote.V2.New.Non.Premium.Flex.Invalid.Agent.CSN.Negative",
+  "$VARIATION_COUNT$": "Create.Quote.V2.New.Is.Individual.True.Negative",
   "$BASE_NAME$": "$ROOT_NAME$_$VARIATION_COUNT$",
   "$VALIDATION$": "$ROOT$/Validators",
   "$OVERRIDES$": "$ROOT$/Overrides",
   "$BASE_DATA$": "$ROOT$/BaseData",
   "$CONFIG$": "$ROOT$/Configurations",
 
-  "$CSN_SOLDTO$": "5112991506",
-  "$CSN_RESELLER$": "5112991507",
+  "$CSN_SOLDTO$": "5501670235",
+  "$CSN_RESELLER$": "5070132993",
   "$CSN_ENDCUSTOMER$": "5112991506",
   "$CSN_SHIPTO$": "5112991506",
 
@@ -21,10 +21,10 @@
   "$CSN_QUATERNARY$": "$CSN_SOLDTO$",
 
   "$CSN_ACCOUNT_CONTACT$": "5112991506",
-  "$CSN_HEADER$": "5112991507",
+  "$CSN_HEADER$": "5070132993",
 
-      "$OFFERING_ID$": "OD-000321",
-      "$AGENT_EMAIL$": "agentpartnera2k@letscheck.email",
+      "$OFFERING_ID$": "OD-000163",
+      "$AGENT_EMAIL$": "newuserpartnerau_5501670235@letscheck.pw",
 
   "$CREATE_QUOTE_BASE_URL$": "https://enterprise-api-$ENV$.autodesk.com/",
   "$VERSION_PATH$": "v2",
@@ -48,10 +48,10 @@
   "baseUrl": "https://enterprise-api-$ENV$.autodesk.com",
   "oAuthBaseUrl":  "https://enterprise-api-$ENV$.autodesk.com",
 
-  "baseFile": "$BASE_DATA$/BaseData.$ROOT_NAME$.Create.Quote.V2.New.Non.Premium.Flex.Invalid.Agent.CSN.Negative.$ENV$.json",
+  "baseFile": "$BASE_DATA$/BaseData.$ROOT_NAME$.Create.Quote.V2.New.Is.Individual.True.Negative.$ENV$.json",
   "overridesFile": "$OVERRIDES$/Override.NONE.json",
-  "validationFile": "$VALIDATION$/Validator.$ROOT_NAME$.Create.Quote.V2.New.Non.Premium.Flex.Invalid.Agent.CSN.Negative.$ENV$.json",
+  "validationFile": "$VALIDATION$/Validator.$ROOT_NAME$.Create.Quote.V2.New.Is.Individual.True.Negative.$ENV$.json",
   "secretsFile": "$CONFIG$/Secrets.GetInvoiceServices.INT.json",
 
-  "workflow": "CreateQuoteV2NewFlexQTYLessThan100"
+  "workflow": "CreateQuoteV2NewIsIndividualTrueNegative"
 }

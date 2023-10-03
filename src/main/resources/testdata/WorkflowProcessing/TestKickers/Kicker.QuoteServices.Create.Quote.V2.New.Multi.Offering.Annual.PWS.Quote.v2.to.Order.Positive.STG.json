@@ -1,9 +1,9 @@
 ﻿{
   "$ROOT$": "./testdata/WorkflowProcessing/TestData",
-  "$ENV$": "INT",
+  "$ENV$": "STG",
 
   "$ROOT_NAME$": "QuoteServices",
-  "$VARIATION_COUNT$": "Create.Quote.V2.New.Non.Premium.Flex.Invalid.Agent.CSN.Negative",
+  "$VARIATION_COUNT$": "Create.Quote.V2.New.Multi.Offering.Annual.PWS.Quote.v2.to.Order.Positive",
   "$BASE_NAME$": "$ROOT_NAME$_$VARIATION_COUNT$",
   "$VALIDATION$": "$ROOT$/Validators",
   "$OVERRIDES$": "$ROOT$/Overrides",
@@ -11,7 +11,7 @@
   "$CONFIG$": "$ROOT$/Configurations",
 
   "$CSN_SOLDTO$": "5112991506",
-  "$CSN_RESELLER$": "5112991507",
+  "$CSN_RESELLER$": "5070132993",
   "$CSN_ENDCUSTOMER$": "5112991506",
   "$CSN_SHIPTO$": "5112991506",
 
@@ -20,8 +20,8 @@
   "$CSN_TERTIARY$": "$CSN_SOLDTO$",
   "$CSN_QUATERNARY$": "$CSN_SOLDTO$",
 
-  "$CSN_ACCOUNT_CONTACT$": "5112991506",
-  "$CSN_HEADER$": "5112991507",
+  "$CSN_ACCOUNT_CONTACT$": "5070132993",
+  "$CSN_HEADER$": "5070132993",
 
       "$OFFERING_ID$": "OD-000321",
       "$AGENT_EMAIL$": "agentpartnera2k@letscheck.email",
@@ -32,7 +32,7 @@
   "$TIMEZONE_CITY$": "Australia/Sydney",
   "$CURRENCY$": "AUD",
 
-  "$ADDRESS1$": "60 Jenke Cct",
+  "$ADDRESS1$": "601 Jenke Cct",
   "$CITY$": "Kambah",
   "$POSTAL_CODE$": "2902",
   "$COUNTRY$": "AU",
@@ -48,10 +48,10 @@
   "baseUrl": "https://enterprise-api-$ENV$.autodesk.com",
   "oAuthBaseUrl":  "https://enterprise-api-$ENV$.autodesk.com",
 
-  "baseFile": "$BASE_DATA$/BaseData.$ROOT_NAME$.Create.Quote.V2.New.Non.Premium.Flex.Invalid.Agent.CSN.Negative.$ENV$.json",
+  "baseFile": "$BASE_DATA$/BaseData.$ROOT_NAME$.Create.Quote.V2.New.Multi.Offering.Annual.PWS.Quote.v2.to.Order.Positive.$ENV$.json",
   "overridesFile": "$OVERRIDES$/Override.NONE.json",
-  "validationFile": "$VALIDATION$/Validator.$ROOT_NAME$.Create.Quote.V2.New.Non.Premium.Flex.Invalid.Agent.CSN.Negative.$ENV$.json",
+  "validationFile": "$VALIDATION$/Validator.$ROOT_NAME$.Create.Quote.V2.New.Multi.Offering.Annual.PWS.Quote.v2.to.Order.Positive.$ENV$.json",
   "secretsFile": "$CONFIG$/Secrets.GetInvoiceServices.INT.json",
 
-  "workflow": "CreateQuoteV2NewFlexQTYLessThan100"
+  "workflow": "CreateQuoteV2New"
 }
