@@ -8,7 +8,7 @@
   {
     "transactionId": "*-*-*-*-*",
     "status": "error",
-    "error": [
+    "errors": [
       {
         "code": "45107",
         "message": "*"
