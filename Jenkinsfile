@@ -42,9 +42,7 @@ pipeline {
       steps {
         script {
          //  testfiles = findFiles(glob: '**/Kicker.*.json')
-         //  testfiles = findFiles(glob: '**/KickerSuite*QuoteServices*json')
-        //   KickerSuite.ServicesQuote.GetQuoteDetailsInternalv2.INT.json
-         testfiles = findFiles(glob: '**/KickerSuite.ServicesQuote.GetQuoteDetailsInternalv2.INT.json')
+             testfiles = findFiles(glob: '**/KickerSuite*QuoteServices*json')
 
 
           echo ""
