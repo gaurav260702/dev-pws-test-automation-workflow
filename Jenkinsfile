@@ -49,7 +49,7 @@ pipeline {
   triggers {
     parameterizedCron(env.BRANCH_NAME == 'send-test-reports' ? '''
         # run tests everyday at 5 AM PST
-        0 5 * * * % QuoteServices_STG=true;QuoteServices_INT=true;QuoteServices_V2_STG=true;QuoteServices_V2_INT=true;
+        0 5 * * * % QuoteServices_STG=true;QuoteServices_INT=true;QuoteServices_V2_STG=true;QuoteServices_V2_INT=true;GetQuoteDetailsInternalv2_INT=true;
     ''' : '')
     }
     options {
