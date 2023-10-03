@@ -525,7 +525,9 @@ public class Kicker
 	        LogIt("Validation Total: " + validationCount);
 	        LogIt("Failure Count:    " + failCount);
 	        LogIt("Pass Count:       " + passCount);
-	
+	        DataPool.add("totalValidation",validationCount);
+			DataPool.add("failValidation",failCount);
+			DataPool.add("passValidation",passCount);
 	        if(failCount > 0)
 	        {
 	        	dumpValidationList(validationResults.get("ValidationList"));
@@ -824,6 +826,7 @@ public class Kicker
 							    	LogIt("Expected value: " + validationItemDetails.get("ExpectedValue"));
 							    	LogIt("Actual value:   " + validationItemDetails.get("ActualValue"));
 							    	LogIt("Test Result:    " + validationItemDetails.get("TestResult"));
+									DataPool.add("validationError", validationItemDetails.get("ActualValue"));
 						    	}
 						    }
 						}

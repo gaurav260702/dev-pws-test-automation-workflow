@@ -18,7 +18,7 @@ public class WpeTestAutomationApplication {
     try {
 		  SpringApplication.run(WpeTestAutomationApplication.class, args);
      } catch (Exception e) {
-        e.printStackTrace(); 
+       // e.printStackTrace(); 
         System.exit(0);
         
       }
