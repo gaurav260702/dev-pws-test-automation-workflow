@@ -1,15 +1,15 @@
 {
-    "quoteNote": "Notefromagenttocustomer.{{note}}",
-    "currency": "$CURRENCY$",
+    "quoteNote": "SM_Notefrom_Agenttocustomer.{{note}}",
+    "currency": "AUD",
     "agentAccount": {
-        "accountCsn": "$CSN_RESELLER$"
+        "accountCsn": "5070132993"
     },
     "agentContact": {
-        "email": "$AGENT_EMAIL$"
+        "email": "kleekru@yahoo.com"
     },
     "endCustomer": {
-        "accountCsn": "5150331120",
-        "name": "SMVIRU Associates Ltd",
+        "accountCsn": "5500570701",
+        "name": "SMHarry MCAD",
         "addressLine1": "$ADDRESS1$",
         "city": "$CITY$",
         "countryCode": "$COUNTRY$",
@@ -17,26 +17,26 @@
         "isIndividual": false
     },
     "purchaser": {
-        "email": "SM_Aususer1@letscheck.pw",
-        "firstName": "SM",
-        "lastName": "User1Dinkum",
-        "phone": "9454456666",
+        "email": "sunnygopi2021@gmail.com",
+        "firstName": "Sunny",
+        "lastName": "Gopim",
+        "phone": "4154776666",
         "preferredLanguage": "en"
     },
     "lineItems": [
         {
-            "quantity": 10000,
-            "offeringId": "OD-000163",
-            "startDate": "2023-10-30",
+            "quantity": 1,
+            "offeringId": "OD-000021",
             "action": "New",
+            "startDate": "2023-10-18",
             "offer": {
                 "term": {
                     "code": "A01",
                     "description": "Annual"
                 },
                 "accessModel": {
-                    "code": "F",
-                    "description": "Flex"
+                    "code": "S",
+                    "description": "Single User"
                 },
                 "intendedUsage": {
                     "code": "COM",
@@ -53,10 +53,10 @@
             }
         },
         {
-            "quantity": 2000,
-            "offeringId": "OD-000021",
-            "startDate": "2023-10-30",
+            "quantity": 2,
+            "offeringId": "OD-000054",
             "action": "New",
+            "startDate": "2023-10-19",
             "offer": {
                 "term": {
                     "code": "A01",
@@ -80,5 +80,7 @@
                 }
             }
         }
+
+
     ]
 }

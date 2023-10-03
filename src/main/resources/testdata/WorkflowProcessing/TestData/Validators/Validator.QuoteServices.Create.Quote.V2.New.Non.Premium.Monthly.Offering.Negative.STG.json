@@ -5,8 +5,8 @@
     "transactionId": "*",
     "errors": [
       {
-        "code": "45011",
-        "message": "Agent not eligible to place a quote"
+        "code": "45025",
+        "message": "Monthly is not available for this quote. Select Annual or 3-Year term."
       }
     ]
   },

@@ -5,8 +5,8 @@
     "transactionId": "*",
     "errors": [
       {
-        "code": "45011",
-        "message": "Agent not eligible to place a quote"
+        "code": "45018",
+        "message": "Unsupported currency - please update and resubmit."
       }
     ]
   },
