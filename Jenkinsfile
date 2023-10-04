@@ -179,9 +179,9 @@ pipeline {
           def TOTAL_VALIDATIONS = configJson.totalValidations
           def FAIL_VALIDATIONS = configJson.failValidations
           def PASS_VALIDATIONS = configJson.passValidations
-          def TRANSACTION_ID = configJson.$TRANSACTION_ID$ ? configJson.$TRANSACTION_ID$ : null
-          def VALIDATION_ERROR = configJson.validationError ? JsonOutput.toJson(configJson.validationError) : null
-          def VALIDATION_ERRORS = configJson.validationErrorsList ? JsonOutput.toJson(configJson.validationErrorsList) : null
+          def TRANSACTION_ID = configJson.$TRANSACTION_ID$ ? configJson.$TRANSACTION_ID$ : ""
+          def VALIDATION_ERROR = configJson.validationError ? JsonOutput.toJson(configJson.validationError) : ""
+          def VALIDATION_ERRORS = configJson.validationErrorsList ? JsonOutput.toJson(configJson.validationErrorsList) : ""
           
           def jsonData = [
             "GIT_BRANCH": env.GIT_BRANCH,
