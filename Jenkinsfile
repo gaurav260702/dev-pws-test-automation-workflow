@@ -176,7 +176,7 @@ pipeline {
           def API_RESPONSE = JsonOutput.toJson(configJson.responseChain)
           def API_EXP_RESPONSE = JsonOutput.toJson(configJson.expValidationChain)
 
-          def TOTAL_VALIDATIONS = configJson.totalValidation
+          def TOTAL_VALIDATIONS = configJson.totalValidations
           def FAIL_VALIDATIONS = configJson.failValidations
           def PASS_VALIDATIONS = configJson.passValidations
           def TRANSACTION_ID = configJson.$TRANSACTION_ID$ ? configJson.$TRANSACTION_ID$ : null
