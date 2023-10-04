@@ -22,11 +22,9 @@ def allTests = [
   QuoteNotifyWebhook_INT: [path: "testdata/WorkflowProcessing/KickerSuites/KickerSuite.QuoteNotificationWebhook.INT.json"],
   QuoteServices_STG: [path: "testdata/WorkflowProcessing/KickerSuites/KickerSuite.QuoteServices.STG.json"],
   QuoteServices_INT: [path: "testdata/WorkflowProcessing/KickerSuites/KickerSuite.QuoteServices.INT.json"],
+  GetQuoteDetailsInternalv2_INT: [path: "testdata/WorkflowProcessing/KickerSuites/KickerSuite.ServicesQuote.GetQuoteDetailsInternalv2.INT.json"],
   CatalogExport_INT: [path: "testdata/WorkflowProcessing/KickerSuites/KickerSuite.CatalogExport.INT.json"],
-  PromotionsExport_INT: [path: "testdata/WorkflowProcessing/KickerSuites/KickerSuite.PromotionsExport.INT.json"],
-  DdaTests_STG: [path: "testdata/WorkflowProcessing/KickerSuites/KickerSuite.DdaTests.STG.json"],
-  GetInvoiceServices_INT: [path: "testdata/WorkflowProcessing/KickerSuites/KickerSuite.GetInvoiceServices.INT.json"],
-  GetQuoteDetailsInternalv2_INT: [path: "testdata/WorkflowProcessing/KickerSuites/KickerSuite.ServicesQuote.GetQuoteDetailsInternalv2.INT.json"]
+  PromotionsExport_INT: [path: "testdata/WorkflowProcessing/KickerSuites/KickerSuite.PromotionsExport.INT.json"]
 ]
 
 pipeline {
@@ -38,12 +36,9 @@ pipeline {
     booleanParam(name: 'QuoteServices_INT', description: 'Run QuoteServices Tests in INT', defaultValue: false)
     booleanParam(name: 'QuoteServices_V2_STG', description: 'Run QuoteServices V2 Tests in STG', defaultValue: false)
     booleanParam(name: 'QuoteServices_V2_INT', description: 'Run QuoteServices V2 Tests in INT', defaultValue: false)
+    booleanParam(name: 'GetQuoteDetailsInternalv2_INT', description: 'RUN GetQuoteDetailsInternalv2 Tests in INT', defaultValue: false)
     booleanParam(name: 'CatalogExport_INT', description: 'RUN CatalogExport Tests in INT', defaultValue: false)
     booleanParam(name: 'PromotionsExport_INT', description: 'RUN PromotionsExport Tests in INT', defaultValue: false)
-    booleanParam(name: 'GetQuoteDetailsInternalv2_INT', description: 'RUN GetQuoteDetailsInternalv2 Tests in INT', defaultValue: false)
-    booleanParam(name: 'GetInvoiceServices_INT', description: 'RUN GetInvoiceServices Tests in INT', defaultValue: false)
-    booleanParam(name: 'DdaTests_STG', description: 'RUN Dda Tests in STG', defaultValue: false)
-    booleanParam(name: 'QuoteNotifyWebhook_INT', description: 'Run QuoteNotificationWebhook Tests in INT', defaultValue: false)
   }
 
   triggers {
@@ -67,7 +62,7 @@ pipeline {
           script {
             isMasterBranch = "${env.BRANCH_NAME}" == 'master'
             // Uncomment to allow your branch to act as master ONLY FOR TESTING
-            isMasterBranch = true
+            // isMasterBranch = true
             sh "docker build --tag ${imageName} ."
           }
         }
@@ -187,6 +182,12 @@ pipeline {
           def RESTAPI_CALL = JsonOutput.toJson(configJson.apiCalls)
           def API_RESPONSE = JsonOutput.toJson(configJson.responseChain)
           def API_EXP_RESPONSE = JsonOutput.toJson(configJson.expValidationChain)
+
+          def TOTAL_VALIDATIONS = configJson.totalValidation
+          def FAIL_VALIDATIONS = configJson.failValidations
+          def PASS_VALIDATIONS = configJson.passValidations
+          def TRANSACTION_ID = configJson.$TRANSACTION_ID$ ? configJson.$TRANSACTION_ID$ : null
+          def VALIDATION_ERROR = configJson.validationError ? JsonOutput.toJson(configJson.validationError) : null
           
           def jsonData = [
             "GIT_BRANCH": env.GIT_BRANCH,
@@ -195,6 +196,11 @@ pipeline {
             "TEST_STATUS": TEST_STATUS,
             "TEST_NAME": TEST_NAME,
             "SERVICE_NAME": SERVICE_NAME,
+            "TOTAL_VALIDATIONS": TOTAL_VALIDATIONS,
+            "FAIL_VALIDATIONS": FAIL_VALIDATIONS,
+            "PASS_VALIDATIONS": PASS_VALIDATIONS,
+            "TRANSACTION_ID": TRANSACTION_ID,
+            "VALIDATION_ERROR": VALIDATION_ERROR,
           ]
           echo "${JsonOutput.toJson(jsonData)}"
 
