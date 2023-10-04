@@ -179,9 +179,9 @@ pipeline {
           def TOTAL_VALIDATIONS = configJson.totalValidations
           def FAIL_VALIDATIONS = configJson.failValidations
           def PASS_VALIDATIONS = configJson.passValidations
-          def TRANSACTION_ID = configJson.$TRANSACTION_ID$ ? configJson.$TRANSACTION_ID$ : ""
-          def VALIDATION_ERROR = configJson.validationError ? JsonOutput.toJson(configJson.validationError) : ""
-          def VALIDATION_ERRORS = configJson.validationErrorsList ? JsonOutput.toJson(configJson.validationErrorsList) : ""
+          def TRANSACTION_ID = configJson.$TRANSACTION_ID$ ? configJson.$TRANSACTION_ID$ : null
+          def VALIDATION_ERROR = configJson.validationError ? JsonOutput.toJson(configJson.validationError) : null
+          def VALIDATION_ERRORS = configJson.validationErrorsList ? JsonOutput.toJson(configJson.validationErrorsList) : null
           
           def jsonData = [
             "GIT_BRANCH": env.GIT_BRANCH,
@@ -201,7 +201,7 @@ pipeline {
 
           if(isMasterBranch) {
             sh """
-              curl -i -XPOST "https://calvinklein-7de56744.influxcloud.net:8086/write?db=k6&u=$INFLUX_DB_USERNAME&p=$INFLUX_DB_PASSWORD" --data-binary 'automation_test_report,TEST_NAME=${TEST_NAME},ENV_NAME=${ENV_NAME},TEST_STATUS=${TEST_STATUS},BUILD=${env.GIT_BRANCH}-${env.BUILD_NUMBER},SERVICE_NAME=${SERVICE_NAME} value=1,${statusName}=1,TRANSACTION_ID=${TRANSACTION_ID},TOTAL_VALIDATIONS=${TOTAL_VALIDATIONS},PASS_VALIDATIONS=${PASS_VALIDATIONS},FAIL_VALIDATIONS=${FAIL_VALIDATIONS},API_RESPONSE="'''${API_RESPONSE}'''",API_EXP_RESPONSE="'''${API_EXP_RESPONSE}'''",RESTAPI_CALL="'''${RESTAPI_CALL}'''",VALIDATION_ERROR="'''${VALIDATION_ERROR}'''",VALIDATION_ERRORS="'''${VALIDATION_ERRORS}'''"'
+              curl -i -XPOST "https://calvinklein-7de56744.influxcloud.net:8086/write?db=k6&u=$INFLUX_DB_USERNAME&p=$INFLUX_DB_PASSWORD" --data-binary 'automation_test_report,TEST_NAME=${TEST_NAME},ENV_NAME=${ENV_NAME},TEST_STATUS=${TEST_STATUS},BUILD=${env.GIT_BRANCH}-${env.BUILD_NUMBER},SERVICE_NAME=${SERVICE_NAME} value=1,${statusName}=1,TRANSACTION_ID="${TRANSACTION_ID}",TOTAL_VALIDATIONS=${TOTAL_VALIDATIONS},PASS_VALIDATIONS=${PASS_VALIDATIONS},FAIL_VALIDATIONS=${FAIL_VALIDATIONS},API_RESPONSE="'''${API_RESPONSE}'''",API_EXP_RESPONSE="'''${API_EXP_RESPONSE}'''",RESTAPI_CALL="'''${RESTAPI_CALL}'''",VALIDATION_ERROR="'''${VALIDATION_ERROR}'''",VALIDATION_ERRORS="'''${VALIDATION_ERRORS}'''"'
             """
           } else {
             echo "Skipping send test reports due to isMasterBranch=${isMasterBranch} "
