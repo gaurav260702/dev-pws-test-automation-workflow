@@ -806,7 +806,6 @@ public class Kicker
     @SuppressWarnings("unchecked")
 	private void dumpValidationItem(Object validationItemsListObj)
     {
-		ArrayList<Object> validationErrorsList = new ArrayList<Object>();
 
     	HashMap<String, Object> validationItemslist = (HashMap<String, Object>) validationItemsListObj;
 
@@ -829,12 +828,11 @@ public class Kicker
 							    	LogIt("Actual value:   " + validationItemDetails.get("ActualValue"));
 							    	LogIt("Test Result:    " + validationItemDetails.get("TestResult"));
 									DataPool.add("validationError", validationItemDetails);
-									validationErrorsList.add(validationItemDetails);
+									DataPool.addErrorsList(validationItemDetails);
 						    	}
 						    }
 						}
     			   );
-		DataPool.add("validationErrorsList", validationErrorsList);
 	}
 
 	private void setExecutionPathVariable()
