@@ -133,19 +133,6 @@ pipeline {
           }
         }
       }
-      // stage('Process Test Reports') {
-      //   steps {
-      //     script {
-      //       if (paramsSelected) {
-      //           stage('Send Test Report') {
-      //             sendReports(isMasterBranch) 
-      //           }
-      //         } else {
-      //             echo "No params selected"
-      //         }
-      //     }
-      //   }
-      // }
     }
     post {
       always {
@@ -163,6 +150,9 @@ pipeline {
     script {
       echo "${isMasterBranch}"
       echo("Send Reports")
+      def passCount = 0
+      def failCount = 0
+
       dir('/tmp/reports') {
         def files = findFiles()
 
@@ -176,6 +166,9 @@ pipeline {
           def statusName = "pass"
           if (TEST_STATUS == "FAIL") {
             statusName = "fail"
+            failCount = failCount + 1
+          }else{
+            passCount = passCount + 1
           }
           def BASE_NAME = configJson.$BASE_NAME$
           def SERVICE_NAME = BASE_NAME ? (BASE_NAME.split('\\.'))[0] : null
@@ -213,5 +206,8 @@ pipeline {
           }
         }
       }
+      echo "Total Tests: ${passCount + failCount}"
+      echo "Pass Tests: ${passCount}"
+      echo "Fail Tests: ${failCount}"
     }
   }
