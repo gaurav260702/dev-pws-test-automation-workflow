@@ -1,7 +1,8 @@
 {
     "$ENV$": "int",
     "$GET_QUOTE_DETAILS_INTERNAL_v2_BASE_URL$": "https://quote-internal.ddws$ENV$.autodesk.com",
-
+    "$SERVICE_NAME$": "GetQuoteDetailsInternalv2",
+    
     "x-api-key": "KSw9zyNEMY3npzsb6NR8wag3Rl63jfsH5cyzMZM3",
 
     "param":"filter[oxygenId]",

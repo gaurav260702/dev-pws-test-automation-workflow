@@ -5,6 +5,7 @@
   "$ROOT_NAME$": "QuoteServices",
   "$VARIATION_COUNT$": "Resend.Quote.Email.Quote.Number.Draft.State.Negative",
   "$BASE_NAME$": "$ROOT_NAME$_$VARIATION_COUNT$",
+  "$SERVICE_NAME$": "QuoteServices_ResendEmail",
   "$VALIDATION$": "$ROOT$/Validators",
   "$OVERRIDES$": "$ROOT$/Overrides",
   "$BASE_DATA$": "$ROOT$/BaseData",

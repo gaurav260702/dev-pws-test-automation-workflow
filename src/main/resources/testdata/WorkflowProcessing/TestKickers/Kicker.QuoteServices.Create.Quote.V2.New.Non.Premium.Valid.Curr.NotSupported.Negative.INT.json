@@ -5,6 +5,7 @@
   "$ROOT_NAME$": "QuoteServices",
   "$VARIATION_COUNT$": "Create.Quote.V2.New.Non.Premium.Valid.Curr.NotSupported.Negative",
   "$BASE_NAME$": "$ROOT_NAME$_$VARIATION_COUNT$",
+  "$SERVICE_NAME$": "QuoteServices_V2",
   "$VALIDATION$": "$ROOT$/Validators",
   "$OVERRIDES$": "$ROOT$/Overrides",
   "$BASE_DATA$": "$ROOT$/BaseData",

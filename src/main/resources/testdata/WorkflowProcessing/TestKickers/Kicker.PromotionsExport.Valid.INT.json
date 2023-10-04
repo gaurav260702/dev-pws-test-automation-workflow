@@ -5,7 +5,8 @@
   "$QUANTITY_TO_PURCHASE$": "5000",
   "$ROOT_NAME$": "PromotionsExport.Valid",
   "$BASE_NAME$": "$ROOT_NAME$.$QUANTITY_TO_PURCHASE$",
-
+  "$SERVICE_NAME$": "PromotionsExport",
+  
   "$VALIDATION$": "$ROOT$/Validators",
   "$OVERRIDES$": "$ROOT$/Overrides",
   "$BASE_DATA$": "$ROOT$/BaseData",

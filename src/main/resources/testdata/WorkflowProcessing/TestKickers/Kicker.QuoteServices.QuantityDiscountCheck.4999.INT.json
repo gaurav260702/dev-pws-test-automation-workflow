@@ -5,6 +5,7 @@
   "$QUANTITY_TO_PURCHASE$": "4982",
   "$ROOT_NAME$": "QuoteServices.QuantityDiscountCheck",
   "$BASE_NAME$": "$ROOT_NAME$.$QUANTITY_TO_PURCHASE$",
+  "$SERVICE_NAME$": "QuoteServices",
 
   "$VALIDATION$": "$ROOT$/Validators",
   "$OVERRIDES$": "$ROOT$/Overrides",

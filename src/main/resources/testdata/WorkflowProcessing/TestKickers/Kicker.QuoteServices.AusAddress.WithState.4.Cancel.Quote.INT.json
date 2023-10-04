@@ -5,6 +5,7 @@
   "$ROOT_NAME$": "QuoteServices.AusAddress",
   "$VARIATION_COUNT$": "WithState.4.Cancel.Quote",
   "$BASE_NAME$": "$ROOT_NAME$_$VARIATION_COUNT$",
+  "$SERVICE_NAME$": "QuoteServices",
   "$VALIDATION$": "$ROOT$/Validators",
   "$OVERRIDES$": "$ROOT$/Overrides",
   "$BASE_DATA$": "$ROOT$/BaseData",
