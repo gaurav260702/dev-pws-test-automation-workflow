@@ -1,6 +1,7 @@
 {
   "KickerFiles":
   [
+    "./testdata/WorkflowProcessing/TestKickers/Kicker.PromotionsExport.Valid.INT.json",
     "./testdata/WorkflowProcessing/TestKickers/Kicker.PromotionsExport.Invalid_CSN.INT.json"
   ]
 }
