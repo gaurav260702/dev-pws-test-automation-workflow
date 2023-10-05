@@ -95,6 +95,58 @@ public class DataPool extends HashMap<String, Object>
     }
     
 	@SuppressWarnings("unchecked")
+	public void addToAPICall(String key, Object value)
+	{
+		HashMap<String, Object> apiCalls = null;
+
+        if(!containsKey("apiCalls"))
+        {
+        	HashMap<String, Object> apiCallDictionary = new HashMap<String, Object>();
+            this.add("apiCalls", apiCallDictionary);
+        }
+
+        apiCalls = (HashMap<String, Object>) this.get("apiCalls");
+
+       if(!key.contains("OAuthCredentials")){
+         	apiCalls.put(key, value);
+		}
+	}
+
+	@SuppressWarnings("unchecked")
+	public void addErrorsList(Object value)
+	{
+		ArrayList<Object> validationErrorsList = new ArrayList<Object>();
+
+        if(!containsKey("validationErrorsList"))
+        {
+        	ArrayList<Object> validationErrorsListDictionary = new ArrayList<Object>();
+            this.add("validationErrorsList", validationErrorsListDictionary);
+        }
+
+        validationErrorsList = (ArrayList<Object>) this.get("validationErrorsList");
+
+        validationErrorsList.add(value);
+	}
+
+	
+
+	@SuppressWarnings("unchecked")
+	public void addToResponseChain(String key, Object value)
+	{
+		HashMap<String, Object> responseChain = null;
+
+        if(!containsKey("responseChain"))
+        {
+        	HashMap<String, Object> responseChainDictionary = new HashMap<String, Object>();
+            this.add("responseChain", responseChainDictionary);
+        }
+
+        responseChain = (HashMap<String, Object>) this.get("responseChain");
+
+        responseChain.put(key, value);
+	}
+
+	@SuppressWarnings("unchecked")
 	public void addToValidationChain(String validationLabel, Object dataToValidate)
 	{
 		HashMap<String, Object> validationChain = null;

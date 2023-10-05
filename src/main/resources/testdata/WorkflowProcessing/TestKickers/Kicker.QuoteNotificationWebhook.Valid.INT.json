@@ -5,6 +5,7 @@
   "$QUANTITY_TO_PURCHASE$": "5000",
   "$ROOT_NAME$": "QuoteNotificationWebhook.Valid",
   "$BASE_NAME$": "$ROOT_NAME$.$QUANTITY_TO_PURCHASE$",
+  "$SERVICE_NAME$": "QuoteNotificationWebhook",
 
   "$VALIDATION$": "$ROOT$/Validators",
   "$OVERRIDES$": "$ROOT$/Overrides",

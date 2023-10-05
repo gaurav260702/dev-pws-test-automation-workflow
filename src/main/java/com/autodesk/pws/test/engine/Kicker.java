@@ -28,6 +28,8 @@ import com.google.gson.Gson;
 import com.google.gson.internal.LinkedTreeMap;
 import com.google.gson.reflect.TypeToken;
 import io.restassured.path.json.JsonPath;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 
 ////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////
@@ -458,7 +460,13 @@ public class Kicker
 
             LogIt("  ");
             LogIt("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
-            
+
+            //Add Expected Validations in DataPool
+			String validationFilePath = DataPool.getRaw("validationFile").toString();
+			String validatorRawJson = DataPool.loadJsonFile(validationFilePath);
+			JsonObject jsonObject = JsonParser.parseString(validatorRawJson).getAsJsonObject();
+			DataPool.add("expValidationChain",jsonObject);
+
             String forceValidations = (String)DataPool.get("forceValidationsIfWorkflowIncomplete");
             
             if(forceValidations != null && forceValidations.equalsIgnoreCase("true"))
@@ -500,7 +508,6 @@ public class Kicker
             exitCode = -1;
         }
 
-        exportDataPoolToJson(logToFile, logFileName);
         
         //  Check to see if the workflow actually completed.
         if((workflowCompleted && validationsCompleted) || forceValidationsIfWorkflowIncomplete)
@@ -518,7 +525,9 @@ public class Kicker
 	        LogIt("Validation Total: " + validationCount);
 	        LogIt("Failure Count:    " + failCount);
 	        LogIt("Pass Count:       " + passCount);
-	
+	        DataPool.add("totalValidations",validationCount);
+			DataPool.add("failValidations",failCount);
+			DataPool.add("passValidations",passCount);
 	        if(failCount > 0)
 	        {
 	        	dumpValidationList(validationResults.get("ValidationList"));
@@ -552,6 +561,7 @@ public class Kicker
         	DataPool.add("$TEST_STATUS$", "PASS");
         }
         
+		exportDataPoolToJson(logToFile, logFileName);
         //  Log the JuiceBox test results...
         logJuiceBoxResultInfo();
         
@@ -636,6 +646,7 @@ public class Kicker
 			try 
 			{
 				FileUtils.writeStringToFile(new File(logFileName + ".DataPool.json"), dataPoolDump, Charset.defaultCharset());
+				FileUtils.writeStringToFile(new File("/tmp/reports/"+logFileName + ".json"), dataPoolDump, Charset.defaultCharset());
 				FileUtils.writeStringToFile(new File(logFileName + ".ValidationChain.json"), validationChainDump, Charset.defaultCharset());
 			} 
 			catch (Exception e) 
@@ -795,6 +806,7 @@ public class Kicker
     @SuppressWarnings("unchecked")
 	private void dumpValidationItem(Object validationItemsListObj)
     {
+
     	HashMap<String, Object> validationItemslist = (HashMap<String, Object>) validationItemsListObj;
 
     	//  Loop through all the items in the Validation List...
@@ -815,11 +827,13 @@ public class Kicker
 							    	LogIt("Expected value: " + validationItemDetails.get("ExpectedValue"));
 							    	LogIt("Actual value:   " + validationItemDetails.get("ActualValue"));
 							    	LogIt("Test Result:    " + validationItemDetails.get("TestResult"));
+									DataPool.add("validationError", validationItemDetails);
+									DataPool.addErrorsList(validationItemDetails);
 						    	}
 						    }
 						}
     			   );
-    }
+	}
 
 	private void setExecutionPathVariable()
     {

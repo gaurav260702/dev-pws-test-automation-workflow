@@ -26,6 +26,8 @@ import okhttp3.Request;
 import okhttp3.Request.Builder;
 import okhttp3.RequestBody;
 import okhttp3.Response;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 
 public class RestActionBase extends StepBase 
 {
@@ -48,6 +50,8 @@ public class RestActionBase extends StepBase
 	public HashMap<String, String> RequestHeaders = new HashMap<String, String>();
 
 	private HashMap<String, String> attachedRequestHeaders = new HashMap<String, String>();
+
+	private HashMap<String, Object> apiRequests = new HashMap<String, Object>();
 
 	public void initBaseVariables() 
 	{
@@ -156,9 +160,9 @@ public class RestActionBase extends StepBase
 		RequestBody body = null;
 		
 		log("Target URL: " + restResourcePath);
-
+		apiRequests.put("requestURL", restResourcePath);
 		String ucaseRestMethod = restMethod.toUpperCase();
-		
+		apiRequests.put("requestMethod", ucaseRestMethod);
 		if (ucaseRestMethod == "POST" || ucaseRestMethod == "PATCH" || ucaseRestMethod == "PUT") 
 		{
 			mediaType = MediaType.parse(mediaTypeValue);
@@ -255,15 +259,23 @@ public class RestActionBase extends StepBase
 
 		// Log the headers for debugging purposes...
 		log("-- REQUEST HEADERS --", DEFAULT_LEFT_SPACE_PADDING + 4);
+	    HashMap<String, String> getRequestHeaders = new HashMap<String, String>();
 		for (int i = 0, count = headers.size(); i < count; i++) 
 		{
 			log(headers.name(i) + " : " + headers.value(i), DEFAULT_LEFT_SPACE_PADDING + 8);
+
+			if(!(headers.name(i)).matches("^.*?((?i)x-api-key|Authorization|signature).*$")){
+				getRequestHeaders.put(headers.name(i),(headers.value(i)).replaceAll("\"", ""));
+			}
 		}
+		apiRequests.put("requestHeaders", getRequestHeaders);
 
 		if(loggableJsonPayload.length() > 0)
 		{
 			log("-- REQUEST BODY --", DEFAULT_LEFT_SPACE_PADDING + 4);
 			log(loggableJsonPayload, DEFAULT_LEFT_SPACE_PADDING + 8);
+			JsonObject jsonObject = JsonParser.parseString(loggableJsonPayload).getAsJsonObject();
+			apiRequests.put("requestBody", jsonObject);
 		}
 		
 		// Ready the REST client...
@@ -276,21 +288,27 @@ public class RestActionBase extends StepBase
 		response = client.newCall(request).execute();
 
 		this.log("Service response: " + response.code() + " -- " + response.message());
-		
+		apiRequests.put("responseCode", response.code());
 		log("-- RESPONSE HEADERS --", DEFAULT_LEFT_SPACE_PADDING + 4);
+		HashMap<String, String> getResponseHeaders = new HashMap<String, String>();
 		Headers responseHeaders = response.headers();
+
 		for (int i = 0, count = responseHeaders.size(); i < count; i++) 
 		{
 			log(responseHeaders.name(i) + " : " + responseHeaders.value(i), DEFAULT_LEFT_SPACE_PADDING + 8);
+			getResponseHeaders.put(responseHeaders.name(i),(responseHeaders.value(i)).replaceAll("\"", ""));
 		}
 
+		apiRequests.put("responseHeaders", getResponseHeaders);
+
 		this.ActualResponseMessage = response.message();
+		DataPool.addToAPICall(ClassName,apiRequests);
 		
 		// Hand back to the caller whatever we received from the REST service...
 		return response;
 	}
 
-	public void addResponseToValidationChain() 
+	public void addResponseToValidationChain()
 	{
 		// Stick that response body in the ValidationChain,
 		// but let's go ahead and make it puuuurrrdy first.
@@ -301,9 +319,17 @@ public class RestActionBase extends StepBase
 		// If we were to include it as part of the "action()"
 		// method, it would be called 'n' number of times,
 		// which is of course a bit excessive...
+		try {
 		JsonPath jsonPath = JsonPath.from(JsonResponseBody);
 		String prettyJson = jsonPath.prettify();
 		addValidationChainLink(ClassName, prettyJson);
+		JsonObject jsonObject = JsonParser.parseString(JsonResponseBody).getAsJsonObject();
+		DataPool.addToResponseChain(ClassName,jsonObject);
+		apiRequests.put("responseBody", jsonObject);
+		}
+		catch (Exception e) {
+		 e.printStackTrace();
+		}
 	}
 
 	private String hack_CleanQuantityFloatType(String rawJson) {

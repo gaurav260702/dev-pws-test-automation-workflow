@@ -5,6 +5,7 @@
   "$ROOT_NAME$": "QuoteServices",
   "$VARIATION_COUNT$": "Update.Quote.V2.Operation.Delete.Action.New.Positive",
   "$BASE_NAME$": "$ROOT_NAME$_$VARIATION_COUNT$",
+  "$SERVICE_NAME$": "QuoteServices_UpdateQuote",
   "$VALIDATION$": "$ROOT$/Validators",
   "$OVERRIDES$": "$ROOT$/Overrides",
   "$BASE_DATA$": "$ROOT$/BaseData",

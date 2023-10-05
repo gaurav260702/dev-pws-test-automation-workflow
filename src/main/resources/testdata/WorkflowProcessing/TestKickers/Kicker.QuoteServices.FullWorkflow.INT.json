@@ -2,6 +2,7 @@
   "$ROOT$": "./testdata/WorkflowProcessing/TestData",
   "$ENV$": "INT",
   "$BASE_NAME$": "QuoteServices.FullWorkflow",
+  "$SERVICE_NAME$": "QuoteServices",
   "$VALIDATION$": "$ROOT$/Validators",
   "$OVERRIDES$": "$ROOT$/Overrides",
   "$BASE_DATA$": "$ROOT$/BaseData",
