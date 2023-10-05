@@ -42,7 +42,7 @@ pipeline {
   }
 
   triggers {
-    parameterizedCron(env.BRANCH_NAME == 'send-test-reports' ? '''
+    parameterizedCron(env.BRANCH_NAME == 'master' ? '''
         # run tests everyday at 5 AM PST
         0 5 * * * % QuoteServices_STG=true;QuoteServices_INT=true;QuoteServices_V2_STG=true;QuoteServices_V2_INT=true;GetQuoteDetailsInternalv2_INT=true;
     ''' : '')
@@ -106,8 +106,6 @@ pipeline {
                     paramsSelected = true
                     echo "Key: ${test.key}"
                     echo "value: ${test.value.path}"
-                    // def kickerJson = readJSON file: "${workspace}/src/main/resources/${test.value.path}"
-                    // def kickerFiles = kickerJson.KickerFiles
                     def count = index +1
                     group["${test.key}"]= {
                       stage("${test.key}") {
@@ -176,9 +174,9 @@ pipeline {
           def API_RESPONSE = JsonOutput.toJson(configJson.responseChain)
           def API_EXP_RESPONSE = JsonOutput.toJson(configJson.expValidationChain)
 
-          def TOTAL_VALIDATIONS = configJson.totalValidations
-          def FAIL_VALIDATIONS = configJson.failValidations
-          def PASS_VALIDATIONS = configJson.passValidations
+          def TOTAL_VALIDATIONS = configJson.totalValidations ? configJson.totalValidations : 0
+          def FAIL_VALIDATIONS = configJson.failValidations ? configJson.failValidations : 0
+          def PASS_VALIDATIONS = configJson.passValidations ? configJson.passValidations : 0
           def TRANSACTION_ID = configJson.$TRANSACTION_ID$ ? configJson.$TRANSACTION_ID$ : null
           def VALIDATION_ERROR = configJson.validationError ? JsonOutput.toJson(configJson.validationError) : null
           def VALIDATION_ERRORS = configJson.validationErrorsList ? JsonOutput.toJson(configJson.validationErrorsList) : null
