@@ -136,7 +136,7 @@ pipeline {
       always {
         script {
           echo ""
-          sh "ls /tmp/"
+          sh "ls /tmp/reports/"
           sh "docker image ls"
           sh "docker image rm -f ${imageName}"
         }
