@@ -62,7 +62,7 @@ pipeline {
           script {
             isMasterBranch = "${env.BRANCH_NAME}" == 'master'
             // Uncomment to allow your branch to act as master ONLY FOR TESTING
-            // isMasterBranch = true
+            isMasterBranch = true
             sh "docker build --tag ${imageName} ."
           }
         }
@@ -177,7 +177,7 @@ pipeline {
           def TOTAL_VALIDATIONS = configJson.totalValidations ? configJson.totalValidations : 0
           def FAIL_VALIDATIONS = configJson.failValidations ? configJson.failValidations : 0
           def PASS_VALIDATIONS = configJson.passValidations ? configJson.passValidations : 0
-          def TRANSACTION_ID = configJson.$TRANSACTION_ID$ ? configJson.$TRANSACTION_ID$ : null
+          def TRANSACTION_ID = configJson.$TRANSACTION_ID$ ? configJson.$TRANSACTION_ID$ : "NA"
           def VALIDATION_ERROR = configJson.validationError ? JsonOutput.toJson(configJson.validationError) : null
           def VALIDATION_ERRORS = configJson.validationErrorsList ? JsonOutput.toJson(configJson.validationErrorsList) : null
           
