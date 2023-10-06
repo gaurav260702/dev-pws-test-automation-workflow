@@ -1,0 +1,72 @@
+﻿{
+  "$ROOT$": "./testdata/WorkflowProcessing/TestData",
+  "$ENV$": "STG",
+
+  "$QUANTITY_TO_PURCHASE$": "5000",
+  "$ROOT_NAME$": "PromotionsExport.Valid",
+  "$BASE_NAME$": "$ROOT_NAME$.$QUANTITY_TO_PURCHASE$",
+  "$SERVICE_NAME$": "PromotionsExport",
+  
+  "$VALIDATION$": "$ROOT$/Validators",
+  "$OVERRIDES$": "$ROOT$/Overrides",
+  "$BASE_DATA$": "$ROOT$/BaseData",
+  "$CONFIG$": "$ROOT$/Configurations",
+
+  "$CSN_SOLDTO$": "5112991506",
+  "$CSN_RESELLER$": "5112991506",
+  "$CSN_ENDCUSTOMER$": "5112991506",
+  "$CSN_SHIPTO$": "5112991506",
+
+  "$CSN_PRIMARY$": "$CSN_ENDCUSTOMER$",
+  "$CSN_SECONDARY$": "$CSN_RESELLER$",
+  "$CSN_TERTIARY$": "$CSN_SOLDTO$",
+  "$CSN_QUATERNARY$": "$CSN_SOLDTO$",
+
+  "$CSN_ACCOUNT_CONTACT$": "5112991506",
+  "$CSN_HEADER$": "5112991506",
+  "$CSN_VALIDATION_ACCOUNT$": "4000003508",
+  "$CSN_AGENT_ACCOUNT_CONTACT$": "4000003508",
+  "$CSN_VALIDATION_END_CUSTOMER$": "5501164200",
+
+  "$OFFERING_ID$": "OD-000163",
+  "$AGENT_EMAIL$": "agentpartnera2k@letscheck.email",
+
+  "********** Quantity Specific Validation Items ***********": "(ignore me)",
+
+  "$lineItems[0].pricing.endUserPrice$": "18281.25",
+  "$lineItems[0].pricing.extendedDiscountedSRP$": "18281.25",
+  "$lineItems[0].pricing.extendedSRP$": "18750",
+  "$lineItems[0].pricing.totalDiscount$": "468.75",
+  "$lineItems[0].pricing.transactionVolumeDiscountAmount$": "468.75",
+  "$lineItems[0].pricing.transactionVolumeDiscountPercent$": "2.5",
+  "$pricing.estimatedTax$": "1828.13",
+  "$pricing.totalAmount$": "20109.38",
+  "$pricing.totalDiscount$": "468.75",
+  "$pricing.totalListAmount$": "18750",
+  "$pricing.totalNetAmount$": "18281.25",
+
+  "$CREATE_QUOTE_BASE_URL$": "https://enterprise-api-$ENV$.autodesk.com/",
+  "$VERSION_PATH$": "v1",
+
+  "$TIMEZONE_CITY$": "Australia/Sydney",
+  "$CURRENCY$": "AUD",
+
+  "includeForceableHeaders": "true",
+  "forceableHeaders":
+  {
+    "x-adsk-test-event": "false",
+    "CSN": "$CSN_HEADER$"
+  },
+
+  "forceValidationsIfWorkflowIncomplete": true,
+
+  "baseUrl": "https://enterprise-api-$ENV$.autodesk.com",
+  "oAuthBaseUrl":  "https://enterprise-api-$ENV$.autodesk.com",
+
+  "baseFile": "$BASE_DATA$/BaseData.$ROOT_NAME$.$ENV$.json",
+  "overridesFile": "$OVERRIDES$/Override.NONE.json",
+  "validationFile": "$VALIDATION$/Validator.$ROOT_NAME$.$ENV$.json",
+  "secretsFile": "$CONFIG$/Secrets.GetInvoiceServices.STG.json",
+
+  "workflow": "PromotionsExport"
+}
