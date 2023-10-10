@@ -5,8 +5,8 @@
     "transactionId": "*",
     "errors": [
       {
-        "message": "Customer details for this opportunity do not match the quote. Update the customer details on the quote to continue.",
-        "code": "45068"
+        "code": "45007",
+        "message": "Invalid address - This customer is outside of your authorized territory"
       }
     ]
   },
