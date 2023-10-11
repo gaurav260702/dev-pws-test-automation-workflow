@@ -1,0 +1,75 @@
+{
+    "quoteNote": "SM_Notefrom_Agenttocust.{{note}}",
+    "currency": "AUD",
+    "agentAccount": {
+        "accountCsn": "5070132993"
+    },
+    "agentContact": {
+        "email": "partneruser_da_stg_5070132993_2@letscheck.email"
+    },
+    "endCustomer": {
+        "accountCsn": "5502394709"
+    },
+    "primaryAdmin": {
+        "email": "fy24_inabvsg_octsg4@letscheck.pw"
+    },
+    "purchaser": {
+        "email": "fy24_inabvsg_octsg4@letscheck.pw"
+    },
+    "lineItems": [
+        {
+            "offeringId": "OD-000321",
+            "action": "New",
+            "quantity": 100,
+            "offer": {
+                "term": {
+                    "code": "A06",
+                    "description": "3 Year"
+                },
+                "accessModel": {
+                    "code": "S",
+                    "description": "Single User"
+                },
+                "intendedUsage": {
+                    "code": "COM",
+                    "description": "Commercial"
+                },
+                "connectivity": {
+                    "code": "C100",
+                    "description": "Online"
+                },
+                "servicePlan": {
+                    "code": "PREMSUB",
+                    "description": "Premium"
+                }
+            }
+        },
+        {
+            "offeringId": "OD-000021",
+            "action": "New",
+            "quantity": 150,
+            "offer": {
+                "term": {
+                    "code": "A06",
+                    "description": "3 Year"
+                },
+                "accessModel": {
+                    "code": "S",
+                    "description": "Single User"
+                },
+                "intendedUsage": {
+                    "code": "COM",
+                    "description": "Commercial"
+                },
+                "connectivity": {
+                    "code": "C100",
+                    "description": "Online"
+                },
+                "servicePlan": {
+                    "code": "STND",
+                    "description": "Standard"
+                }
+            }
+        }
+    ]
+}
