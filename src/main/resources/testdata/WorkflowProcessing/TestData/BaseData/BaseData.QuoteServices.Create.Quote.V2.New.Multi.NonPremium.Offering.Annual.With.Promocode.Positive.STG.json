@@ -1,0 +1,83 @@
+{
+    "quoteNote": "SM_Notefrom_Agenttocustomer.{{note}}",
+    "currency": "AUD",
+    "agentAccount": {
+        "accountCsn": "5070132993"
+    },
+    "agentContact": {
+        "email": "part_01Aug_001@letscheck.pw"
+    },
+    "endCustomer": {
+        "accountCsn": "5500570701",
+        "addressLine1": "52 Harris St",
+        "city": "Pyrmont",
+        "countryCode": "AU",
+        "isIndividual": false,
+        "name": "SAM Rocks Ltd",
+        "postalCode": "2009"
+    },
+    "purchaser": {
+        "email": "sunnygopi2021@gmail.com",
+        "firstName": "Sunny",
+        "lastName": "Gopim",
+        "phone": "+4154776666",
+        "preferredLanguage": "en"
+    },
+    "lineItems": [
+        {
+            "offeringId": "OD-000021",
+            "action": "New",
+            "quantity": 1,
+            "offer": {
+                "term": {
+                    "code": "A01",
+                    "description": "Annual"
+                },
+                "accessModel": {
+                    "code": "S",
+                    "description": "Single User"
+                },
+                "intendedUsage": {
+                    "code": "COM",
+                    "description": "Commercial"
+                },
+                "connectivity": {
+                    "code": "C100",
+                    "description": "Online"
+                },
+                "servicePlan": {
+                    "code": "STND",
+                    "description": "Standard"
+                }
+            }
+        },
+        {
+            "offeringId": "OD-000054",
+            "action": "New",
+            "quantity": 3,
+            "promotionCode": "ANZLT3PACK",
+            "offer": {
+                "term": {
+                    "code": "A01",
+                    "description": "Annual"
+                },
+                "accessModel": {
+                    "code": "S",
+                    "description": "Single User"
+                },
+                "intendedUsage": {
+                    "code": "COM",
+                    "description": "Commercial"
+                },
+                "connectivity": {
+                    "code": "C100",
+                    "description": "Online"
+                },
+                "servicePlan": {
+                    "code": "STND",
+                    "description": "Standard"
+                }
+            }
+        }
+    ]
+}
