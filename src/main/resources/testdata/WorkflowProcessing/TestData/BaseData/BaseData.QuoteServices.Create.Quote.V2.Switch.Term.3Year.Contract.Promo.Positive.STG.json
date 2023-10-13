@@ -1,0 +1,35 @@
+{
+    "quoteNote": "SM_Notefrom_Agenttocust.{{note}}",
+    "currency": "AUD",
+    "agentAccount": {
+        "accountCsn": "5070132993"
+    },
+    "agentContact": {
+        "email": "part_01aug_001@letscheck.pw"
+    },
+    "endCustomer": {
+        "accountCsn": "5502335897",
+        "isIndividual": false
+    },
+    "purchaser": {
+        "email": "biz-thubstoreausqqclrumaiwjs@letscheck.pw",
+        "firstName": "FNFldOPD",
+        "lastName": "LNFldOPD",
+        "phone": "+4128008009",
+        "preferredLanguage": "en"
+    },
+    "lineItems": [
+        {
+
+            "action": "Switch",
+            "quantity": 12,
+            "subscriptionId": "69568581471170",
+            "offer": {
+                "term": {
+                    "code": "A06",
+                    "description": "3 Year"
+                }
+            }
+        }
+    ]
+}
