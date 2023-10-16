@@ -8,22 +8,21 @@
         "email": "part_01aug_001@letscheck.pw"
     },
     "endCustomer": {
-        "accountCsn": "5502335897",
+        "accountCsn": "5502379086",
         "isIndividual": false
     },
     "purchaser": {
-        "email": "biz-thubstoreausqqclrumaiwjs@letscheck.pw",
-        "firstName": "FNFldOPD",
-        "lastName": "LNFldOPD",
-        "phone": "+4128008009",
+        "email": "krisatumaa@letscheck.email",
+        "firstName": "KrisA",
+        "lastName": "TumaA",
+        "phone": "+61285659327",
         "preferredLanguage": "en"
     },
     "lineItems": [
         {
-
             "action": "Switch",
-            "quantity": 12,
-            "subscriptionId": "69568581471170",
+            "quantity": 10,
+            "subscriptionId": "69620920691769",
             "offer": {
                 "term": {
                     "code": "A06",
