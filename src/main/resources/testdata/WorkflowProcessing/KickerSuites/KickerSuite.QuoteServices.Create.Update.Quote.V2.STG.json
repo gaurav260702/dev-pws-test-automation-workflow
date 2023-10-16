@@ -35,6 +35,9 @@
     "./testdata/WorkflowProcessing/TestKickers/Kicker.QuoteServices.Create.Quote.V2.Co_Term.Annual.Contract.With.StartDate.Future.Positive.STG.json",
     "./testdata/WorkflowProcessing/TestKickers/Kicker.QuoteServices.Create.Quote.V2.Co_Term.3Year.Contract.With.StartDate.Future.Positive.STG.json",
     "./testdata/WorkflowProcessing/TestKickers/Kicker.QuoteServices.Create.Quote.V2.Switch.Product.Annual.Contract.Positive.STG.json",
-    "./testdata/WorkflowProcessing/TestKickers/Kicker.QuoteServices.Create.Quote.V2.Switch.Term.3Year.Contract.Promo.Positive.STG.json"
+    "./testdata/WorkflowProcessing/TestKickers/Kicker.QuoteServices.Create.Quote.V2.Switch.Term.3Year.Contract.Promo.Positive.STG.json",
+    "./testdata/WorkflowProcessing/TestKickers/Kicker.QuoteServices.Create.Quote.V2.Extension.subscriptionId.Positive.STG.json",
+    "./testdata/WorkflowProcessing/TestKickers/Kicker.QuoteServices.Create.Quote.V2.Extension.subscriptionId.3Year.Contract.Positive.STG.json",
+    "./testdata/WorkflowProcessing/TestKickers/Kicker.QuoteServices.Create.Quote.V2.Extension.subscriptionId.3Year.Contract.Serial.Number.Positive.STG.json"
   ]
 }
