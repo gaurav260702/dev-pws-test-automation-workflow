@@ -1,7 +1,7 @@
 import groovy.json.JsonSlurper;
 import groovy.json.JsonOutput;
 
-@Library("PSL@master") _
+@Library(["PSL@master","TestAutomationUtils@master"]) _
 
 def dockerReg = "autodesk-docker.art-bobcat.autodesk.com/team-pws"
 
@@ -153,6 +153,18 @@ pipeline {
 
       dir('/tmp/reports') {
         def files = findFiles()
+
+        if (!fileExists('test-reports')) {
+         sh 'mkdir -p test-reports'
+         }
+         sh """
+         pwd
+         cp -f *.json test-reports
+         chmod -R 777 /tmp/reports/
+         """
+
+        zip zipFile: "PWSQuoteServices-reports.zip", dir: "test-reports"
+        UploadTestResults("PWSQuoteServices-reports.zip","JSON_LOG","ESAEDSBD-402", "${env.GIT_URL}".tokenize('/.')[-2], env.BRANCH_NAME, env.BUILD_NUMBER,"ESAEDSBD")
 
         files.each {
           f ->
