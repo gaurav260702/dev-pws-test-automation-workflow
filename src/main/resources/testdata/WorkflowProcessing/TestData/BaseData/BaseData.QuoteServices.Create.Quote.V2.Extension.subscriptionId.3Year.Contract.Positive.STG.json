@@ -1,0 +1,27 @@
+{
+    "quoteNote": "Note from agent to customer1.{{note}}",
+    "currency": "AUD",
+    "agentAccount": {
+        "accountCsn": "5070132993"
+    },
+    "agentContact": {
+        "email": "part_01Aug_001@letscheck.pw"
+    },
+    "endCustomer": {
+        "accountCsn": "5502410159"
+    },
+    "purchaser": {
+        "email": "thub6friday23oct@letscheck.pw",
+        "firstName": "Sunny",
+        "lastName": "Gopim",
+        "phone": "+4154776666",
+        "preferredLanguage": "en"
+    },
+    "lineItems": [
+        {
+            "action": "Extension",
+            "subscriptionId": "69658403144723",
+            "endDate": "2026-10-10"
+        }
+    ]
+}

@@ -1,0 +1,27 @@
+{
+    "quoteNote": "Note from agent to customer1.{{note}}",
+    "currency": "AUD",
+    "agentAccount": {
+        "accountCsn": "5070132993"
+    },
+    "agentContact": {
+        "email": "part_01aug_001@letscheck.pw"
+    },
+    "endCustomer": {
+        "accountCsn": "5156114301"
+    },
+    "purchaser": {
+        "email": "kris44tuma44@letscheck.email",
+        "firstName": "KrisK",
+        "lastName": "TumaK",
+        "phone": "+61292994769",
+        "preferredLanguage": "en"
+    },
+    "lineItems": [
+        {
+            "action": "Renewal",
+            "quantity": 1,
+            "subscriptionId": "67718367066138"
+        }
+    ]
+}
