@@ -10,18 +10,12 @@
     "endCustomer": {
         "accountCsn": "5156114301"
     },
+    "opportunityNumber": "A-19951577",
     "purchaser": {
         "email": "kris44tuma44@letscheck.email",
         "firstName": "KrisK",
         "lastName": "TumaK",
         "phone": "+61292994769",
         "preferredLanguage": "en"
-    },
-    "lineItems": [
-        {
-            "action": "Renewal",
-            "quantity": 1,
-            "subscriptionId": "67718367066138"
-        }
-    ]
+    }
 }
