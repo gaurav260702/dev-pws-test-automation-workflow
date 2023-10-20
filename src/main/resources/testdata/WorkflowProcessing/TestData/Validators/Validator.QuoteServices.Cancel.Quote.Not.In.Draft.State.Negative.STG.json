@@ -29,7 +29,7 @@
     "errors": [
       {
         "code": "45604",
-        "message": "Quotes can only be cancelled when in a draft status."
+        "message": "Quotes can only be cancelled before they are sent to a customer."
       }
     ],
     "status": "error"

@@ -13,7 +13,7 @@
     "transactionId": "*",
     "errors": [
       {
-        "code": "UQ04007",
+        "code": "45507",
         "message": "Quote Line Number 'QL-0252421' does not belong to this quote (Line Item 1)."
       }
     ]
