@@ -5,6 +5,10 @@
       {
         "code": "45001",
         "message": "startDate across New lineItems should be same"
+      },
+      {
+        "code": "45001",
+        "message": "startDate can\u0027t be more than 30 days in the future"
       }
     ],
     "status": "error"
