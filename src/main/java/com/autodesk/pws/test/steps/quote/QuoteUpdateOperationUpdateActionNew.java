@@ -3,7 +3,7 @@ package com.autodesk.pws.test.steps.quote;
 import com.autodesk.pws.test.steps.base.PwsServiceBase;
 import io.restassured.path.json.JsonPath;
 
-public class QuoteUpdateOperationUpdateNew extends PwsServiceBase
+public class QuoteUpdateOperationUpdateActionNew extends PwsServiceBase
 {
 	public String DataPoolSourceInfoLabel = "";
 	
