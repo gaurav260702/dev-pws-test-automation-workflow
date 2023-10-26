@@ -15,5 +15,13 @@
     "quoteCreatedTime": "*",
     "pricing.currency": "AUD",
     "agentAccount.accountCsn": "$CSN_ACCOUNT_CONTACT$"
+  },
+  "QuoteUpdateOperationDelete": {
+    "agentTimeZone": "*",
+    "quoteNumber": "$QUOTE_NUMBER$",
+    "quoteStatus": "Draft",
+    "quoteCreatedTime": "*",
+    "pricing.currency": "AUD",
+    "agentAccount.accountCsn": "$CSN_ACCOUNT_CONTACT$"
   }
 }

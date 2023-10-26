@@ -10,21 +10,24 @@
     "endCustomer": {
         "accountCsn": "5502394709"
     },
-    "opportunityNumber": "A-20034666",
     "purchaser": {
-        "email": "fy24_opftryr_stgoc4@letscheck.pw"
+        "email": "fy24_anloptystg_oct6@letscheck.pw",
+        "firstName": "gathusk",
+        "lastName": "gathusk",
+        "phone": "+61289070544",
+        "preferredLanguage": "en"
     },
     "lineItems": [
         {
             "offeringId": "OD-000321",
-            "action": "True-up",
-            "endDate": "2024-10-05",
-            "quantity": 50,
-            "startDate": "2023-10-06",
+            "action": "Co-term",
+            "quantity": 1,
+            "referenceSubscriptionId": "69659405276222",
+            "startDate": "2023-11-14",
             "offer": {
                 "term": {
-                    "code": "A06",
-                    "description": "3 Year"
+                    "code": "A01",
+                    "description": "Annual"
                 },
                 "accessModel": {
                     "code": "S",
