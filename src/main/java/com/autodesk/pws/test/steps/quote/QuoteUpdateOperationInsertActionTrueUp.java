@@ -51,13 +51,14 @@ public class QuoteUpdateOperationInsertActionTrueUp extends PwsServiceBase
     //	String jsonBody = "{\"quoteNumber\":\"$QUOTE_NUMBER$\"}";  $QUOTE_LINE_NUMBER$
 		String jsonBody = "{\n" +
 				"    \"quoteNumber\": \"$QUOTE_NUMBER$\",\n" +
-				"    \"lineItems\": [\n" +
-				"        {\n" +
-				"            \"offeringId\": \"OD-000238\",\n" +
-				"            \"action\": \"New\",\n" +
-				"            \"quantity\": 10,\n" +
-				"            \"operation\": \"Insert\",\n" +
-				"            \"offer\": {\n" +
+				"    \"lineItems\": [{\n" +
+				"    \"action\": \"True-up\",\n" +
+				"    \"quantity\": 5,\n" +
+				"    \"operation\": \"Insert\",\n" +
+				"    \"offeringId\": \"OD-000054\",\n" +
+				"    \"startDate\": \"2023-11-25\",\n" +
+				"    \"endDate\": \"2024-11-25\",\n" +
+				"    \"offer\": {\n" +
 				"                \"term\": {\n" +
 				"                    \"code\": \"A01\",\n" +
 				"                    \"description\": \"Annual\"\n" +
@@ -79,9 +80,8 @@ public class QuoteUpdateOperationInsertActionTrueUp extends PwsServiceBase
 				"                    \"description\": \"Standard\"\n" +
 				"                }\n" +
 				"            }\n" +
-				"        }\n" +
-				"    ]\n" +
-				"}";
+				"    }\n" +
+				"    ]}";
 
     	jsonBody = this.fullyDetokenize(jsonBody);
     	
