@@ -238,6 +238,23 @@ public class WorkflowLibrary
         return workflow;
     }
 
+    public static List<StepBase> QuoteUpdateOperationInsertActionNew()
+    {
+        boolean waitForExpectedStatus = true;
+
+        List<StepBase> workflow = new ArrayList<StepBase>();
+
+        workflow.add(new LoadQuoteFilesAndExtractData());
+        workflow.add(new GetQuoteOAuthCredentials());
+        workflow.add(new QuoteCreate());
+        // workflow.add(new QuoteCreateV2New());
+        workflow.add(new QuoteStatus(waitForExpectedStatus));
+        workflow.add(new QuoteDetailsV2New());
+        workflow.add(new QuoteUpdateOperationInsertActionNew());
+
+        return workflow;
+    }
+
     public static List<StepBase> QuoteUpdateOperationUpdateActionCoTerm()
     {
         boolean waitForExpectedStatus = true;
