@@ -53,32 +53,10 @@ public class QuoteUpdateOperationInsertActionExtension extends PwsServiceBase
 				"    \"quoteNumber\": \"$QUOTE_NUMBER$\",\n" +
 				"    \"lineItems\": [\n" +
 				"        {\n" +
-				"            \"offeringId\": \"OD-000238\",\n" +
-				"            \"action\": \"New\",\n" +
-				"            \"quantity\": 10,\n" +
 				"            \"operation\": \"Insert\",\n" +
-				"            \"offer\": {\n" +
-				"                \"term\": {\n" +
-				"                    \"code\": \"A01\",\n" +
-				"                    \"description\": \"Annual\"\n" +
-				"                },\n" +
-				"                \"accessModel\": {\n" +
-				"                    \"code\": \"S\",\n" +
-				"                    \"description\": \"Single User\"\n" +
-				"                },\n" +
-				"                \"intendedUsage\": {\n" +
-				"                    \"code\": \"COM\",\n" +
-				"                    \"description\": \"Commercial\"\n" +
-				"                },\n" +
-				"                \"connectivity\": {\n" +
-				"                    \"code\": \"C100\",\n" +
-				"                    \"description\": \"Online\"\n" +
-				"                },\n" +
-				"                \"servicePlan\": {\n" +
-				"                    \"code\": \"STND\",\n" +
-				"                    \"description\": \"Standard\"\n" +
-				"                }\n" +
-				"            }\n" +
+				"            \"action\": \"Extension\",\n" +
+				"            \"subscriptionId\": \"69620920691769\",\n" +
+				"            \"endDate\": \"2023-11-25\"\n" +
 				"        }\n" +
 				"    ]\n" +
 				"}";
