@@ -50,37 +50,14 @@ public class QuoteUpdateOperationInsertActionRenewal extends PwsServiceBase
     	//  loader/extracter at this time...
     //	String jsonBody = "{\"quoteNumber\":\"$QUOTE_NUMBER$\"}";  $QUOTE_LINE_NUMBER$
 		String jsonBody = "{\n" +
-				"    \"quoteNumber\": \"$QUOTE_NUMBER$\",\n" +
-				"    \"lineItems\": [\n" +
-				"        {\n" +
-				"            \"offeringId\": \"OD-000238\",\n" +
-				"            \"action\": \"New\",\n" +
-				"            \"quantity\": 10,\n" +
-				"            \"operation\": \"Insert\",\n" +
-				"            \"offer\": {\n" +
-				"                \"term\": {\n" +
-				"                    \"code\": \"A01\",\n" +
-				"                    \"description\": \"Annual\"\n" +
-				"                },\n" +
-				"                \"accessModel\": {\n" +
-				"                    \"code\": \"S\",\n" +
-				"                    \"description\": \"Single User\"\n" +
-				"                },\n" +
-				"                \"intendedUsage\": {\n" +
-				"                    \"code\": \"COM\",\n" +
-				"                    \"description\": \"Commercial\"\n" +
-				"                },\n" +
-				"                \"connectivity\": {\n" +
-				"                    \"code\": \"C100\",\n" +
-				"                    \"description\": \"Online\"\n" +
-				"                },\n" +
-				"                \"servicePlan\": {\n" +
-				"                    \"code\": \"STND\",\n" +
-				"                    \"description\": \"Standard\"\n" +
-				"                }\n" +
-				"            }\n" +
-				"        }\n" +
-				"    ]\n" +
+				"  \"quoteNumber\": \"$QUOTE_NUMBER$\",\n" +
+				"  \"lineItems\": [\n" +
+				"    {\n" +
+				"      \"operation\": \"Insert\",\n" +
+				"      \"action\": \"Renewal\",\n" +
+				"      \"quantity\": 1,\n" +
+				"      \"subscriptionId\": \"69620920691769\"    }\n" +
+				"  ]\n" +
 				"}";
 
     	jsonBody = this.fullyDetokenize(jsonBody);
