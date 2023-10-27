@@ -28,7 +28,7 @@
             "quantity": 1,
             "offeringId": "OD-000021",
             "action": "New",
-            "startDate": "2023-10-18",
+            "startDate": "2024-12-31",
             "offer": {
                 "term": {
                     "code": "A01",
@@ -56,7 +56,7 @@
             "quantity": 2,
             "offeringId": "OD-000054",
             "action": "New",
-            "startDate": "2023-10-19",
+            "startDate": "2024-12-30",
             "offer": {
                 "term": {
                     "code": "A01",

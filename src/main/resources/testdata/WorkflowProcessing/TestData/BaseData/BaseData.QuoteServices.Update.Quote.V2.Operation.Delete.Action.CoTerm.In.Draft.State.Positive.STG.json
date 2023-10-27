@@ -1,29 +1,29 @@
 {
-    "quoteNote": "Note from agent to customer1",
+    "quoteNote": "SM_Notefrom_Agenttocust.{{note}}",
     "currency": "AUD",
     "agentAccount": {
-        "accountCsn": "5501670235"
+        "accountCsn": "5070132993"
     },
     "agentContact": {
-        "email": "newuserpartnerau_5501670235@letscheck.pw"
+        "email": "partneruser_da_stg_5070132993_2@letscheck.email"
     },
     "endCustomer": {
-        "accountCsn": "5501870534"
+        "accountCsn": "5502394709"
     },
     "purchaser": {
-        "email": "biz-8eq6ksxpsi@letscheck.pw",
-        "firstName": "Sunny",
-        "lastName": "Gopim",
-        "phone": "4154776666",
+        "email": "fy24_anloptystg_oct6@letscheck.pw",
+        "firstName": "gathusk",
+        "lastName": "gathusk",
+        "phone": "+61289070544",
         "preferredLanguage": "en"
     },
     "lineItems": [
         {
-            "quantity": 10,
-            "offeringId": "OD-000238",
+            "offeringId": "OD-000321",
             "action": "Co-term",
-            "referenceSubscriptionId": "69101850742283",
-            "startDate": "2023-11-21",
+            "quantity": 1,
+            "referenceSubscriptionId": "69659405276222",
+            "startDate": "2023-11-14",
             "offer": {
                 "term": {
                     "code": "A01",
@@ -42,8 +42,8 @@
                     "description": "Online"
                 },
                 "servicePlan": {
-                    "code": "STND",
-                    "description": "Standard"
+                    "code": "PREMSUB",
+                    "description": "Premium"
                 }
             }
         }

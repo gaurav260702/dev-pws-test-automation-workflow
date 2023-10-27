@@ -3,7 +3,7 @@ package com.autodesk.pws.test.steps.quote;
 import com.autodesk.pws.test.steps.base.PwsServiceBase;
 import io.restassured.path.json.JsonPath;
 
-public class QuoteUpdateV2OperationUpdateActionNew extends PwsServiceBase
+public class QuoteUpdateOperationUpdateActionSwitch extends PwsServiceBase
 {
 	public String DataPoolSourceInfoLabel = "";
 	
@@ -48,17 +48,17 @@ public class QuoteUpdateV2OperationUpdateActionNew extends PwsServiceBase
     	//  for the moment we're going to embed it in the 
     	//  class as I don't want to deal with creating a
     	//  loader/extracter at this time...
-    //	String jsonBody = "{\"quoteNumber\":\"$QUOTE_NUMBER$\"}";
+    //	String jsonBody = "{\"quoteNumber\":\"$QUOTE_NUMBER$\"}";  $QUOTE_LINE_NUMBER$
 		String jsonBody = "{\n" +
-				"  \"quoteNumber\": \"$QUOTE_NUMBER$\",\n" +
-				"  \"lineItems\": [\n" +
-				"    {\n" +
-				"      \"operation\": \"Update\",\n" +
-				"      \"quoteLineNumber\": \"$QUOTE_LINE_NUMBER$\",\n" +
-				"      \"action\": \"New\",\n" +
-				"      \"quantity\": 20\n" +
-				"    }\n" +
-				"  ]\n" +
+				"    \"quoteNumber\": \"$QUOTE_NUMBER$\",\n" +
+				"    \"lineItems\": [\n" +
+				"        {\n" +
+				"            \"operation\": \"Update\",\n" +
+				"            \"quoteLineNumber\": \"$QUOTE_LINE_NUMBER$\",\n" +
+				"            \"action\": \"Switch\",\n" +
+				"            \"quantity\": 1\n" +
+				"        }\n" +
+				"    ]\n" +
 				"}";
 
     	jsonBody = this.fullyDetokenize(jsonBody);
@@ -70,7 +70,7 @@ public class QuoteUpdateV2OperationUpdateActionNew extends PwsServiceBase
 
     private void setResourcePath()
     {
-		super.setResourcePath("/v2/quotes");
+		super.setResourcePath("/$VERSION_PATH$/quotes");
     }
 
 	@Override
@@ -79,7 +79,8 @@ public class QuoteUpdateV2OperationUpdateActionNew extends PwsServiceBase
 		// attachHeaderFromDataPool("CSN", "$CSN_SECONDARY$");
 		
 		super.action();
-    }
+
+	}
 	
 	@Override
 	public void validation()

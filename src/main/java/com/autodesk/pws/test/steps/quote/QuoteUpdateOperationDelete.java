@@ -3,7 +3,7 @@ package com.autodesk.pws.test.steps.quote;
 import com.autodesk.pws.test.steps.base.PwsServiceBase;
 import io.restassured.path.json.JsonPath;
 
-public class QuoteUpdateV2OperationUpdateActionNew extends PwsServiceBase
+public class QuoteUpdateOperationDelete extends PwsServiceBase
 {
 	public String DataPoolSourceInfoLabel = "";
 	
@@ -53,10 +53,8 @@ public class QuoteUpdateV2OperationUpdateActionNew extends PwsServiceBase
 				"  \"quoteNumber\": \"$QUOTE_NUMBER$\",\n" +
 				"  \"lineItems\": [\n" +
 				"    {\n" +
-				"      \"operation\": \"Update\",\n" +
-				"      \"quoteLineNumber\": \"$QUOTE_LINE_NUMBER$\",\n" +
-				"      \"action\": \"New\",\n" +
-				"      \"quantity\": 20\n" +
+				"      \"operation\": \"Delete\",\n" +
+				"      \"quoteLineNumber\": \"$QUOTE_LINE_NUMBER$\"\n" +
 				"    }\n" +
 				"  ]\n" +
 				"}";
@@ -70,7 +68,7 @@ public class QuoteUpdateV2OperationUpdateActionNew extends PwsServiceBase
 
     private void setResourcePath()
     {
-		super.setResourcePath("/v2/quotes");
+		super.setResourcePath("/$VERSION_PATH$/quotes");
     }
 
 	@Override
@@ -79,7 +77,8 @@ public class QuoteUpdateV2OperationUpdateActionNew extends PwsServiceBase
 		// attachHeaderFromDataPool("CSN", "$CSN_SECONDARY$");
 		
 		super.action();
-    }
+
+	}
 	
 	@Override
 	public void validation()

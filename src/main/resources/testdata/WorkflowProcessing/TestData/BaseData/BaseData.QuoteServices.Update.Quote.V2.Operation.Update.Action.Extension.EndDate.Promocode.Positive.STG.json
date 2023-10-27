@@ -5,23 +5,23 @@
         "accountCsn": "5070132993"
     },
     "agentContact": {
-        "email": "part_01Aug_001@letscheck.pw"
+        "email": "part_01aug_001@letscheck.pw"
     },
     "endCustomer": {
-        "accountCsn": "5156114301"
+        "accountCsn": "5502379086"
     },
     "purchaser": {
-        "email": "kris44tuma44@letscheck.email",
-        "firstName": "KrisK",
-        "lastName": "TumaK",
-        "phone": "+61292994769",
+        "email": "krisatumaa@letscheck.email",
+        "firstName": "KrisA",
+        "lastName": "TumaA",
+        "phone": "+61285659327",
         "preferredLanguage": "en"
     },
     "lineItems": [
         {
             "action": "Extension",
-            "subscriptionId": "67718367066138",
-            "endDate": "2026-10-10"
+            "subscriptionId": "69620920691769",
+            "endDate": "2023-12-15"
         }
     ]
 }
