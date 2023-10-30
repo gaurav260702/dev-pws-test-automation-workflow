@@ -1,0 +1,28 @@
+  {
+    "$ENV$": "int",
+    "$GET_QUOTE_DETAILS_INTERNAL_v2_BASE_URL$": "https://quote-internal.ddws$ENV$.autodesk.com",
+    "$CREATE_QUOTE_BASE_URL$": "https://enterprise-api-$ENV$.autodesk.com/",
+    "$SERVICE_NAME$": "GetQuoteDetailsInternalv2",
+    
+    "forge-x-api-key": "KSw9zyNEMY3npzsb6NR8wag3Rl63jfsH5cyzMZM3",
+    
+    "param":"filter[accountCsn]",
+    "value": "0070000339",
+
+    "includeForceableHeaders": "true",
+    "forceableHeaders":
+    {
+      "Content-Type": "application/x-www-form-urlencoded"
+    },
+
+    "baseUrl": "https://quote-internal.ddws$ENV$.autodesk.com",
+    "oAuthBaseUrl":  "https://enterprise-api-INT.autodesk.com",
+    "forgeoAuthBaseUrl": "https://developer-stg.api.autodesk.com",
+    "baseFile": "./testdata/WorkflowProcessing/TestData/BaseData/BaseData.GetQuoteDetailsInternalv2usingCreateQuoteV2.INT.json",
+    "overridesFile": "./testdata/WorkflowProcessing/TestData/Overrides/Override.NONE.json",
+    "validationFile": "./testdata/WorkflowProcessing/TestData/Validators/Validator.GetQuoteDetailsInternalv2usingCreateQuoteV2.Valid_CSN.INT.json",
+    "secretsFile": "./testdata/WorkflowProcessing/TestData/Configurations/Secrets.GetInvoiceServices.INT.json",
+    
+    "workflow": "GetQuoteDetailsInternalv2usingCreateQuoteV2"
+}
+

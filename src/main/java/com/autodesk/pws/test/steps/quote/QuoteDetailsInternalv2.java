@@ -17,7 +17,6 @@ package com.autodesk.pws.test.steps.quote;
          //  used by the super/base classes ".preparation()"
          //  method.
          this.ClassName = this.getClass().getSimpleName();
-		 
          this.DataPoolSourceInfoLabel = "raw" + this.ClassName;
 
          //  Set the ServiceVerb to a "POST" style service.
@@ -32,8 +31,10 @@ package com.autodesk.pws.test.steps.quote;
          //  sets the targetUrl during the super class's
          //  "preparation()" method..
          setResourcePath();
+
          //  Do stuff that the Action depends on to execute...
-        //  super.preparation();
+         super.preparation();
+
          //  Grab the JsonRequestBody...
          //Gson gson = new Gson();
          //String jsonBody = DataPool.get(DataPoolSourceInfoLabel).toString();
@@ -56,7 +57,7 @@ package com.autodesk.pws.test.steps.quote;
      @Override
      public void action()
      {
-         attachHeaderFromDataPool("x-api-key", "$X-API-KEY$");
+         attachHeaderFromDataPool("forge-x-api-key", "$forge-X-API-KEY$");
          super.action();
      }
 
@@ -68,7 +69,9 @@ package com.autodesk.pws.test.steps.quote;
          //  Here we would extract any data that needs to be promoted to
          //  the DataPool and may be needed by other steps later on...
          JsonPath pathFinder = JsonPath.with(JsonResponseBody);
-
+         extractDataFromJsonAndAddToDataPool("$QUOTE_LINE_NUMBER$", "lineItems[0].quoteLineNumber", pathFinder);
+         extractDataFromJsonAndAddToDataPool("$QUOTE_LINE_NUMBER1$", "lineItems[1].quoteLineNumber", pathFinder);
+         
          //  Extact data that
          //extractDataFromJsonAndAddToDataPool("$TRANSACTION_ID$", "transactionId", pathFinder);
 

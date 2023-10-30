@@ -1,0 +1,6 @@
+{
+  "KickerFiles":
+  [
+    "./testdata/WorkflowProcessing/TestKickers/Kicker.GetQuoteDetailsInternalv2usingCreateQuoteV2.Valid_CSN.INT.json"
+  ]
+}
