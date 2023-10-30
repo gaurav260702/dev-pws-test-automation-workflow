@@ -1,0 +1,37 @@
+{
+    "quoteNote": "Notefromagent{{note}}tocustomer.",
+    "currency": "AUD",
+    "agentAccount": {
+        "accountCsn": "5070132992"
+    },
+    "agentContact": {
+        "email": "partneruser_da_stg_5070132992_2@letscheck.email"
+    },
+    "endCustomer": {
+        "accountCsn": "5500956516"
+    },
+    "purchaser": {
+        "email": "SMAUST12@letscheck.pw",
+        "firstName": "SMPWSAUS123",
+        "lastName": "User12",
+        "phone": "03 9282 1975",
+        "preferredLanguage": "en-us"
+    },
+    "lineItems": [
+        {
+            "quantity": 7500,
+            "offeringId": "OD-000450",
+            "orderAction": "New",
+            "subscriptionStartDate": "[[Date(25)]]",
+            "offer": {
+                "term": "Annual",
+                "accessModel": "Flex",
+                "intendedUsage": "Commercial",
+                "connectivity": "Online",
+                "servicePlan": "Standard",
+                "billingBehavior": "Once",
+                "billingType": "Up-front"
+            }
+        }
+    ]
+}
