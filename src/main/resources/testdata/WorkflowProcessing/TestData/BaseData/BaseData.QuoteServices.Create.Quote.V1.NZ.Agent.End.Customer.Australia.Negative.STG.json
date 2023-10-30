@@ -1,0 +1,37 @@
+{
+    "quoteNote": "Notefromagent{{note}}tocustomer.",
+    "currency": "AUD",
+    "agentAccount": {
+        "accountCsn": "5502130558"
+    },
+    "agentContact": {
+        "email": "usernewzealand@letscheck.email"
+    },
+    "endCustomer": {
+        "accountCsn": "5500956516"
+    },
+    "purchaser": {
+        "email": "SMAUST12@letscheck.pw",
+        "firstName": "SMPWSAUS123",
+        "lastName": "User12",
+        "phone": "03 9282 1975",
+        "preferredLanguage": "en-us"
+    },
+    "lineItems": [
+        {
+            "quantity": 7500,
+            "offeringId": "OD-000450",
+            "orderAction": "New",
+            "subscriptionStartDate": "2023-11-15",
+            "offer": {
+                "term": "Annual",
+                "accessModel": "Flex",
+                "intendedUsage": "Commercial",
+                "connectivity": "Online",
+                "servicePlan": "Standard",
+                "billingBehavior": "Once",
+                "billingType": "Up-front"
+            }
+        }
+    ]
+}
