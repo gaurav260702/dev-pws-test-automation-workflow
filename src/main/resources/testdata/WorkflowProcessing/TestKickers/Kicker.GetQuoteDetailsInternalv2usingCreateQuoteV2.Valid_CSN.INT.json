@@ -43,7 +43,7 @@
     "x-api-key": "KSw9zyNEMY3npzsb6NR8wag3Rl63jfsH5cyzMZM3",
     
     "param":"filter[accountCsn]",
-    "value": "0070000339",
+    "value": "$ACCOUNT_CSN$",
 
     "includeForceableHeaders": "true",
     "forceableHeaders":

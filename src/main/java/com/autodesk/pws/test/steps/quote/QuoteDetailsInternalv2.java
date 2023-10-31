@@ -71,7 +71,7 @@ package com.autodesk.pws.test.steps.quote;
          JsonPath pathFinder = JsonPath.with(JsonResponseBody);
          extractDataFromJsonAndAddToDataPool("$QUOTE_NUMBER$", "quoteNumber", pathFinder);
          extractDataFromJsonAndAddToDataPool("$ACCOUNT_CSN$", "endCustomer.accountCSN", pathFinder);
-         extractDataFromJsonAndAddToDataPool("$QUOTE_NUMBER$", "purchaser.oxygenID", pathFinder);
+         extractDataFromJsonAndAddToDataPool("$OXYGEN_ID$", "purchaser.oxygenID", pathFinder);
          
          //  Extact data that
          //extractDataFromJsonAndAddToDataPool("$TRANSACTION_ID$", "transactionId", pathFinder);

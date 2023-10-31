@@ -43,7 +43,7 @@
     "x-api-key": "KSw9zyNEMY3npzsb6NR8wag3Rl63jfsH5cyzMZM3",
     
     "param":"filter[oxygenId]",
-    "value": "BH7YRNRDN8KC",
+    "value": "$OXYGEN_ID",
 
     "includeForceableHeaders": "true",
     "forceableHeaders":
