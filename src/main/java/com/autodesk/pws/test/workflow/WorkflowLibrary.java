@@ -812,6 +812,19 @@ public class WorkflowLibrary
         return workflow;
     }
 
+    public static List<StepBase> GetQuoteDetailsInternalv2UsingCreateQuoteV2()
+    {
+        List<StepBase> workflow = new ArrayList<StepBase>();
+
+        workflow.add(new LoadQuoteFilesAndExtractData());
+        workflow.add(new GetQuoteOAuthCredentials());
+        workflow.add(new QuoteCreate());
+        workflow.add(new GetQuoteDetailsInternalv2ForgeCredentials());
+        workflow.add(new QuoteDetailsInternalv2());
+
+        return workflow;
+    }
+
     public static List<StepBase> GetQuoteNotification()
     {
         List<StepBase> workflow = new ArrayList<StepBase>();

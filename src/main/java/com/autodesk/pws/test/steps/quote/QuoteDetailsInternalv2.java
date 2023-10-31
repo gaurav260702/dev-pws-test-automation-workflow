@@ -57,7 +57,7 @@ package com.autodesk.pws.test.steps.quote;
      @Override
      public void action()
      {
-         attachHeaderFromDataPool("forge-x-api-key", "$forge-X-API-KEY$");
+         attachHeaderFromDataPool("x-api-key", "$X-API-KEY$");
          super.action();
      }
 
@@ -69,8 +69,9 @@ package com.autodesk.pws.test.steps.quote;
          //  Here we would extract any data that needs to be promoted to
          //  the DataPool and may be needed by other steps later on...
          JsonPath pathFinder = JsonPath.with(JsonResponseBody);
-         extractDataFromJsonAndAddToDataPool("$QUOTE_LINE_NUMBER$", "lineItems[0].quoteLineNumber", pathFinder);
-         extractDataFromJsonAndAddToDataPool("$QUOTE_LINE_NUMBER1$", "lineItems[1].quoteLineNumber", pathFinder);
+         extractDataFromJsonAndAddToDataPool("$QUOTE_NUMBER$", "quoteNumber", pathFinder);
+         extractDataFromJsonAndAddToDataPool("$ACCOUNT_CSN$", "endCustomer.accountCSN", pathFinder);
+         extractDataFromJsonAndAddToDataPool("$QUOTE_NUMBER$", "purchaser.oxygenID", pathFinder);
          
          //  Extact data that
          //extractDataFromJsonAndAddToDataPool("$TRANSACTION_ID$", "transactionId", pathFinder);
