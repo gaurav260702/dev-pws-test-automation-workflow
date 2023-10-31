@@ -5,25 +5,23 @@
         "accountCsn": "5070132993"
     },
     "agentContact": {
-        "email": "partneruser_da_stg_5070132993_2@letscheck.email"
+        "email": "part_01aug_001@letscheck.pw"
     },
     "endCustomer": {
-        "accountCsn": "5502394709"
+        "accountCsn": "5500956516"
     },
     "purchaser": {
-        "email": "fy24_anloptystg_oct6@letscheck.pw",
-        "firstName": "gathusk",
-        "lastName": "gathusk",
-        "phone": "+61289070544",
+        "email": "krisatumaa@letscheck.email",
+        "firstName": "KrisA",
+        "lastName": "TumaA",
+        "phone": "+61285659327",
         "preferredLanguage": "en"
     },
     "lineItems": [
         {
-            "offeringId": "OD-000321",
-            "action": "Co-term",
-            "quantity": 1,
-            "referenceSubscriptionId": "69659405276222",
-            "startDate": "2023-11-14",
+            "offeringId": "OD-000050",
+            "action": "New",
+            "quantity": 10,
             "offer": {
                 "term": {
                     "code": "A01",
@@ -42,8 +40,8 @@
                     "description": "Online"
                 },
                 "servicePlan": {
-                    "code": "PREMSUB",
-                    "description": "Premium"
+                    "code": "STND",
+                    "description": "Standard"
                 }
             }
         }
