@@ -1,0 +1,67 @@
+  {
+    "$ROOT$": "./testdata/WorkflowProcessing/TestData",
+    "$ENV$": "int",
+    "$GET_QUOTE_DETAILS_INTERNAL_v2_BASE_URL$": "https://quote-internal.ddws$ENV$.autodesk.com",
+    "$CREATE_QUOTE_BASE_URL$": "https://enterprise-api-$ENV$.autodesk.com/",
+    "$SERVICE_NAME$": "GetQuoteDetailsInternalv2",
+    
+    "$ROOT_NAME$": "QuoteServices",
+    "$VARIATION_COUNT$": "Create.Quote.V2.New.Positive",
+    "$BASE_NAME$": "$ROOT_NAME$_$VARIATION_COUNT$",
+    "$VALIDATION$": "$ROOT$/Validators",
+    "$OVERRIDES$": "$ROOT$/Overrides",
+    "$BASE_DATA$": "$ROOT$/BaseData",
+    "$CONFIG$": "$ROOT$/Configurations",
+
+    "$CSN_SOLDTO$": "5112991506",
+    "$CSN_RESELLER$": "5112991506",
+    "$CSN_ENDCUSTOMER$": "5112991506",
+    "$CSN_SHIPTO$": "5112991506",
+
+    "$CSN_PRIMARY$": "$CSN_ENDCUSTOMER$",
+    "$CSN_SECONDARY$": "$CSN_RESELLER$",
+    "$CSN_TERTIARY$": "$CSN_SOLDTO$",
+    "$CSN_QUATERNARY$": "$CSN_SOLDTO$",
+
+    "$CSN_ACCOUNT_CONTACT$": "5112991506",
+    "$CSN_HEADER$": "5112991506",
+
+      "$OFFERING_ID$": "OD-000163",
+      "$AGENT_EMAIL$": "agentpartnera2k@letscheck.email",
+
+    "$VERSION_PATH$": "v2",
+
+    "$TIMEZONE_CITY$": "Australia/Sydney",
+    "$CURRENCY$": "AUD",
+
+    "$ADDRESS1$": "60 Jenke Cct",
+    "$CITY$": "Kambah",
+    "$POSTAL_CODE$": "2902",
+    "$COUNTRY$": "AU",
+
+    "forge-x-api-key": "KSw9zyNEMY3npzsb6NR8wag3Rl63jfsH5cyzMZM3",
+    "x-api-key": "KSw9zyNEMY3npzsb6NR8wag3Rl63jfsH5cyzMZM3",
+    
+    "param":"filter[oxygenId]",
+    "value": "BH7YRNRDN8KC",
+
+    "includeForceableHeaders": "true",
+    "forceableHeaders":
+    {
+      "Content-Type": "application/x-www-form-urlencoded",
+      "x-adsk-test-event": "false",
+      "timezone_city": "$TIMEZONE_CITY$",
+      "CSN": "$CSN_HEADER$"
+    },
+
+    "baseUrl": "https://quote-internal.ddws$ENV$.autodesk.com",
+    "oAuthBaseUrl":  "https://enterprise-api-INT.autodesk.com",
+    "forgeoAuthBaseUrl": "https://developer-stg.api.autodesk.com",
+    "baseFile": "./testdata/WorkflowProcessing/TestData/BaseData/BaseData.GetQuoteDetailsInternalv2usingCreateQuoteV2.INT.json",
+    "overridesFile": "./testdata/WorkflowProcessing/TestData/Overrides/Override.NONE.json",
+    "validationFile": "./testdata/WorkflowProcessing/TestData/Validators/Validator.GetQuoteDetailsInternalv2usingCreateQuoteV2.Valid_OID.INT.json",
+    "secretsFile": "./testdata/WorkflowProcessing/TestData/Configurations/Secrets.GetQuoteDetailsInternalv2.INT.json",
+    
+    "workflow": "GetQuoteDetailsInternalv2usingCreateQuoteV2"
+}
+
