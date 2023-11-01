@@ -56,9 +56,8 @@ public class QuoteUpdateOperationUpdateActionCoTerm extends PwsServiceBase
 				"            \"operation\": \"Update\",\n" +
 				"            \"quoteLineNumber\": \"$QUOTE_LINE_NUMBER$\",\n" +
 				"            \"action\": \"Co-term\",\n" +
-				"            \"startDate\": \"2023-10-12\",\n" +
+				"            \"startDate\": \"[[Date(25)]]\",\n" +
 				"            \"quantity\": 15,\n" +
-				"            \"promotionCode\": \"MGLTNAA\"\n" +
 				"        }\n" +
 				"    ]\n" +
 				"}";
