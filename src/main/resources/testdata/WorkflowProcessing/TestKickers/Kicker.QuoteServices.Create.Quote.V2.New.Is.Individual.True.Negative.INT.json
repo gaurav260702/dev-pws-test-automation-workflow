@@ -36,7 +36,7 @@
   "$CITY$": "Kambah",
   "$POSTAL_CODE$": "2902",
   "$COUNTRY$": "AU",
-  "$NAME$": "'name'",
+  "$NAME$": "'endCustomer.name'",
 
 
   "includeForceableHeaders": "true",
