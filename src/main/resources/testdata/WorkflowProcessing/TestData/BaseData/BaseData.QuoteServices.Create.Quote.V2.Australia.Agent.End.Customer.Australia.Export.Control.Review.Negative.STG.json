@@ -1,33 +1,34 @@
 {
-    "quoteNote": "Notefromagenttocustomer.{{note}}",
-    "currency": "$CURRENCY$",
+    "quoteNote": "SM_Notefrom_Agenttocustomer{{note}}.",
+    "currency": "AUD",
     "agentAccount": {
-        "accountCsn": "$CSN_RESELLER$"
+        "accountCsn": "5070132993"
     },
     "agentContact": {
-        "email": "$AGENT_EMAIL$"
+        "email": "part_01Aug_001@letscheck.pw"
     },
     "endCustomer": {
-        "accountCsn": "5150331120",
-        "name": "SMVIRU Associates Ltd",
-        "addressLine1": "$ADDRESS1$",
-        "city": "$CITY$",
-        "countryCode": "$COUNTRY$",
-        "postalCode": "$POSTAL_CODE$",
+        "accountCsn": "5502573861",
+        "name": "SMHarry MCAD",
+        "addressLine1": "20 Lucca St",
+        "addressLine2": "",
+        "addressLine3": "",
+        "city": "Perth",
+        "countryCode": "AU",
+        "postalCode": "6027",
         "isIndividual": false
     },
     "purchaser": {
-        "email": "SM_Aususer1@letscheck.pw",
-        "firstName": "SM",
-        "lastName": "User1Dinkum",
-        "phone": "9454456666",
+        "email": "PWS_AusUser1@letscheck.pw",
+        "firstName": "PWS_AUS1",
+        "lastName": "User1",
+        "phone": "4157778888",
         "preferredLanguage": "en"
     },
     "lineItems": [
         {
-            "quantity": 10000,
-            "offeringId": "OD-000163",
-            "startDate": "[[Date(25)]]",
+            "quantity": 1,
+            "offeringId": "OD-000021",
             "action": "New",
             "offer": {
                 "term": {
@@ -35,8 +36,8 @@
                     "description": "Annual"
                 },
                 "accessModel": {
-                    "code": "F",
-                    "description": "Flex"
+                    "code": "S",
+                    "description": "Single User"
                 },
                 "intendedUsage": {
                     "code": "COM",
@@ -53,9 +54,8 @@
             }
         },
         {
-            "quantity": 2000,
-            "offeringId": "OD-000021",
-            "startDate": "[[Date(25)]]",
+            "quantity": 2,
+            "offeringId": "OD-000054",
             "action": "New",
             "offer": {
                 "term": {
