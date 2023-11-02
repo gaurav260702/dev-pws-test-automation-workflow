@@ -198,6 +198,8 @@ public class WorkflowLibrary
      // workflow.add(new QuoteCreateV2New());
         workflow.add(new QuoteStatus(waitForExpectedStatus));
         workflow.add(new QuoteDetailsV2New());
+        workflow.add(new GetQuoteDetailsInternalv2ForgeCredentials());
+        workflow.add(new QuoteDetailsInternalv2_quoteNumber());
         workflow.add(new QuoteFinalizeV2New());
         workflow.add(new QuoteStatusByQuoteNumber(waitForExpectedStatus));
 

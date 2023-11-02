@@ -3,7 +3,7 @@ package com.autodesk.pws.test.steps.quote;
  import com.autodesk.pws.test.steps.base.*;
  import io.restassured.path.json.JsonPath;
 
- public class QuoteDetailsInternalv2 extends PwsServiceBase
+ public class QuoteDetailsInternalv2_quoteNumber extends PwsServiceBase
  {
      public String DataPoolSourceInfoLabel = "";
 
@@ -51,14 +51,13 @@ package com.autodesk.pws.test.steps.quote;
      {
          // https://quote.ddwsdev.autodesk.com/v1/details?quoteNumber=7265267
         //  super.setResourcePath("/v2/details?filter[quoteNumber]=Q-11931");
-         super.setResourcePath("/v2/details?param=" + "value");
+         super.setResourcePath("/v2/details?filter[quoteNumber]=$QUOTE_NUMBER$");
      }
 
      @Override
      public void action()
      {
          attachHeaderFromDataPool("x-api-key", "$X-API-KEY$");
-        // attachHeaderFromDataPool("forge-x-api-key", "$FORGE-X-API-KEY$");
          super.action();
      }
 
