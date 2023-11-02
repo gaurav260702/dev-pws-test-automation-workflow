@@ -1,0 +1,82 @@
+{
+    "quoteNote": "SM_Notefrom_Agenttocustomer.",
+    "currency": "AUD",
+    "agentAccount": {
+        "accountCsn": "5502174257"
+    },
+    "agentContact": {
+        "email": "part_01Aug_001@letscheck.pw"
+    },
+    "endCustomer": {
+        "accountCsn": "5500570701",
+        "name": "SMHarry MCAD",
+        "addressLine1": "20 Lucca St",
+        "city": "Perth",
+        "countryCode": "AU",
+        "postalCode": "6027",
+        "isIndividual": false
+    },
+    "purchaser": {
+        "email": "ptest__5502174257@mailinator.com",
+        "firstName": "PWS_AUS1",
+        "lastName": "User1",
+        "phone": "4157778888",
+        "preferredLanguage": "en"
+    },
+    "lineItems": [
+        {
+            "quantity": 1,
+            "offeringId": "OD-000021",
+            "action": "New",
+            "offer": {
+                "term": {
+                    "code": "A01",
+                    "description": "Annual"
+                },
+                "accessModel": {
+                    "code": "S",
+                    "description": "Single User"
+                },
+                "intendedUsage": {
+                    "code": "COM",
+                    "description": "Commercial"
+                },
+                "connectivity": {
+                    "code": "C100",
+                    "description": "Online"
+                },
+                "servicePlan": {
+                    "code": "STND",
+                    "description": "Standard"
+                }
+            }
+        },
+        {
+            "quantity": 2,
+            "offeringId": "OD-000054",
+            "action": "New",
+            "offer": {
+                "term": {
+                    "code": "A01",
+                    "description": "Annual"
+                },
+                "accessModel": {
+                    "code": "S",
+                    "description": "Single User"
+                },
+                "intendedUsage": {
+                    "code": "COM",
+                    "description": "Commercial"
+                },
+                "connectivity": {
+                    "code": "C100",
+                    "description": "Online"
+                },
+                "servicePlan": {
+                    "code": "STND",
+                    "description": "Standard"
+                }
+            }
+        }
+    ]
+}
