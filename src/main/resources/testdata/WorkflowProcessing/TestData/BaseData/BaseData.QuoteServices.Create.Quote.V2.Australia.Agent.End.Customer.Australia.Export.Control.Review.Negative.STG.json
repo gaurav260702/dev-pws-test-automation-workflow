@@ -1,5 +1,5 @@
 {
-    "quoteNote": "SM_Notefrom_Agenttocustomer{{note}}.",
+    "quoteNote": "SM_Notefrom_Agenttocustomer.{{note}}",
     "currency": "AUD",
     "agentAccount": {
         "accountCsn": "5070132993"
@@ -8,7 +8,7 @@
         "email": "part_01Aug_001@letscheck.pw"
     },
     "endCustomer": {
-        "accountCsn": "5502573861",
+        "accountCsn": "5502288686",
         "name": "SMHarry MCAD",
         "addressLine1": "20 Lucca St",
         "addressLine2": "",

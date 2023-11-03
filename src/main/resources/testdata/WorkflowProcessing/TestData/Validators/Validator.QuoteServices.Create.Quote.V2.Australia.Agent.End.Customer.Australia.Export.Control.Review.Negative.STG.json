@@ -1,19 +1,28 @@
 {
+  "QuoteDetailsV2New": {
+    "agentTimeZone": "*",
+    "quoteNumber": "$QUOTE_NUMBER$",
+    "quoteStatus": "Under Review",
+    "quoteCreatedTime": "*",
+    "pricing.currency": "AUD",
+    "agentAccount.accountCsn": "$CSN_ACCOUNT_CONTACT$"
+  },
+  "QuoteFinalizeV2New": {
+    "quoteNumber": "$QUOTE_NUMBER$",
+    "status": "FINALIZING"
+  },
   "QuoteStatus": {
     "quoteStatus": "DRAFT-CREATED",
+    "quoteNumber": "$QUOTE_NUMBER$",
+    "transactionId": "*"
+  },
+  "QuoteStatusAfterFinalize": {
+    "quoteStatus": "UNDER-REVIEW",
     "quoteNumber": "$QUOTE_NUMBER$",
     "transactionId": "*"
   },
   "QuoteCreate": {
     "message": "success",
     "transactionId": "*"
-  },
-  "QuoteDetailsV2New": {
-    "agentTimeZone": "*",
-    "quoteNumber": "$QUOTE_NUMBER$",
-    "quoteStatus": "Draft",
-    "quoteCreatedTime": "*",
-    "pricing.currency": "AUD",
-    "agentAccount.accountCsn": "$CSN_ACCOUNT_CONTACT$"
   }
 }
