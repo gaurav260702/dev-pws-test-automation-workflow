@@ -25,6 +25,7 @@ package com.autodesk.pws.test.steps.authentication;
          BaseUrl = DataPool.get("forgeoAuthBaseUrl").toString();
 
          DataPool.add("$X-API-KEY$", DataPool.get("x-api-key").toString());
+         DataPool.add("$FORGE-X-API-KEY$", DataPool.get("forge-x-api-key").toString());
      }
 
      @Override
