@@ -20,7 +20,7 @@
     "lineItems": [
         {
             "action": "Extension",
-            "referenceSubscriptionId": "69101800825966",
+            "endDate": "2024-06-23",
             "subscriptionId":"69101800825966"
 
         }
