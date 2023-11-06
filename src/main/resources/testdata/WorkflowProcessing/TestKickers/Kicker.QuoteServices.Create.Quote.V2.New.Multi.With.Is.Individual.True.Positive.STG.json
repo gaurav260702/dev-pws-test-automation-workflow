@@ -25,7 +25,7 @@
   "$CSN_HEADER$": "5070132993",
 
       "$OFFERING_ID$": "OD-000163",
-      "$AGENT_EMAIL$": "newuserpartnerau_5501670235@letscheck.pw",
+      "$AGENT_EMAIL$": "part_01Aug_001@letscheck.pw",
 
   "$CREATE_QUOTE_BASE_URL$": "https://enterprise-api-$ENV$.autodesk.com/",
   "$VERSION_PATH$": "v2",

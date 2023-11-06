@@ -55,7 +55,6 @@
             "offeringId": "OD-000054",
             "action": "New",
             "quantity": 3,
-            "promotionCode": "ANZLT3PACK",
             "offer": {
                 "term": {
                     "code": "A01",
