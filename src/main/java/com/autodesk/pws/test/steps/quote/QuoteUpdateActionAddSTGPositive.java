@@ -61,11 +61,9 @@ public class QuoteUpdateActionAddSTGPositive extends PwsServiceBase
 				"                \"accessModel\": \"F\",\n" +
 				"                \"intendedUsage\": \"COM\",\n" +
 				"                \"connectivity\": \"C100\",\n" +
-				"                \"connectivityInterval\": \"C01\",\n" +
-				"                \"servicePlanId\": \"STND\",\n" +
+				"                \"servicePlan\": \"STND\",\n" +
 				"                \"billingBehavior\": \"A100\",\n" +
 				"                \"billingType\": \"B100\",\n" +
-				"                \"billingFrequency\": \"B01\"\n" +
 				"            }\n" +
 				"    }]\n" +
 				"}\n";
