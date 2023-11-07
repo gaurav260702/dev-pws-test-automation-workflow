@@ -1,0 +1,55 @@
+{
+    "quoteNote": "SM_Notefrom_Agenttocustomer.{{note}}",
+    "currency": "AUD",
+    "agentAccount": {
+        "accountCsn": "5070132993"
+    },
+    "agentContact": {
+        "email": "part_01Aug_001@letscheck.pw"
+    },
+    "endCustomer": {
+        "accountCsn": "5070132993",
+        "addressLine1": "20 Lucca St",
+        "city": "Perth",
+        "countryCode": "AU",
+        "isIndividual": false,
+        "name": "SMHarry MCAD",
+        "postalCode": "6027"
+    },
+    "purchaser": {
+        "email": "part_01Aug_001@letscheck.pw",
+        "firstName": "PWS_AUS1",
+        "lastName": "User1",
+        "phone": "4157778888",
+        "preferredLanguage": "en"
+    },
+    "lineItems": [
+        {
+            "quantity": 1,
+            "offeringId": "OD-000021",
+            "action": "New",
+            "offer": {
+                "term": {
+                    "code": "A06",
+                    "description": "3 Year"
+                },
+                "accessModel": {
+                    "code": "S",
+                    "description": "Single User"
+                },
+                "intendedUsage": {
+                    "code": "NFR",
+                    "description": "Not for Resale"
+                },
+                "connectivity": {
+                    "code": "C100",
+                    "description": "Online"
+                },
+                "servicePlan": {
+                    "code": "STNDNS",
+                    "description": "Standard No Support"
+                }
+            }
+        }
+    ]
+}

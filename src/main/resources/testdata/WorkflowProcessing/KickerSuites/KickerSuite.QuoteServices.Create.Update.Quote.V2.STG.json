@@ -68,6 +68,7 @@
     "./testdata/WorkflowProcessing/TestKickers/Kicker.QuoteServices.Update.Quote.V2.Operation.Update.Action.Extension.EndDate.Promocode.Positive.STG.json",
     "./testdata/WorkflowProcessing/TestKickers/Kicker.QuoteServices.Create.Quote.V2.New.Multi.Offering.Annual.Both.EndCustomerCSN.And.Its.Related.Name.And.Address.Positive.STG.json",
     "./testdata/WorkflowProcessing/TestKickers/Kicker.QuoteServices.Create.Quote.V2.New.Both.EndCustomerCSN.And.Using.Any.Name.And.Valid.Address.Of.NewCustomer.Positive.STG.json",
-    "./testdata/WorkflowProcessing/TestKickers/Kicker.QuoteServices.Create.Quote.V2.New.Both.EndCustomerCSN.Any.Existing.Account.NotBelongs.To.EndCustomerCSN.Positive.STG.json"
+    "./testdata/WorkflowProcessing/TestKickers/Kicker.QuoteServices.Create.Quote.V2.New.Both.EndCustomerCSN.Any.Existing.Account.NotBelongs.To.EndCustomerCSN.Positive.STG.json",
+    "./testdata/WorkflowProcessing/TestKickers/Kicker.QuoteServices.Create.Quote.V2.New.NFR.Offering.3Year.Using.Agent.As.EC.Positive.STG.json"
   ]
 }
