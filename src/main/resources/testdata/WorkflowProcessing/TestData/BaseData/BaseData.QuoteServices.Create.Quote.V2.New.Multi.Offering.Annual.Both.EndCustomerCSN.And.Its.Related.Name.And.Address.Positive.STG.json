@@ -5,26 +5,34 @@
         "accountCsn": "5070132993"
     },
     "agentContact": {
-        "email": "partneruser_da_stg_5070132993_2@letscheck.email"
+        "email": "part_01Aug_001@letscheck.pw"
     },
     "endCustomer": {
-        "accountCsn": "5502394709"
+        "accountCsn": "5500570701",
+        "addressLine1": "52 Harris St",
+        "city": "Pyrmont",
+        "countryCode": "AU",
+        "isIndividual": false,
+        "name": "SAM Rocks Ltd",
+        "postalCode": "2009",
+        "stateProvinceCode": "NSW"
     },
-    "opportunityNumber": "A-20034666",
     "purchaser": {
-        "email": "fy24_opftryr_stgoc4@letscheck.pw"
+        "email": "PWS_AusUser1@letscheck.pw",
+        "firstName": "PWS_AUS1",
+        "lastName": "User1",
+        "phone": "4157778888",
+        "preferredLanguage": "en"
     },
     "lineItems": [
         {
-            "offeringId": "OD-000321",
-            "action": "True-up",
-            "endDate": "2024-10-05",
-            "quantity": 50,
-            "startDate": "2023-10-06",
+            "quantity": 1,
+            "offeringId": "OD-000021",
+            "action": "New",
             "offer": {
                 "term": {
-                    "code": "A06",
-                    "description": "3 Year"
+                    "code": "A01",
+                    "description": "Annual"
                 },
                 "accessModel": {
                     "code": "S",
@@ -39,8 +47,35 @@
                     "description": "Online"
                 },
                 "servicePlan": {
-                    "code": "PREMSUB",
-                    "description": "Premium"
+                    "code": "STND",
+                    "description": "Standard"
+                }
+            }
+        },
+        {
+            "quantity": 2,
+            "offeringId": "OD-000054",
+            "action": "New",
+            "offer": {
+                "term": {
+                    "code": "A01",
+                    "description": "Annual"
+                },
+                "accessModel": {
+                    "code": "S",
+                    "description": "Single User"
+                },
+                "intendedUsage": {
+                    "code": "COM",
+                    "description": "Commercial"
+                },
+                "connectivity": {
+                    "code": "C100",
+                    "description": "Online"
+                },
+                "servicePlan": {
+                    "code": "STND",
+                    "description": "Standard"
                 }
             }
         }
