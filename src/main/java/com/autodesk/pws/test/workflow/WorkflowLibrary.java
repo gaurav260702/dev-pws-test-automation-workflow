@@ -200,6 +200,8 @@ public class WorkflowLibrary
         workflow.add(new QuoteDetailsV2New());
         workflow.add(new QuoteFinalizeV2New());
         workflow.add(new QuoteStatusByQuoteNumber(waitForExpectedStatus));
+        workflow.add(new GetQuoteDetailsInternalv2ForgeCredentials());
+        workflow.add(new QuoteDetailsInternalv2_quoteNumber());
 
         return workflow;
     }
@@ -1063,6 +1065,19 @@ public class WorkflowLibrary
         List<StepBase> workflow = new ArrayList<StepBase>();
 
         workflow.add(new LoadQuoteFilesAndExtractData());
+        workflow.add(new GetQuoteDetailsInternalv2ForgeCredentials());
+        workflow.add(new QuoteDetailsInternalv2());
+
+        return workflow;
+    }
+
+    public static List<StepBase> GetQuoteDetailsInternalv2UsingCreateQuoteV2()
+    {
+        List<StepBase> workflow = new ArrayList<StepBase>();
+
+        workflow.add(new LoadQuoteFilesAndExtractData());
+        workflow.add(new GetQuoteOAuthCredentials());
+        workflow.add(new QuoteCreate());
         workflow.add(new GetQuoteDetailsInternalv2ForgeCredentials());
         workflow.add(new QuoteDetailsInternalv2());
 

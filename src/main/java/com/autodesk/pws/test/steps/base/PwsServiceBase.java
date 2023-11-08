@@ -230,6 +230,7 @@ public class PwsServiceBase extends RestActionBase
         generateTokenHeaders();
         
     	addHeaderFromDataPool("x-api-key");
+		addHeaderFromDataPool("forge-x-api-key");
     	
         generateAttachedRequestHeaders();
     	

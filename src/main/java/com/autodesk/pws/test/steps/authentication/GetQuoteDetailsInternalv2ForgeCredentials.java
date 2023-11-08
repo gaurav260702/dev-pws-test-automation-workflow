@@ -20,11 +20,12 @@ package com.autodesk.pws.test.steps.authentication;
 
      private void pullDataPoolVariables()
      {
-         clientId = DataPool.get("clientId").toString();
-         clientSecret = DataPool.get("clientSecret").toString();
-         BaseUrl = DataPool.get("oAuthBaseUrl").toString();
+         clientId = DataPool.get("forgeclientId").toString();
+         clientSecret = DataPool.get("forgeclientSecret").toString();
+         BaseUrl = DataPool.get("forgeoAuthBaseUrl").toString();
 
          DataPool.add("$X-API-KEY$", DataPool.get("x-api-key").toString());
+         DataPool.add("$FORGE-X-API-KEY$", DataPool.get("forge-x-api-key").toString());
      }
 
      @Override

@@ -15,7 +15,8 @@
     },
 
     "baseUrl": "https://quote-internal.ddws$ENV$.autodesk.com",
-    "oAuthBaseUrl":  "https://developer-stg.api.autodesk.com",
+    "oAuthBaseUrl":  "https://enterprise-api-INT.autodesk.com",
+    "forgeoAuthBaseUrl":  "https://developer-stg.api.autodesk.com",
     "baseFile": "./testdata/WorkflowProcessing/TestData/BaseData/BaseData.NONE.json",
     "overridesFile": "./testdata/WorkflowProcessing/TestData/Overrides/Override.NONE.json",
     "validationFile": "./testdata/WorkflowProcessing/TestData/Validators/Validator.GetQuoteDetailsInternalv2.Invalid_OID.INT.json",
