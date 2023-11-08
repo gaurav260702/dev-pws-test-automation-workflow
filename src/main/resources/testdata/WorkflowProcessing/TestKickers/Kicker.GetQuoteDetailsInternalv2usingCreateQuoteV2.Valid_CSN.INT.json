@@ -40,7 +40,6 @@
     "$COUNTRY$": "AU",
 
     "forge-x-api-key": "KSw9zyNEMY3npzsb6NR8wag3Rl63jfsH5cyzMZM3",
-    "x-api-key": "KSw9zyNEMY3npzsb6NR8wag3Rl63jfsH5cyzMZM3",
     
     "param":"filter[accountCsn]",
     "value": "$ACCOUNT_CSN$",

@@ -57,8 +57,7 @@ package com.autodesk.pws.test.steps.quote;
      @Override
      public void action()
      {
-         attachHeaderFromDataPool("x-api-key", "$X-API-KEY$");
-        // attachHeaderFromDataPool("forge-x-api-key", "$FORGE-X-API-KEY$");
+         attachHeaderFromDataPool("x-api-key", "$FORGE-X-API-KEY$");
          super.action();
      }
 
