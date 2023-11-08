@@ -43,7 +43,7 @@
     "x-api-key": "KSw9zyNEMY3npzsb6NR8wag3Rl63jfsH5cyzMZM3",
     
     "param":"filter[oxygenId]",
-    "value": "$OXYGEN_ID",
+    "value": "$OXYGEN_ID$",
 
     "includeForceableHeaders": "true",
     "forceableHeaders":
@@ -59,7 +59,7 @@
     "forgeoAuthBaseUrl": "https://developer-stg.api.autodesk.com",
     "baseFile": "./testdata/WorkflowProcessing/TestData/BaseData/BaseData.GetQuoteDetailsInternalv2usingCreateQuoteV2.INT.json",
     "overridesFile": "./testdata/WorkflowProcessing/TestData/Overrides/Override.NONE.json",
-    "validationFile": "./testdata/WorkflowProcessing/TestData/Validators/Validator.GetQuoteDetailsInternalv2usingCreateQuoteV2.Valid_OID.INT.json",
+    "validationFile": "./testdata/WorkflowProcessing/TestData/Validators/Validator.GetQuoteDetailsInternalv2.Valid.INT.json",
     "secretsFile": "./testdata/WorkflowProcessing/TestData/Configurations/Secrets.GetQuoteDetailsInternalv2.INT.json",
     
     "workflow": "GetQuoteDetailsInternalv2usingCreateQuoteV2"
