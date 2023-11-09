@@ -200,9 +200,6 @@ public class WorkflowLibrary
         workflow.add(new QuoteDetailsV2New());
         workflow.add(new QuoteFinalizeV2New());
         workflow.add(new QuoteStatusByQuoteNumber(waitForExpectedStatus));
-        workflow.add(new GetQuoteDetailsInternalv2ForgeCredentials());
-        workflow.add(new QuoteDetailsInternalv2_quoteNumber());
-
         return workflow;
     }
 
@@ -236,6 +233,26 @@ public class WorkflowLibrary
         // workflow.add(new QuoteCreateV2New());
         workflow.add(new QuoteStatus(waitForExpectedStatus));
         workflow.add(new QuoteDetailsV2New());
+        workflow.add(new QuoteUpdateOperationDelete());
+
+        return workflow;
+    }
+
+    public static List<StepBase> QuoteUpdateOperationDeleteQuoteNotInDraftStateNeg()
+    {
+        boolean waitForExpectedStatus = true;
+        List<StepBase> workflow = CreateQuoteV2New();
+
+        /*List<StepBase> workflow = new ArrayList<StepBase>();
+
+        workflow.add(new LoadQuoteFilesAndExtractData());
+        workflow.add(new GetQuoteOAuthCredentials());
+        workflow.add(new QuoteCreate());
+        // workflow.add(new QuoteCreateV2New());
+        workflow.add(new QuoteStatus(waitForExpectedStatus));
+        workflow.add(new QuoteDetailsV2New());
+        workflow.add(new QuoteFinalizeV2New());
+        workflow.add(new QuoteStatusByQuoteNumber(waitForExpectedStatus));*/
         workflow.add(new QuoteUpdateOperationDelete());
 
         return workflow;
@@ -343,6 +360,8 @@ public class WorkflowLibrary
         return workflow;
     }
 
+
+
     public static List<StepBase> QuoteUpdateOperationInsertActionSwitchNeg()
     {
         boolean waitForExpectedStatus = true;
@@ -355,6 +374,19 @@ public class WorkflowLibrary
         // workflow.add(new QuoteCreateV2New());
         workflow.add(new QuoteStatus(waitForExpectedStatus));
         workflow.add(new QuoteDetailsV2New());
+        workflow.add(new QuoteUpdateOperationInsertActionSwitchNeg());
+
+        return workflow;
+    }
+
+    public static List<StepBase> QuoteUpdateOperationInsertActionSwitchSubNeg()
+    {
+        boolean waitForExpectedStatus = true;
+
+        List<StepBase> workflow = new ArrayList<StepBase>();
+
+        workflow.add(new LoadQuoteFilesAndExtractData());
+        workflow.add(new GetQuoteOAuthCredentials());
         workflow.add(new QuoteUpdateOperationInsertActionSwitchNeg());
 
         return workflow;
