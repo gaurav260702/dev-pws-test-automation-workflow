@@ -573,12 +573,22 @@ public class WorkflowLibrary
         workflow.add(new LoadQuoteFilesAndExtractData());
         workflow.add(new GetQuoteOAuthCredentials());
         workflow.add(new QuoteCreate());
-        // workflow.add(new QuoteCreateV2New());
-      //  workflow.add(new QuoteStatusFAILED());
         workflow.add(new QuoteStatusFAILED(waitForExpectedStatus));
-      //  workflow.add(new QuoteDetailsV2New());
-      //  workflow.add(new QuoteFinalizeV2New());
-      //  workflow.add(new QuoteStatusByQuoteNumber(waitForExpectedStatus));
+
+        return workflow;
+    }
+
+    public static List<StepBase> CreateQuoteV2NewDuplicatePayloadCheck()
+    {
+        boolean waitForExpectedStatus = true;
+
+        List<StepBase> workflow = new ArrayList<StepBase>();
+
+        workflow.add(new LoadQuoteFilesAndExtractData());
+        workflow.add(new GetQuoteOAuthCredentials());
+        workflow.add(new QuoteCreate());
+        workflow.add(new QuoteStatusFAILED(waitForExpectedStatus));
+        workflow.add(new QuoteCreate());
 
         return workflow;
     }
