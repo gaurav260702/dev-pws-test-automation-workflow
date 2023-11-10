@@ -650,6 +650,23 @@ public class WorkflowLibrary
         return workflow;
     }
 
+    public static List<StepBase> CreateQuoteV2NewDuplicatePayloadCheckNegative()
+    {
+        boolean waitForExpectedStatus = true;
+
+        List<StepBase> workflow = new ArrayList<StepBase>();
+
+        workflow.add(new LoadQuoteFilesAndExtractData());
+        workflow.add(new GetQuoteOAuthCredentials());
+        workflow.add(new QuoteCreate());
+     // workflow.add(new QuoteStatus(waitForExpectedStatus));
+        workflow.add(new QuoteCreate());
+
+     //   workflow.add(new QuoteCreateDuplicatePayloadCheck());
+
+        return workflow;
+    }
+
     public static List<StepBase> CreateQuoteResendEmail()
     {
         boolean waitForExpectedStatus = true;
