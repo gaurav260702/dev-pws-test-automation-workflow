@@ -5,8 +5,8 @@
     "transactionId": "*",
     "errors": [
       {
-        "code": "45058",
-        "message": "Subscription 68970508796134 is not eligible to perform this action for line item 1"
+        "code": "45011",
+        "message": "Agent not eligible to place a quote"
       }
     ]
   },

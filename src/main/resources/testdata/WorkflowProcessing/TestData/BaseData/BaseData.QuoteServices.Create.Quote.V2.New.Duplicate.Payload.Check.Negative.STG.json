@@ -1,33 +1,26 @@
 {
-    "quoteNote": "SM_Notefrom_Agenttocustomer.{{note}}",
+    "quoteNote": "SM_Note_from_Agenttocust",
     "currency": "AUD",
     "agentAccount": {
         "accountCsn": "5070132993"
     },
     "agentContact": {
-        "email": "part_01aug_001@letscheck.pw"
+        "email": "partneruser_da_stg_5070132993_2@letscheck.email"
     },
     "endCustomer": {
-        "accountCsn": "5500570701",
-        "name": "SAM Rocks Ltd",
-        "addressLine1": "52 Harris St",
-        "city": "Pyrmont",
-        "countryCode": "AU",
-        "postalCode": "2009",
-        "isIndividual": false
+        "accountCsn": "5502394709"
+    },
+    "primaryAdmin": {
+        "email": "fy24_inabvsg_octsg4@letscheck.pw"
     },
     "purchaser": {
-        "email": "sunnygopi2021@gmail.com",
-        "firstName": "Sunny",
-        "lastName": "Gopim",
-        "phone": "+4154776666",
-        "preferredLanguage": "en"
+        "email": "fy24_anloptystg_oct6@letscheck.pw"
     },
     "lineItems": [
         {
-            "quantity": 1,
-            "offeringId": "OD-000021",
+            "offeringId": "OD-000321",
             "action": "New",
+            "quantity": 100,
             "offer": {
                 "term": {
                     "code": "A01",
@@ -46,15 +39,15 @@
                     "description": "Online"
                 },
                 "servicePlan": {
-                    "code": "STND",
-                    "description": "Standard"
+                    "code": "PREMSUB",
+                    "description": "Premium"
                 }
             }
         },
         {
-            "quantity": 3,
-            "offeringId": "OD-000054",
+            "offeringId": "OD-000021",
             "action": "New",
+            "quantity": 150,
             "offer": {
                 "term": {
                     "code": "A01",
@@ -78,7 +71,5 @@
                 }
             }
         }
-
-
     ]
 }

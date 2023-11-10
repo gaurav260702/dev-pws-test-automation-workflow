@@ -50,7 +50,8 @@ public class QuoteUpdateNegative extends PwsServiceBase
     	//  loader/extracter at this time...
     //	String jsonBody = "{\"quoteNumber\":\"$QUOTE_NUMBER$\"}";
 		String jsonBody = "{\n" +
-				"    \"quoteNumber\": \"Q-161030\",\n" +
+			//	"    \"quoteNumber\": \"Q-161030\",\n" +
+				"    \"quoteNumber\": \"$QUOTE_NUMBER$\",\n" +
 				"    \"lineItems\": [{\n" +
 				"        \"action\": \"add\",\n" +
 				"        \"offeringId\": \"OD-000163\",\n" +

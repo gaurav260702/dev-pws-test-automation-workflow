@@ -23,7 +23,7 @@
             "offeringId": "OD-000238",
             "action": "Co-term",
             "referenceSubscriptionId": "69101850742283",
-            "startDate": "2023-11-21",
+            "startDate": "[[Date(25)]]",
             "offer": {
                 "term": {
                     "code": "A01",

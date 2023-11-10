@@ -1,26 +1,26 @@
 {
-    "quoteNote": "SM_Notefrom_Agenttocustomer.{{note}}",
+    "quoteNote": "SM_Notefrom_Agenttocust.{{note}}",
     "currency": "AUD",
     "agentAccount": {
         "accountCsn": "5070132993"
     },
     "agentContact": {
-        "email": "part_01aug_001@letscheck.pw"
+        "email": "part_01Aug_001@letscheck.pw"
     },
     "endCustomer": {
         "accountCsn": "5500570701",
-        "name": "SAM Rocks Ltd",
-        "addressLine1": "52 Harris St",
-        "city": "Pyrmont",
+        "addressLine1": "20 Lucca St",
+        "city": "Perth",
         "countryCode": "AU",
-        "postalCode": "2009",
-        "isIndividual": false
+        "isIndividual": false,
+        "name": "SMHarry MCAD",
+        "postalCode": "6027"
     },
     "purchaser": {
-        "email": "sunnygopi2021@gmail.com",
-        "firstName": "Sunny",
-        "lastName": "Gopim",
-        "phone": "+4154776666",
+        "email": "PWS_AusUser1@letscheck.pw",
+        "firstName": "PWS_AUS1",
+        "lastName": "User1",
+        "phone": "4157778888",
         "preferredLanguage": "en"
     },
     "lineItems": [
@@ -52,7 +52,7 @@
             }
         },
         {
-            "quantity": 3,
+            "quantity": 2,
             "offeringId": "OD-000054",
             "action": "New",
             "offer": {
@@ -78,7 +78,5 @@
                 }
             }
         }
-
-
     ]
 }

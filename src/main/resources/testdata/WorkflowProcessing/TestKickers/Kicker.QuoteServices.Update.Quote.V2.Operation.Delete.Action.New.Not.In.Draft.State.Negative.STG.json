@@ -3,7 +3,7 @@
   "$ENV$": "STG",
 
   "$ROOT_NAME$": "QuoteServices",
-  "$VARIATION_COUNT$": "Create.Quote.V2.New.Multi.With.Is.Individual.True.Positive",
+  "$VARIATION_COUNT$": "Update.Quote.V2.Operation.Delete.Action.New.Not.In.Draft.State.Negative",
   "$BASE_NAME$": "$ROOT_NAME$_$VARIATION_COUNT$",
   "$SERVICE_NAME$": "QuoteServices_V2",
   "$VALIDATION$": "$ROOT$/Validators",
@@ -25,7 +25,7 @@
   "$CSN_HEADER$": "5070132993",
 
       "$OFFERING_ID$": "OD-000163",
-      "$AGENT_EMAIL$": "part_01Aug_001@letscheck.pw",
+      "$AGENT_EMAIL$": "part_01aug_001@letscheck.pw",
 
   "$CREATE_QUOTE_BASE_URL$": "https://enterprise-api-$ENV$.autodesk.com/",
   "$VERSION_PATH$": "v2",
@@ -49,10 +49,10 @@
   "baseUrl": "https://enterprise-api-$ENV$.autodesk.com",
   "oAuthBaseUrl":  "https://enterprise-api-$ENV$.autodesk.com",
 
-  "baseFile": "$BASE_DATA$/BaseData.$ROOT_NAME$.Create.Quote.V2.New.Multi.With.Is.Individual.True.Positive.$ENV$.json",
+  "baseFile": "$BASE_DATA$/BaseData.$ROOT_NAME$.Update.Quote.V2.Operation.Delete.Action.New.Not.In.Draft.State.Negative.$ENV$.json",
   "overridesFile": "$OVERRIDES$/Override.NONE.json",
-  "validationFile": "$VALIDATION$/Validator.$ROOT_NAME$.Create.Quote.V2.New.Multi.With.Is.Individual.True.Positive.$ENV$.json",
+  "validationFile": "$VALIDATION$/Validator.$ROOT_NAME$.Update.Quote.V2.Operation.Delete.Action.New.Not.In.Draft.State.Negative.$ENV$.json",
   "secretsFile": "$CONFIG$/Secrets.GetInvoiceServices.INT.json",
 
-  "workflow": "CreateQuoteV2New"
+  "workflow": "QuoteUpdateOperationDeleteQuoteNotInDraftStateNeg"
 }
