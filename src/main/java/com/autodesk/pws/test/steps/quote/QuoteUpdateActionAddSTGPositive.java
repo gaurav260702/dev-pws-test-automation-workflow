@@ -54,11 +54,11 @@ public class QuoteUpdateActionAddSTGPositive extends PwsServiceBase
 				"    \"lineItems\": [{\n" +
 				"        \"action\": \"add\",\n" +
 				"        \"offeringId\": \"OD-000450\",\n" +
-				"        \"quantity\": 100,\n" +
+				"        \"quantity\": $QUANTITY$,\n" +
 				"        \"orderAction\": \"New\",\n" +
 				"        \"offer\": {\n" +
 				"                \"term\": \"A01\",\n" +
-				"                \"accessModel\": \"F\",\n" +
+				"                \"accessModel\": \"$ACCESS_MODEL$\",\n" +
 				"                \"intendedUsage\": \"COM\",\n" +
 				"                \"connectivity\": \"C100\",\n" +
 				"                \"servicePlan\": \"STND\",\n" +

@@ -1,0 +1,20 @@
+{
+  "QuoteStatus": {
+    "quoteStatus": "DRAFT-CREATED",
+    "quoteNumber": "$QUOTE_NUMBER$",
+    "transactionId": "*"
+  },
+  "QuoteUpdateActionAddSTGPositive": {
+    "transactionId": "*",
+    "errors": [
+      {
+        "message": "Line item 2 is not accepted. Reconfigure or delete to continue."
+      }
+    ],
+    "status": "error"
+  },
+  "QuoteCreate": {
+    "message": "success",
+    "transactionId": "*"
+  }
+}

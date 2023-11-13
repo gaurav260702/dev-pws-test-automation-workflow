@@ -3,7 +3,7 @@
   "$ENV$": "STG",
 
   "$ROOT_NAME$": "QuoteServices",
-  "$VARIATION_COUNT$": "Update.Quote.Action.Add.Positive",
+  "$VARIATION_COUNT$": "Update.Quote.v1.Action.Add.Non.Flex.SUS.Product.Negative",
   "$BASE_NAME$": "$ROOT_NAME$_$VARIATION_COUNT$",
   "$SERVICE_NAME$": "QuoteServices_UpdateQuote",
   "$VALIDATION$": "$ROOT$/Validators",
@@ -25,7 +25,7 @@
   "$CSN_HEADER$": "5070132992",
 
   "$OFFERING_ID$": "OD-000450","$AGENT_EMAIL$":
-  "partneruser_da_stg_5070132992_2@letscheck.email",
+"partneruser_da_stg_5070132992_2@letscheck.email",
 
   "$CREATE_QUOTE_BASE_URL$": "https://enterprise-api-$ENV$.autodesk.com/",
   "$VERSION_PATH$": "v1",
@@ -33,13 +33,13 @@
   "$TIMEZONE_CITY$": "Australia/Sydney",
   "$CURRENCY$": "AUD",
   "$QUANTITY$": 100,
-  "$ACCESS_MODEL$": "F",
+  "$ACCESS_MODEL$": "S",
 
-   "$ADDRESS1$": "7211 Jalan Kipas",
-   "$CITY$": "Home Island",
-   "$STATE$": "Shire of Cocos",
-   "$POSTAL_CODE$": "6799",
-   "$COUNTRY$": "CC",
+  "$ADDRESS1$": "7211 Jalan Kipas",
+  "$CITY$": "Home Island",
+  "$STATE$": "Shire of Cocos",
+  "$POSTAL_CODE$": "6799",
+  "$COUNTRY$": "CC",
 
   "includeForceableHeaders": "true",
   "forceableHeaders":
@@ -52,9 +52,9 @@
   "baseUrl": "https://enterprise-api-$ENV$.autodesk.com",
   "oAuthBaseUrl":  "https://enterprise-api-$ENV$.autodesk.com",
 
-  "baseFile": "$BASE_DATA$/BaseData.$ROOT_NAME$.Update.Quote.Action.Add.Positive.STG.json",
+  "baseFile": "$BASE_DATA$/BaseData.$ROOT_NAME$.Update.Quote.v1.Action.Add.Non.Flex.SUS.Product.Negative.STG.json",
   "overridesFile": "$OVERRIDES$/Override.NONE.json",
-  "validationFile": "$VALIDATION$/Validator.$ROOT_NAME$.Update.Quote.Action.Add.Positive.STG.json",
+  "validationFile": "$VALIDATION$/Validator.$ROOT_NAME$.Update.Quote.v1.Action.Add.Non.Flex.SUS.Product.Negative.STG.json",
   "secretsFile": "$CONFIG$/Secrets.GetInvoiceServices.STG.json",
 
   "workflow": "QuoteUpdateActionAddSTGPositive"
