@@ -1,0 +1,12 @@
+{
+  "QuoteCreate": {
+    "transactionId": "*",
+    "errors": [
+      {
+        "code": "45001",
+        "message": "Invalid accessModel: Single User attribute value"
+      }
+    ],
+    "status": "error"
+  }
+}
