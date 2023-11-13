@@ -1,0 +1,20 @@
+{
+  "QuoteStatus": {
+    "quoteStatus": "DRAFT-CREATED",
+    "quoteNumber": "$QUOTE_NUMBER$",
+    "transactionId": "*"
+  },
+  "QuoteUpdateActionAddSTGPositive": {
+    "transactionId": "*",
+    "errors": [
+      {
+        "message": "Validation error (quantity): must be greater than or equal to 100 (Line item 1)."
+      }
+    ],
+    "status": "error"
+  },
+  "QuoteCreate": {
+    "message": "success",
+    "transactionId": "*"
+  }
+}

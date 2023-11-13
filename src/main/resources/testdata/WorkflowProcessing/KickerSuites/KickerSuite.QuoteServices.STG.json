@@ -45,6 +45,8 @@
     "./testdata/WorkflowProcessing/TestKickers/Kicker.PromotionsExport.Invalid_CSN.STG.json",
     "./testdata/WorkflowProcessing/TestKickers/Kicker.QuoteServices.Create.Quote.V1.Australia.Agent.End.Customer.USA.Negative.STG.json",
     "./testdata/WorkflowProcessing/TestKickers/Kicker.QuoteServices.Create.Quote.V1.NZ.Agent.End.Customer.Australia.Negative.STG.json",
-    "./testdata/WorkflowProcessing/TestKickers/Kicker.QuoteServices.Create.Quote.V1.New.Not.Supported.AccessModel.SUS.Negative.STG.json"
+    "./testdata/WorkflowProcessing/TestKickers/Kicker.QuoteServices.Create.Quote.V1.New.Not.Supported.AccessModel.SUS.Negative.STG.json",
+    "./testdata/WorkflowProcessing/TestKickers/Kicker.QuoteServices.Update.Quote.v1.Action.Add.Non.Flex.SUS.Product.Negative.STG.json",
+    "./testdata/WorkflowProcessing/TestKickers/Kicker.QuoteServices.Update.Quote.v1.Action.Add.Flex.Product.Quantity.Less.Than.100.Negative.STG.json"
   ]
 }
