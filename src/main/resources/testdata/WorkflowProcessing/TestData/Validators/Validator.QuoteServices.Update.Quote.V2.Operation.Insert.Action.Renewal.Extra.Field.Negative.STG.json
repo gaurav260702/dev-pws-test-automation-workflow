@@ -1,0 +1,16 @@
+{
+  "QuoteUpdateOperationInsertActionRenewalNewFieldNeg": {
+    "transactionId": "*",
+    "errors": [
+      {
+        "code": "45501",
+        "message": "\u0027lineItems[0].quantityActual\u0027 is not allowed"
+      },
+      {
+        "code": "45501",
+        "message": "\u0027date\u0027 is not allowed"
+      }
+    ],
+    "status": "error"
+  }
+}
