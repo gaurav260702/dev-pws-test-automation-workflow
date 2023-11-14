@@ -381,6 +381,23 @@ public class WorkflowLibrary
         return workflow;
     }
 
+    public static List<StepBase> QuoteUpdateOperationInsertActionCoTermNewFieldNeg()
+    {
+        boolean waitForExpectedStatus = true;
+
+        List<StepBase> workflow = new ArrayList<StepBase>();
+
+        workflow.add(new LoadQuoteFilesAndExtractData());
+        workflow.add(new GetQuoteOAuthCredentials());
+        /*workflow.add(new QuoteCreate());
+        // workflow.add(new QuoteCreateV2New());
+        workflow.add(new QuoteStatus(waitForExpectedStatus));
+        workflow.add(new QuoteDetailsV2New());*/
+        workflow.add(new QuoteUpdateOperationInsertActionCoTermNewFieldNeg());
+
+        return workflow;
+    }
+
     public static List<StepBase> QuoteUpdateOperationInsertActionRenewal()
     {
         boolean waitForExpectedStatus = true;
@@ -398,6 +415,23 @@ public class WorkflowLibrary
         return workflow;
     }
 
+    public static List<StepBase> QuoteUpdateOperationInsertActionRenewalNewFieldNeg()
+    {
+        boolean waitForExpectedStatus = true;
+
+        List<StepBase> workflow = new ArrayList<StepBase>();
+
+        workflow.add(new LoadQuoteFilesAndExtractData());
+        workflow.add(new GetQuoteOAuthCredentials());
+        /*workflow.add(new QuoteCreate());
+        // workflow.add(new QuoteCreateV2New());
+        workflow.add(new QuoteStatus(waitForExpectedStatus));
+        workflow.add(new QuoteDetailsV2New());*/
+        workflow.add(new QuoteUpdateOperationInsertActionRenewalNewFieldNeg());
+
+        return workflow;
+    }
+
     public static List<StepBase> QuoteUpdateOperationInsertActionSwitch()
     {
         boolean waitForExpectedStatus = true;
@@ -411,6 +445,23 @@ public class WorkflowLibrary
         workflow.add(new QuoteStatus(waitForExpectedStatus));
         workflow.add(new QuoteDetailsV2New());
         workflow.add(new QuoteUpdateOperationInsertActionSwitch());
+
+        return workflow;
+    }
+
+    public static List<StepBase> QuoteUpdateOperationInsertActionSwitchNewFieldNeg()
+    {
+        boolean waitForExpectedStatus = true;
+
+        List<StepBase> workflow = new ArrayList<StepBase>();
+
+        workflow.add(new LoadQuoteFilesAndExtractData());
+        workflow.add(new GetQuoteOAuthCredentials());
+        /*workflow.add(new QuoteCreate());
+        // workflow.add(new QuoteCreateV2New());
+        workflow.add(new QuoteStatus(waitForExpectedStatus));
+        workflow.add(new QuoteDetailsV2New());*/
+        workflow.add(new QuoteUpdateOperationInsertActionSwitchNewFieldNeg());
 
         return workflow;
     }
@@ -464,6 +515,23 @@ public class WorkflowLibrary
         return workflow;
     }
 
+    public static List<StepBase> QuoteUpdateOperationInsertActionExtensionNewFieldNeg()
+    {
+        boolean waitForExpectedStatus = true;
+
+        List<StepBase> workflow = new ArrayList<StepBase>();
+
+        workflow.add(new LoadQuoteFilesAndExtractData());
+        workflow.add(new GetQuoteOAuthCredentials());
+        /*workflow.add(new QuoteCreate());
+        // workflow.add(new QuoteCreateV2New());
+        workflow.add(new QuoteStatus(waitForExpectedStatus));
+        workflow.add(new QuoteDetailsV2New());*/
+        workflow.add(new QuoteUpdateOperationInsertActionExtensionNewFieldNeg());
+
+        return workflow;
+    }
+
     public static List<StepBase> QuoteUpdateOperationInsertActionTrueUp()
     {
         boolean waitForExpectedStatus = true;
@@ -477,6 +545,23 @@ public class WorkflowLibrary
         workflow.add(new QuoteStatus(waitForExpectedStatus));
         workflow.add(new QuoteDetailsV2New());
         workflow.add(new QuoteUpdateOperationInsertActionTrueUp());
+
+        return workflow;
+    }
+
+    public static List<StepBase> QuoteUpdateOperationInsertActionTrueUpNewFieldNeg()
+    {
+        boolean waitForExpectedStatus = true;
+
+        List<StepBase> workflow = new ArrayList<StepBase>();
+
+        workflow.add(new LoadQuoteFilesAndExtractData());
+        workflow.add(new GetQuoteOAuthCredentials());
+        /*workflow.add(new QuoteCreate());
+        // workflow.add(new QuoteCreateV2New());
+        workflow.add(new QuoteStatus(waitForExpectedStatus));
+        workflow.add(new QuoteDetailsV2New());*/
+        workflow.add(new QuoteUpdateOperationInsertActionTrueUpNewFieldNeg());
 
         return workflow;
     }
