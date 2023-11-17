@@ -3,7 +3,7 @@ package com.autodesk.pws.test.steps.quote;
 import com.autodesk.pws.test.steps.base.PwsServiceBase;
 import io.restassured.path.json.JsonPath;
 
-public class QuoteUpdateActionAddSTGPositive extends PwsServiceBase
+public class QuoteUpdateOperationDeleteExtraFieldNeg extends PwsServiceBase
 {
 	public String DataPoolSourceInfoLabel = "";
 	
@@ -49,24 +49,27 @@ public class QuoteUpdateActionAddSTGPositive extends PwsServiceBase
     	//  class as I don't want to deal with creating a
     	//  loader/extracter at this time...
     //	String jsonBody = "{\"quoteNumber\":\"$QUOTE_NUMBER$\"}";
-		String jsonBody = "{\n" +
-				"    \"quoteNumber\": \"$QUOTE_NUMBER$\",\n" +
-				"    \"lineItems\": [{\n" +
-				"        \"action\": \"add\",\n" +
-				"        \"offeringId\": \"OD-000450\",\n" +
-				"        \"quantity\": $QUANTITY$,\n" +
-				"        \"orderAction\": \"New\",\n" +
-				"        \"offer\": {\n" +
-				"                \"term\": \"A01\",\n" +
-				"                \"accessModel\": \"$ACCESS_MODEL$\",\n" +
-				"                \"intendedUsage\": \"COM\",\n" +
-				"                \"connectivity\": \"C100\",\n" +
-				"                \"servicePlan\": \"STND\",\n" +
-				"                \"billingBehavior\": \"A100\",\n" +
-				"                \"billingType\": \"B100\",\n" +
-				"            }\n" +
-				"    }]\n" +
-				"}\n";
+		/*String jsonBody = "{\n" +
+				"  \"quoteNumber\": \"$QUOTE_NUMBER$\",\n" +
+				"  \"lineItems\": [\n" +
+				"    {\n" +
+				"      \"operation\": \"Delete\",\n" +
+				"      \"quoteLineNumber\": \"$QUOTE_LINE_NUMBER$\"\n" +
+				"    }\n" +
+				"  ]\n" +
+				"}";*/
+
+		String jsonBody ="{\n" +
+				"    \"quoteNumber\": \"Q-709844\",\n" +
+				"    \"date\": \"2023-11-19\",\n" +
+				"    \"lineItems\": [\n" +
+				"        {\n" +
+				"            \"operation\": \"Delete\",\n" +
+				"            \"quoteLineNumber\": \"QL-1140428\",\n" +
+				"            \"actualQuantity\": 2\n" +
+				"        }\n" +
+				"    ]\n" +
+				"}";
 
     	jsonBody = this.fullyDetokenize(jsonBody);
     	
@@ -77,7 +80,7 @@ public class QuoteUpdateActionAddSTGPositive extends PwsServiceBase
 
     private void setResourcePath()
     {
-		super.setResourcePath("/v1/quotes");
+		super.setResourcePath("/$VERSION_PATH$/quotes");
     }
 
 	@Override
@@ -86,7 +89,8 @@ public class QuoteUpdateActionAddSTGPositive extends PwsServiceBase
 		// attachHeaderFromDataPool("CSN", "$CSN_SECONDARY$");
 		
 		super.action();
-    }
+
+	}
 	
 	@Override
 	public void validation()
@@ -99,7 +103,6 @@ public class QuoteUpdateActionAddSTGPositive extends PwsServiceBase
 		String json = this.JsonResponseBody;
 		JsonPath pathFinder = JsonPath.from(json);
 		String finalStatus = pathFinder.get("status");
-		extractDataFromJsonAndAddToDataPool("$QUOTE_LINE_NUMBER$", "lineItems[0].quoteLineNumber", pathFinder);
 
 		/*if (!finalStatus.matches(ExpectedEndStateStatus))
 		{

@@ -1,0 +1,12 @@
+{
+  "QuoteCreate": {
+    "transactionId": "*",
+    "errors": [
+      {
+        "errorCode": "45022",
+        "message": "Please enter a valid non-duplicate payload"
+      }
+    ],
+    "status": "error"
+  }
+}

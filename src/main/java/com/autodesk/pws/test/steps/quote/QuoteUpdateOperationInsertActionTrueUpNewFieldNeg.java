@@ -3,7 +3,7 @@ package com.autodesk.pws.test.steps.quote;
 import com.autodesk.pws.test.steps.base.PwsServiceBase;
 import io.restassured.path.json.JsonPath;
 
-public class QuoteUpdateActionAddSTGPositive extends PwsServiceBase
+public class QuoteUpdateOperationInsertActionTrueUpNewFieldNeg extends PwsServiceBase
 {
 	public String DataPoolSourceInfoLabel = "";
 	
@@ -48,25 +48,44 @@ public class QuoteUpdateActionAddSTGPositive extends PwsServiceBase
     	//  for the moment we're going to embed it in the 
     	//  class as I don't want to deal with creating a
     	//  loader/extracter at this time...
-    //	String jsonBody = "{\"quoteNumber\":\"$QUOTE_NUMBER$\"}";
+    //	String jsonBody = "{\"quoteNumber\":\"$QUOTE_NUMBER$\"}";  $QUOTE_LINE_NUMBER$
 		String jsonBody = "{\n" +
-				"    \"quoteNumber\": \"$QUOTE_NUMBER$\",\n" +
-				"    \"lineItems\": [{\n" +
-				"        \"action\": \"add\",\n" +
-				"        \"offeringId\": \"OD-000450\",\n" +
-				"        \"quantity\": $QUANTITY$,\n" +
-				"        \"orderAction\": \"New\",\n" +
-				"        \"offer\": {\n" +
-				"                \"term\": \"A01\",\n" +
-				"                \"accessModel\": \"$ACCESS_MODEL$\",\n" +
-				"                \"intendedUsage\": \"COM\",\n" +
-				"                \"connectivity\": \"C100\",\n" +
-				"                \"servicePlan\": \"STND\",\n" +
-				"                \"billingBehavior\": \"A100\",\n" +
-				"                \"billingType\": \"B100\",\n" +
+				"    \"quoteNumber\": \"Q-630942\",\n" +
+				"    \"date\": \"2023-10-09\",\n" +
+				"    \"lineItems\": [\n" +
+				"        {\n" +
+				"            \"action\": \"True-up\",\n" +
+				"            \"quantity\": 50,\n" +
+				"            \"operation\": \"Insert\",\n" +
+				"            \"offeringId\": \"OD-000321\",\n" +
+				"            \"startDate\": \"2023-09-30\",\n" +
+				"            \"endDate\": \"2026-09-29\",\n" +
+				"            \"quantityactual\": 2,\n" +
+				"            \"offer\": {\n" +
+				"                \"term\": {\n" +
+				"                    \"code\": \"A06\",\n" +
+				"                    \"description\": \"3 Years\"\n" +
+				"                },\n" +
+				"                \"accessModel\": {\n" +
+				"                    \"code\": \"S\",\n" +
+				"                    \"description\": \"Single User\"\n" +
+				"                },\n" +
+				"                \"intendedUsage\": {\n" +
+				"                    \"code\": \"COM\",\n" +
+				"                    \"description\": \"Commercial\"\n" +
+				"                },\n" +
+				"                \"connectivity\": {\n" +
+				"                    \"code\": \"C100\",\n" +
+				"                    \"description\": \"Online\"\n" +
+				"                },\n" +
+				"                \"servicePlan\": {\n" +
+				"                    \"code\": \"PREMSUB\",\n" +
+				"                    \"description\": \"Premium\"\n" +
+				"                }\n" +
 				"            }\n" +
-				"    }]\n" +
-				"}\n";
+				"        }\n" +
+				"    ]\n" +
+				"}";
 
     	jsonBody = this.fullyDetokenize(jsonBody);
     	
@@ -77,7 +96,7 @@ public class QuoteUpdateActionAddSTGPositive extends PwsServiceBase
 
     private void setResourcePath()
     {
-		super.setResourcePath("/v1/quotes");
+		super.setResourcePath("/$VERSION_PATH$/quotes");
     }
 
 	@Override
@@ -86,7 +105,8 @@ public class QuoteUpdateActionAddSTGPositive extends PwsServiceBase
 		// attachHeaderFromDataPool("CSN", "$CSN_SECONDARY$");
 		
 		super.action();
-    }
+
+	}
 	
 	@Override
 	public void validation()
@@ -99,7 +119,6 @@ public class QuoteUpdateActionAddSTGPositive extends PwsServiceBase
 		String json = this.JsonResponseBody;
 		JsonPath pathFinder = JsonPath.from(json);
 		String finalStatus = pathFinder.get("status");
-		extractDataFromJsonAndAddToDataPool("$QUOTE_LINE_NUMBER$", "lineItems[0].quoteLineNumber", pathFinder);
 
 		/*if (!finalStatus.matches(ExpectedEndStateStatus))
 		{

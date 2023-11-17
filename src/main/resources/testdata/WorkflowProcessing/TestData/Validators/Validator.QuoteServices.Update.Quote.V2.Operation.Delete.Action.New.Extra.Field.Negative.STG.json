@@ -1,0 +1,12 @@
+{
+  "QuoteUpdateOperationDeleteExtraFieldNeg": {
+    "transactionId": "*",
+    "errors": [
+      {
+        "code": "45501",
+        "message": "\u0027date\u0027 is not allowed"
+      }
+    ],
+    "status": "error"
+  }
+}

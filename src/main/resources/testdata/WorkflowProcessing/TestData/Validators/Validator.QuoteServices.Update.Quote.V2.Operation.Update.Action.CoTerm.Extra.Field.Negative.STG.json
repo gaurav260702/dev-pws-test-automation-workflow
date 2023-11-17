@@ -1,0 +1,16 @@
+{
+  "QuoteUpdateOperationUpdateActionCoTermNewFieldNeg": {
+    "transactionId": "*",
+    "errors": [
+      {
+        "code": "45501",
+        "message": "\u0027lineItems[0].lquantityactua\u0027 is not allowed"
+      },
+      {
+        "code": "45501",
+        "message": "\u0027date\u0027 is not allowed"
+      }
+    ],
+    "status": "error"
+  }
+}

@@ -3,43 +3,40 @@
   "$ENV$": "STG",
 
   "$ROOT_NAME$": "QuoteServices",
-  "$VARIATION_COUNT$": "Update.Quote.Action.Add.Positive",
+  "$VARIATION_COUNT$": "Create.Quote.V2.Not.Duplicate.Payload.Previous.Quote.Status.Failed.Positive",
   "$BASE_NAME$": "$ROOT_NAME$_$VARIATION_COUNT$",
-  "$SERVICE_NAME$": "QuoteServices_UpdateQuote",
+  "$SERVICE_NAME$": "QuoteServices_V2",
   "$VALIDATION$": "$ROOT$/Validators",
   "$OVERRIDES$": "$ROOT$/Overrides",
   "$BASE_DATA$": "$ROOT$/BaseData",
   "$CONFIG$": "$ROOT$/Configurations",
 
-  "$CSN_SOLDTO$": "185723294",
-  "$CSN_RESELLER$": "5070132992",
-  "$CSN_ENDCUSTOMER$": "5070132992",
-  "$CSN_SHIPTO$": "5070132992",
+  "$CSN_SOLDTO$": "5502174257",
+  "$CSN_RESELLER$": "5502174257",
+  "$CSN_ENDCUSTOMER$": "5502174257",
+  "$CSN_SHIPTO$": "5112991506",
 
   "$CSN_PRIMARY$": "$CSN_ENDCUSTOMER$",
   "$CSN_SECONDARY$": "$CSN_RESELLER$",
   "$CSN_TERTIARY$": "$CSN_SOLDTO$",
   "$CSN_QUATERNARY$": "$CSN_SOLDTO$",
 
-  "$CSN_ACCOUNT_CONTACT$": "5070132992",
-  "$CSN_HEADER$": "5070132992",
+  "$CSN_ACCOUNT_CONTACT$": "5502174257",
+  "$CSN_HEADER$": "5502174257",
 
-  "$OFFERING_ID$": "OD-000450","$AGENT_EMAIL$":
-  "partneruser_da_stg_5070132992_2@letscheck.email",
+      "$OFFERING_ID$": "OD-000163",
+      "$AGENT_EMAIL$": "part_01Aug_001@letscheck.pw",
 
   "$CREATE_QUOTE_BASE_URL$": "https://enterprise-api-$ENV$.autodesk.com/",
   "$VERSION_PATH$": "v1",
 
   "$TIMEZONE_CITY$": "Australia/Sydney",
   "$CURRENCY$": "AUD",
-  "$QUANTITY$": 100,
-  "$ACCESS_MODEL$": "F",
 
-   "$ADDRESS1$": "7211 Jalan Kipas",
-   "$CITY$": "Home Island",
-   "$STATE$": "Shire of Cocos",
-   "$POSTAL_CODE$": "6799",
-   "$COUNTRY$": "CC",
+  "$ADDRESS1$": "60 Jenke Cct",
+  "$CITY$": "Kambah",
+  "$POSTAL_CODE$": "2902",
+  "$COUNTRY$": "AU",
 
   "includeForceableHeaders": "true",
   "forceableHeaders":
@@ -52,10 +49,10 @@
   "baseUrl": "https://enterprise-api-$ENV$.autodesk.com",
   "oAuthBaseUrl":  "https://enterprise-api-$ENV$.autodesk.com",
 
-  "baseFile": "$BASE_DATA$/BaseData.$ROOT_NAME$.Update.Quote.Action.Add.Positive.STG.json",
+  "baseFile": "$BASE_DATA$/BaseData.$ROOT_NAME$.Create.Quote.V1.Not.Duplicate.Payload.Previous.Quote.Status.Failed.Positive.$ENV$.json",
   "overridesFile": "$OVERRIDES$/Override.NONE.json",
-  "validationFile": "$VALIDATION$/Validator.$ROOT_NAME$.Update.Quote.Action.Add.Positive.STG.json",
-  "secretsFile": "$CONFIG$/Secrets.GetInvoiceServices.STG.json",
+  "validationFile": "$VALIDATION$/Validator.$ROOT_NAME$.Create.Quote.V1.Not.Duplicate.Payload.Previous.Quote.Status.Failed.Positive.$ENV$.json",
+  "secretsFile": "$CONFIG$/Secrets.GetInvoiceServices.INT.json",
 
-  "workflow": "QuoteUpdateActionAddSTGPositive"
+  "workflow": "CreateQuoteV2NewDuplicatePayloadCheck"
 }

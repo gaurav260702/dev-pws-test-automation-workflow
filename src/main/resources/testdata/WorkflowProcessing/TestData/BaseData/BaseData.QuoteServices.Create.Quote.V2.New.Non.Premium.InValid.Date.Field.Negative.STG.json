@@ -1,14 +1,18 @@
 {
+    "quoteNote": "Notefromagent{{note}}tocustomer.",
     "currency": "AUD",
     "date": "2023-10-09",
     "agentAccount": {
-        "accountCsn": "5070132993"
+        "accountCsn": "5070132993",
+        "account": "XYZ"
     },
     "agentContact": {
-        "email": "kleekru@yahoo.com"
+        "email": "kleekru@yahoo.com",
+        "agentemail": "pqr@yahoo.com"
     },
     "endCustomer": {
         "name": "SMVIRU Associates Ltd",
+        "accountName": "SMVIRU",
         "addressLine1": "2 Barrack St",
         "city": "Perth",
         "stateProvinceCode": "WA",
@@ -19,6 +23,7 @@
     "purchaser": {
         "email": "sunnygopi2021@gmail.com",
         "firstName": "Sunny",
+        "purchaserName": "Sunny",
         "lastName": "Gopim",
         "phone": "4154776666",
         "preferredLanguage": "en"
@@ -30,6 +35,7 @@
             "offeringName": "Inventor Professional",
             "action": "New",
             "quantity": 2,
+            "actualquantity": 2,
             "offer": {
                 "term": {
                     "code": "A06",
