@@ -23,7 +23,7 @@
             "action": "Co-term",
             "quantity": 1,
             "referenceSubscriptionId": "69659405276222",
-            "startDate": "2023-11-14",
+            "startDate": "[[Date(25)]]",
             "offer": {
                 "term": {
                     "code": "A01",
