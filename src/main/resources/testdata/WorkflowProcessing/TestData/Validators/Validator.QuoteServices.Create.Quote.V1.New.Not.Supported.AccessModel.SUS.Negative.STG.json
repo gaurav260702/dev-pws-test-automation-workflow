@@ -4,7 +4,7 @@
     "errors": [
       {
         "code": "45001",
-        "message": "Invalid accessModel: Single User attribute value"
+        "message": "Invalid accessModel: Single User (SU) attribute value"
       }
     ],
     "status": "error"

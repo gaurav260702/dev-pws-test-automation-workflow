@@ -31,7 +31,7 @@
             "subscriptionStartDate": "[[Date(25)]]",
             "offer": {
                 "term": "Annual",
-                "accessModel": "Single User",
+                "accessModel": "Single User (SU)",
                 "intendedUsage": "Commercial",
                 "connectivity": "Online",
                 "servicePlan": "Standard",
