@@ -33,7 +33,7 @@
   "$TIMEZONE_CITY$": "Australia/Sydney",
   "$CURRENCY$": "AUD",
   "$QUANTITY$": 100,
-  "$ACCESS_MODEL$": "S",
+  "$ACCESS_MODEL$": "Single User (SU)",
 
   "$ADDRESS1$": "7211 Jalan Kipas",
   "$CITY$": "Home Island",
@@ -57,5 +57,5 @@
   "validationFile": "$VALIDATION$/Validator.$ROOT_NAME$.Update.Quote.v1.Action.Add.Non.Flex.SUS.Product.Negative.STG.json",
   "secretsFile": "$CONFIG$/Secrets.GetInvoiceServices.STG.json",
 
-  "workflow": "QuoteUpdateActionAddSTGPositive"
+  "workflow": "QuoteUpdateActionAddSTGNeg"
 }

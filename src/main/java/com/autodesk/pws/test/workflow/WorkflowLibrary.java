@@ -1136,6 +1136,25 @@ public class WorkflowLibrary
         return workflow;
     }
 
+    public static List<StepBase> QuoteUpdateActionAddSTGNeg()
+    {
+        boolean waitForExpectedStatus = true;
+
+        List<StepBase> workflow = new ArrayList<StepBase>();
+
+        workflow.add(new LoadQuoteFilesAndExtractData());
+        workflow.add(new GetQuoteOAuthCredentials());
+        workflow.add(new QuoteCreate());
+        workflow.add(new QuoteStatus(waitForExpectedStatus));
+        //  workflow.add(new QuoteDetails());
+        //  workflow.add(new QuoteFinalize());
+        //  workflow.add(new QuoteStatusByQuoteNumber(waitForExpectedStatus));
+        workflow.add(new QuoteUpdateActionAddSTGNeg());
+
+
+        return workflow;
+    }
+
 
     public static List<StepBase> QuoteUpdateActionUpdatePositive()
     {
