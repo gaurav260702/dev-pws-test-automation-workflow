@@ -18,6 +18,7 @@ def paramsSelected = false
 def testfiles
 def allTests = [
   QuoteServices_V2_INT: [path: "testdata/WorkflowProcessing/KickerSuites/KickerSuite.QuoteServices.Create.Update.Quote.V2.INT.json"],
+  QuoteServices_V2_NZ_INT: [path: "testdata/WorkflowProcessing/KickerSuites/KickerSuite.QuoteServices.Create.Update.Quote.V2.NZ.INT.json"],
   QuoteServices_V2_STG: [path: "testdata/WorkflowProcessing/KickerSuites/KickerSuite.QuoteServices.Create.Update.Quote.V2.STG.json"],
   QuoteNotifyWebhook_INT: [path: "testdata/WorkflowProcessing/KickerSuites/KickerSuite.QuoteNotificationWebhook.INT.json"],
   QuoteServices_STG: [path: "testdata/WorkflowProcessing/KickerSuites/KickerSuite.QuoteServices.STG.json"],
@@ -36,6 +37,7 @@ pipeline {
     booleanParam(name: 'QuoteServices_INT', description: 'Run QuoteServices Tests in INT', defaultValue: false)
     booleanParam(name: 'QuoteServices_V2_STG', description: 'Run QuoteServices V2 Tests in STG', defaultValue: false)
     booleanParam(name: 'QuoteServices_V2_INT', description: 'Run QuoteServices V2 Tests in INT', defaultValue: false)
+    booleanParam(name: 'QuoteServices_V2_NZ_INT', description: 'Run QuoteServices V2 Tests for NZ in INT', defaultValue: false)
     booleanParam(name: 'GetQuoteDetailsInternalv2_INT', description: 'RUN GetQuoteDetailsInternalv2 Tests in INT', defaultValue: false)
     booleanParam(name: 'CatalogExport_INT', description: 'RUN CatalogExport Tests in INT', defaultValue: false)
     booleanParam(name: 'PromotionsExport_INT', description: 'RUN PromotionsExport Tests in INT', defaultValue: false)
@@ -44,7 +46,7 @@ pipeline {
   triggers {
     parameterizedCron(env.BRANCH_NAME == 'master' ? '''
         # run tests everyday at 5 AM PST
-        0 5 * * * % QuoteServices_STG=true;QuoteServices_INT=true;QuoteServices_V2_STG=true;QuoteServices_V2_INT=true;GetQuoteDetailsInternalv2_INT=true;
+        0 5 * * * % QuoteServices_STG=true;QuoteServices_INT=true;QuoteServices_V2_STG=true;QuoteServices_V2_INT=true;QuoteServices_V2_NZ_INT=true;GetQuoteDetailsInternalv2_INT=true;
     ''' : '')
     }
     options {
