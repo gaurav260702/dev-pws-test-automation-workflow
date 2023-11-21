@@ -58,13 +58,13 @@ public class QuoteUpdateNegative extends PwsServiceBase
 				"        \"quantity\": 100,\n" +
 				"        \"orderAction\": \"New\",\n" +
 				"        \"offer\": {\n" +
-				"                \"term\": \"A01\",\n" +
-				"                \"accessModel\": \"F\",\n" +
-				"                \"intendedUsage\": \"COM\",\n" +
-				"                \"connectivity\": \"C100\",\n" +
-				"                \"servicePlan\": \"STND\",\n" +
-				"                \"billingBehavior\": \"A100\",\n" +
-				"                \"billingType\": \"B100\",\n" +
+				"                \"term\": \"Annual\",\n" +
+				"                \"accessModel\": \"Flex\",\n" +
+				"                \"intendedUsage\": \"Commercial\",\n" +
+				"                \"connectivity\": \"Online\",\n" +
+				"                \"servicePlan\": \"Standard\",\n" +
+				"                \"billingBehavior\": \"Once\",\n" +
+				"                \"billingType\": \"Up-front\",\n" +
 				"            }\n" +
 				"    }]\n" +
 				"}\n";
