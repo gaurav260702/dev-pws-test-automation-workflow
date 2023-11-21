@@ -164,7 +164,7 @@ pipeline {
          """
 
         zip zipFile: "PWSQuoteServices-reports.zip", dir: "test-reports"
-        UploadTestResults("PWSQuoteServices-reports.zip","JSON_LOG","ESAEDSBD-402", "${env.GIT_URL}".tokenize('/.')[-2], env.BRANCH_NAME, env.BUILD_NUMBER,"ESAEDSBD")
+        UploadTestResults("PWSQuoteServices-reports.zip","JSON_LOG","PJPWS-42548", "${env.GIT_URL}".tokenize('/.')[-2], env.BRANCH_NAME, env.BUILD_NUMBER,"PJPWS")
 
         files.each {
           f ->
