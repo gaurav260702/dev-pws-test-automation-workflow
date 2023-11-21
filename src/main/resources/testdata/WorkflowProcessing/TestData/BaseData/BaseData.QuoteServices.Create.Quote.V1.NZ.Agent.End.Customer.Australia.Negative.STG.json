@@ -22,7 +22,7 @@
             "quantity": 7500,
             "offeringId": "OD-000450",
             "orderAction": "New",
-            "subscriptionStartDate": "2023-11-15",
+            "subscriptionStartDate": "[[Date(25)]]",
             "offer": {
                 "term": "Annual",
                 "accessModel": "Flex",

@@ -1,9 +1,9 @@
 ﻿{
   "$ROOT$": "./testdata/WorkflowProcessing/TestData",
-  "$ENV$": "STG",
+  "$ENV$": "INT",
 
   "$ROOT_NAME$": "QuoteServices",
-  "$VARIATION_COUNT$": "Update.Quote.Action.Add.Positive",
+  "$VARIATION_COUNT$": "Update.Quote.V2.Operation.Delete.Action.New.In.Draft.State.NZ.Positive",
   "$BASE_NAME$": "$ROOT_NAME$_$VARIATION_COUNT$",
   "$SERVICE_NAME$": "QuoteServices_UpdateQuote",
   "$VALIDATION$": "$ROOT$/Validators",
@@ -11,35 +11,33 @@
   "$BASE_DATA$": "$ROOT$/BaseData",
   "$CONFIG$": "$ROOT$/Configurations",
 
-  "$CSN_SOLDTO$": "185723294",
-  "$CSN_RESELLER$": "5070132992",
-  "$CSN_ENDCUSTOMER$": "5070132992",
-  "$CSN_SHIPTO$": "5070132992",
+  "$CSN_SOLDTO$": "5112991506",
+  "$CSN_RESELLER$": "5070133154",
+  "$CSN_ENDCUSTOMER$": "5070133154",
+  "$CSN_SHIPTO$": "5070133154",
 
   "$CSN_PRIMARY$": "$CSN_ENDCUSTOMER$",
   "$CSN_SECONDARY$": "$CSN_RESELLER$",
   "$CSN_TERTIARY$": "$CSN_SOLDTO$",
   "$CSN_QUATERNARY$": "$CSN_SOLDTO$",
 
-  "$CSN_ACCOUNT_CONTACT$": "5070132992",
-  "$CSN_HEADER$": "5070132992",
+  "$CSN_ACCOUNT_CONTACT$": "5070133154",
+  "$CSN_HEADER$": "5070133154",
 
-  "$OFFERING_ID$": "OD-000450","$AGENT_EMAIL$":
-  "partneruser_da_stg_5070132992_2@letscheck.email",
+      "$OFFERING_ID$": "OD-000163",
+      "$AGENT_EMAIL$": "naz_zheal_5070133154@mailinator.com",
 
   "$CREATE_QUOTE_BASE_URL$": "https://enterprise-api-$ENV$.autodesk.com/",
-  "$VERSION_PATH$": "v1",
+  "$VERSION_PATH$": "v2",
 
   "$TIMEZONE_CITY$": "Australia/Sydney",
   "$CURRENCY$": "AUD",
-  "$QUANTITY$": 100,
-  "$ACCESS_MODEL$": "Flex",
 
-   "$ADDRESS1$": "7211 Jalan Kipas",
-   "$CITY$": "Home Island",
-   "$STATE$": "Shire of Cocos",
-   "$POSTAL_CODE$": "6799",
-   "$COUNTRY$": "CC",
+  "$ADDRESS1$": "60 Jenke Cct",
+  "$CITY$": "Kambah",
+  "$POSTAL_CODE$": "2902",
+  "$COUNTRY$": "AU",
+  "QUOTELINENUMBER": "quoteLineNumber",
 
   "includeForceableHeaders": "true",
   "forceableHeaders":
@@ -52,10 +50,10 @@
   "baseUrl": "https://enterprise-api-$ENV$.autodesk.com",
   "oAuthBaseUrl":  "https://enterprise-api-$ENV$.autodesk.com",
 
-  "baseFile": "$BASE_DATA$/BaseData.$ROOT_NAME$.Update.Quote.Action.Add.Positive.STG.json",
+  "baseFile": "$BASE_DATA$/BaseData.$ROOT_NAME$.Update.Quote.V2.Operation.Delete.Action.New.In.Draft.State.NZ.Positive.$ENV$.json",
   "overridesFile": "$OVERRIDES$/Override.NONE.json",
-  "validationFile": "$VALIDATION$/Validator.$ROOT_NAME$.Update.Quote.Action.Add.Positive.STG.json",
-  "secretsFile": "$CONFIG$/Secrets.GetInvoiceServices.STG.json",
+  "validationFile": "$VALIDATION$/Validator.$ROOT_NAME$.Update.Quote.V2.Operation.Delete.Action.New.In.Draft.State.NZ.Positive.$ENV$.json",
+  "secretsFile": "$CONFIG$/Secrets.GetInvoiceServices.INT.json",
 
-  "workflow": "QuoteUpdateActionAddSTGPositive"
+  "workflow": "QuoteUpdateOperationDelete"
 }

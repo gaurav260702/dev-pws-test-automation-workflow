@@ -57,13 +57,13 @@ public class QuoteUpdateActionAddSTGPositive extends PwsServiceBase
 				"        \"quantity\": $QUANTITY$,\n" +
 				"        \"orderAction\": \"New\",\n" +
 				"        \"offer\": {\n" +
-				"                \"term\": \"A01\",\n" +
+				"                \"term\": \"Annual\",\n" +
 				"                \"accessModel\": \"$ACCESS_MODEL$\",\n" +
-				"                \"intendedUsage\": \"COM\",\n" +
-				"                \"connectivity\": \"C100\",\n" +
-				"                \"servicePlan\": \"STND\",\n" +
-				"                \"billingBehavior\": \"A100\",\n" +
-				"                \"billingType\": \"B100\",\n" +
+				"                \"intendedUsage\": \"Commercial\",\n" +
+				"                \"connectivity\": \"Online\",\n" +
+				"                \"servicePlan\": \"Standard\",\n" +
+				"                \"billingBehavior\": \"Once\",\n" +
+				"                \"billingType\": \"Up-front\",\n" +
 				"            }\n" +
 				"    }]\n" +
 				"}\n";

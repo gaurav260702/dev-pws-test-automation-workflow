@@ -4,11 +4,12 @@
     "quoteNumber": "$QUOTE_NUMBER$",
     "transactionId": "*"
   },
-  "QuoteUpdateActionAddSTGPositive": {
+  "QuoteUpdateActionAddSTGNeg": {
     "transactionId": "*",
     "errors": [
       {
-        "message": "Line item 2 is not accepted. Reconfigure or delete to continue."
+        "code": "45001",
+        "message": "Invalid accessModel: Single User (SU) attribute value"
       }
     ],
     "status": "error"

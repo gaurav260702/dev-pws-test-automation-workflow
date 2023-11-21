@@ -3,7 +3,7 @@ package com.autodesk.pws.test.steps.quote;
 import com.autodesk.pws.test.steps.base.PwsServiceBase;
 import io.restassured.path.json.JsonPath;
 
-public class QuoteUpdateNegative extends PwsServiceBase
+public class QuoteUpdateActionAddSTGNeg extends PwsServiceBase
 {
 	public String DataPoolSourceInfoLabel = "";
 	
@@ -40,7 +40,7 @@ public class QuoteUpdateNegative extends PwsServiceBase
     	//  Do stuff that the Action depends on to execute...
     	super.preparation();
     	
-    	ExpectedEndStateStatus = "error";
+    //	ExpectedEndStateStatus = "error";
 		super.setExpectedEndState(this.ClassName);
     	
     	//  Having a "PATCH" method requires a body.
@@ -50,16 +50,15 @@ public class QuoteUpdateNegative extends PwsServiceBase
     	//  loader/extracter at this time...
     //	String jsonBody = "{\"quoteNumber\":\"$QUOTE_NUMBER$\"}";
 		String jsonBody = "{\n" +
-			//	"    \"quoteNumber\": \"Q-161030\",\n" +
 				"    \"quoteNumber\": \"$QUOTE_NUMBER$\",\n" +
 				"    \"lineItems\": [{\n" +
 				"        \"action\": \"add\",\n" +
-				"        \"offeringId\": \"OD-000163\",\n" +
-				"        \"quantity\": 100,\n" +
+				"        \"offeringId\": \"OD-000450\",\n" +
+				"        \"quantity\": $QUANTITY$,\n" +
 				"        \"orderAction\": \"New\",\n" +
 				"        \"offer\": {\n" +
 				"                \"term\": \"Annual\",\n" +
-				"                \"accessModel\": \"Flex\",\n" +
+				"                \"accessModel\": \"$ACCESS_MODEL$\",\n" +
 				"                \"intendedUsage\": \"Commercial\",\n" +
 				"                \"connectivity\": \"Online\",\n" +
 				"                \"servicePlan\": \"Standard\",\n" +
@@ -100,13 +99,14 @@ public class QuoteUpdateNegative extends PwsServiceBase
 		String json = this.JsonResponseBody;
 		JsonPath pathFinder = JsonPath.from(json);
 		String finalStatus = pathFinder.get("status");
+	//	extractDataFromJsonAndAddToDataPool("$QUOTE_LINE_NUMBER$", "lineItems[0].quoteLineNumber", pathFinder);
 
-		if (!finalStatus.matches(ExpectedEndStateStatus)) 
+		/*if (!finalStatus.matches(ExpectedEndStateStatus))
 		{
 			this.addResponseToValidationChain();
 			ExceptionAbortStatus = true;
 			ExceptionMessage = "Expected to reach '" + ExpectedEndStateStatus + "' state, but ended in '" + finalStatus + "' state!";
-		}
+		}*/
 		//  :::TODO:::
 	}	
 }

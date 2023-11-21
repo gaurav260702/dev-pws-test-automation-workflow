@@ -4,6 +4,14 @@
     "errors": [
       {
         "code": "45001",
+        "message": "\u0027agentAccount.account\u0027 is not allowed"
+      },
+      {
+        "code": "45001",
+        "message": "\u0027agentContact.agentEmail\u0027 is not allowed"
+      },
+      {
+        "code": "45001",
         "message": "\u0027endCustomer.accountName\u0027 is not allowed"
       },
       {
