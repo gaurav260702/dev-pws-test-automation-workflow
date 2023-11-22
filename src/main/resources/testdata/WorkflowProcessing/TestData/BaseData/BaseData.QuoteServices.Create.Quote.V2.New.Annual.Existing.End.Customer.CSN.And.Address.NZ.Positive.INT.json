@@ -1,0 +1,55 @@
+{
+    "quoteNote": "SM_Notefrom_Agenttocustomer1.{{note}}",
+    "currency": "NZD",
+    "agentAccount": {
+        "accountCsn": "5070133154"
+    },
+    "agentContact": {
+        "email": "naz_zheal_5070133154@mailinator.com"
+    },
+    "endCustomer": {
+        "accountCsn": "5502165494",
+        "name": "Richard Pearse",
+        "addressLine1": "25 DriveAirport Oaks",
+        "city": "Auckland",
+        "countryCode": "NZ",
+        "postalCode": "2022",
+        "isIndividual": false
+    },
+    "purchaser": {
+        "email": "PWS_NZUser@letscheck.email",
+        "firstName": "SMPWS",
+        "lastName": "NZUser1",
+        "phone": "+64 9123334567",
+        "preferredLanguage": "en"
+    },
+    "lineItems": [
+        {
+            "quantity": 1,
+            "offeringId": "OD-000021",
+            "action": "New",
+            "offer": {
+                "term": {
+                    "code": "A01",
+                    "description": "Annual"
+                },
+                "accessModel": {
+                    "code": "S",
+                    "description": "Single user"
+                },
+                "intendedUsage": {
+                    "code": "COM",
+                    "description": "Commercial"
+                },
+                "connectivity": {
+                    "code": "C100",
+                    "description": "Online"
+                },
+                "servicePlan": {
+                    "code": "STND",
+                    "description": "Standard"
+                }
+            }
+        }
+    ]
+}
