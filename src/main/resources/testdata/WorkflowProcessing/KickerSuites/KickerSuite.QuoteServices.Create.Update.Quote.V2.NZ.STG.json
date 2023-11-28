@@ -5,6 +5,8 @@
     "./testdata/WorkflowProcessing/TestKickers/Kicker.QuoteServices.Create.Quote.V2.New.Annual.End.Customer.CSN.And.Address.NZ.Positive.STG.json",
     "./testdata/WorkflowProcessing/TestKickers/Kicker.QuoteServices.Create.Quote.V2.New.Annual.End.Customer.Name.And.Address.NZ.Positive.STG.json",
     "./testdata/WorkflowProcessing/TestKickers/Kicker.QuoteServices.Create.Quote.V2.New.Annual.New.End.Customer.Name.And.Address.NZ.Positive.STG.json",
+    "./testdata/WorkflowProcessing/TestKickers/Kicker.QuoteServices.Create.Quote.V2.New.Annual.New.End.Customer.Name.And.Address1.And.Address2.NZ.Positive.STG.json",
+    "./testdata/WorkflowProcessing/TestKickers/Kicker.QuoteServices.Create.Quote.V2.New.Annual.New.End.Customer.Name.And.Address1.And.Address2.And.Address3.NZ.Positive.STG.json",
     "./testdata/WorkflowProcessing/TestKickers/Kicker.QuoteServices.Update.Quote.V2.Operation.Update.Action.New.Quantity.NZ.Positive.STG.json",
     "./testdata/WorkflowProcessing/TestKickers/Kicker.QuoteServices.Update.Quote.V2.Operation.Insert.Action.New.NZ.Positive.STG.json"
 
