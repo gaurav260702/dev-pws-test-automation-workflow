@@ -54,5 +54,5 @@
   "validationFile": "$VALIDATION$/Validator.$ROOT_NAME$.Create.Quote.V2.New.With.DDA.Oppty.Positive.$ENV$.json",
   "secretsFile": "$CONFIG$/Secrets.GetInvoiceServices.INT.json",
 
-  "workflow": "CreateQuoteV2New"
+  "workflow": "CreateQuoteV2NewFlexQTYLessThan100"
 }

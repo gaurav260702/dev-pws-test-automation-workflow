@@ -22,7 +22,7 @@
             "offeringId": "OD-000054",
             "action": "New",
             "quantity": 10,
-            "startDate": "2023-11-25",
+            "startDate": "[[Date(25)]]",
             "offer": {
                 "term": {
                     "code": "A01",

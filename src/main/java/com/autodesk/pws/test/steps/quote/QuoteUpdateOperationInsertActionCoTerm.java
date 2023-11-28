@@ -57,7 +57,7 @@ public class QuoteUpdateOperationInsertActionCoTerm extends PwsServiceBase
 				"      \"action\": \"Co-term\",\n" +
 				"      \"quantity\": 50,\n" +
 				"      \"operation\": \"Insert\",\n" +
-				"      \"startDate\": \"2023-11-25\",\n" +
+				"      \"startDate\": \"[[Date(25)]]\",\n" +
 				"      \"referenceSubscriptionId\": \"69659405276222\",\n" +
 				"      \"offer\": {\n" +
 				"        \"term\": {\n" +
