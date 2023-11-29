@@ -3,7 +3,7 @@
   "$ENV$": "STG",
 
   "$ROOT_NAME$": "QuoteServices",
-  "$VARIATION_COUNT$": "Create.Quote.V2.New.With.DDA.Oppty.Positive",
+  "$VARIATION_COUNT$": "Create.Quote.V2.New.Annual.End.Customer.CSN.NZ.Positive",
   "$BASE_NAME$": "$ROOT_NAME$_$VARIATION_COUNT$",
   "$SERVICE_NAME$": "QuoteServices_V2",
   "$VALIDATION$": "$ROOT$/Validators",
@@ -11,21 +11,21 @@
   "$BASE_DATA$": "$ROOT$/BaseData",
   "$CONFIG$": "$ROOT$/Configurations",
 
-  "$CSN_SOLDTO$": "5501670235",
-  "$CSN_RESELLER$": "5070132993",
-  "$CSN_ENDCUSTOMER$": "5112991506",
-  "$CSN_SHIPTO$": "5112991506",
+  "$CSN_SOLDTO$": "5502750389",
+  "$CSN_RESELLER$": "5502750389",
+  "$CSN_ENDCUSTOMER$": "5502750389",
+  "$CSN_SHIPTO$": "5502750389",
 
   "$CSN_PRIMARY$": "$CSN_ENDCUSTOMER$",
   "$CSN_SECONDARY$": "$CSN_RESELLER$",
   "$CSN_TERTIARY$": "$CSN_SOLDTO$",
   "$CSN_QUATERNARY$": "$CSN_SOLDTO$",
 
-  "$CSN_ACCOUNT_CONTACT$": "5070132993",
-  "$CSN_HEADER$": "5070132993",
+  "$CSN_ACCOUNT_CONTACT$": "5502750389",
+  "$CSN_HEADER$": "5502750389",
 
       "$OFFERING_ID$": "OD-000163",
-      "$AGENT_EMAIL$": "newuserpartnerau_5501670235@letscheck.pw",
+      "$AGENT_EMAIL$": "newzealandusercontact@letscheck.email",
 
   "$CREATE_QUOTE_BASE_URL$": "https://enterprise-api-$ENV$.autodesk.com/",
   "$VERSION_PATH$": "v2",
@@ -49,10 +49,10 @@
   "baseUrl": "https://enterprise-api-$ENV$.autodesk.com",
   "oAuthBaseUrl":  "https://enterprise-api-$ENV$.autodesk.com",
 
-  "baseFile": "$BASE_DATA$/BaseData.$ROOT_NAME$.Create.Quote.V2.New.With.DDA.Oppty.Positive.$ENV$.json",
+  "baseFile": "$BASE_DATA$/BaseData.$ROOT_NAME$.Create.Quote.V2.New.Annual.End.Customer.CSN.NZ.Positive.$ENV$.json",
   "overridesFile": "$OVERRIDES$/Override.NONE.json",
-  "validationFile": "$VALIDATION$/Validator.$ROOT_NAME$.Create.Quote.V2.New.With.DDA.Oppty.Positive.$ENV$.json",
+  "validationFile": "$VALIDATION$/Validator.$ROOT_NAME$.Create.Quote.V2.New.Annual.End.Customer.CSN.NZ.Positive.$ENV$.json",
   "secretsFile": "$CONFIG$/Secrets.GetInvoiceServices.INT.json",
 
-  "workflow": "CreateQuoteV2NewFlexQTYLessThan100"
+  "workflow": "CreateQuoteV2New"
 }

@@ -5,8 +5,8 @@
     "transactionId": "*",
     "errors": [
       {
-        "code": "45045",
-        "message": "Opportunity DDA_Oppty_yqrarfnb is in use by quote: Q-562397"
+        "code": "46002",
+        "message": "Subscription is not eligible to renew"
       }
     ]
   },

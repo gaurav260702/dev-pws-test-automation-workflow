@@ -1,0 +1,28 @@
+{
+    "quoteNote": "SM_Notefrom_Agenttocustomer1.{{note}}",
+    "currency": "NZD",
+    "agentAccount": {
+        "accountCsn": "5070133154"
+    },
+    "agentContact": {
+        "email": "naz_zheal_5070133154@mailinator.com"
+    },
+    "endCustomer": {
+        "accountCsn": "5502172500",
+        "name": "SMHarry NZ MCAD",
+        "addressLine1": "163 Kendal Avenue",
+        "city": "Christchurchh",
+        "countryCode": "NZ",
+        "postalCode": "8053",
+        "isIndividual": false
+    },
+    "opportunityNumber": "A-14589841",
+    "purchaser": {
+        "email": "PWS_NZUser@letscheck.email",
+        "firstName": "SMPWS",
+        "lastName": "NZUser1",
+        "phone": "+64 9123334567",
+        "preferredLanguage": "en"
+    }
+
+}
