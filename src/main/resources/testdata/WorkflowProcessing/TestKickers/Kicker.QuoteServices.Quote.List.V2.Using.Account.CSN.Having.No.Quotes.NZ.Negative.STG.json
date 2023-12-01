@@ -33,7 +33,8 @@
 
   "$TIMEZONE_CITY$": "Australia/Sydney",
   "$CURRENCY$": "AUD",
-  "$ACCOUNT_CSN$": "5502750389",
+  "$END_CUSTOMER_CSN$": "5502750389",
+  "$ACCOUNT_TYPE$": "accountCsn",
 
   "$ADDRESS1$": "60 Jenke Cct",
   "$CITY$": "Kambah",

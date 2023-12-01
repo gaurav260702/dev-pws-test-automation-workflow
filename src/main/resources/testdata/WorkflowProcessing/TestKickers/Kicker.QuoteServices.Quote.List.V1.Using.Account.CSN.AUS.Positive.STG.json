@@ -3,9 +3,9 @@
   "$ENV$": "STG",
 
   "$ROOT_NAME$": "QuoteServices",
-  "$VARIATION_COUNT$": "Quote.List.V2.Using.Account.CSN.Header.CSN.Is.Not.Matched.AUS.Negative",
+  "$VARIATION_COUNT$": "Quote.List.V1.Using.Account.CSN.AUS.Positive",
   "$BASE_NAME$": "$ROOT_NAME$_$VARIATION_COUNT$",
-  "$SERVICE_NAME$": "QuoteServices_V2",
+  "$SERVICE_NAME$": "QuoteServices_V1",
   "$VALIDATION$": "$ROOT$/Validators",
   "$OVERRIDES$": "$ROOT$/Overrides",
   "$BASE_DATA$": "$ROOT$/BaseData",
@@ -22,19 +22,19 @@
   "$CSN_QUATERNARY$": "$CSN_SOLDTO$",
 
   "$CSN_ACCOUNT_CONTACT$": "5070132993",
-  "$CSN_HEADER$": "5502750389",
+  "$CSN_HEADER$": "5500568857",
 
 
   "$OFFERING_ID$": "OD-000163",
   "$AGENT_EMAIL$": "newuserpartnerau_5501670235@letscheck.pw",
 
   "$CREATE_QUOTE_BASE_URL$": "https://enterprise-api-$ENV$.autodesk.com/",
-  "$VERSION_PATH$": "v2",
+  "$VERSION_PATH$": "v1",
 
   "$TIMEZONE_CITY$": "Australia/Sydney",
   "$CURRENCY$": "AUD",
-  "$END_CUSTOMER_CSN$": "5500570701",
-  "$ACCOUNT_TYPE$": "accountCsn",
+  "$END_CUSTOMER_CSN$": "5500569882",
+  "$ACCOUNT_TYPE$": "endCustomerCsn",
 
   "$ADDRESS1$": "60 Jenke Cct",
   "$CITY$": "Kambah",
@@ -52,9 +52,9 @@
   "baseUrl": "https://enterprise-api-$ENV$.autodesk.com",
   "oAuthBaseUrl":  "https://enterprise-api-$ENV$.autodesk.com",
 
-  "baseFile": "$BASE_DATA$/BaseData.$ROOT_NAME$.Quote.List.V2.Using.Account.CSN.Header.CSN.Is.Not.Matched.AUS.Negative.$ENV$.json",
+  "baseFile": "$BASE_DATA$/BaseData.$ROOT_NAME$.Quote.List.V1.Using.Account.CSN.AUS.Positive.$ENV$.json",
   "overridesFile": "$OVERRIDES$/Override.NONE.json",
-  "validationFile": "$VALIDATION$/Validator.$ROOT_NAME$.Quote.List.V2.Using.Account.CSN.Header.CSN.Is.Not.Matched.AUS.Negative.$ENV$.json",
+  "validationFile": "$VALIDATION$/Validator.$ROOT_NAME$.Quote.List.V1.Using.Account.CSN.AUS.Positive.$ENV$.json",
   "secretsFile": "$CONFIG$/Secrets.GetInvoiceServices.INT.json",
 
   "workflow": "QuoteListUsingAccountCSN"

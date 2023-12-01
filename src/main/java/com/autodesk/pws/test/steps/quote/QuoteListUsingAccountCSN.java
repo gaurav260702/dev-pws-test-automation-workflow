@@ -52,7 +52,7 @@ public class QuoteListUsingAccountCSN extends PwsServiceBase
     	// https://quote.ddwsdev.autodesk.com/v1/details?quoteNumber=7265267
 	//	super.setResourcePath("v2/quotes?quoteNumber=$QUOTE_NUMBER$");
 	//	super.setResourcePath("v2/quotes?filter[quoteNumber]=$QUOTE_NUMBER$");
-		super.setResourcePath("$VERSION_PATH$/quotes?filter[accountCsn]=$ACCOUNT_CSN$");
+		super.setResourcePath("$VERSION_PATH$/quotes?filter[$ACCOUNT_TYPE$]=$END_CUSTOMER_CSN$");
     }
 
 	@Override
