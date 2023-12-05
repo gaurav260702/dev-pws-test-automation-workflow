@@ -1,0 +1,55 @@
+{
+    "quoteNote": "SM_Notefrom_Agenttocustomer1.{{note}}",
+    "currency": "NZD",
+    "agentAccount": {
+        "accountCsn": "5502750395"
+    },
+    "agentContact": {
+        "email": "usercontactnz@letscheck.email"
+    },
+    "endCustomer": {
+        "addressLine1": "32 Grey Street",
+        "addressLine2": "Lambton Quay",
+        "addressLine3": "Wellington Central",
+        "city": "Wellington Central",
+        "countryCode": "NZ",
+        "postalCode": "6011",
+        "isIndividual": true
+    },
+    "purchaser": {
+        "email": "xyzdesigns@letscheck.email",
+        "firstName": "SMPWS",
+        "lastName": "NZSUser",
+        "phone": "+64 9123334577",
+        "preferredLanguage": "en"
+    },
+    "lineItems": [
+        {
+            "quantity": 50,
+            "offeringId": "OD-000021",
+            "action": "New",
+            "offer": {
+                "term": {
+                    "code": "A01",
+                    "description": "Annual"
+                },
+                "accessModel": {
+                    "code": "S",
+                    "description": "Single user"
+                },
+                "intendedUsage": {
+                    "code": "COM",
+                    "description": "Commercial"
+                },
+                "connectivity": {
+                    "code": "C100",
+                    "description": "Online"
+                },
+                "servicePlan": {
+                    "code": "STND",
+                    "description": "Standard"
+                }
+            }
+        }
+    ]
+}
