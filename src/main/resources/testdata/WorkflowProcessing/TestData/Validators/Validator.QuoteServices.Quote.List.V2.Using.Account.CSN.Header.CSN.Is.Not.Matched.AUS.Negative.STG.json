@@ -1,0 +1,11 @@
+{
+  "QuoteListUsingAccountCSN": {
+    "errors": [
+      {
+        "code": "45102",
+        "message": "No active relation found between partner and enduser"
+      }
+    ],
+    "status": "error"
+  }
+}

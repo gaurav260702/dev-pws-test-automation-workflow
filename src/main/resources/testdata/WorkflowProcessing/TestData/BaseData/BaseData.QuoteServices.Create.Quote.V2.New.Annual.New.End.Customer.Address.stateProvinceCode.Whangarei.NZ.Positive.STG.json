@@ -1,0 +1,57 @@
+{
+    "quoteNote": "SM_Notefrom_Agenttocustomer2.{{note}}",
+    "currency": "NZD",
+    "agentAccount": {
+        "accountCsn": "5502750389"
+    },
+    "agentContact": {
+        "email": "newzealandusercontact@letscheck.email"
+    },
+    "endCustomer": {
+        "name": "Harry NZ AutoCAD",
+        "addressLine1": "242 Reeves Place",
+        "addressLine2": "",
+        "addressLine3": "",
+        "city": "Raumanga",
+        "stateProvinceCode": "Whangarei",
+        "postalCode": "0110",
+        "countryCode": "NZ",
+        "isIndividual": false
+    },
+    "purchaser": {
+        "email": "PWS_NZUser@letscheck.email",
+        "firstName": "SMPWS",
+        "lastName": "NZUser1",
+        "phone": "+64 9123334567",
+        "preferredLanguage": "en"
+    },
+    "lineItems": [
+        {
+            "quantity": 1,
+            "offeringId": "OD-000021",
+            "action": "New",
+            "offer": {
+                "term": {
+                    "code": "A01",
+                    "description": "Annual"
+                },
+                "accessModel": {
+                    "code": "S",
+                    "description": "Single user"
+                },
+                "intendedUsage": {
+                    "code": "COM",
+                    "description": "Commercial"
+                },
+                "connectivity": {
+                    "code": "C100",
+                    "description": "Online"
+                },
+                "servicePlan": {
+                    "code": "STND",
+                    "description": "Standard"
+                }
+            }
+        }
+    ]
+}

@@ -1,0 +1,11 @@
+{
+  "QuoteListUsingAccountCSN": {
+    "errors": [
+      {
+        "code": "40401",
+        "message": "There are no quotes for account csn 5502750389."
+      }
+    ],
+    "status": "error"
+  }
+}
