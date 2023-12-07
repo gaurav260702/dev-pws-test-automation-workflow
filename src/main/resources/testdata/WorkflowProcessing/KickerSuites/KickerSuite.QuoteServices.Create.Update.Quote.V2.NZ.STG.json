@@ -29,11 +29,13 @@
     "./testdata/WorkflowProcessing/TestKickers/Kicker.QuoteServices.Create.Quote.V2.Switch.Product.Annual.Contract.NZ.Positive.STG.json",
     "./testdata/WorkflowProcessing/TestKickers/Kicker.QuoteServices.Quote.List.V2.Using.Account.CSN.Header.CSN.Is.Not.Matched.AUS.Negative.STG.json",
     "./testdata/WorkflowProcessing/TestKickers/Kicker.QuoteServices.Quote.List.V2.Using.Account.CSN.Having.No.Quotes.NZ.Negative.STG.json",
+
     "./testdata/WorkflowProcessing/TestKickers/Kicker.QuoteServices.Update.Quote.V2.Operation.Update.Action.New.Quantity.NZ.Positive.STG.json",
     "./testdata/WorkflowProcessing/TestKickers/Kicker.QuoteServices.Update.Quote.V2.Operation.Update.Action.CoTerm.Quantity.NZ.Positive.STG.json",
     "./testdata/WorkflowProcessing/TestKickers/Kicker.QuoteServices.Update.Quote.V2.Operation.Update.Action.Renewal.Quantity.NZ.Positive.STG.json",
     "./testdata/WorkflowProcessing/TestKickers/Kicker.QuoteServices.Update.Quote.V2.Operation.Update.Action.Switch.Quantity.NZ.Positive.STG.json",
     "./testdata/WorkflowProcessing/TestKickers/Kicker.QuoteServices.Update.Quote.V2.Operation.Update.Action.Extension.EndDate.NZ.Positive.STG.json",
+
     "./testdata/WorkflowProcessing/TestKickers/Kicker.QuoteServices.Update.Quote.V2.Operation.Insert.Action.New.NZ.Positive.STG.json",
     "./testdata/WorkflowProcessing/TestKickers/Kicker.QuoteServices.Update.Quote.V2.Operation.Insert.Action.CoTerm.NZ.Positive.STG.json"
 
