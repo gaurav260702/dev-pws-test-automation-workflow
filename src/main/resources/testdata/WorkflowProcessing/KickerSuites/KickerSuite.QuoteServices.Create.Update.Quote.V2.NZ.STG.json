@@ -10,10 +10,8 @@
     "./testdata/WorkflowProcessing/TestKickers/Kicker.QuoteServices.Create.Quote.V2.New.Annual.New.End.Customer.Address.stateProvinceCode.Christchurch.NZ.Positive.STG.json",
     "./testdata/WorkflowProcessing/TestKickers/Kicker.QuoteServices.Create.Quote.V2.New.Annual.New.End.Customer.Address.stateProvinceCode.Dunedin.NZ.Positive.STG.json",
     "./testdata/WorkflowProcessing/TestKickers/Kicker.QuoteServices.Create.Quote.V2.New.Annual.New.End.Customer.Address.stateProvinceCode.Whangarei.NZ.Positive.STG.json",
-    "./testdata/WorkflowProcessing/TestKickers/Kicker.QuoteServices.Create.Quote.V2.New.Annual.New.End.Customer.Address.stateProvinceCode.Whangarei.NZ.Positive.STG.json",
     "./testdata/WorkflowProcessing/TestKickers/Kicker.QuoteServices.Create.Quote.V2.New.Annual.New.End.Customer.Address.stateProvinceCode.UpperHutt.NZ.Positive.STG.json",
     "./testdata/WorkflowProcessing/TestKickers/Kicker.QuoteServices.Create.Quote.V2.New.Annual.New.End.Customer.Name.And.Address.1.2.3.NZ.Positive.STG.json",
-
     "./testdata/WorkflowProcessing/TestKickers/Kicker.QuoteServices.Create.Quote.V2.New.Annual.Existing.EndCust.New.Purchaser.NZ.Positive.STG.json",
     "./testdata/WorkflowProcessing/TestKickers/Kicker.QuoteServices.Create.Quote.V2.New.Annual.Existing.EndCust.New.Purchaser.Future.StartDate.NZ.Positive.STG.json",
     "./testdata/WorkflowProcessing/TestKickers/Kicker.QuoteServices.Create.Quote.V2.New.Annual.Existing.EndCust.Purchaser.With.PromoCode.NZ.Positive.STG.json",
@@ -23,11 +21,23 @@
     "./testdata/WorkflowProcessing/TestKickers/Kicker.QuoteServices.Create.Quote.V2.Using.Ditto.Renewal.With.Sales.Oppty.NZ.Positive.STG.json",
     "./testdata/WorkflowProcessing/TestKickers/Kicker.QuoteServices.Create.Quote.V2.Without.StartDate.Sales.Oppty.NZ.Positive.STG.json",
     "./testdata/WorkflowProcessing/TestKickers/Kicker.QuoteServices.Create.Quote.V2.Using.Victim.CSN.For.End.Customer.NZ.Positive.STG.json",
-
+    "./testdata/WorkflowProcessing/TestKickers/Kicker.QuoteServices.Create.Quote.V2.Renewal.Annual.Using.NonPremium.ODM.Oppty.NZ.Positive.STG.json",
+    "./testdata/WorkflowProcessing/TestKickers/Kicker.QuoteServices.Create.Quote.V2.Renewal.Subscription.Is.Not.Eligible.To.Renew.NZ.Negative.STG.json",
+    "./testdata/WorkflowProcessing/TestKickers/Kicker.QuoteServices.Create.Quote.V2.Renewal.Annual.Using.SubscriptionId.NZ.Positive.STG.json",
+    "./testdata/WorkflowProcessing/TestKickers/Kicker.QuoteServices.Create.Quote.V2.Extension.SubscriptionId.NZ.Positive.STG.json",
+    "./testdata/WorkflowProcessing/TestKickers/Kicker.QuoteServices.Create.Quote.V2.Co_Term.Annual.Contract.With.StartDate.Future.NZ.Positive.STG.json",
+    "./testdata/WorkflowProcessing/TestKickers/Kicker.QuoteServices.Create.Quote.V2.Switch.Product.Annual.Contract.NZ.Positive.STG.json",
     "./testdata/WorkflowProcessing/TestKickers/Kicker.QuoteServices.Quote.List.V2.Using.Account.CSN.Header.CSN.Is.Not.Matched.AUS.Negative.STG.json",
     "./testdata/WorkflowProcessing/TestKickers/Kicker.QuoteServices.Quote.List.V2.Using.Account.CSN.Having.No.Quotes.NZ.Negative.STG.json",
+
     "./testdata/WorkflowProcessing/TestKickers/Kicker.QuoteServices.Update.Quote.V2.Operation.Update.Action.New.Quantity.NZ.Positive.STG.json",
-    "./testdata/WorkflowProcessing/TestKickers/Kicker.QuoteServices.Update.Quote.V2.Operation.Insert.Action.New.NZ.Positive.STG.json"
+    "./testdata/WorkflowProcessing/TestKickers/Kicker.QuoteServices.Update.Quote.V2.Operation.Update.Action.CoTerm.Quantity.NZ.Positive.STG.json",
+    "./testdata/WorkflowProcessing/TestKickers/Kicker.QuoteServices.Update.Quote.V2.Operation.Update.Action.Renewal.Quantity.NZ.Positive.STG.json",
+    "./testdata/WorkflowProcessing/TestKickers/Kicker.QuoteServices.Update.Quote.V2.Operation.Update.Action.Switch.Quantity.NZ.Positive.STG.json",
+    "./testdata/WorkflowProcessing/TestKickers/Kicker.QuoteServices.Update.Quote.V2.Operation.Update.Action.Extension.EndDate.NZ.Positive.STG.json",
+
+    "./testdata/WorkflowProcessing/TestKickers/Kicker.QuoteServices.Update.Quote.V2.Operation.Insert.Action.New.NZ.Positive.STG.json",
+    "./testdata/WorkflowProcessing/TestKickers/Kicker.QuoteServices.Update.Quote.V2.Operation.Insert.Action.CoTerm.NZ.Positive.STG.json"
 
   ]
 }
