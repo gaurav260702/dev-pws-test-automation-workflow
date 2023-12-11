@@ -1,0 +1,17 @@
+{
+  "QuoteStatusFAILED": {
+    "quoteStatus": "FAILED",
+    "quoteNumber": "NA",
+    "transactionId": "*",
+    "errors": [
+      {
+        "code": "45092",
+        "message": "Expected Start Date must be after today."
+      }
+    ]
+  },
+  "QuoteCreate": {
+    "message": "success",
+    "transactionId": "*"
+  }
+}
