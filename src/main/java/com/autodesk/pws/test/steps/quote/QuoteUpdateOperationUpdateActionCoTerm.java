@@ -56,7 +56,7 @@ public class QuoteUpdateOperationUpdateActionCoTerm extends PwsServiceBase
 				"            \"operation\": \"Update\",\n" +
 				"            \"quoteLineNumber\": \"$QUOTE_LINE_NUMBER$\",\n" +
 				"            \"action\": \"Co-term\",\n" +
-				"            \"startDate\": \"[[Date(25)]]\",\n" +
+				"            \"startDate\": \"[[Date(2)]]\",\n" +
 				"            \"quantity\": 15,\n" +
 				"        }\n" +
 				"    ]\n" +

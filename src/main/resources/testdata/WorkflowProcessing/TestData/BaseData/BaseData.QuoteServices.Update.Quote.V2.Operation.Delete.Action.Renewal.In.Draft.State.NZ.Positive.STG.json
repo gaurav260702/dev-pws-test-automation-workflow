@@ -1,0 +1,23 @@
+{
+    "quoteNote": "SM_Notefrom_Agenttocustomer1.{{note}}",
+    "currency": "NZD",
+    "agentAccount": {
+        "accountCsn": "5502750395"
+    },
+    "agentContact": {
+        "email": "usercontactnz@letscheck.email"
+    },
+    "endCustomer": {
+        "accountCsn": "5153259830"
+    },
+    "lineItems": [
+        {
+            "action": "Renewal",
+            "quantity": 10,
+            "subscriptionId": "583-11783393"
+        }
+    ],
+    "purchaser": {
+        "email": "miquela@putberg.com"
+    }
+}
