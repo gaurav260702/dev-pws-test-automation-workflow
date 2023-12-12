@@ -57,7 +57,8 @@ public class InvokeWebhook extends PwsServiceBase
     {
 
 
-        String env = "int";
+        String env = (DataPool.get("$ENV$").toString()).toLowerCase();
+        System.out.println("env is "+ env);
         //Step 1: Making dynamodb entry
         System.out.println("Creating Quote Status Dynamodb entry");
         AWSCredentialsProvider credentialsProvider = new ProfileCredentialsProvider("default");
@@ -321,14 +322,14 @@ public class InvokeWebhook extends PwsServiceBase
                             // Get the string after the search word
                             String notificationResponse = logMessage.substring(startIndex + startWord.length(), endIndex).trim();
                             // System.out.println("notification Response::" + notificationResponse);
-                            ;          ObjectMapper notificationResponseMapper = new ObjectMapper();
+                            ObjectMapper notificationResponseMapper = new ObjectMapper();
 
                             // Parse the JSON string
                             //System.out.println("Current notification Api response"+notificationResponse);
                             try{
                                 JsonNode jsonNode = notificationResponseMapper.readTree(notificationResponse);
                                 // Get the value of a specific property
-                                String status = jsonNode.get("status").asText();
+                                String status = jsonNode.get("statusCode").asText();
                                 String id = jsonNode.get("data").get("id").asText();
                                 // System.out.println("Id Found: " + id);
                                 // System.out.println("Status Found: " + status);
