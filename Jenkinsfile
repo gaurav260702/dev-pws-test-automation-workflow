@@ -57,10 +57,10 @@ pipeline {
   triggers {
     parameterizedCron(env.BRANCH_NAME == 'master' ? '''
         # run INT tests everyday at 5 AM PST
-        0 5 * * * % QuoteServices_INT=true;QuoteServices_V2_INT=true;QuoteServices_V2_NZ_INT=true;GetQuoteDetailsInternalv2_INT=true;
+        0 5 * * * % Environment=INT;QuoteServices_INT=true;QuoteServices_V2_INT=true;QuoteServices_V2_NZ_INT=true;GetQuoteDetailsInternalv2_INT=true;
         
         # run STG tests everyday at 5 AM PST
-        0 5 * * * % QuoteServices_STG=true;QuoteServices_V2_STG=true;QuoteServices_V2_NZ_STG=true;
+        0 5 * * * % Environment=STG;QuoteServices_STG=true;QuoteServices_V2_STG=true;QuoteServices_V2_NZ_STG=true;
     ''' : '')
     }
     options {
