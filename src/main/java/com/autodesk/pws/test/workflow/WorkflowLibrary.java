@@ -13,6 +13,8 @@ import com.autodesk.pws.test.steps.rule.*;
 import com.autodesk.pws.test.steps.utility.*;
 import com.autodesk.pws.test.steps.catalog.*;
 import com.autodesk.pws.test.steps.webhook.InvokeWebhook;
+import com.autodesk.pws.test.steps.webhook.InvokeCatalogWebhook;
+import com.autodesk.pws.test.steps.webhook.InvokePromotionsWebhook;
 
 
 import java.util.*;
@@ -1468,6 +1470,31 @@ public class WorkflowLibrary
 
     }
 
+    public static List<StepBase> CatalogNotification()
+    {
+        List<StepBase> workflow = new ArrayList<StepBase>();
+
+        workflow.add(new LoadBaseFiles());
+        // workflow.add(new GetOAuthCredentials());
+        //workflow.add(new GetCatalogExportOAuthCredentials());
+        workflow.add(new InvokeCatalogWebhook());
+
+        return workflow;
+
+    }
+
+    public static List<StepBase> PromotionsNotification()
+    {
+        List<StepBase> workflow = new ArrayList<StepBase>();
+
+        workflow.add(new LoadBaseFiles());
+        // workflow.add(new GetOAuthCredentials());
+        //workflow.add(new GetCatalogExportOAuthCredentials());
+        workflow.add(new InvokePromotionsWebhook());
+
+        return workflow;
+
+    }
 
 
 }

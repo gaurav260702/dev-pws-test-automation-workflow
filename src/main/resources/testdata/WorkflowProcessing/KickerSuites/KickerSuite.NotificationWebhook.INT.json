@@ -1,0 +1,8 @@
+{
+  "KickerFiles":
+  [
+    "./testdata/WorkflowProcessing/TestKickers/Kicker.PromotionsNotificationWebhook.Valid.INT.json",
+    "./testdata/WorkflowProcessing/TestKickers/Kicker.CatalogNotificationWebhook.Valid.INT.json",
+    "./testdata/WorkflowProcessing/TestKickers/Kicker.QuoteNotificationWebhook.Valid.INT.json"
+  ]
+}

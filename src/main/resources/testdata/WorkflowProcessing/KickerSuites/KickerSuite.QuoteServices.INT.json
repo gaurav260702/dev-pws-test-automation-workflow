@@ -48,6 +48,8 @@
     "./testdata/WorkflowProcessing/TestKickers/Kicker.CatalogExport.Invalid_CSN.INT.json",
     "./testdata/WorkflowProcessing/TestKickers/Kicker.PromotionsExport.Valid.INT.json",
     "./testdata/WorkflowProcessing/TestKickers/Kicker.PromotionsExport.Invalid_CSN.INT.json",
-    "./testdata/WorkflowProcessing/TestKickers/Kicker.QuoteNotificationWebhook.Valid.INT.json"
+    "./testdata/WorkflowProcessing/TestKickers/Kicker.QuoteNotificationWebhook.Valid.INT.json",
+    "./testdata/WorkflowProcessing/TestKickers/Kicker.PromotionsNotificationWebhook.Valid.INT.json",
+    "./testdata/WorkflowProcessing/TestKickers/Kicker.CatalogNotificationWebhook.Valid.INT.json"
   ]
 }

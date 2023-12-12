@@ -49,7 +49,9 @@
     "./testdata/WorkflowProcessing/TestKickers/Kicker.QuoteServices.Update.Quote.v1.Action.Add.Non.Flex.SUS.Product.Negative.STG.json",
     "./testdata/WorkflowProcessing/TestKickers/Kicker.QuoteServices.Update.Quote.v1.Action.Add.Flex.Product.Quantity.Less.Than.100.Negative.STG.json",
     "./testdata/WorkflowProcessing/TestKickers/Kicker.QuoteServices.Create.Quote.V1.New.Duplicate.Payload.Check.Negative.STG.json",
-    "./testdata/WorkflowProcessing/TestKickers/Kicker.QuoteServices.Create.Quote.V1.Not.Duplicate.Payload.Previous.Quote.Status.Failed.Positive.STG.json"
-
+    "./testdata/WorkflowProcessing/TestKickers/Kicker.QuoteServices.Create.Quote.V1.Not.Duplicate.Payload.Previous.Quote.Status.Failed.Positive.STG.json",
+    "./testdata/WorkflowProcessing/TestKickers/Kicker.QuoteNotificationWebhook.Valid.STG.json",
+    "./testdata/WorkflowProcessing/TestKickers/Kicker.PromotionsNotificationWebhook.Valid.STG.json",
+    "./testdata/WorkflowProcessing/TestKickers/Kicker.CatalogNotificationWebhook.Valid.STG.json"
   ]
 }

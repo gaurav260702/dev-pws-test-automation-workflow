@@ -16,7 +16,10 @@ def slackChannel = "#dpe-dbp-pws-devops"
 def isMasterBranch = false
 def paramsSelected = false
 def testfiles
+def vaultPath = null
 def allTests = [
+  Webhook_Notify_INT: [path: "testdata/WorkflowProcessing/KickerSuites/KickerSuite.NotificationWebhook.INT.json"],
+  Webhook_Notify_STG: [path: "testdata/WorkflowProcessing/KickerSuites/KickerSuite.NotificationWebhook.STG.json"],
   QuoteServices_V2_INT: [path: "testdata/WorkflowProcessing/KickerSuites/KickerSuite.QuoteServices.Create.Update.Quote.V2.INT.json"],
   QuoteServices_V2_NZ_INT: [path: "testdata/WorkflowProcessing/KickerSuites/KickerSuite.QuoteServices.Create.Update.Quote.V2.NZ.INT.json"],
   QuoteServices_V2_NZ_STG: [path: "testdata/WorkflowProcessing/KickerSuites/KickerSuite.QuoteServices.Create.Update.Quote.V2.NZ.STG.json"],
@@ -34,6 +37,10 @@ pipeline {
     label "aws-centos"
   }
   parameters {
+    choice(name: 'Environment',
+        choices: 'INT\nSTG',
+        description: 'Select Environment(INT/STG)'
+    )
     booleanParam(name: 'QuoteServices_STG', description: 'Run QuoteServices Tests in STG', defaultValue: false)
     booleanParam(name: 'QuoteServices_INT', description: 'Run QuoteServices Tests in INT', defaultValue: false)
     booleanParam(name: 'QuoteServices_V2_STG', description: 'Run QuoteServices V2 Tests in STG', defaultValue: false)
@@ -43,12 +50,17 @@ pipeline {
     booleanParam(name: 'GetQuoteDetailsInternalv2_INT', description: 'RUN GetQuoteDetailsInternalv2 Tests in INT', defaultValue: false)
     booleanParam(name: 'CatalogExport_INT', description: 'RUN CatalogExport Tests in INT', defaultValue: false)
     booleanParam(name: 'PromotionsExport_INT', description: 'RUN PromotionsExport Tests in INT', defaultValue: false)
+    booleanParam(name: 'Webhook_Notify_INT', description: 'Run Webhook Notification in INT', defaultValue: false)
+    booleanParam(name: 'Webhook_Notify_STG', description: 'Run Webhook Notification in STG', defaultValue: false)
   }
 
   triggers {
     parameterizedCron(env.BRANCH_NAME == 'master' ? '''
-        # run tests everyday at 5 AM PST
-        0 5 * * * % QuoteServices_STG=true;QuoteServices_INT=true;QuoteServices_V2_STG=true;QuoteServices_V2_INT=true;QuoteServices_V2_NZ_INT=true;QuoteServices_V2_NZ_STG=true;GetQuoteDetailsInternalv2_INT=true;
+        # run INT tests everyday at 5 AM PST
+        0 5 * * * % QuoteServices_INT=true;QuoteServices_V2_INT=true;QuoteServices_V2_NZ_INT=true;GetQuoteDetailsInternalv2_INT=true;
+        
+        # run STG tests everyday at 5 AM PST
+        0 5 * * * % QuoteServices_STG=true;QuoteServices_V2_STG=true;QuoteServices_V2_NZ_STG=true;
     ''' : '')
     }
     options {
@@ -57,17 +69,13 @@ pipeline {
 
     stages {
       stage('Build Image') {
-        environment {
-          LDAP = credentials('d88e9614-fb62-4a2a-a4ca-380277fdb498')
-          VAULT_ADDR = 'https://vault.aws.autodesk.com'
-          VAULT_PATH = 'spg/pws-integration/aws/adsk-eis-ddws-int/sts/admin'
-        }
         steps {
           script {
             isMasterBranch = "${env.BRANCH_NAME}" == 'master'
             // Uncomment to allow your branch to act as master ONLY FOR TESTING
             // isMasterBranch = true
             sh "docker build --tag ${imageName} ."
+            vaultPath = "${params.Environment}" == 'STG' ? "aws-sts/des/ddws-stg/sts/Vault-Deployer" : "aws-sts/des/DDWS-UAT/sts/Vault-Deployer"
           }
         }
       }
@@ -82,7 +90,7 @@ pipeline {
         environment {
           LDAP = credentials('d88e9614-fb62-4a2a-a4ca-380277fdb498')
           VAULT_ADDR = 'https://vault.aws.autodesk.com'
-          VAULT_PATH = 'spg/pws-integration/aws/adsk-eis-ddws-int/sts/admin'
+          VAULT_PATH = "${vaultPath}"
         }
         steps {
           withCredentials([
@@ -94,6 +102,7 @@ pipeline {
             script {
               try {
                 sh """
+                echo "vaultPath-${vaultPath}"
                 chmod 777 aws_auth 
                 bash aws_auth
                 echo ReadingFileInDocker
