@@ -1,0 +1,86 @@
+{
+    "quoteNote": "SM_Notefrom_Agenttocustomer221.{{note}}",
+    "currency": "NZD",
+    "agentAccount": {
+        "accountCsn": "5502750395"
+    },
+    "agentContact": {
+        "email": "usercontactnz@letscheck.email"
+    },
+    "endCustomer": {
+        "name": "SM PREMIUM CAD Services",
+        "addressLine1": "47 Salisbury Street",
+        "addressLine2": "Christchurch Central City",
+        "city": "Christchurchh",
+        "postalCode": "8013",
+        "countryCode": "NZ",
+        "isIndividual": false
+    },
+    "purchaser": {
+        "email": "premcadservices@letscheck.email",
+        "firstName": "SMPREM",
+        "lastName": "NZSUser",
+        "phone": "+64 9123334666",
+        "preferredLanguage": "en"
+    },
+    "primaryAdmin": {
+        "email": "premcadservices@letscheck.email"
+    },
+    "lineItems": [
+        {
+            "quantity": 150,
+            "offeringId": "OD-000021",
+            "action": "New",
+            "startDate": null,
+            "offer": {
+                "term": {
+                    "code": "A01",
+                    "description": "Annual"
+                },
+                "accessModel": {
+                    "code": "S",
+                    "description": "Single user"
+                },
+                "intendedUsage": {
+                    "code": "COM",
+                    "description": "Commercial"
+                },
+                "connectivity": {
+                    "code": "C100",
+                    "description": "Online"
+                },
+                "servicePlan": {
+                    "code": "STND",
+                    "description": "Standard"
+                }
+            }
+        },
+        {
+            "quantity": 100,
+            "offeringId": "OD-000321",
+            "action": "New",
+            "offer": {
+                "term": {
+                    "code": "A01",
+                    "description": "Annual"
+                },
+                "accessModel": {
+                    "code": "S",
+                    "description": "Single user"
+                },
+                "intendedUsage": {
+                    "code": "COM",
+                    "description": "Commercial"
+                },
+                "connectivity": {
+                    "code": "C100",
+                    "description": "Online"
+                },
+                "servicePlan": {
+                    "code": "PREMSUB",
+                    "description": "Premium"
+                }
+            }
+        }
+    ]
+}
