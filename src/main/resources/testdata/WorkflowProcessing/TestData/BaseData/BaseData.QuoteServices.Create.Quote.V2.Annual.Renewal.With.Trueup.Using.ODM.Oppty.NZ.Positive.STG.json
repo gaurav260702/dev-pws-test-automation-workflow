@@ -1,0 +1,21 @@
+{
+    "quoteNote": "SM_Notefrom_Agenttocustomer1.{{note}}",
+    "currency": "NZD",
+    "agentAccount": {
+        "accountCsn": "5502750395"
+    },
+    "agentContact": {
+        "email": "usercontactnz@letscheck.email"
+    },
+    "endCustomer": {
+        "accountCsn": "5502801106"
+    },
+    "opportunityNumber": "A-20352262",
+    "purchaser": {
+        "email": "premcadservices@letscheck.email",
+        "firstName": "Sunny",
+        "lastName": "Gopim",
+        "phone": "+4154776666",
+        "preferredLanguage": "en"
+    }
+}
