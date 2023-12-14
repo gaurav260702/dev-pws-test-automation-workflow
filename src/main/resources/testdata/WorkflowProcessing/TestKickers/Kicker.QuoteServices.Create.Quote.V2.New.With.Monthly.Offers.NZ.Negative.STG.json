@@ -3,7 +3,7 @@
   "$ENV$": "STG",
 
   "$ROOT_NAME$": "QuoteServices",
-  "$VARIATION_COUNT$": "Create.Quote.V2.New.Multi.With.Different.Usage.Type.COM.Non.COM.NZ.Positive",
+  "$VARIATION_COUNT$": "Create.Quote.V2.New.With.Monthly.Offers.NZ.Negative",
   "$BASE_NAME$": "$ROOT_NAME$_$VARIATION_COUNT$",
   "$SERVICE_NAME$": "QuoteServices_V2",
   "$VALIDATION$": "$ROOT$/Validators",
@@ -49,10 +49,10 @@
   "baseUrl": "https://enterprise-api-$ENV$.autodesk.com",
   "oAuthBaseUrl":  "https://enterprise-api-$ENV$.autodesk.com",
 
-  "baseFile": "$BASE_DATA$/BaseData.$ROOT_NAME$.Create.Quote.V2.New.Multi.With.Different.Usage.Type.COM.Non.COM.NZ.Positive.$ENV$.json",
+  "baseFile": "$BASE_DATA$/BaseData.$ROOT_NAME$.Create.Quote.V2.New.With.Monthly.Offers.NZ.Negative.$ENV$.json",
   "overridesFile": "$OVERRIDES$/Override.NONE.json",
-  "validationFile": "$VALIDATION$/Validator.$ROOT_NAME$.Create.Quote.V2.New.Multi.With.Different.Usage.Type.COM.Non.COM.NZ.Positive.$ENV$.json",
+  "validationFile": "$VALIDATION$/Validator.$ROOT_NAME$.Create.Quote.V2.New.With.Monthly.Offers.NZ.Negative.$ENV$.json",
   "secretsFile": "$CONFIG$/Secrets.GetInvoiceServices.INT.json",
 
-  "workflow": "CreateQuoteV2NewIsIndividualTrueNegative"
+  "workflow": "CreateQuoteV2NewFlexQTYLessThan100"
 }
