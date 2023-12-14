@@ -1,0 +1,12 @@
+{
+  "QuoteCreate": {
+    "transactionId": "*",
+    "errors": [
+      {
+        "code": "45001",
+        "message": "Intended Usage is not matching for all lineItems"
+      }
+    ],
+    "status": "error"
+  }
+}
