@@ -1,0 +1,56 @@
+{
+    "quoteNote": "SM_Notefrom_Agenttocustomer221.{{note}}",
+    "currency": "NZD",
+    "agentAccount": {
+        "accountCsn": "5502750395"
+    },
+    "agentContact": {
+        "email": "usercontactnz@letscheck.email"
+    },
+    "endCustomer": {
+        "accountCsn": "5500850715",
+        "accountName": "5500850715",
+        "name": "SM DittoCAD",
+        "addressLine1": "176 Dickens Street",
+        "city": "Napier South",
+        "postalCode": "4110",
+        "countryCode": "NZ",
+        "isIndividual": false
+    },
+    "purchaser": {
+        "email": "DittoCADUser@letscheck.email",
+        "firstName": "DittoCAD",
+        "lastName": "NZUser",
+        "phone": "+64 9123337777",
+        "preferredLanguage": "en"
+    },
+    "lineItems": [
+        {
+            "quantity": 10,
+            "offeringId": "OD-000021",
+            "action": "New",
+            "offer": {
+                "term": {
+                    "code": "A01",
+                    "description": "Annual"
+                },
+                "accessModel": {
+                    "code": "S",
+                    "description": "Single user"
+                },
+                "intendedUsage": {
+                    "code": "COM",
+                    "description": "Commercial"
+                },
+                "connectivity": {
+                    "code": "C100",
+                    "description": "Online"
+                },
+                "servicePlan": {
+                    "code": "STND",
+                    "description": "Standard"
+                }
+            }
+        }
+    ]
+}
