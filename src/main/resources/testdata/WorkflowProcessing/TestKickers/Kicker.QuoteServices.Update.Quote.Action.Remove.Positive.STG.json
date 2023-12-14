@@ -32,6 +32,8 @@
 
   "$TIMEZONE_CITY$": "Australia/Sydney",
   "$CURRENCY$": "AUD",
+  "$QUANTITY$":"100",
+  "$ACCESS_MODEL$":"Flex",
 
    "$ADDRESS1$": "759 Jalan Kipas",
    "$CITY$": "Home Island",

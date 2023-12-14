@@ -31,7 +31,7 @@
             "offeringId": "OD-000021",
             "action": "New",
             "promotionCode": "NZTest3for2",
-            "startDate": "2023-12-12",
+            "startDate": "[[Date(2)]]",
             "offer": {
                 "term": {
                     "code": "A01",
