@@ -1,0 +1,50 @@
+{
+    "quoteNote": "SM_Notefrom_Agenttocustomer.{{note}}",
+    "currency": "NZD",
+    "agentAccount": {
+        "accountCsn": "5070133154"
+    },
+    "agentContact": {
+        "email": "naz_zheal_5070133154@mailinator.com"
+    },
+    "endCustomer": {
+        "accountCsn": "5502172500"
+    },
+    "purchaser": {
+        "email": "PWS_NZUser@letscheck.email",
+        "firstName": "SMPWS",
+        "lastName": "NZUser1",
+        "phone": "+64 9123334567",
+        "preferredLanguage": "en"
+    },
+    "lineItems": [
+        {
+            "quantity": 1,
+            "offeringId": "OD-000021",
+            "action": "New",
+            "startDate":"[[Date(0)]]",
+            "offer": {
+                "term": {
+                    "code": "A01",
+                    "description": "Annual"
+                },
+                "accessModel": {
+                    "code": "S",
+                    "description": "Single user"
+                },
+                "intendedUsage": {
+                    "code": "COM",
+                    "description": "Commercial"
+                },
+                "connectivity": {
+                    "code": "C100",
+                    "description": "Online"
+                },
+                "servicePlan": {
+                    "code": "STND",
+                    "description": "Standard"
+                }
+            }
+        }
+    ]
+}
