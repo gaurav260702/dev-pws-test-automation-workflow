@@ -1,33 +1,37 @@
 {
-    "quoteNote": "SM_Notefrom_Agenttocustomer.{{note}}",
-    "currency": "AUD",
+    "quoteNote": "SM_Notefrom_Agenttocustomer221.{{note}}",
+    "currency": "NZD",
     "agentAccount": {
-        "accountCsn": "5070132993"
+        "accountCsn": "5502750395"
     },
     "agentContact": {
-        "email": "kleekru@yahoo.com"
+        "email": "usercontactnz@letscheck.email"
     },
     "endCustomer": {
-        "accountCsn": "5500570701",
-        "name": "SMHarry MCAD",
-        "addressLine1": "$ADDRESS1$",
-        "city": "$CITY$",
-        "countryCode": "$COUNTRY$",
-        "postalCode": "$POSTAL_CODE$",
+        "name": "SM PREMIUM CAD Services",
+        "addressLine1": "47 Salisbury Street",
+        "addressLine2": "Christchurch Central City",
+        "city": "Christchurchh",
+        "postalCode": "8013",
+        "countryCode": "NZ",
         "isIndividual": false
     },
     "purchaser": {
-        "email": "sunnygopi2021@gmail.com",
-        "firstName": "Sunny",
-        "lastName": "Gopim",
-        "phone": "4154776666",
+        "email": "premcadservices@letscheck.email",
+        "firstName": "SMPREM",
+        "lastName": "NZSUser",
+        "phone": "+64 9123334666",
         "preferredLanguage": "en"
+    },
+    "primaryAdmin": {
+        "email": "premcadservices@letscheck.email"
     },
     "lineItems": [
         {
-            "quantity": 1,
+            "quantity": 150,
             "offeringId": "OD-000021",
             "action": "New",
+            "startDate": null,
             "offer": {
                 "term": {
                     "code": "A01",
@@ -35,7 +39,7 @@
                 },
                 "accessModel": {
                     "code": "S",
-                    "description": "Single User"
+                    "description": "Single user"
                 },
                 "intendedUsage": {
                     "code": "COM",
@@ -52,8 +56,8 @@
             }
         },
         {
-            "quantity": 2,
-            "offeringId": "OD-000054",
+            "quantity": 100,
+            "offeringId": "OD-000321",
             "action": "New",
             "offer": {
                 "term": {
@@ -62,7 +66,7 @@
                 },
                 "accessModel": {
                     "code": "S",
-                    "description": "Single User"
+                    "description": "Single user"
                 },
                 "intendedUsage": {
                     "code": "COM",
@@ -73,12 +77,10 @@
                     "description": "Online"
                 },
                 "servicePlan": {
-                    "code": "STND",
-                    "description": "Standard"
+                    "code": "PREMSUB",
+                    "description": "Premium"
                 }
             }
         }
-
-
     ]
 }

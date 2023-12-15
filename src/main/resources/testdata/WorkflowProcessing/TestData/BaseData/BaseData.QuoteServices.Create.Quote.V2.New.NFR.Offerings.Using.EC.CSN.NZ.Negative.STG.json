@@ -1,0 +1,57 @@
+{
+  "quoteNote": "SM_Notefrom_Agenttocustomer221.{{note}}",
+  "currency": "NZD",
+  "agentAccount": {
+    "accountCsn": "5502750395"
+  },
+  "agentContact": {
+    "email": "usercontactnz@letscheck.email"
+  },
+  "endCustomer": {
+    "accountCsn": "5500850715",
+    "name": "SMHarry Napier",
+    "addressLine1": "22A Waghorne Street",
+    "addressLine2": "Ahuriri",
+    "city": "Wellington",
+    "postalCode": "8053",
+    "countryCode": "NZ",
+    "isIndividual": false
+  },
+  "opportunityNumber": "A-20315943",
+  "purchaser": {
+    "email": "samlooper@letscheck.email",
+    "firstName": "PWS",
+    "lastName": "NZNewUser",
+    "phone": "+64 9123334567",
+    "preferredLanguage": "en"
+  },
+  "lineItems": [
+    {
+      "quantity": 3,
+      "offeringId": "OD-000021",
+      "action": "New",
+      "offer": {
+        "term": {
+          "code": "A06",
+          "description": "3 Year"
+        },
+        "accessModel": {
+          "code": "S",
+          "description": "Single user"
+        },
+        "intendedUsage": {
+          "code": "NFR",
+          "description": "Not for Resale"
+        },
+        "connectivity": {
+          "code": "C100",
+          "description": "Online"
+        },
+        "servicePlan": {
+          "code": "STNDNS",
+          "description": "Standard"
+        }
+      }
+    }
+  ]
+}

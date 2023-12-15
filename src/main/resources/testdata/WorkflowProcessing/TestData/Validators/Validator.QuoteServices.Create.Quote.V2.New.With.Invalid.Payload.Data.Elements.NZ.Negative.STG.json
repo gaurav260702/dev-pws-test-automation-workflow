@@ -1,0 +1,12 @@
+{
+  "QuoteCreate": {
+    "transactionId": "*",
+    "errors": [
+      {
+        "code": "45001",
+        "message": "\u0027endCustomer.accountName\u0027 is not allowed"
+      }
+    ],
+    "status": "error"
+  }
+}

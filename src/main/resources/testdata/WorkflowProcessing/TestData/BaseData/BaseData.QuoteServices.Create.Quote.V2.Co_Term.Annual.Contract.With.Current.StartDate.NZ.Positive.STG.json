@@ -1,37 +1,29 @@
 {
-    "quoteNote": "SM_Notefrom_Agenttocustomer1.{{note}}",
+    "quoteNote": "SM_Notefrom_Agenttocust.{{note}}",
     "currency": "NZD",
     "agentAccount": {
-        "accountCsn": "5502750389"
+        "accountCsn": "5502750395"
     },
     "agentContact": {
-        "email": "newzealandusercontact@letscheck.email"
+        "email": "usercontactnz@letscheck.email"
     },
     "endCustomer": {
-        "name": "Harry NZ AutoCAD",
-        "addressLine1": "International Terminal Ray Emery Dr",
-        "addressLine2": "Level 1/Shop 135",
-        "addressLine3": "Auckland Airport",
-        "city": "Auckland",
-        "stateProvinceCode": "Auckland",
-        "postalCode": "2022",
-        "countryCode": "NZ",
-        "isIndividual": false
+        "accountCsn": "5502768906"
     },
     "purchaser": {
-        "email": "PWS_NZUser@letscheck.email",
-        "firstName": "SMPWS",
-        "lastName": "NZUser1",
-        "phone": "+64 9123334567",
+        "email": "biz-thubstorenztmdibmajpsyi@letscheck.pw",
+        "firstName": "Sunny",
+        "lastName": "Gopim",
+        "phone": "+4154776666",
         "preferredLanguage": "en"
     },
     "lineItems": [
         {
-            "quantity": 3,
-            "offeringId": "OD-000021",
-            "action": "New",
-            "promotionCode": "NZTest3for2",
-            "startDate": "[[Date(2)]]",
+            "offeringId": "OD-000054",
+            "action": "Co-term",
+            "quantity": 1,
+            "referenceSubscriptionId": "70084851040431",
+            "startDate": "[[Date(0)]]",
             "offer": {
                 "term": {
                     "code": "A01",
@@ -39,7 +31,7 @@
                 },
                 "accessModel": {
                     "code": "S",
-                    "description": "Single user"
+                    "description": "Single User"
                 },
                 "intendedUsage": {
                     "code": "COM",

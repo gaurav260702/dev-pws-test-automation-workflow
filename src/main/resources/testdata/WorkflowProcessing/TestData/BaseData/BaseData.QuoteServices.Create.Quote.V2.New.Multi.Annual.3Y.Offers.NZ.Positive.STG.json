@@ -1,31 +1,30 @@
 {
-    "quoteNote": "SM_Notefrom_Agenttocustomer.{{note}}",
-    "currency": "AUD",
+    "quoteNote": "SM_Notefrom_Agenttocustomer221.{{note}}",
+    "currency": "NZD",
     "agentAccount": {
-        "accountCsn": "5070132993"
+        "accountCsn": "5502750395"
     },
     "agentContact": {
-        "email": "kleekru@yahoo.com"
+        "email": "usercontactnz@letscheck.email"
     },
     "endCustomer": {
-        "accountCsn": "5500570701",
-        "name": "SMHarry MCAD",
-        "addressLine1": "$ADDRESS1$",
-        "city": "$CITY$",
-        "countryCode": "$COUNTRY$",
-        "postalCode": "$POSTAL_CODE$",
+        "name": "SM DittoCAD",
+        "addressLine1": "176 Dickens Street",
+        "city": "Napier South",
+        "postalCode": "4110",
+        "countryCode": "NZ",
         "isIndividual": false
     },
     "purchaser": {
-        "email": "sunnygopi2021@gmail.com",
-        "firstName": "Sunny",
-        "lastName": "Gopim",
-        "phone": "4154776666",
+        "email": "DittoCADUser@letscheck.email",
+        "firstName": "DittoCAD",
+        "lastName": "NZUser",
+        "phone": "+64 9123337777",
         "preferredLanguage": "en"
     },
     "lineItems": [
         {
-            "quantity": 1,
+            "quantity": 10,
             "offeringId": "OD-000021",
             "action": "New",
             "offer": {
@@ -35,7 +34,7 @@
                 },
                 "accessModel": {
                     "code": "S",
-                    "description": "Single User"
+                    "description": "Single user"
                 },
                 "intendedUsage": {
                     "code": "COM",
@@ -52,17 +51,17 @@
             }
         },
         {
-            "quantity": 2,
-            "offeringId": "OD-000054",
+            "quantity": 1,
+            "offeringId": "OD-000171",
             "action": "New",
             "offer": {
                 "term": {
-                    "code": "A01",
-                    "description": "Annual"
+                    "code": "A06",
+                    "description": "3 Year"
                 },
                 "accessModel": {
                     "code": "S",
-                    "description": "Single User"
+                    "description": "Single user"
                 },
                 "intendedUsage": {
                     "code": "COM",
@@ -78,7 +77,5 @@
                 }
             }
         }
-
-
     ]
 }

@@ -1,40 +1,35 @@
 {
-    "quoteNote": "SM_Notefrom_Agenttocustomer1.{{note}}",
+    "quoteNote": "SM_Notefrom_Agenttocustomer221.{{note}}",
     "currency": "NZD",
     "agentAccount": {
-        "accountCsn": "5502750389"
+        "accountCsn": "5502750395"
     },
     "agentContact": {
-        "email": "newzealandusercontact@letscheck.email"
+        "email": "usercontactnz@letscheck.email"
     },
     "endCustomer": {
-        "name": "Harry NZ AutoCAD",
-        "addressLine1": "International Terminal Ray Emery Dr",
-        "addressLine2": "Level 1/Shop 135",
-        "addressLine3": "Auckland Airport",
-        "city": "Auckland",
-        "stateProvinceCode": "Auckland",
-        "postalCode": "2022",
+        "name": "SM DittoCAD",
+        "addressLine1": "176 Dickens Street",
+        "city": "Napier South",
+        "postalCode": "4110",
         "countryCode": "NZ",
         "isIndividual": false
     },
     "purchaser": {
-        "email": "PWS_NZUser@letscheck.email",
-        "firstName": "SMPWS",
-        "lastName": "NZUser1",
-        "phone": "+64 9123334567",
+        "email": "DittoCADUser@letscheck.email",
+        "firstName": "DittoCAD",
+        "lastName": "NZUser",
+        "phone": "+64 9123337777",
         "preferredLanguage": "en"
     },
     "lineItems": [
         {
-            "quantity": 3,
+            "quantity": 10,
             "offeringId": "OD-000021",
             "action": "New",
-            "promotionCode": "NZTest3for2",
-            "startDate": "[[Date(2)]]",
             "offer": {
                 "term": {
-                    "code": "A01",
+                    "code": "A02",
                     "description": "Annual"
                 },
                 "accessModel": {
