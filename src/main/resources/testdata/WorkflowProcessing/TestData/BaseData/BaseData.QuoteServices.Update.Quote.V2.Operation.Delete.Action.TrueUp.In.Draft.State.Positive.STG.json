@@ -24,7 +24,7 @@
             "action": "True-up",
             "endDate": "2025-10-05",
             "quantity": 50,
-            "startDate": "[[Date(25)]]",
+            "startDate": "[[Date(2)]]",
             "offer": {
                 "term": {
                     "code": "A06",
