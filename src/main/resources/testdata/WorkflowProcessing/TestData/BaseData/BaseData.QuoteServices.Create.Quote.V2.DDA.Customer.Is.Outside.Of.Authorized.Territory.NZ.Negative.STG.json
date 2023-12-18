@@ -1,0 +1,26 @@
+{
+    "quoteNote": "SM_Notefrom_Agenttocustomer1.{{note}}",
+    "currency": "AUD",
+    "agentAccount": {
+        "accountCsn": "5502750389"
+    },
+    "agentContact": {
+        "email": "newzealandusercontact@letscheck.email"
+    },
+    "endCustomer": {
+        "accountCsn": "5502457956"
+    },
+    "purchaser": {
+        "email": "kristttumakkk@letscheck.email",
+        "firstName": "Sunny",
+        "lastName": "Gopim",
+        "phone": "+4154776666",
+        "preferredLanguage": "en"
+    },
+    "quoteDiscounts": [
+        {
+            "discountId": "A-20316028",
+            "discountType": "DDA"
+        }
+    ]
+}
