@@ -1,0 +1,17 @@
+{
+  "QuoteStatusFAILED": {
+    "quoteStatus": "FAILED",
+    "quoteNumber": "NA",
+    "transactionId": "*",
+    "errors": [
+      {
+        "message": "Subscription is not eligible to renew",
+        "code": "46002"
+      }
+    ]
+  },
+  "QuoteCreate": {
+    "message": "success",
+    "transactionId": "*"
+  }
+}
