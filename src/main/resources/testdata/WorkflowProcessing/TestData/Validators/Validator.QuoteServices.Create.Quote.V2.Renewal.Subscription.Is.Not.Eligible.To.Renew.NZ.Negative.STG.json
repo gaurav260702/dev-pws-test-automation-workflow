@@ -5,8 +5,8 @@
     "transactionId": "*",
     "errors": [
       {
-        "code": "46002",
-        "message": "Subscription is not eligible to renew"
+        "code": "45110",
+        "message": "Only Subscription/Autodesk Opportunity is allowed as part of NxM for Quote creation"
       }
     ]
   },
