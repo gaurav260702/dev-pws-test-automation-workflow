@@ -1,0 +1,50 @@
+{
+    "quoteNote": "SM_Notefrom_Agenttocustomer.{{note}}",
+    "currency": "NZD",
+    "agentAccount": {
+        "accountCsn": "5502750389"
+    },
+    "agentContact": {
+        "email": "newzealandusercontact@letscheck.email"
+    },
+    "endCustomer": {
+        "accountCsn": "5108484493"
+    },
+    "purchaser": {
+        "email": "PWS_NZUser@letscheck.email",
+        "firstName": "SMPWS",
+        "lastName": "NZUser1",
+        "phone": "+64 9123334567",
+        "preferredLanguage": "en"
+    },
+    "lineItems": [
+        {
+            "quantity": 1,
+            "offeringId": "OD-000021",
+            "action": "New",
+            "promotionCode": "ANZLT3PACK",
+            "offer": {
+                "term": {
+                    "code": "A01",
+                    "description": "Annual"
+                },
+                "accessModel": {
+                    "code": "S",
+                    "description": "Single user"
+                },
+                "intendedUsage": {
+                    "code": "COM",
+                    "description": "Commercial"
+                },
+                "connectivity": {
+                    "code": "C100",
+                    "description": "Online"
+                },
+                "servicePlan": {
+                    "code": "STND",
+                    "description": "Standard"
+                }
+            }
+        }
+    ]
+}
