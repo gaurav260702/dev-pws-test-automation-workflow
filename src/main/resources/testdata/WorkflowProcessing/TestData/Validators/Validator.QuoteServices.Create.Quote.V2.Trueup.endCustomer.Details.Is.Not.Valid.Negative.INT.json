@@ -5,8 +5,8 @@
     "transactionId": "*",
     "errors": [
       {
-        "message": "Customer details for this opportunity do not match the quote. Update the customer details on the quote to continue.",
-        "code": "45068"
+        "code": "45068",
+        "message": "Customer details for this opportunity do not match the quote. Search with another opportunity number to continue."
       }
     ]
   },
