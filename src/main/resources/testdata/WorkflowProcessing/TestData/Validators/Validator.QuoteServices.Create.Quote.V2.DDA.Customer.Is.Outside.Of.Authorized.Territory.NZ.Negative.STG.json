@@ -5,8 +5,8 @@
     "transactionId": "*",
     "errors": [
       {
-        "code": "45110",
-        "message": "Only Subscription/Autodesk Opportunity is allowed as part of NxM for Quote creation"
+        "message": "Invalid address - This customer is outside of your authorized territory",
+        "code": "45007"
       }
     ]
   },

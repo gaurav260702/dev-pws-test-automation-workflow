@@ -1,5 +1,5 @@
 {
-  "quoteNote": "SM_Notefrom_Agenttocustomer221.{{note}}",
+  "quoteNote": "SM_Notefrom_Agenttocustomer1.{{note}}",
   "currency": "NZD",
   "agentAccount": {
     "accountCsn": "5502750395"
@@ -8,46 +8,46 @@
     "email": "usercontactnz@letscheck.email"
   },
   "endCustomer": {
-    "accountCsn": "5500850715",
-    "name": "SMHarry Napier",
-    "addressLine1": "22A Waghorne Street",
-    "addressLine2": "Ahuriri",
-    "city": "Wellington",
-    "postalCode": "8053",
+    "accountCsn": "5500851754",
+    "name": "SMHarry NZ MCAD",
+    "addressLine1": "163 Kendal Avenue",
+    "city": "Christchurchh",
     "countryCode": "NZ",
+    "postalCode": "8053",
     "isIndividual": false
   },
   "purchaser": {
-    "email": "samlooper@letscheck.email",
-    "firstName": "PWS",
-    "lastName": "NZNewUser",
+    "email": "PWS_NZUser@letscheck.email",
+    "firstName": "SMPWS",
+    "lastName": "NZUser1",
     "phone": "+64 9123334567",
     "preferredLanguage": "en"
   },
   "lineItems": [
     {
-      "quantity": 3,
-      "offeringId": "OD-000021",
+      "offeringId": "OD-000054",
       "action": "New",
+      "quantity": 10,
+      "startDate": "2023-12-15",
       "offer": {
         "term": {
-          "code": "A06",
-          "description": "3 Year"
+          "code": "A01",
+          "description": "Annual"
         },
         "accessModel": {
           "code": "S",
-          "description": "Single user"
+          "description": "Single User"
         },
         "intendedUsage": {
-          "code": "NFR",
-          "description": "Not for Resale"
+          "code": "COM",
+          "description": "Commercial"
         },
         "connectivity": {
           "code": "C100",
           "description": "Online"
         },
         "servicePlan": {
-          "code": "STNDNS",
+          "code": "STND",
           "description": "Standard"
         }
       }

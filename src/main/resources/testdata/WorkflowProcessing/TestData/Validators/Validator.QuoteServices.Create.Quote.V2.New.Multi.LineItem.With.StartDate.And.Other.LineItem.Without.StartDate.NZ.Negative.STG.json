@@ -5,8 +5,8 @@
     "transactionId": "*",
     "errors": [
       {
-        "code": "45110",
-        "message": "Only Subscription/Autodesk Opportunity is allowed as part of NxM for Quote creation"
+        "message": "Future start date must be the same for all line items with action new and/or Co-term.",
+        "code": "45040"
       }
     ]
   },

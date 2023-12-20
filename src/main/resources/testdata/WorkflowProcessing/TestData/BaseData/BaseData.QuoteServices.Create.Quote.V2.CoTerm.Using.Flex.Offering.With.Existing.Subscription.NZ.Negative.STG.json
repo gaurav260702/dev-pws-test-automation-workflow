@@ -1,5 +1,5 @@
 {
-    "quoteNote": "SM_Notefrom_Agenttocustomer1.{{note}}",
+    "quoteNote": "SM_Notefrom_Agenttocustomer221.{{note}}",
     "currency": "NZD",
     "agentAccount": {
         "accountCsn": "5502750395"
@@ -8,17 +8,10 @@
         "email": "usercontactnz@letscheck.email"
     },
     "endCustomer": {
-        "accountCsn": "5500850715",
-        "addressLine1": "22A Waghorne Street",
-        "addressLine2": "Ahuriri",
-        "city": "Wellington",
-        "countryCode": "NZ",
-        "isIndividual": false,
-        "name": "SMHarry Napier",
-        "postalCode": "8053"
+        "accountCsn": "5502768906"
     },
     "purchaser": {
-        "email": "samlooper@letscheck.email",
+        "email": "biz-thubstorenztmdibmajpsyi@letscheck.pw",
         "firstName": "Sunny",
         "lastName": "Gopim",
         "phone": "+4154776666",
@@ -26,18 +19,19 @@
     },
     "lineItems": [
         {
-            "quantity": 3,
-            "offeringId": "OD-000054",
-            "action": "New",
-            "promotionCode": "ANZTestAA",
+            "quantity": 100,
+            "offeringId": "OD-000450",
+            "action": "Co-term",
+            "referenceSubscriptionId": "70084851040431",
+            "startDate": "[[Date(1)]]",
             "offer": {
                 "term": {
                     "code": "A01",
                     "description": "Annual"
                 },
                 "accessModel": {
-                    "code": "S",
-                    "description": "Single user"
+                    "code": "F",
+                    "description": "Flex"
                 },
                 "intendedUsage": {
                     "code": "COM",

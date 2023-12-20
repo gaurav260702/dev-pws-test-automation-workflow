@@ -8,28 +8,27 @@
         "email": "usercontactnz@letscheck.email"
     },
     "endCustomer": {
-        "accountCsn": "5500850715",
-        "addressLine1": "22A Waghorne Street",
-        "addressLine2": "Ahuriri",
-        "city": "Wellington",
+        "accountCsn": "5500851754",
+        "name": "SMHarry NZ MCAD",
+        "addressLine1": "163 Kendal Avenue",
+        "city": "Christchurchh",
         "countryCode": "NZ",
-        "isIndividual": false,
-        "name": "SMHarry Napier",
-        "postalCode": "8053"
+        "postalCode": "8053",
+        "isIndividual": false
     },
     "purchaser": {
-        "email": "samlooper@letscheck.email",
-        "firstName": "Sunny",
-        "lastName": "Gopim",
-        "phone": "+4154776666",
+        "email": "PWS_NZUser@letscheck.email",
+        "firstName": "SMPWS",
+        "lastName": "NZUser1",
+        "phone": "+64 9123334567",
         "preferredLanguage": "en"
     },
     "lineItems": [
         {
-            "quantity": 3,
             "offeringId": "OD-000054",
             "action": "New",
-            "promotionCode": "ANZTestAA",
+            "quantity": 10,
+            "startDate": "[[Date(35)]]",
             "offer": {
                 "term": {
                     "code": "A01",
@@ -37,7 +36,7 @@
                 },
                 "accessModel": {
                     "code": "S",
-                    "description": "Single user"
+                    "description": "Single User"
                 },
                 "intendedUsage": {
                     "code": "COM",

@@ -5,8 +5,8 @@
     "transactionId": "*",
     "errors": [
       {
-        "code": "45110",
-        "message": "Only Subscription/Autodesk Opportunity is allowed as part of NxM for Quote creation"
+        "message": "Customer details for this opportunity do not match the quote. Update the customer details on the quote to continue.",
+        "code": "45068"
       }
     ]
   },

@@ -1,0 +1,12 @@
+{
+  "QuoteCreate": {
+    "transactionId": "*",
+    "errors": [
+      {
+        "code": "45001",
+        "message": "startDate 2023-12-15 can\u0027t be in the past"
+      }
+    ],
+    "status": "error"
+  }
+}

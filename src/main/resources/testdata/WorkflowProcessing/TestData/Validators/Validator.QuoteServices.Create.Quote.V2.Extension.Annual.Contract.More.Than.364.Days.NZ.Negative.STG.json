@@ -5,8 +5,8 @@
     "transactionId": "*",
     "errors": [
       {
-        "code": "45110",
-        "message": "Only Subscription/Autodesk Opportunity is allowed as part of NxM for Quote creation"
+        "message": "For line item 1: Number of days from start to end date cannot exceed 364.",
+        "code": "45105"
       }
     ]
   },

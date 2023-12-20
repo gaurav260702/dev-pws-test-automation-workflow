@@ -5,8 +5,8 @@
     "transactionId": "*",
     "errors": [
       {
-        "code": "45110",
-        "message": "Only Subscription/Autodesk Opportunity is allowed as part of NxM for Quote creation"
+        "message": "Only a renewable subscription may co-term with an existing Flex offering. Select a different offering to continue.",
+        "code": "45107"
       }
     ]
   },

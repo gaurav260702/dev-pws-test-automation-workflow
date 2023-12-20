@@ -1,0 +1,21 @@
+{
+   "quoteNote": "SM_Notefrom_Agenttocustomer1.{{note}}",
+   "currency": "NZD",
+   "agentAccount": {
+      "accountCsn": "5502750395"
+   },
+   "agentContact": {
+      "email": "usercontactnz@letscheck.email"
+   },
+   "endCustomer": {
+      "accountCsn": "5502920152"
+   },
+   "opportunityNumber": "A-20431023",
+   "purchaser": {
+      "email": "viratexpt@letscheck.email",
+      "firstName": "fnjxWTAA",
+      "lastName": "lnjxWTAA",
+      "phone": "61345678900",
+      "preferredLanguage": "en"
+   }
+}
