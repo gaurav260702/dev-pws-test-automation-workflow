@@ -1,0 +1,17 @@
+{
+  "QuoteStatusFAILED": {
+    "quoteStatus": "FAILED",
+    "quoteNumber": "NA",
+    "transactionId": "*",
+    "errors": [
+      {
+        "message": "Invalid address - This customer is outside of your authorized territory",
+        "code": "45007"
+      }
+    ]
+  },
+  "QuoteCreate": {
+    "message": "success",
+    "transactionId": "*"
+  }
+}
