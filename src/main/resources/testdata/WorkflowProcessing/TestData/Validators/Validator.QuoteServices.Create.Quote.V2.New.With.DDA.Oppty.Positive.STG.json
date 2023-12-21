@@ -5,8 +5,8 @@
     "transactionId": "*",
     "errors": [
       {
-        "code": "45045",
-        "message": "Opportunity DDA_Oppty_yqrarfnb is in use by quote: Q-562397"
+        "code": "45013",
+        "message": "Invalid/Expired DDA Opportunity"
       }
     ]
   },
