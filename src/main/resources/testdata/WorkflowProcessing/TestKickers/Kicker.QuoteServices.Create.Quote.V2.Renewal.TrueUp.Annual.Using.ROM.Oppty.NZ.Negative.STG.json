@@ -54,5 +54,5 @@
   "validationFile": "$VALIDATION$/Validator.$ROOT_NAME$.Create.Quote.V2.Renewal.TrueUp.Annual.Using.ROM.Oppty.NZ.Negative.$ENV$.json",
   "secretsFile": "$CONFIG$/Secrets.GetInvoiceServices.INT.json",
 
-  "workflow": "RenewalQuoteV2New"
+  "workflow": "CreateQuoteV2NewFlexQTYLessThan100"
 }

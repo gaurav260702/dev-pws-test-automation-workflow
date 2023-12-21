@@ -8,46 +8,15 @@
         "email": "usercontactnz@letscheck.email"
     },
     "endCustomer": {
-        "accountCsn": "5502783734"
+        "accountCsn": "5502851495",
+        "isIndividual": false
     },
+    "opportunityNumber": "A-20384285",
     "purchaser": {
-        "email": "fy24q4_5502783734_testdata1@letscheck.pw"
-    },
-    "opportunityNumber": "A-20338734",
-    "lineItems": [
-        {
-            "action": "Renewal",
-            "quantity": 50,
-            "subscriptionId": "583-11758946"
-        },
-        {
-            "quantity": 50,
-            "offeringId": "OD-000321",
-            "action": "True-up",
-            "startDate": "2023-11-30",
-            "endDate": "2024-11-04",
-            "offer": {
-                "term": {
-                    "code": "A01",
-                    "description": "Annual"
-                },
-                "accessModel": {
-                    "code": "S",
-                    "description": "Single user"
-                },
-                "intendedUsage": {
-                    "code": "COM",
-                    "description": "Commercial"
-                },
-                "connectivity": {
-                    "code": "C100",
-                    "description": "Online"
-                },
-                "servicePlan": {
-                    "code": "PREMSUB",
-                    "description": "Premium"
-                }
-            }
-        }
-    ]
+        "email": "fy24_5502851495_stgnz@letscheck.pw",
+        "firstName": "Sunny",
+        "lastName": "Gopim",
+        "phone": "+4154776666",
+        "preferredLanguage": "en"
+    }
 }
