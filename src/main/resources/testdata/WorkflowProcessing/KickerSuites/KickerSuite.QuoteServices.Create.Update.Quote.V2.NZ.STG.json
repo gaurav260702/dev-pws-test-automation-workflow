@@ -78,7 +78,8 @@
     "./testdata/WorkflowProcessing/TestKickers/Kicker.QuoteServices.Create.Quote.V2.Renewal.TrueUp.Annual.Using.ROM.Oppty.NZ.Negative.STG.json",
     "./testdata/WorkflowProcessing/TestKickers/Kicker.QuoteServices.Create.Quote.V2.TrueUp.Annual.Using.ROM.Oppty.NZ.Negative.STG.json",
     "./testdata/WorkflowProcessing/TestKickers/Kicker.QuoteServices.Create.Quote.V2.RecordType.As.Subscription.Opportunity.NZ.Positive.STG.json",
-    "./testdata/WorkflowProcessing/TestKickers/Kicker.QuoteServices.Create.Quote.V2.DDA.Oppty.RecordType.As.Autodesk.Opportunity.NZ.Positive.STG.json"
+    "./testdata/WorkflowProcessing/TestKickers/Kicker.QuoteServices.Create.Quote.V2.DDA.Oppty.RecordType.As.Autodesk.Opportunity.NZ.Positive.STG.json",
+    "./testdata/WorkflowProcessing/TestKickers/Kicker.QuoteServices.Create.Quote.V2.RecordType.As.Subscription.ODM.Trueup.Oppty.NZ.Positive.STG.json"
 
   ]
 }
