@@ -1,0 +1,26 @@
+{
+  "quoteNote": "Note from agent to customer1.{{note}}",
+  "currency": "NZD",
+  "agentAccount": {
+    "accountCsn": "5502750395"
+  },
+  "agentContact": {
+    "email": "usercontactnz@letscheck.email"
+  },
+  "endCustomer": {
+    "accountCsn": "5108537554"
+  },
+  "purchaser": {
+    "email": "pws_nzuser@letscheck.email",
+    "firstName": "Sunny",
+    "lastName": "Gopim",
+    "phone": "+4154776666",
+    "preferredLanguage": "en"
+  },
+  "quoteDiscounts": [
+    {
+      "discountId": "A-20451953",
+      "discountType": "DDA"
+    }
+  ]
+}
