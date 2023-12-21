@@ -1,0 +1,86 @@
+{
+    "quoteNote": "SM_Notefrom_Agenttocustomer.{{note}}",
+    "currency": "NZD",
+    "opportunityNumber": "A-20315943",
+    "agentAccount": {
+        "accountCsn": "5502750395"
+    },
+    "agentContact": {
+        "email": "usercontactnz@letscheck.email"
+    },
+    "endCustomer": {
+        "accountCsn": "5500850715",
+        "name": "Coach 3DServices",
+        "addressLine1": "351 Montreal Street",
+        "addressLine2": "Christchurch Central City",
+        "city": "Christchurch",
+        "countryCode": "NZ",
+        "postalCode": "9012",
+        "isIndividual": false
+    },
+    "purchaser": {
+        "email": "samlooper@letscheck.email",
+        "firstName": "Coach",
+        "lastName": "DUser",
+        "phone": "+64 912339999",
+        "preferredLanguage": "en"
+    },
+    "lineItems": [
+        {
+            "quantity": 10,
+            "offeringId": "OD-000021",
+            "startDate": "[[Date(2)]]",
+            "action": "New",
+            "offer": {
+                "term": {
+                    "code": "A01",
+                    "description": "Annual"
+                },
+                "accessModel": {
+                    "code": "S",
+                    "description": "Single user"
+                },
+                "intendedUsage": {
+                    "code": "COM",
+                    "description": "Commercial"
+                },
+                "connectivity": {
+                    "code": "C100",
+                    "description": "Online"
+                },
+                "servicePlan": {
+                    "code": "STND",
+                    "description": "Standard"
+                }
+            }
+        },
+        {
+            "quantity": 10,
+            "offeringId": "OD-000171",
+            "startDate": "[[Date(2)]]",
+            "action": "New",
+            "offer": {
+                "term": {
+                    "code": "A01",
+                    "description": "Annual"
+                },
+                "accessModel": {
+                    "code": "S",
+                    "description": "Single user"
+                },
+                "intendedUsage": {
+                    "code": "COM",
+                    "description": "Commercial"
+                },
+                "connectivity": {
+                    "code": "C100",
+                    "description": "Online"
+                },
+                "servicePlan": {
+                    "code": "STND",
+                    "description": "Standard"
+                }
+            }
+        }
+    ]
+}

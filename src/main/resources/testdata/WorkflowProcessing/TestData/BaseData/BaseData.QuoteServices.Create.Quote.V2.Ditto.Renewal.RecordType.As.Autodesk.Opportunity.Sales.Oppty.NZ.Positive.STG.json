@@ -1,0 +1,21 @@
+{
+    "quoteNote": "Note from agent to customer21.{{note}}",
+    "currency": "NZD",
+    "opportunityNumber": "A-20315943",
+    "agentAccount": {
+        "accountCsn": "5502750395"
+    },
+    "agentContact": {
+        "email": "usercontactnz@letscheck.email"
+    },
+    "endCustomer": {
+        "accountCsn": "5500850715"
+    },
+    "purchaser": {
+        "email": "samlooper@letscheck.email",
+        "firstName": "Sunny",
+        "lastName": "Gopim",
+        "phone": "+4154776666",
+        "preferredLanguage": "en"
+    }
+}
