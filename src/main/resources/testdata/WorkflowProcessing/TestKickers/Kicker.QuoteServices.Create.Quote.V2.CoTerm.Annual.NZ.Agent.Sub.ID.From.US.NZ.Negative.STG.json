@@ -1,9 +1,9 @@
-{
+﻿{
   "$ROOT$": "./testdata/WorkflowProcessing/TestData",
   "$ENV$": "STG",
 
   "$ROOT_NAME$": "QuoteServices",
-  "$VARIATION_COUNT$": "Create.Quote.V2.Renewal.TrueUp.Annual.Using.ROM.Oppty.NZ.Negative",
+  "$VARIATION_COUNT$": "Create.Quote.V2.CoTerm.Annual.NZ.Agent.Sub.ID.From.US.NZ.Negative",
   "$BASE_NAME$": "$ROOT_NAME$_$VARIATION_COUNT$",
   "$SERVICE_NAME$": "QuoteServices_V2",
   "$VALIDATION$": "$ROOT$/Validators",
@@ -31,7 +31,7 @@
   "$VERSION_PATH$": "v2",
 
   "$TIMEZONE_CITY$": "Australia/Sydney",
-  "$CURRENCY$": "AUD",
+  "$CURRENCY$": "NZD",
 
   "$ADDRESS1$": "60 Jenke Cct",
   "$CITY$": "Kambah",
@@ -49,9 +49,9 @@
   "baseUrl": "https://enterprise-api-$ENV$.autodesk.com",
   "oAuthBaseUrl":  "https://enterprise-api-$ENV$.autodesk.com",
 
-  "baseFile": "$BASE_DATA$/BaseData.$ROOT_NAME$.Create.Quote.V2.Renewal.TrueUp.Annual.Using.ROM.Oppty.NZ.Negative.$ENV$.json",
+  "baseFile": "$BASE_DATA$/BaseData.$ROOT_NAME$.Create.Quote.V2.CoTerm.Annual.NZ.Agent.Sub.ID.From.US.NZ.Negative.$ENV$.json",
   "overridesFile": "$OVERRIDES$/Override.NONE.json",
-  "validationFile": "$VALIDATION$/Validator.$ROOT_NAME$.Create.Quote.V2.Renewal.TrueUp.Annual.Using.ROM.Oppty.NZ.Negative.$ENV$.json",
+  "validationFile": "$VALIDATION$/Validator.$ROOT_NAME$.Create.Quote.V2.CoTerm.Annual.NZ.Agent.Sub.ID.From.US.NZ.Negative.$ENV$.json",
   "secretsFile": "$CONFIG$/Secrets.GetInvoiceServices.INT.json",
 
   "workflow": "CreateQuoteV2NewFlexQTYLessThan100"

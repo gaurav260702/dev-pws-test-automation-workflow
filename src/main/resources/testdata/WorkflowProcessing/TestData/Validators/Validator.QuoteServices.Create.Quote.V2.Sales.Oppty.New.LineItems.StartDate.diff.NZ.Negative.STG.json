@@ -5,8 +5,8 @@
     "transactionId": "*",
     "errors": [
       {
-        "code": "45013",
-        "message": "Invalid/Expired DDA Opportunity"
+        "message": "Start date must be the same for given opportunity line item and other provided line items.",
+        "code": "45040"
       }
     ]
   },

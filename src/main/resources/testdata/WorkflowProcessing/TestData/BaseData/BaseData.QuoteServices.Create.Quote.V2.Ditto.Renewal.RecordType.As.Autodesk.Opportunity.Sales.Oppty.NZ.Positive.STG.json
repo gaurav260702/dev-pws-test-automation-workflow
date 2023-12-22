@@ -1,6 +1,7 @@
 {
-    "quoteNote": "SM_Notefrom_Agenttocustomer1.{{note}}",
+    "quoteNote": "Note from agent to customer21.{{note}}",
     "currency": "NZD",
+    "opportunityNumber": "A-20315943",
     "agentAccount": {
         "accountCsn": "5502750395"
     },
@@ -8,12 +9,10 @@
         "email": "usercontactnz@letscheck.email"
     },
     "endCustomer": {
-        "accountCsn": "5502851495",
-        "isIndividual": false
+        "accountCsn": "5500850715"
     },
-    "opportunityNumber": "A-20384285",
     "purchaser": {
-        "email": "fy24_5502851495_stgnz@letscheck.pw",
+        "email": "samlooper@letscheck.email",
         "firstName": "Sunny",
         "lastName": "Gopim",
         "phone": "+4154776666",

@@ -1,31 +1,29 @@
 {
     "quoteNote": "SM_Notefrom_Agenttocustomer.{{note}}",
-    "currency": "AUD",
+    "currency": "NZD",
     "agentAccount": {
-        "accountCsn": "5112991506"
+        "accountCsn": "5502750395"
     },
     "agentContact": {
-        "email": "agentpartnera2k@letscheck.email"
+        "email": "usercontactnz@letscheck.email"
     },
     "endCustomer": {
-        "accountCsn": "5501849563"
+        "accountCsn": "5500760313"
     },
     "purchaser": {
-        "email": "biz-ow9immw4i5@letscheck.pw",
+        "email": "thub27114326@letscheck.pw",
         "firstName": "Sunny",
         "lastName": "Gopim",
-        "phone": "4154776666",
+        "phone": "+4154776666",
         "preferredLanguage": "en"
-    },
-    "primaryAdmin": {
-        "email": "John.doe@awesomeagency.com"
     },
     "lineItems": [
         {
-            "quantity": 5,
-            "offeringId": "OD-000249",
-            "action": "Switch",
-            "referenceSubscriptionId": "69056389851681",
+            "quantity": 1,
+            "offeringId": "OD-000021",
+            "action": "Co-term",
+            "referenceSubscriptionId": "70112911134021",
+            "startDate": "2023-12-25",
             "offer": {
                 "term": {
                     "code": "A01",
@@ -33,7 +31,7 @@
                 },
                 "accessModel": {
                     "code": "S",
-                    "description": "Single User"
+                    "description": "Flex"
                 },
                 "intendedUsage": {
                     "code": "COM",

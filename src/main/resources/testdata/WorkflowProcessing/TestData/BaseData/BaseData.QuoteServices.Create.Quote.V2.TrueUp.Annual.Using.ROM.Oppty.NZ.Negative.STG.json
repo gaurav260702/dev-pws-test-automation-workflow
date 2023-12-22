@@ -1,0 +1,22 @@
+{
+  "quoteNote": "SM_Notefrom_Agenttocustomer1.{{note}}",
+  "currency": "NZD",
+  "agentAccount": {
+    "accountCsn": "5502750395"
+  },
+  "agentContact": {
+    "email": "usercontactnz@letscheck.email"
+  },
+  "endCustomer": {
+    "accountCsn": "5502878710",
+    "isIndividual": false
+  },
+  "opportunityNumber": "A-20395589",
+  "purchaser": {
+    "email": "fy24_5502878710_stgnz@letscheck.pw",
+    "firstName": "Sunny",
+    "lastName": "Gopim",
+    "phone": "+4154776666",
+    "preferredLanguage": "en"
+  }
+}

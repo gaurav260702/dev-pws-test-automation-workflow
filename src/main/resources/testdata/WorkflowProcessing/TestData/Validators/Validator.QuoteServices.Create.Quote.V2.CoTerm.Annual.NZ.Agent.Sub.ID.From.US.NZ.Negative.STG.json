@@ -5,8 +5,8 @@
     "transactionId": "*",
     "errors": [
       {
-        "code": "45013",
-        "message": "Invalid/Expired DDA Opportunity"
+        "message": "Invalid address - This customer is outside of your authorized territory",
+        "code": "45007"
       }
     ]
   },
