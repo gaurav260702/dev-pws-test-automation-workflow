@@ -13,7 +13,14 @@
 
     "./testdata/WorkflowProcessing/TestKickers/Kicker.QuoteServices.Create.Quote.V2.New.Annual.Start.Date.As.Today.NZ.Positive.INT.json",
     "./testdata/WorkflowProcessing/TestKickers/Kicker.QuoteServices.Create.Quote.V2.New.Annual.Start.Date.As.Today.US.Positive.INT.json",
-    "./testdata/WorkflowProcessing/TestKickers/Kicker.QuoteServices.Create.Quote.V2.CoTerm.Annual.Start.Date.As.Today.NZ.Positive.INT.json"
+    "./testdata/WorkflowProcessing/TestKickers/Kicker.QuoteServices.Create.Quote.V2.CoTerm.Annual.Start.Date.As.Today.NZ.Positive.INT.json",
+
+    "./testdata/WorkflowProcessing/TestKickers/Kicker.QuoteServices.Create.Quote.V2.CoTerm.Where.SubscriptionId.Is.Not.Valid.Negative.INT.json",
+    "./testdata/WorkflowProcessing/TestKickers/Kicker.QuoteServices.Create.Quote.V2.Trueup.endCustomer.Details.Is.Not.Valid.Negative.INT.json",
+    "./testdata/WorkflowProcessing/TestKickers/Kicker.QuoteServices.Create.Quote.V2.CoTerm.endCustomer.Outside.Authorized.Territory.Negative.INT.json",
+    "./testdata/WorkflowProcessing/TestKickers/Kicker.QuoteServices.Create.Quote.V2.Renewal.Invalid.Oppty.NZ.Negative.INT.json",
+    "./testdata/WorkflowProcessing/TestKickers/Kicker.QuoteServices.Create.Quote.V2.Renewal.Using.Different.EndCustomer.Account.NZ.Negative.INT.json",
+    "./testdata/WorkflowProcessing/TestKickers/Kicker.QuoteServices.Create.Quote.V2.Renewal.Using.Different.Purchaser.Email.Not.Exist.In.SFDC.NZ.Negative.INT.json"
 
   ]
 }
