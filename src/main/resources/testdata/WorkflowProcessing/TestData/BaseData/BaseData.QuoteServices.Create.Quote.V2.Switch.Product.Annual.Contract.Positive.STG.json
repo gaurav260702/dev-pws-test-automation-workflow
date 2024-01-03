@@ -1,29 +1,29 @@
 {
-    "quoteNote": "SM_Notefrom_Agenttocust.{{note}}",
+    "quoteNote": "SM_Notefrom_Agenttocustomer.{{note}}",
     "currency": "AUD",
     "agentAccount": {
         "accountCsn": "5070132993"
     },
     "agentContact": {
-        "email": "part_01aug_001@letscheck.pw"
+        "email": "part_01Aug_001@letscheck.pw"
     },
     "endCustomer": {
-        "accountCsn": "5502379086",
+        "accountCsn": "5502280227",
         "isIndividual": false
     },
     "purchaser": {
-        "email": "krisatumaa@letscheck.email",
-        "firstName": "KrisA",
-        "lastName": "TumaA",
-        "phone": "+61285659327",
+        "email": "biz-thubstoreausskakjtrfduxg@letscheck.pw",
+        "firstName": "Sunny",
+        "lastName": "Gopi",
+        "phone": "+614157778888",
         "preferredLanguage": "en"
     },
     "lineItems": [
         {
+            "quantity": 2,
             "offeringId": "OD-000054",
             "action": "Switch",
-            "quantity": 2,
-            "referenceSubscriptionId": "69620920691769",
+            "referenceSubscriptionId": "69524583660415",
             "offer": {
                 "term": {
                     "code": "A01",
