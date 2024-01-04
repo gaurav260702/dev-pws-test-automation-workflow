@@ -5,12 +5,8 @@
     "transactionId": "*",
     "errors": [
       {
-        "code": "45062",
-        "message": "No match found. Enter a valid Opportunity number to continue."
-      },
-      {
-        "code": "45013",
-        "message": "Invalid/Expired DDA Opportunity"
+        "message": "Enter a valid email address in Purchaser Email.",
+        "code": "45076"
       }
     ]
   },

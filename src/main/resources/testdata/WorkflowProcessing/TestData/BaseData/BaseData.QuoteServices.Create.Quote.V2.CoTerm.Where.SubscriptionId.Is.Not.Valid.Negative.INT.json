@@ -1,26 +1,29 @@
 {
-  "quoteNote": "SM_Notefrom_Agenttocust.{{note}}",
+  "quoteNote": "Note from agent to customer1.{{note}}",
   "currency": "NZD",
   "agentAccount": {
-    "accountCsn": "5502750395"
+    "accountCsn": "5070133154"
   },
   "agentContact": {
-    "email": "usercontactnz@letscheck.email"
+    "email": "naz_zheal_5070133154@mailinator.com"
   },
   "endCustomer": {
-    "accountCsn": "5502783734"
+    "accountCsn": "5502187393"
   },
   "purchaser": {
-    "email": "fy24q4_5502783734_testdata1@letscheck.pw"
+    "email": "pws_nzuser@letscheck.email",
+    "firstName": "Sunny",
+    "lastName": "Gopim",
+    "phone": "+4154776666",
+    "preferredLanguage": "en"
   },
-  "opportunityNumber": "A-20048878",
   "lineItems": [
     {
-      "offeringId": "OD-000321",
-      "action": "True-up",
-      "endDate": "2024-11-04",
-      "quantity": 50,
-      "startDate": "[[Date(2)]]",
+      "action": "Co-term",
+      "offeringId": "OD-000238",
+      "quantity": 1,
+      "referenceSubscriptionId": "69991259938999",
+      "startDate": "2023-12-25",
       "offer": {
         "term": {
           "code": "A01",
@@ -39,8 +42,8 @@
           "description": "Online"
         },
         "servicePlan": {
-          "code": "PREMSUB",
-          "description": "Premium"
+          "code": "STND",
+          "description": "Standard"
         }
       }
     }

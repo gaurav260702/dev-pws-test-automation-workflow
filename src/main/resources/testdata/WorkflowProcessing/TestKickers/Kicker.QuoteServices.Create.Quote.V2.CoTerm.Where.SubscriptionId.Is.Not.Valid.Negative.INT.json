@@ -3,7 +3,7 @@
   "$ENV$": "INT",
 
   "$ROOT_NAME$": "QuoteServices",
-  "$VARIATION_COUNT$": "Create.Quote.V2.New.Annual.Sales.Oppty.NZ.Positive",
+  "$VARIATION_COUNT$": "Create.Quote.V2.CoTerm.Where.SubscriptionId.Is.Not.Valid.Negative",
   "$BASE_NAME$": "$ROOT_NAME$_$VARIATION_COUNT$",
   "$SERVICE_NAME$": "QuoteServices_V2",
   "$VALIDATION$": "$ROOT$/Validators",
@@ -11,10 +11,10 @@
   "$BASE_DATA$": "$ROOT$/BaseData",
   "$CONFIG$": "$ROOT$/Configurations",
 
-  "$CSN_SOLDTO$": "5501670235",
+  "$CSN_SOLDTO$": "5070133154",
   "$CSN_RESELLER$": "5070133154",
-  "$CSN_ENDCUSTOMER$": "5112991506",
-  "$CSN_SHIPTO$": "5112991506",
+  "$CSN_ENDCUSTOMER$": "5070133154",
+  "$CSN_SHIPTO$": "5070133154",
 
   "$CSN_PRIMARY$": "$CSN_ENDCUSTOMER$",
   "$CSN_SECONDARY$": "$CSN_RESELLER$",
@@ -24,8 +24,8 @@
   "$CSN_ACCOUNT_CONTACT$": "5070133154",
   "$CSN_HEADER$": "5070133154",
 
-      "$OFFERING_ID$": "OD-000163",
-      "$AGENT_EMAIL$": "naz_zheal_5070133154@mailinator.com",
+  "$OFFERING_ID$": "OD-000163",
+  "$AGENT_EMAIL$": "newuserpartnerau_5501670235@letscheck.pw",
 
   "$CREATE_QUOTE_BASE_URL$": "https://enterprise-api-$ENV$.autodesk.com/",
   "$VERSION_PATH$": "v2",
@@ -49,9 +49,9 @@
   "baseUrl": "https://enterprise-api-$ENV$.autodesk.com",
   "oAuthBaseUrl":  "https://enterprise-api-$ENV$.autodesk.com",
 
-  "baseFile": "$BASE_DATA$/BaseData.$ROOT_NAME$.Create.Quote.V2.New.Annual.Sales.Oppty.NZ.Positive.$ENV$.json",
+  "baseFile": "$BASE_DATA$/BaseData.$ROOT_NAME$.Create.Quote.V2.CoTerm.Where.SubscriptionId.Is.Not.Valid.Negative.$ENV$.json",
   "overridesFile": "$OVERRIDES$/Override.NONE.json",
-  "validationFile": "$VALIDATION$/Validator.$ROOT_NAME$.Create.Quote.V2.New.Annual.Sales.Oppty.NZ.Positive.$ENV$.json",
+  "validationFile": "$VALIDATION$/Validator.$ROOT_NAME$.Create.Quote.V2.CoTerm.Where.SubscriptionId.Is.Not.Valid.Negative.$ENV$.json",
   "secretsFile": "$CONFIG$/Secrets.GetInvoiceServices.INT.json",
 
   "workflow": "CreateQuoteV2NewFlexQTYLessThan100"

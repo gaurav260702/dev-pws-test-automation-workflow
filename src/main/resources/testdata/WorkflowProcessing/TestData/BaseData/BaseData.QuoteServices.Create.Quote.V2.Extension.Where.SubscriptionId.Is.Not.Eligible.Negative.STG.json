@@ -5,7 +5,7 @@
         "accountCsn": "5070132993"
     },
     "agentContact": {
-        "email": "part_01aug_001@letscheck.pw"
+        "email": "part_01Aug_001@letscheck.pw"
     },
     "endCustomer": {
         "accountCsn": "5156114301"
@@ -19,9 +19,9 @@
     },
     "lineItems": [
         {
-            "action": "Renewal",
-            "quantity": 1,
-            "subscriptionId": "67718367066138"
+            "action": "Extension",
+            "subscriptionId": "67718367066138",
+            "endDate": "2026-10-10"
         }
     ]
 }

@@ -1,0 +1,23 @@
+{
+    "quoteNote": "Note from agent to customer1.{{note}}",
+    "currency": "NZD",
+    "agentAccount": {
+        "accountCsn": "5070133154"
+    },
+    "agentContact": {
+        "email": "naz_zheal_5070133154@mailinator.com"
+    },
+    "endCustomer": {
+        "accountCsn": "5502920166"
+    },
+    "purchaser": {
+        "email": "biz-hwbdbphlnlg@letscheck.pw"
+    },
+    "lineItems": [
+        {
+            "action": "Renewal",
+            "quantity": 19,
+            "subscriptionId": "70231969641125"
+        }
+    ]
+}

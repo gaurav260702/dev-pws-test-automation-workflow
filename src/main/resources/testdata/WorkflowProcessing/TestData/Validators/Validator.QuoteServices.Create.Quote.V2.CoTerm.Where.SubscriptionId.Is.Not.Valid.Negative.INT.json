@@ -5,12 +5,8 @@
     "transactionId": "*",
     "errors": [
       {
-        "code": "45062",
-        "message": "No match found. Enter a valid Opportunity number to continue."
-      },
-      {
-        "code": "45013",
-        "message": "Invalid/Expired DDA Opportunity"
+        "message": "No match found. Enter a valid reference subscription ID to continue for line item number 1.",
+        "code": "45097"
       }
     ]
   },

@@ -5,13 +5,24 @@
     "transactionId": "*",
     "errors": [
       {
-        "message": "Enter a valid email address in Purchaser Email.",
-        "code": "45076"
+        "code": "45001",
+        "message": [
+          {
+            "code": "45001",
+            "message": "\u0027purchaser.email\u0027 must be a valid email"
+          }
+        ]
       }
     ]
   },
   "QuoteCreate": {
-    "message": "success",
-    "transactionId": "*"
+    "transactionId": "*",
+    "errors": [
+      {
+        "code": "45001",
+        "message": "\u0027purchaser.email\u0027 must be a valid email"
+      }
+    ],
+    "status": "error"
   }
 }
