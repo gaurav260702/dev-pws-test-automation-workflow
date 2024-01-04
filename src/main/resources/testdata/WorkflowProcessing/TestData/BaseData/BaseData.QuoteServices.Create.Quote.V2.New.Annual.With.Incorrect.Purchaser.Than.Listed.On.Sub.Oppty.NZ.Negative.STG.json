@@ -1,26 +1,48 @@
 {
-  "quoteNote": "SM_Notefrom_Agenttocustomer1.{{note}}",
+  "quoteNote": "SM_Notefrom_Agenttocust.{{note}}",
   "currency": "NZD",
   "agentAccount": {
-    "accountCsn": "5502750389"
+    "accountCsn": "5502750395"
   },
   "agentContact": {
-    "email": "newzealandusercontact@letscheck.email"
+    "email": "usercontactnz@letscheck.email"
   },
   "endCustomer": {
-    "accountCsn": "5108537554"
+    "accountCsn": "5502783734"
   },
   "purchaser": {
-    "email": "kristttumakkk@letscheck.email",
-    "firstName": "Sunny",
-    "lastName": "Gopim",
-    "phone": "+4154776666",
-    "preferredLanguage": "en"
+    "email": "fy24q4_5502783734_testdata1@letscheck.pw"
   },
-  "quoteDiscounts": [
+  "opportunityNumber": "A-20048878",
+  "lineItems": [
     {
-      "discountId": "A-20316028",
-      "discountType": "DDA"
+      "offeringId": "OD-000321",
+      "action": "True-up",
+      "endDate": "2024-11-04",
+      "quantity": 50,
+      "startDate": "[[Date(2)]]",
+      "offer": {
+        "term": {
+          "code": "A01",
+          "description": "Annual"
+        },
+        "accessModel": {
+          "code": "S",
+          "description": "Single User"
+        },
+        "intendedUsage": {
+          "code": "COM",
+          "description": "Commercial"
+        },
+        "connectivity": {
+          "code": "C100",
+          "description": "Online"
+        },
+        "servicePlan": {
+          "code": "PREMSUB",
+          "description": "Premium"
+        }
+      }
     }
   ]
 }
