@@ -1,5 +1,5 @@
 {
-    "quoteNote": "Notefromagenttocustomer2",
+    "quoteNote": "Notefromagenttocustomer2{{note}}",
     "currency": "AUD",
     "agentAccount": {
         "accountCsn": "5112991506"
