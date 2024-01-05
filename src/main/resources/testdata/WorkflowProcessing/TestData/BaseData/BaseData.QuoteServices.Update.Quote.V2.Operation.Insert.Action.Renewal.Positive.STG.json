@@ -8,24 +8,24 @@
         "email": "part_01aug_001@letscheck.pw"
     },
     "endCustomer": {
-        "accountCsn": "5502379086"
+        "accountCsn": "5156114301"
     },
     "purchaser": {
-        "email": "krisatumaa@letscheck.email",
-        "firstName": "KrisA",
-        "lastName": "TumaA",
-        "phone": "+61285659327",
-        "preferredLanguage": "en"
+        "firstName": "KrisK",
+        "lastName": "TumaK",
+        "preferredLanguage": "en",
+        "phone": "+61292994769",
+        "email": "kris44tuma44@letscheck.email"
     },
     "lineItems": [
         {
-            "offeringId": "OD-000054",
+            "offeringId": "OD-000021",
             "action": "New",
-            "quantity": 10,
+            "quantity": 1,
             "offer": {
                 "term": {
-                    "code": "A01",
-                    "description": "Annual"
+                    "code": "A06",
+                    "description": "3 year"
                 },
                 "accessModel": {
                     "code": "S",
