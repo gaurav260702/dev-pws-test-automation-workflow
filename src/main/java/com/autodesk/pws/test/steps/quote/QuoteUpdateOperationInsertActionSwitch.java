@@ -54,14 +54,14 @@ public class QuoteUpdateOperationInsertActionSwitch extends PwsServiceBase
 				"  \"lineItems\": [\n" +
 				"    {\n" +
 				"      \"operation\": \"Insert\",\n" +
-				"      \"offeringId\": \"OD-000054\",\n" +
+				"      \"offeringId\": \"OD-000021\",\n" +
 				"      \"action\": \"Switch\",\n" +
-				"      \"quantity\": 7,\n" +
-				"      \"referenceSubscriptionId\": \"69620920691769\",\n" +
+				"      \"quantity\": 1,\n" +
+				"      \"referenceSubscriptionId\": \"67718367066138\",\n" +
 				"      \"offer\": {\n" +
 				"        \"term\": {\n" +
-				"          \"code\": \"A01\",\n" +
-				"          \"description\": \"Annual\"\n" +
+				"          \"code\": \"A06\",\n" +
+				"          \"description\": \"3 Year\"\n" +
 				"        },\n" +
 				"        \"accessModel\": {\n" +
 				"          \"code\": \"S\",\n" +
