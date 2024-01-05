@@ -23,7 +23,7 @@
             "offeringId": "OD-000238",
             "quantity": 1,
             "referenceSubscriptionId": "69991259938960",
-            "startDate": "2023-12-25",
+            "startDate": "[[Date(2)]]",
             "offer": {
                 "term": {
                     "code": "A01",
