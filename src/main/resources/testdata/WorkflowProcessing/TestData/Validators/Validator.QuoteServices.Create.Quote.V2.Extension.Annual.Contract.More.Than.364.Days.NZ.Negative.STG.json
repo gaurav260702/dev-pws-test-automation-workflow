@@ -5,10 +5,6 @@
     "transactionId": "*",
     "errors": [
       {
-        "code": "45059",
-        "message": "Subscription ID 70084847653428 is not eligible for this action. Search for another Subscription to continue."
-      },
-      {
         "code": "45105",
         "message": "For line item 1: Number of days from start to end date cannot exceed 364."
       }
