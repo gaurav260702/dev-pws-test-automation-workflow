@@ -9,14 +9,14 @@
     "transactionId": "*"
   },
   "QuoteDetailsV2New": {
-    "agentTimeZone": "*",
+    "timeZone": "*",
     "quoteNumber": "$QUOTE_NUMBER$",
     "quoteStatus": "Draft",
     "quoteCreatedTime": "*",
     "pricing.currency": "NZD",
     "agentAccount.accountCsn": "$CSN_ACCOUNT_CONTACT$"
   },
-  "QuoteUpdateOperationInsertActionExtensionNZD": {
+  "QuoteUpdateOperationInsertActionExtensionNZ": {
     "agentTimeZone": "*",
     "quoteNumber": "$QUOTE_NUMBER$",
     "quoteStatus": "Draft",

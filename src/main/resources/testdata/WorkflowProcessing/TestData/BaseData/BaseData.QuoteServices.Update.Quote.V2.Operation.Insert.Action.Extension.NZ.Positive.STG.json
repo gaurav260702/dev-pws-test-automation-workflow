@@ -1,5 +1,5 @@
 {
-    "quoteNote": "Notefromagenttocustomer2.{{note}}",
+    "quoteNote": "SM_Notefrom_Agenttocust.{{note}}",
     "currency": "NZD",
     "agentAccount": {
         "accountCsn": "5502750395"
@@ -8,20 +8,42 @@
         "email": "usercontactnz@letscheck.email"
     },
     "endCustomer": {
-        "accountCsn": "5502768900"
+        "accountCsn": "5153259830"
     },
     "purchaser": {
-        "email": "biz-thubstorenzqxvqsufcquji@letscheck.pw",
-        "firstName": "Sunny",
-        "lastName": "Gopin",
-        "phone": "+4154776666",
-        "preferredLanguage": "en"
+        "firstName": "Tammie",
+        "lastName": "Evans",
+        "preferredLanguage": "en",
+        "phone": "+4152221111",
+        "email": "miquela@putberg.com"
     },
     "lineItems": [
         {
-            "action": "Extension",
-            "endDate": "2024-01-16",
-            "subscriptionId": "70084847653428"
+            "offeringId": "OD-000021",
+            "action": "New",
+            "quantity": 1,
+            "offer": {
+                "term": {
+                    "code": "A06",
+                    "description": "3 year"
+                },
+                "accessModel": {
+                    "code": "S",
+                    "description": "Single User"
+                },
+                "intendedUsage": {
+                    "code": "COM",
+                    "description": "Commercial"
+                },
+                "connectivity": {
+                    "code": "C100",
+                    "description": "Online"
+                },
+                "servicePlan": {
+                    "code": "STND",
+                    "description": "Standard"
+                }
+            }
         }
     ]
 }
