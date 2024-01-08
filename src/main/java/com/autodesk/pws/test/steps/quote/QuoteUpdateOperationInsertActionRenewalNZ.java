@@ -56,7 +56,7 @@ public class QuoteUpdateOperationInsertActionRenewalNZ extends PwsServiceBase
 				"      \"operation\": \"Insert\",\n" +
 				"      \"action\": \"Renewal\",\n" +
 				"      \"quantity\": 1,\n" +
-				"      \"subscriptionId\": \"70129574147589\"    }\n" +
+				"      \"subscriptionId\": \"70119586905591\"    }\n" +
 				"  ]\n" +
 				"}";
 

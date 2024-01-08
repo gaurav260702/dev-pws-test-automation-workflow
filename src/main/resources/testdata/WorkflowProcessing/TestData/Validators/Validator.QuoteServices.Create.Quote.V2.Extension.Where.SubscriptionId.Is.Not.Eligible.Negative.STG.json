@@ -5,8 +5,8 @@
     "transactionId": "*",
     "errors": [
       {
-        "code": "45059",
-        "message": "Subscription ID 67718367066138 is not eligible for this action. Search for another Subscription to continue."
+        "code": "45058",
+        "message": "Subscription 69620920691769 is not eligible to perform this action for line item 1"
       }
     ]
   },

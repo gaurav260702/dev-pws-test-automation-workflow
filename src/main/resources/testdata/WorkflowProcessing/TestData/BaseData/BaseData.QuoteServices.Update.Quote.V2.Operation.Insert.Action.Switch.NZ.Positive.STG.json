@@ -8,26 +8,24 @@
         "email": "usercontactnz@letscheck.email"
     },
     "endCustomer": {
-        "accountCsn": "5502782030",
-        "isIndividual": false
+        "accountCsn": "5153259830"
     },
     "purchaser": {
-        "email": "bnfhirk90g@letscheck.pw",
-        "firstName": "Sunny",
-        "lastName": "Gopi",
-        "phone": "+614157778888",
-        "preferredLanguage": "en"
+        "firstName": "Tammie",
+        "lastName": "Evans",
+        "preferredLanguage": "en",
+        "phone": "+4152221111",
+        "email": "miquela@putberg.com"
     },
     "lineItems": [
         {
-            "action": "Switch",
-            "offeringId": "OD-000054",
-            "quantity": 5,
-            "referenceSubscriptionId": "70112474840084",
+            "offeringId": "OD-000021",
+            "action": "New",
+            "quantity": 1,
             "offer": {
                 "term": {
-                    "code": "A01",
-                    "description": "Annual"
+                    "code": "A06",
+                    "description": "3 year"
                 },
                 "accessModel": {
                     "code": "S",

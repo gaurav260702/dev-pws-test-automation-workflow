@@ -1,33 +1,31 @@
 {
-  "quoteNote": "Note from agent to customer1.{{note}}",
+  "quoteNote": "SM_Notefrom_Agenttocust.{{note}}",
   "currency": "NZD",
   "agentAccount": {
-    "accountCsn": "5070133154"
+    "accountCsn": "5502750395"
   },
   "agentContact": {
-    "email": "naz_zheal_5070133154@mailinator.com"
+    "email": "usercontactnz@letscheck.email"
   },
   "endCustomer": {
-    "accountCsn": "5502187393"
+    "accountCsn": "5153259830"
   },
   "purchaser": {
-    "email": "pws_nzuser@letscheck.email",
-    "firstName": "Sunny",
-    "lastName": "Gopim",
-    "phone": "+4154776666",
-    "preferredLanguage": "en"
+    "firstName": "Tammie",
+    "lastName": "Evans",
+    "preferredLanguage": "en",
+    "phone": "+4152221111",
+    "email": "miquela@putberg.com"
   },
   "lineItems": [
     {
-      "action": "Co-term",
-      "offeringId": "OD-000238",
+      "offeringId": "OD-000021",
+      "action": "New",
       "quantity": 1,
-      "referenceSubscriptionId": "69991259938999",
-      "startDate": "[[Date(2)]]",
       "offer": {
         "term": {
-          "code": "A01",
-          "description": "Annual"
+          "code": "A06",
+          "description": "3 year"
         },
         "accessModel": {
           "code": "S",

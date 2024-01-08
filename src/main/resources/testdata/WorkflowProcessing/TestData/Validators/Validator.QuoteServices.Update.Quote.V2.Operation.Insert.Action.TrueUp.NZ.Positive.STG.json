@@ -16,7 +16,7 @@
     "pricing.currency": "NZD",
     "agentAccount.accountCsn": "$CSN_ACCOUNT_CONTACT$"
   },
-  "QuoteUpdateOperationInsertActionExtensionNZ": {
+  "QuoteUpdateOperationInsertActionTrueUpNZ": {
     "agentTimeZone": "*",
     "quoteNumber": "$QUOTE_NUMBER$",
     "quoteStatus": "Draft",

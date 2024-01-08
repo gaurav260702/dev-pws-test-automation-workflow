@@ -89,5 +89,6 @@
     "./testdata/WorkflowProcessing/TestKickers/Kicker.QuoteServices.Quote.List.V2.Using.Account.CSN.Header.CSN.Is.Not.Matched.AUS.Negative.STG.json",
     "./testdata/WorkflowProcessing/TestKickers/Kicker.QuoteServices.Quote.List.V2.Using.Account.CSN.Having.No.Quotes.NZ.Negative.STG.json",
     "./testdata/WorkflowProcessing/TestKickers/Kicker.QuoteServices.Create.Quote.V2.Extension.Where.SubscriptionId.Is.Not.Eligible.Negative.STG.json"
+
   ]
 }

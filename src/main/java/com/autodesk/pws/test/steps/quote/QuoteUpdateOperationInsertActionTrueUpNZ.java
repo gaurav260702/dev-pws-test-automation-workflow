@@ -3,7 +3,7 @@ package com.autodesk.pws.test.steps.quote;
 import com.autodesk.pws.test.steps.base.PwsServiceBase;
 import io.restassured.path.json.JsonPath;
 
-public class QuoteUpdateOperationInsertActionSwitch extends PwsServiceBase
+public class QuoteUpdateOperationInsertActionTrueUpNZ extends PwsServiceBase
 {
 	public String DataPoolSourceInfoLabel = "";
 	
@@ -50,39 +50,38 @@ public class QuoteUpdateOperationInsertActionSwitch extends PwsServiceBase
     	//  loader/extracter at this time...
     //	String jsonBody = "{\"quoteNumber\":\"$QUOTE_NUMBER$\"}";  $QUOTE_LINE_NUMBER$
 		String jsonBody = "{\n" +
-				"  \"quoteNumber\": \"$QUOTE_NUMBER$\",\n" +
-				"  \"lineItems\": [\n" +
-				"    {\n" +
-				"      \"operation\": \"Insert\",\n" +
-				"      \"offeringId\": \"OD-000021\",\n" +
-				"      \"action\": \"Switch\",\n" +
-				"      \"quantity\": 1,\n" +
-				"      \"referenceSubscriptionId\": \"67718367066138\",\n" +
-				"      \"offer\": {\n" +
-				"        \"term\": {\n" +
-				"          \"code\": \"A06\",\n" +
-				"          \"description\": \"3 Year\"\n" +
-				"        },\n" +
-				"        \"accessModel\": {\n" +
-				"          \"code\": \"S\",\n" +
-				"          \"description\": \"Single User\"\n" +
-				"        },\n" +
-				"        \"intendedUsage\": {\n" +
-				"          \"code\": \"COM\",\n" +
-				"          \"description\": \"Commercial\"\n" +
-				"        },\n" +
-				"        \"connectivity\": {\n" +
-				"          \"code\": \"C100\",\n" +
-				"          \"description\": \"Online\"\n" +
-				"        },\n" +
-				"        \"servicePlan\": {\n" +
-				"          \"code\": \"STND\",\n" +
-				"          \"description\": \"Standard\"\n" +
-				"        }\n" +
-				"      }\n" +
+				"    \"quoteNumber\": \"$QUOTE_NUMBER$\",\n" +
+				"    \"lineItems\": [{\n" +
+				"    \"action\": \"True-up\",\n" +
+				"    \"quantity\": 1,\n" +
+				"    \"operation\": \"Insert\",\n" +
+				"    \"offeringId\": \"OD-000021\",\n" +
+				"    \"startDate\": \"2023-11-25\",\n" +
+				"    \"endDate\": \"2024-11-25\",\n" +
+				"    \"offer\": {\n" +
+				"                \"term\": {\n" +
+				"                    \"code\": \"A06\",\n" +
+				"                    \"description\": \"3 Year\"\n" +
+				"                },\n" +
+				"                \"accessModel\": {\n" +
+				"                    \"code\": \"S\",\n" +
+				"                    \"description\": \"Single User\"\n" +
+				"                },\n" +
+				"                \"intendedUsage\": {\n" +
+				"                    \"code\": \"COM\",\n" +
+				"                    \"description\": \"Commercial\"\n" +
+				"                },\n" +
+				"                \"connectivity\": {\n" +
+				"                    \"code\": \"C100\",\n" +
+				"                    \"description\": \"Online\"\n" +
+				"                },\n" +
+				"                \"servicePlan\": {\n" +
+				"                    \"code\": \"STND\",\n" +
+				"                    \"description\": \"Standard\"\n" +
+				"                }\n" +
+				"            }\n" +
 				"    }\n" +
-				"  ]\n" +
-				"}";
+				"    ]}";
 
     	jsonBody = this.fullyDetokenize(jsonBody);
     	

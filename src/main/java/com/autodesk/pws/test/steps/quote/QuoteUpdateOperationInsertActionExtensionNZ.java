@@ -55,8 +55,8 @@ public class QuoteUpdateOperationInsertActionExtensionNZ extends PwsServiceBase
 				"        {\n" +
 				"            \"operation\": \"Insert\",\n" +
 				"            \"action\": \"Extension\",\n" +
-				"            \"subscriptionId\": \"70129574147589\",\n" +
-				"            \"endDate\": \"2023-12-25\"\n" +
+				"            \"subscriptionId\": \"70119586905591\",\n" +
+				"            \"endDate\": \"2024-02-25\"\n" +
 				"        }\n" +
 				"    ]\n" +
 				"}";

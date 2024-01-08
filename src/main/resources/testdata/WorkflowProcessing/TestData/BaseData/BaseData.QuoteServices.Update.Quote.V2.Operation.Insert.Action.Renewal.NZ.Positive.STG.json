@@ -1,5 +1,5 @@
 {
-    "quoteNote": "SM_Notefrom_Agenttocustomer1.{{note}}",
+    "quoteNote": "SM_Notefrom_Agenttocustomer.{{note}}",
     "currency": "NZD",
     "agentAccount": {
         "accountCsn": "5502750395"
@@ -10,14 +10,40 @@
     "endCustomer": {
         "accountCsn": "5153259830"
     },
+    "purchaser": {
+        "firstName": "Tammie",
+        "lastName": "Evans",
+        "preferredLanguage": "en",
+        "phone": "+4152221111",
+        "email": "miquela@putberg.com"
+    },
     "lineItems": [
         {
-            "action": "Renewal",
-            "quantity": 10,
-            "subscriptionId": "583-11783393"
+            "quantity": 1,
+            "offeringId": "OD-000021",
+            "action": "New",
+            "offer": {
+                "term": {
+                    "code": "A06",
+                    "description": "3 Year"
+                },
+                "accessModel": {
+                    "code": "S",
+                    "description": "Single user"
+                },
+                "intendedUsage": {
+                    "code": "COM",
+                    "description": "Commercial"
+                },
+                "connectivity": {
+                    "code": "C100",
+                    "description": "Online"
+                },
+                "servicePlan": {
+                    "code": "STND",
+                    "description": "Standard"
+                }
+            }
         }
-    ],
-    "purchaser": {
-        "email": "miquela@putberg.com"
-    }
+    ]
 }
