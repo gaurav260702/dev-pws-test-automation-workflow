@@ -85,7 +85,11 @@
     "./testdata/WorkflowProcessing/TestKickers/Kicker.QuoteServices.Create.Quote.V2.DDA.Oppty.RecordType.As.Autodesk.Opportunity.NZ.Positive.STG.json",
     "./testdata/WorkflowProcessing/TestKickers/Kicker.QuoteServices.Create.Quote.V2.RecordType.As.Subscription.ODM.Trueup.Oppty.NZ.Positive.STG.json",
     "./testdata/WorkflowProcessing/TestKickers/Kicker.QuoteServices.Create.Quote.V2.Ditto.Renewal.RecordType.As.Autodesk.Opportunity.Sales.Oppty.NZ.Positive.STG.json",
-    "./testdata/WorkflowProcessing/TestKickers/Kicker.QuoteServices.Create.Quote.V2.Sales.Oppty.New.LineItems.StartDate.diff.NZ.Negative.STG.json"
+    "./testdata/WorkflowProcessing/TestKickers/Kicker.QuoteServices.Create.Quote.V2.Sales.Oppty.New.LineItems.StartDate.diff.NZ.Negative.STG.json",
+
+    "./testdata/WorkflowProcessing/TestKickers/Kicker.QuoteServices.Update.Quote.V2.Operation.Update.Action.New.Quote.LineItem.Not.Belongs.To.Quote.NZ.Negative.STG.json",
+    "./testdata/WorkflowProcessing/TestKickers/Kicker.QuoteServices.Update.Quote.V2.Operation.Insert.Action.Switch.Where.Subscription.Id.Already.Used.NZ.Negative.STG.json",
+    "./testdata/WorkflowProcessing/TestKickers/Kicker.QuoteServices.Update.Quote.V2.Operation.Delete.Action.New.Not.In.Draft.State.NZ.Negative.STG.json"
 
   ]
 }
