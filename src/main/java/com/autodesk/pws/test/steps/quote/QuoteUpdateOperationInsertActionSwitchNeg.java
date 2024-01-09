@@ -57,7 +57,7 @@ public class QuoteUpdateOperationInsertActionSwitchNeg extends PwsServiceBase
 				"      \"offeringId\": \"OD-000054\",\n" +
 				"      \"action\": \"Switch\",\n" +
 				"      \"quantity\": 7,\n" +
-				"      \"referenceSubscriptionId\": \"69620920691769\",\n" +
+				"      \"referenceSubscriptionId\": \"$REFERENCE_SUBSCRIPTION_ID$\",\n" +
 				"      \"offer\": {\n" +
 				"        \"term\": {\n" +
 				"          \"code\": \"A01\",\n" +

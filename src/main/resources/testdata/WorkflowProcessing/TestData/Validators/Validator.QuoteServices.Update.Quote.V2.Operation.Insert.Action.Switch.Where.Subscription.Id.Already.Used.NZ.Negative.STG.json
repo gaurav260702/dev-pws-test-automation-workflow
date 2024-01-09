@@ -1,0 +1,12 @@
+{
+  "QuoteUpdateOperationInsertActionSwitchNeg": {
+    "transactionId": "*",
+    "errors": [
+      {
+        "code": "45041",
+        "message": "70112474840084 can only be referenced on a single quote line item."
+      }
+    ],
+    "status": "error"
+  }
+}
