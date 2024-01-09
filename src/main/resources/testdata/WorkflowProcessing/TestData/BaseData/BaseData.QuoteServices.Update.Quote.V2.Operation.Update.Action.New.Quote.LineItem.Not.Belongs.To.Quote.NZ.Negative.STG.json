@@ -1,0 +1,49 @@
+{
+    "quoteNote": "SM_Notefrom_Agenttocust.{{note}}",
+    "currency": "NZD",
+    "agentAccount": {
+        "accountCsn": "5502750395"
+    },
+    "agentContact": {
+        "email": "usercontactnz@letscheck.email"
+    },
+    "endCustomer": {
+        "accountCsn": "5153259830"
+    },
+    "purchaser": {
+        "firstName": "Tammie",
+        "lastName": "Evans",
+        "preferredLanguage": "en",
+        "phone": "+4152221111",
+        "email": "miquela@putberg.com"
+    },
+    "lineItems": [
+        {
+            "offeringId": "OD-000021",
+            "action": "New",
+            "quantity": 1,
+            "offer": {
+                "term": {
+                    "code": "A06",
+                    "description": "3 year"
+                },
+                "accessModel": {
+                    "code": "S",
+                    "description": "Single User"
+                },
+                "intendedUsage": {
+                    "code": "COM",
+                    "description": "Commercial"
+                },
+                "connectivity": {
+                    "code": "C100",
+                    "description": "Online"
+                },
+                "servicePlan": {
+                    "code": "STND",
+                    "description": "Standard"
+                }
+            }
+        }
+    ]
+}
