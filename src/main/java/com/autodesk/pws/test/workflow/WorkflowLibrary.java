@@ -577,6 +577,19 @@ public class WorkflowLibrary
         return workflow;
     }
 
+    public static List<StepBase> QuoteUpdateOperationUpdateActionExtensionInvalidLineItem()
+    {
+        boolean waitForExpectedStatus = true;
+
+        List<StepBase> workflow = new ArrayList<StepBase>();
+
+        workflow.add(new LoadQuoteFilesAndExtractData());
+        workflow.add(new GetQuoteOAuthCredentials());
+        workflow.add(new QuoteUpdateOperationUpdateActionExtensionInvalidLineItem());
+
+        return workflow;
+    }
+
     public static List<StepBase> QuoteUpdateOperationInsertActionExtension()
     {
         boolean waitForExpectedStatus = true;
