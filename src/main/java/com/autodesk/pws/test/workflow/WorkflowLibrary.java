@@ -590,6 +590,19 @@ public class WorkflowLibrary
         return workflow;
     }
 
+    public static List<StepBase> QuoteUpdateOperationDeleteActionExtensionSameLineItemTwice()
+    {
+        boolean waitForExpectedStatus = true;
+
+        List<StepBase> workflow = new ArrayList<StepBase>();
+
+        workflow.add(new LoadQuoteFilesAndExtractData());
+        workflow.add(new GetQuoteOAuthCredentials());
+        workflow.add(new QuoteUpdateOperationDeleteActionExtensionSameLineItemTwice());
+
+        return workflow;
+    }
+
     public static List<StepBase> QuoteUpdateOperationInsertActionExtension()
     {
         boolean waitForExpectedStatus = true;
