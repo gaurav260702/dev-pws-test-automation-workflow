@@ -56,7 +56,7 @@ public class QuoteUpdateOperationUpdateActionNewUpdateQuantityZero extends PwsSe
 				"      \"operation\": \"Update\",\n" +
 				"      \"quoteLineNumber\": \"$QUOTE_LINE_NUMBER$\",\n" +
 				"      \"action\": \"New\",\n" +
-				"      \"quantity\": 0\n" +
+				"      \"quantity\": $QUANTITY$\n" +
 				"    }\n" +
 				"  ]\n" +
 				"}";
