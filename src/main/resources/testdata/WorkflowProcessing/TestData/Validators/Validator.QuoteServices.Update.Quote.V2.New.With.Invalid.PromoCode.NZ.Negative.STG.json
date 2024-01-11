@@ -1,28 +1,12 @@
 {
-  "QuoteStatus": {
-    "quoteStatus": "DRAFT-CREATED",
-    "quoteNumber": "$QUOTE_NUMBER$",
-    "transactionId": "*"
-  },
-  "QuoteStatusByQuoteNumber": {
-    "quoteStatus": "QUOTED",
-    "quoteNumber": "$QUOTE_NUMBER$",
-    "transactionId": "*"
-  },
-  "QuoteCreate": {
-    "message": "success",
-    "transactionId": "*"
-  },
-  "QuoteDetailsV2New": {
-    "agentTimeZone": "*",
-    "quoteNumber": "$QUOTE_NUMBER$",
-    "quoteStatus": "Draft",
-    "quoteCreatedTime": "*",
-    "pricing.currency": "AUD",
-    "agentAccount.accountCsn": "$CSN_ACCOUNT_CONTACT$"
-  },
-  "QuoteFinalizeV2New": {
-    "quoteNumber": "$QUOTE_NUMBER$",
-    "status": "FINALIZING"
+  "QuoteUpdateOperationUpdateActionNewPromoNeg": {
+    "transactionId": "*",
+    "errors": [
+      {
+        "code": "45103",
+        "message": "Line 1 Promotion code MGLTAAA was not accepted. Try a different code or clear the field to continue."
+      }
+    ],
+    "status": "error"
   }
 }

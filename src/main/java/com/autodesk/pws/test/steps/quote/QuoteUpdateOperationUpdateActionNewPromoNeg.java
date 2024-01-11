@@ -50,17 +50,18 @@ public class QuoteUpdateOperationUpdateActionNewPromoNeg extends PwsServiceBase
     	//  loader/extracter at this time...
     //	String jsonBody = "{\"quoteNumber\":\"$QUOTE_NUMBER$\"}";  $QUOTE_LINE_NUMBER$
 		String jsonBody = "{\n" +
-				"  \"quoteNumber\": \"$QUOTE_NUMBER$\",\n" +
-				"  \"lineItems\": [\n" +
-				"    {\n" +
-				"      \"operation\": \"Update\",\n" +
-				"      \"quoteLineNumber\": \"$QUOTE_LINE_NUMBER$\",\n" +
-				"      \"action\": \"New\",\n" +
-				"      \"quantity\": 20\n" +
-				"      \"promotionCode\": \"MGLTAAA\",\n" +
-				"    }\n" +
-				"  ]\n" +
+				"    \"quoteNumber\": \"$QUOTE_NUMBER$\",\n" +
+				"    \"lineItems\": [\n" +
+				"        {\n" +
+				"            \"operation\": \"Update\",\n" +
+				"            \"quoteLineNumber\": \"$QUOTE_LINE_NUMBER$\",\n" +
+				"            \"action\": \"New\",\n" +
+				"            \"quantity\": 10,\n" +
+				"            \"promotionCode\": \"MGLTAAA\"\n" +
+				"        }\n" +
+				"    ]\n" +
 				"}";
+
 
     	jsonBody = this.fullyDetokenize(jsonBody);
     	

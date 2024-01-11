@@ -340,10 +340,6 @@ public class WorkflowLibrary
 
         workflow.add(new LoadQuoteFilesAndExtractData());
         workflow.add(new GetQuoteOAuthCredentials());
-        workflow.add(new QuoteCreate());
-        // workflow.add(new QuoteCreateV2New());
-        workflow.add(new QuoteStatus(waitForExpectedStatus));
-        workflow.add(new QuoteDetailsV2New());
         workflow.add(new QuoteUpdateOperationUpdateActionNewPromoNeg());
 
         return workflow;
