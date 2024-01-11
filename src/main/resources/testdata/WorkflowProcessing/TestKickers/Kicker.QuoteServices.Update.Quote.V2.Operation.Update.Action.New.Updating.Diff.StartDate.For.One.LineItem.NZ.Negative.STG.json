@@ -3,7 +3,7 @@
   "$ENV$": "STG",
 
   "$ROOT_NAME$": "QuoteServices",
-  "$VARIATION_COUNT$": "Update.Quote.V2.Operation.Update.Action.New.Updating.Past.StartDate.Quantity.Zero.NZ.Negative",
+  "$VARIATION_COUNT$": "Update.Quote.V2.Operation.Update.Action.New.Updating.Diff.StartDate.For.One.LineItem.NZ.Negative",
   "$BASE_NAME$": "$ROOT_NAME$_$VARIATION_COUNT$",
   "$SERVICE_NAME$": "QuoteServices_V2",
   "$VALIDATION$": "$ROOT$/Validators",
@@ -32,12 +32,12 @@
 
   "$TIMEZONE_CITY$": "Australia/Sydney",
   "$CURRENCY$": "AUD",
-  "$START_DATE$": "[[Date(0)]]",
 
   "$ADDRESS1$": "60 Jenke Cct",
   "$CITY$": "Kambah",
   "$POSTAL_CODE$": "2902",
   "$COUNTRY$": "AU",
+  "$START_DATE$": "[[Date(7)]]",
 
   "includeForceableHeaders": "true",
   "forceableHeaders":
@@ -50,9 +50,9 @@
   "baseUrl": "https://enterprise-api-$ENV$.autodesk.com",
   "oAuthBaseUrl":  "https://enterprise-api-$ENV$.autodesk.com",
 
-  "baseFile": "$BASE_DATA$/BaseData.$ROOT_NAME$.Update.Quote.V2.Operation.Update.Action.New.Updating.Past.StartDate.Quantity.Zero.NZ.Negative.$ENV$.json",
+  "baseFile": "$BASE_DATA$/BaseData.$ROOT_NAME$.Update.Quote.V2.Operation.Update.Action.New.Updating.Diff.StartDate.For.One.LineItem.NZ.Negative.$ENV$.json",
   "overridesFile": "$OVERRIDES$/Override.NONE.json",
-  "validationFile": "$VALIDATION$/Validator.$ROOT_NAME$.Update.Quote.V2.Operation.Update.Action.New.Updating.Past.StartDate.Quantity.Zero.NZ.Negative.$ENV$.json",
+  "validationFile": "$VALIDATION$/Validator.$ROOT_NAME$.Update.Quote.V2.Operation.Update.Action.New.Updating.Diff.StartDate.For.One.LineItem.NZ.Negative.$ENV$.json",
   "secretsFile": "$CONFIG$/Secrets.GetInvoiceServices.INT.json",
 
   "workflow": "QuoteUpdateOperationUpdateActionNewUpdatePastStartDate"

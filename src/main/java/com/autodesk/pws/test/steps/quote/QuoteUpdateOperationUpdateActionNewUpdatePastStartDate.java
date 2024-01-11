@@ -48,7 +48,7 @@ public class QuoteUpdateOperationUpdateActionNewUpdatePastStartDate extends PwsS
     	//  for the moment we're going to embed it in the 
     	//  class as I don't want to deal with creating a
     	//  loader/extracter at this time...
-    //	String jsonBody = "{\"quoteNumber\":\"$QUOTE_NUMBER$\"}";  $QUOTE_LINE_NUMBER$
+    //	String jsonBody = "{\"quoteNumber\":\"$QUOTE_NUMBER$\"}";  $QUOTE_LINE_NUMBER$ "startDate":"[[Date(5)]]",
 		String jsonBody = "{\n" +
 				"  \"quoteNumber\": \"$QUOTE_NUMBER$\",\n" +
 				"  \"lineItems\": [\n" +
@@ -56,7 +56,7 @@ public class QuoteUpdateOperationUpdateActionNewUpdatePastStartDate extends PwsS
 				"      \"operation\": \"Update\",\n" +
 				"      \"quoteLineNumber\": \"$QUOTE_LINE_NUMBER$\",\n" +
 				"      \"action\": \"New\",\n" +
-				"      \"startDate\": \"2023-10-12\",\n" +
+				"      \"startDate\": \"$START_DATE$\",\n" +
 				"      \"quantity\": 20\n" +
 				"    }\n" +
 				"  ]\n" +
