@@ -56,7 +56,7 @@ public class QuoteUpdateOperationUpdateActionRenewal extends PwsServiceBase
 				"            \"operation\": \"Update\",\n" +
 				"            \"quoteLineNumber\": \"$QUOTE_LINE_NUMBER$\",\n" +
 				"            \"action\": \"Renewal\",\n" +
-				"            \"quantity\": 1,\n" +
+				"            \"quantity\": $QUANTITY$,\n" +
 				"        }\n" +
 				"    ]\n" +
 				"}";
