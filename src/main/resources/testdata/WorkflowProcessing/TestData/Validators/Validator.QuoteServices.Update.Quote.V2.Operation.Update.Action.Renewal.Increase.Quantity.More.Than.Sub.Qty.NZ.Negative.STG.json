@@ -1,0 +1,29 @@
+{
+  "QuoteStatus": {
+    "quoteStatus": "DRAFT-CREATED",
+    "quoteNumber": "$QUOTE_NUMBER$",
+    "transactionId": "*"
+  },
+  "QuoteCreate": {
+    "message": "success",
+    "transactionId": "*"
+  },
+  "QuoteDetailsV2New": {
+    "agentTimeZone": "*",
+    "quoteNumber": "$QUOTE_NUMBER$",
+    "quoteStatus": "Draft",
+    "quoteCreatedTime": "*",
+    "pricing.currency": "NZD",
+    "agentAccount.accountCsn": "$CSN_ACCOUNT_CONTACT$"
+  },
+  "QuoteUpdateOperationUpdateActionRenewal": {
+    "transactionId": "*",
+    "errors": [
+      {
+        "code": "45521",
+        "message": "Seat count can only increase for New and Co-term subscriptions."
+      }
+    ],
+    "status": "error"
+  }
+}
