@@ -55,7 +55,7 @@ public class QuoteUpdateOperationUpdateActionExtensionQuantityRenewal extends Pw
 				"        {\n" +
 				"            \"operation\": \"Update\",\n" +
 				"            \"quoteLineNumber\": \"$QUOTE_LINE_NUMBER$\",\n" +
-				"            \"action\": \"Renewal\",\n" +
+				"            \"action\": \"$ACTION$\",\n" +
 				"            \"quantity\": 20\n" +
 				"        }\n" +
 				"    ]\n" +
