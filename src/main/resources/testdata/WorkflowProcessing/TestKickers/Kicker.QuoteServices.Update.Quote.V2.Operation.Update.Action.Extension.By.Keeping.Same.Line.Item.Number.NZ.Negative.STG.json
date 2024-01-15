@@ -1,0 +1,60 @@
+{
+  "$ROOT$": "./testdata/WorkflowProcessing/TestData",
+  "$ENV$": "STG",
+
+  "$ROOT_NAME$": "QuoteServices",
+  "$VARIATION_COUNT$": "Update.Quote.V2.Operation.Update.Action.Extension.By.Keeping.Same.Line.Item.Number.NZ.Negative",
+  "$BASE_NAME$": "$ROOT_NAME$_$VARIATION_COUNT$",
+  "$SERVICE_NAME$": "QuoteServices_V2",
+  "$VALIDATION$": "$ROOT$/Validators",
+  "$OVERRIDES$": "$ROOT$/Overrides",
+  "$BASE_DATA$": "$ROOT$/BaseData",
+  "$CONFIG$": "$ROOT$/Configurations",
+
+  "$CSN_SOLDTO$": "5502750395",
+  "$CSN_RESELLER$": "5502750395",
+  "$CSN_ENDCUSTOMER$": "5502750395",
+  "$CSN_SHIPTO$": "5502750395",
+
+  "$CSN_PRIMARY$": "$CSN_ENDCUSTOMER$",
+  "$CSN_SECONDARY$": "$CSN_RESELLER$",
+  "$CSN_TERTIARY$": "$CSN_SOLDTO$",
+  "$CSN_QUATERNARY$": "$CSN_SOLDTO$",
+
+  "$CSN_ACCOUNT_CONTACT$": "5502750395",
+  "$CSN_HEADER$": "5502750395",
+
+  "$OFFERING_ID$": "OD-000163",
+  "$AGENT_EMAIL$": "usercontactnz@letscheck.email",
+
+  "$CREATE_QUOTE_BASE_URL$": "https://enterprise-api-$ENV$.autodesk.com/",
+  "$VERSION_PATH$": "v2",
+
+  "$TIMEZONE_CITY$": "Australia/Sydney",
+  "$CURRENCY$": "AUD",
+  "$QUOTE_NUMBER$": "Q-880666",
+  "$REFERENCE_SUBSCRIPTION_ID$": "70112474840084",
+
+  "$ADDRESS1$": "60 Jenke Cct",
+  "$CITY$": "Kambah",
+  "$POSTAL_CODE$": "2902",
+  "$COUNTRY$": "AU",
+
+  "includeForceableHeaders": "true",
+  "forceableHeaders":
+  {
+    "x-adsk-test-event": "false",
+    "timezone_city": "$TIMEZONE_CITY$",
+    "CSN": "$CSN_HEADER$"
+  },
+
+  "baseUrl": "https://enterprise-api-$ENV$.autodesk.com",
+  "oAuthBaseUrl":  "https://enterprise-api-$ENV$.autodesk.com",
+
+  "baseFile": "$BASE_DATA$/BaseData.$ROOT_NAME$.Update.Quote.V2.Operation.Update.Action.Extension.By.Keeping.Same.Line.Item.Number.NZ.Negative.$ENV$.json",
+  "overridesFile": "$OVERRIDES$/Override.NONE.json",
+  "validationFile": "$VALIDATION$/Validator.$ROOT_NAME$.Update.Quote.V2.Operation.Update.Action.Extension.By.Keeping.Same.Line.Item.Number.NZ.Negative.$ENV$.json",
+  "secretsFile": "$CONFIG$/Secrets.GetInvoiceServices.INT.json",
+
+  "workflow": "QuoteUpdateOperationUpdateActionExtensionDuplicateLineItem"
+}

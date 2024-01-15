@@ -1,0 +1,29 @@
+{
+  "QuoteStatus": {
+    "quoteStatus": "DRAFT-CREATED",
+    "quoteNumber": "$QUOTE_NUMBER$",
+    "transactionId": "*"
+  },
+  "QuoteCreate": {
+    "message": "success",
+    "transactionId": "*"
+  },
+  "QuoteDetailsV2New": {
+    "agentTimeZone": "*",
+    "quoteNumber": "$QUOTE_NUMBER$",
+    "quoteStatus": "Draft",
+    "quoteCreatedTime": "*",
+    "pricing.currency": "NZD",
+    "agentAccount.accountCsn": "$CSN_ACCOUNT_CONTACT$"
+  },
+  "QuoteUpdateOperationUpdateActionExtensionQuantityRenewal": {
+    "transactionId": "*",
+    "errors": [
+      {
+        "code": "45531",
+        "message": "Cannot change seat quantity for an Extension."
+      }
+    ],
+    "status": "error"
+  }
+}

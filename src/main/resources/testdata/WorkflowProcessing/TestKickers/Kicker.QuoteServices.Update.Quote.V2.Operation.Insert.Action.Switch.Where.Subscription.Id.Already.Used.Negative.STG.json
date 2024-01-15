@@ -38,6 +38,7 @@
   "$POSTAL_CODE$": "2902",
   "$COUNTRY$": "AU",
   "$QUOTE_NUMBER$": "Q-632116",
+  "$REFERENCE_SUBSCRIPTION_ID$": "69620920691769",
 
   "includeForceableHeaders": "true",
   "forceableHeaders":

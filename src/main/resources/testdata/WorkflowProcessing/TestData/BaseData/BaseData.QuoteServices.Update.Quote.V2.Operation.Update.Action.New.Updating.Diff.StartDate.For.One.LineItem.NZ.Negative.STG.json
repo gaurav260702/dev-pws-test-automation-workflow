@@ -1,0 +1,83 @@
+{
+   "quoteNote": "SM_Notefrom_Agenttocustomer.{{note}}",
+   "currency": "NZD",
+   "agentAccount": {
+      "accountCsn": "5502750389"
+   },
+   "agentContact": {
+      "email": "newzealandusercontact@letscheck.email"
+   },
+   "endCustomer": {
+      "name": "SMHarry NZ MCAD",
+      "addressLine1": "163 Kendal Avenue",
+      "city": "Christchurchh",
+      "countryCode": "NZ",
+      "postalCode": "8053",
+      "isIndividual": false
+   },
+   "purchaser": {
+      "email": "PWS_NZUser@letscheck.email",
+      "firstName": "SMPWS",
+      "lastName": "NZUser1",
+      "phone": "+64 9123334567",
+      "preferredLanguage": "en"
+   },
+   "lineItems": [
+      {
+         "quantity": 1,
+         "offeringId": "OD-000021",
+         "action": "New",
+         "startDate":"[[Date(5)]]",
+         "offer": {
+            "term": {
+               "code": "A01",
+               "description": "Annual"
+            },
+            "accessModel": {
+               "code": "S",
+               "description": "Single user"
+            },
+            "intendedUsage": {
+               "code": "COM",
+               "description": "Commercial"
+            },
+            "connectivity": {
+               "code": "C100",
+               "description": "Online"
+            },
+            "servicePlan": {
+               "code": "STND",
+               "description": "Standard"
+            }
+         }
+      },
+      {
+         "quantity": 2,
+         "offeringId": "OD-000054",
+         "action": "New",
+         "startDate":"[[Date(5)]]",
+         "offer": {
+            "term": {
+               "code": "A01",
+               "description": "Annual"
+            },
+            "accessModel": {
+               "code": "S",
+               "description": "Single User"
+            },
+            "intendedUsage": {
+               "code": "COM",
+               "description": "Commercial"
+            },
+            "connectivity": {
+               "code": "C100",
+               "description": "Online"
+            },
+            "servicePlan": {
+               "code": "STND",
+               "description": "Standard"
+            }
+         }
+      }
+   ]
+}

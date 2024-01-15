@@ -75,8 +75,8 @@ public class QuoteUpdateOperationInsertActionNew extends PwsServiceBase
 				"                    \"description\": \"Online\"\n" +
 				"                },\n" +
 				"                \"servicePlan\": {\n" +
-				"                    \"code\": \"STND\",\n" +
-				"                    \"description\": \"Standard\"\n" +
+				"                    \"code\": \"$SERVICE_PLAN_CODE$\",\n" +
+				"                    \"description\": \"$SERVICE_PLAN_DESCRIPTION$\"\n" +
 				"                }\n" +
 				"            }\n" +
 				"        }\n" +

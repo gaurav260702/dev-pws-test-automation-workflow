@@ -56,7 +56,7 @@ public class QuoteUpdateOperationUpdateActionExtension extends PwsServiceBase
 				"            \"operation\": \"Update\",\n" +
 				"            \"quoteLineNumber\": \"$QUOTE_LINE_NUMBER$\",\n" +
 				"            \"action\": \"Extension\",\n" +
-				"            \"endDate\": \"2024-10-30\"\n" +
+				"            \"endDate\": \"$END_DATE$\"\n" +
 				"        }\n" +
 				"    ]\n" +
 				"}";

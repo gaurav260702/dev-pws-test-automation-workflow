@@ -20,7 +20,9 @@
     "./testdata/WorkflowProcessing/TestKickers/Kicker.QuoteServices.Create.Quote.V2.CoTerm.endCustomer.Outside.Authorized.Territory.Negative.INT.json",
     "./testdata/WorkflowProcessing/TestKickers/Kicker.QuoteServices.Create.Quote.V2.Renewal.Invalid.Oppty.NZ.Negative.INT.json",
     "./testdata/WorkflowProcessing/TestKickers/Kicker.QuoteServices.Create.Quote.V2.Renewal.Using.Different.EndCustomer.Account.NZ.Negative.INT.json",
-    "./testdata/WorkflowProcessing/TestKickers/Kicker.QuoteServices.Create.Quote.V2.Renewal.Using.Different.Purchaser.Email.Not.Exist.In.SFDC.NZ.Negative.INT.json"
+    "./testdata/WorkflowProcessing/TestKickers/Kicker.QuoteServices.Create.Quote.V2.Renewal.Using.Different.Purchaser.Email.Not.Exist.In.SFDC.NZ.Negative.INT.json",
+
+    "./testdata/WorkflowProcessing/TestKickers/Kicker.QuoteServices.Create.Quote.V2.New.Annual.End.Customer.CSN.US.Positive.INT.json"
 
   ]
 }
