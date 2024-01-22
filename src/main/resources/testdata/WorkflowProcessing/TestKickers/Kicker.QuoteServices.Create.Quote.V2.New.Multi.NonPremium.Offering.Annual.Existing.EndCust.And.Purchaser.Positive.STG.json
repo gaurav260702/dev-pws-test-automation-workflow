@@ -30,7 +30,7 @@
   "$CREATE_QUOTE_BASE_URL$": "https://enterprise-api-$ENV$.autodesk.com/",
   "$VERSION_PATH$": "v2",
 
-  "$TIMEZONE_CITY$": "Australia/Sydney",
+  "$TIMEZONE_CITY$": "Australia/Melbourne",
   "$CURRENCY$": "AUD",
 
   "$ADDRESS1$": "601 Jenke Cct",
