@@ -48,7 +48,7 @@ public class QuoteUpdateOperationUpdateActionNew extends PwsServiceBase
     	//  for the moment we're going to embed it in the 
     	//  class as I don't want to deal with creating a
     	//  loader/extracter at this time...
-    //	String jsonBody = "{\"quoteNumber\":\"$QUOTE_NUMBER$\"}";  $QUOTE_LINE_NUMBER$
+    //	String jsonBody = "{\"quoteNumber\":\"$QUOTE_NUMBER$\"}";  $QUOTE_LINE_NUMBER$, [[Date(3)]]
 		String jsonBody = "{\n" +
 				"    \"quoteNumber\": \"$QUOTE_NUMBER$\",\n" +
 				"    \"lineItems\": [\n" +
@@ -57,7 +57,7 @@ public class QuoteUpdateOperationUpdateActionNew extends PwsServiceBase
 				"            \"quoteLineNumber\": \"$QUOTE_LINE_NUMBER$\",\n" +
 				"            \"action\": \"New\",\n" +
 				"            \"quantity\": 20,\n" +
-				"            \"startDate\": \"[[Date(3)]]\"\n" +
+				"            \"startDate\": \"$START_DATE$\"\n" +
 				"        }\n" +
 				"    ]\n" +
 				"}";
