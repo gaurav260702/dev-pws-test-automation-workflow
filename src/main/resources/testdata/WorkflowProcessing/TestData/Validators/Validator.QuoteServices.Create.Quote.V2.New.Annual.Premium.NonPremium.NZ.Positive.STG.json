@@ -1,7 +1,7 @@
 
 {
   "QuoteDetailsV2New": {
-    "agentTimeZone": "*",
+    "timeZone": "*",
     "quoteNumber": "$QUOTE_NUMBER$",
     "quoteStatus": "Draft",
     "quoteCreatedTime": "*",

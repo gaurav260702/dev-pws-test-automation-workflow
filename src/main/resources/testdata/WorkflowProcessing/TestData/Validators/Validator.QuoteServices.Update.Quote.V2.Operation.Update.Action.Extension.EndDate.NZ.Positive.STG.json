@@ -9,7 +9,7 @@
     "transactionId": "*"
   },
   "QuoteDetailsV2New": {
-    "agentTimeZone": "*",
+    "timeZone": "*",
     "quoteNumber": "$QUOTE_NUMBER$",
     "quoteStatus": "Draft",
     "quoteCreatedTime": "*",
@@ -17,7 +17,7 @@
     "agentAccount.accountCsn": "$CSN_ACCOUNT_CONTACT$"
   },
   "QuoteUpdateOperationUpdateActionExtension": {
-    "agentTimeZone": "*",
+    "timeZone": "*",
     "quoteNumber": "$QUOTE_NUMBER$",
     "quoteStatus": "Draft",
     "quoteCreatedTime": "*",

@@ -32,6 +32,7 @@
 
   "$TIMEZONE_CITY$": "Australia/Sydney",
   "$CURRENCY$": "AUD",
+  "$START_DATE$": "[[Date(5)]]",
 
   "$ADDRESS1$": "60 Jenke Cct",
   "$CITY$": "Kambah",
