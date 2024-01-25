@@ -1,0 +1,27 @@
+{
+  "QuoteStatus": {
+    "quoteStatus": "DRAFT-CREATED",
+    "quoteNumber": "$QUOTE_NUMBER$",
+    "transactionId": "*"
+  },
+  "QuoteCreate": {
+    "message": "success",
+    "transactionId": "*"
+  },
+  "QuoteDetailsV2New": {
+    "timeZone": "*",
+    "quoteNumber": "$QUOTE_NUMBER$",
+    "quoteStatus": "Draft",
+    "quoteCreatedTime": "*",
+    "pricing.currency": "NZD",
+    "agentAccount.accountCsn": "$CSN_ACCOUNT_CONTACT$"
+  },
+  "QuoteUpdateOperationUpdateActionNew": {
+    "timeZone": "*",
+    "quoteNumber": "$QUOTE_NUMBER$",
+    "quoteStatus": "Draft",
+    "quoteCreatedTime": "*",
+    "pricing.currency": "NZD",
+    "agentAccount.accountCsn": "$CSN_ACCOUNT_CONTACT$"
+  }
+}
