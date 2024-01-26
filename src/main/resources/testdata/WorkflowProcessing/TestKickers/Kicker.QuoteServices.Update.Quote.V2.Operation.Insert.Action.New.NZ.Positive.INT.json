@@ -32,6 +32,8 @@
 
   "$TIMEZONE_CITY$": "Australia/Sydney",
   "$CURRENCY$": "AUD",
+  "$SERVICE_PLAN_CODE$": "STND",
+  "$SERVICE_PLAN_DESCRIPTION$": "Standard",
 
   "$ADDRESS1$": "60 Jenke Cct",
   "$CITY$": "Kambah",
