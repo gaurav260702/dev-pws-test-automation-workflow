@@ -5,13 +5,24 @@
     "transactionId": "*",
     "errors": [
       {
-        "message": "Future start date must be the same for all line items with action new and/or Co-term.",
-        "code": "45040"
+        "code": "45001",
+        "message": [
+          {
+            "code": "45001",
+            "message": "startDate across New/Co-term lineItems should be the same"
+          }
+        ]
       }
     ]
   },
   "QuoteCreate": {
-    "message": "success",
-    "transactionId": "*"
+    "transactionId": "*",
+    "errors": [
+      {
+        "code": "45001",
+        "message": "startDate across New/Co-term lineItems should be the same"
+      }
+    ],
+    "status": "error"
   }
 }
