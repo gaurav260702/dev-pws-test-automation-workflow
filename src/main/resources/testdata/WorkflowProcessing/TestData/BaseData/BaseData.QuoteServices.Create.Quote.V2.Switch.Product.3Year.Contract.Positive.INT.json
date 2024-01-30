@@ -23,7 +23,7 @@
     "lineItems": [
         {
             "quantity": 20,
-            "offeringId": "OD-000238",
+            "offeringId": "OD-000227",
             "action": "Switch",
             "referenceSubscriptionId": "69056389851681",
             "offer": {

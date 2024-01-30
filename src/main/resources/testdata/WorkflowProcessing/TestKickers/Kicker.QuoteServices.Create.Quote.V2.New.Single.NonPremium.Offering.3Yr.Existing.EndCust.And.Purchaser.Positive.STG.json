@@ -13,8 +13,8 @@
 
   "$CSN_SOLDTO$": "5112991506",
   "$CSN_RESELLER$": "5070132993",
-  "$CSN_ENDCUSTOMER$": "5112991506",
-  "$CSN_SHIPTO$": "5112991506",
+  "$CSN_ENDCUSTOMER$": "5070132993",
+  "$CSN_SHIPTO$": "5070132993",
 
   "$CSN_PRIMARY$": "$CSN_ENDCUSTOMER$",
   "$CSN_SECONDARY$": "$CSN_RESELLER$",
@@ -25,7 +25,7 @@
   "$CSN_HEADER$": "5070132993",
 
       "$OFFERING_ID$": "OD-000321",
-      "$AGENT_EMAIL$": "agentpartnera2k@letscheck.email",
+      "$AGENT_EMAIL$": "kleekru@yahoo.com",
 
   "$CREATE_QUOTE_BASE_URL$": "https://enterprise-api-$ENV$.autodesk.com/",
   "$VERSION_PATH$": "v2",

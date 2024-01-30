@@ -37,6 +37,7 @@
   "$CITY$": "Kambah",
   "$POSTAL_CODE$": "2902",
   "$COUNTRY$": "AU",
+  "$QUANTITY$": 1,
 
   "includeForceableHeaders": "true",
   "forceableHeaders":

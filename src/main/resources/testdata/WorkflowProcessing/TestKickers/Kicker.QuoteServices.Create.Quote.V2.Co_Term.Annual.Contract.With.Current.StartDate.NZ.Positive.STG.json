@@ -54,5 +54,5 @@
   "validationFile": "$VALIDATION$/Validator.$ROOT_NAME$.Create.Quote.V2.Co_Term.Annual.Contract.With.Current.StartDate.NZ.Positive.$ENV$.json",
   "secretsFile": "$CONFIG$/Secrets.GetInvoiceServices.INT.json",
 
-  "workflow": "CreateQuoteV2NewFlexQTYLessThan100"
+  "workflow": "RenewalQuoteV2New"
 }

@@ -53,7 +53,7 @@ public class QuoteUpdateOperationInsertActionNew extends PwsServiceBase
 				"    \"quoteNumber\": \"$QUOTE_NUMBER$\",\n" +
 				"    \"lineItems\": [\n" +
 				"        {\n" +
-				"            \"offeringId\": \"OD-000238\",\n" +
+				"            \"offeringId\": \"OD-000021\",\n" +
 				"            \"action\": \"New\",\n" +
 				"            \"quantity\": 10,\n" +
 				"            \"operation\": \"Insert\",\n" +
