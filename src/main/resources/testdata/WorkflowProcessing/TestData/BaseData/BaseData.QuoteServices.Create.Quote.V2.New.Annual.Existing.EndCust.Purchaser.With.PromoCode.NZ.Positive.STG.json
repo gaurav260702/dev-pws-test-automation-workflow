@@ -30,7 +30,6 @@
             "quantity": 3,
             "offeringId": "OD-000021",
             "action": "New",
-            "promotionCode": "NZTest3for2",
             "startDate": "[[Date(2)]]",
             "offer": {
                 "term": {
