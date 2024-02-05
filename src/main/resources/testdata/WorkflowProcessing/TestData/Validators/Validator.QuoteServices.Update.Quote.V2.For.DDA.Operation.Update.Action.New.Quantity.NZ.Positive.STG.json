@@ -1,0 +1,32 @@
+{
+  "QuoteDetailsV2New": {
+    "timeZone": "*",
+    "quoteNumber": "$QUOTE_NUMBER$",
+    "quoteStatus": "Draft",
+    "opportunityNumber": "A-20451953",
+    "quoteExpirationDate": "*",
+    "quoteCreatedTime": "*",
+    "pricing.currency": "NZD",
+    "agentAccount.accountCsn": "$CSN_ACCOUNT_CONTACT$"
+  },
+  "QuoteUpdateOperationUpdateActionNew": {
+    "transactionId": "*",
+    "errors": [
+      {
+        "code": "45012",
+        "message": "You are referring an opportunity which has deal discount approval.This change is not allowed."
+      }
+    ],
+    "status": "error"
+  },
+  "QuoteStatus": {
+    "quoteStatus": "DRAFT-CREATED",
+    "quoteNumber": "$QUOTE_NUMBER$",
+    "transactionId": "*"
+  },
+  "QuoteCreate": {
+    "message": "success",
+    "transactionId": "*"
+  }
+}
+
