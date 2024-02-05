@@ -3,7 +3,7 @@ package com.autodesk.pws.test.steps.quote;
 import com.autodesk.pws.test.steps.base.PwsServiceBase;
 import io.restassured.path.json.JsonPath;
 
-public class QuoteUpdateOperationInsertActionNew extends PwsServiceBase
+public class QuoteUpdateOperationInsertActionNewOfferInEOR extends PwsServiceBase
 {
 	public String DataPoolSourceInfoLabel = "";
 	
@@ -55,12 +55,12 @@ public class QuoteUpdateOperationInsertActionNew extends PwsServiceBase
 				"        {\n" +
 				"            \"offeringId\": \"OD-000171\",\n" +
 				"            \"action\": \"New\",\n" +
-				"            \"quantity\": 10,\n" +
+				"            \"quantity\": 1,\n" +
 				"            \"operation\": \"Insert\",\n" +
 				"            \"offer\": {\n" +
 				"                \"term\": {\n" +
-				"                    \"code\": \"A01\",\n" +
-				"                    \"description\": \"Annual\"\n" +
+				"                    \"code\": \"A06\",\n" +
+				"                    \"description\": \"3 Year\"\n" +
 				"                },\n" +
 				"                \"accessModel\": {\n" +
 				"                    \"code\": \"S\",\n" +
@@ -75,8 +75,8 @@ public class QuoteUpdateOperationInsertActionNew extends PwsServiceBase
 				"                    \"description\": \"Online\"\n" +
 				"                },\n" +
 				"                \"servicePlan\": {\n" +
-				"                    \"code\": \"$SERVICE_PLAN_CODE$\",\n" +
-				"                    \"description\": \"$SERVICE_PLAN_DESCRIPTION$\"\n" +
+				"                    \"code\": \"STND\",\n" +
+				"                    \"description\": \"Standard\"\n" +
 				"                }\n" +
 				"            }\n" +
 				"        }\n" +

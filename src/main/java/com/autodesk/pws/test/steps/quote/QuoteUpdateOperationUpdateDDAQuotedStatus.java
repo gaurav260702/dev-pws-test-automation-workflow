@@ -3,7 +3,7 @@ package com.autodesk.pws.test.steps.quote;
 import com.autodesk.pws.test.steps.base.PwsServiceBase;
 import io.restassured.path.json.JsonPath;
 
-public class QuoteUpdateOperationInsertActionNew extends PwsServiceBase
+public class QuoteUpdateOperationUpdateDDAQuotedStatus extends PwsServiceBase
 {
 	public String DataPoolSourceInfoLabel = "";
 	
@@ -48,37 +48,16 @@ public class QuoteUpdateOperationInsertActionNew extends PwsServiceBase
     	//  for the moment we're going to embed it in the 
     	//  class as I don't want to deal with creating a
     	//  loader/extracter at this time...
-    //	String jsonBody = "{\"quoteNumber\":\"$QUOTE_NUMBER$\"}";  $QUOTE_LINE_NUMBER$
+    //	String jsonBody = "{\"quoteNumber\":\"$QUOTE_NUMBER$\"}";  $QUOTE_LINE_NUMBER$, [[Date(3)]]
 		String jsonBody = "{\n" +
 				"    \"quoteNumber\": \"$QUOTE_NUMBER$\",\n" +
 				"    \"lineItems\": [\n" +
 				"        {\n" +
-				"            \"offeringId\": \"OD-000171\",\n" +
+				"            \"operation\": \"Update\",\n" +
+				"            \"quoteLineNumber\": \"$QUOTE_LINE_NUMBER$\",\n" +
 				"            \"action\": \"New\",\n" +
-				"            \"quantity\": 10,\n" +
-				"            \"operation\": \"Insert\",\n" +
-				"            \"offer\": {\n" +
-				"                \"term\": {\n" +
-				"                    \"code\": \"A01\",\n" +
-				"                    \"description\": \"Annual\"\n" +
-				"                },\n" +
-				"                \"accessModel\": {\n" +
-				"                    \"code\": \"S\",\n" +
-				"                    \"description\": \"Single User\"\n" +
-				"                },\n" +
-				"                \"intendedUsage\": {\n" +
-				"                    \"code\": \"COM\",\n" +
-				"                    \"description\": \"Commercial\"\n" +
-				"                },\n" +
-				"                \"connectivity\": {\n" +
-				"                    \"code\": \"C100\",\n" +
-				"                    \"description\": \"Online\"\n" +
-				"                },\n" +
-				"                \"servicePlan\": {\n" +
-				"                    \"code\": \"$SERVICE_PLAN_CODE$\",\n" +
-				"                    \"description\": \"$SERVICE_PLAN_DESCRIPTION$\"\n" +
-				"                }\n" +
-				"            }\n" +
+				"            \"quantity\": 20,\n" +
+				"            \"startDate\": \"$START_DATE$\"\n" +
 				"        }\n" +
 				"    ]\n" +
 				"}";
