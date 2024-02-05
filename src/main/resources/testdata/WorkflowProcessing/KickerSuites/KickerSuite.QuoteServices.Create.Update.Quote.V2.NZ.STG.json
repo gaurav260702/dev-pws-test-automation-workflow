@@ -115,8 +115,12 @@
     "./testdata/WorkflowProcessing/TestKickers/Kicker.QuoteServices.Create.Quote.V2.New.For.NZ.Keeping.Unsupported.Currency.AUD.NZ.Negative.STG.json",
     "./testdata/WorkflowProcessing/TestKickers/Kicker.QuoteServices.Create.Quote.V2.New.Single.Annual.3Y.Offers.Which.Is.In.EOR.NZ.Negative.STG.json",
     "./testdata/WorkflowProcessing/TestKickers/Kicker.QuoteServices.Create.Quote.V2.New.Multi.3Y.Offers.One.Of.Them.Is.In.EOR.NZ.Negative.STG.json",
-    "./testdata/WorkflowProcessing/TestKickers/Kicker.QuoteServices.Create.Quote.V2.Co_Term.Annual.Same.Subscription.ID.On.Multiple.Line.Items.NZ.Positive.STG.json"
+    "./testdata/WorkflowProcessing/TestKickers/Kicker.QuoteServices.Create.Quote.V2.Co_Term.Annual.Same.Subscription.ID.On.Multiple.Line.Items.NZ.Positive.STG.json",
 
+    "/testdata/WorkflowProcessing/TestKickers/Kicker.QuoteServices.Create.Multiple.Quote.V2.New.Using.Same.DDA.Oppty.NZ.Positive.STG.json",
+    "/testdata/WorkflowProcessing/TestKickers/Kicker.QuoteServices.Update.Quote.V2.For.DDA.Operation.Update.Action.New.Quantity.NZ.Negative.STG.json",
+    "/testdata/WorkflowProcessing/TestKickers/Kicker.QuoteServices.Update.Quote.V2.For.DDA.Operation.Delete.Action.New.In.Draft.State.NZ.Negative.STG.json",
+    "/testdata/WorkflowProcessing/TestKickers/Kicker.QuoteServices.Update.Quote.V2.For.DDA.Operation.Insert.Action.New.In.Draft.State.NZ.Negative.STG.json"
 
   ]
 }
