@@ -1,0 +1,29 @@
+{
+  "QuoteStatus": {
+    "quoteStatus": "DRAFT-CREATED",
+    "quoteNumber": "$QUOTE_NUMBER$",
+    "transactionId": "*"
+  },
+  "QuoteCreate": {
+    "message": "success",
+    "transactionId": "*"
+  },
+  "QuoteDetailsV2New": {
+    "timeZone": "*",
+    "quoteNumber": "$QUOTE_NUMBER$",
+    "quoteStatus": "Draft",
+    "quoteCreatedTime": "*",
+    "pricing.currency": "NZD",
+    "agentAccount.accountCsn": "$CSN_ACCOUNT_CONTACT$"
+  },
+  "QuoteUpdateOperationInsertActionNewOfferInEOR": {
+    "transactionId": "*",
+    "errors": [
+      {
+        "code": "45106",
+        "message": "Line item 2 is retired. Delete the line item to proceed."
+      }
+    ],
+    "status": "error"
+  }
+}
