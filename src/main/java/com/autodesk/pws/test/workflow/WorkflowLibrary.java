@@ -205,6 +205,22 @@ public class WorkflowLibrary
         return workflow;
     }
 
+    public static List<StepBase> CreateQuoteV2Finalizing()
+    {
+        boolean waitForExpectedStatus = true;
+
+        List<StepBase> workflow = new ArrayList<StepBase>();
+
+        workflow.add(new LoadQuoteFilesAndExtractData());
+        workflow.add(new GetQuoteOAuthCredentials());
+        workflow.add(new QuoteCreate());
+        // workflow.add(new QuoteCreateV2New());
+        workflow.add(new QuoteStatus(waitForExpectedStatus));
+        workflow.add(new QuoteDetailsV2New());
+        workflow.add(new QuoteFinalizeV2New());
+        return workflow;
+    }
+
     public static List<StepBase> CreateQuoteV2NewDDAOppty()
     {
         boolean waitForExpectedStatus = true;
