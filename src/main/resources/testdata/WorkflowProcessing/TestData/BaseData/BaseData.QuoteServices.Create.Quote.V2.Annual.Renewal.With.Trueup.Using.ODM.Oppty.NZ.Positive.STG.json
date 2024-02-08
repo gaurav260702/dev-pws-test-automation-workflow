@@ -1,21 +1,26 @@
 {
-    "quoteNote": "SM_Notefrom_Agenttocustomer1.{{note}}",
+    "quoteNote": "{{note}}.Note from agent to customer.{{note}}",
     "currency": "NZD",
     "agentAccount": {
-        "accountCsn": "5502750395"
+        "accountCsn": "5502750389"
     },
     "agentContact": {
-        "email": "usercontactnz@letscheck.email"
+        "email": "newzealandusercontact@letscheck.email"
     },
     "endCustomer": {
-        "accountCsn": "5502801106"
+        "accountCsn": "5108537554"
     },
-    "opportunityNumber": "A-20352262",
     "purchaser": {
-        "email": "premcadservices@letscheck.email",
+        "email": "PWS_NZUser@letscheck.email",
         "firstName": "Sunny",
         "lastName": "Gopim",
         "phone": "+4154776666",
         "preferredLanguage": "en"
-    }
+    },
+    "quoteDiscounts": [
+        {
+            "discountId": "A-20451953",
+            "discountType": "DDA"
+        }
+    ]
 }
