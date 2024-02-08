@@ -1,0 +1,51 @@
+{
+  "quoteNote": "SM_Notefrom_Agenttocustomer.{{note}}",
+  "currency": "USD",
+  "agentAccount": {
+    "accountCsn": "5109330358"
+  },
+  "agentContact": {
+    "email": "partneruser_da_int_5109330358@letscheck.email"
+  },
+  "purchaser": {
+    "email": "biz-USbSoiqapHO@letscheck.pw",
+    "firstName": "FNUSbSoiqapHO",
+    "lastName": "LNUSbSoiqapHO",
+    "phone": "4128008009",
+    "preferredLanguage": "en"
+  },
+  "endCustomer": {
+    "accountCsn": "5502464569"
+  },
+  "lineItems": [
+    {
+      "quantity": 20,
+      "startDate": "2024-02-25",
+      "offeringId": "OD-000120",
+      "referenceSubscriptionId": "70543942712578",
+      "action": "Co-term",
+      "offer": {
+        "accessModel": {
+          "code": "S",
+          "description": "Single User"
+        },
+        "term": {
+          "code": "A01",
+          "description": "Annual"
+        },
+        "intendedUsage": {
+          "code": "COM",
+          "description": "Commercial"
+        },
+        "connectivity": {
+          "code": "C100",
+          "description": "Online"
+        },
+        "servicePlan": {
+          "code": "STND",
+          "description": "Standard"
+        }
+      }
+    }
+  ]
+}
