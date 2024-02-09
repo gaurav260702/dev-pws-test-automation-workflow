@@ -1,9 +1,9 @@
-{
+﻿{
   "$ROOT$": "./testdata/WorkflowProcessing/TestData",
   "$ENV$": "INT",
 
   "$ROOT_NAME$": "QuoteServices",
-  "$VARIATION_COUNT$": "Update.Quote.V2.Operation.Update.Action.CoTerm.Quantity.StartDate.US.Positive",
+  "$VARIATION_COUNT$": "Update.Quote.V2.Operation.Update.Action.Extension.Quantity.StartDate.US.Positive",
   "$BASE_NAME$": "$ROOT_NAME$_$VARIATION_COUNT$",
   "$SERVICE_NAME$": "QuoteServices_V2",
   "$VALIDATION$": "$ROOT$/Validators",
@@ -32,7 +32,7 @@
 
   "$TIMEZONE_CITY$": "Australia/Sydney",
   "$CURRENCY$": "USD",
-  "$START_DATE$": "[[Date(7)]]",
+  "$END_DATE$": "2024-11-25",
 
   "$ADDRESS1$": "60 Jenke Cct",
   "$CITY$": "Kambah",
@@ -50,10 +50,10 @@
   "baseUrl": "https://enterprise-api-$ENV$.autodesk.com",
   "oAuthBaseUrl":  "https://enterprise-api-$ENV$.autodesk.com",
 
-  "baseFile": "$BASE_DATA$/BaseData.$ROOT_NAME$.Update.Quote.V2.Operation.Update.Action.CoTerm.Quantity.StartDate.US.Positive.$ENV$.json",
+  "baseFile": "$BASE_DATA$/BaseData.$ROOT_NAME$.Update.Quote.V2.Operation.Update.Action.Extension.Quantity.StartDate.US.Positive.$ENV$.json",
   "overridesFile": "$OVERRIDES$/Override.NONE.json",
-  "validationFile": "$VALIDATION$/Validator.$ROOT_NAME$.Update.Quote.V2.Operation.Update.Action.CoTerm.Quantity.StartDate.US.Positive.$ENV$.json",
+  "validationFile": "$VALIDATION$/Validator.$ROOT_NAME$.Update.Quote.V2.Operation.Update.Action.Extension.Quantity.StartDate.US.Positive.$ENV$.json",
   "secretsFile": "$CONFIG$/Secrets.GetInvoiceServices.INT.json",
 
-  "workflow": "QuoteUpdateOperationUpdateActionCoTerm"
+  "workflow": "QuoteUpdateOperationUpdateActionExtension"
 }

@@ -16,7 +16,7 @@
     "pricing.currency": "USD",
     "agentAccount.accountCsn": "$CSN_ACCOUNT_CONTACT$"
   },
-  "QuoteUpdateOperationUpdateActionCoTerm": {
+  "QuoteUpdateOperationUpdateActionExtension": {
     "timeZone": "*",
     "quoteNumber": "$QUOTE_NUMBER$",
     "quoteStatus": "Draft",
