@@ -10,7 +10,6 @@ import com.autodesk.pws.test.steps.price.*;
 import com.autodesk.pws.test.steps.promotions.GetPromotionDetails;
 import com.autodesk.pws.test.steps.quote.*;
 import com.autodesk.pws.test.steps.rule.*;
-import com.autodesk.pws.test.steps.testing.DemoTestCatalogExport;
 import com.autodesk.pws.test.steps.utility.*;
 import com.autodesk.pws.test.steps.catalog.*;
 import com.autodesk.pws.test.steps.webhook.InvokeWebhook;
