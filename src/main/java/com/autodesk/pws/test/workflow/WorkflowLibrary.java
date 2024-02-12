@@ -1131,17 +1131,17 @@ public class WorkflowLibrary
         return workflow;
     }
 
-    public static List<StepBase> DemoTestCatalogExport()
-    {
-        List<StepBase> workflow = new ArrayList<StepBase>();
+    // public static List<StepBase> DemoTestCatalogExport()
+    // {
+    //     List<StepBase> workflow = new ArrayList<StepBase>();
 
-        workflow.add(new LoadBaseFiles());
-        // workflow.add(new GetOAuthCredentials());
-        workflow.add(new GetCatalogExportOAuthCredentials());
-        workflow.add(new DemoTestCatalogExport());
+    //     workflow.add(new LoadBaseFiles());
+    //     // workflow.add(new GetOAuthCredentials());
+    //     workflow.add(new GetCatalogExportOAuthCredentials());
+    //     workflow.add(new DemoTestCatalogExport());
 
-        return workflow;
-    }
+    //     return workflow;
+    // }
 
 
     public static List<StepBase> PromotionsExport()
