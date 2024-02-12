@@ -1,0 +1,47 @@
+{
+    "quoteNote": "SM_Notefrom_Agenttocustomer4.{{note}}",
+    "currency": "AUD",
+    "skipDDACheck": false,
+    "agentAccount": {
+        "accountCsn": "5070132993"
+    },
+    "agentContact": {
+        "email": "partneruser_da_stg_5070132993_2@letscheck.email"
+    },
+    "endCustomer": {
+        "accountCsn": "5502457956"
+    },
+    "purchaser": {
+        "email": "kristttumakkk@letscheck.email",
+        "firstName": "Sunny",
+        "lastName": "Gopim",
+        "phone": "+4154776666",
+        "preferredLanguage": "en"
+    },
+    "quoteDiscounts": [
+        {
+            "discountId": "A-20082605",
+            "discountType": "DDA"
+        }
+    ],
+    "lineItems": [
+        {
+            "action": "Co-term",
+            "opportunityLineItemId": "006asdasdasdOZ",
+            "quantity": 110,
+            "referenceSubscriptionId": "612312312333123",
+            "startDate": "[[Date(3)]]"
+        },
+        {
+            "action": "New",
+            "opportunityLineItemId": "00k7h00000HHqUmAAL",
+            "quantity": 25,
+            "startDate": "[[Date(5)]]"
+        },
+        {
+            "action": "Extension",
+            "opportunityLineItemId": "006asdasdasdOX",
+            "endDate": "[[Date(2)]]"
+        }
+    ]
+}
