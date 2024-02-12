@@ -1,0 +1,12 @@
+{
+  "QuoteCreate": {
+    "transactionId": "*",
+    "errors": [
+      {
+        "code": "45001",
+        "message": "Only New, Co-term and Extension line items allowed with DDA discount"
+      }
+    ],
+    "status": "error"
+  }
+}
