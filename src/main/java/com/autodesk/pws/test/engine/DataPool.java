@@ -67,7 +67,7 @@ public class DataPool extends HashMap<String, Object>
 				                //  Odd little hack here...
 				                //  For some reason we're occasionally getting the value back
 				                //  inside square brackets ("[...]") instead of pointy brackets ("{...}").
-				                //  For whateever reason, GSON can't handle parsing that, so we're 
+				                //  For whatever reason, GSON can't handle parsing that, so we're
 				                //  stripping off the external square brackets and hoping whatever 
 				                //  remains is valid JSON...
 				                if(rawJson.startsWith("[") && rawJson.endsWith("]"))

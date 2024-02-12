@@ -57,11 +57,9 @@ public class InvokePromotionsWebhook extends PwsServiceBase
     @Override
     public void action()
     {
-
-
         String env = (DataPool.get("$ENV$").toString()).toLowerCase();
-        System.out.println("env is "+ env);
-
+//        System.out.println("env is "+ env);
+        logNoPad("  -->  env is " + env);
         //Step 1: Invoking catalog update change event
         AWSCredentialsProvider credentialsProvider = new ProfileCredentialsProvider("default");
 
@@ -71,10 +69,9 @@ public class InvokePromotionsWebhook extends PwsServiceBase
 
         //Step 2: Invoking catalog update change event
         String eventId = UUID.randomUUID().toString();
-        System.out.println("Invoking event with id:" + eventId);
-
+//        System.out.println("Invoking event with id:" + eventId);
+        logNoPad("  -->  Invoking event with id: " + eventId);
         String json = "{\n  \"specversion\": \"1.0\",\n  \"id\": \""+eventId+"\",\n  \"source\": \"urn:adsk.dpe.dbp:moniker:CPRMCTLG-S-UW2\",\n  \"type\": \"adsk.o2pcoop:promotions.update.PROMOTION_CHANGED\",\n  \"datacontenttype\": \"application/json\",\n  \"dataschema\": \"http://forge.autodesk.com/schemas/data-event-schema-v1.0.0.json\",\n  \"subject\": \"urn:o2pcoop:int-stg:promotions\",\n  \"time\": \"2023-07-06T21:20:55.185Z\",\n  \"data\": {\n      \"date\": \"2023-08-06\",\n      \"priceRegion\": {\n          \"code\": \"AH\",\n          \"description\": \"Australia\"\n      },\n      \"countries\": [\n          \"AU\",\n          \"CX\",\n          \"CC\",\n          \"FJ\",\n          \"MH\",\n          \"NR\",\n          \"PG\",\n          \"NU\",\n          \"NF\",\n          \"PW\",\n          \"PN\",\n          \"WS\",\n          \"SB\",\n          \"TO\",\n          \"TV\",\n          \"VU\",\n          \"NZ\"\n      ],\n      \"salesChannels\": [\n          {\n              \"salesChannelType\": \"Agency\",\n              \"salesPlatformCodes\": [\n                  \"PWS\"\n              ]\n          }\n      ]\n  },\n  \"traceparent\": \"00-59bd75a3549778672ae2a182de09a0a3-dc38e64bf685b1c8-01\"\n}\n";
-
 
         Region region = Region.US_WEST_2;
         EventBridgeClient eventBridgeClient = EventBridgeClient

@@ -10,6 +10,7 @@ import com.autodesk.pws.test.steps.price.*;
 import com.autodesk.pws.test.steps.promotions.GetPromotionDetails;
 import com.autodesk.pws.test.steps.quote.*;
 import com.autodesk.pws.test.steps.rule.*;
+import com.autodesk.pws.test.steps.testing.DemoTestCatalogExport;
 import com.autodesk.pws.test.steps.utility.*;
 import com.autodesk.pws.test.steps.catalog.*;
 import com.autodesk.pws.test.steps.webhook.InvokeWebhook;
@@ -1131,6 +1132,19 @@ public class WorkflowLibrary
         return workflow;
     }
 
+    public static List<StepBase> DemoTestCatalogExport()
+    {
+        List<StepBase> workflow = new ArrayList<StepBase>();
+
+        workflow.add(new LoadBaseFiles());
+        // workflow.add(new GetOAuthCredentials());
+        workflow.add(new GetCatalogExportOAuthCredentials());
+        workflow.add(new DemoTestCatalogExport());
+
+        return workflow;
+    }
+
+
     public static List<StepBase> PromotionsExport()
     {
         List<StepBase> workflow = new ArrayList<StepBase>();
@@ -1484,7 +1498,6 @@ public class WorkflowLibrary
         workflow.add(new InvokeWebhook());
 
         return workflow;
-
     }
 
     public static List<StepBase> CatalogNotification()
@@ -1497,7 +1510,6 @@ public class WorkflowLibrary
         workflow.add(new InvokeCatalogWebhook());
 
         return workflow;
-
     }
 
     public static List<StepBase> PromotionsNotification()
