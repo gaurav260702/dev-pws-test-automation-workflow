@@ -11,6 +11,7 @@
         "addressLine1": "52 Harris St",
         "city": "Pyrmont",
         "countryCode": "AU",
+        "stateProvinceCode": "WA",
         "isIndividual": false,
         "name": "ViratKCAD",
         "postalCode": "2009"

@@ -1,36 +1,33 @@
 {
-    "quoteNote": "SM_Notefrom_Agenttocust.{{note}}",
+    "quoteNote": "SM_Notefrom_Agenttocustomer.{{note}}",
     "currency": "AUD",
     "agentAccount": {
         "accountCsn": "5070132993"
     },
     "agentContact": {
-        "email": "part_01Aug_001@letscheck.pw"
+        "email": "partneruser_da_stg_5070132993_2@letscheck.email"
     },
     "endCustomer": {
-        "addressLine1": "20 Lucca St",
-        "city": "Perth",
+        "name": "VIRU Designs Ltd",
+        "addressLine1": "77 Jenke Cct",
+        "city": "Kambah",
         "countryCode": "AU",
+        "postalCode": "2902",
         "stateProvinceCode": "WA",
-        "isIndividual": true,
-        "postalCode": "6027"
+        "isIndividual": false
     },
     "purchaser": {
-        "email": "PWS_AusUser1@letscheck.pw",
-        "firstName": "PWS_AUS1",
-        "lastName": "User1",
-        "phone": "4157778888",
-        "preferredLanguage": "en"
+        "email": "xcspcebxc35bsxnull@xcutodesk.com"
     },
     "lineItems": [
         {
+            "quantity": 2,
             "offeringId": "OD-000021",
             "action": "New",
-            "quantity": 1,
             "offer": {
                 "term": {
-                    "code": "A01",
-                    "description": "Annual"
+                    "code": "A06",
+                    "description": "3 Year"
                 },
                 "accessModel": {
                     "code": "S",
@@ -51,13 +48,13 @@
             }
         },
         {
-            "offeringId": "OD-000054",
-            "action": "New",
             "quantity": 2,
+            "offeringId": "OD-000021",
+            "action": "New",
             "offer": {
                 "term": {
-                    "code": "A01",
-                    "description": "Annual"
+                    "code": "A06",
+                    "description": "3 Year"
                 },
                 "accessModel": {
                     "code": "S",

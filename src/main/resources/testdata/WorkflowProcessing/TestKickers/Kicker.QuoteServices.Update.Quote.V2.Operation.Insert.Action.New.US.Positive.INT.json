@@ -1,9 +1,9 @@
 {
   "$ROOT$": "./testdata/WorkflowProcessing/TestData",
-  "$ENV$": "STG",
+  "$ENV$": "INT",
 
   "$ROOT_NAME$": "QuoteServices",
-  "$VARIATION_COUNT$": "Create.Quote.V2.Annual.Renewal.With.Trueup.Using.ODM.Oppty.NZ.Positive",
+  "$VARIATION_COUNT$": "Update.Quote.V2.Operation.Insert.Action.New.US.Positive",
   "$BASE_NAME$": "$ROOT_NAME$_$VARIATION_COUNT$",
   "$SERVICE_NAME$": "QuoteServices_V2",
   "$VALIDATION$": "$ROOT$/Validators",
@@ -11,32 +11,35 @@
   "$BASE_DATA$": "$ROOT$/BaseData",
   "$CONFIG$": "$ROOT$/Configurations",
 
-  "$CSN_SOLDTO$": "5502750389",
-  "$CSN_RESELLER$": "5502750389",
-  "$CSN_ENDCUSTOMER$": "5502750389",
-  "$CSN_SHIPTO$": "5502750389",
+  "$CSN_SOLDTO$": "5501273737",
+  "$CSN_RESELLER$": "5501273737",
+  "$CSN_ENDCUSTOMER$": "5501273737",
+  "$CSN_SHIPTO$": "5501273737",
 
   "$CSN_PRIMARY$": "$CSN_ENDCUSTOMER$",
   "$CSN_SECONDARY$": "$CSN_RESELLER$",
   "$CSN_TERTIARY$": "$CSN_SOLDTO$",
   "$CSN_QUATERNARY$": "$CSN_SOLDTO$",
 
-  "$CSN_ACCOUNT_CONTACT$": "5502750389",
-  "$CSN_HEADER$": "5502750389",
+  "$CSN_ACCOUNT_CONTACT$": "5501273737",
+  "$CSN_HEADER$": "5501273737",
 
   "$OFFERING_ID$": "OD-000163",
-  "$AGENT_EMAIL$": "usercontactnz@letscheck.email",
+  "$AGENT_EMAIL$": "partneruser_us_int_5501273737@letscheck.pw",
 
   "$CREATE_QUOTE_BASE_URL$": "https://enterprise-api-$ENV$.autodesk.com/",
   "$VERSION_PATH$": "v2",
 
   "$TIMEZONE_CITY$": "Australia/Sydney",
-  "$CURRENCY$": "AUD",
+  "$CURRENCY$": "USD",
+  "$SERVICE_PLAN_CODE$": "STND",
+  "$SERVICE_PLAN_DESCRIPTION$": "Standard",
 
   "$ADDRESS1$": "60 Jenke Cct",
   "$CITY$": "Kambah",
   "$POSTAL_CODE$": "2902",
-  "$COUNTRY$": "AU",
+  "$COUNTRY$": "US",
+  "$START_DATE$": "[[Date(7)]]",
 
   "includeForceableHeaders": "true",
   "forceableHeaders":
@@ -49,10 +52,10 @@
   "baseUrl": "https://enterprise-api-$ENV$.autodesk.com",
   "oAuthBaseUrl":  "https://enterprise-api-$ENV$.autodesk.com",
 
-  "baseFile": "$BASE_DATA$/BaseData.$ROOT_NAME$.Create.Quote.V2.Annual.Renewal.With.Trueup.Using.ODM.Oppty.NZ.Positive.$ENV$.json",
+  "baseFile": "$BASE_DATA$/BaseData.$ROOT_NAME$.Update.Quote.V2.Operation.Insert.Action.New.US.Positive.$ENV$.json",
   "overridesFile": "$OVERRIDES$/Override.NONE.json",
-  "validationFile": "$VALIDATION$/Validator.$ROOT_NAME$.Create.Quote.V2.Annual.Renewal.With.Trueup.Using.ODM.Oppty.NZ.Positive.$ENV$.json",
+  "validationFile": "$VALIDATION$/Validator.$ROOT_NAME$.Update.Quote.V2.Operation.Insert.Action.New.US.Positive.$ENV$.json",
   "secretsFile": "$CONFIG$/Secrets.GetInvoiceServices.INT.json",
 
-  "workflow": "RenewalQuoteV2New"
+  "workflow": "QuoteUpdateOperationInsertActionNew"
 }

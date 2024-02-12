@@ -22,6 +22,7 @@ def allTests = [
   Webhook_Notify_STG: [path: "testdata/WorkflowProcessing/KickerSuites/KickerSuite.NotificationWebhook.STG.json"],
   QuoteServices_V2_INT: [path: "testdata/WorkflowProcessing/KickerSuites/KickerSuite.QuoteServices.Create.Update.Quote.V2.INT.json"],
   QuoteServices_V2_NZ_INT: [path: "testdata/WorkflowProcessing/KickerSuites/KickerSuite.QuoteServices.Create.Update.Quote.V2.NZ.INT.json"],
+  QuoteServices_V2_US_INT: [path: "testdata/WorkflowProcessing/KickerSuites/KickerSuite.QuoteServices.Create.Update.Quote.V2.US.INT.json"],
   QuoteServices_V2_NZ_STG: [path: "testdata/WorkflowProcessing/KickerSuites/KickerSuite.QuoteServices.Create.Update.Quote.V2.NZ.STG.json"],
   QuoteServices_V2_STG: [path: "testdata/WorkflowProcessing/KickerSuites/KickerSuite.QuoteServices.Create.Update.Quote.V2.STG.json"],
   QuoteNotifyWebhook_INT: [path: "testdata/WorkflowProcessing/KickerSuites/KickerSuite.QuoteNotificationWebhook.INT.json"],
@@ -46,6 +47,7 @@ pipeline {
     booleanParam(name: 'QuoteServices_V2_STG', description: 'Run QuoteServices V2 Tests in STG', defaultValue: false)
     booleanParam(name: 'QuoteServices_V2_INT', description: 'Run QuoteServices V2 Tests in INT', defaultValue: false)
     booleanParam(name: 'QuoteServices_V2_NZ_INT', description: 'Run QuoteServices V2 Tests for NZ in INT', defaultValue: false)
+    booleanParam(name: 'QuoteServices_V2_US_INT', description: 'Run QuoteServices V2 Tests for US in INT', defaultValue: false)
     booleanParam(name: 'QuoteServices_V2_NZ_STG', description: 'Run QuoteServices V2 Tests for NZ in STG', defaultValue: false)
     booleanParam(name: 'GetQuoteDetailsInternalv2_INT', description: 'RUN GetQuoteDetailsInternalv2 Tests in INT', defaultValue: false)
     booleanParam(name: 'CatalogExport_INT', description: 'RUN CatalogExport Tests in INT', defaultValue: false)
@@ -57,7 +59,7 @@ pipeline {
   triggers {
     parameterizedCron(env.BRANCH_NAME == 'master' ? '''
         # run INT tests everyday at 5 AM PST
-        0 5 * * * % Environment=INT;QuoteServices_INT=true;QuoteServices_V2_INT=true;QuoteServices_V2_NZ_INT=true;GetQuoteDetailsInternalv2_INT=true;
+        0 5 * * * % Environment=INT;QuoteServices_INT=true;QuoteServices_V2_INT=true;QuoteServices_V2_NZ_INT=true;QuoteServices_V2_US_INT=true;GetQuoteDetailsInternalv2_INT=true;
         
         # run STG tests everyday at 5 AM PST
         0 5 * * * % Environment=STG;QuoteServices_STG=true;QuoteServices_V2_STG=true;QuoteServices_V2_NZ_STG=true;

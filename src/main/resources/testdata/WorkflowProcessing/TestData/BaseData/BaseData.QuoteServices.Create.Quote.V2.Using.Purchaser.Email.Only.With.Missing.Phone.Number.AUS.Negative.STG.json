@@ -1,5 +1,5 @@
 {
-    "quoteNote": "SM_Notefrom_Agenttocust.{{note}}",
+    "quoteNote": "SM_Notefrom_Agenttocustomer2.{{note}}",
     "currency": "AUD",
     "agentAccount": {
         "accountCsn": "5070132993"
@@ -8,25 +8,22 @@
         "email": "part_01Aug_001@letscheck.pw"
     },
     "endCustomer": {
-        "addressLine1": "20 Lucca St",
-        "city": "Perth",
+        "name": "SM VIC MCAD",
+        "addressLine1": "660 Church St",
+        "city": "Richmond",
         "countryCode": "AU",
+        "postalCode": "3121",
         "stateProvinceCode": "WA",
-        "isIndividual": true,
-        "postalCode": "6027"
+        "isIndividual": false
     },
     "purchaser": {
-        "email": "PWS_AusUser1@letscheck.pw",
-        "firstName": "PWS_AUS1",
-        "lastName": "User1",
-        "phone": "4157778888",
-        "preferredLanguage": "en"
+        "email": "kmofgjjdgjkglkbjhpocnmmgbeiecpjf@null.autodesk.com"
     },
     "lineItems": [
         {
-            "offeringId": "OD-000021",
+            "quantity": 2,
+            "offeringId": "OD-000054",
             "action": "New",
-            "quantity": 1,
             "offer": {
                 "term": {
                     "code": "A01",
@@ -51,9 +48,9 @@
             }
         },
         {
-            "offeringId": "OD-000054",
-            "action": "New",
             "quantity": 2,
+            "offeringId": "OD-000021",
+            "action": "New",
             "offer": {
                 "term": {
                     "code": "A01",
