@@ -30,18 +30,18 @@
             "opportunityLineItemId": "006asdasdasdOZ",
             "quantity": 110,
             "referenceSubscriptionId": "612312312333123",
-            "startDate": "2024-02-15"
+            "startDate": "[[Date(2)]]"
         },
         {
             "action": "New",
             "opportunityLineItemId": "00k7h00000HHqUmAAL",
             "quantity": 25,
-            "startDate": "2024-02-15"
+            "startDate": "[[Date(2)]]"
         },
         {
             "action": "Extension",
             "opportunityLineItemId": "006asdasdasdOX",
-            "endDate": "2025-02-15"
+            "endDate": "[[Date(2)]]"
         }
     ]
 }
