@@ -1,5 +1,6 @@
 import groovy.json.JsonSlurper;
 import groovy.json.JsonOutput;
+import com.influxdb:influxdb-k6-java;
 
 @Library(["PSL@master","TestAutomationUtils@master"]) _
 
@@ -229,7 +230,44 @@ pipeline {
           echo "${JsonOutput.toJson(jsonData)}"
 
           if(isMasterBranch) {
-            sh('curl -i -XPOST "https://calvinklein-7de56744.influxcloud.net:8086/write?db=k6&u=$INFLUX_DB_USERNAME&p=$INFLUX_DB_PASSWORD" --data-binary '+"""'dev_automation_test_report,TEST_NAME=$TEST_NAME,ENV_NAME=$ENV_NAME,TEST_STATUS=$TEST_STATUS,BUILD=$env.GIT_BRANCH-$env.BUILD_NUMBER,SERVICE_NAME=$SERVICE_NAME,COUNTRY=$COUNTRY,TEST_DISPLAY_NAME=$TEST_DISPLAY_NAME value=1,$statusName=1,TRANSACTION_ID="${TRANSACTION_ID}",TOTAL_VALIDATIONS=$TOTAL_VALIDATIONS,PASS_VALIDATIONS=$PASS_VALIDATIONS,FAIL_VALIDATIONS=$FAIL_VALIDATIONS,API_RESPONSE="'''${API_RESPONSE}'''",API_EXP_RESPONSE="'''${API_EXP_RESPONSE}'''",RESTAPI_CALL="'''${RESTAPI_CALL}'''",VALIDATION_ERROR="'''${VALIDATION_ERROR}'''",VALIDATION_ERRORS="'''${VALIDATION_ERRORS}'''"'""")
+          String url = "https://calvinklein-7de56744.influxcloud.net:8086";
+          String username = "$INFLUX_DB_USERNAME";
+          String password = "$INFLUX_DB_PASSWORD";
+          InfluxDB influxDB = InfluxDBFactory.connect(url, username, password);
+          String databaseName = "dev-automation-test-results";
+          String pointName = "dev_automation_test_report";
+
+          Map<String, String> filters = new HashMap<>();
+          tags.put("TEST_NAME", TEST_NAME);
+          tags.put("ENV_NAME", ENV_NAME);
+          tags.put("TEST_STATUS", TEST_STATUS);
+          tags.put("BUILD", env.GIT_BRANCH + "-" + env.BUILD_NUMBER);
+          tags.put("SERVICE_NAME", SERVICE_NAME);
+          tags.put("COUNTRY", COUNTRY);
+          tags.put("TEST_DISPLAY_NAME", TEST_DISPLAY_NAME);
+
+          Map<String, Object> fields = new HashMap<>();
+          fields.put("TEST_STEPS", TEST_STEPS);
+          fields.put(statusName, 1); // Assuming statusName is a variable
+          fields.put("TRANSACTION_ID", TRANSACTION_ID);
+          fields.put("TOTAL_VALIDATIONS", TOTAL_VALIDATIONS);
+          fields.put("PASS_VALIDATIONS", PASS_VALIDATIONS);
+          fields.put("FAIL_VALIDATIONS", FAIL_VALIDATIONS);
+          fields.put("API_RESPONSE", API_RESPONSE);
+          fields.put("API_EXP_RESPONSE", API_EXP_RESPONSE);
+          fields.put("RESTAPI_CALL", RESTAPI_CALL);
+          fields.put("VALIDATION_ERROR", VALIDATION_ERROR);
+          fields.put("VALIDATION_ERRORS", VALIDATION_ERRORS);
+
+          Point point = Point.measurement(pointName)
+              .time(System.currentTimeMillis(), TimeUnit.MILLISECONDS)
+              .tag(filters)
+              .field(fields)
+              .build();
+
+          influxDB.write(point, databaseName);
+          influxDB.close();
+//             sh('curl -i -XPOST "https://calvinklein-7de56744.influxcloud.net:8086/write?db=k6&u=$INFLUX_DB_USERNAME&p=$INFLUX_DB_PASSWORD" --data-binary '+"""'dev_automation_test_report,TEST_NAME=$TEST_NAME,ENV_NAME=$ENV_NAME,TEST_STATUS=$TEST_STATUS,BUILD=$env.GIT_BRANCH-$env.BUILD_NUMBER,SERVICE_NAME=$SERVICE_NAME,COUNTRY=$COUNTRY,TEST_DISPLAY_NAME=$TEST_DISPLAY_NAME value=1,TEST_STEPS=$TEST_STEPS,$statusName=1,TRANSACTION_ID="${TRANSACTION_ID}",TOTAL_VALIDATIONS=$TOTAL_VALIDATIONS,PASS_VALIDATIONS=$PASS_VALIDATIONS,FAIL_VALIDATIONS=$FAIL_VALIDATIONS,API_RESPONSE="'''${API_RESPONSE}'''",API_EXP_RESPONSE="'''${API_EXP_RESPONSE}'''",RESTAPI_CALL="'''${RESTAPI_CALL}'''",VALIDATION_ERROR="'''${VALIDATION_ERROR}'''",VALIDATION_ERRORS="'''${VALIDATION_ERRORS}'''"'""")
           } else {
             echo "Skipping send test reports due to isMasterBranch=${isMasterBranch} "
           }
