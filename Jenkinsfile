@@ -1,13 +1,6 @@
 import groovy.json.JsonSlurper;
 import groovy.json.JsonOutput;
 
-// @Grab(group='org.influxdb', module='influxdb-java', version='2.24')
-// import org.influxdb.InfluxDB;
-// import org.influxdb.InfluxDBFactory;
-// import org.influxdb.dto.Point;
-// import java.util.concurrent.TimeUnit;
-// @Library(["PSL@master","TestAutomationUtils@master"]) _
-
 def dockerReg = "autodesk-docker.art-bobcat.autodesk.com/team-pws"
 
 def dockerTestImage = "autodesk-docker.art-bobcat.autodesk.com/team-pws/test-automation:latest"
@@ -234,48 +227,7 @@ pipeline {
           echo "${JsonOutput.toJson(jsonData)}"
 
           if(isMasterBranch) {
-            String serverURL = "https://calvinklein-7de56744.influxcloud.net:8086";
-            String username = "$INFLUX_DB_USERNAME";
-            String password = "$INFLUX_DB_PASSWORD";
-            String devAutomation = "k6";
-            InfluxDB influxDB = InfluxDBFactory.connect(serverURL, username, password);
-
-//             // Create a new database if it doesn't exist
-//             influxDB.createDatabase(databaseName);
-
-            // Use the database
-            influxDB.setDatabase(devAutomation);
-
-            // Define data point
-            Point point = Point.measurement("dev_automation_test_report")
-                    .tag("TEST_NAME", $TEST_NAME)
-                    .tag("ENV_NAME", $ENV_NAME)
-                    .tag("TEST_STATUS", $TEST_STATUS)
-                    .tag("BUILD", $env.GIT_BRANCH-$env.BUILD_NUMBER)
-                    .tag("SERVICE_NAME", $SERVICE_NAME)
-                    .tag("COUNTRY", $COUNTRY)
-                    .tag("TEST_DISPLAY_NAME", $TEST_DISPLAY_NAME)
-                    .addField("value", 1)
-                    .addField("TEST_STEPS", $TEST_STEPS)
-                    .addField("statusName", 1)
-                    .addField("TRANSACTION_ID", "${TRANSACTION_ID}")
-                    .addField("TOTAL_VALIDATIONS", $TOTAL_VALIDATIONS)
-                    .addField("PASS_VALIDATIONS", $PASS_VALIDATIONS)
-                    .addField("FAIL_VALIDATIONS", $FAIL_VALIDATIONS)
-                    .addField("API_RESPONSE", "'''${API_RESPONSE}'''")
-                    .addField("API_EXP_RESPONSE", "'''${API_EXP_RESPONSE}'''")
-                    .addField("RESTAPI_CALL", "'''${RESTAPI_CALL}'''")
-                    .addField("VALIDATION_ERROR", "'''${VALIDATION_ERROR}'''")
-                    .addField("VALIDATION_ERRORS", "'''${VALIDATION_ERRORS}'''")
-                    .time(System.currentTimeMillis(), TimeUnit.MILLISECONDS)
-                    .build();
-
-            // Write data point to InfluxDB
-            influxDB.write(devAutomation, "autogen", point);
-
-            // Close InfluxDB connection
-            influxDB.close();
-//              sh('curl -i -XPOST "https://calvinklein-7de56744.influxcloud.net:8086/write?db=k6&u=$INFLUX_DB_USERNAME&p=$INFLUX_DB_PASSWORD" --data-binary '+"""'dev_automation_test_report,TEST_NAME=$TEST_NAME,ENV_NAME=$ENV_NAME,TEST_STATUS=$TEST_STATUS,BUILD=$env.GIT_BRANCH-$env.BUILD_NUMBER,SERVICE_NAME=$SERVICE_NAME,COUNTRY=$COUNTRY,TEST_DISPLAY_NAME=$TEST_DISPLAY_NAME value=1,TEST_STEPS=$TEST_STEPS,$statusName=1,TRANSACTION_ID="${TRANSACTION_ID}",TOTAL_VALIDATIONS=$TOTAL_VALIDATIONS,PASS_VALIDATIONS=$PASS_VALIDATIONS,FAIL_VALIDATIONS=$FAIL_VALIDATIONS,API_RESPONSE="'''${API_RESPONSE}'''",API_EXP_RESPONSE="'''${API_EXP_RESPONSE}'''",RESTAPI_CALL="'''${RESTAPI_CALL}'''",VALIDATION_ERROR="'''${VALIDATION_ERROR}'''",VALIDATION_ERRORS="'''${VALIDATION_ERRORS}'''"'""")
+             sh('curl -i -XPOST "https://calvinklein-7de56744.influxcloud.net:8086/write?db=k6&u=$INFLUX_DB_USERNAME&p=$INFLUX_DB_PASSWORD" --data-binary '+"""'dev_automation_test_report,TEST_NAME=$TEST_NAME,ENV_NAME=$ENV_NAME,TEST_STATUS=$TEST_STATUS,BUILD=$env.GIT_BRANCH-$env.BUILD_NUMBER,SERVICE_NAME=$SERVICE_NAME,COUNTRY=$COUNTRY,TEST_DISPLAY_NAME=$TEST_DISPLAY_NAME value=1,TEST_STEPS=$TEST_STEPS,$statusName=1,TRANSACTION_ID="${TRANSACTION_ID}",TOTAL_VALIDATIONS=$TOTAL_VALIDATIONS,PASS_VALIDATIONS=$PASS_VALIDATIONS,FAIL_VALIDATIONS=$FAIL_VALIDATIONS,API_RESPONSE="'''${API_RESPONSE}'''",API_EXP_RESPONSE="'''${API_EXP_RESPONSE}'''",RESTAPI_CALL="'''${RESTAPI_CALL}'''",VALIDATION_ERROR="'''${VALIDATION_ERROR}'''",VALIDATION_ERRORS="'''${VALIDATION_ERRORS}'''"'""")
           } else {
             echo "Skipping send test reports due to isMasterBranch=${isMasterBranch} "
           }
