@@ -1,0 +1,12 @@
+{
+  "QuoteCreate": {
+    "transactionId": "*",
+    "errors": [
+      {
+        "code": "45001",
+        "message": "Purchaser email cannot be repeated as additionalRecipients email"
+      }
+    ],
+    "status": "error"
+  }
+}
