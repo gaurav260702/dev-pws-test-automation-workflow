@@ -1,6 +1,9 @@
 import groovy.json.JsonSlurper;
 import groovy.json.JsonOutput;
-import com.influxdb:influxdb-k6-java;
+import org.springframework.influxdb.core.InfluxDBTemplate;
+import org.influxdb.annotation.Measurement;
+import org.influxdb.annotation.Column;
+import org.influxdb.annotation.Tag;
 
 @Library(["PSL@master","TestAutomationUtils@master"]) _
 
