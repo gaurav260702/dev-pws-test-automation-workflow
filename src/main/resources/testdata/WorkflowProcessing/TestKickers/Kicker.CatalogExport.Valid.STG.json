@@ -1,7 +1,7 @@
 ﻿{
   "$ROOT$": "./testdata/WorkflowProcessing/TestData",
   "$ENV$": "STG",
-  "$TEST_DISPLAY_NAME$": "Validate CatalogExport with Valid CSN",
+  "$TEST_DISPLAY_NAME$": "Validate-CatalogExport-with-Valid-CSN",
   "$TEST_STEPS$": "Call GET CatalogExport API ---> Validate the response",
 
   "$QUANTITY_TO_PURCHASE$": "5000",
