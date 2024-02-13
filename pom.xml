@@ -138,11 +138,8 @@
 			<scope>test</scope>
 		</dependency>
 		<dependency>
-			<groupId>org.springframework.boot</groupId>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-data-influxdb</artifactId>
+			<groupId>org.influxdb</groupId>
+			<artifactId>influxdb-java</artifactId>
 		</dependency>
 
 	</dependencies>
