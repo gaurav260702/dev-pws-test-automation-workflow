@@ -19,10 +19,10 @@
     },
     "lineItems": [
         {
-            "offeringId": "OD-000054",
+            "offeringId": "OD-000002",
             "action": "New",
             "quantity": 10,
-            "startDate": "[[Date(25)]]",
+            "startDate": "[[Date(5)]]",
             "offer": {
                 "term": {
                     "code": "A01",
