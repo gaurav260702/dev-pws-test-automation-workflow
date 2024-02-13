@@ -1,7 +1,7 @@
 import groovy.json.JsonSlurper;
 import groovy.json.JsonOutput;
 
-@Grab(group='org.influxdb', module='influxdb-java', version='2.24')
+// @Grab(group='org.influxdb', module='influxdb-java', version='2.24')
 import org.influxdb.InfluxDB;
 import org.influxdb.InfluxDBFactory;
 import org.influxdb.dto.Point;
