@@ -1,0 +1,12 @@
+{
+  "QuoteCreate": {
+    "transactionId": "*",
+    "errors": [
+      {
+        "code": "45001",
+        "message": "\u0027additionalRecipients\u0027 must contain less than or equal to 4 items"
+      }
+    ],
+    "status": "error"
+  }
+}
