@@ -1,0 +1,12 @@
+{
+  "QuoteCreate": {
+    "transactionId": "*",
+    "errors": [
+      {
+        "code": "45001",
+        "message": "startDate across New/Co-term lineItems should be the same"
+      }
+    ],
+    "status": "error"
+  }
+}
