@@ -1,6 +1,9 @@
 ﻿{
   "$ROOT$": "./testdata/WorkflowProcessing/TestData",
   "$ENV$": "INT",
+  "$TEST_DISPLAY_NAME$": "Validating-PromotionsExport-InvalidCSN",
+  "$TEST_STEPS$": "Call GetPromotionDetails API --> Validate the response",
+  "$COUNTRY$": "AU",
 
   "$QUANTITY_TO_PURCHASE$": "5000",
   "$ROOT_NAME$": "PromotionsExport.Invalid_CSN",

@@ -1,6 +1,9 @@
 ﻿{
   "$ROOT$": "./testdata/WorkflowProcessing/TestData",
   "$ENV$": "INT",
+  "$TEST_DISPLAY_NAME$": "Validating-CatalogExport-ValidCSN",
+  "$TEST_STEPS$": "Call GetCatalogDetails API --> Validate the response",
+  "$COUNTRY$": "AU",
 
   "$QUANTITY_TO_PURCHASE$": "5000",
   "$ROOT_NAME$": "CatalogExport.Valid",

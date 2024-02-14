@@ -1,6 +1,8 @@
 ﻿{
   "$ROOT$": "./testdata/WorkflowProcessing/TestData",
   "$ENV$": "INT",
+  "$TEST_DISPLAY_NAME$": "QuoteServices-for-AusAddress-WithState.4-Cancel-Quote-Deleted",
+  "$TEST_STEPS$": "Call QuoteCreate API --> Call QuoteStatus API --> Call QuoteDetails API --> Call QuoteFinalize API --> Call QuoteStatusByQuoteNumber API --> Call QuoteCancelForDeleteQuote API --> Validate the response",
 
   "$ROOT_NAME$": "QuoteServices.AusAddress",
   "$VARIATION_COUNT$": "WithState.4.Cancel.Quote.Deleted",

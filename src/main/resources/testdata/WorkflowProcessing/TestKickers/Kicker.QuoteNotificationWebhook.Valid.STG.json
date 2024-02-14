@@ -1,6 +1,9 @@
 ﻿{
   "$ROOT$": "./testdata/WorkflowProcessing/TestData",
   "$ENV$": "STG",
+  "$TEST_DISPLAY_NAME$": "Validating-QuoteNotificationWebhook-ValidCSN",
+  "$TEST_STEPS$": "Call InvokeWebhook API --> Validate the response",
+  "$COUNTRY$": "AU",
 
   "$QUANTITY_TO_PURCHASE$": "5000",
   "$ROOT_NAME$": "QuoteNotificationWebhook.Valid",

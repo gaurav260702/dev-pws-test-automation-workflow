@@ -1,6 +1,9 @@
 ﻿{
   "$ROOT$": "./testdata/WorkflowProcessing/TestData",
   "$ENV$": "INT",
+  "$TEST_DISPLAY_NAME$": "QuoteServices-QuantityDiscountCheck-5000",
+  "$TEST_STEPS$": "Call QuoteCreate API --> Call QuoteStatus API --> Call QuoteDetails API --> Call QuoteFinalize API --> Call QuoteStatusByQuoteNumber API --> Validate the response",
+  "$COUNTRY": "AU",
 
   "$QUANTITY_TO_PURCHASE$": "5004",
   "$ROOT_NAME$": "QuoteServices.QuantityDiscountCheck",

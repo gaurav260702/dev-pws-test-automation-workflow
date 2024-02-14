@@ -1,6 +1,8 @@
 ﻿{
   "$ROOT$": "./testdata/WorkflowProcessing/TestData",
   "$ENV$": "INT",
+  "$TEST_DISPLAY_NAME$": "QuoteServices-Resending-Quote-Email-for-Invalid-Quote-Number-Negative",
+  "$TEST_STEPS$": "Call QuoteCreate API --> Call QuoteStatus API --> QuoteResendEmailQuoteNumberDraftStateNegative --> Validate the response",
 
   "$ROOT_NAME$": "QuoteServices",
   "$VARIATION_COUNT$": "Resend.Quote.Email.Quote.Number.Draft.State.Negative",
