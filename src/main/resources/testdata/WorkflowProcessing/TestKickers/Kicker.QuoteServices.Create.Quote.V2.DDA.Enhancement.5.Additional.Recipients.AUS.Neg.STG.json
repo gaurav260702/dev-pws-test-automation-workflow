@@ -1,6 +1,8 @@
 {
   "$ROOT$": "./testdata/WorkflowProcessing/TestData",
   "$ENV$": "STG",
+  "$TEST_DISPLAY_NAME$": "QuoteServices-Creating-Quote-V2-DDA-Enhancement-5-Additional-Recipients-AUS-Neg",
+  "$TEST_STEPS$": "Call QuoteCreate API --> Validate the response",
 
   "$ROOT_NAME$": "QuoteServices",
   "$VARIATION_COUNT$": "Create.Quote.V2.DDA.Enhancement.5.Additional.Recipients.AUS.Neg",

@@ -1,6 +1,8 @@
 ﻿{
   "$ROOT$": "./testdata/WorkflowProcessing/TestData",
   "$ENV$": "INT",
+  "$TEST_DISPLAY_NAME$": "QuoteServices-Creating-Quote-V2-New-NFR-Offering-3Year-Positive",
+  "$TEST_STEPS$": "Call QuoteCreate API --> Call QuoteStatus API --> Call QuoteDetailsV2New API --> Call QuoteFinalizeV2New API --> Call QuoteStatusByQuoteNumber API --> Validate the response",
 
   "$ROOT_NAME$": "QuoteServices",
   "$VARIATION_COUNT$": "Create.Quote.V2.New.NFR.Offering.3Year.Positive",

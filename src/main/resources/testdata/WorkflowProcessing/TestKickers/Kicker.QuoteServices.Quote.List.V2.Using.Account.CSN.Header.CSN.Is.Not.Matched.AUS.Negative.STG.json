@@ -1,6 +1,8 @@
 ﻿{
   "$ROOT$": "./testdata/WorkflowProcessing/TestData",
   "$ENV$": "STG",
+  "$TEST_DISPLAY_NAME$": "QuoteServices-Quoting-List-V2-Using-Account-CSN-Header-CSN-Is-Not-Matched-AUS",
+  "$TEST_STEPS$": "Call QuoteListUsingAccountCSN API --> Validate the response",
 
   "$ROOT_NAME$": "QuoteServices",
   "$VARIATION_COUNT$": "Quote.List.V2.Using.Account.CSN.Header.CSN.Is.Not.Matched.AUS.Negative",

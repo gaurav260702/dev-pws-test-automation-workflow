@@ -1,6 +1,8 @@
 ﻿{
   "$ROOT$": "./testdata/WorkflowProcessing/TestData",
   "$ENV$": "STG",
+  "$TEST_DISPLAY_NAME$": "QuoteServices-Creating-Quote-V2-New-Non-Premium-Flex-Monthly-Offering-Negative",
+  "$TEST_STEPS$": "Call QuoteCreate API --> Call QuoteStatusFAILED API --> Validate the response",
 
   "$ROOT_NAME$": "QuoteServices",
   "$VARIATION_COUNT$": "Create.Quote.V2.New.Non.Premium.Flex.Invalid.Agent.CSN.Negative",
@@ -54,5 +56,5 @@
   "validationFile": "$VALIDATION$/Validator.$ROOT_NAME$.Create.Quote.V2.New.Non.Premium.Flex.Invalid.Agent.CSN.Negative.$ENV$.json",
   "secretsFile": "$CONFIG$/Secrets.GetInvoiceServices.INT.json",
 
-  "workflow": "CreateQuoteV2NewFlexQTYLessThan100"
+  "workflow": "CreateQuoteV2NewFlexQTYLessThan100x"
 }

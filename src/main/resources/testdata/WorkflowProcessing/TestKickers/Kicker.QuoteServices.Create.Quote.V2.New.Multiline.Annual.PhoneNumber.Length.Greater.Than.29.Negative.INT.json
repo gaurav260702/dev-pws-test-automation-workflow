@@ -1,6 +1,8 @@
 ﻿{
   "$ROOT$": "./testdata/WorkflowProcessing/TestData",
   "$ENV$": "INT",
+  "$TEST_DISPLAY_NAME$": "QuoteServices-Creating-Quote-V2-New-Multiline-Annual-PhoneNumber-Length-Greater-Than-29-Negative",
+  "$TEST_STEPS$": "Call QuoteCreate API --> Validate the response",
 
   "$ROOT_NAME$": "QuoteServices",
   "$VARIATION_COUNT$": "Create.Quote.V2.New.Multiline.Annual.PhoneNumber.Length.Greater.Than.29.Negative",

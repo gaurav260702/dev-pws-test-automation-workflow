@@ -1,6 +1,8 @@
 ﻿{
   "$ROOT$": "./testdata/WorkflowProcessing/TestData",
   "$ENV$": "STG",
+  "$TEST_DISPLAY_NAME$": "QuoteServices-Updating-Quote-V2-Operation-Update-Action-New-Extra-Field-Negative",
+  "$TEST_STEPS$": "Call QuoteUpdateOperationUpdateActionNewNewFieldNeg API --> Validate the response",
 
   "$ROOT_NAME$": "QuoteServices",
   "$VARIATION_COUNT$": "Update.Quote.V2.Operation.Update.Action.New.Extra.Field.Negative",
