@@ -1,6 +1,9 @@
 {
   "$ROOT$": "./testdata/WorkflowProcessing/TestData",
   "$ENV$": "STG",
+  "$TEST_DISPLAY_NAME$": "QuoteServices-Creating-Quote-V2-Extension-Annual-Contract-More-Than-364-Days-NZ-Negative",
+  "$TEST_STEPS$": "Call QuoteCreate API --> Call QuoteStatusFAILED API --> Validate the response",
+  "$COUNTRY$": "NZ",
 
   "$ROOT_NAME$": "QuoteServices",
   "$VARIATION_COUNT$": "Create.Quote.V2.Extension.Annual.Contract.More.Than.364.Days.NZ.Negative",
@@ -36,7 +39,6 @@
   "$ADDRESS1$": "60 Jenke Cct",
   "$CITY$": "Kambah",
   "$POSTAL_CODE$": "2902",
-  "$COUNTRY$": "AU",
 
   "includeForceableHeaders": "true",
   "forceableHeaders":

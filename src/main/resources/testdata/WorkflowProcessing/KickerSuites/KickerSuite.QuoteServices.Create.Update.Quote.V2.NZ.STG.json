@@ -78,7 +78,7 @@
     "./testdata/WorkflowProcessing/TestKickers/Kicker.QuoteServices.Create.Quote.V2.New.Annual.Past.StartDate.NZ.Negative.STG.json",
     "./testdata/WorkflowProcessing/TestKickers/Kicker.QuoteServices.Create.Quote.V2.Extension.Annual.Contract.More.Than.364.Days.NZ.Negative.STG.json",
     "./testdata/WorkflowProcessing/TestKickers/Kicker.QuoteServices.Create.Quote.V2.CoTerm.Annual.NZ.Agent.Sub.ID.From.US.NZ.Negative.STG.json",
-
+    /* pin */
     "./testdata/WorkflowProcessing/TestKickers/Kicker.QuoteServices.Create.Quote.V2.Renewal.TrueUp.Annual.Using.ROM.Oppty.NZ.Negative.STG.json",
     "./testdata/WorkflowProcessing/TestKickers/Kicker.QuoteServices.Create.Quote.V2.TrueUp.Annual.Using.ROM.Oppty.NZ.Negative.STG.json",
     "./testdata/WorkflowProcessing/TestKickers/Kicker.QuoteServices.Create.Quote.V2.RecordType.As.Subscription.Opportunity.NZ.Positive.STG.json",
