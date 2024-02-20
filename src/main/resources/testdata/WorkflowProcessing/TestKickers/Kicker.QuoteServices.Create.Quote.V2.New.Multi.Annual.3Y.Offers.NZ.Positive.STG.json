@@ -1,6 +1,9 @@
 {
     "$ROOT$": "./testdata/WorkflowProcessing/TestData",
     "$ENV$": "STG",
+    "$TEST_DISPLAY_NAME$": "QuoteServices-Creating-Quote-V2-New-Multi-Annual-3Y-Offers-NZ-Positive",
+    "$TEST_STEPS$": "Call QuoteCreate API --> Call QuoteStatus API --> Call QuoteDetailsV2New API --> Call QuoteFinalizeV2New API --> Call QuoteStatusByQuoteNumber API --> Validate the response",
+    "$COUNTRY$": "NZ",
 
     "$ROOT_NAME$": "QuoteServices",
     "$VARIATION_COUNT$": "Create.Quote.V2.New.Multi.Annual.3Y.Offers.NZ.Positive",
@@ -31,12 +34,11 @@
     "$VERSION_PATH$": "v2",
 
     "$TIMEZONE_CITY$": "Australia/Sydney",
-    "$CURRENCY$": "AUD",
+    "$CURRENCY$": "NZD",
 
     "$ADDRESS1$": "60 Jenke Cct",
     "$CITY$": "Kambah",
     "$POSTAL_CODE$": "2902",
-    "$COUNTRY$": "AU",
 
     "includeForceableHeaders": "true",
     "forceableHeaders":
