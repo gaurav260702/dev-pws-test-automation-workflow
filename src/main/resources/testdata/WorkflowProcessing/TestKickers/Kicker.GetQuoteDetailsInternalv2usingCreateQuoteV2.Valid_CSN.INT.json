@@ -1,6 +1,6 @@
   {
     "$ROOT$": "./testdata/WorkflowProcessing/TestData",
-      "$TEST_DISPLAY_NAME$": "QuoteServices-Calling-GetQuoteDetailsInternalv2usingCreateQuoteV2-Valid-CSN",
+      "$TEST_DISPLAY_NAME$": "GetQuoteDetailsInternalv2usingCreateQuoteV2-Valid-CSN",
       "$TEST_STEPS$": "Call QuoteCreate API --> Call GetQuoteDetailsInternalv2ForgeCredentials API --> Call QuoteDetailsInternalv2 API -->  Validate the response",
 
       "$ENV$": "int",

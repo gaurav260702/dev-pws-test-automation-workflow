@@ -1,7 +1,7 @@
 ﻿{
   "$ROOT$": "./testdata/WorkflowProcessing/TestData",
   "$ENV$": "INT",
-  "$TEST_DISPLAY_NAME$": "QuoteServices-Creating-Quote-V2-Renewal-Subscription-Is-Not-Eligible-Positive",
+  "$TEST_DISPLAY_NAME$": "CreateQuote-V2-Renewal-Subscription-Is-Not-Eligible-Positive",
   "$TEST_STEPS$": "Call QuoteCreate API --> Call QuoteStatusFAILED API --> Validate the response",
 
   "$ROOT_NAME$": "QuoteServices",

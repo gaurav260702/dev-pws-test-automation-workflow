@@ -1,7 +1,7 @@
 {
   "$ROOT$": "./testdata/WorkflowProcessing/TestData",
   "$ENV$": "STG",
-  "$TEST_DISPLAY_NAME$": "QuoteServices-Updating-Quote-V2-Operation-Insert-Action-New-Inserting-Invalid-Offering-Details-NZ-Negative",
+  "$TEST_DISPLAY_NAME$": "Updating-Quote-V2-Operation-Insert-Action-New-Inserting-Invalid-Offering-Details-NZ-Negative",
   "$TEST_STEPS$": "Call QuoteCreate API --> Call QuoteStatus API --> Call QuoteDetailsV2New API --> Call QuoteUpdateOperationInsertActionNew API --> Validate the response",
   "$COUNTRY$": "NZ",
 

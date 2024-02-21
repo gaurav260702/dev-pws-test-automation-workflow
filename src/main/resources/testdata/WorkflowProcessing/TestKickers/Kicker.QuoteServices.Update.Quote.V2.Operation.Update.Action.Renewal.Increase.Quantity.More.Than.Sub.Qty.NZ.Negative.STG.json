@@ -1,7 +1,7 @@
 ﻿{
   "$ROOT$": "./testdata/WorkflowProcessing/TestData",
   "$ENV$": "STG",
-  "$TEST_DISPLAY_NAME$": "QuoteServices-Updating-Quote-V2-Operation-Update-Action-Renewal-Increase-Quantity-More-Than-Sub-Qty-NZ-Negative",
+  "$TEST_DISPLAY_NAME$": "Updating-Quote-V2-Operation-Update-Action-Renewal-Increase-Quantity-More-Than-Sub-Qty-NZ-Negative",
   "$TEST_STEPS$": "Call QuoteCreate API --> Call QuoteStatus API --> Call QuoteDetailsV2New API --> Call QuoteUpdateOperationUpdateActionRenewal API --> Validate the response",
   "$COUNTRY$": "NZ",
 

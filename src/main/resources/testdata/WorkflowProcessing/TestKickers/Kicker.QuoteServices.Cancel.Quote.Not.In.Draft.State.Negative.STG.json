@@ -1,7 +1,7 @@
 ﻿{
   "$ROOT$": "./testdata/WorkflowProcessing/TestData",
   "$ENV$": "STG",
-  "$TEST_DISPLAY_NAME$": "QuoteServices-Cancelling-Quote-Not-In-Draft-Negative",
+  "$TEST_DISPLAY_NAME$": "Cancelling-Quote-Not-In-Draft-Negative",
   "$TEST_STEPS$": "Call QuoteCreate API --> Call QuoteStatus API --> Call QuoteDetails API --> Call QuoteFinalize API --> Call QuoteStatusByQuoteNumber API --> Call QuoteCancel API --> Validate the response",
 
   "$ROOT_NAME$": "QuoteServices",

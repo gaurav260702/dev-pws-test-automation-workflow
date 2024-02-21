@@ -1,7 +1,7 @@
 ﻿{
   "$ROOT$": "./testdata/WorkflowProcessing/TestData",
   "$ENV$": "STG",
-  "$TEST_DISPLAY_NAME$": "QuoteServices-Creating-Quote-V2-New-1Y-PWS-Quote-To-Order-NZ-Positive",
+  "$TEST_DISPLAY_NAME$": "CreateQuote-V2-New-1Y-PWS-Quote-To-Order-NZ-Positive",
   "$TEST_STEPS$": "Call QuoteCreate API --> Call QuoteStatus API --> Call QuoteDetailsV2New API --> Call QuoteFinalizeV2New API --> Call QuoteStatusByQuoteNumber API --> Validate the response",
   "$COUNTRY$": "NZ",
 

@@ -1,7 +1,7 @@
 ﻿{
   "$ROOT$": "./testdata/WorkflowProcessing/TestData",
   "$ENV$": "STG",
-  "$TEST_DISPLAY_NAME$": "QuoteServices-Creating-Quote-V2-Extension-subscriptionId-3Year-Contract-Serial-Number-Positive",
+  "$TEST_DISPLAY_NAME$": "CreateQuote-V2-Extension-subscriptionId-3Year-Contract-Serial-Number-Positive",
   "$TEST_STEPS$": "Call QuoteCreate API --> Call QuoteStatus API --> Call QuoteDetailsV2New API --> Validate the response",
 
   "$ROOT_NAME$": "QuoteServices",

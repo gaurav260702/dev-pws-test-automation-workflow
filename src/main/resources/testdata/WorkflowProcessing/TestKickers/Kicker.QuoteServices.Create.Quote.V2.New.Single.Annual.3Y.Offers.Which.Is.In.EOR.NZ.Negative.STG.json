@@ -1,7 +1,7 @@
 {
     "$ROOT$": "./testdata/WorkflowProcessing/TestData",
     "$ENV$": "STG",
-    "$TEST_DISPLAY_NAME$": "QuoteServices-Creating-Quote-V2-New-Single-Annual-3Y-Offers-Which-Is-In-EOR-NZ-Negative",
+    "$TEST_DISPLAY_NAME$": "CreateQuote-V2-New-Single-Annual-3Y-Offers-Which-Is-In-EOR-NZ-Negative",
     "$TEST_STEPS$": "Call QuoteCreate API --> Call QuoteStatusFAILED API --> Validate the response",
     "$COUNTRY$": "NZ",
 

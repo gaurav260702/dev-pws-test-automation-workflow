@@ -1,7 +1,7 @@
 ﻿{
   "$ROOT$": "./testdata/WorkflowProcessing/TestData",
   "$ENV$": "INT",
-  "$TEST_DISPLAY_NAME$": "QuoteServices-Creating-Quote-V2-New-Annual-Sales-Oppty-NZ-Positive",
+  "$TEST_DISPLAY_NAME$": "CreateQuote-V2-New-Annual-Sales-Oppty-NZ-Positive",
   "$TEST_STEPS$": "Call QuoteCreate API --> Call QuoteStatusFAILED API --> Validate the response",
 
   "$ROOT_NAME$": "QuoteServices",

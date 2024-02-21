@@ -1,6 +1,6 @@
 {
     "$ENV$": "int",
-    "$TEST_DISPLAY_NAME$": "QuoteServices-Calling-GetQuoteDetailsInternalv2-Invalid-quoteNumber-1",
+    "$TEST_DISPLAY_NAME$": "GetQuoteDetailsInternalv2-Invalid-quoteNumber-1",
     "$TEST_STEPS$": "Call GetQuoteDetailsInternalv2ForgeCredentials API --> Call QuoteDetailsInternalv2 API --> Validate the response",
 
     "$GET_QUOTE_DETAILS_INTERNAL_v2_BASE_URL$": "https://quote-internal.ddws$ENV$.autodesk.com",

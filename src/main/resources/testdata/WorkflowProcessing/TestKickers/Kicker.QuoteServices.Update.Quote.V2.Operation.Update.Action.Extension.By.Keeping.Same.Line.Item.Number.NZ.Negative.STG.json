@@ -1,7 +1,7 @@
 {
   "$ROOT$": "./testdata/WorkflowProcessing/TestData",
   "$ENV$": "STG",
-  "$TEST_DISPLAY_NAME$": "QuoteServices-Updating-Quote-V2-Operation-Update-Action-Extension-By-Keeping-Same-Line-Item-Number-NZ-Negative",
+  "$TEST_DISPLAY_NAME$": "Updating-Quote-V2-Operation-Update-Action-Extension-By-Keeping-Same-Line-Item-Number-NZ-Negative",
   "$TEST_STEPS$": "Call QuoteUpdateOperationUpdateActionExtensionDuplicateLineItem API --> Validate the response",
   "$COUNTRY$": "NZ",
 

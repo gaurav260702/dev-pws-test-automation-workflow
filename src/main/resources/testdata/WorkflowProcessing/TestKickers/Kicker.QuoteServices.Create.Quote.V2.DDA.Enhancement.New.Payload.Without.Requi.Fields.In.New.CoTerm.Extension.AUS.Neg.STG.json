@@ -1,7 +1,7 @@
 {
   "$ROOT$": "./testdata/WorkflowProcessing/TestData",
   "$ENV$": "STG",
-  "$TEST_DISPLAY_NAME$": "QuoteServices-Creating-Quote-V2-DDA-Enhancement-New-Payload-Without-Requi-Fields-In-New-CoTerm-Extension-AUS-Neg",
+  "$TEST_DISPLAY_NAME$": "CreateQuote-V2-DDA-Enhancement-New-Payload-Without-Requi-Fields-In-New-CoTerm-Extension-AUS-Neg",
   "$TEST_STEPS$": "Call QuoteCreate API --> Validate the response",
 
   "$ROOT_NAME$": "QuoteServices",

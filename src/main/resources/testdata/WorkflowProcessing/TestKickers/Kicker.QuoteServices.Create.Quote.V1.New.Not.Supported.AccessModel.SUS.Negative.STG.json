@@ -1,7 +1,7 @@
 ﻿{
   "$ROOT$": "./testdata/WorkflowProcessing/TestData",
   "$ENV$": "STG",
-  "$TEST_DISPLAY_NAME$": "QuoteServices-Creating-Quote-V1-New-Not-Supported-AccessModel-SUS-Negative",
+  "$TEST_DISPLAY_NAME$": "Creating-Quote-V1-New-Not-Supported-AccessModel-SUS-Negative",
   "$TEST_STEPS$": "Call QuoteCreate API --> Validate the response",
 
   "$ROOT_NAME$": "QuoteServices",

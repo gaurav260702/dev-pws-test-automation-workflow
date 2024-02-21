@@ -1,7 +1,7 @@
 ﻿{
   "$ROOT$": "./testdata/WorkflowProcessing/TestData",
   "$ENV$": "STG",
-  "$TEST_DISPLAY_NAME$": "QuoteServices-for-BadTimezone",
+  "$TEST_DISPLAY_NAME$": "CreateQuote-BadTimezone",
   "$TEST_STEPS$": "Call QuoteCreate API --> Call QuoteStatus API --> Call QuoteDetails API --> Call QuoteFinalize API --> Call QuoteStatusByQuoteNumber API --> Validate the response",
 
   "$ROOT_NAME$": "QuoteServices.BadTimezone",
