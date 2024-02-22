@@ -2,7 +2,6 @@ package com.autodesk.pws.test.utilities;
 
 import java.util.Arrays;
 
-
 public class StringUtils 
 {
     public static String getLeft(String source, String match)

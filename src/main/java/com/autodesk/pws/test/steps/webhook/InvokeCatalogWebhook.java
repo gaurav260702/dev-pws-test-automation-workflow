@@ -57,8 +57,6 @@ public class InvokeCatalogWebhook extends PwsServiceBase
     @Override
     public void action()
     {
-
-
         String env = (DataPool.get("$ENV$").toString()).toLowerCase();
         System.out.println("env is "+ env);
 
