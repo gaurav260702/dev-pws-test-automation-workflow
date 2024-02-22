@@ -105,7 +105,7 @@ pipeline {
               try {
                 sh """
                 echo "vaultPath-${vaultPath}"
-                chmod 777 aws_auth 
+                chmod 777 aws_auth
                 bash aws_auth
                 echo ReadingFileInDocker
                 cat /root/.aws/credentials
@@ -134,7 +134,7 @@ pipeline {
                 echo "TEST-END"
                 if (paramsSelected) {
                 stage('Send Test Report') {
-                  sendReports(isMasterBranch) 
+                  sendReports(isMasterBranch)
                 }
                 } else {
                     echo "No params selected"
@@ -195,7 +195,7 @@ pipeline {
           }else{
             passCount = passCount + 1
           }
-          
+
           def SERVICE_NAME = configJson.$SERVICE_NAME$ ? configJson.$SERVICE_NAME$ : null
           def RESTAPI_CALL = JsonOutput.toJson(configJson.apiCalls)
           def API_RESPONSE = JsonOutput.toJson(configJson.responseChain)
@@ -210,7 +210,7 @@ pipeline {
           def COUNTRY = configJson.$COUNTRY$ ? configJson.$COUNTRY$ : null
           def TEST_DISPLAY_NAME = configJson.$TEST_DISPLAY_NAME$ ? configJson.$TEST_DISPLAY_NAME$ : TEST_NAME
           def TEST_STEPS = configJson.$TEST_STEPS$ ? configJson.$TEST_STEPS$ : null
-          
+
           def jsonData = [
             "GIT_BRANCH": env.GIT_BRANCH,
             "BUILD_NUMBER": env.BUILD_NUMBER,
@@ -230,8 +230,13 @@ pipeline {
           ]
           echo "${JsonOutput.toJson(jsonData)}"
 
+//           if(isMasterBranch) {
+//                       sh('curl -i -XPOST "https://calvinklein-7de56744.influxcloud.net:8086/write?db=k6&u=$INFLUX_DB_USERNAME&p=$INFLUX_DB_PASSWORD" --data-binary '+"""'automation_test_report,TEST_NAME=$TEST_NAME,ENV_NAME=$ENV_NAME,TEST_STATUS=$TEST_STATUS,BUILD=$env.GIT_BRANCH-$env.BUILD_NUMBER,SERVICE_NAME=$SERVICE_NAME,COUNTRY=$COUNTRY,TEST_DISPLAY_NAME=$TEST_DISPLAY_NAME value=1,$statusName=1,TEST_STEPS="${TEST_STEPS}",TRANSACTION_ID="${TRANSACTION_ID}",TOTAL_VALIDATIONS=$TOTAL_VALIDATIONS,PASS_VALIDATIONS=$PASS_VALIDATIONS,FAIL_VALIDATIONS=$FAIL_VALIDATIONS,API_RESPONSE="'''${API_RESPONSE}'''",API_EXP_RESPONSE="'''${API_EXP_RESPONSE}'''",RESTAPI_CALL="'''${RESTAPI_CALL}'''",VALIDATION_ERROR="'''${VALIDATION_ERROR}'''",VALIDATION_ERRORS="'''${VALIDATION_ERRORS}'''"'""")
+//                     } else {
+//                       echo "Skipping send test reports due to isMasterBranch=${isMasterBranch} "
+//                     }
           if(isMasterBranch) {
-            sh('curl -i -XPOST "https://calvinklein-7de56744.influxcloud.net:8086/write?db=k6&u=$INFLUX_DB_USERNAME&p=$INFLUX_DB_PASSWORD" --data-binary '+"""'dev_automation_test_report,TEST_NAME=$TEST_NAME,ENV_NAME=$ENV_NAME,TEST_STATUS=$TEST_STATUS,BUILD=$env.GIT_BRANCH-$env.BUILD_NUMBER,SERVICE_NAME=$SERVICE_NAME,COUNTRY=$COUNTRY,TEST_DISPLAY_NAME=$TEST_DISPLAY_NAME value=1,TEST_STEPS=$TEST_STEPS,$statusName=1,TRANSACTION_ID="${TRANSACTION_ID}",TOTAL_VALIDATIONS=$TOTAL_VALIDATIONS,PASS_VALIDATIONS=$PASS_VALIDATIONS,FAIL_VALIDATIONS=$FAIL_VALIDATIONS,API_RESPONSE="'''${API_RESPONSE}'''",API_EXP_RESPONSE="'''${API_EXP_RESPONSE}'''",RESTAPI_CALL="'''${RESTAPI_CALL}'''",VALIDATION_ERROR="'''${VALIDATION_ERROR}'''",VALIDATION_ERRORS="'''${VALIDATION_ERRORS}'''"'""")
+            sh('curl -i -XPOST "https://calvinklein-7de56744.influxcloud.net:8086/write?db=k6&u=$INFLUX_DB_USERNAME&p=$INFLUX_DB_PASSWORD" --data-binary '+"""'dev_automation_test_report,TEST_NAME=$TEST_NAME,ENV_NAME=$ENV_NAME,TEST_STATUS=$TEST_STATUS,BUILD=$env.GIT_BRANCH-$env.BUILD_NUMBER,SERVICE_NAME=$SERVICE_NAME,COUNTRY=$COUNTRY,TEST_DISPLAY_NAME=$TEST_DISPLAY_NAME value=1,$statusName=1,TEST_STEPS="${TEST_STEPS}",TRANSACTION_ID="${TRANSACTION_ID}",TOTAL_VALIDATIONS=$TOTAL_VALIDATIONS,PASS_VALIDATIONS=$PASS_VALIDATIONS,FAIL_VALIDATIONS=$FAIL_VALIDATIONS,API_RESPONSE="'''${API_RESPONSE}'''",API_EXP_RESPONSE="'''${API_EXP_RESPONSE}'''",RESTAPI_CALL="'''${RESTAPI_CALL}'''",VALIDATION_ERROR="'''${VALIDATION_ERROR}'''",VALIDATION_ERRORS="'''${VALIDATION_ERRORS}'''"'""")
           } else {
             echo "Skipping send test reports due to isMasterBranch=${isMasterBranch} "
           }
