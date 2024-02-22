@@ -131,6 +131,12 @@
 			<artifactId>aws-java-sdk-dynamodb</artifactId>
 			<version>1.12.156</version> <!-- Replace with the latest version available -->
 		</dependency>
+		<dependency>
+			<groupId>software.amazon.awssdk</groupId>
+			<artifactId>sts</artifactId>
+			<version>2.16.24</version>
+			<scope>test</scope>
+		</dependency>
 	</dependencies>
 	<dependencyManagement>
 		<dependencies>
@@ -155,12 +161,6 @@
 				<type>pom</type>
 				<scope>import</scope>
 			</dependency>
-			</dependency>
-		<dependency>
-			<groupId>org.influxdb</groupId>
-			<artifactId>influxdb-java</artifactId>
-			<version></version>
-		</dependency>
 		</dependencies>
 	</dependencyManagement>
 	<build>
