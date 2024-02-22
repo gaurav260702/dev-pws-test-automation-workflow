@@ -1,0 +1,42 @@
+{
+  "QuoteDetailsV2New": {
+    "quoteExpirationDate": "*",
+    "timeZone": "*",
+    "opportunityNumber": "A-20451953",
+    "quoteNumber": "*",
+    "quoteStatus": "Draft",
+    "quoteCreatedTime": "*"
+  },
+  "QuoteUpdateOperationUpdateDDAQuotedStatus": {
+    "transactionId": "*",
+    "errors": [
+      {
+        "code": "45503",
+        "message": "Quotes can only be edited before they are sent to a customer."
+      },
+      {
+        "code": "45012",
+        "message": "You are referring an opportunity which has deal discount approval.This change is not allowed."
+      }
+    ],
+    "status": "error"
+  },
+  "QuoteFinalizeV2New": {
+    "quoteNumber": "*",
+    "status": "FINALIZING"
+  },
+  "QuoteStatus": {
+    "quoteStatus": "DRAFT-CREATED",
+    "quoteNumber": "*",
+    "transactionId": "*"
+  },
+  "QuoteStatusByQuoteNumber": {
+    "quoteStatus": "QUOTED",
+    "quoteNumber": "*",
+    "transactionId": "*"
+  },
+  "QuoteCreate": {
+    "message": "success",
+    "transactionId": "*"
+  }
+}

@@ -11,6 +11,7 @@
         "addressLine1": "20 Lucca St",
         "city": "Perth",
         "countryCode": "AU",
+        "stateProvinceCode": "WA",
         "isIndividual": true,
         "postalCode": "6027"
     },

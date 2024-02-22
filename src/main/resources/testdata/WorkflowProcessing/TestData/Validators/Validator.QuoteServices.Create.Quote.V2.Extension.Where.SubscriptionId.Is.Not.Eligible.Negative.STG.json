@@ -5,8 +5,16 @@
     "transactionId": "*",
     "errors": [
       {
-        "code": "45058",
-        "message": "Subscription 69620920691769 is not eligible to perform this action for line item 1"
+        "code": "45035",
+        "message": "The customer details for Subscription ID 69620920691769 do not match the quote. Update the customer details on the quote or search for another subscription to continue."
+      },
+      {
+        "code": "45200",
+        "message": "Customer details for Subscription ID 69620920691769 do not match the quote. Update the customer details on the quote or search for another subscription ID."
+      },
+      {
+        "code": "45059",
+        "message": "Subscription ID 69620920691769 is not eligible for this action. Search for another Subscription to continue."
       }
     ]
   },

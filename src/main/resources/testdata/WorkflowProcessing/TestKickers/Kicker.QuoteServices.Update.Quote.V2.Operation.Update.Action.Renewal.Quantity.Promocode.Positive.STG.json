@@ -1,6 +1,8 @@
 ﻿{
   "$ROOT$": "./testdata/WorkflowProcessing/TestData",
   "$ENV$": "STG",
+  "$TEST_DISPLAY_NAME$": "Updating-Quote-V2-Operation-Update-Action-Renewal-Quantity-Promocode-Positive",
+  "$TEST_STEPS$": "Call QuoteCreate API --> Call QuoteStatus API --> Call QuoteDetailsV2New API --> Call QuoteUpdateOperationUpdateActionRenewal API -->  Validate the response",
 
   "$ROOT_NAME$": "QuoteServices",
   "$VARIATION_COUNT$": "Update.Quote.V2.Operation.Update.Action.Renewal.Quantity.Promocode.Positive",
@@ -37,6 +39,7 @@
   "$CITY$": "Kambah",
   "$POSTAL_CODE$": "2902",
   "$COUNTRY$": "AU",
+  "$QUANTITY$": 1,
 
   "includeForceableHeaders": "true",
   "forceableHeaders":

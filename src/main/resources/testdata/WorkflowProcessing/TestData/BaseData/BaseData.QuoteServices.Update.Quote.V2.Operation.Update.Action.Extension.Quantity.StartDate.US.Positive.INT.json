@@ -1,0 +1,27 @@
+{
+    "quoteNote": "SM_Notefrom_Agenttocustomer.{{note}}",
+    "currency": "USD",
+    "agentAccount": {
+        "accountCsn": "5109330358"
+    },
+    "agentContact": {
+        "email": "partneruser_da_int_5109330358@letscheck.email"
+    },
+    "purchaser": {
+        "email": "biz-LyIwrwJKsbb@letscheck.pw",
+        "firstName": "FNLyIwrwJKsbb",
+        "lastName": "LNLyIwrwJKsbb",
+        "phone": "9916800100",
+        "preferredLanguage": "en"
+    },
+    "endCustomer": {
+        "accountCsn": "5502539718"
+    },
+    "lineItems": [
+        {
+            "action": "Extension",
+            "subscriptionId": "70663210811664",
+            "endDate": "2024-11-15"
+        }
+    ]
+}

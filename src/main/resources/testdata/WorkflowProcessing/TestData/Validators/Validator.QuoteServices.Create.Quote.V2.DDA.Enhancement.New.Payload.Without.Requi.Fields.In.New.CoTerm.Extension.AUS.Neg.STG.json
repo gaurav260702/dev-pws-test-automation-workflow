@@ -1,0 +1,36 @@
+{
+  "QuoteCreate": {
+    "transactionId": "*",
+    "errors": [
+      {
+        "code": "45001",
+        "message": "\u0027lineItems[0].referenceSubscriptionId\u0027 is required"
+      },
+      {
+        "code": "45001",
+        "message": "\u0027lineItems[0].startDate\u0027 is required"
+      },
+      {
+        "code": "45001",
+        "message": "\u0027lineItems[0].opportunityLineItemId\u0027 is required"
+      },
+      {
+        "code": "45001",
+        "message": "\u0027lineItems[1].quantity\u0027 is required"
+      },
+      {
+        "code": "45001",
+        "message": "\u0027lineItems[1].opportunityLineItemId\u0027 is required"
+      },
+      {
+        "code": "45001",
+        "message": "\u0027lineItems[2].endDate\u0027 is required"
+      },
+      {
+        "code": "45001",
+        "message": "\u0027lineItems[2].opportunityLineItemId\u0027 is required"
+      }
+    ],
+    "status": "error"
+  }
+}

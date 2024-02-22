@@ -1,7 +1,7 @@
 {
-    "quoteNote": "Notefromagenttocustomer2",
+    "quoteNote": "Notefromagenttocustomer2.{{note}}",
     "currency": "AUD",
-    "opportunityNumber": "A-14318598",
+    "opportunityNumber": "A-14318599",
     "agentAccount": {
         "accountCsn": "5112991506"
     },

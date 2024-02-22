@@ -1,0 +1,12 @@
+{
+  "QuoteUpdateOperationUpdateActionExtensionUpdatingStartDate": {
+    "transactionId": "*",
+    "errors": [
+      {
+        "code": "45501",
+        "message": "\u0027lineItems[0].startDate\u0027 is not allowed"
+      }
+    ],
+    "status": "error"
+  }
+}

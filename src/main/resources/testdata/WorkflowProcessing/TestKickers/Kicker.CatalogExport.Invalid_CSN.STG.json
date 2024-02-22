@@ -1,8 +1,9 @@
 ﻿{
   "$ROOT$": "./testdata/WorkflowProcessing/TestData",
   "$ENV$": "STG",
-  "$TEST_DISPLAY_NAME$": "Validate-CatalogExport-with-Invalid-CSN",
-  "$TEST_STEPS$": "Call GET CatalogExport API ---> Validate the response",
+  "$TEST_DISPLAY_NAME$": "CatalogExport-InvalidCSN",
+  "$TEST_STEPS$": "Call GetCatalogDetails API --> Validate the response",
+  "$COUNTRY$": "AU",
 
   "$QUANTITY_TO_PURCHASE$": "5000",
   "$ROOT_NAME$": "CatalogExport.Invalid_CSN",

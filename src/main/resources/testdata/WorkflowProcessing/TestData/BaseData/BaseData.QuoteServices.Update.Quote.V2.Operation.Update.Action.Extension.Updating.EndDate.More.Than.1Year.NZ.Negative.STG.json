@@ -1,0 +1,27 @@
+{
+  "quoteNote": "Notefromagenttocustomer2.{{note}}",
+  "currency": "NZD",
+  "agentAccount": {
+    "accountCsn": "5502750395"
+  },
+  "agentContact": {
+    "email": "usercontactnz@letscheck.email"
+  },
+  "endCustomer": {
+    "accountCsn": "5502768900"
+  },
+  "purchaser": {
+    "email": "biz-thubstorenzqxvqsufcquji@letscheck.pw",
+    "firstName": "Sunny",
+    "lastName": "Gopin",
+    "phone": "+4154776666",
+    "preferredLanguage": "en"
+  },
+  "lineItems": [
+    {
+      "action": "Extension",
+      "endDate": "2024-02-28",
+      "subscriptionId": "70084847653428"
+    }
+  ]
+}

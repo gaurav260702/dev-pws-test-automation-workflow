@@ -1,6 +1,9 @@
 ﻿{
   "$ROOT$": "./testdata/WorkflowProcessing/TestData",
   "$ENV$": "INT",
+  "$TEST_DISPLAY_NAME$": "Validate-PromotionsNotificationWebhook-ValidCSN",
+  "$TEST_STEPS$": "Call InvokePromotionsWebhook API --> Validate the response",
+  "$COUNTRY$": "AU",
 
   "$QUANTITY_TO_PURCHASE$": "5000",
   "$ROOT_NAME$": "PromotionsNotificationWebhook.Valid",

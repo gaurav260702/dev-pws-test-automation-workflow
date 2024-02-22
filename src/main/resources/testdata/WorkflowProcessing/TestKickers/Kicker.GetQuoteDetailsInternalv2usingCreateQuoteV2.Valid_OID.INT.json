@@ -1,7 +1,10 @@
   {
     "$ROOT$": "./testdata/WorkflowProcessing/TestData",
     "$ENV$": "int",
-    "$GET_QUOTE_DETAILS_INTERNAL_v2_BASE_URL$": "https://quote-internal.ddws$ENV$.autodesk.com",
+      "$TEST_DISPLAY_NAME$": "GetQuoteDetailsInternalv2usingCreateQuoteV2-Valid-OID",
+      "$TEST_STEPS$": "Call QuoteCreate API --> Call GetQuoteDetailsInternalv2ForgeCredentials API --> Call QuoteDetailsInternalv2 API -->  Validate the response",
+
+      "$GET_QUOTE_DETAILS_INTERNAL_v2_BASE_URL$": "https://quote-internal.ddws$ENV$.autodesk.com",
     "$CREATE_QUOTE_BASE_URL$": "https://enterprise-api-$ENV$.autodesk.com/",
     "$SERVICE_NAME$": "GetQuoteDetailsInternalv2",
     

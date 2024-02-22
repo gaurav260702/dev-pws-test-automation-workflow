@@ -1,6 +1,8 @@
 ﻿{
   "$ROOT$": "./testdata/WorkflowProcessing/TestData",
   "$ENV$": "STG",
+  "$TEST_DISPLAY_NAME$": "Cancelling-Quote-For-Already-Deleted-Quote-Negative",
+  "$TEST_STEPS$": "Call QuoteCreate API --> Call QuoteStatus API --> Call QuoteDetails API --> Call QuoteFinalize API --> Call QuoteStatusByQuoteNumber API --> Call QuoteCancelForDeleteQuote API --> Validate the response",
 
   "$ROOT_NAME$": "QuoteServices",
   "$VARIATION_COUNT$": "Cancel.Quote.For.Already.Deleted.Quote.Negative",

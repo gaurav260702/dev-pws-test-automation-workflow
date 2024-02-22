@@ -1,6 +1,8 @@
 ﻿{
   "$ROOT$": "./testdata/WorkflowProcessing/TestData",
   "$ENV$": "STG",
+  "$TEST_DISPLAY_NAME$": "Updating-Quote-V2-Operation-Update-Action-Extension-EndDate-Promocode-Positive",
+  "$TEST_STEPS$": "Call QuoteCreate API --> Call QuoteStatus API --> Call QuoteDetailsV2New API --> Call QuoteUpdateOperationUpdateActionExtension API -->  Validate the response",
 
   "$ROOT_NAME$": "QuoteServices",
   "$VARIATION_COUNT$": "Update.Quote.V2.Operation.Update.Action.Extension.EndDate.Promocode.Positive",
@@ -32,6 +34,7 @@
 
   "$TIMEZONE_CITY$": "Australia/Sydney",
   "$CURRENCY$": "AUD",
+  "$END_DATE$": "2024-10-15",
 
   "$ADDRESS1$": "60 Jenke Cct",
   "$CITY$": "Kambah",

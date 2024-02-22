@@ -20,7 +20,7 @@
     "lineItems": [
         {
             "quantity": 1,
-            "offeringId": "OD-000021",
+            "offeringId": "OD-000171",
             "action": "New",
             "startDate":"[[Date(1)]]",
             "offer": {

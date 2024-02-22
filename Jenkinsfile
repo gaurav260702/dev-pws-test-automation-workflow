@@ -1,6 +1,8 @@
 import groovy.json.JsonSlurper;
 import groovy.json.JsonOutput;
 
+@Library(["PSL@master","TestAutomationUtils@master"]) _
+
 def dockerReg = "autodesk-docker.art-bobcat.autodesk.com/team-pws"
 
 def dockerTestImage = "autodesk-docker.art-bobcat.autodesk.com/team-pws/test-automation:latest"
@@ -18,13 +20,14 @@ def vaultPath = null
 def allTests = [
   Webhook_Notify_INT: [path: "testdata/WorkflowProcessing/KickerSuites/KickerSuite.NotificationWebhook.INT.json"],
   Webhook_Notify_STG: [path: "testdata/WorkflowProcessing/KickerSuites/KickerSuite.NotificationWebhook.STG.json"],
-  QuoteServices_V2_INT: [path: "testdata/WorkflowProcessing/KickerSuites/KickerSuite.QuoteServices.Create.Update.Quote.V2.INT.json"],
+  QuoteServices_V2_AUS_INT: [path: "testdata/WorkflowProcessing/KickerSuites/KickerSuite.QuoteServices.Create.Update.Quote.V2.AUS.INT.json"],
   QuoteServices_V2_NZ_INT: [path: "testdata/WorkflowProcessing/KickerSuites/KickerSuite.QuoteServices.Create.Update.Quote.V2.NZ.INT.json"],
+  QuoteServices_V2_US_INT: [path: "testdata/WorkflowProcessing/KickerSuites/KickerSuite.QuoteServices.Create.Update.Quote.V2.US.INT.json"],
   QuoteServices_V2_NZ_STG: [path: "testdata/WorkflowProcessing/KickerSuites/KickerSuite.QuoteServices.Create.Update.Quote.V2.NZ.STG.json"],
-  QuoteServices_V2_STG: [path: "testdata/WorkflowProcessing/KickerSuites/KickerSuite.QuoteServices.Create.Update.Quote.V2.STG.json"],
+  QuoteServices_V2_AUS_STG: [path: "testdata/WorkflowProcessing/KickerSuites/KickerSuite.QuoteServices.Create.Update.Quote.V2.AUS.STG.json"],
   QuoteNotifyWebhook_INT: [path: "testdata/WorkflowProcessing/KickerSuites/KickerSuite.QuoteNotificationWebhook.INT.json"],
-  QuoteServices_STG: [path: "testdata/WorkflowProcessing/KickerSuites/KickerSuite.QuoteServices.STG.json"],
-  QuoteServices_INT: [path: "testdata/WorkflowProcessing/KickerSuites/KickerSuite.QuoteServices.INT.json"],
+  QuoteServices_V1_AUS_STG: [path: "testdata/WorkflowProcessing/KickerSuites/KickerSuite.QuoteServices.V1.AUS.STG.json"],
+  QuoteServices_V1_AUS_INT: [path: "testdata/WorkflowProcessing/KickerSuites/KickerSuite.QuoteServices.V1.AUS.INT.json"],
   GetQuoteDetailsInternalv2_INT: [path: "testdata/WorkflowProcessing/KickerSuites/KickerSuite.ServicesQuote.GetQuoteDetailsInternalv2.INT.json"],
   CatalogExport_INT: [path: "testdata/WorkflowProcessing/KickerSuites/KickerSuite.CatalogExport.INT.json"],
   PromotionsExport_INT: [path: "testdata/WorkflowProcessing/KickerSuites/KickerSuite.PromotionsExport.INT.json"]
@@ -39,11 +42,12 @@ pipeline {
         choices: 'INT\nSTG',
         description: 'Select Environment(INT/STG)'
     )
-    booleanParam(name: 'QuoteServices_STG', description: 'Run QuoteServices Tests in STG', defaultValue: false)
-    booleanParam(name: 'QuoteServices_INT', description: 'Run QuoteServices Tests in INT', defaultValue: false)
-    booleanParam(name: 'QuoteServices_V2_STG', description: 'Run QuoteServices V2 Tests in STG', defaultValue: false)
-    booleanParam(name: 'QuoteServices_V2_INT', description: 'Run QuoteServices V2 Tests in INT', defaultValue: false)
+    booleanParam(name: 'QuoteServices_V1_AUS_STG', description: 'Run QuoteServices Tests in STG', defaultValue: false)
+    booleanParam(name: 'QuoteServices_V1_AUS_INT', description: 'Run QuoteServices Tests in INT', defaultValue: false)
+    booleanParam(name: 'QuoteServices_V2_AUS_STG', description: 'Run QuoteServices V2 Tests in STG', defaultValue: false)
+    booleanParam(name: 'QuoteServices_V2_AUS_INT', description: 'Run QuoteServices V2 Tests in INT', defaultValue: false)
     booleanParam(name: 'QuoteServices_V2_NZ_INT', description: 'Run QuoteServices V2 Tests for NZ in INT', defaultValue: false)
+    booleanParam(name: 'QuoteServices_V2_US_INT', description: 'Run QuoteServices V2 Tests for US in INT', defaultValue: false)
     booleanParam(name: 'QuoteServices_V2_NZ_STG', description: 'Run QuoteServices V2 Tests for NZ in STG', defaultValue: false)
     booleanParam(name: 'GetQuoteDetailsInternalv2_INT', description: 'RUN GetQuoteDetailsInternalv2 Tests in INT', defaultValue: false)
     booleanParam(name: 'CatalogExport_INT', description: 'RUN CatalogExport Tests in INT', defaultValue: false)
@@ -55,10 +59,10 @@ pipeline {
   triggers {
     parameterizedCron(env.BRANCH_NAME == 'master' ? '''
         # run INT tests everyday at 5 AM PST
-        0 5 * * * % Environment=INT;QuoteServices_INT=true;QuoteServices_V2_INT=true;QuoteServices_V2_NZ_INT=true;GetQuoteDetailsInternalv2_INT=true;
+        0 5 * * * % Environment=INT;QuoteServices_V1_AUS_INT=true;QuoteServices_V2_AUS_INT=true;QuoteServices_V2_NZ_INT=true;QuoteServices_V2_US_INT=true;GetQuoteDetailsInternalv2_INT=true;
         
         # run STG tests everyday at 5 AM PST
-        0 5 * * * % Environment=STG;QuoteServices_STG=true;QuoteServices_V2_STG=true;QuoteServices_V2_NZ_STG=true;
+        0 5 * * * % Environment=STG;QuoteServices_V1_AUS_STG=true;QuoteServices_V2_AUS_STG=true;QuoteServices_V2_NZ_STG=true;
     ''' : '')
     }
     options {
@@ -174,8 +178,8 @@ pipeline {
          chmod -R 777 /tmp/reports/
          """
 
-        // zip zipFile: "PWSQuoteServices-reports.zip", dir: "test-reports"
-        // UploadTestResults("PWSQuoteServices-reports.zip","JSON_LOG","PJPWS-42548", "${env.GIT_URL}".tokenize('/.')[-2], env.BRANCH_NAME, env.BUILD_NUMBER,"PJPWS")
+        zip zipFile: "PWSQuoteServices-reports.zip", dir: "test-reports"
+        UploadTestResults("PWSQuoteServices-reports.zip","JSON_LOG","PJPWS-42548", "${env.GIT_URL}".tokenize('/.')[-2], env.BRANCH_NAME, env.BUILD_NUMBER,"PJPWS")
 
         files.each {
           f ->
@@ -204,9 +208,9 @@ pipeline {
           def VALIDATION_ERROR = configJson.validationError ? JsonOutput.toJson(configJson.validationError) : null
           def VALIDATION_ERRORS = configJson.validationErrorsList ? JsonOutput.toJson(configJson.validationErrorsList) : null
           def COUNTRY = configJson.$COUNTRY$ ? configJson.$COUNTRY$ : null
-          def TEST_DISPLAY_NAME = configJson.$TEST_DISPLAY_NAME$ ? configJson.$TEST_DISPLAY_NAME$ : null
+          def TEST_DISPLAY_NAME = configJson.$TEST_DISPLAY_NAME$ ? configJson.$TEST_DISPLAY_NAME$ : TEST_NAME
           def TEST_STEPS = configJson.$TEST_STEPS$ ? configJson.$TEST_STEPS$ : null
-
+          
           def jsonData = [
             "GIT_BRANCH": env.GIT_BRANCH,
             "BUILD_NUMBER": env.BUILD_NUMBER,
@@ -227,7 +231,7 @@ pipeline {
           echo "${JsonOutput.toJson(jsonData)}"
 
           if(isMasterBranch) {
-             sh('curl -i -XPOST "https://calvinklein-7de56744.influxcloud.net:8086/write?db=k6&u=$INFLUX_DB_USERNAME&p=$INFLUX_DB_PASSWORD" --data-binary '+"""'dev_automation_test_report,TEST_NAME=$TEST_NAME,ENV_NAME=$ENV_NAME,TEST_STATUS=$TEST_STATUS,BUILD=$env.GIT_BRANCH-$env.BUILD_NUMBER,SERVICE_NAME=$SERVICE_NAME,COUNTRY=$COUNTRY,TEST_DISPLAY_NAME=$TEST_DISPLAY_NAME value=1,TEST_STEPS=$TEST_STEPS,$statusName=1,TRANSACTION_ID="${TRANSACTION_ID}",TOTAL_VALIDATIONS=$TOTAL_VALIDATIONS,PASS_VALIDATIONS=$PASS_VALIDATIONS,FAIL_VALIDATIONS=$FAIL_VALIDATIONS,API_RESPONSE="'''${API_RESPONSE}'''",API_EXP_RESPONSE="'''${API_EXP_RESPONSE}'''",RESTAPI_CALL="'''${RESTAPI_CALL}'''",VALIDATION_ERROR="'''${VALIDATION_ERROR}'''",VALIDATION_ERRORS="'''${VALIDATION_ERRORS}'''"'""")
+            sh('curl -i -XPOST "https://calvinklein-7de56744.influxcloud.net:8086/write?db=k6&u=$INFLUX_DB_USERNAME&p=$INFLUX_DB_PASSWORD" --data-binary '+"""'automation_test_report,TEST_NAME=$TEST_NAME,ENV_NAME=$ENV_NAME,TEST_STATUS=$TEST_STATUS,BUILD=$env.GIT_BRANCH-$env.BUILD_NUMBER,SERVICE_NAME=$SERVICE_NAME,COUNTRY=$COUNTRY,TEST_DISPLAY_NAME=$TEST_DISPLAY_NAME value=1,TEST_STEPS=$TEST_STEPS,$statusName=1,TRANSACTION_ID="${TRANSACTION_ID}",TOTAL_VALIDATIONS=$TOTAL_VALIDATIONS,PASS_VALIDATIONS=$PASS_VALIDATIONS,FAIL_VALIDATIONS=$FAIL_VALIDATIONS,API_RESPONSE="'''${API_RESPONSE}'''",API_EXP_RESPONSE="'''${API_EXP_RESPONSE}'''",RESTAPI_CALL="'''${RESTAPI_CALL}'''",VALIDATION_ERROR="'''${VALIDATION_ERROR}'''",VALIDATION_ERRORS="'''${VALIDATION_ERRORS}'''"'""")
           } else {
             echo "Skipping send test reports due to isMasterBranch=${isMasterBranch} "
           }

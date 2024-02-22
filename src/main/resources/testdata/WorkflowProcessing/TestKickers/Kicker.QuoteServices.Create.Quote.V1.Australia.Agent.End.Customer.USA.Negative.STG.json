@@ -1,6 +1,8 @@
 ﻿{
   "$ROOT$": "./testdata/WorkflowProcessing/TestData",
   "$ENV$": "STG",
+  "$TEST_DISPLAY_NAME$": "Creating-Quote-V1-Australia-Agent-End-Customer-USA-Negative",
+  "$TEST_STEPS$": "Call QuoteCreate API --> Call QuoteStatusFAILED API --> Validate the response",
 
   "$ROOT_NAME$": "QuoteServices",
   "$VARIATION_COUNT$": "Create.Quote.V1.Australia.Agent.End.Customer.USA.Negative",

@@ -17,7 +17,7 @@
     "agentAccount.accountCsn": "$CSN_ACCOUNT_CONTACT$"
   },
   "QuoteUpdateOperationInsertActionTrueUpNZ": {
-    "agentTimeZone": "*",
+    "timeZone": "*",
     "quoteNumber": "$QUOTE_NUMBER$",
     "quoteStatus": "Draft",
     "quoteCreatedTime": "*",

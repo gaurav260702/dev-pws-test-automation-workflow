@@ -1,0 +1,69 @@
+{
+  "quoteNote": "SM_Notefrom_Agenttocustomer4.{{note}}",
+  "currency": "AUD",
+  "agentAccount": {
+    "accountCsn": "5070132993"
+  },
+  "agentContact": {
+    "email": "partneruser_da_stg_5070132993_2@letscheck.email"
+  },
+  "endCustomer": {
+    "addressLine1": "77 Jenke Cct",
+    "city": "Kambah",
+    "countryCode": "AU",
+    "isIndividual": false,
+    "name": "VIRU Designs Ltd",
+    "postalCode": "2902",
+    "stateProvinceCode": "WA"
+  },
+  "purchaser": {
+    "email": "been166628836921@letscheck.pw",
+    "firstName": "PWS_VicMCAD",
+    "lastName": "User1",
+    "phone": "614151119988",
+    "preferredLanguage": "en"
+  },
+  "additionalRecipients": [
+    {
+      "email": "test1@letscheck.pw"
+    },
+    {
+      "email": "test2@letscheck.pw"
+    },
+    {
+      "email": "test2@letscheck.pw"
+    },
+    {
+      "email": "test4@letscheck.pw"
+    }
+  ],
+  "lineItems": [
+    {
+      "offeringId": "OD-000002",
+      "action": "New",
+      "quantity": 1,
+      "offer": {
+        "term": {
+          "code": "A01",
+          "description": "Annual"
+        },
+        "accessModel": {
+          "code": "S",
+          "description": "Single User"
+        },
+        "intendedUsage": {
+          "code": "COM",
+          "description": "Commercial"
+        },
+        "connectivity": {
+          "code": "C100",
+          "description": "Online"
+        },
+        "servicePlan": {
+          "code": "STND",
+          "description": "Standard"
+        }
+      }
+    }
+  ]
+}

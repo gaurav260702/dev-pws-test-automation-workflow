@@ -1,0 +1,12 @@
+{
+  "QuoteUpdateOperationUpdateActionNewPromoNeg": {
+    "transactionId": "*",
+    "errors": [
+      {
+        "code": "45103",
+        "message": "Line 1 Promotion code MGLTAAA was not accepted. Try a different code or clear the field to continue."
+      }
+    ],
+    "status": "error"
+  }
+}

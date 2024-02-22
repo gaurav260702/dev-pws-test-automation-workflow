@@ -1,0 +1,12 @@
+{
+  "QuoteCreate": {
+    "transactionId": "*",
+    "errors": [
+      {
+        "code": "45001",
+        "message": "additionalRecipients email(s) domain is not matching with Purchaser email domain"
+      }
+    ],
+    "status": "error"
+  }
+}

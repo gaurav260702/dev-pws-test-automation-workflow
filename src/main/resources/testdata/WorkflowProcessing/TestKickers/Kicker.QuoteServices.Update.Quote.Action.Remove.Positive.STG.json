@@ -1,6 +1,8 @@
 ﻿{
   "$ROOT$": "./testdata/WorkflowProcessing/TestData",
   "$ENV$": "STG",
+  "$TEST_DISPLAY_NAME$": "Updating-Quote-Action-Remove-Positive",
+  "$TEST_STEPS$": "Call QuoteUpdateActionRemoveSTGPositive API --> Validate the response",
 
   "$ROOT_NAME$": "QuoteServices",
   "$VARIATION_COUNT$": "Update.Quote.Action.Remove.Positive",

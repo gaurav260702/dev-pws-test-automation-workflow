@@ -1,6 +1,8 @@
 ﻿{
   "$ROOT$": "./testdata/WorkflowProcessing/TestData",
   "$ENV$": "INT",
+  "$TEST_DISPLAY_NAME$": "Resending-Quote-Email-for-AusAddress-WithState.4",
+  "$TEST_STEPS$": "Call QuoteCreate API --> Call QuoteStatus API --> Call QuoteDetails API --> Call QuoteFinalize API --> Call QuoteStatusByQuoteNumber API --> Call QuoteResendEmail API --> Validate the response",
 
   "$ROOT_NAME$": "QuoteServices.AusAddress",
   "$VARIATION_COUNT$": "WithState.4.Resend.Quote.Email",

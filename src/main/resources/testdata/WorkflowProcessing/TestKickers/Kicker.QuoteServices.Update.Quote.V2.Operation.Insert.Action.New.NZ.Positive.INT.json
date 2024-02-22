@@ -1,6 +1,8 @@
 ﻿{
   "$ROOT$": "./testdata/WorkflowProcessing/TestData",
   "$ENV$": "INT",
+  "$TEST_DISPLAY_NAME$": "Updating-Quote-V2-Operation-Insert-Action-New-NZ-Positive",
+  "$TEST_STEPS$": "Call QuoteCreate API --> Call QuoteStatus API --> Call QuoteDetailsV2New API --> Call QuoteUpdateOperationInsertActionNew API --> Validate the response",
 
   "$ROOT_NAME$": "QuoteServices",
   "$VARIATION_COUNT$": "Update.Quote.V2.Operation.Insert.Action.New.NZ.Positive",
@@ -32,6 +34,8 @@
 
   "$TIMEZONE_CITY$": "Australia/Sydney",
   "$CURRENCY$": "AUD",
+  "$SERVICE_PLAN_CODE$": "STND",
+  "$SERVICE_PLAN_DESCRIPTION$": "Standard",
 
   "$ADDRESS1$": "60 Jenke Cct",
   "$CITY$": "Kambah",

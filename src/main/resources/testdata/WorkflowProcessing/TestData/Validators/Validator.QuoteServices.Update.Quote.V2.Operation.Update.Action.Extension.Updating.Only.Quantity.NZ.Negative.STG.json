@@ -1,0 +1,33 @@
+{
+  "QuoteStatus": {
+    "quoteStatus": "DRAFT-CREATED",
+    "quoteNumber": "$QUOTE_NUMBER$",
+    "transactionId": "*"
+  },
+  "QuoteCreate": {
+    "message": "success",
+    "transactionId": "*"
+  },
+  "QuoteDetailsV2New": {
+    "agentTimeZone": "*",
+    "quoteNumber": "$QUOTE_NUMBER$",
+    "quoteStatus": "Draft",
+    "quoteCreatedTime": "*",
+    "pricing.currency": "NZD",
+    "agentAccount.accountCsn": "$CSN_ACCOUNT_CONTACT$"
+  },
+  "QuoteUpdateOperationUpdateActionExtensionQuantityRenewal": {
+    "transactionId": "*",
+    "errors": [
+      {
+        "code": "45501",
+        "message": "\u0027lineItems[0].quantity\u0027 is not allowed"
+      },
+      {
+        "code": "45501",
+        "message": "\u0027lineItems[0]\u0027 must contain at least one of [referenceSubscriptionId, endDate]"
+      }
+    ],
+    "status": "error"
+  }
+}

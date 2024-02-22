@@ -1,0 +1,12 @@
+{
+  "QuoteCreate": {
+    "transactionId": "*",
+    "errors": [
+      {
+        "code": "45001",
+        "message": "\u0027additionalRecipients[2]\u0027 contains a duplicate value"
+      }
+    ],
+    "status": "error"
+  }
+}

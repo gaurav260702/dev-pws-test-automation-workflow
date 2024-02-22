@@ -1,0 +1,12 @@
+{
+  "QuoteUpdateOperationUpdateActionExtensionDuplicateLineItem": {
+    "transactionId": "*",
+    "errors": [
+      {
+        "code": "45527",
+        "message": "The request body contains a duplicate reference to quote line item number QL-1339232"
+      }
+    ],
+    "status": "error"
+  }
+}

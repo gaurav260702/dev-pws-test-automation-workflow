@@ -1,6 +1,9 @@
   {
     "$ROOT$": "./testdata/WorkflowProcessing/TestData",
-    "$ENV$": "int",
+      "$TEST_DISPLAY_NAME$": "GetQuoteDetailsInternalv2usingCreateQuoteV2-Valid-CSN",
+      "$TEST_STEPS$": "Call QuoteCreate API --> Call GetQuoteDetailsInternalv2ForgeCredentials API --> Call QuoteDetailsInternalv2 API -->  Validate the response",
+
+      "$ENV$": "int",
     "$GET_QUOTE_DETAILS_INTERNAL_v2_BASE_URL$": "https://quote-internal.ddws$ENV$.autodesk.com",
     "$CREATE_QUOTE_BASE_URL$": "https://enterprise-api-$ENV$.autodesk.com/",
     "$SERVICE_NAME$": "GetQuoteDetailsInternalv2",

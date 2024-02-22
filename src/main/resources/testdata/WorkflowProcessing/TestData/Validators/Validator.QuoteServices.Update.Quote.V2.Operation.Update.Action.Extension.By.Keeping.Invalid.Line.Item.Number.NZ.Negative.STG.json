@@ -1,0 +1,12 @@
+{
+  "QuoteUpdateOperationUpdateActionExtensionInvalidLineItem": {
+    "transactionId": "*",
+    "errors": [
+      {
+        "code": "45006",
+        "message": "Quote Line Number QL-1339235 does not belong to this quote  1."
+      }
+    ],
+    "status": "error"
+  }
+}

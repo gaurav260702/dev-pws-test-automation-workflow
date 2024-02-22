@@ -1,0 +1,21 @@
+{
+    "quoteNote": "SM_Notefrom_Agenttocustomer4.{{note}}",
+    "currency": "AUD",
+    "agentAccount": {
+        "accountCsn": "5070132993"
+    },
+    "agentContact": {
+        "email": "partneruser_da_stg_5070132993_2@letscheck.email"
+    },
+    "endCustomer": {
+        "accountCsn": "5503204592"
+    },
+    "opportunityNumber": "A-20734079",
+    "purchaser": {
+        "email": "fy240dsf0dsflklklk@letscheck.pw",
+        "firstName": "Sunny",
+        "lastName": "Gopim",
+        "phone": "+4154776666",
+        "preferredLanguage": "en"
+    }
+}

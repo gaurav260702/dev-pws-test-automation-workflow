@@ -1,6 +1,8 @@
 ﻿{
   "$ROOT$": "./testdata/WorkflowProcessing/TestData",
   "$ENV$": "STG",
+  "$TEST_DISPLAY_NAME$": "CreateQuote-V2-TrueUp-Premium-3Y-MY-Anniversary-Year-2-Positive",
+  "$TEST_STEPS$": "Call QuoteCreate API --> Call QuoteStatusFAILED API --> Validate the response",
 
   "$ROOT_NAME$": "QuoteServices",
   "$VARIATION_COUNT$": "Create.Quote.V2.New.Non.Premium.Monthly.Offering.Negative",

@@ -1,6 +1,8 @@
 ﻿{
   "$ROOT$": "./testdata/WorkflowProcessing/TestData",
   "$ENV$": "INT",
+  "$TEST_DISPLAY_NAME$": "Updating-Quote-Action-Remove-LineNumber-MISMATCHED-Neg",
+  "$TEST_STEPS$": "Call QuoteCreate API --> Call QuoteStatus API --> Call QuoteUpdateActionRemoveLineNumberMismatchedSTGNeg API --> Validate the response",
 
   "$ROOT_NAME$": "QuoteServices",
   "$VARIATION_COUNT$": "Update.Quote.Action.Remove.LineNumber.MISMATCHED.Neg",

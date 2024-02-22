@@ -1,6 +1,8 @@
 ﻿{
   "$ROOT$": "./testdata/WorkflowProcessing/TestData",
   "$ENV$": "STG",
+  "$TEST_DISPLAY_NAME$": "CreateQuote-V2-New-Multi-Offering-Annual-PWS-Quote-v2-to-Order-Positive",
+  "$TEST_STEPS$": "Call QuoteCreate API --> Call QuoteStatus API --> Call QuoteDetailsV2New API --> Call QuoteFinalizeV2New API --> Call QuoteStatusByQuoteNumber API --> Validate the response",
 
   "$ROOT_NAME$": "QuoteServices",
   "$VARIATION_COUNT$": "Create.Quote.V2.New.Multi.Offering.Annual.PWS.Quote.v2.to.Order.Positive",
@@ -25,7 +27,7 @@
   "$CSN_HEADER$": "5070132993",
 
       "$OFFERING_ID$": "OD-000321",
-      "$AGENT_EMAIL$": "agentpartnera2k@letscheck.email",
+      "$AGENT_EMAIL$": "part_01aug_001@letscheck.pw",
 
   "$CREATE_QUOTE_BASE_URL$": "https://enterprise-api-$ENV$.autodesk.com/",
   "$VERSION_PATH$": "v2",

@@ -1,6 +1,8 @@
 ﻿{
   "$ROOT$": "./testdata/WorkflowProcessing/TestData",
   "$ENV$": "STG",
+  "$TEST_DISPLAY_NAME$": "CreateQuote-V2-New-Single-NonPremium-Offering-3Yr-Existing-EndCust-And-Purchaser-Positive",
+  "$TEST_STEPS$": "Call QuoteCreate API --> Call QuoteStatus API --> Call QuoteDetailsV2New API --> Call QuoteFinalizeV2New API --> Call QuoteStatusByQuoteNumber API --> Validate the response",
 
   "$ROOT_NAME$": "QuoteServices",
   "$VARIATION_COUNT$": "Create.Quote.V2.New.Single.NonPremium.Offering.3Yr.Existing.EndCust.And.Purchaser.Positive",
@@ -13,8 +15,8 @@
 
   "$CSN_SOLDTO$": "5112991506",
   "$CSN_RESELLER$": "5070132993",
-  "$CSN_ENDCUSTOMER$": "5112991506",
-  "$CSN_SHIPTO$": "5112991506",
+  "$CSN_ENDCUSTOMER$": "5070132993",
+  "$CSN_SHIPTO$": "5070132993",
 
   "$CSN_PRIMARY$": "$CSN_ENDCUSTOMER$",
   "$CSN_SECONDARY$": "$CSN_RESELLER$",
@@ -25,7 +27,7 @@
   "$CSN_HEADER$": "5070132993",
 
       "$OFFERING_ID$": "OD-000321",
-      "$AGENT_EMAIL$": "agentpartnera2k@letscheck.email",
+      "$AGENT_EMAIL$": "kleekru@yahoo.com",
 
   "$CREATE_QUOTE_BASE_URL$": "https://enterprise-api-$ENV$.autodesk.com/",
   "$VERSION_PATH$": "v2",

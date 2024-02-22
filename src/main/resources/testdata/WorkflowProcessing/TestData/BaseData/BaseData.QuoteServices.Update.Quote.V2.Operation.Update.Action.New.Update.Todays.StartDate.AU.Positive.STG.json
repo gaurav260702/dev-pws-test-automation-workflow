@@ -1,0 +1,50 @@
+{
+    "quoteNote": "SM_Notefrom_Agenttocust.{{note}}",
+    "currency": "AUD",
+    "agentAccount": {
+        "accountCsn": "5070132993"
+    },
+    "agentContact": {
+        "email": "part_01aug_001@letscheck.pw"
+    },
+    "endCustomer": {
+        "accountCsn": "5502379086"
+    },
+    "purchaser": {
+        "email": "krisatumaa@letscheck.email",
+        "firstName": "KrisA",
+        "lastName": "TumaA",
+        "phone": "+61285659327",
+        "preferredLanguage": "en"
+    },
+    "lineItems": [
+        {
+            "offeringId": "OD-000054",
+            "action": "New",
+            "quantity": 10,
+            "startDate": "[[Date(25)]]",
+            "offer": {
+                "term": {
+                    "code": "A01",
+                    "description": "Annual"
+                },
+                "accessModel": {
+                    "code": "S",
+                    "description": "Single User"
+                },
+                "intendedUsage": {
+                    "code": "COM",
+                    "description": "Commercial"
+                },
+                "connectivity": {
+                    "code": "C100",
+                    "description": "Online"
+                },
+                "servicePlan": {
+                    "code": "STND",
+                    "description": "Standard"
+                }
+            }
+        }
+    ]
+}
