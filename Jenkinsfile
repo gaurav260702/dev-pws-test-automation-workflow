@@ -75,7 +75,7 @@ pipeline {
           script {
             isMasterBranch = "${env.BRANCH_NAME}" == 'master'
             // Uncomment to allow your branch to act as master ONLY FOR TESTING
-//             isMasterBranch = true
+            isMasterBranch = true
             sh "docker build --tag ${imageName} ."
             vaultPath = "${params.Environment}" == 'STG' ? "aws-sts/des/ddws-stg/sts/Vault-Deployer" : "aws-sts/des/DDWS-UAT/sts/Vault-Deployer"
           }
