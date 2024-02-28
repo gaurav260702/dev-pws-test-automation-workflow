@@ -235,6 +235,7 @@ pipeline {
                     } else {
                       echo "Skipping send test reports due to isMasterBranch=${isMasterBranch} "
                       }
+
 //           if(isMasterBranch) {
 //             sh('curl -i -XPOST "https://calvinklein-7de56744.influxcloud.net:8086/write?db=k6&u=$INFLUX_DB_USERNAME&p=$INFLUX_DB_PASSWORD" --data-binary '+"""'dev_automation_test_report,TEST_NAME=$TEST_NAME,ENV_NAME=$ENV_NAME,TEST_STATUS=$TEST_STATUS,BUILD=$env.GIT_BRANCH-$env.BUILD_NUMBER,SERVICE_NAME=$SERVICE_NAME,COUNTRY=$COUNTRY,TEST_DISPLAY_NAME=$TEST_DISPLAY_NAME value=1,$statusName=1,TEST_STEPS="${TEST_STEPS}",TRANSACTION_ID="${TRANSACTION_ID}",TOTAL_VALIDATIONS=$TOTAL_VALIDATIONS,PASS_VALIDATIONS=$PASS_VALIDATIONS,FAIL_VALIDATIONS=$FAIL_VALIDATIONS,API_RESPONSE="'''${API_RESPONSE}'''",API_EXP_RESPONSE="'''${API_EXP_RESPONSE}'''",RESTAPI_CALL="'''${RESTAPI_CALL}'''",VALIDATION_ERROR="'''${VALIDATION_ERROR}'''",VALIDATION_ERRORS="'''${VALIDATION_ERRORS}'''"'""")
 //           } else {
