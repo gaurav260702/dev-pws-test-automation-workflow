@@ -1,5 +1,7 @@
 import groovy.json.JsonSlurper;
 import groovy.json.JsonOutput;
+
+@Grab(group='org.influxdb', module='influxdb-java', version='1.80')
 import influxdb_client
 import influxdb_client.client.write_api
 import influxdb_client.domain.write_precision
