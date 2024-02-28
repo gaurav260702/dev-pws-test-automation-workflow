@@ -60,7 +60,7 @@ pipeline {
     parameterizedCron(env.BRANCH_NAME == 'master' ? '''
         # run INT tests everyday at 5 AM PST
         0 5 * * * % Environment=INT;QuoteServices_V1_AUS_INT=true;QuoteServices_V2_AUS_INT=true;QuoteServices_V2_NZ_INT=true;QuoteServices_V2_US_INT=true;GetQuoteDetailsInternalv2_INT=true;
-        
+
         # run STG tests everyday at 5 AM PST
         0 5 * * * % Environment=STG;QuoteServices_V1_AUS_STG=true;QuoteServices_V2_AUS_STG=true;QuoteServices_V2_NZ_STG=true;
     ''' : '')
@@ -231,6 +231,7 @@ pipeline {
           echo "${JsonOutput.toJson(jsonData)}"
 
           if(isMasterBranch)
+          {
               def influxdb = Jenkins.instance.getDescriptorByType(jenkinsci.plugins.influxdb.DescriptorImpl)
               def target = new jenkinsci.plugins.influxdb.models.Target()
               target.description = 'dev_automation_test_report'
