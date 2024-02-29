@@ -232,8 +232,10 @@ pipeline {
 
           if(isMasterBranch)
           {
+              // Setting influxdb and target using jenkincsi.plugins
               def influxdb = Jenkins.instance.getDescriptorByType(jenkinsci.plugins.influxdb.InfluxDbStep.DescriptorImpl)
               def target = new jenkinsci.plugins.influxdb.models.Target()
+
               target.description = 'dev_automation_test_report'
               target.url = 'https://calvinklein-7de56744.influxcloud.net:8086'
               target.username = 'INFLUX_DB_USERNAME'
