@@ -232,7 +232,7 @@ pipeline {
 
           if(isMasterBranch)
           {
-              def influxdb = Jenkins.instance.getDescriptorByType(jenkinsci.plugins.influxdb.DescriptorImpl)
+              def influxdb = Jenkins.instance.getDescriptorByType(jenkinsci.plugins.influxdb.InfluxDbStep.DescriptorImpl)
               def target = new jenkinsci.plugins.influxdb.models.Target()
               target.description = 'dev_automation_test_report'
               target.url = 'https://calvinklein-7de56744.influxcloud.net:8086'
@@ -240,7 +240,6 @@ pipeline {
               target.password = 'INFLUX_DB_PASSWORD'
               target.database = 'k6'
               target.measurementName = 'dev_automation_test_report'
-
 
               influxdb.addTarget(target)
               influxdb.save()
@@ -255,11 +254,7 @@ pipeline {
                           "TEST_STATUS": TEST_STATUS
                       ]
 
-             def point = Point.measurement('dev-automation-test-report')
-                  .addFields(myFields)
-                  .addTags(myTags)
-                  .time(System.currentTimeMillis(), WritePrecision.MS)
-                  .build()
+
           influxDbPublisher(selectedTarget: 'dev_automation_test_report', customDataMap: myFields, customDataMapTags: myTags)
 //                      sh('curl -i -XPOST "https://calvinklein-7de56744.influxcloud.net:8086/write?db=k6&u=$INFLUX_DB_USERNAME&p=$INFLUX_DB_PASSWORD" --data-binary '+"""'dev_automation_test_report,TEST_NAME=$TEST_NAME,ENV_NAME=$ENV_NAME,TEST_STATUS=$TEST_STATUS,BUILD=$env.GIT_BRANCH-$env.BUILD_NUMBER,SERVICE_NAME=$SERVICE_NAME,COUNTRY=$COUNTRY,TEST_DISPLAY_NAME=$TEST_DISPLAY_NAME value=1,$statusName=1,TEST_STEPS="${TEST_STEPS}",TRANSACTION_ID="${TRANSACTION_ID}",TOTAL_VALIDATIONS=$TOTAL_VALIDATIONS,PASS_VALIDATIONS=$PASS_VALIDATIONS,FAIL_VALIDATIONS=$FAIL_VALIDATIONS,API_RESPONSE="'''${API_RESPONSE}'''",API_EXP_RESPONSE="'''${API_EXP_RESPONSE}'''",RESTAPI_CALL="'''${RESTAPI_CALL}'''",VALIDATION_ERROR="'''${VALIDATION_ERROR}'''",VALIDATION_ERRORS="'''${VALIDATION_ERRORS}'''"'""")
                     } else {
